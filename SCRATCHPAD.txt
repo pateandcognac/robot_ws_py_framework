@@ -1,0 +1,44 @@
+```msg
+# CognitionInput.msg publish on topic /cognition/input/
+string type   # usually py_result, context, state, or human, but build to accept anything
+string content  # Input as a single string (for python, stdout, stderr, other serialization is done worker side)
+string system_hint # ephemeral prompt injection for guiding output. 
+boolean loop_cognition # whether to loop or just append (if just appending, system_hint is overridden by next input)
+```
+
+```msg
+# CognitionOutput.msg 
+# Cognition node publishes on topic /cognition/output
+# Python worker node (and others) subscribe
+string type # usually `llm`, `context`, `state`, `chunk`,`thoughts`
+string content 
+
+# the types:
+# llm: the LLM's complete response
+# context: controller constructed <py> calls for gathering header/footer context
+# state: controller might publish tiny <py> snippet to indicate state (turn on LED to indicate processing, etc)
+# chunk and thoughts are streams from the LLM api
+# thoughts: the latest Gemini LLMs support thinking before answering. Their raw thoughts are private, but, an abstracted summary can be streamed as chunks for feedback. These thoughts are functionally a progress bar—helpful!—but not to be recorded.
+# chunk: streamed chunk of the LLM's response
+```
+
+
+
+
+~/robot_ws/                  # catkin workspace (ROS Noetic)
+├── src/
+│   ├── agent_cognition/     # ROS package: cognition node
+│   ├── agent_python_tool/   # ROS package: python runner/sandbox node
+│   ├── agent_msgs/          # ROS package: .msg/.srv/.action defs
+│   └── agent_bringup/       # ROS package: launch files, params, run configs
+├── devel/                   # catkin stuff
+└── build/                   # catkin stuff
+
+~/agent_workspaces/          # LLM “profiles” and creative sandboxes (NOT catkin)
+├── <workspace_name>/        # e.g., "kitchen", "mapping", "dev", etc
+│   ├── .system/             # read-only agent definition; version these separately
+│   ├── state/               # LLM-mutable configs and history
+│   ├── artifacts/           # outputs, images, plots, temp data
+│   ├── preload_api/         # (optional) per-workspace shims; see below
+│   ├── src/                 # user/LLM-generated python modules
+│   ├── docs/                # any notes the LLM writes
