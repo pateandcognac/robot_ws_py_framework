@@ -1,0 +1,5 @@
+- name: welcome_message
+  description: "A simple welcome message."
+  ttl: -1 # Run once and cache
+  code: |
+    print("Welcome to the Logos Framework! Prelude context is active.")

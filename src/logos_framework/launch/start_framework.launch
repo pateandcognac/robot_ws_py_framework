@@ -1,0 +1,18 @@
+<launch>
+    <!-- Argument to specify which agent workspace to use -->
+    <arg name="workspace" default="logos_v1" doc="The name of the workspace directory inside ~/robot_workspaces/"/>
+
+    <!-- Construct the full path to the workspace -->
+    <arg name="workspace_path" value="$(env HOME)/robot_workspaces/$(arg workspace)"/>
+
+    <!-- Launch the Cognition Node -->
+    <node name="cognition_node" pkg="logos_framework" type="cognition_node.py" output="screen">
+        <param name="workspace_path" value="$(arg workspace_path)" />
+    </node>
+
+    <!-- Launch the Python Worker Node -->
+    <node name="python_worker_node" pkg="logos_framework" type="python_worker_node.py" output="screen">
+        <param name="workspace_path" value="$(arg workspace_path)" />
+    </node>
+
+</launch>
