@@ -169,7 +169,7 @@ class PythonWorkerNode:
             loop_cognition = self.interpreter.locals.get('loop_cognition', False)
             if not isinstance(loop_cognition, bool):
                 rospy.logwarn(f"Magic variable 'loop_cognition' was set to a non-boolean value: {loop_cognition}. Defaulting to False.")
-                loop_cognition = True
+                loop_cognition = False 
             
             # Reset the magic variable after reading it
             if 'loop_cognition' in self.interpreter.locals:
@@ -179,16 +179,19 @@ class PythonWorkerNode:
         rospy.loginfo(f"Code execution finished in {duration:.2f}s. Loop cognition requested: {loop_cognition}")
 
         # Format the result content
+        # TODO: add safe truncation
+        # TODO: use no/sparse formatting for context snippets
         result_content = ""
         if stdout:
             result_content += f"# stdout\n{stdout.strip()}\n"
         if stderr:
             result_content += f"# stderr\n{stderr.strip()}\n"
         
-        result_content += f"\n# Execution finished in {duration:.2f}s."
-
         if not stdout and not stderr:
             result_content = f"# No output produced.\n{result_content.strip()}"
+
+        result_content += f"\n# Execution finished in {duration:.2f}s."
+
 
         self._publish_result(msg_type=request_type, content=result_content.strip(), loop_cognition=loop_cognition)
 

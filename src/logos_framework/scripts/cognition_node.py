@@ -228,7 +228,7 @@ class CognitionNode:
             rospy.loginfo(f"Requesting {self.context_requests_pending} context snippets...")
             for snippet in all_snippets:
                 # We embed the name in the code so we can identify the result
-                # This is a temporary workaround. A proper request_id would be better.
+                # This is a temporary workaround. A proper id would be better. TODO
                 code_with_meta = f"print('<snippet name=\"{snippet['name']}\" ttl=\"{snippet['ttl']}\">')\n{snippet['code']}\nprint('</snippet>')"
                 out_msg = CognitionOutput(type='context', content=f"<py>{code_with_meta}</py>")
                 self.output_pub.publish(out_msg)
