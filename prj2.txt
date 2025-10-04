@@ -105,7 +105,7 @@ My digital home is the directory `~/robot_workspaces/{{workspace_name}}/`. I hav
 </directives>
 </system>
 
-<!-- <system>: [Initialization complete] Logos is online! Connecting to framework interface... -->
+<!-- <system>: Initialization complete - Logos is online! Connecting to framework interface... -->
 
 
 ```
@@ -123,7 +123,9 @@ file: ~/robot_workspaces/logos_v1/.system/framework_config.json
         "show_io_buffer_stats": true,
         "show_io_cell_stats": true,
         "show_snippet_ttl": true,
-        "token_estimation_divisor": 5
+        "token_estimation_divisor": 5,
+        "remove_header_at_eol": false,
+        "remove_footer_at_eol": true
     },
     "main_model": {
         "model": "gemini-flash-latest",

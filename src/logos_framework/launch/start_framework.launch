@@ -1,6 +1,6 @@
 <launch>
     <!-- Argument to specify which agent workspace to use -->
-    <arg name="workspace" default="logos_v1" doc="The name of the workspace directory inside ~/robot_workspaces/"/>
+    <arg name="workspace" default="default_agent" doc="The name of the workspace directory inside ~/robot_workspaces/"/>
 
     <!-- Construct the full path to the workspace -->
     <arg name="workspace_path" value="$(env HOME)/robot_workspaces/$(arg workspace)"/>

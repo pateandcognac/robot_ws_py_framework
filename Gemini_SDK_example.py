@@ -57,8 +57,8 @@ for chunk in client.models.generate_content_stream(
         config=genai.types.GenerateContentConfig(
             safety_settings=safety_settings,
             thinking_config=genai.types.ThinkingConfig(
-                thinking_budget=256), # 0 disables thinking, -1 for auto
-                include_thoughts=True, #  whether to stream thought summaries
+                thinking_budget=-1, # 0 disables thinking, -1 for auto
+                include_thoughts=False), #  whether to stream thought summaries
             temperature=0.7,
             media_resolution="MEDIA_RESOLUTION_UNSPECIFIED", # LOW, MEDIUM, or UNSPECIFIED
             stop_sequences=["<|EOS|>"],

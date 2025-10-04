@@ -1,48 +1,110 @@
-# Logos Framework Review Report
+And finally, here's a project progress report another you were kind enough to create for us:
 
-## Project Understanding
-- ROS Noetic stack meant to host a proactive embodied agent called Logos.
-- Two main ROS nodes: `cognition_node.py` for LLM prompting + telemetry, and `python_worker_node.py` for executing `<py>` blocks in a persistent interpreter.
-- Agent context resides under `~/robot_workspaces/<workspace>/` with `.system` config, `state` YAML-defined snippets, and future `preload_api` helpers.
-- Gemini serves as the LLM backend; cognition cycles gather header/footer snippets, stitch prompt, stream thoughts/output, and enqueue results back to the Python worker.
+```md
+### Synthesis and Action Plan for Logos Framework v0.2
 
-## Architecture Notes
-- `ConfigManager` loads framework/system prompt plus header/footer snippet definitions, but templating and snippet TTL caching are not yet wired.
-- `IOManager` appends every message to `io_history.jsonl` and `io_buffer.jsonl` but never prunes by `max_cells`/token targets.
-- `CognitionNode` orchestrates context gathering, assembles prompt (including optional images), then streams Gemini responses over `/cognition/output`.
-- `PythonWorkerNode` listens on `/cognition/output`, executes `<py>` blocks, and returns stdout/stderr plus `loop_cognition` flags to `/cognition/input`.
+**Project Vision:** To create a robust, flexible, and truly LLM-first agentic framework for the ROS-based robot, Logos. The core architecture consists of a `CognitionNode` (the brain) and a `PythonWorkerNode` (the hands), communicating via ROS topics. The agent's state, memory, and capabilities are transparently managed through a structured workspace on the filesystem, making it directly inspectable and modifiable by both its human operator and, crucially, by the agent itself. The framework is designed such that it can be adapted for AI models of differing levels of intelligence, and through prompting, given different level of awareness of their framework. In fact
 
-## Findings (Bugs, Inconsistencies, Ambiguities)
-1. Gemini client import/usage mixes the new `google.genai` SDK with the old `google.generativeai` patterns (`genai.configure`, `GenerativeModel`). This likely raises at runtime and needs alignment with one SDK.
-2. `last_received_system_hint` is set but never inserted into the prompt, so hints (including the default "Ready for Logos's reply") never reach the LLM.
-3. The system prompt still contains `{{header_name}}`, `{{footer_name}}`, etc. placeholders; without replacement the LLM sees raw braces instead of resolved context labels.
-4. Context snippet TTL semantics are ignored—every snippet runs every cycle, even the `ttl: -1` cache-only prelude.
-5. Context results capture the Python worker's entire `# stdout`/`# Execution finished` wrapper, so header/footer content is noisy and may break XML structure.
-6. IO buffer management ignores `max_cells`/token limits, so the buffer will grow without bound.
-7. Gemini safety + generation config likely mis-specified (`genai.types.GenerationConfig(**cfg)` with extra keys, safety settings dict instead of SDK objects, missing thinking config forwarding).
-8. Config references `preload_api/core.py`, but no such file/folder ships with the template; initialization just warns.
-9. Timeout handling publishes an error while the execution thread keeps running and will publish again later, causing duplicate responses and unclear state.
-10. Regex for `<py timeout="...">` only accepts integers; fractional seconds will log a warning and fall back silently.
-11. `Gemini_SDK_example.py` illustrates `FREE_GEMINI_API_KEY`, but the production code expects `GEMINI_API_KEY`; mismatch may confuse setup instructions.
+**Current State:** We have a v0.1 skeleton with two ROS nodes, message definitions, and a complete set of configuration files. The system can pass a simple code execution request from the LLM to the worker and back.
 
-## TODO Inventory
-- `ConfigManager.load_configs` (system prompt templating).
-- `CognitionNode`: add message metadata, better snippet request IDs.
-- `PythonWorkerNode`: async stdout polling, custom interrupt, better `<py>` error handling, improved tracebacks, truncated output, smarter formatting, system hints on repeated errors.
-- Message definitions suggest adding metadata fields.
+**Objective:** Refine the existing v0.1 code to implement the full suite of features we've designed, focusing on robustness, context management, and developer/agent quality-of-life improvements. This outline will serve as our blueprint for the upcoming coding sessions.
 
-## Questions / Clarifications
-- Should TTL semantics support caching on the Cognition side, or does the Python worker need awareness of cached snippets?
-- What is the intended format for system hints (HTML comment vs. plain text)? Need spec before wiring them into the prompt.
-- Are streamed `thoughts` meant for UI only, or should they also reach the IO buffer/history?
-- How strict must IO pruning be (hard cap vs. heuristic) given `my_config.yaml` limits?
+---
 
-## Suggestions / Next Steps
-1. Decide on the Gemini SDK version, fix imports, and adapt the API call accordingly (generation config + safety settings).
-2. Inject `last_received_system_hint` into the assembled prompt just before the `<me>` tag, and consider resetting only after a full response.
-3. Implement snippet caching: respect negative TTL once-run caching, honor TTL counters, and store cached outputs on disk to survive restarts.
-4. Normalize context outputs—strip the Python worker wrappers or introduce a dedicated payload structure instead of parsing console text.
-5. Add IO buffer pruning respecting `max_cells`/token limits, possibly moving overflow to history only.
-6. Create the missing `preload_api/` scaffolding or remove it from config until available.
-7. Revisit timeout handling so duplicate publications do not confuse the cognition loop (e.g., mark timed-out threads and skip their later output).
+### **Detailed Outline of Pending Tasks**
 
+#### **I. `cognition_node.py` - The Brain & Orchestrator**
+
+This node requires the most significant upgrades to handle the sophisticated context management and prompt construction logic.
+
+**1. Create a `ContextManager` Class:**
+To keep the `CognitionNode` clean, all logic related to snippet handling will be encapsulated in a new class, `ContextManager`, likely in its own file (`src/logos_framework/modules/context_manager.py`).
+
+*   **A. Initialization (`__init__`):**
+    *   The manager will be initialized with the `workspace_path` and the `context` section of the `framework_config.json`.
+    *   It will load the `header_config.yaml` and `footer_config.yaml` files into an internal state (e.g., a list of dictionaries).
+    *   It will create a dictionary to hold the `cached_output` for snippets with negative TTLs.
+
+*   **B. Core Logic (`gather_context` method):** This will be the main public method called by the `CognitionNode`.
+    *   It will iterate through the header and footer snippets.
+    *   For each snippet, it will determine if execution is needed based on its TTL value and cached state.
+        *   **Run Condition:** `(ttl > 0)` OR `(ttl < 0 and not is_cached)`. Snippets with `ttl == 0` are skipped.
+    *   It will return a list of snippets that need to be executed.
+
+*   **C. TTL Management & File Persistence (`update_ttls` method):**
+    *   This method will be called once per cognition cycle.
+    *   It will iterate through the internal state of snippets for both header and footer.
+    *   **TTL Logic:**
+        *   If `ttl > 0` and `ttl != 99`, it will decrement `ttl`.
+        *   If `ttl < 0` and `ttl != -99`, it will increment `ttl`.
+    *   **Snippet Removal Logic:**
+        *   After updating, if a snippet's `ttl` becomes `0`, it will check the corresponding `remove_{header/footer}_at_eol` flag in the framework config.
+        *   If the flag is `true`, the snippet will be removed from the in-memory list.
+    *   **File Write-Back:** After all updates and removals, the method will use `ruamel.yaml` to write the modified snippet lists back to their respective `_config.yaml` files, preserving comments and structure.
+
+**2. Implement Verbose Prompt Construction:**
+The `CognitionNode`'s `_construct_prompt_and_images` method will be updated to use the `framework_config.json` verbosity settings.
+
+*   **A. Header/Footer Formatting:**
+    *   It will calculate the total number of snippets and the estimated token count for the header and footer content.
+    *   If `show_header_stats` is true, it will wrap the header content in `<prelude_context snippets="X" tokens="Y">...</prelude_context>`. Otherwise, it will use a simple `<prelude_context>...</prelude_context>`. The same logic applies to the footer.
+    *   The formatting of individual snippets (`<snippet name="..." ttl="...">` vs `<name>...`) will also be controlled by the `show_snippet_ttl` flag.
+
+*   **B. IO Buffer Formatting:**
+    *   It will calculate the number of cells and estimated tokens in the buffer.
+    *   If `show_io_buffer_stats` is true, it will wrap the buffer in `<io_buffer cells="X" tokens="Y">...</io_buffer>`.
+    *   If `show_io_cell_stats` is true, each message will be formatted as `<type cell="Z" id="...">...</type>`. Otherwise, it will be a simpler `<type>...</type>`.
+
+**3. Implement Sequential Message ID Generation:**
+The `IOManager` class will be upgraded as planned.
+
+*   **A. Startup:** On initialization, it will read the last line of `io_history.jsonl` to determine the next message ID number.
+*   **B. Generation:** The `append_message` method will use an in-memory counter, format it to a 4-digit zero-padded base36 string, and append `msg-` to create the final ID before writing to the files.
+
+**4. Finalize System Prompt Templating:**
+In the `ConfigManager`, after loading `system_prompt.txt`, it will perform a string replacement for all `{{...}}` placeholders using values from the `framework_config.json`.
+
+---
+
+#### **II. `python_worker_node.py` - The Hands & Environment**
+
+This node's upgrades focus on improving the agent's debugging experience and enabling asynchronous reactivity.
+
+**1. Implement `meta` Field and `linecache` for Tracebacks:**
+*   **A. Message Handling:** The `_output_callback` will extract the `meta` field from the incoming `CognitionOutput` message.
+*   **B. `linecache` Integration:** The `_execute_code` method will use the received `meta` field to create a clean, descriptive filename (e.g., `<current_time>`, `<msg-00a5>`). This filename will be used both for stuffing the code into `linecache` and for the `compile()` function.
+*   **C. `meta` Pass-Through:** The `_publish_result` method will accept the `meta` string and place it in the outgoing `CognitionInput` message, ensuring robust tracking for context snippets.
+
+**2. Implement Asynchronous Output:**
+TODO
+
+---
+
+#### **III. Workspace & API**
+
+**1. Create Initial `preload_api/core.py`:**
+*   A new file will be created.
+*   It will contain essential, safe filesystem operations for the agent to use out-of-the-box.
+    *   `read_file(path: str) -> str`
+    *   `write_file(path: str, content: str)`
+    *   `list_dir(path: str) -> list`
+    *   Define custom exceptions: `InterruptException(Exception)` and `TimeoutException(Exception)`.
+    *   Create a summarization agent and logic for io_buffer. Could run in a context snippet or called by Logos or both.
+```
+
+
+===
+
+
+Alrighty! Thanks for reviewing all that Gemini :) I know it was quite a bit!
+
+No need to be jumping into code just yet, please... take a moment to gather your thoughts.
+
+I don't think it has been mentioned yet - this will be run sandboxed. Not too concerned with "security"  for this personal project at this point. 
+
+Besides the TODOs and inconsistencies already mentioned, any other bugs or oddities jumping out at you?
+Thoughts?
+Questions?
+Critiques?
+
+Thanks, Gemini!
