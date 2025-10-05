@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import rospy
+import sys
 import os
 import re
 import io
@@ -8,19 +9,22 @@ import json
 import time
 import threading
 import traceback
-import contextlib
+import linecache
 from pathlib import Path
-
+from enum import Enum 
 from logos_framework.msg import CognitionInput, CognitionOutput
 
 
+
 # python worker TODOs:
-# Add a rospy.Timer to poll for and capture async output from background tasks running in the interpreter.
 # Create a custom exception in the API for timeout and Interrupt
 # wrap <py> code in try...except
-# filename is currently request_type_snippet, use msg-id or snippet_name for context collection. tweak CognitionOutput.msg
 # implement linecache "stuffing" for better tracebacks
 
+
+class WorkerState(Enum):
+    IDLE = 0
+    EXECUTING = 1
 
 class PythonWorkerNode:
     def __init__(self):
@@ -57,7 +61,20 @@ class PythonWorkerNode:
             return
 
         # Interpreter state
-        self.interpreter_lock = threading.Lock()
+        # Async Output & State Management
+        self.state = WorkerState.IDLE
+        self.state_lock = threading.RLock() # RLock for safety
+
+        # Permanent Standard I/O Redirection
+        # We replace sys.stdout/err so we capture output from ANY thread
+        self.stdout_buffer = io.StringIO()
+        self.stderr_buffer = io.StringIO()
+        sys.stdout = self.stdout_buffer
+        sys.stderr = self.stderr_buffer
+        rospy.loginfo("Python Worker: Standard I/O permanently redirected to internal buffers.")
+
+        # Interpreter state
+        self.interpreter_lock = threading.Lock() # Protects the interpreter instance itself
         self.interpreter = None
         self._initialize_interpreter()
 
@@ -65,10 +82,32 @@ class PythonWorkerNode:
         self.input_pub = rospy.Publisher('/cognition/input', CognitionInput, queue_size=10)
         self.output_sub = rospy.Subscriber('/cognition/output', CognitionOutput, self._output_callback, queue_size=10)
 
-        # TODO: Add a rospy.Timer here to poll for and capture async output
-        # from background tasks running in the interpreter.
+        # Async Output Polling Timer (e.g., every 0.5 seconds)
+        self.async_timer = rospy.Timer(rospy.Duration(0.5), self._poll_async_output)
 
         rospy.loginfo("Python Worker Node: Ready for execution requests.")
+
+    def _poll_async_output(self, event=None):
+            """Timer callback to check for and publish background output."""
+            with self.state_lock:
+                # Only capture and publish if we are IDLE.
+                # If EXECUTING, the _execute_code method owns the buffers.
+                if self.state == WorkerState.IDLE:
+                    stdout = self.stdout_buffer.getvalue()
+                    stderr = self.stderr_buffer.getvalue()
+
+                    if stdout or stderr:
+                        # Clear buffers now that we've read them
+                        self.stdout_buffer.truncate(0); self.stdout_buffer.seek(0)
+                        self.stderr_buffer.truncate(0); self.stderr_buffer.seek(0)
+
+                        content = ""
+                        if stdout: content += f"# async stdout\n{stdout.strip()}\n"
+                        if stderr: content += f"# async stderr\n{stderr.strip()}\n"
+                        
+                        # Publish as py_async. Usually doesn't trigger cognition loop.
+                        self._publish_result(msg_type='py_async', content=content.strip(), loop_cognition=False, filename="async_output")
+
 
     def _initialize_interpreter(self):
         """Creates a new interpreter instance and loads preload APIs."""
@@ -126,7 +165,8 @@ class PythonWorkerNode:
         # Execute in a separate thread to handle timeouts
         execution_thread = threading.Thread(
             target=self._execute_code,
-            args=(code_to_run, do_reset, msg.type)
+            # MODIFIED: Pass the filename from the message
+            args=(code_to_run, do_reset, msg.type, msg.filename)
         )
         execution_thread.start()
         execution_thread.join(timeout=timeout_sec)
@@ -138,64 +178,82 @@ class PythonWorkerNode:
             # This is a known limitation of Python's threading.
             # TODO: Use Custom Exception in API to trigger "Interrupt"
             result_content = f"# stderr\nExecution timed out after {timeout_sec} seconds."
-            self._publish_result(msg_type=msg.type, content=result_content, loop_cognition=True)
+            self._publish_result(msg_type=msg.type, content=result_content, loop_cognition=True, filename=msg.filename)
 
 
-    def _execute_code(self, code_str: str, do_reset: bool, request_type: str):
-        """The core execution logic."""
-        start_time = time.time()
-        
-        with self.interpreter_lock:
-            if do_reset:
-                self._initialize_interpreter()
-
-            output_buffer = io.StringIO()
-            error_buffer = io.StringIO()
+    def _execute_code(self, code_str: str, do_reset: bool, request_type: str, filename: str):
+            """The core execution logic with state management and buffer capture."""
+            start_time = time.time()
             
-            try:
-                with contextlib.redirect_stdout(output_buffer), contextlib.redirect_stderr(error_buffer):
-                    # Compile and run the code in the persistent interpreter
-                    compiled_code = compile(code_str, f"<{request_type}_snippet>", 'exec')
-                    self.interpreter.runcode(compiled_code)
+            # 1. Set State to EXECUTING
+            with self.state_lock:
+                self.state = WorkerState.EXECUTING
+                # Note: We do NOT clear buffers here. Temporal routing means anything
+                # in the buffer now belongs to this execution cycle.
+
+            # 2. Run Code (holding interpreter lock, but NOT state lock)
+            with self.interpreter_lock:
+                if do_reset:
+                    self._initialize_interpreter()
                 
-            except Exception:
-                # Catch any exception and write the traceback to the error buffer
-                traceback.print_exc(file=error_buffer)
+                # Use passed filename or default
+                code_filename = filename if filename else f"<{request_type}>"
 
-            stdout = output_buffer.getvalue()
-            stderr = error_buffer.getvalue()
+                # NEW: Stuff the code into the linecache module.
+                # This allows tracebacks to show the correct source code lines.
+                linecache.cache[code_filename] = (len(code_str), None, [line + '\n' for line in code_str.splitlines()], code_filename)
 
-            # Check for the magic variable to control the cognition loop
-            loop_cognition = self.interpreter.locals.get('loop_cognition', False)
-            if not isinstance(loop_cognition, bool):
-                rospy.logwarn(f"Magic variable 'loop_cognition' was set to a non-boolean value: {loop_cognition}. Defaulting to False.")
-                loop_cognition = False 
-            
-            # Reset the magic variable after reading it
-            if 'loop_cognition' in self.interpreter.locals:
-                del self.interpreter.locals['loop_cognition']
+                try:
+                    # Output is automatically captured by sys.stdout/err redirection setup in __init__
+                    compiled_code = compile(code_str, code_filename, 'exec')
+                    self.interpreter.runcode(compiled_code)
+                except Exception:
+                    # Print traceback to our redirected stderr
+                    traceback.print_exc(file=sys.stderr)
 
-        duration = time.time() - start_time
-        rospy.loginfo(f"Code execution finished in {duration:.2f}s. Loop cognition requested: {loop_cognition}")
+                # Check/Reset magic variables
+                loop_cognition = self.interpreter.locals.get('loop_cognition', False)
+                if not isinstance(loop_cognition, bool):
+                    rospy.logwarn(f"Magic variable 'loop_cognition' non-boolean: {loop_cognition}. Defaulting False.")
+                    loop_cognition = False 
+                if 'loop_cognition' in self.interpreter.locals:
+                    del self.interpreter.locals['loop_cognition']
 
-        # Format the result content
-        # TODO: add safe truncation
-        # TODO: use no/sparse formatting for context snippets
-        result_content = ""
-        if stdout:
-            result_content += f"# stdout\n{stdout.strip()}\n"
-        if stderr:
-            result_content += f"# stderr\n{stderr.strip()}\n"
-        
-        if not stdout and not stderr:
-            result_content = f"# No output produced.\n{result_content.strip()}"
+            # 3. Set State to IDLE and Harvest Buffers
+            with self.state_lock:
+                self.state = WorkerState.IDLE
+                # Capture everything generated during execution
+                stdout = self.stdout_buffer.getvalue(); self.stdout_buffer.truncate(0); self.stdout_buffer.seek(0)
+                stderr = self.stderr_buffer.getvalue(); self.stderr_buffer.truncate(0); self.stderr_buffer.seek(0)
 
-        result_content += f"\n# Execution finished in {duration:.2f}s."
+            duration = time.time() - start_time
+            rospy.loginfo(f"Execution finished in {duration:.2f}s. Request: {request_type}. Loop: {loop_cognition}")
 
+            # 4. Format Results (Your refined logic, slightly tidied)
+            stdout_str = stdout.strip()
+            stderr_str = stderr.strip()
+            result_parts = []
 
-        self._publish_result(msg_type=request_type, content=result_content.strip(), loop_cognition=loop_cognition)
+            if request_type == 'context':
+                # Clean formatting for context
+                if stdout_str: result_parts.append(stdout_str)
+                if stderr_str: result_parts.append(stderr_str)
+                # Context shouldn't have "no output" or timing info appended.
+            else:
+                # Verbose formatting for LLM/other
+                if stdout_str: result_parts.append(f"# stdout\n{stdout_str}")
+                if stderr_str: result_parts.append(f"# stderr\n{stderr_str}")
+                
+                if not result_parts:
+                    result_parts.append("# No output produced.")
+                
+                result_parts.append(f"\n# Execution finished in {duration:.2f}s.")
 
-    def _publish_result(self, msg_type: str, content: str, loop_cognition: bool):
+            result_content = "\n".join(result_parts).strip()
+
+            self._publish_result(msg_type=request_type, content=result_content, loop_cognition=loop_cognition, filename=filename)
+
+    def _publish_result(self, msg_type: str, content: str, loop_cognition: bool, filename: str): # MODIFIED
         """Constructs and publishes the result message to the CognitionNode."""
         response_msg = CognitionInput()
         
@@ -207,6 +265,7 @@ class PythonWorkerNode:
 
         response_msg.content = content
         response_msg.loop_cognition = loop_cognition
+        response_msg.filename = filename # NEW
 
         # TODO: if error_buffer not empty, set system_hint to something like "<!-- <system>: Avoid troubleshooting loops more than 3 turns. Try a different approach or ask for help. -->"
         # or track more state and count errors, offer unique hints based on counter

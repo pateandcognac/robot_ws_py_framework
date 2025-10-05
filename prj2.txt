@@ -113,7 +113,7 @@ My digital home is the directory `~/robot_workspaces/{{workspace_name}}/`. I hav
 ===
 
 file: ~/robot_workspaces/logos_v1/.system/framework_config.json
-```
+```json
 {
     "context": {
         "header_name": "prelude_context",
@@ -123,9 +123,7 @@ file: ~/robot_workspaces/logos_v1/.system/framework_config.json
         "show_io_buffer_stats": true,
         "show_io_cell_stats": true,
         "show_snippet_ttl": true,
-        "token_estimation_divisor": 5,
-        "remove_header_at_eol": false,
-        "remove_footer_at_eol": true
+        "token_estimation_divisor": 5
     },
     "main_model": {
         "model": "gemini-flash-latest",
@@ -134,7 +132,9 @@ file: ~/robot_workspaces/logos_v1/.system/framework_config.json
             "include_thoughts": true,
             "thinking_budget": -1
         },
-        "stop_sequences": ["</me>", "<py_result>"]
+        "stop_sequences": ["</me>", "<py_result>", "</text>"],
+        "max_output_tokens": 16384,
+        "media_resolution": "MEDIA_RESOLUTION_UNSPECIFIED"
     },
     "python": {
         "preload_api_files": ["core.py"],
