@@ -1,6 +1,0 @@
-- name: current_time
-  description: "Gets the current time."
-  ttl: 99 # Run every loop
-  code: |
-    import datetime
-    print(f"Current time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")

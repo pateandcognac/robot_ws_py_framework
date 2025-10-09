@@ -5,11 +5,11 @@ import re
 import json
 import time
 import threading
-import string
+import string # NEW
 from pathlib import Path
 from collections import deque
 from ruamel.yaml import YAML
-from enum import Enum
+from enum import Enum # Import Enum
 
 # Gemini API and Image Handling
 from google import genai
@@ -66,14 +66,14 @@ class ContextManager:
                     with open(self.header_config_path, 'r') as f:
                         self.header_snippets = yaml.load(f) or []
                 else:
-                    self.header_snippets = []
+                    self.header_snippets = [] # MODIFIED: Ensure list is empty if file disappears
                     rospy.logwarn(f"ContextManager: Header config not found at {self.header_config_path}")
 
                 if self.footer_config_path.exists():
                     with open(self.footer_config_path, 'r') as f:
                         self.footer_snippets = yaml.load(f) or []
                 else:
-                    self.footer_snippets = []
+                    self.footer_snippets = [] # MODIFIED: Ensure list is empty if file disappears
                     rospy.logwarn(f"ContextManager: Footer config not found at {self.footer_config_path}")
             except Exception as e:
                 rospy.logerr(f"ContextManager: Error loading snippet configurations: {e}")
@@ -86,6 +86,7 @@ class ContextManager:
             A tuple containing (list of header snippets to run, list of footer snippets to run).
         """
         with self._lock:
+            # MODIFIED: Reload configs at the start of every check to ensure they are fresh.
             self._load_configs()
             header_to_run = [s for s in self.header_snippets if self._should_run(s)]
             footer_to_run = [s for s in self.footer_snippets if self._should_run(s)]
@@ -127,16 +128,18 @@ class ContextManager:
                 if changed:
                     configs_changed = True
                 
+                # If a cached snippet's TTL just reached zero, invalidate its cache.
                 if new_ttl == 0 and s.get('name') in self.cached_output:
                     rospy.loginfo(f"ContextManager: Invalidating cache for EOL snippet '{s['name']}'.")
                     del self.cached_output[s['name']]
-                    configs_changed = True
+                    configs_changed = True # While not a config change, it's a state change worth noting.
 
 
+                # Removal logic
                 if s['ttl'] == 0 and self.config.get('remove_header_at_eol', False):
                     rospy.loginfo(f"ContextManager: Removing EOL header snippet '{s['name']}'.")
                     configs_changed = True
-                    continue
+                    continue # Skip appending it to the updated list
                 updated_header_snippets.append(s)
             self.header_snippets = updated_header_snippets
 
@@ -148,6 +151,7 @@ class ContextManager:
                 if changed:
                     configs_changed = True
 
+                # Removal logic
                 if s['ttl'] == 0 and self.config.get('remove_footer_at_eol', False):
                     rospy.loginfo(f"ContextManager: Removing EOL footer snippet '{s['name']}'.")
                     configs_changed = True
@@ -155,6 +159,7 @@ class ContextManager:
                 updated_footer_snippets.append(s)
             self.footer_snippets = updated_footer_snippets
 
+            # If any TTLs were changed or snippets removed, write back to the file
             if configs_changed:
                 rospy.loginfo("ContextManager: Snippet TTLs changed, saving configs to disk.")
                 try:
@@ -170,6 +175,7 @@ class ContextManager:
         ttl = snippet.get('ttl', 0)
         original_ttl = ttl
         
+        # Pinned snippets don't have their TTLs changed
         if ttl in [99, -99, 0]:
             return ttl, False
 
@@ -199,11 +205,7 @@ class ConfigManager:
             with open(prompt_path, 'r') as f: self.system_prompt = f.read()
 
             my_config_path = self.workspace_path / "state" / "my_config.yaml"
-            if my_config_path.exists(): # <<< MODIFIED: Check for existence
-                with open(my_config_path, 'r') as f: self.my_config = yaml.load(f)
-            else:
-                rospy.logwarn(f"ConfigManager: my_config.yaml not found at {my_config_path}. Using default values.")
-                self.my_config = {} # Ensure it's a dict
+            with open(my_config_path, 'r') as f: self.my_config = yaml.load(f)
         
             # Perform templating on the system prompt
             workspace_name = self.workspace_path.name
@@ -226,16 +228,18 @@ class ConfigManager:
 
 class IOManager:
     """Handles thread-safe reading and writing to the agent's I/O files."""
-    def __init__(self, workspace_path: Path, framework_config: dict):
+    def __init__(self, workspace_path: Path, framework_config: dict): # MODIFIED
         state_path = workspace_path / "state"
         state_path.mkdir(exist_ok=True)
         self.history_file = state_path / "io_history.jsonl"
         self.buffer_file = state_path / "io_buffer.jsonl"
         self._lock = threading.Lock()
+        #  Store config for token estimation
         self.framework_config = framework_config
         self.id_counter = 0
         self._initialize_id_counter()
 
+    # NEW: Helper function for base36 encoding
     def _base36_encode(self, number, min_length=4):
         """Converts an integer to a base36 string, zero-padded."""
         alphabet = string.digits + string.ascii_lowercase
@@ -247,6 +251,7 @@ class IOManager:
             base36 = alphabet[i] + base36
         return base36.zfill(min_length)
 
+    # NEW: Initialize the message ID counter from the history file
     def _initialize_id_counter(self):
         """Reads the last message ID from the history file to set the counter."""
         with self._lock:
@@ -257,14 +262,15 @@ class IOManager:
 
             try:
                 with open(self.history_file, 'rb') as f:
+                    # Seek to the end, then back to find the last newline
                     f.seek(0, os.SEEK_END)
-                    if f.tell() == 0:
+                    if f.tell() == 0: # File is empty
                         self.id_counter = 0
                         return
 
-                    f.seek(-2, os.SEEK_END)
+                    f.seek(-2, os.SEEK_END) # Go back 2 bytes to get past the last \n
                     while f.read(1) != b'\n':
-                        if f.tell() < 3:
+                        if f.tell() < 3: # at the beginning of the file
                            f.seek(0, os.SEEK_SET)
                            break
                         f.seek(-2, os.SEEK_CUR)
@@ -279,11 +285,13 @@ class IOManager:
                 rospy.logerr(f"IOManager: Failed to initialize ID counter from history file: {e}. Starting from 0.")
                 self.id_counter = 0
 
-    def append_message(self, msg_type: str, content: str, filename: str = None):
+    def append_message(self, msg_type: str, content: str, filename: str = None): # MODIFIED
         with self._lock:
+            # MODIFIED: Use sequential base36 ID
             msg_id = f"msg-{self._base36_encode(self.id_counter)}"
             self.id_counter += 1
 
+            # NEW: Calculate token count
             divisor = self.framework_config.get('context', {}).get('token_estimation_divisor', 5)
             token_count = len(content) // divisor
 
@@ -291,10 +299,10 @@ class IOManager:
                 "id": msg_id,
                 "type": msg_type,
                 "timestamp": time.time(),
-                "token_count": token_count,
+                "token_count": token_count, # NEW
                 "content": content
             }
-            if filename:
+            if filename: # NEW
                 message_data['filename'] = filename
 
             line = json.dumps(message_data) + '\n'
@@ -334,9 +342,12 @@ class CognitionNode:
             rospy.signal_shutdown("Failed to load critical configurations.")
             return
         
+        # Pass framework config to IOManager
         self.io = IOManager(self.workspace_path, self.config.framework)
+
         self.context = ContextManager(self.workspace_path, self.config.framework['context'])
 
+        # Gemini API Setup
         try:
             api_key = os.environ.get("GEMINI_API_KEY")
             if not api_key:
@@ -347,24 +358,34 @@ class CognitionNode:
             rospy.signal_shutdown("Gemini API configuration failed.")
             return
 
+
+        # State management
         self.state = CognitionState.IDLE
         self.state_lock = threading.Lock()
+
         self.incoming_queue = deque()
         self.queue_lock = threading.Lock()
         self.last_received_system_hint = ""
+
+        # Context gathering synchronization
         self.context_results = {}
         self.context_requests_pending = 0
         self.context_gathering_complete = threading.Event()
+
+        # Publishers and Subscribers
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
         self.input_sub = rospy.Subscriber('/cognition/input', CognitionInput, self._input_callback, queue_size=10)
+        # Publisher for the Web UI state
         self.ui_state_pub = rospy.Publisher('/cognition/ui_state', StringMsg, queue_size=1, latch=True)
         self.processing_timer = rospy.Timer(rospy.Duration(0.25), self._process_queue)
         rospy.loginfo("Cognition Node: Ready and waiting for input.")
 
     def _input_callback(self, msg: CognitionInput):
+        # Use the 'filename' field for context snippet identification
         if msg.type == 'context' and self.state in [CognitionState.GATHERING_CONTEXT, CognitionState.AWAITING_RESPONSE]:
             snippet_name = msg.filename
             if snippet_name:
+                # Store the full output, but also add to the manager's cache if it's a cacheable snippet
                 self.context_results[snippet_name] = msg.content
                 snippet_config = next((s for s in self.context.header_snippets + self.context.footer_snippets if s['name'] == snippet_name), None)
                 if snippet_config and snippet_config.get('ttl', 0) < 0:
@@ -393,6 +414,7 @@ class CognitionNode:
         rospy.loginfo(f"Processing batch of {len(batch)} messages in state {self.state.name}.")
         should_start_cognition = False
         for msg in batch:
+            # Safely get the filename attribute, defaulting to None if it doesn't exist
             filename = getattr(msg, 'filename', None)
             self.io.append_message(msg_type=msg.type, content=msg.content, filename=filename)
             if msg.loop_cognition:
@@ -410,34 +432,45 @@ class CognitionNode:
                 rospy.loginfo("State transition to GATHERING_CONTEXT. Starting cognition cycle.")
                 threading.Thread(target=self._initiate_cognition_cycle).start()
 
+
+    # Helper function to publish UI state with Base64 encoded images
     def _publish_ui_state(self, header_str, io_buffer_str, footer_str):
         """Encodes images and publishes the complete prompt state for the UI."""
-
+        
         def embed_image_base64(match):
-            relative_path = match.group(2) 
+            """Regex substitution function to find, load, and embed images."""
+            # The path is in group 1 of the match: <file path="GROUP_1">
+            relative_path = match.group(1)
             full_path = self.workspace_path / relative_path
             
             try:
+                # Open image and convert to Base64
                 with PIL.Image.open(full_path) as img:
                     buffered = io.BytesIO()
+                    # Determine format, default to PNG
                     img_format = img.format if img.format else 'PNG'
                     img.save(buffered, format=img_format)
                     img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
-                    # <<< MODIFIED: Regex group was incorrect, now correctly captures the full tag with group(0)
-                    return f'{match.group(0)}\n<img src="data:image/{img_format.lower()};base64,{img_str}">'
+                    
+                    # Construct the full tag as requested
+                    # <file ... original attributes ...><img src="..."></file>
+                    return f'{match.group(0)}\n<img src="data:image/{img_format.lower()};base64,{img_str}">\n</file>'
             except Exception as e:
                 rospy.logerr(f"UI State: Could not process image {full_path}: {e}")
+                # Return a placeholder on error
                 return f'{match.group(0)}\n<!-- Error loading image: {e} -->\n</file>'
 
-        # <<< CHANGE: The regex was correct, I'm just updating the comment for clarity >>>
-        # This looks for `<file path="..."` and captures the whole tag in group(0) and group(1), 
-        # and captures the path itself in group(2).
+        # Pattern to find <file ...> tags but not modify their contents yet.
+        # We need to add the <img> tag inside it.
+        # This looks for `<file path="..."` and captures the whole opening tag.
         image_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)')
 
+        # Process each part of the prompt
         header_str_with_images = re.sub(image_pattern, embed_image_base64, header_str)
         io_buffer_str_with_images = re.sub(image_pattern, embed_image_base64, io_buffer_str)
         footer_str_with_images = re.sub(image_pattern, embed_image_base64, footer_str)
 
+        # Assemble the final JSON payload
         ui_state = {
             "header": header_str_with_images,
             "io_buffer": io_buffer_str_with_images,
@@ -451,15 +484,12 @@ class CognitionNode:
         except Exception as e:
             rospy.logerr(f"Failed to create or publish UI state: {e}")
 
-    # <<< MODIFIED: Entire method refactored for new image handling logic >>>
+
     def _construct_prompt_and_images(self, header_snippets_data, footer_snippets_data):
-            """
-            Builds the final prompt for the LLM and the display strings for the UI.
-            This method implements the image limiting policy for the io_buffer.
-            """
+            """Builds the final prompt string with verbose formatting and separates image parts."""
             cfg = self.config.framework['context']
-            image_pattern = re.compile(r'<file\s+path="([^"]+)"[^>]*>')
             
+            # --- MODIFIED: Store string components for the UI ---
             header_str_for_ui = ""
             io_buffer_str_for_ui = ""
             footer_str_for_ui = ""
@@ -472,8 +502,10 @@ class CognitionNode:
                     snippet_name = item['config'].get('name', 'unnamed')
                     content = item['content']
                     ttl = item['config'].get('ttl', 0)
+                    
                     token_count = len(content) // cfg.get('token_estimation_divisor', 5)
                     total_tokens += token_count
+
                     if cfg.get('show_snippet_ttl', False):
                         header_content_str += f'<{snippet_name} ttl="{ttl}">\n{content}\n</{snippet_name}>\n'
                     else:
@@ -485,45 +517,12 @@ class CognitionNode:
                 else:
                     header_str_for_ui = f'<{header_name}>\n{header_content_str.strip()}\n</{header_name}>'
 
-            # 2. Add IO Buffer (with image limiting policy)
+            # 2. Add IO Buffer
             buffer_messages = self.io.read_buffer()
-            if buffer_messages:
-                # <<< NEW: Image limiting policy implementation >>>
-                my_config_limit = self.config.my_config.get('io_buffer', {}).get('max_io_buffer_media', 5)
-                global_limit = self.config.framework.get('agent_settings', {}).get('global_max_io_buffer_media', 16)
-                max_images_from_buffer = min(my_config_limit, global_limit)
-                rospy.loginfo(f"Applying IO Buffer image limit: max {max_images_from_buffer} (local: {my_config_limit}, global: {global_limit})")
-                
-                images_in_buffer_count = 0
-                processed_messages = []
-
-                # Process messages in reverse to count newest images first
-                for msg in reversed(buffer_messages):
-                    processed_msg = msg.copy()
-                    content = processed_msg.get("content", "")
-
-                    if processed_msg.get("type") == 'me':
-                        # Rule: No images from "me" messages
-                        content = re.sub(image_pattern, '<!-- Image from "me" message omitted by policy -->', content)
-                    else:
-                        # Rule: Apply count-based limit to non-"me" messages
-                        def image_replacer(match):
-                            nonlocal images_in_buffer_count
-                            if images_in_buffer_count < max_images_from_buffer:
-                                images_in_buffer_count += 1
-                                return match.group(0) # Keep the image tag
-                            else:
-                                # Limit reached, replace tag with a comment
-                                return f'<!-- Image omitted: buffer limit ({max_images_from_buffer}) reached -->'
-                        content = re.sub(image_pattern, image_replacer, content)
-                    
-                    processed_msg['content'] = content
-                    processed_messages.insert(0, processed_msg) # Insert at front to restore order
-
-                # <<< NEW: Build the buffer string from the *processed* messages >>>
+            if buffer_messages: # Only add if not empty
                 io_buffer_content_str = ""
                 buffer_total_tokens = 0
-                for i, msg in enumerate(processed_messages):
+                for i, msg in enumerate(buffer_messages):
                     msg_type = msg.get("type", "unknown")
                     msg_id = msg.get("id", "no-id")
                     content = msg.get("content", "")
@@ -564,61 +563,54 @@ class CognitionNode:
                 else:
                     footer_str_for_ui = f'<{footer_name}>\n{footer_content_str.strip()}\n</{footer_name}>'
             
+            # --- Publish the state for the UI before final assembly ---
             self._publish_ui_state(header_str_for_ui, io_buffer_str_for_ui, footer_str_for_ui)
 
-            # --- Now, assemble the final prompt parts for the LLM ---
-            final_contents = []
-            
-            # <<< NEW: Helper to parse a string chunk for text and images >>>
-            def parse_and_append(text_content):
-                last_index = 0
-                for match in image_pattern.finditer(text_content):
-                    # Append text before the image
-                    final_contents.append(text_content[last_index:match.start()])
-                    image_path = self.workspace_path / match.group(1)
-                    try:
-                        img = PIL.Image.open(image_path)
-                        final_contents.append(img)
-                        rospy.loginfo(f"Embedding image: {image_path}")
-                    except FileNotFoundError:
-                        rospy.logerr(f"Image file not found: {image_path}")
-                        final_contents.append(f"[ERROR: Image at {image_path} not found]")
-                    except Exception as e:
-                        rospy.logerr(f"Failed to load image {image_path}: {e}")
-                        final_contents.append(f"[ERROR: Could not load image at {image_path}]")
-                    last_index = match.end()
-                # Append any remaining text after the last image
-                final_contents.append(text_content[last_index:])
+            # --- Now, assemble the prompt for the LLM ---
+            prompt_parts = [self.config.system_prompt]
+            if header_str_for_ui: prompt_parts.append(header_str_for_ui)
+            if io_buffer_str_for_ui: prompt_parts.append(io_buffer_str_for_ui)
+            if footer_str_for_ui: prompt_parts.append(footer_str_for_ui)
 
-            # <<< NEW: Scoped parsing of prompt components >>>
-            # 1. System Prompt (no image parsing)
-            final_contents.append(self.config.system_prompt)
-            
-            # 2. Header (with image parsing)
-            if header_str_for_ui:
-                parse_and_append(header_str_for_ui)
-
-            # 3. IO Buffer (with image parsing on the *filtered* string)
-            if io_buffer_str_for_ui:
-                parse_and_append(io_buffer_str_for_ui)
-                
-            # 4. Footer (with image parsing)
-            if footer_str_for_ui:
-                parse_and_append(footer_str_for_ui)
-
-            # 5. Add system hint (no image parsing)
+            # 4. Add any system hint received with the latest input message
             if self.last_received_system_hint:
-                final_contents.append(self.last_received_system_hint)
+                prompt_parts.append(self.last_received_system_hint)
 
+            # Join all text parts of the prompt
+            prompt = "\n".join(prompt_parts)
+
+
+            # Image parsing and content construction
+            final_contents = []
+            last_index = 0
+            image_pattern = re.compile(r'<file\s+path="([^"]+)"[^>]*>')
+            for match in image_pattern.finditer(prompt):
+                final_contents.append(prompt[last_index:match.start()])
+                image_path = self.workspace_path / match.group(1)
+                try:
+                    img = PIL.Image.open(image_path)
+                    final_contents.append(img)
+                    rospy.loginfo(f"Embedding image: {image_path}")
+                except FileNotFoundError:
+                    rospy.logerr(f"Image file not found: {image_path}")
+                    final_contents.append(f"[ERROR: Image at {image_path} not found]")
+                except Exception as e:
+                    rospy.logerr(f"Failed to load image {image_path}: {e}")
+                    final_contents.append(f"[ERROR: Could not load image at {image_path}]")
+                last_index = match.end()
+            
+            final_contents.append(prompt[last_index:])
             return final_contents
 
     def _initiate_cognition_cycle(self):
         try:
             rospy.loginfo("--- Starting Cognition Cycle ---")
             
+            # 1. GATHER CONTEXT
             self.context_results.clear()
             self.context_gathering_complete.clear()
 
+            # Let the manager determine what needs to run
             header_to_run, footer_to_run = self.context.get_snippets_to_execute()
             snippets_to_run = header_to_run + footer_to_run
             self.context_requests_pending = len(snippets_to_run)
@@ -626,10 +618,11 @@ class CognitionNode:
             if self.context_requests_pending > 0:
                 rospy.loginfo(f"Requesting {self.context_requests_pending} context snippets...")
                 for snippet in snippets_to_run:
+                    # We pass the snippet name in the new 'filename' field.
                     out_msg = CognitionOutput(
                         type='context',
                         content=f"<py>{snippet['code']}</py>",
-                        filename=snippet['name']
+                        filename=snippet['name'] # NEW
                     )
                     self.output_pub.publish(out_msg)
                 
@@ -641,6 +634,7 @@ class CognitionNode:
                 self.state = CognitionState.AWAITING_RESPONSE
                 rospy.loginfo("State transition to AWAITING_RESPONSE. Assembling prompt.")
             
+            # Assemble structured data from results and cache for formatting
             header_snippets_data = []
             for s in self.context.header_snippets:
                 content = self.context_results.get(s['name'], self.context.cached_output.get(s.get('name')))
@@ -653,10 +647,15 @@ class CognitionNode:
                 if content is not None:
                     footer_snippets_data.append({'config': s, 'content': content})
 
+            # 2. ASSEMBLE PROMPT AND IMAGES
             final_contents = self._construct_prompt_and_images(header_snippets_data, footer_snippets_data)
         
+            # 3. CALL GEMINI API
+            # VERY IMPORTANT: DO NOT CHANGE THIS API CONSTRUCT
+            # **It is accurate to the latest Gemini SDK**
             cfg = self.config.framework['main_model']
 
+            # Safety: disable filtering 
             safety_settings = [
                 types.SafetySetting(
                     category=types.HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -676,18 +675,24 @@ class CognitionNode:
                 ),
             ]
 
+            # Thinking config from your framework_config.json
             tk_cfg = cfg.get('thinking_config', {})
             thinking_config = types.ThinkingConfig(
                 thinking_budget=tk_cfg.get('thinking_budget', -1),
                 include_thoughts=tk_cfg.get('include_thoughts', False),
             )
-            max_tokens = cfg.get('max_output_tokens', 8192)
+
+            max_tokens = cfg.get('max_output_tokens', 8192)  # pick your default
             mr_str = cfg.get('media_resolution', 'MEDIA_RESOLUTION_UNSPECIFIED')
+
+            # Map string -> enum (SDK expects the enum)
             media_res = getattr(
                 types.MediaResolution,
                 mr_str,
                 types.MediaResolution.MEDIA_RESOLUTION_UNSPECIFIED,
             )
+
+            # Build generation config once
             gen_config = types.GenerateContentConfig(
                 safety_settings=safety_settings,
                 thinking_config=thinking_config,
@@ -701,19 +706,23 @@ class CognitionNode:
                 rospy.loginfo("Calling Gemini API...")
                 stream = self.genai_client.models.generate_content_stream(
                     model=cfg['model'],
-                    contents=final_contents,
+                    contents=final_contents,  # strings + PIL.Image objects is OK
                     config=gen_config,
                 )
 
                 complete_response_text = ""
                 for chunk in stream:
-                    if not chunk.candidates: continue
+                    # Streamed chunks come as candidates -> content -> parts
+                    if not chunk.candidates:
+                        continue
                     candidate = chunk.candidates[0]
-                    if not candidate or not candidate.content: continue
+                    if not candidate or not candidate.content:
+                        continue
 
                     for part in candidate.content.parts:
                         text = getattr(part, 'text', None)
-                        if not text: continue
+                        if not text:
+                            continue
 
                         if getattr(part, "thought", False):
                             self.output_pub.publish(
@@ -725,6 +734,7 @@ class CognitionNode:
                             )
                             complete_response_text += text
 
+                # Optionally: usage metadata is on the last chunk
                 if 'chunk' in locals() and getattr(chunk, 'usage_metadata', None):
                     md = chunk.usage_metadata
                     rospy.loginfo(
@@ -738,13 +748,17 @@ class CognitionNode:
                 rospy.logerr(f"Gemini API call failed: {e}")
                 complete_response_text = f"<py>\n# API Error: {e}\nloop_cognition=False\n</py>"
 
+            # 4. PROCESS RESPONSE
             rospy.loginfo("API stream finished.")
+            # MODIFIED: Get the new message ID to use as the filename for the python worker
             new_msg_id = self.io.append_message(msg_type='me', content=complete_response_text)
             final_output = CognitionOutput(type='llm', content=complete_response_text, filename=new_msg_id)
             self.output_pub.publish(final_output)
         
         finally:
+            # 5. UPDATE AND SAVE CONTEXT CONFIGS
             self.context.update_and_save_configs()
+
             with self.state_lock:
                 self.state = CognitionState.IDLE
             rospy.loginfo("--- Cognition Cycle Finished. State reset to IDLE. ---")

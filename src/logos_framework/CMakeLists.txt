@@ -49,5 +49,6 @@ include_directories(
 catkin_install_python(PROGRAMS
   scripts/cognition_node.py
   scripts/python_worker_node.py
+  scripts/web_ui_node.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

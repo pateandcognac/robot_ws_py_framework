@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logos Framework UI</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Syntax Highlighting Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+    <div class="container">
+        <div id="header" class="panel"></div>
+        
+        <div id="middle-pane" class="panel">
+            <div id="io-buffer"></div>
+            <div id="input-container">
+                 <div class="controls">
+                    <label for="type-input">Type:</label>
+                    <input type="text" id="type-input" value="human">
+                    <input type="checkbox" id="loop-cognition-checkbox" checked>
+                    <label for="loop-cognition-checkbox">Loop Cognition</label>
+                </div>
+                <textarea id="human-input" placeholder="Enter your message... (Ctrl+Enter to send)"></textarea>
+            </div>
+        </div>
+
+        <div id="footer" class="panel"></div>
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.0/split.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    
+    <!-- Our script -->
+    <script src="script.js"></script>
+</body>
+</html>

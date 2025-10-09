@@ -1,0 +1,130 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    overflow: hidden; /* Prevent body scrollbars */
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.panel {
+    overflow-y: auto;
+    padding: 15px;
+    background-color: #242424;
+    box-sizing: border-box; /* Important for padding */
+    height: 100%;
+}
+
+/* MODIFIED: Add wrapping rules to pre/code blocks */
+.panel pre, .panel code {
+    white-space: pre-wrap !important; /* Allow wrapping */
+    word-break: break-all;      /* Break long words/strings */
+}
+
+
+#middle-pane {
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Middle pane is just a container */
+}
+
+#io-buffer {
+    flex-grow: 1; /* Takes up available space */
+    overflow-y: auto;
+    padding: 15px;
+}
+
+#input-container {
+    flex-shrink: 0; /* Prevents shrinking */
+    padding: 10px;
+    background-color: #333;
+    border-top: 1px solid #444;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.controls label {
+    margin-right: 5px;
+}
+.controls input[type="text"] {
+    width: 80px;
+    margin-right: 15px;
+}
+.controls input[type="checkbox"] {
+    margin-left: 5px;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 8px;
+    font-family: "Fira Code", "Courier New", monospace;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 50px;
+    max-height: 300px;
+}
+
+/* Split.js gutter style */
+.gutter {
+    background-color: #444;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+    cursor: col-resize;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxl7ACYGEQOe8T8GQEeMYA5I5QFIAgAR2w0Pq80qLoAAAAASUVORK5CYII=');
+}
+
+/* Highlight.js styles for code blocks */
+pre {
+    margin: 0;
+}
+code.hljs {
+    padding: 1em;
+    border-radius: 5px;
+    background: #2d2d2d;
+}
+
+/* Style for individual IO cells (now used for appended content) */
+.io-cell {
+    border: 1px solid #4a4a4a;
+    border-radius: 5px;
+    margin-top: 10px; /* MODIFIED: Use margin-top */
+    background: #303030;
+}
+.io-cell-header {
+    background-color: #404040;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 0.8em;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    color: #ccc;
+}
+.io-cell-content {
+    padding: 10px;
+}
+.io-cell-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-top: 5px;
+}
