@@ -18,8 +18,6 @@ from logos_framework.msg import CognitionInput, CognitionOutput
 
 # python worker TODOs:
 # Create a custom exception in the API for timeout and Interrupt
-# wrap <py> code in try...except
-# implement linecache "stuffing" for better tracebacks
 
 
 class WorkerState(Enum):
@@ -97,6 +95,16 @@ class PythonWorkerNode:
                     stderr = self.stderr_buffer.getvalue()
 
                     if stdout or stderr:
+                        loop_cognition = False
+                        if self.interpreter is not None:
+                            with self.interpreter_lock:
+                                loop_cognition = self.interpreter.locals.get('loop_cognition', False)
+                                if not isinstance(loop_cognition, bool):
+                                    rospy.logwarn(f"Magic variable 'loop_cognition' non-boolean: {loop_cognition}. Defaulting False.")
+                                    loop_cognition = False
+                                if 'loop_cognition' in self.interpreter.locals:
+                                    del self.interpreter.locals['loop_cognition']
+
                         # Clear buffers now that we've read them
                         self.stdout_buffer.truncate(0); self.stdout_buffer.seek(0)
                         self.stderr_buffer.truncate(0); self.stderr_buffer.seek(0)
@@ -105,8 +113,8 @@ class PythonWorkerNode:
                         if stdout: content += f"# async stdout\n{stdout.strip()}\n"
                         if stderr: content += f"# async stderr\n{stderr.strip()}\n"
                         
-                        # Publish as py_async. Usually doesn't trigger cognition loop.
-                        self._publish_result(msg_type='py_async', content=content.strip(), loop_cognition=False, filename="async_output")
+                        # Publish as py_async. loop_cognition could be set True programatically.
+                        self._publish_result(msg_type='py_async', content=content.strip(), loop_cognition=loop_cognition, filename="async_output")
 
 
     def _initialize_interpreter(self):
@@ -165,7 +173,6 @@ class PythonWorkerNode:
         # Execute in a separate thread to handle timeouts
         execution_thread = threading.Thread(
             target=self._execute_code,
-            # MODIFIED: Pass the filename from the message
             args=(code_to_run, do_reset, msg.type, msg.filename)
         )
         execution_thread.start()
@@ -199,7 +206,7 @@ class PythonWorkerNode:
                 # Use passed filename or default
                 code_filename = filename if filename else f"<{request_type}>"
 
-                # NEW: Stuff the code into the linecache module.
+                # Stuff the code into the linecache module.
                 # This allows tracebacks to show the correct source code lines.
                 linecache.cache[code_filename] = (len(code_str), None, [line + '\n' for line in code_str.splitlines()], code_filename)
 
@@ -229,7 +236,7 @@ class PythonWorkerNode:
             duration = time.time() - start_time
             rospy.loginfo(f"Execution finished in {duration:.2f}s. Request: {request_type}. Loop: {loop_cognition}")
 
-            # 4. Format Results (Your refined logic, slightly tidied)
+            # 4. Format Results
             stdout_str = stdout.strip()
             stderr_str = stderr.strip()
             result_parts = []
@@ -253,7 +260,7 @@ class PythonWorkerNode:
 
             self._publish_result(msg_type=request_type, content=result_content, loop_cognition=loop_cognition, filename=filename)
 
-    def _publish_result(self, msg_type: str, content: str, loop_cognition: bool, filename: str): # MODIFIED
+    def _publish_result(self, msg_type: str, content: str, loop_cognition: bool, filename: str):
         """Constructs and publishes the result message to the CognitionNode."""
         response_msg = CognitionInput()
         
@@ -265,10 +272,11 @@ class PythonWorkerNode:
 
         response_msg.content = content
         response_msg.loop_cognition = loop_cognition
-        response_msg.filename = filename # NEW
+        response_msg.filename = filename
 
         # TODO: if error_buffer not empty, set system_hint to something like "<!-- <system>: Avoid troubleshooting loops more than 3 turns. Try a different approach or ask for help. -->"
-        # or track more state and count errors, offer unique hints based on counter
+        # or track more state and count errors, offer unique hints based on counter. only for llm/py_result.
+        # for py_async output...?
 
         response_msg.system_hint = ""
 

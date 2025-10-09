@@ -124,6 +124,13 @@ class ContextManager:
                 if changed:
                     configs_changed = True
                 
+                # If a cached snippet's TTL just reached zero, invalidate its cache.
+                if new_ttl == 0 and s.get('name') in self.cached_output:
+                    rospy.loginfo(f"ContextManager: Invalidating cache for EOL snippet '{s['name']}'.")
+                    del self.cached_output[s['name']]
+                    configs_changed = True # While not a config change, it's a state change worth noting.
+
+
                 # Removal logic
                 if s['ttl'] == 0 and self.config.get('remove_header_at_eol', False):
                     rospy.loginfo(f"ContextManager: Removing EOL header snippet '{s['name']}'.")
@@ -192,7 +199,6 @@ class ConfigManager:
             prompt_path = self.workspace_path / ".system" / "system_prompt.txt"
             with open(framework_path, 'r') as f: self.framework = json.load(f)
             with open(prompt_path, 'r') as f: self.system_prompt = f.read()
-            # TODO: replace in system prompt: {{header_name}}, {{footer_name}}, {{workspace_path}}, {{global_max_io_buffer_media}}... what else?
 
             my_config_path = self.workspace_path / "state" / "my_config.yaml"
             with open(my_config_path, 'r') as f: self.my_config = yaml.load(f)
@@ -402,13 +408,13 @@ class CognitionNode:
         rospy.loginfo(f"Processing batch of {len(batch)} messages in state {self.state.name}.")
         should_start_cognition = False
         for msg in batch:
-            # MODIFIED: Safely get the filename attribute, defaulting to None if it doesn't exist
+            # Safely get the filename attribute, defaulting to None if it doesn't exist
             filename = getattr(msg, 'filename', None)
             self.io.append_message(msg_type=msg.type, content=msg.content, filename=filename)
             if msg.loop_cognition:
                 should_start_cognition = True
             
-            default_system_hint = "\n\n<me>"
+            default_system_hint = "<!-- <system>: Logos, please prepare your response. Wrap your output in <me> tags for proper parsing. -->\n\n<me>"
             if msg.system_hint:
                 self.last_received_system_hint = msg.system_hint + "\n" + default_system_hint
             else:
@@ -463,11 +469,14 @@ class CognitionNode:
                 token_count = msg.get("token_count", 0)
                 buffer_total_tokens += token_count
 
-                # Format cell tag with optional stats
-                if cfg.get('show_io_cell_stats', False):
-                    io_buffer_str += f'<{msg_type} cell="{i}" id="{msg_id}" tokens="{token_count}">\n{content}\n</{msg_type}>\n'
+                if msg_type == 'system':
+                    io_buffer_str += f'<!-- <{msg_type}>: {content} -->\n'
                 else:
-                    io_buffer_str += f'<{msg_type}>\n{content}\n</{msg_type}>\n'
+                    # Format cell tag with optional stats
+                    if cfg.get('show_io_cell_stats', False):
+                        io_buffer_str += f'<{msg_type} cell="{i}" id="{msg_id}" tokens="{token_count}">\n{content}\n</{msg_type}>\n'
+                    else:
+                        io_buffer_str += f'<{msg_type}>\n{content}\n</{msg_type}>\n'
             
             # Format main io_buffer tag with optional stats
             if cfg.get('show_io_buffer_stats', False):
@@ -496,10 +505,14 @@ class CognitionNode:
                 else:
                     prompt_parts.append(f'<{footer_name}>\n{footer_str.strip()}\n</{footer_name}>')
 
+            # 4. Add any system hint received with the latest input message
+            if self.last_received_system_hint:
+                prompt_parts.append(self.last_received_system_hint)
+
             # Join all text parts of the prompt
             prompt = "\n".join(prompt_parts)
 
-            # Image parsing and content construction (this logic remains the same)
+            # Image parsing and content construction
             final_contents = []
             last_index = 0
             image_pattern = re.compile(r'<file\s+path="([^"]+)"[^>]*>')
@@ -525,7 +538,7 @@ class CognitionNode:
         try:
             rospy.loginfo("--- Starting Cognition Cycle ---")
             
-            # 1. GATHER CONTEXT - NOW USING CONTEXTMANAGER
+            # 1. GATHER CONTEXT
             self.context_results.clear()
             self.context_gathering_complete.clear()
 
@@ -537,7 +550,6 @@ class CognitionNode:
             if self.context_requests_pending > 0:
                 rospy.loginfo(f"Requesting {self.context_requests_pending} context snippets...")
                 for snippet in snippets_to_run:
-                    # MODIFIED: No longer need to embed metadata in the code.
                     # We pass the snippet name in the new 'filename' field.
                     out_msg = CognitionOutput(
                         type='context',
@@ -617,9 +629,7 @@ class CognitionNode:
                 safety_settings=safety_settings,
                 thinking_config=thinking_config,
                 temperature=cfg.get('temperature', 0.7),
-                stop_sequences=cfg.get('stop_sequences', []),
-
-                # ⬇️ the two you asked about
+                stop_sequences=cfg.get('stop_sequences', []),                
                 max_output_tokens=max_tokens,
                 media_resolution=media_res,
             )
