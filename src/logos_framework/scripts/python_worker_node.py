@@ -173,10 +173,10 @@ class PythonWorkerNode:
 
         if execution_thread.is_alive():
             rospy.logerr(f"Code execution timed out after {timeout_sec} seconds!")
+            # TODO: Use Custom Exception in API to trigger "Interrupt"
             # Note: We can't forcefully kill the thread, but we can stop waiting
             # and report the timeout. The thread will eventually finish or block.
             # This is a known limitation of Python's threading.
-            # TODO: Use Custom Exception in API to trigger "Interrupt"
             result_content = f"# stderr\nExecution timed out after {timeout_sec} seconds."
             self._publish_result(msg_type=msg.type, content=result_content, loop_cognition=True, filename=msg.filename)
 
