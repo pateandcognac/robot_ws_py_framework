@@ -15,7 +15,6 @@ from enum import Enum
 from logos_framework.msg import CognitionInput, CognitionOutput
 
 
-
 # python worker TODOs:
 # Create a custom exception in the API for timeout and Interrupt
 

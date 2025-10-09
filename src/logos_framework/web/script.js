@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Socket Event Handlers ---
 
-    // MODIFIED: This now uses our smart rendering function to build the UI,
+    // This uses our smart rendering function to build the UI,
     // which allows images to be displayed correctly alongside formatted text.
     socket.on('full_update', (data) => {
         console.log('Received full_update');
@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /**
-     * <<< RE-INTRODUCED >>>
      * Appends a new, styled cell for any incoming input message.
      */
     socket.on('append_io', (data) => {
@@ -62,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /**
-     * <<< RE-INTRODUCED >>>
      * Appends or adds to a distinct "streaming" cell for LLM output.
      */
     socket.on('stream_chunk', (data) => {
@@ -121,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * NEW: This function intelligently renders content. Text is wrapped in <pre><code>
+     * This function intelligently renders content. Text is wrapped in <pre><code>
      * for formatting, while <img> tags are rendered as actual images.
      * @param {HTMLElement} parentElement The container element to append content to.
      * @param {string} contentString The raw string from the backend.
@@ -166,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /**
-     * <<< NEW / RE-INTRODUCED >>>
      * Creates a DOM element for a single IO cell for live updates.
      * This function safely handles text-only content.
      * @param {string} type The type of the message (e.g., 'human', 'me').

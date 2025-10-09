@@ -138,7 +138,7 @@ def main():
 
     # Subscribe to the output of the cognition node to display it
     rospy.Subscriber('/cognition/output', CognitionOutput, ui.ros_output_callback)
-    # Optional: Subscribe to the input to see system-generated messages
+    # Subscribe to the input to see system-generated messages, py_result, etc
     rospy.Subscriber('/cognition/input', CognitionInput, ui.ros_input_callback)
 
     try:

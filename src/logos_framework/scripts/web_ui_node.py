@@ -11,7 +11,6 @@ from logos_framework.msg import CognitionInput, CognitionOutput
 
 # --- Flask & SocketIO Setup ---
 
-# MODIFIED: Make paths absolute and robust
 # This ensures that ROS can find your 'web' folder regardless of the working directory
 script_dir = os.path.dirname(os.path.realpath(__file__))
 web_dir = os.path.abspath(os.path.join(script_dir, '..', 'web'))
@@ -21,8 +20,7 @@ web_dir = os.path.abspath(os.path.join(script_dir, '..', 'web'))
 app = Flask(__name__, template_folder=web_dir, static_folder=web_dir)
 app.config['SECRET_KEY'] = 'secret!'
 
-# MODIFIED: Removed async_mode='eventlet'. Flask-SocketIO will now default
-# to using the standard Flask development server, which is compatible with rospy.
+# Flask-SocketIO will default to using the standard Flask development server, which is compatible with rospy.
 socketio = SocketIO(app)
 
 # --- ROS Node Class ---
@@ -120,7 +118,7 @@ if __name__ == '__main__':
         ros_node = WebUINode()
 
         # Run Flask in a separate thread
-        # MODIFIED: We add allow_unsafe_werkzeug=True for compatibility with newer versions
+        # We add allow_unsafe_werkzeug=True for compatibility with newer versions
         # of Flask when running in this threaded mode.
         flask_thread = threading.Thread(target=lambda: socketio.run(
             app, host='0.0.0.0', port=5000, allow_unsafe_werkzeug=True))
