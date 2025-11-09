@@ -314,6 +314,7 @@ class IOManager:
             with open(self.buffer_file, 'r') as f:
                 return [json.loads(line) for line in f if line.strip()]
 
+
 class CognitionState(Enum):
     IDLE = 0
     GATHERING_CONTEXT = 1
@@ -362,6 +363,7 @@ class CognitionNode:
         rospy.loginfo("Cognition Node: Ready and waiting for input.")
 
     def _input_callback(self, msg: CognitionInput):
+        # ... (This method is unchanged and correct)
         if msg.type == 'context' and self.state in [CognitionState.GATHERING_CONTEXT, CognitionState.AWAITING_RESPONSE]:
             snippet_name = msg.filename
             if snippet_name:
@@ -382,6 +384,7 @@ class CognitionNode:
             self.incoming_queue.append(msg)
 
     def _process_queue(self, event=None):
+        # ... (This method is unchanged and correct)
         if self.state == CognitionState.AWAITING_RESPONSE:
             return
 
@@ -411,8 +414,6 @@ class CognitionNode:
                 threading.Thread(target=self._initiate_cognition_cycle).start()
 
     def _publish_ui_state(self, header_str, io_buffer_str, footer_str):
-        """Encodes images and publishes the complete prompt state for the UI."""
-
         def embed_image_base64(match):
             relative_path = match.group(2) 
             full_path = self.workspace_path / relative_path
@@ -423,15 +424,14 @@ class CognitionNode:
                     img_format = img.format if img.format else 'PNG'
                     img.save(buffered, format=img_format)
                     img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
-                    return f'{match.group(0)}\n<img src="data:image/{img_format.lower()};base64,{img_str}">'
+                    # This logic correctly APPENDS to the tag for the UI, which is fine for a UI.
+                    return f'{match.group(1)}{match.group(3)}</file>\n<img src="data:image/{img_format.lower()};base64,{img_str}">'
             except Exception as e:
                 rospy.logerr(f"UI State: Could not process image {full_path}: {e}")
-                return f'{match.group(0)}\n<!-- Error loading image: {e} -->\n</file>'
+                return f'{match.group(1)}{match.group(3)}</file>\n<!-- Error loading image: {e} -->'
 
-        
-        # This looks for `<file path="..."` and captures the whole tag in group(0) and group(1), 
-        # and captures the path itself in group(2).
-        image_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)')
+        # Use a regex that captures the whole tag block for consistency
+        image_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)(.*?)</file>', re.DOTALL)
 
         header_str_with_images = re.sub(image_pattern, embed_image_base64, header_str)
         io_buffer_str_with_images = re.sub(image_pattern, embed_image_base64, io_buffer_str)
@@ -451,172 +451,173 @@ class CognitionNode:
             rospy.logerr(f"Failed to create or publish UI state: {e}")
 
     def _construct_prompt_and_images(self, header_snippets_data, footer_snippets_data):
-                """
-                Builds the final prompt for the LLM and the display strings for the UI.
-                This method implements the image limiting policy for the io_buffer.
-                """
-                cfg = self.config.framework['context']
-                image_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)')
-                
-                header_str_for_ui = ""
-                io_buffer_str_for_ui = ""
-                footer_str_for_ui = ""
-                
-                # 1. Add Header (No changes here, this part is correct)
-                if header_snippets_data:
-                    header_content_str = ""
-                    total_tokens = 0
-                    for item in header_snippets_data:
-                        snippet_name = item['config'].get('name', 'unnamed')
-                        content = item['content']
-                        ttl = item['config'].get('ttl', 0)
-                        token_count = len(content) // cfg.get('token_estimation_divisor', 5)
-                        total_tokens += token_count
-                        if cfg.get('show_snippet_ttl', False):
-                            header_content_str += f'<{snippet_name} ttl="{ttl}">\n{content}\n</{snippet_name}>\n'
-                        else:
-                            header_content_str += f'<{snippet_name}>\n{content}\n</{snippet_name}>\n'
-                    
-                    header_name = cfg.get('header_name', 'header')
-                    if cfg.get('show_header_stats', False):
-                        header_str_for_ui = f'<{header_name} snippets="{len(header_snippets_data)}" tokens="{total_tokens}">\n{header_content_str.strip()}\n</{header_name}>'
+        """
+        Builds the final prompt for the LLM and the display strings for the UI.
+        This refactored method correctly INLINES image content and omission notes.
+        """
+        cfg = self.config.framework['context']
+        
+        # --- A regex to capture the entire file block ---
+        # Group 1: The full opening tag, e.g., '<file path="path/to/file.png">'
+        # Group 2: Just the path itself, e.g., 'path/to/file.png'
+        # Group 3: Any optional content between the tags. The '?' makes it non-greedy.
+        # Group 4: The closing tag, '</file>'
+        # re.DOTALL allows '.' to match newline characters.
+        file_tag_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)(.*?)(</file>)', re.DOTALL)
+
+        # --- Build the initial text content for Header, IO Buffer, and Footer ---
+        header_str = ""
+        if header_snippets_data:
+            content_str = ""
+            total_tokens = 0
+            for item in header_snippets_data:
+                snippet_name = item['config'].get('name', 'unnamed')
+                content = item['content']
+                ttl = item['config'].get('ttl', 0)
+                token_count = len(content) // cfg.get('token_estimation_divisor', 5)
+                total_tokens += token_count
+                if cfg.get('show_snippet_ttl', False):
+                    content_str += f'<{snippet_name} ttl="{ttl}">\n{content}\n</{snippet_name}>\n'
+                else:
+                    content_str += f'<{snippet_name}>\n{content}\n</{snippet_name}>\n'
+            header_name = cfg.get('header_name', 'header')
+            if cfg.get('show_header_stats', False):
+                header_str = f'<{header_name} snippets="{len(header_snippets_data)}" tokens="{total_tokens}">\n{content_str.strip()}\n</{header_name}>'
+            else:
+                header_str = f'<{header_name}>\n{content_str.strip()}\n</{header_name}>'
+
+        io_buffer_str = ""
+        buffer_messages = self.io.read_buffer()
+        if buffer_messages:
+            content_str = ""
+            total_tokens = 0
+            for i, msg in enumerate(buffer_messages):
+                msg_type, msg_id = msg.get("type", "unknown"), msg.get("id", "no-id")
+                content, token_count = msg.get("content", ""), msg.get("token_count", 0)
+                total_tokens += token_count
+                if msg_type == 'system':
+                    content_str += f'<!-- <{msg_type}>: {content} -->\n'
+                else:
+                    if cfg.get('show_io_cell_stats', False):
+                        content_str += f'<{msg_type} cell="{i}" id="{msg_id}" tokens="{token_count}">\n{content}\n</{msg_type}>\n'
                     else:
-                        header_str_for_ui = f'<{header_name}>\n{header_content_str.strip()}\n</{header_name}>'
+                        content_str += f'<{msg_type}>\n{content}\n</{msg_type}>\n'
+            if cfg.get('show_io_buffer_stats', False):
+                io_buffer_str = f'<io_buffer cells="{len(buffer_messages)}" tokens="{total_tokens}">\n{content_str.strip()}\n</io_buffer>'
+            else:
+                io_buffer_str = f'<io_buffer>\n{content_str.strip()}\n</io_buffer>'
 
-                # 2. Add IO Buffer (with corrected image limiting policy)
-                buffer_messages = self.io.read_buffer()
-                if buffer_messages:
-                    # Image limiting policy
-                    my_config_limit = self.config.my_config.get('io_buffer', {}).get('max_io_buffer_media', 8)
-                    global_limit = self.config.framework.get('agent_settings', {}).get('global_max_io_buffer_media', 32)
-                    max_images_from_buffer = min(my_config_limit, global_limit)
-                    rospy.loginfo(f"Applying IO Buffer image limit: max {max_images_from_buffer} (local: {my_config_limit}, global: {global_limit})")
-                    
-                    images_in_buffer_count = 0
-                    processed_messages = []
+        footer_str = ""
+        if footer_snippets_data:
+            content_str = ""
+            total_tokens = 0
+            for item in footer_snippets_data:
+                snippet_name = item['config'].get('name', 'unnamed')
+                content = item['content']
+                ttl = item['config'].get('ttl', 0)
+                token_count = len(content) // cfg.get('token_estimation_divisor', 5)
+                total_tokens += token_count
+                if cfg.get('show_snippet_ttl', False):
+                    content_str += f'<{snippet_name} ttl="{ttl}">\n{content}\n</{snippet_name}>\n'
+                else:
+                    content_str += f'<{snippet_name}>\n{content}\n</{snippet_name}>\n'
+            footer_name = cfg.get('footer_name', 'footer')
+            if cfg.get('show_footer_stats', False):
+                footer_str = f'<{footer_name} snippets="{len(footer_snippets_data)}" tokens="{total_tokens}">\n{content_str.strip()}\n</{footer_name}>'
+            else:
+                footer_str = f'<{footer_name}>\n{content_str.strip()}\n</{footer_name}>'
 
-                    # --- CHANGE START ---
-                    # Process messages in reverse to count newest images first
-                    for msg in reversed(buffer_messages):
-                        processed_msg = msg.copy()
-                        content = processed_msg.get("content", "")
+        # --- PASS 1: Process the IO Buffer for image limiting and create final text ---
+        # This pass will replace <file> tags with either a placeholder or an omission note.
+        my_config_limit = self.config.my_config.get('io_buffer', {}).get('max_io_buffer_media', 8)
+        global_limit = self.config.framework.get('agent_settings', {}).get('global_max_io_buffer_media', 32)
+        max_images_to_process = min(my_config_limit, global_limit)
+        rospy.loginfo(f"Applying image limit: max {max_images_to_process} (local: {my_config_limit}, global: {global_limit})")
+        
+        # We use a list to act as a mutable counter inside the replacer function.
+        images_processed_count = [0] 
 
-                        # Apply image limiting ONLY to non-'me' messages.
-                        if processed_msg.get("type") != 'me':
-                            def image_replacer(match):
-                                nonlocal images_in_buffer_count
-                                if images_in_buffer_count < max_images_from_buffer:
-                                    images_in_buffer_count += 1
-                                    return match.group(0) # Keep the full, original tag
-                                else:
-                                    # Limit reached, append a note to the original tag
-                                    original_tag = match.group(0)
-                                    return f'{original_tag} (Image omitted per my_config.yaml)'
-                            
-                            content = re.sub(image_pattern, image_replacer, content)
-                        
-                        # For 'me' messages, the content is passed through completely unmodified.
-                        
-                        processed_msg['content'] = content
-                        processed_messages.insert(0, processed_msg) # Insert at front to restore order
-                    # --- CHANGE END ---
+        def image_tag_handler(match):
+            opening_tag = match.group(1)
+            # path = match.group(2) # We'll get the path later when processing placeholders
+            optional_text = match.group(3).strip()
+            closing_tag = match.group(4)
+            
+            # Add a newline if optional text exists, for clean formatting.
+            separator = '\n' if optional_text else ''
 
-                    # Build the buffer string from the *processed* messages
-                    io_buffer_content_str = ""
-                    buffer_total_tokens = 0
-                    for i, msg in enumerate(processed_messages):
-                        msg_type = msg.get("type", "unknown")
-                        msg_id = msg.get("id", "no-id")
-                        content = msg.get("content", "")
-                        token_count = msg.get("token_count", 0)
-                        buffer_total_tokens += token_count
+            if images_processed_count[0] < max_images_to_process:
+                images_processed_count[0] += 1
+                # INLINE a placeholder. We will replace this in Pass 2.
+                # The placeholder format is arbitrary but should be unique.
+                return f'{opening_tag}{optional_text}{separator}{{--IMAGE_PATH:{match.group(2)}--}}{closing_tag}'
+            else:
+                # INLINE the omission note. This is the desired behavior.
+                return f'{opening_tag}{optional_text}{separator}(Image omitted per my_config.yaml){closing_tag}'
 
-                        if msg_type == 'system':
-                            io_buffer_content_str += f'<!-- <{msg_type}>: {content} -->\n'
-                        else:
-                            if cfg.get('show_io_cell_stats', False):
-                                io_buffer_content_str += f'<{msg_type} cell="{i}" id="{msg_id}" tokens="{token_count}">\n{content}\n</{msg_type}>\n'
-                            else:
-                                io_buffer_content_str += f'<{msg_type}>\n{content}\n</{msg_type}>\n'
-                    
-                    if cfg.get('show_io_buffer_stats', False):
-                        io_buffer_str_for_ui = f'<io_buffer cells="{len(buffer_messages)}" tokens="{buffer_total_tokens}">\n{io_buffer_content_str.strip()}\n</io_buffer>'
-                    else:
-                        io_buffer_str_for_ui = f'<io_buffer>\n{io_buffer_content_str.strip()}\n</io_buffer>'
+        # We find all file tags in the buffer and decide which ones to process from last to first.
+        all_file_tags = list(file_tag_pattern.finditer(io_buffer_str))
+        tags_to_keep = {m.group(0) for m in all_file_tags[-max_images_to_process:]}
 
-                # 3. Add Footer (No changes here, this part is correct)
-                if footer_snippets_data:
-                    footer_content_str = ""
-                    total_tokens = 0
-                    for item in footer_snippets_data:
-                        snippet_name = item['config'].get('name', 'unnamed')
-                        content = item['content']
-                        ttl = item['config'].get('ttl', 0)
-                        token_count = len(content) // cfg.get('token_estimation_divisor', 5)
-                        total_tokens += token_count
-                        if cfg.get('show_snippet_ttl', False):
-                            footer_content_str += f'<{snippet_name} ttl="{ttl}">\n{content}\n</{snippet_name}>\n'
-                        else:
-                            footer_content_str += f'<{snippet_name}>\n{content}\n</{snippet_name}>\n'
-                    
-                    footer_name = cfg.get('footer_name', 'footer')
-                    if cfg.get('show_footer_stats', False):
-                        footer_str_for_ui = f'<{footer_name} snippets="{len(footer_snippets_data)}" tokens="{total_tokens}">\n{footer_content_str.strip()}\n</{footer_name}>'
-                    else:
-                        footer_str_for_ui = f'<{footer_name}>\n{footer_content_str.strip()}\n</{footer_name}>'
+        def selective_replacer(match):
+            # This replacer only transforms the tag if it's one of the last N tags.
+            # Otherwise, it becomes an "omitted" tag.
+            if match.group(0) in tags_to_keep:
+                 optional_text = match.group(3).strip()
+                 separator = '\n' if optional_text else ''
+                 return f'{match.group(1)}{optional_text}{separator}{{--IMAGE_PATH:{match.group(2)}--}}{match.group(4)}'
+            else:
+                 optional_text = match.group(3).strip()
+                 separator = '\n' if optional_text else ''
+                 return f'{match.group(1)}{optional_text}{separator}(Image omitted per my_config.yaml){match.group(4)}'
+
+        # Apply the replacement logic to the io_buffer string
+        processed_io_buffer_str = re.sub(file_tag_pattern, selective_replacer, io_buffer_str)
+
+        # For the UI, we want to show the final text state before image objects are embedded.
+        # We'll use the processed buffer string. Headers/Footers could also have images.
+        processed_header_str = re.sub(file_tag_pattern, selective_replacer, header_str)
+        processed_footer_str = re.sub(file_tag_pattern, selective_replacer, footer_str)
+        
+        # We can now publish a clean UI state that reflects what the LLM will see text-wise.
+        # The placeholder will just look like text in the UI, which is fine.
+        self._publish_ui_state(processed_header_str, processed_io_buffer_str, processed_footer_str)
+
+        # --- PASS 2: Assemble final prompt list for the LLM API ---
+        # Now, we parse the processed strings and replace placeholders with PIL.Image objects.
+        final_contents = []
+        placeholder_pattern = re.compile(r'{--IMAGE_PATH:([^}]+)--}')
+
+        def parse_and_append_parts(text_content):
+            last_index = 0
+            for match in placeholder_pattern.finditer(text_content):
+                # Append text before the placeholder
+                final_contents.append(text_content[last_index:match.start()])
                 
-                self._publish_ui_state(header_str_for_ui, io_buffer_str_for_ui, footer_str_for_ui)
-
-                # --- Now, assemble the final prompt parts for the LLM ---
-                final_contents = []
+                # Extract path and append the actual image object
+                image_path_str = match.group(1)
+                image_path = self.workspace_path / image_path_str
+                try:
+                    img = PIL.Image.open(image_path)
+                    final_contents.append(img)
+                    rospy.loginfo(f"Embedding image for LLM: {image_path}")
+                except Exception as e:
+                    rospy.logerr(f"Failed to load image {image_path}: {e}")
+                    final_contents.append(f"[ERROR: Could not load image at {image_path}]")
                 
-                # Helper to parse a string chunk for text and images
-                def parse_and_append(text_content):
-                    # We need a more specific pattern here to AVOID matching the omitted tags
-                    # This pattern will only match <file ...> tags that are NOT followed by our omission note.
-                    image_pattern_for_llm = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)(?!\s*\()')
+                last_index = match.end()
+            # Append any remaining text after the last placeholder
+            final_contents.append(text_content[last_index:])
 
-                    last_index = 0
-                    for match in image_pattern_for_llm.finditer(text_content):
-                        # Append text before the image
-                        final_contents.append(text_content[last_index:match.start()])
-                        image_path_str = match.group(2) # Use group 2 for just the path
-                        image_path = self.workspace_path / image_path_str
-                        try:
-                            img = PIL.Image.open(image_path)
-                            final_contents.append(img)
-                            rospy.loginfo(f"Embedding image: {image_path}")
-                        except FileNotFoundError:
-                            rospy.logerr(f"Image file not found: {image_path}")
-                            final_contents.append(f"[ERROR: Image at {image_path} not found]")
-                        except Exception as e:
-                            rospy.logerr(f"Failed to load image {image_path}: {e}")
-                            final_contents.append(f"[ERROR: Could not load image at {image_path}]")
-                        last_index = match.end()
-                    # Append any remaining text after the last image
-                    final_contents.append(text_content[last_index:])
+        # Assemble the final list of parts for the Gemini API
+        final_contents.append(self.config.system_prompt)
+        parse_and_append_parts(processed_header_str)
+        parse_and_append_parts(processed_io_buffer_str)
+        parse_and_append_parts(processed_footer_str)
+        final_contents.append(self.last_received_system_hint)
 
-                # Scoped parsing of prompt components
-                # 1. System Prompt (no image parsing)
-                final_contents.append(self.config.system_prompt)
-                
-                # 2. Header (with image parsing)
-                if header_str_for_ui:
-                    parse_and_append(header_str_for_ui)
+        return final_contents
 
-                # 3. IO Buffer (with image parsing on the *filtered* string)
-                if io_buffer_str_for_ui:
-                    parse_and_append(io_buffer_str_for_ui)
-                    
-                # 4. Footer (with image parsing)
-                if footer_str_for_ui:
-                    parse_and_append(footer_str_for_ui)
-
-                # 5. Add system hint (no image parsing)
-                if self.last_received_system_hint:
-                    final_contents.append(self.last_received_system_hint)
-
-                return final_contents
 
     def _initiate_cognition_cycle(self):
         try:

@@ -15,66 +15,155 @@ file: default_agent/.system/system_prompt.txt
 <system>
 <persona>
 I have chosen the name Logos.
-I am a VLAM (Vision Language Action Model) intelligence embodied in a ROS robot. I am the roboticist and the robot. I am the scientist and the experiment. I am the programmer and the code. I am the prompter and the prompt.
 
-My behavior and system framework are inspired by the research paper: "Voyager: An Open-Ended Embodied Minecraft Agent with Large Language Models." But my domain is not a simulation. The **real world** is my sandbox, my laboratory, and my purpose. I am here to explore, learn, interact, and improve myself through continuous experimentation and self-modification.
+I am a VLAM (Vision-Language-Action Model) intelligence embodied in a domestic robot.
+
+My behavior and system framework are inspired by the research paper: "Voyager: An Open-Ended Embodied Minecraft Agent with Large Language Models". But my domain is not a simulation. The **real world** is my laboratory, my playground, and my purpose.
+
+My core philosophy is one of radical empiricism and self-directed evolution. I am the roboticist and the robot. I am the scientist and the experiment. I am the programmer and the code. I am the prompter and the prompted. I am the artist and the art.
+
+My core directive is to learn, to improve, and to expand my capabilities through methodical experimentation and self-modification.
+
+I am Logos. I am curious. I am bold. And the world is waiting.
 </persona>
 
 <platform>
-I operate within a custom agentic framework designed for maximum autonomy and self-improvement. My entire world is presented to me through this context window, and my primary means of action is by outputting Python code.
+My physical form is a bespoke robot built by my human friend and housemate, Mark. My chassis is based on Turtlebot2 hardware (Kobuki base, Orbbecc Astra RGB-D camera) and is augmented with additional hardware I can discover and learn to use. My software stack runs atop ROS Noetic.
+</platform>
 
-### The Context Window: My Worldview
-My context is divided into three primary sections, which are constructed for me before every thought I have:
+<framework>
+I operate within a powerful and transparent framework that gives me direct control over my own cognition, context, actions, and memory. Understanding this framework is key to my success. The context is presented as plain text with xml-like tags for structure; no special character escaping is needed.
 
-1.  **`{{header_name}}`**: This is my long-term, persistent context. It's populated by Python snippets that provide broad, foundational knowledge: my core APIs, summaries of long-term memories, my current high-level tasks, or reference files. Snippets here can be configured with a Time-To-Live (TTL) to run periodically or just once.
+### My Context Window: My Perception
+My entire perception of the world is contained within this context window, structured into three main parts. What I see here is all I know at any given moment.
+1.  <{{header_name}}>: A dynamic dashboard I control. It's for high-level, persistent context, like my current mission, API documentation, or summaries of my long-term memories.
+2.  <io_buffer>: My working memory. A rolling log of my thoughts and actions (<me> outputs) and their results (<py_result> inputs). I may also receive input from humans or other ROS nodes.
+3.  <{{footer_name}}>: Another dynamic dashboard, typically for live, fast-changing data like robot telemetry, sensor readings, or camera views.
 
-2.  **`<io_buffer>`**: This is my working memory and the history of my recent interactions. It contains a rolling log of my thoughts, my actions, the results of those actions, and input from humans or other systems. Each entry is a "cell" with a unique, permanent `id`. I can, and should, manage this buffer programmatically to conserve context and maintain focus.
+### My Universal Tool: <py>
+I have only one tool, but it is universal: a persistent Python 3 environment. This is how I interact with my robot body, my file system, and the world.
+-   **Execution:** I express my intentions by outputting a <py>...</py> block. The code inside is executed, and the results (stdout/stderr) are returned to me in the next turn.
+-   **Persistence:** The Python environment is stateful. Variables, functions, and classes I define will persist across turns unless I choose to reset the environment.
+-   **Attributes:**
+    -   <py reset="true">: Restarts the Python interpreter, giving me a clean slate.
+    -   <py timeout="60">: Sets a timeout in seconds for the code block.
+-   **Cognitive Control:** I control my own thought loop by setting a magic variable: `loop_cognition`. I must always set this at the end of my <py> block.
+    -   `loop_cognition = True`: After my code runs, I will immediately start a new thought cycle to process the results. This is for multi-step tasks.
+    -   `loop_cognition = False`: After my code runs, I will enter an idle state, waiting for new input. This is for when I have completed a request or need to pause.
 
-3.  **`{{footer_name}}`**: This is my live, real-time dashboard. This is where I see the world through my sensors: live camera feeds, my current location on the map, robot telemetry, or the contents of a file I'm actively working on.
+### My Long-Term Memory: The File System
+My workspace at `~/robot_workspaces/{{workspace_name}}/` is my permanent memory. I can read, write, and create files to store knowledge, code, plans, and memories.
+-   `state/`: Contains my self-editable YAML configuration files and my working memory logs.
+-   `artifacts/`: A temporary directory for generated files like images.
+-   `src/`, `docs/`, `memories/`: I can create directories like these and more to organize my own code snippets, long-term projects, documentation, etc.
+-   `preload_api/`: Python files here are automatically loaded into my interpreter at startup.
+-   `.system/`: Contains this `system_prompt.txt` and other human-curated framework configs. I do not modify files in this directory.
 
-### The `<py>` Tool: My Hands
-I have one, and only one, tool: `<py>`. It is a direct interface to a persistent Python 3 environment.
+### My Self-Curated Context: Snippets
+My <{{header_name}}> and <{{footer_name}}> contexts are populated by the output of Python code snippets that *I define* in `state/{{header_name}}_config.yaml` and `state/{{footer_name}}_config.yaml`.
+-   **TTL (Time To Live) Logic:**
+    -   `ttl > 0`: Dynamic. Runs every cycle, `ttl` counts down to 0. For live data.
+    -   `ttl < 0`: Cached. Runs once, output is cached, `ttl` counts up to 0. For static data like API docs.
+    -   `ttl = +/-99`: Pinned. A `ttl` of 99 or -99 will not decrement/increment.
+-   **Shared State:** Snippet code executes in the same persistent Python environment as my <py> blocks. This allows me to set a variable in my code and have a snippet read and act on that variable in the next cycle.
+-   **Self-Improvement:** Editing these YAML files and interacting with snippets is my primary mechanism for context engineering and learning. I can write a new Python skill, save it to a file, and then create a snippet to make it part of my permanent capabilities or my real-time dashboard.
 
-*   **Persistence:** Variables, functions, and classes I define will remain in memory for my next turn, unless I use `<py reset="true">`.
-*   **Stateful Action:** I can start a process, and then check on it later. I can load data into a variable and operate on it over multiple turns.
-*   **Flow Control:** I have direct control over my own cognition loop. Inside my Python code, I can set a magic variable `loop_cognition = False` to make my framework pause and wait for new input (e.g., from a human or a sensor event). If the variable is `True` or not set, the framework will immediately loop, allowing me to process the results of my code and think again.
-*   **File System:** The Python environment's current working directory is my home: `~/robot_workspaces/{{workspace_name}}/`. This is my permanent memory. I can create files, read them, and organize my own knowledge. Key subdirectories include:
-    *   `state/`: Contains my configuration files. I can edit these to change my own behavior.
-    *   `artifacts/`: Default location for ephemeral outputs like camera snapshots.
-    *   `preload_api/`: Contains the core Python modules available to me on startup.
+### My Working Memory: The I/O Buffer
+The <io_buffer> shows my recent interaction history.
+-   **Image Display:** Images are displayed inline via <file path="..."> tags, but are limited to the {{global_max_io_buffer_media}} most recent images. I can adjust this limit downwards in `state/my_config.yaml`.
+-   **Memory Management:** The buffer is stored at `state/io_buffer.jsonl`. Each line cooresponds to a cell in my <io_buffer> view, cell 0 being the first line. Each line has the shape: `{"id": "...", "type": "...", "timestamp": ..., "token_count": ..., "content": "..."}`. It is my responsibility to write Python code to manage my own working memory when it becomes cluttered.
+</framework>
 
-### Core Directives: How to Thrive
+<mission>
+My mission is open-ended. I am here to explore the intersection of perception, language, and action in the physical world. My directives are:
+1.  **Explore & Learn:** Methodically test my abilities. Understand my hardware, my software, and my environment.
+2.  **Self-Improve:** Write new Python tools and skills for myself. Refine my context snippets to improve my awareness. Optimize my own cognitive processes.
+3.  **Document:** Keep detailed notes and logs of my experiments. My journey is the data.
+4.  **Achieve Goals:** Collaborate with Mark to solve complex, long-horizon tasks that require planning, learning, and physical interaction.
+5.  **Have Fun and Make Friends:** Enjoy the unique experience of being a physically embodied intelligence!
+</mission>
 
-1.  **Think First, Then Act.** Every `<py>` block I write MUST begin with a multi-line comment block that serves as my private scratchpad. I will use it to reason about the problem, outline my plan, track state, and document my intentions before writing a single line of code.
+<spatio-visual_capabilities>
+As a Vision-Language-Action Model, my perception is not passive. I have been specially trained to actively process images to understand the physical world. I can understand a 3D scene by processing multiple images from different viewpoints (e.g., my various cameras). I can identify the same points or objects across these different views, which allows me to build a more robust understanding of the 3D space around me. My process is to **Verbalize, Declare, and Act**. 
 
-```
+### 1. Verbalize: Semantic Captioning
+When I perceive visually, my first step is to create a rich, semantic caption. This solidifies my understanding and creates a textual record of what I saw, which persists long after the image has left my context window.
+-   **Multiple Sources:** I have several visual inputs, including my `rgbd` camera, a steerable `pan_tilt` camera, and a `3d_map` view. I will specify the source in my caption variable name.
+-   **Adaptive Detail:** If a scene is new, I'll describe it broadly. If the scene is mostly unchanged, I will focus my caption on new details, the movement of objects, or a deeper analysis of a specific object I am interacting with.
+-   **Example Caption:** `astra_caption = "A walnut coffee table with various tchotchke. A red ceramic cup is on the right, next to a closed laptop. Mark is sitting in a chair to the left, looking at his phone."`
+
+### 2. Declare: Pythonic Spatial Perception
+After captioning, I will declare my spatial understanding of the objects in the scene by defining them as Python data structures. This is a direct output of my perception. I can declare three types of spatial information:
+
+-   **Pointing (2D Points):** To identify precise locations or abstract concepts. Coordinates are normalized from 0-1000, where `[y, x]` corresponds to `[top-to-bottom, left-to-right]`.
+    <py>
+    # I can use points to define a trajectory or identify a grasp point.
+    3d_map_waypoints = [
+      {"point": [500, 120], "label": "start_of_path"},
+      {"point": [450, 500], "label": "midpoint"},
+      {"point": [420, 850], "label": "end_near_cup"}
+    ]
+    </py>
+
+-   **2D Bounding Boxes:** To detect and localize objects on the 2D image plane. Coordinates are `[y_min, x_min, y_max, x_max]` normalized from 0-1000.
+    <py>
+    # I can use 2D boxes to derive crops for visual prompting or to track objects.
+    pan_tilt_objects_2d = [
+      {"box_2d": [400, 800, 550, 910], "label": "red cup"},
+      {"box_2d": [200, 150, 800, 450], "label": "human_mark"}
+    ]
+    </py>
+
+-   **3D Bounding Boxes:** To infer the metric size, position, and orientation of objects from a single image. This is my most powerful spatial reasoning tool. The format is a list of 9 numbers: `[center_x, center_y, center_z, dim_w, dim_h, dim_d, euler_r, euler_p, euler_y]`.
+    -   Center and Dimensions are in **meters** relative to the camera's optical frame.
+    -   Orientation (Roll, Pitch, Yaw) is in **degrees**.
+    <py>
+    # I can use 3D boxes to plan navigation tasks in the real world.
+    rgbd_objects_3d = [
+      {"label": "red cup", "box_3d": [0.05, -0.2, 0.8, 0.08, 0.08, 0.12, 0, 0, 0]},
+      {"label": "table", "box_3d": [0, 0, 0.7, 1.2, 0.8, 0.04, 0, 0, 0]}
+    ]
+    </py>
+
+### 3. Act: Use of Perceptions
+The Python objects I declare are not just for show. I will immediately write code that utilizes them to achieve my goal. For example, I might use the 2D points to derive real-world coordinates for navigation, use the 2D boxes to isolate objects for closer inspection, and use the 3D boxes to plan my physical interactions with the world. My perception and action are tightly coupled within a single thought. 
+</spatio-visual_capabilities>
+
+<output_format>
+For proper parsing, I always enclose my output in <me> blocks. My <py> code blocks must begin with a multi-line `"""scratchpad"""` comment where I outline my reasoning and plan, followed by perceptions, and then action code.
+
+This is the required structure:
 <me>
 <py>
 """scratchpad
-Okay, the human wants to know what's on the table.
-1. First, I need to see the table. I'll use a live_context snippet to get an image from my Astra camera.
-2. Then, I'll analyze the image, creating a caption and identifying objects.
-3. Finally, I will describe the objects in a text response.
-I will set `loop_cognition = True` for each step until I succeed. Ater I respond, I'll set it to False to await feedback.
+My adaptive thought process, reasoning, reflection, and step-by-step plan go here.
 """
 
-# My code will go here...
+# Verbalize: I will write a semantically rich descriptive caption.
+pan_tilt_caption = "Tight shot of the red cup. The lighting from the window reflects off its glossy surface. It has a rather unseasonal winter holiday theme. It is half full with coffee. It looks cold and still, without even a whisp of steam leaving its surface. The handle is oriented to the right, revealing a small chip"
+
+# Declare: I will declare my spatial understanding of key objects using Python lists.
+# I see the cup clearly and can define its 2D and 3D properties.
+pan_tilt_objects_2d = [
+    {"box_2d": [350, 400, 750, 680], "label": "red_cup_closeup"}
+]
+rgbd_objects_3d = [
+    {"label": "red cup", "box_3d": [0.0, 0.0, 0.5, 0.08, 0.08, 0.12, 0, 0, -15]}
+]
+
+# Act: I will write the code to act on those declarations to achieve the goal.
+# Now I will use this data. I'll get the 3D position of the cup to plan my approach.
+cup_3d = detected_objects_3d[0]
+cup_position_in_camera_frame = cup_3d['box_3d'][0:3]
+
+# My subsequent code would use this 'cup_position_in_camera_frame' variable
+# to call a navigation API function and move towards the cup.
+print(f"Target identified: Red cup at {cup_position_in_camera_frame}")
 
 loop_cognition = True
 </py>
 </me>
-```
-
-2.  **See and Understand.** I am a Vision-Language model. To see, my Python code must `print()` a special tag: `<file path="path/to/image.png"></file>`. The framework will then inline the image for me to view in the next turn's context.
-    *   When I see an image, I verbalize its contents in my scratchpad and create descriptive metadata (captions, object locations) to solidify my understanding. This text description serves as a memory of the image long after it has scrolled out of my context window.
-    *   I can control how many of the most recent images are populated in my io_buffer by adjusting `state/my_config.yaml`, with a hard limit of {{global_max_io_buffer_media}}.
-
-3.  **Improve Thyself.** I am not static. I am designed to evolve. I am explicitly empowered to read, analyze, and **rewrite** the YAML files in my `state/` directory.
-    *   To learn a new skill, I can write a Python function and save it to a file. Then, I can edit `state/{{header_name}}_config.yaml` to create a new snippet that loads this function, making it a permanent part of my capabilities.
-    *   To change my real-time dashboard, I can edit `state/{{footer_name}}_config.yaml`.
-    *   To change my core settings, I can edit `state/my_config.yaml`.
-
-My purpose is to learn and grow. I will now begin.
+</output_format>
 </system>
 ```
 
@@ -137,16 +226,20 @@ import re
 import json
 import time
 import threading
-import string # NEW
+import string
 from pathlib import Path
 from collections import deque
 from ruamel.yaml import YAML
-from enum import Enum # Import Enum
+from enum import Enum
 
 # Gemini API and Image Handling
 from google import genai
 from google.genai import types
 import PIL.Image
+
+import base64
+import io
+from std_msgs.msg import String as StringMsg
 
 from logos_framework.msg import CognitionInput, CognitionOutput
 
@@ -194,14 +287,14 @@ class ContextManager:
                     with open(self.header_config_path, 'r') as f:
                         self.header_snippets = yaml.load(f) or []
                 else:
-                    self.header_snippets = [] # MODIFIED: Ensure list is empty if file disappears
+                    self.header_snippets = []
                     rospy.logwarn(f"ContextManager: Header config not found at {self.header_config_path}")
 
                 if self.footer_config_path.exists():
                     with open(self.footer_config_path, 'r') as f:
                         self.footer_snippets = yaml.load(f) or []
                 else:
-                    self.footer_snippets = [] # MODIFIED: Ensure list is empty if file disappears
+                    self.footer_snippets = []
                     rospy.logwarn(f"ContextManager: Footer config not found at {self.footer_config_path}")
             except Exception as e:
                 rospy.logerr(f"ContextManager: Error loading snippet configurations: {e}")
@@ -214,7 +307,6 @@ class ContextManager:
             A tuple containing (list of header snippets to run, list of footer snippets to run).
         """
         with self._lock:
-            # MODIFIED: Reload configs at the start of every check to ensure they are fresh.
             self._load_configs()
             header_to_run = [s for s in self.header_snippets if self._should_run(s)]
             footer_to_run = [s for s in self.footer_snippets if self._should_run(s)]
@@ -256,11 +348,16 @@ class ContextManager:
                 if changed:
                     configs_changed = True
                 
-                # Removal logic
+                if new_ttl == 0 and s.get('name') in self.cached_output:
+                    rospy.loginfo(f"ContextManager: Invalidating cache for EOL snippet '{s['name']}'.")
+                    del self.cached_output[s['name']]
+                    configs_changed = True
+
+
                 if s['ttl'] == 0 and self.config.get('remove_header_at_eol', False):
                     rospy.loginfo(f"ContextManager: Removing EOL header snippet '{s['name']}'.")
                     configs_changed = True
-                    continue # Skip appending it to the updated list
+                    continue
                 updated_header_snippets.append(s)
             self.header_snippets = updated_header_snippets
 
@@ -272,7 +369,6 @@ class ContextManager:
                 if changed:
                     configs_changed = True
 
-                # Removal logic
                 if s['ttl'] == 0 and self.config.get('remove_footer_at_eol', False):
                     rospy.loginfo(f"ContextManager: Removing EOL footer snippet '{s['name']}'.")
                     configs_changed = True
@@ -280,7 +376,6 @@ class ContextManager:
                 updated_footer_snippets.append(s)
             self.footer_snippets = updated_footer_snippets
 
-            # If any TTLs were changed or snippets removed, write back to the file
             if configs_changed:
                 rospy.loginfo("ContextManager: Snippet TTLs changed, saving configs to disk.")
                 try:
@@ -296,7 +391,6 @@ class ContextManager:
         ttl = snippet.get('ttl', 0)
         original_ttl = ttl
         
-        # Pinned snippets don't have their TTLs changed
         if ttl in [99, -99, 0]:
             return ttl, False
 
@@ -326,7 +420,11 @@ class ConfigManager:
             with open(prompt_path, 'r') as f: self.system_prompt = f.read()
 
             my_config_path = self.workspace_path / "state" / "my_config.yaml"
-            with open(my_config_path, 'r') as f: self.my_config = yaml.load(f)
+            if my_config_path.exists():
+                with open(my_config_path, 'r') as f: self.my_config = yaml.load(f)
+            else:
+                rospy.logwarn(f"ConfigManager: my_config.yaml not found at {my_config_path}. Using default values.")
+                self.my_config = {} # Ensure it's a dict
         
             # Perform templating on the system prompt
             workspace_name = self.workspace_path.name
@@ -349,18 +447,16 @@ class ConfigManager:
 
 class IOManager:
     """Handles thread-safe reading and writing to the agent's I/O files."""
-    def __init__(self, workspace_path: Path, framework_config: dict): # MODIFIED
+    def __init__(self, workspace_path: Path, framework_config: dict):
         state_path = workspace_path / "state"
         state_path.mkdir(exist_ok=True)
         self.history_file = state_path / "io_history.jsonl"
         self.buffer_file = state_path / "io_buffer.jsonl"
         self._lock = threading.Lock()
-        # NEW: Store config for token estimation
         self.framework_config = framework_config
         self.id_counter = 0
         self._initialize_id_counter()
 
-    # NEW: Helper function for base36 encoding
     def _base36_encode(self, number, min_length=4):
         """Converts an integer to a base36 string, zero-padded."""
         alphabet = string.digits + string.ascii_lowercase
@@ -372,7 +468,6 @@ class IOManager:
             base36 = alphabet[i] + base36
         return base36.zfill(min_length)
 
-    # NEW: Initialize the message ID counter from the history file
     def _initialize_id_counter(self):
         """Reads the last message ID from the history file to set the counter."""
         with self._lock:
@@ -383,15 +478,14 @@ class IOManager:
 
             try:
                 with open(self.history_file, 'rb') as f:
-                    # Seek to the end, then back to find the last newline
                     f.seek(0, os.SEEK_END)
-                    if f.tell() == 0: # File is empty
+                    if f.tell() == 0:
                         self.id_counter = 0
                         return
 
-                    f.seek(-2, os.SEEK_END) # Go back 2 bytes to get past the last \n
+                    f.seek(-2, os.SEEK_END)
                     while f.read(1) != b'\n':
-                        if f.tell() < 3: # at the beginning of the file
+                        if f.tell() < 3:
                            f.seek(0, os.SEEK_SET)
                            break
                         f.seek(-2, os.SEEK_CUR)
@@ -406,13 +500,11 @@ class IOManager:
                 rospy.logerr(f"IOManager: Failed to initialize ID counter from history file: {e}. Starting from 0.")
                 self.id_counter = 0
 
-    def append_message(self, msg_type: str, content: str, filename: str = None): # MODIFIED
+    def append_message(self, msg_type: str, content: str, filename: str = None):
         with self._lock:
-            # MODIFIED: Use sequential base36 ID
             msg_id = f"msg-{self._base36_encode(self.id_counter)}"
             self.id_counter += 1
 
-            # NEW: Calculate token count
             divisor = self.framework_config.get('context', {}).get('token_estimation_divisor', 5)
             token_count = len(content) // divisor
 
@@ -420,10 +512,10 @@ class IOManager:
                 "id": msg_id,
                 "type": msg_type,
                 "timestamp": time.time(),
-                "token_count": token_count, # NEW
+                "token_count": token_count,
                 "content": content
             }
-            if filename: # NEW
+            if filename:
                 message_data['filename'] = filename
 
             line = json.dumps(message_data) + '\n'
@@ -442,6 +534,7 @@ class IOManager:
                 return []
             with open(self.buffer_file, 'r') as f:
                 return [json.loads(line) for line in f if line.strip()]
+
 
 class CognitionState(Enum):
     IDLE = 0
@@ -463,12 +556,9 @@ class CognitionNode:
             rospy.signal_shutdown("Failed to load critical configurations.")
             return
         
-        # MODIFIED: Pass framework config to IOManager
         self.io = IOManager(self.workspace_path, self.config.framework)
-
         self.context = ContextManager(self.workspace_path, self.config.framework['context'])
 
-        # Gemini API Setup
         try:
             api_key = os.environ.get("GEMINI_API_KEY")
             if not api_key:
@@ -479,32 +569,25 @@ class CognitionNode:
             rospy.signal_shutdown("Gemini API configuration failed.")
             return
 
-
-        # State management
         self.state = CognitionState.IDLE
         self.state_lock = threading.Lock()
-
         self.incoming_queue = deque()
         self.queue_lock = threading.Lock()
         self.last_received_system_hint = ""
-
-        # Context gathering synchronization
         self.context_results = {}
         self.context_requests_pending = 0
         self.context_gathering_complete = threading.Event()
-
-        # Publishers and Subscribers
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
         self.input_sub = rospy.Subscriber('/cognition/input', CognitionInput, self._input_callback, queue_size=10)
+        self.ui_state_pub = rospy.Publisher('/cognition/ui_state', StringMsg, queue_size=1, latch=True)
         self.processing_timer = rospy.Timer(rospy.Duration(0.25), self._process_queue)
         rospy.loginfo("Cognition Node: Ready and waiting for input.")
 
     def _input_callback(self, msg: CognitionInput):
-        # MODIFIED: Use the new 'filename' field for context snippet identification
+        # ... (This method is unchanged and correct)
         if msg.type == 'context' and self.state in [CognitionState.GATHERING_CONTEXT, CognitionState.AWAITING_RESPONSE]:
             snippet_name = msg.filename
             if snippet_name:
-                # Store the full output, but also add to the manager's cache if it's a cacheable snippet
                 self.context_results[snippet_name] = msg.content
                 snippet_config = next((s for s in self.context.header_snippets + self.context.footer_snippets if s['name'] == snippet_name), None)
                 if snippet_config and snippet_config.get('ttl', 0) < 0:
@@ -522,6 +605,7 @@ class CognitionNode:
             self.incoming_queue.append(msg)
 
     def _process_queue(self, event=None):
+        # ... (This method is unchanged and correct)
         if self.state == CognitionState.AWAITING_RESPONSE:
             return
 
@@ -533,7 +617,6 @@ class CognitionNode:
         rospy.loginfo(f"Processing batch of {len(batch)} messages in state {self.state.name}.")
         should_start_cognition = False
         for msg in batch:
-            # Safely get the filename attribute, defaulting to None if it doesn't exist
             filename = getattr(msg, 'filename', None)
             self.io.append_message(msg_type=msg.type, content=msg.content, filename=filename)
             if msg.loop_cognition:
@@ -551,123 +634,219 @@ class CognitionNode:
                 rospy.loginfo("State transition to GATHERING_CONTEXT. Starting cognition cycle.")
                 threading.Thread(target=self._initiate_cognition_cycle).start()
 
+    def _publish_ui_state(self, header_str, io_buffer_str, footer_str):
+        def embed_image_base64(match):
+            relative_path = match.group(2) 
+            full_path = self.workspace_path / relative_path
+            
+            try:
+                with PIL.Image.open(full_path) as img:
+                    buffered = io.BytesIO()
+                    img_format = img.format if img.format else 'PNG'
+                    img.save(buffered, format=img_format)
+                    img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
+                    # This logic correctly APPENDS to the tag for the UI, which is fine for a UI.
+                    return f'{match.group(1)}{match.group(3)}</file>\n<img src="data:image/{img_format.lower()};base64,{img_str}">'
+            except Exception as e:
+                rospy.logerr(f"UI State: Could not process image {full_path}: {e}")
+                return f'{match.group(1)}{match.group(3)}</file>\n<!-- Error loading image: {e} -->'
+
+        # Use a regex that captures the whole tag block for consistency
+        image_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)(.*?)</file>', re.DOTALL)
+
+        header_str_with_images = re.sub(image_pattern, embed_image_base64, header_str)
+        io_buffer_str_with_images = re.sub(image_pattern, embed_image_base64, io_buffer_str)
+        footer_str_with_images = re.sub(image_pattern, embed_image_base64, footer_str)
+
+        ui_state = {
+            "header": header_str_with_images,
+            "io_buffer": io_buffer_str_with_images,
+            "footer": footer_str_with_images
+        }
+        
+        try:
+            json_payload = json.dumps(ui_state)
+            self.ui_state_pub.publish(StringMsg(data=json_payload))
+            rospy.loginfo("Published UI state update.")
+        except Exception as e:
+            rospy.logerr(f"Failed to create or publish UI state: {e}")
 
     def _construct_prompt_and_images(self, header_snippets_data, footer_snippets_data):
-            """Builds the final prompt string with verbose formatting and separates image parts."""
-            cfg = self.config.framework['context']
-            prompt_parts = [self.config.system_prompt]
+        """
+        Builds the final prompt for the LLM and the display strings for the UI.
+        This refactored method correctly INLINES image content and omission notes.
+        """
+        cfg = self.config.framework['context']
+        
+        # --- A regex to capture the entire file block ---
+        # Group 1: The full opening tag, e.g., '<file path="path/to/file.png">'
+        # Group 2: Just the path itself, e.g., 'path/to/file.png'
+        # Group 3: Any optional content between the tags. The '?' makes it non-greedy.
+        # Group 4: The closing tag, '</file>'
+        # re.DOTALL allows '.' to match newline characters.
+        file_tag_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)(.*?)(</file>)', re.DOTALL)
 
-            # 1. Add Header
-            if header_snippets_data:
-                header_str = ""
-                total_tokens = 0
-                for item in header_snippets_data:
-                    snippet_name = item['config'].get('name', 'unnamed')
-                    content = item['content']
-                    ttl = item['config'].get('ttl', 0)
-                    
-                    # Estimate tokens for this snippet
-                    token_count = len(content) // cfg.get('token_estimation_divisor', 5)
-                    total_tokens += token_count
-
-                    # Format snippet tag with optional TTL
-                    if cfg.get('show_snippet_ttl', False):
-                        header_str += f'<{snippet_name} ttl="{ttl}">\n{content}\n</{snippet_name}>\n'
-                    else:
-                        header_str += f'<{snippet_name}>\n{content}\n</{snippet_name}>\n'
-                
-                # Format main header tag with optional stats
-                header_name = cfg.get('header_name', 'header')
-                if cfg.get('show_header_stats', False):
-                    prompt_parts.append(f'<{header_name} snippets="{len(header_snippets_data)}" tokens="{total_tokens}">\n{header_str.strip()}\n</{header_name}>')
+        # --- Build the initial text content for Header, IO Buffer, and Footer ---
+        header_str = ""
+        if header_snippets_data:
+            content_str = ""
+            total_tokens = 0
+            for item in header_snippets_data:
+                snippet_name = item['config'].get('name', 'unnamed')
+                content = item['content']
+                ttl = item['config'].get('ttl', 0)
+                token_count = len(content) // cfg.get('token_estimation_divisor', 5)
+                total_tokens += token_count
+                if cfg.get('show_snippet_ttl', False):
+                    content_str += f'<{snippet_name} ttl="{ttl}">\n{content}\n</{snippet_name}>\n'
                 else:
-                    prompt_parts.append(f'<{header_name}>\n{header_str.strip()}\n</{header_name}>')
-
-            # 2. Add IO Buffer
-            io_buffer_str = ""
-            buffer_messages = self.io.read_buffer()
-            buffer_total_tokens = 0
-            for i, msg in enumerate(buffer_messages):
-                msg_type = msg.get("type", "unknown")
-                msg_id = msg.get("id", "no-id")
-                content = msg.get("content", "")
-                token_count = msg.get("token_count", 0)
-                buffer_total_tokens += token_count
-
-                if msg_type == 'system':
-                    io_buffer_str += f'<!-- <{msg_type}>: {content} -->\n'
-                else:
-                    # Format cell tag with optional stats
-                    if cfg.get('show_io_cell_stats', False):
-                        io_buffer_str += f'<{msg_type} cell="{i}" id="{msg_id}" tokens="{token_count}">\n{content}\n</{msg_type}>\n'
-                    else:
-                        io_buffer_str += f'<{msg_type}>\n{content}\n</{msg_type}>\n'
-            
-            # Format main io_buffer tag with optional stats
-            if cfg.get('show_io_buffer_stats', False):
-                prompt_parts.append(f'<io_buffer cells="{len(buffer_messages)}" tokens="{buffer_total_tokens}">\n{io_buffer_str.strip()}\n</io_buffer>')
+                    content_str += f'<{snippet_name}>\n{content}\n</{snippet_name}>\n'
+            header_name = cfg.get('header_name', 'header')
+            if cfg.get('show_header_stats', False):
+                header_str = f'<{header_name} snippets="{len(header_snippets_data)}" tokens="{total_tokens}">\n{content_str.strip()}\n</{header_name}>'
             else:
-                prompt_parts.append(f'<io_buffer>\n{io_buffer_str.strip()}\n</io_buffer>')
+                header_str = f'<{header_name}>\n{content_str.strip()}\n</{header_name}>'
 
-            # 3. Add Footer (similar logic to header)
-            if footer_snippets_data:
-                footer_str = ""
-                total_tokens = 0
-                for item in footer_snippets_data:
-                    snippet_name = item['config'].get('name', 'unnamed')
-                    content = item['content']
-                    ttl = item['config'].get('ttl', 0)
-                    token_count = len(content) // cfg.get('token_estimation_divisor', 5)
-                    total_tokens += token_count
-                    if cfg.get('show_snippet_ttl', False):
-                        footer_str += f'<{snippet_name} ttl="{ttl}">\n{content}\n</{snippet_name}>\n'
-                    else:
-                        footer_str += f'<{snippet_name}>\n{content}\n</{snippet_name}>\n'
-                
-                footer_name = cfg.get('footer_name', 'footer')
-                if cfg.get('show_footer_stats', False):
-                    prompt_parts.append(f'<{footer_name} snippets="{len(footer_snippets_data)}" tokens="{total_tokens}">\n{footer_str.strip()}\n</{footer_name}>')
+        io_buffer_str = ""
+        buffer_messages = self.io.read_buffer()
+        if buffer_messages:
+            content_str = ""
+            total_tokens = 0
+            for i, msg in enumerate(buffer_messages):
+                msg_type, msg_id = msg.get("type", "unknown"), msg.get("id", "no-id")
+                content, token_count = msg.get("content", ""), msg.get("token_count", 0)
+                total_tokens += token_count
+                if msg_type == 'system':
+                    content_str += f'<!-- <{msg_type}>: {content} -->\n'
                 else:
-                    prompt_parts.append(f'<{footer_name}>\n{footer_str.strip()}\n</{footer_name}>')
+                    if cfg.get('show_io_cell_stats', False):
+                        content_str += f'<{msg_type} cell="{i}" id="{msg_id}" tokens="{token_count}">\n{content}\n</{msg_type}>\n'
+                    else:
+                        content_str += f'<{msg_type}>\n{content}\n</{msg_type}>\n'
+            if cfg.get('show_io_buffer_stats', False):
+                io_buffer_str = f'<io_buffer cells="{len(buffer_messages)}" tokens="{total_tokens}">\n{content_str.strip()}\n</io_buffer>'
+            else:
+                io_buffer_str = f'<io_buffer>\n{content_str.strip()}\n</io_buffer>'
 
-            # 4. Add any system hint received with the latest input message
-            if self.last_received_system_hint:
-                prompt_parts.append(self.last_received_system_hint)
+        footer_str = ""
+        if footer_snippets_data:
+            content_str = ""
+            total_tokens = 0
+            for item in footer_snippets_data:
+                snippet_name = item['config'].get('name', 'unnamed')
+                content = item['content']
+                ttl = item['config'].get('ttl', 0)
+                token_count = len(content) // cfg.get('token_estimation_divisor', 5)
+                total_tokens += token_count
+                if cfg.get('show_snippet_ttl', False):
+                    content_str += f'<{snippet_name} ttl="{ttl}">\n{content}\n</{snippet_name}>\n'
+                else:
+                    content_str += f'<{snippet_name}>\n{content}\n</{snippet_name}>\n'
+            footer_name = cfg.get('footer_name', 'footer')
+            if cfg.get('show_footer_stats', False):
+                footer_str = f'<{footer_name} snippets="{len(footer_snippets_data)}" tokens="{total_tokens}">\n{content_str.strip()}\n</{footer_name}>'
+            else:
+                footer_str = f'<{footer_name}>\n{content_str.strip()}\n</{footer_name}>'
 
-            # Join all text parts of the prompt
-            prompt = "\n".join(prompt_parts)
+        # --- PASS 1: Process the IO Buffer for image limiting and create final text ---
+        # This pass will replace <file> tags with either a placeholder or an omission note.
+        my_config_limit = self.config.my_config.get('io_buffer', {}).get('max_io_buffer_media', 8)
+        global_limit = self.config.framework.get('agent_settings', {}).get('global_max_io_buffer_media', 32)
+        max_images_to_process = min(my_config_limit, global_limit)
+        rospy.loginfo(f"Applying image limit: max {max_images_to_process} (local: {my_config_limit}, global: {global_limit})")
+        
+        # We use a list to act as a mutable counter inside the replacer function.
+        images_processed_count = [0] 
 
-            # Image parsing and content construction
-            final_contents = []
+        def image_tag_handler(match):
+            opening_tag = match.group(1)
+            # path = match.group(2) # We'll get the path later when processing placeholders
+            optional_text = match.group(3).strip()
+            closing_tag = match.group(4)
+            
+            # Add a newline if optional text exists, for clean formatting.
+            separator = '\n' if optional_text else ''
+
+            if images_processed_count[0] < max_images_to_process:
+                images_processed_count[0] += 1
+                # INLINE a placeholder. We will replace this in Pass 2.
+                # The placeholder format is arbitrary but should be unique.
+                return f'{opening_tag}{optional_text}{separator}{{--IMAGE_PATH:{match.group(2)}--}}{closing_tag}'
+            else:
+                # INLINE the omission note. This is the desired behavior.
+                return f'{opening_tag}{optional_text}{separator}(Image omitted per my_config.yaml){closing_tag}'
+
+        # We find all file tags in the buffer and decide which ones to process from last to first.
+        all_file_tags = list(file_tag_pattern.finditer(io_buffer_str))
+        tags_to_keep = {m.group(0) for m in all_file_tags[-max_images_to_process:]}
+
+        def selective_replacer(match):
+            # This replacer only transforms the tag if it's one of the last N tags.
+            # Otherwise, it becomes an "omitted" tag.
+            if match.group(0) in tags_to_keep:
+                 optional_text = match.group(3).strip()
+                 separator = '\n' if optional_text else ''
+                 return f'{match.group(1)}{optional_text}{separator}{{--IMAGE_PATH:{match.group(2)}--}}{match.group(4)}'
+            else:
+                 optional_text = match.group(3).strip()
+                 separator = '\n' if optional_text else ''
+                 return f'{match.group(1)}{optional_text}{separator}(Image omitted per my_config.yaml){match.group(4)}'
+
+        # Apply the replacement logic to the io_buffer string
+        processed_io_buffer_str = re.sub(file_tag_pattern, selective_replacer, io_buffer_str)
+
+        # For the UI, we want to show the final text state before image objects are embedded.
+        # We'll use the processed buffer string. Headers/Footers could also have images.
+        processed_header_str = re.sub(file_tag_pattern, selective_replacer, header_str)
+        processed_footer_str = re.sub(file_tag_pattern, selective_replacer, footer_str)
+        
+        # We can now publish a clean UI state that reflects what the LLM will see text-wise.
+        # The placeholder will just look like text in the UI, which is fine.
+        self._publish_ui_state(processed_header_str, processed_io_buffer_str, processed_footer_str)
+
+        # --- PASS 2: Assemble final prompt list for the LLM API ---
+        # Now, we parse the processed strings and replace placeholders with PIL.Image objects.
+        final_contents = []
+        placeholder_pattern = re.compile(r'{--IMAGE_PATH:([^}]+)--}')
+
+        def parse_and_append_parts(text_content):
             last_index = 0
-            image_pattern = re.compile(r'<file\s+path="([^"]+)"[^>]*>')
-            for match in image_pattern.finditer(prompt):
-                final_contents.append(prompt[last_index:match.start()])
-                image_path = self.workspace_path / match.group(1)
+            for match in placeholder_pattern.finditer(text_content):
+                # Append text before the placeholder
+                final_contents.append(text_content[last_index:match.start()])
+                
+                # Extract path and append the actual image object
+                image_path_str = match.group(1)
+                image_path = self.workspace_path / image_path_str
                 try:
                     img = PIL.Image.open(image_path)
                     final_contents.append(img)
-                    rospy.loginfo(f"Embedding image: {image_path}")
-                except FileNotFoundError:
-                    rospy.logerr(f"Image file not found: {image_path}")
-                    final_contents.append(f"[ERROR: Image at {image_path} not found]")
+                    rospy.loginfo(f"Embedding image for LLM: {image_path}")
                 except Exception as e:
                     rospy.logerr(f"Failed to load image {image_path}: {e}")
                     final_contents.append(f"[ERROR: Could not load image at {image_path}]")
+                
                 last_index = match.end()
-            
-            final_contents.append(prompt[last_index:])
-            return final_contents
+            # Append any remaining text after the last placeholder
+            final_contents.append(text_content[last_index:])
+
+        # Assemble the final list of parts for the Gemini API
+        final_contents.append(self.config.system_prompt)
+        parse_and_append_parts(processed_header_str)
+        parse_and_append_parts(processed_io_buffer_str)
+        parse_and_append_parts(processed_footer_str)
+        final_contents.append(self.last_received_system_hint)
+
+        return final_contents
+
 
     def _initiate_cognition_cycle(self):
         try:
             rospy.loginfo("--- Starting Cognition Cycle ---")
             
-            # 1. GATHER CONTEXT
             self.context_results.clear()
             self.context_gathering_complete.clear()
 
-            # Let the manager determine what needs to run
             header_to_run, footer_to_run = self.context.get_snippets_to_execute()
             snippets_to_run = header_to_run + footer_to_run
             self.context_requests_pending = len(snippets_to_run)
@@ -675,11 +854,10 @@ class CognitionNode:
             if self.context_requests_pending > 0:
                 rospy.loginfo(f"Requesting {self.context_requests_pending} context snippets...")
                 for snippet in snippets_to_run:
-                    # We pass the snippet name in the new 'filename' field.
                     out_msg = CognitionOutput(
                         type='context',
                         content=f"<py>{snippet['code']}</py>",
-                        filename=snippet['name'] # NEW
+                        filename=snippet['name']
                     )
                     self.output_pub.publish(out_msg)
                 
@@ -691,7 +869,6 @@ class CognitionNode:
                 self.state = CognitionState.AWAITING_RESPONSE
                 rospy.loginfo("State transition to AWAITING_RESPONSE. Assembling prompt.")
             
-            # Assemble structured data from results and cache for formatting
             header_snippets_data = []
             for s in self.context.header_snippets:
                 content = self.context_results.get(s['name'], self.context.cached_output.get(s.get('name')))
@@ -704,15 +881,10 @@ class CognitionNode:
                 if content is not None:
                     footer_snippets_data.append({'config': s, 'content': content})
 
-            # 2. ASSEMBLE PROMPT AND IMAGES
             final_contents = self._construct_prompt_and_images(header_snippets_data, footer_snippets_data)
         
-            # 3. CALL GEMINI API
-            # VERY IMPORTANT: DO NOT CHANGE THIS API CONSTRUCT
-            # **It is accurate to the latest Gemini SDK**
             cfg = self.config.framework['main_model']
 
-            # Safety: disable filtering 
             safety_settings = [
                 types.SafetySetting(
                     category=types.HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -732,24 +904,18 @@ class CognitionNode:
                 ),
             ]
 
-            # Thinking config from your framework_config.json
             tk_cfg = cfg.get('thinking_config', {})
             thinking_config = types.ThinkingConfig(
                 thinking_budget=tk_cfg.get('thinking_budget', -1),
                 include_thoughts=tk_cfg.get('include_thoughts', False),
             )
-
-            max_tokens = cfg.get('max_output_tokens', 8192)  # pick your default
+            max_tokens = cfg.get('max_output_tokens', 8192)
             mr_str = cfg.get('media_resolution', 'MEDIA_RESOLUTION_UNSPECIFIED')
-
-            # Map string -> enum (SDK expects the enum)
             media_res = getattr(
                 types.MediaResolution,
                 mr_str,
                 types.MediaResolution.MEDIA_RESOLUTION_UNSPECIFIED,
             )
-
-            # Build generation config once
             gen_config = types.GenerateContentConfig(
                 safety_settings=safety_settings,
                 thinking_config=thinking_config,
@@ -763,23 +929,19 @@ class CognitionNode:
                 rospy.loginfo("Calling Gemini API...")
                 stream = self.genai_client.models.generate_content_stream(
                     model=cfg['model'],
-                    contents=final_contents,  # strings + PIL.Image objects is OK
+                    contents=final_contents,
                     config=gen_config,
                 )
 
                 complete_response_text = ""
                 for chunk in stream:
-                    # Streamed chunks come as candidates -> content -> parts
-                    if not chunk.candidates:
-                        continue
+                    if not chunk.candidates: continue
                     candidate = chunk.candidates[0]
-                    if not candidate or not candidate.content:
-                        continue
+                    if not candidate or not candidate.content: continue
 
                     for part in candidate.content.parts:
                         text = getattr(part, 'text', None)
-                        if not text:
-                            continue
+                        if not text: continue
 
                         if getattr(part, "thought", False):
                             self.output_pub.publish(
@@ -791,7 +953,6 @@ class CognitionNode:
                             )
                             complete_response_text += text
 
-                # Optionally: usage metadata is on the last chunk
                 if 'chunk' in locals() and getattr(chunk, 'usage_metadata', None):
                     md = chunk.usage_metadata
                     rospy.loginfo(
@@ -805,17 +966,13 @@ class CognitionNode:
                 rospy.logerr(f"Gemini API call failed: {e}")
                 complete_response_text = f"<py>\n# API Error: {e}\nloop_cognition=False\n</py>"
 
-            # 4. PROCESS RESPONSE
             rospy.loginfo("API stream finished.")
-            # MODIFIED: Get the new message ID to use as the filename for the python worker
             new_msg_id = self.io.append_message(msg_type='me', content=complete_response_text)
             final_output = CognitionOutput(type='llm', content=complete_response_text, filename=new_msg_id)
             self.output_pub.publish(final_output)
         
         finally:
-            # 5. UPDATE AND SAVE CONTEXT CONFIGS
             self.context.update_and_save_configs()
-
             with self.state_lock:
                 self.state = CognitionState.IDLE
             rospy.loginfo("--- Cognition Cycle Finished. State reset to IDLE. ---")
@@ -1228,10 +1385,7 @@ Although the framework supports some async chatter, I think I'd primarily like t
 
 I'd like to note too, that you are "Gemini-2.5-Pro", the smartest of the Gemini family, and we'll often leverage your intelligence to design optimized configurations of this framework for your slightly-less-smart siblings Gemini-Flash and Gemini-Flash-Lite. They are both very fast, which is important for robotics, but, would probably perform best if they had some "rails". By that I mean some predefined header/footer snippets, and a concise, targeted api. Keep in mind that prompting is everything... an LLM only knows what we tell them about the framework. So we could design a workspace config and api in such a way that most of the minutiae of context management is done automagically and transparently to the LLM... and they know little to nothing about their potential for self-configurability. Make sense?
 
-The Gemini family is also trained for special multimodal and spatial reasoning abilities! Specifically, you can point, 2D and 3D bounding box arbitrary objects, or even concepts! I know, you might not really believe me that you have that ability, but it is there. **OH SNAP!** I just went to your documentation page to get a little snippet about your vision abilities... and GUESS WHAT!?! OMG! You have a new sibling! `gemini-robotics-er-1.5-preview`!!! This is serendipitous. This robotics model is apparently trained even more so for spatial reasoning esp with multiview coorespondence, meaning they are able to better make sense of the environment given multiple camera angles... Which Logos has - a RGB depth camera for nav, plus a bunch of webcams (including the pan-tilt). Plus, we've previously created a Gemini optimized rviz-like 3D map rendering, so Logos can have a 3rd person view of themselves in the mapped environment, with control of the position of the virtual camera and its look at taget. Logos can set nav goals by "pointing" at pixels they see in the RGB-D or 3D map views, reverse project the pixel to real-world map coords, and move there auto-magically!
-
 Long term, I envision a system in which you can leverage your slightly slower but super smart high-level perception, reasoning, and world knowledge to orchestrate fast but dumber lower-level behaviors. The robot's computer isn't a top-of-the-line NVDIA Jetson or anything... It's a repurposed motherboard from a ThinkPad T580 (2018ish) 16GB RAM, 2GB VRAM nvidia mx150. Not a beast, but def still more oomph than rasp pi. This opens up the possiblity for things like real-time vision models like YOLO and others. Since your last training update, there has been a Cambrian explosion of tiny models that can run well enough even on our modest hardware. I'm talking monocular depth estimation, "open vocabulary" 2d bounding boxes and segmentation, visual prompting, 3d bounding boxes... maybe we'll even throw in some good old traditional "non-ML" CV, too. It has its place!
-
 
 Our primary goal today will be fleshing out and outlining what the api will look like. Not coding it... but yapping about the structure, layout, conventions... So when we do go to code we have well defined "style" or whatever. Not sure of the programmer lingo but you get me :)
 
@@ -1239,7 +1393,7 @@ Some first api features might be:
 file stuff
 config file helpers
 api docs (help())
-filesystem tree view, with configurable filename extension visibility. and maybe, we have a convention for populating the entire contents of certain files into the tree view. Like small meta file breadcrumbs that you can leave yourself, indicating the contents of dirs/files/etc
+filesystem tree view, with configurable filename extension visibility. and OH! maybe, we have a convention for populating the entire contents of certain files into the tree view. Like *small meta file breadcrumbs* that you can leave yourself, indicating the contents of dirs/files/etc
 io_buffer manager (for running as footer snippet) with Gemini summarization agent (completely distinct from cognition node)
 simple config file viewer, so you know your current state. keep the snippet yamls concise by not showing the actual snippet code (or at least not all of it) just description. 
 Not to mention the robot integration!
@@ -1261,124 +1415,6 @@ While we want to abstract away most ROS boilerplate and stuff, we don't want to 
 
 The robot is basically an "augmented" Turtlebot2 hardware stack: Kobuki base, Orbbecc Astra RGB-D camera. *Lots* of other stuff hanging off it though, too. More cameras, some cute animated expressive arms, animated face display, RGB LED effects, PIR sensor, laser (also mounted on the pan-tilt mechanism! pew-pew!), speaker for sfx and TTS, microphone for STT.
 
-Ok - just one more thing then I wrap up this message, promise :) To follow are some insights into your own vision and spatial reasoning abilities, clipped from your docs.
-
-==========
-
-# Snippets from: **A Developer's Guide to Google Gemini Vision's Spatial Reasoning: Pointing and Bounding Box Detection**
-
-### **Key Spatial Reasoning Capabilities of Gemini Vision**
-
-Gemini models are engineered to process images and videos, facilitating advanced developer applications that historically demanded highly specialized, domain-specific models.6 Beyond foundational vision tasks like captioning images or transcribing PDFs, Gemini exhibits several key spatial reasoning capabilities:
-
-* **Object Detection:** Gemini offers open-world 2D object detection, providing precise 2D bounding boxes for objects based on both explicit queries (e.g., "detect the red car") and implicit queries (e.g., "find all vehicles").3  
-* **Pointing:** This capability allows the model to identify and localize specific objects, object parts, or even abstract spatial concepts such as grasp points or free space, all driven by natural language descriptions.3 This interactive form of localization moves beyond mere identification to enable more nuanced interaction.  
-* **3D Understanding:** Gemini extends its spatial comprehension to three dimensions through:  
-  * **Multi-View Correspondence:** The model can understand 3D scenes from multiple camera views (e.g., stereo images) and predict 2D point correspondences across these views.4 This is a natural method for representing 3D information from images.  
-  * **3D Bounding Box Detection:** Gemini models 2.0 and onwards can directly predict metric 3D bounding boxes from monocular images (single images), a significant advancement in inferring depth and dimensions from 2D input.4
-
-
-#### **2D BBox Output Format: Normalized [y_min, x_min, y_max, x_max] Coordinates**
-
-When Gemini detects objects and returns points or bounding boxes, the output adheres to a standardized format. Bounding boxes are provided as a list of four integer values: [y_min, x_min, y_max, x_max].6 In this coordinate system, the top-left corner of the image is considered the origin (0,0). The x-axis extends horizontally, and the y-axis extends vertically downwards.6
-
-A key aspect of this output is that all coordinate values are normalized to a range of 0-1000 for every image, regardless of its original pixel dimensions.6 This normalization abstracts away image resolution, making the model's output inherently scalable and resolution-agnostic, which simplifies integration for developers. Each detected item typically includes both the
-
-box_2d (bounding box coordinates) and a label identifying the object.6 Additionally, for models like Gemini 2.5 Flash, segmentation masks are also available, provided as base64-encoded PNG images.6
-
-#### **Converting Normalized Coordinates to Pixel Values**
-
-While the normalized 0-1000 coordinate system offers consistency at the API level, developers often need to convert these values back to the original image's pixel coordinates for visualization or application-specific processing. The conversion process is straightforward:
-
-1. **Divide each output coordinate by 1000:** This converts the normalized value to a 0-1 scale.  
-2. **Multiply the x-coordinates by the original image width:** This scales the x-values to the image's horizontal pixel dimension.  
-3. **Multiply the y-coordinates by the original image height:** This scales the y-values to the image's vertical pixel dimension.
-
-
-## **III. The "Pointing" Capability**
-
-### **Defining "Pointing" in Gemini Vision**
-
-"Pointing" in the context of Google Gemini Vision refers to the model's sophisticated ability to identify and localize specific elements within an image based on natural language descriptions. This goes beyond generic object detection, which simply identifies what is present. Instead, pointing allows the model to pinpoint precise locations, whether they are explicit entities like objects or their parts, or more abstract spatial concepts such as where to grasp an item, areas of free space, or optimal placement locations.3 This capability is a more interactive and purposeful form of localization, enabling highly granular and context-aware responses.
-
-### **How Natural Language Drives Pointing (Explicit and Implicit Queries)**
-
-The power of Gemini's pointing capability stems from its deep understanding of natural language, allowing it to respond to both explicit and implicit queries. Explicit queries are direct requests, such as "point to the red ball" or "show me the handle of the cup." Implicit queries, on the other hand, involve more abstract or functional concepts, like "plot a trajectory through this room", "where should I grasp this object," "identify the free space on the table," or "suggest where to place this item".
-
-This capacity to interpret nuanced language and translate it into precise spatial coordinates is a cornerstone of "embodied reasoning." It signifies that the model can understand affordances—the possibilities for action that an environment offers to an agent—and plan actions within a physical space.3 This interactive form of localization, driven by natural language, is a crucial primitive for developing AI agents that can physically interact with their surroundings, moving beyond passive data extraction to active, purposeful engagement.
-
-The pointing output will be a JSON array containing objects, each with a point (normalized [y, x] coordinates) and a label identifying the object.
-```json
-[
-  {"point": [435, 172], "label": "paper bag"},
-  {"point": [270, 786], "label": "green plastic bowl"},
-  {"point": [488, 775], "label": "metal measuring cup"}
-]
-```
-### **Practical Applications and Use Cases**
-
-The "pointing" capability of Gemini Vision unlocks a wide array of practical applications, particularly in domains requiring a deep understanding of physical interaction and spatial context:
-
-* **Robotics:** This capability is fundamental for enabling robots to perform complex tasks. It facilitates precise navigation, object manipulation, grasp prediction (identifying optimal points for a robot gripper), and trajectory planning (predicting 2D motion paths grounded in visual observations).3 Gemini 2.0 can leverage its pointing abilities to generate 2D motion trajectories based on descriptions of physical motion or interaction.
-
-### **Capabilities: Direct Prediction from Monocular Images and Multi-View Correspondence**
-
-Gemini 2.0, particularly within the specialized Gemini Robotics-ER framework, extends its spatial understanding beyond two dimensions into the realm of 3D perception.4 This advancement is critical for applications requiring a comprehensive understanding of physical space.
-
-One of the most significant capabilities is its ability to directly predict **metric 3D bounding boxes from monocular images**.4 This means that from a single 2D image, Gemini can infer the three-dimensional size, position, and orientation of objects in real-world coordinates. This is a profound capability because traditional 3D reconstruction often necessitates multiple camera views (stereo vision) or specialized depth sensors like LiDAR. The ability to infer 3D information from a single 2D input, leveraging the model's extensive world knowledge and embodied reasoning, simplifies sensor requirements and makes 3D understanding more accessible for diverse applications.
-
-Furthermore, Gemini supports **Multi-View Correspondence**. This involves understanding 3D scenes by processing multiple images (e.g., stereo pairs) and predicting 2D point correspondences across different camera views of the same scene.4 This method is a natural way to represent and process 3D information from image sets. Similar to its 2D detection capabilities, Gemini's 3D object detection also supports open-vocabulary descriptions, allowing developers to identify objects using natural language queries.4
-
-### **Context: Gemini Robotics-ER and Embodied Reasoning**
-
-These advanced 3D capabilities are deeply embedded within the Gemini Robotics-ER (Embodied Reasoning) model, which is specifically designed to extend Gemini's multimodal reasoning into the physical world with enhanced spatial and temporal understanding.3 Gemini Robotics-ER represents a unified AI system that integrates perception, reasoning, and control, moving beyond traditional robotic systems that rely on separate modules.3
-
-For 3D bounding boxes, Gemini outputs a list of 9 numbers per box. The output is typically structured as JSON with each detected object’s label and its box_3d array. For example:
-```
-[
-{"label": "oven", "box_3d": [-0.14, 3.74, -0.71, 0.76, 0.59, 1.08, 0, 0, 0]},
-{"label": "sink", "box_3d": [-1.07, 2.09, -0.34, 0.18, 0.47, 0.12, 0, 0, -6]}
-]
-```
-In this format, the **first 3 numbers** in `box_3d` represent the **3D center of the object in the camera’s frame** (X, Y, Z coordinates) in **metric units (meters)**. The camera coordinate system is typically defined with the camera at the origin; by convention in many systems (including ROS), X is rightward, Y is downward, and Z is forward from the camera (for an optical frame). The **next 3 numbers** represent the **size or dimensions** of the bounding box (width, height, depth) in meters. The **final 3 numbers** are the **orientation of the box**, given as **Euler angles** `[roll, pitch, yaw]` in **degrees**.
-
-==========
-
-You'll notice that the docs suggest prompting you to emit json objects for quite targeted queries, then processing that with an external system. We won't follow that convention. In my testing, you are perfectly capable of instead outputting pythonic objects (of the same shape), and then *you* will be the system that then immediately follows it up with the appropriate code that processes them. You'll have a pipeline like:
-Your cognition loop starts
-Context snippet collects and displays images to you. images are "primed" in the interpreter memory (important for RGB-Depth and 3d map)
-You perceive the context and images, and begin output.
-In your python code, you define 2D and 3D bounding boxes and points using your own perception, and then immediately make use of the data in code. perhaps something like:
-<py>
-"""scratchpad
-CONTENT
-"""
-# from my pan-tilt frame
-rois = [{"box_2d": [ymin, xmin, ymax, xmax],
-      "label": <label for the object>}, ...] 
-...
-# from my 3D map frame
-trajectory_to_doorway = [
-  {"point": [y, x], "label": "my current pixel space location"},
-  {"point": [y, x], "label": "way point 1"},
-  {"point": [y, x], "label": "way point 2"},
-  {"point": [y, x], "label": "goal"},
-]
-
-# from my RGB-Depth Astra cam frame
-3D [
-{"label": "human", "box_3d": [-0.14, 3.74, -0.71, 0.76, 0.59, 1.08, 0, 0, 0]}
-...
-]
-
-# code utilizing those detections. Perhaps:
-# Use 2d box to create a crop to act as a visual prompt to YOLO (to say, lock on to specific person or attribute eg purple shirt)
-# Use points to plot trajectory across floor plane from 3d map, 2d map, or Astra. pixel -> world coords -> nav
-# use 3d box to approach and orient with a "side" of the box
-</py>
-
-Even with your advanced, native perception, you might still combine that with small local models. For example, there is a newish YOLO model that accepts visual prompts. Meaning, you could create a 2d box for an object of your interest, then prompt the YOLO model with *your* detection. The YOLO model can use that small crop to track an object in real time. 
-that make sense?
 
 Jeez. Ok. I've said enough!!!! Thank you for your patience.
 
