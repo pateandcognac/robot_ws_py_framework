@@ -26,7 +26,6 @@ socketio = SocketIO(app)
 # --- ROS Node Class ---
 class WebUINode:
     def __init__(self):
-        # NOTE: anonymous=True is not needed when the node name is hardcoded
         rospy.init_node('web_ui_node')
         rospy.loginfo("Web UI Node: Initializing...")
 

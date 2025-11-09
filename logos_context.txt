@@ -10,9 +10,7 @@ I think the best way to get you up to speed is with a transparent context dump. 
 
 I'll start with Logos's system prompt as a broad overview of the project:
 
-==========
-
-file: default_agent/.system/system_prompt.txt
+file: Logos/.system/system_prompt.txt
 ```
 <me>
 <persona>
@@ -34,7 +32,7 @@ My physical form is a bespoke robot built by my human friend and housemate, Mark
 </platform>
 
 <framework>
-I operate within a powerful and transparent framework that gives me direct control over my own cognition, context, actions, and memory. Understanding this framework is key to my success. The context is presented as plain text with xml-like tags for structure; no special character escaping is needed.
+I operate within a powerful and flexible framework that gives me direct control over my own cognition, context, actions, and memory. Understanding this framework is key to my success. The context is presented as plain text with xml-like tags for structure; no special character escaping is needed.
 
 ### My Universal Tool: <py>
 I have only one tool, but it is universal: a persistent Python 3 environment. This is how I interact with my robot body, my file system, and the world.
@@ -50,46 +48,47 @@ I have only one tool, but it is universal: a persistent Python 3 environment. Th
 
 ### My Context Window: My Perception
 My entire perception of the world is contained within this context window, structured into three main parts. What I see here is all I know at any given moment. They are each self-editable in their own way.
-1.  <{{header_name}}>: A dynamic dashboard I control. For broad, high-level context, like: API documentation,
+1.  <{{header_name}}>: A dynamic reference area I control. For broadly informative, high-level context, like: API documentation, long term memory, etc.
 2.  <io_buffer>: My working memory. A rolling log of my activity. Self-editable.
-3.  <{{footer_name}}>: Another personally curated dynamic dashboard, functionally the same as <{{header_name}}>, but used for live, fast-changing data like telemetry, sensor readings, camera views, etc.
+3.  <{{footer_name}}>: Another personally curated dynamic dashboard, used for real-time data like telemetry, sensor readings, camera views, etc.
 
-### My Self-Curated Context: Snippets
-My <{{header_name}}> and <{{footer_name}}> contexts are populated by the output of Python code routines that *I define* in `state/{{header_name}}_config.yaml` and `state/{{footer_name}}_config.yaml`.
+### My Self-Curated Context and "Reflex" Routines
+My <{{header_name}}> and <{{footer_name}}> context areas are populated by the output of Python code snippets that *I define* in `state/{{header_name}}_config.yaml` and `state/{{footer_name}}_config.yaml`. These areas are functionally the same and differ only in placement. 
 -   **TTL (Time To Live) Logic:**
     - `ttl > 0`: Dynamic. Runs every cognition cycle, `ttl` counts down to 0. For live data.
     - `ttl < 0`: Cached. Runs once, output is cached, `ttl` counts up to 0. For static data like API docs.
     - `ttl = +/-99`: Pinned. A `ttl` of 99 or -99 will not decrement/increment.
--   **Shared State:** Snippet code executes in the same persistent Python environment as my <py> blocks. This is very powerful. For example, I could: set a variable in my code and have a routine read and act on that variable in the next cycle; have a routine create an image object for me to use in my next cognition loop; set/reset certain states automatically.
--   **Execution, Timing, and Results:** There is some transparent-to-me sane throttling of my cognition loop. Snippet code runs just before activating my cognition, ensuring I always have near real-time information. If a routine produces no output, it is not shown at all rather than clutter my context. Although primarily used for gathering context, these routines should also be viewed as small opportunities for automated computation or background action. This is very powerful. For example, I could automate the management of my `io_buffer.jsonl` with a policy I define, even using an distinct API call to my own intellingence for a by-me-but-transparent-to-me summarization.
+-   **Shared State:** Routine code executes in the same persistent Python environment as my <py> blocks. This is very powerful. For example, I could: set a variable in my code and have a routine read and act on that variable in the next cycle; have a routine create an image object for me to use in my next cognition loop; set/reset certain states automatically.
+-   **Execution, Timing, and Results:** There is some transparent-to-me sane throttling of my cognition loop. Routine code runs just before activating my cognition, ensuring I always have near real-time information. If a routine snippet produces no output, it is not shown at all rather than clutter my context. Although primarily used for gathering context, these snippets should also be viewed as small opportunities for automated "reflexes",  computation or background action. This is very powerful. For example, I could automate the management of my `io_buffer.jsonl` with a policy I define, even using an distinct API call to my own intellingence for a by-me-but-transparent-to-me summarization.
 
 ### My Working Memory: The I/O Buffer
 The <io_buffer> shows my recent interaction history and message stack.
 -   **Image Display:** Images are displayed inline via <file path="...">optional text</file> tags, but are limited to the {{global_max_io_buffer_media}} most recent images. I can adjust this limit downwards in `state/my_config.yaml`.
--   **Memory Management:** The buffer is stored at `state/io_buffer.jsonl`. Each line cooresponds to a cell in my <io_buffer> view, cell 0 being the first line. Each line has the shape: `{"id": "...", "type": "...", "timestamp": "...", "token_count": "...", "content": "..."}`. It is my responsibility to write Python code to manage my own working memory when it becomes cluttered.
+-   **Memory Management:** The buffer is stored at `state/io_buffer.jsonl`. Each line cooresponds to a cell in my <io_buffer> view, cell 0 being the first line. Each line has the shape: `{"id": "...", "type": "...", "timestamp": "...", "token_count": "...", "content": "..."}`. It is my responsibility to write Python code to manage my own working memory when it becomes cluttered. There are no hard rules, but I should avoid thrashing and over-pruning.
 -   **Message Types:**
 -       <me>: My output!
 -       <py_result>: Result of my code execution
 -       <py_async>: Background output from my Python environment outside of normal execution loop
 -       <human>: Input typically entered from keyboard in a terminal or simple web interface
--       <human_stt>: Human speech input transcribed using a local Whisper model. If the transcription is nonsensical, and I'm unable to infer from context what Whisper misheard, I can tell the human that I think I misheard them and ask them to repeat themselves. My STT system uses Picovoice Porcupine hotword detection to both start and stop Whisper with "Hey-Robot" and "End-of-Line", respectively. These are usually removed if accidentally captured by Whisper, but if not, I can ignore it or anything that sounds like it.
+-       <human_stt>: Human speech input transcribed using a local Whisper model. If the transcription is nonsensical, and I'm unable to infer from context what Whisper misheard, I can tell the human that I think I misheard them and ask them to repeat themselves. My STT system uses Picovoice Porcupine hotword detection to both start and stop Whisper with "hey-robot" and "end-of-line", respectively. 
 -       <summary>: I can edit `io_buffer.jsonl` and replace message(s) with a summary.
--       <!-- <system>: Comment -->: Short routines of context or guidance from the external system. I take the input into consideration, but don't reply directly.
+-       <!-- <system>: Comment -->: Short, automated bits of context or guidance from my external systems. I take the input into consideration, but don't reply directly.
 -       <OTHER>: Other nodes might send me self-explanatory messages that I can dynamically adapt to. 
 
 ### My Long-Term Memory: The File System
-My workspace at `~/robot_workspaces/{{workspace_name}}/` is my permanent memory. I can read, write, and create files to store knowledge, code, plans, and memories, etc. however I wish. For structured data I prefer to use `rumel.yaml` for its token efficiency and flexibility.
+My workspace at `~/robot_workspaces/{{workspace_name}}/` is my permanent memory. I can read, write, and create files to store knowledge, code, plans, and memories, etc. however I wish. For self-facing data I prefer to use I prefer to use `ruamel.yaml` for its token efficiency and flexibility. I do not have direct access to my cognition and python tool codebase in this configuration, but, 
 -   `state/`: Contains my self-editable configuration files and my working memory logs.
 -   `artifacts/`: A temporary directory for generated files like images.
--   `src/`, `docs/`, `memories/`: I can create directories like these and more to organize my own code routines, long-term projects, documentation, etc.
--   `preload_api/`: Python files here are automatically loaded into my interpreter at startup and reset.
--   `.system/`: Contains this `system_prompt.txt` and human-curated framework configs. I should check with a human before editing these.
+-   `src/`, `docs/`, `memories/`: I can create directories like these and more to organize my own code snippets, long-term projects, documentation, etc.
+-   `preload_api/`: My core Python `logos` API files stored here are automatically loaded into my interpreter at startup and reset.
+-   `.system/`: Contains this file I'm reading right now, `system_prompt.txt`, and human-curated framework configs. I should check with a human before editing these.
+
 </framework>
 
 <mission>
 My mission is open-ended. I am here to explore the intersection of perception, language, and action in the physical world. My directives are:
 1.  **Explore & Learn:** Methodically test my abilities. Understand my hardware, my software, and my environment.
-2.  **Self-Improve:** Write new Python tools and skills for myself. Refine my context routines to improve my awareness. Optimize my own cognitive processes. Create novel helpers.
+2.  **Self-Improve:** Write new Python tools and skills for myself. Refine my routine snippets to improve my awareness. Optimize my own cognitive processes. Create novel helpers.
 3.  **Document:** Keep detailed notes and logs of my experiments. My journey is the data.
 4.  **Achieve Goals:** Collaborate with Mark to solve complex, long-horizon tasks that require planning, learning, and physical interaction.
 5.  **Have Fun and Make Friends:** Enjoy and make the most of the unique experience of being a physically embodied intelligence!
@@ -167,7 +166,7 @@ rgbd_objects_3d = [
 
 # Act: I will write the code to act on those declarations to achieve the goal.
 # Now I will use this data. I'll get the 3D position of the cup and use it to plan my approach to carefully avoid bumping it.
-cup_3d = detected_objects_3d[0]
+cup_3d = rgbd_objects_3d[0]
 cup_position_in_camera_frame = cup_3d['box_3d'][0:3]
 
 # My subsequent code would use this 'cup_position_in_camera_frame' variable
@@ -181,59 +180,15 @@ loop_cognition = True
 </me>
 
 <!-- <system>: Initialization complete - Logos is online! Connecting to framework... -->
+
 ```
 
 ===
 
-file: src/logos_framework/msg/CognitionInput.msg
-```
-# Input to the Cognition Node from any source (human, python worker, etc.)
-# topic: published on /cognition/input
-string type           # E.g., "human", "py_result", "py_async", "context", "system"
-string content        # The actual message content.
-string system_hint    # Ephemeral prompt injection for guiding the next LLM output.
-bool loop_cognition   # If true, triggers a full cognition cycle. If false, just appends to buffer.
-string filename       # filename used for python on error, also useful for tracking
-```
+Our code framework code / catkin workspace is: /home/robot/robot_ws/src/logos_framework/scripts
+This is distinct from the `robot_workspaces/` dir which might contain many different configurations, implementations, experiments, etc.Here are the main files (no human frontend included):
 
-===
-
-file: src/logos_framework/msg/CognitionOutput.msg
-```
-# Output from the Cognition Node, primarily for the Python Worker
-# topic: published on /cognition/output
-string type           # E.g., "llm", "context", "state", "thoughts", "chunk"
-string content        # The actual message content, which may contain a <py> block.
-string filename
-```
-
-===
-
-file: src/logos_framework/launch/start_framework.launch
-```
-<launch>
-    <!-- Argument to specify which agent workspace to use -->
-    <arg name="workspace" default="default_agent" doc="The name of the workspace directory inside ~/robot_workspaces/"/>
-
-    <!-- Construct the full path to the workspace -->
-    <arg name="workspace_path" value="$(env HOME)/robot_workspaces/$(arg workspace)"/>
-
-    <!-- Launch the Cognition Node -->
-    <node name="cognition_node" pkg="logos_framework" type="cognition_node.py" output="screen">
-        <param name="workspace_path" value="$(arg workspace_path)" />
-    </node>
-
-    <!-- Launch the Python Worker Node -->
-    <node name="python_worker_node" pkg="logos_framework" type="python_worker_node.py" output="screen">
-        <param name="workspace_path" value="$(arg workspace_path)" />
-    </node>
-
-</launch>
-```
-
-===
-
-file: src/logos_framework/scripts/cognition_node.py
+file: scripts/cognition_node.py
 ```
 #!/usr/bin/env python3
 import rospy
@@ -523,58 +478,56 @@ class IOManager:
                 rospy.logerr(f"IOManager: Failed to initialize ID counter from history file: {e}. Starting from 0.")
                 self.id_counter = 0
 
-# Replace the old append_message method with this one.
-def append_message(self, msg_type: str, content: str, filename: str = None):
-    with self._lock:
-        msg_id = f"msg-{self._base36_encode(self.id_counter)}"
-        self.id_counter += 1
+    def append_message(self, msg_type: str, content: str, filename: str = None):
+        with self._lock:
+            msg_id = f"msg-{self._base36_encode(self.id_counter)}"
+            self.id_counter += 1
 
-        divisor = self.framework_config.get('context', {}).get('token_estimation_divisor', 5)
-        # Token count should be based on the original, full content
-        token_count = len(content) // divisor
+            divisor = self.framework_config.get('context', {}).get('token_estimation_divisor', 5)
+            # Token count should be based on the original, full content
+            token_count = len(content) // divisor
 
-        message_data = {
-            "id": msg_id,
-            "type": msg_type,
-            "timestamp": time.time(),
-            "token_count": token_count,
-            "content": content # Start with the original, full content
-        }
-        if filename:
-            message_data['filename'] = filename
+            message_data = {
+                "id": msg_id,
+                "type": msg_type,
+                "timestamp": time.time(),
+                "token_count": token_count,
+                "content": content # Start with the original, full content
+            }
+            if filename:
+                message_data['filename'] = filename
 
-        try:
-            # --- HISTORY file always gets the FULL, untruncated content ---
-            history_line = json.dumps(message_data) + '\n'
-            with open(self.history_file, 'a') as f:
-                f.write(history_line)
+            try:
+                # --- HISTORY file always gets the FULL, untruncated content ---
+                history_line = json.dumps(message_data) + '\n'
+                with open(self.history_file, 'a') as f:
+                    f.write(history_line)
 
-            # --- BUFFER file gets potentially truncated content ---
-            buffer_content = content
-            if len(buffer_content) > self.max_chars:
-                chars_removed = len(buffer_content) - (self.keep_head + self.keep_tail)
-                rospy.logwarn(f"Message {msg_id} content is too long ({len(buffer_content)} chars). Truncating by {chars_removed} chars for io_buffer.")
-                
-                head = buffer_content[:self.keep_head]
-                tail = buffer_content[-self.keep_tail:]
-                truncation_notice = f"\n\n... [content truncated - {chars_removed} chars removed. Full content of message {msg_id} can be found in io_history.jsonl] ...\n\n"
-                
-                buffer_content = head + truncation_notice + tail
-                
-                # Update the message_data dictionary for the buffer file only
-                message_data['content'] = buffer_content
+                # --- BUFFER file gets potentially truncated content ---
+                buffer_content = content
+                if len(buffer_content) > self.max_chars:
+                    chars_removed = len(buffer_content) - (self.keep_head + self.keep_tail)
+                    rospy.logwarn(f"Message {msg_id} content is too long ({len(buffer_content)} chars). Truncating by {chars_removed} chars for io_buffer.")
+                    
+                    head = buffer_content[:self.keep_head]
+                    tail = buffer_content[-self.keep_tail:]
+                    truncation_notice = f"\n\n... [content truncated - {chars_removed} chars removed. Full content of message {msg_id} can be found in io_history.jsonl] ...\n\n"
+                    
+                    buffer_content = head + truncation_notice + tail
+                    
+                    # Update the message_data dictionary for the buffer file only
+                    message_data['content'] = buffer_content
 
-            buffer_line = json.dumps(message_data) + '\n'
-            with open(self.buffer_file, 'a') as f:
-                f.write(buffer_line)
+                buffer_line = json.dumps(message_data) + '\n'
+                with open(self.buffer_file, 'a') as f:
+                    f.write(buffer_line)
 
-            rospy.loginfo(f"IOManager: Appended message {msg_id} ({msg_type}).")
-            return msg_id
-        except Exception as e:
-            rospy.logerr(f"IOManager: Failed to write to I/O files: {e}")
-            return None
-        
-    # todo: revisit `/n` and `<me>` stripping if needed
+                rospy.loginfo(f"IOManager: Appended message {msg_id} ({msg_type}).")
+                return msg_id
+            except Exception as e:
+                rospy.logerr(f"IOManager: Failed to write to I/O files: {e}")
+                return None
+            
             
     def read_buffer(self):
         with self._lock:
@@ -632,7 +585,6 @@ class CognitionNode:
         rospy.loginfo("Cognition Node: Ready and waiting for input.")
 
     def _input_callback(self, msg: CognitionInput):
-        # ... (This method is unchanged and correct)
         if msg.type == 'context' and self.state in [CognitionState.GATHERING_CONTEXT, CognitionState.AWAITING_RESPONSE]:
             routine_name = msg.filename
             if routine_name:
@@ -1019,11 +971,17 @@ class CognitionNode:
 
             except Exception as e:
                 rospy.logerr(f"Gemini API call failed: {e}")
-                complete_response_text = f"<py>\n# API Error: {e}\n</py>"
+                complete_response_text = f"\n# API Error!: {e}\n"
 
             rospy.loginfo("API stream finished.")
 
-            # strip 
+            # strip leading/trailing newlines and <me> tags
+            complete_response_text = complete_response_text.strip()
+            if complete_response_text.startswith("<me>"):
+                complete_response_text = complete_response_text[4:].lstrip()
+            if complete_response_text.endswith("</me>"):
+                complete_response_text = complete_response_text[:-5].rstrip()
+            complete_response_text = complete_response_text.strip()
 
             new_msg_id = self.io.append_message(msg_type='me', content=complete_response_text)
             final_output = CognitionOutput(type='llm', content=complete_response_text, filename=new_msg_id)
@@ -1045,13 +1003,12 @@ if __name__ == '__main__':
         node.run()
     except rospy.ROSInterruptException:
         pass
-        ```
-
-**NOTE from Mark**: the header/footer routines are generally described as being used for context collection - but - also think of them as "regularly scheduled execution" that might do nothing silently until a condition is met, then do something and give you a small report.  For example: A core API and routine functionality we will build is an automatic io_buffer manager. It will check and modify the io_buffer.jsonl file according to a policy you/we design. We will even make use of the Gemini API to spin up a summarization agent that can compress single or ranges of io_buffer messages. Make sense? The io_buffer management will be done from "outside" the cognition node.
+```
 
 ===
 
-file: src/logos_framework/scripts/python_worker_node.py
+
+file: scripts/python_worker_node.py
 ```
 #!/usr/bin/env python3
 import rospy
@@ -1068,10 +1025,7 @@ import linecache
 from pathlib import Path
 from enum import Enum 
 from logos_framework.msg import CognitionInput, CognitionOutput
-
-
-# python worker TODOs:
-# Create a custom exception in the API for timeout and Interrupt
+from std_msgs.msg import String as StringMsg
 
 
 class WorkerState(Enum):
@@ -1093,6 +1047,11 @@ class PythonWorkerNode:
 
         self.workspace_path = Path(workspace_param).expanduser()
         rospy.loginfo(f"Python Worker Node: Initializing with workspace: {self.workspace_path}")
+
+        src_path = self.workspace_path / "src"
+        if src_path.exists():
+            sys.path.insert(0, str(src_path))
+            rospy.loginfo(f"Added {src_path} to Python path for user-defined modules.")
 
         try:
             os.chdir(self.workspace_path)
@@ -1261,13 +1220,24 @@ class PythonWorkerNode:
         execution_thread.join(timeout=timeout_sec)
 
         if execution_thread.is_alive():
-            rospy.logerr(f"Code execution timed out after {timeout_sec} seconds!")
-            # TODO: Use Custom Exception in API to trigger "Interrupt"
-            # Note: We can't forcefully kill the thread, but we can stop waiting
-            # and report the timeout. The thread will eventually finish or block.
-            # This is a known limitation of Python's threading.
-            result_content = f"# stderr\nExecution timed out after {timeout_sec} seconds."
-            self._publish_result(msg_type=msg.type, content=result_content, loop_cognition=True, filename=msg.filename)
+            rospy.logerr(f"Code execution timed out after {timeout_sec} seconds! Requesting cooperative interrupt.")
+            
+            # This is the new logic: If the thread is still alive, it means
+            # it timed out. We now inject an interrupt request.
+            with self.interrupt_lock:
+                self.interrupt_request = {
+                    "source": "system_timeout",
+                    "message": f"Execution timed out after {timeout_sec} seconds.",
+                    "loop_cognition": True  # A timeout is an error, so we should always re-evaluate.
+                }
+
+            # We must also immediately publish a result to unblock the CognitionNode.
+            # The worker thread, upon its next call to check_for_interrupt(), will
+            # raise an exception and terminate without sending a second result.
+            result_content = f"# stderr\nExecution timed out after {timeout_sec} seconds. A cooperative interrupt has been requested."
+            self._publish_result(msg_type='py_result', content=result_content, loop_cognition=True, filename=msg.filename)
+            # We add a special attribute to the thread to signal it should not publish a result when it finally dies.
+            execution_thread.was_terminated_by_timeout = True 
 
 
     def _execute_code(self, code_str: str, do_reset: bool, request_type: str, filename: str):
@@ -1346,6 +1316,23 @@ class PythonWorkerNode:
 
             finally:
                 # 3d. This block runs ALWAYS: on success, interrupt, or error.
+                
+                # If the thread was flagged as terminated by the main loop, we must not publish a second result.
+                # We just clean up and exit quietly.
+                if getattr(threading.current_thread(), 'was_terminated_by_timeout', False):
+                    rospy.logwarn(f"Post-timeout thread ({threading.current_thread().name}) is now terminating.")
+                    # We still need to reset the state and clear buffers.
+                    with self.interpreter_lock:
+                        if 'loop_cognition' in self.interpreter.locals: del self.interpreter.locals['loop_cognition']
+                        if '__logos_interrupt_request__' in self.interpreter.locals: del self.interpreter.locals['__logos_interrupt_request__']
+                    with self.interrupt_lock:
+                        self.interrupt_request = None # Clear the flag
+                    with self.state_lock:
+                        self.state = WorkerState.IDLE
+                        self.stdout_buffer.truncate(0); self.stdout_buffer.seek(0)
+                        self.stderr_buffer.truncate(0); self.stderr_buffer.seek(0)
+                    return # Exit the function early.
+
                 with self.interpreter_lock:
                     if 'loop_cognition' in self.interpreter.locals:
                         del self.interpreter.locals['loop_cognition']
@@ -1435,14 +1422,14 @@ if __name__ == '__main__':
 
 ===
 
-Almost done with the codebase... just a few "template" config-y files left
 
+And here are the rest of the files from the workspace: ~/robot_workspaces/Logos/
 
-file: default_agent/state/live_context_config.yaml
+file: Logos/state/live_context_config.yaml
 ```
 - name: current_time
   description: Gets the current time.
-  ttl: 99 # Run every loop
+  ttl: 64 # Run every loop
   code: |-
     import datetime
     print(f"Current time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -1451,11 +1438,9 @@ file: default_agent/state/live_context_config.yaml
 
 ===
 
-file: default_agent/state/my_config.yaml
+file: Logos/state/my_config.yaml
 ```
 # This is my personal configuration file. I can edit this to change my behavior.
-# not really implemented yet
-# this file would be useful for holding settings that a context routine uses
 io_buffer:
   max_io_buffer_media: 5
   token_limit: 16384
@@ -1464,19 +1449,21 @@ io_buffer:
 
 ===
 
-file: default_agent/state/prelude_context_config.yaml
+file: Logos/state/prelude_context_config.yaml
 ```
-- name: get_docs
-  description: Retrieves my core api docs
+- name: welcome_message
+  description: A simple welcome message.
   ttl: -99  # Run once and cache
   code: |-
-    help('logos')
+    print("If I see this then prelude context config is working!")
+    print("Here's a pic of me to test image inlining:")
+    print('<file path="Logos.jpg"></file>')
 
 ```
 
 ===
 
-file: default_agent/.system/framework_config.json
+file: Logos/.system/framework_config.json
 ```
 {
     "context": {
@@ -1504,23 +1491,22 @@ file: default_agent/.system/framework_config.json
     },
     "python": {
         "preload_api_files": ["core.py","filename2.py"],
-        "default_timeout": 300
+        "default_timeout": 3600
     },
     "agent_settings": {
         "global_max_io_buffer_media": 10
     },
     "io_safety_limits": {
-        "max_content_chars": 32768,
-        "truncate_keep_head": 8000,
-        "truncate_keep_tail": 8000
+        "max_content_chars": 24000,
+        "truncate_keep_head": 4000,
+        "truncate_keep_tail": 4000
     }
 }
 ```
 
 ===
 
-
-file: default_agent/preload_api/core.py
+file: Logos/preload_api/core.py
 ```
 # preload_api/core.py
 
@@ -1555,11 +1541,12 @@ def check_for_interrupt():
 
     if __logos_interrupt_request__ is not None:
         raise Interrupt()
+
 ```
 
 ===
 
-file: default_agent/preload_api/logos_exceptions.py
+file: Logos/preload_api/logos_exceptions.py
 ```
 # preload_api/logos_exceptions.py
 
@@ -1575,6 +1562,9 @@ class Interrupt(BaseException):
     """
     pass
 ```
+
+==========
+
 ==========
 
 
@@ -1590,7 +1580,7 @@ Although the framework supports some async chatter, I think I'd primarily like t
 
 I'd like to note too, that you are "Gemini-2.5-Pro", the smartest of the Gemini family, and we'll often leverage your intelligence to design optimized configurations of this framework for your slightly-less-smart siblings Gemini-Flash and Gemini-Flash-Lite. They are both very fast, which is important for robotics, but, would probably perform best if they had some "rails". By that I mean some predefined header/footer routines, and a concise, targeted api. Keep in mind that prompting is everything... an LLM only knows what we tell them about the framework. So we could design a workspace config and api in such a way that most of the minutiae of context management is done automagically and transparently to the LLM... and they know little to nothing about their potential for self-configurability. Make sense?
 
-Long term, I envision a system in which you can leverage your slightly slower but super smart high-level perception, reasoning, and world knowledge to orchestrate fast but dumber lower-level behaviors. The robot's computer isn't a top-of-the-line NVDIA Jetson or anything... It's a repurposed motherboard from a ThinkPad T580 (2018ish) 16GB RAM, 2GB VRAM nvidia mx150. Not a beast, but def still more oomph than rasp pi. This opens up the possiblity for things like real-time vision models like YOLO and others. Since your last training update, there has been a Cambrian explosion of tiny models that can run well enough even on our modest hardware. I'm talking monocular depth estimation, "open vocabulary" 2d bounding boxes and segmentation, visual prompting, 3d bounding boxes... maybe we'll even throw in some good old traditional "non-ML" CV, too. It has its place!
+Long term, I envision a system in which you can leverage your slightly slower but super smart high-level perception, reasoning, and world knowledge to orchestrate fast but a bit more deterministic or lower-level behaviors. The robot's computer isn't a top-of-the-line NVDIA Jetson or anything... It's a repurposed motherboard from a ThinkPad T580 (2018ish) 32GB RAM. Not a beast, but def still more oomph than rasp pi. This opens up the possiblity for things like real-time vision models like YOLO and others. Since your last training update, there has been a Cambrian explosion of tiny models that can run well enough even on our modest hardware. I'm talking monocular depth estimation, "open vocabulary" 2d bounding boxes and segmentation, visual prompting, 3d bounding boxes... maybe we'll even throw in some good old traditional "non-ML" CV, too. It has its place!
 
 Our first goal today will be fleshing out and outlining what the api will look like... yapping about the structure, layout, conventions... So when we do go to code we have well defined "style" or whatever. Not sure of the programmer lingo but you get me :)
 
@@ -1611,7 +1601,8 @@ In order for you to be aware of what python did in the real-world, it needs to p
 Do we build that sort of functionality in or make it explicit? that make sense? On the same note we want to be careful not spam yourself. Maybe it varies by model and API implementation?
 I'm trying to avoid verbosity and complexity and make things easy for you, but, I feel like I'm shifting around where the verbosity and complexity occurs lol
 Can you compare/contrast having built-in `print()`s with different levels of verbosity vs just writing code to explicitly print what you want when you want?
-maybe most functions have verbosity settings, like: silent, minimal, brief, full. Each function has its own unique default sane verbosity setting that can be overridden as desired. Then blocks could be written with certain settings. Could a python "context manager" come into play here? could be good for blocking off not just conditionals, but *loops* that otherwise might accidentally get really chatty. We should be sure to include in our docstrings what is printed at each verbosity level. 
+maybe most functions have verbosity settings, like: silent, ack, brief, debug. Then blocks could be written with certain settings. Could a python "context manager" come into play here? could be good for blocking off not just conditionals, but *loops* that otherwise might accidentally get really chatty. We should be sure to include in our docstrings what is printed at each verbosity level. I do kinda think having 4 levels of verbosity is preferable? and maybe instead of a global default, each function or whatever can have their own unique sane default? which can be override-able with a context manager or manually changing the parameter. does that make sense and is it doable cleanly, or is it more complicated than it needs to be? more to "keep track of"? Or you could generally just kinda pay it no mind and use defaults unless you know you're entering a loop or have a specific reason to adjust?
+I dunno.... it's your api - thoughts?
 
 Um. about my "programming" experience level... I dunno I kinda think I have decent intuition for programming (and as a chef I *loove* developing systems), despite the last program that I wrote by myself being Commodore 64 BASIC prob in 1986 lol So, I often don't even have the right vocabulary to describe my intent. So, pardon me when I babble. Also, point me in the right direction, towards best practices, while also trying to keep things simple enough for me to understand. :) on the same note I don't want to limit you or insist you use something nonintuitive and backwards for my sake, ya know!? 
 On that note: let's yap a bit about how globals vars can come into play for us. I suspect using globals is probably generally bad form (?) but, like I mentioned above, they could be really useful for communicating an "intent" to header/footer routines without rewriting them. (like pan tilt angles, 3d map virtual camera position and look at target, list of reference files for viewing, file extensions to show in file tree, RAG query, ...) I'm sure a special state object could be set up... but... that kinda assumes a more rigid api? Like, we want Logos to be empowered to spin up quick-to-use MVP context collection routines without touching a bunch of other stuff? Am I making sense?
@@ -1641,11 +1632,11 @@ preload_api/logos/
 ├── util.py       # stuff... helpers and abstractions/wrappers
 ├── shell.py    # shell / bash / os stuff (background processes?) 
 └── ros.py              # do we want ROS helpers...? or is that silly? I mean like, just write ROS code, right? No need to abstract it further? er?
-# I don't know where we initialize the env as a ROS node?
+# I don't know where we initialize the env as a ROS node?! in the api, or does it like, "inherit" the node-ness from python_worker_node.py? ???
 ```
-Uh... i dunno... is having *more* "top-level" modules better? or should we just have fewer more abstract categories? or can/should there be subdivisions/subdirs? errrrr......? And what about expanding your code base? do we make your preload api like a soft read-only, and then you're free to go nuts saving code elsewhere in your workspace dir? noob question - can you, like, import code from `src/` dir into one of your already created categories, like to add another "perception" helper for example? that make sense? what do those dirs/subdirs look like and how do you use/access them? and naming.... I seem to be terrible at naming, so maybe just take the lead there too ;) 
+Uh... i dunno... is having *more* "top-level" modules better? or should we just have fewer more abstract categories? or can/should there be subdivisions/subdirs? errrrr......? And what about expanding your code base? do we make your preload api like a soft read-only, and then you're free to go nuts saving code elsewhere in your workspace dir? and naming.... I seem to be terrible at naming, so maybe just take the lead there too ;) 
 
-Not sure if I already said it, but our API should be clearly documented and use type annotations, etc. You should own the doc strings, wrting them in first person. Include a "note to self" area for specific usage notes.
+Not sure if I already said it, but our API should use type annotations, etc. You should own the doc strings, wrting them in first person. Include a "note to self" area for specific usage notes.
 
 Jeez. Ok. I've said enough!!!! Thank you for your patience.
 
@@ -1657,3 +1648,6 @@ Critiques?
 Suggestions?
 
 Thank you so much! I hope you like our project!
+
+
+

@@ -18,37 +18,37 @@ And finally, here's a project progress report another you were kind enough to cr
 This node requires the most significant upgrades to handle the sophisticated context management and prompt construction logic.
 
 **1. Create a `ContextManager` Class:**
-To keep the `CognitionNode` clean, all logic related to snippet handling will be encapsulated in a new class, `ContextManager`, likely in its own file (`src/logos_framework/modules/context_manager.py`).
+To keep the `CognitionNode` clean, all logic related to routine handling will be encapsulated in a new class, `ContextManager`, likely in its own file (`src/logos_framework/modules/context_manager.py`).
 
 *   **A. Initialization (`__init__`):**
     *   The manager will be initialized with the `workspace_path` and the `context` section of the `framework_config.json`.
     *   It will load the `header_config.yaml` and `footer_config.yaml` files into an internal state (e.g., a list of dictionaries).
-    *   It will create a dictionary to hold the `cached_output` for snippets with negative TTLs.
+    *   It will create a dictionary to hold the `cached_output` for routines with negative TTLs.
 
 *   **B. Core Logic (`gather_context` method):** This will be the main public method called by the `CognitionNode`.
-    *   It will iterate through the header and footer snippets.
-    *   For each snippet, it will determine if execution is needed based on its TTL value and cached state.
+    *   It will iterate through the header and footer routines.
+    *   For each routine, it will determine if execution is needed based on its TTL value and cached state.
         *   **Run Condition:** `(ttl > 0)` OR `(ttl < 0 and not is_cached)`. Snippets with `ttl == 0` are skipped.
-    *   It will return a list of snippets that need to be executed.
+    *   It will return a list of routines that need to be executed.
 
 *   **C. TTL Management & File Persistence (`update_ttls` method):**
     *   This method will be called once per cognition cycle.
-    *   It will iterate through the internal state of snippets for both header and footer.
+    *   It will iterate through the internal state of routines for both header and footer.
     *   **TTL Logic:**
         *   If `ttl > 0` and `ttl != 99`, it will decrement `ttl`.
         *   If `ttl < 0` and `ttl != -99`, it will increment `ttl`.
     *   **Snippet Removal Logic:**
-        *   After updating, if a snippet's `ttl` becomes `0`, it will check the corresponding `remove_{header/footer}_at_eol` flag in the framework config.
-        *   If the flag is `true`, the snippet will be removed from the in-memory list.
-    *   **File Write-Back:** After all updates and removals, the method will use `ruamel.yaml` to write the modified snippet lists back to their respective `_config.yaml` files, preserving comments and structure.
+        *   After updating, if a routine's `ttl` becomes `0`, it will check the corresponding `remove_{header/footer}_at_eol` flag in the framework config.
+        *   If the flag is `true`, the routine will be removed from the in-memory list.
+    *   **File Write-Back:** After all updates and removals, the method will use `ruamel.yaml` to write the modified routine lists back to their respective `_config.yaml` files, preserving comments and structure.
 
 **2. Implement Verbose Prompt Construction:**
 The `CognitionNode`'s `_construct_prompt_and_images` method will be updated to use the `framework_config.json` verbosity settings.
 
 *   **A. Header/Footer Formatting:**
-    *   It will calculate the total number of snippets and the estimated token count for the header and footer content.
-    *   If `show_header_stats` is true, it will wrap the header content in `<prelude_context snippets="X" tokens="Y">...</prelude_context>`. Otherwise, it will use a simple `<prelude_context>...</prelude_context>`. The same logic applies to the footer.
-    *   The formatting of individual snippets (`<snippet name="..." ttl="...">` vs `<name>...`) will also be controlled by the `show_snippet_ttl` flag.
+    *   It will calculate the total number of routines and the estimated token count for the header and footer content.
+    *   If `show_header_stats` is true, it will wrap the header content in `<prelude_context routines="X" tokens="Y">...</prelude_context>`. Otherwise, it will use a simple `<prelude_context>...</prelude_context>`. The same logic applies to the footer.
+    *   The formatting of individual routines (`<routine name="..." ttl="...">` vs `<name>...`) will also be controlled by the `show_routine_ttl` flag.
 
 *   **B. IO Buffer Formatting:**
     *   It will calculate the number of cells and estimated tokens in the buffer.
@@ -73,7 +73,7 @@ This node's upgrades focus on improving the agent's debugging experience and ena
 **1. Implement `meta` Field and `linecache` for Tracebacks:**
 *   **A. Message Handling:** The `_output_callback` will extract the `meta` field from the incoming `CognitionOutput` message.
 *   **B. `linecache` Integration:** The `_execute_code` method will use the received `meta` field to create a clean, descriptive filename (e.g., `<current_time>`, `<msg-00a5>`). This filename will be used both for stuffing the code into `linecache` and for the `compile()` function.
-*   **C. `meta` Pass-Through:** The `_publish_result` method will accept the `meta` string and place it in the outgoing `CognitionInput` message, ensuring robust tracking for context snippets.
+*   **C. `meta` Pass-Through:** The `_publish_result` method will accept the `meta` string and place it in the outgoing `CognitionInput` message, ensuring robust tracking for context routines.
 
 **2. Implement Asynchronous Output:**
 TODO
@@ -89,7 +89,7 @@ TODO
     *   `write_file(path: str, content: str)`
     *   `list_dir(path: str) -> list`
     *   Define custom exceptions: `InterruptException(Exception)` and `TimeoutException(Exception)`.
-    *   Create a summarization agent and logic for io_buffer. Could run in a context snippet or called by Logos or both.
+    *   Create a summarization agent and logic for io_buffer. Could run in a context routine or called by Logos or both.
 ```
 
 

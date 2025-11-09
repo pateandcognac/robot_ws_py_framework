@@ -33,8 +33,8 @@ class ChatInterface:
             ('footer', 'light gray', 'black'),
             ('title', 'white', 'dark blue', 'bold'),
             ('human', 'white', 'dark blue'),
-            ('llm_chunk', 'light green', 'dark blue'),
-            ('llm_final', 'white', 'dark blue', 'bold'),
+            ('ai_chunk', 'light green', 'dark blue'),
+            ('ai_final', 'white', 'dark blue', 'bold'),
             ('thoughts', 'dark cyan', 'dark blue'),
             ('py_result', 'yellow', 'dark blue'),
             ('context', 'light magenta', 'dark blue'),
@@ -104,12 +104,12 @@ class ChatInterface:
         """Handles messages from the cognition node and displays them."""
         if msg.type == 'chunk':
             # msg.content contains the streamed text token
-            self.add_to_output(msg.content, 'llm_chunk', is_chunk=True)
+            self.add_to_output(msg.content, 'ai_chunk', is_chunk=True)
         elif msg.type == 'thoughts':
             self.add_to_output(f"Logos (thinking):\n{msg.content}", 'thoughts')
-        elif msg.type == 'llm':
+        elif msg.type == me:
              # This is the final, complete message from the LLM
-            self.add_to_output(f"Logos:\n{msg.content}", 'llm_final')
+            self.add_to_output(f"Logos:\n{msg.content}", 'ai_final')
         # We can add more handlers here if we want to see other message types
         # For now, we'll ignore 'context', 'state', etc. for a cleaner UI.
 
