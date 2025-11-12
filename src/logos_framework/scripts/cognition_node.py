@@ -24,7 +24,7 @@ yaml = YAML()
 
 class ContextManager:
     """
-    Manages the loading, execution logic, and persistence of context routines.
+    Manages the loading, execution logic, and persistence of context hooks.
     """
     def __init__(self, workspace_path: Path, config: dict):
         """
@@ -46,9 +46,9 @@ class ContextManager:
         self.header_config_path = self.state_path / f"{self.header_name}_config.yaml"
         self.footer_config_path = self.state_path / f"{self.footer_name}_config.yaml"
 
-        # In-memory representation of routines and their cached outputs
-        self.header_routines = []
-        self.footer_routines = []
+        # In-memory representation of hooks and their cached outputs
+        self.header_hooks = []
+        self.footer_hooks = []
         self.cached_output = {}
 
         self._load_configs() # Initial load
@@ -60,110 +60,110 @@ class ContextManager:
             try:
                 if self.header_config_path.exists():
                     with open(self.header_config_path, 'r') as f:
-                        self.header_routines = yaml.load(f) or []
+                        self.header_hooks = yaml.load(f) or []
                 else:
-                    self.header_routines = []
+                    self.header_hooks = []
                     rospy.logwarn(f"ContextManager: Header config not found at {self.header_config_path}")
 
                 if self.footer_config_path.exists():
                     with open(self.footer_config_path, 'r') as f:
-                        self.footer_routines = yaml.load(f) or []
+                        self.footer_hooks = yaml.load(f) or []
                 else:
-                    self.footer_routines = []
+                    self.footer_hooks = []
                     rospy.logwarn(f"ContextManager: Footer config not found at {self.footer_config_path}")
             except Exception as e:
-                rospy.logerr(f"ContextManager: Error loading routine configurations: {e}")
+                rospy.logerr(f"ContextManager: Error loading hook configurations: {e}")
 
-    def get_routines_to_execute(self):
+    def get_hooks_to_execute(self):
         """
-        Determines which routines need to be run in the current cycle.
+        Determines which hooks need to be run in the current cycle.
 
         Returns:
-            A tuple containing (list of header routines to run, list of footer routines to run).
+            A tuple containing (list of header hooks to run, list of footer hooks to run).
         """
         with self._lock:
             self._load_configs()
-            header_to_run = [s for s in self.header_routines if self._should_run(s)]
-            footer_to_run = [s for s in self.footer_routines if self._should_run(s)]
+            header_to_run = [s for s in self.header_hooks if self._should_run(s)]
+            footer_to_run = [s for s in self.footer_hooks if self._should_run(s)]
         return header_to_run, footer_to_run
 
-    def _should_run(self, routine: dict):
+    def _should_run(self, hook: dict):
         """
-        Logic to decide if a routine should be executed based on its TTL and cache status.
+        Logic to decide if a hook should be executed based on its TTL and cache status.
         - ttl > 0: Dynamic, runs every cycle.
         - ttl < 0: Cached, runs only if not already in cache.
         - ttl == 0: Disabled.
         - ttl == +/-99: Pinned, always runs (dynamic) or runs once and stays forever (cached).
         """
-        ttl = routine.get('ttl', 0)
-        name = routine.get('name', 'unnamed_routine')
+        ttl = hook.get('ttl', 0)
+        name = hook.get('name', 'unnamed_hook')
 
         if ttl == 0:
             return False
-        if ttl > 0: # Dynamic routine
+        if ttl > 0: # Dynamic hook
             return True
-        if ttl < 0: # Cached routine
+        if ttl < 0: # Cached hook
             return name not in self.cached_output
 
         return False
 
     def update_and_save_configs(self):
         """
-        Updates the TTLs of all routines and writes the configurations back to their files.
+        Updates the TTLs of all hooks and writes the configurations back to their files.
         This should be called once per cognition cycle.
         """
         with self._lock:
             configs_changed = False
             
-            # Process header routines
-            updated_header_routines = []
-            for s in self.header_routines:
+            # Process header hooks
+            updated_header_hooks = []
+            for s in self.header_hooks:
                 new_ttl, changed = self._get_updated_ttl(s)
                 s['ttl'] = new_ttl
                 if changed:
                     configs_changed = True
                 
                 if new_ttl == 0 and s.get('name') in self.cached_output:
-                    rospy.loginfo(f"ContextManager: Invalidating cache for EOL routine '{s['name']}'.")
+                    rospy.loginfo(f"ContextManager: Invalidating cache for EOL hook '{s['name']}'.")
                     del self.cached_output[s['name']]
                     configs_changed = True
 
 
                 if s['ttl'] == 0 and self.config.get('remove_header_at_eol', False):
-                    rospy.loginfo(f"ContextManager: Removing EOL header routine '{s['name']}'.")
+                    rospy.loginfo(f"ContextManager: Removing EOL header hook '{s['name']}'.")
                     configs_changed = True
                     continue
-                updated_header_routines.append(s)
-            self.header_routines = updated_header_routines
+                updated_header_hooks.append(s)
+            self.header_hooks = updated_header_hooks
 
-            # Process footer routines
-            updated_footer_routines = []
-            for s in self.footer_routines:
+            # Process footer hooks
+            updated_footer_hooks = []
+            for s in self.footer_hooks:
                 new_ttl, changed = self._get_updated_ttl(s)
                 s['ttl'] = new_ttl
                 if changed:
                     configs_changed = True
 
                 if s['ttl'] == 0 and self.config.get('remove_footer_at_eol', False):
-                    rospy.loginfo(f"ContextManager: Removing EOL footer routine '{s['name']}'.")
+                    rospy.loginfo(f"ContextManager: Removing EOL footer hook '{s['name']}'.")
                     configs_changed = True
                     continue
-                updated_footer_routines.append(s)
-            self.footer_routines = updated_footer_routines
+                updated_footer_hooks.append(s)
+            self.footer_hooks = updated_footer_hooks
 
             if configs_changed:
                 rospy.loginfo("ContextManager: Snippet TTLs changed, saving configs to disk.")
                 try:
                     with open(self.header_config_path, 'w') as f:
-                        yaml.dump(self.header_routines, f)
+                        yaml.dump(self.header_hooks, f)
                     with open(self.footer_config_path, 'w') as f:
-                        yaml.dump(self.footer_routines, f)
+                        yaml.dump(self.footer_hooks, f)
                 except Exception as e:
-                    rospy.logerr(f"ContextManager: Failed to save updated routine configs: {e}")
+                    rospy.logerr(f"ContextManager: Failed to save updated hook configs: {e}")
 
-    def _get_updated_ttl(self, routine: dict):
-        """Calculates the new TTL for a routine."""
-        ttl = routine.get('ttl', 0)
+    def _get_updated_ttl(self, hook: dict):
+        """Calculates the new TTL for a hook."""
+        ttl = hook.get('ttl', 0)
         original_ttl = ttl
         
         if ttl in [99, -99, 0]:
@@ -393,13 +393,13 @@ class CognitionNode:
 
     def _input_callback(self, msg: CognitionInput):
         if msg.type == 'context' and self.state in [CognitionState.GATHERING_CONTEXT, CognitionState.AWAITING_RESPONSE]:
-            routine_name = msg.filename
-            if routine_name:
-                self.context_results[routine_name] = msg.content
-                routine_config = next((s for s in self.context.header_routines + self.context.footer_routines if s['name'] == routine_name), None)
-                if routine_config and routine_config.get('ttl', 0) < 0:
-                    self.context.cached_output[routine_name] = msg.content
-                    rospy.loginfo(f"Cached output for '{routine_name}'.")
+            hook_name = msg.filename
+            if hook_name:
+                self.context_results[hook_name] = msg.content
+                hook_config = next((s for s in self.context.header_hooks + self.context.footer_hooks if s['name'] == hook_name), None)
+                if hook_config and hook_config.get('ttl', 0) < 0:
+                    self.context.cached_output[hook_name] = msg.content
+                    rospy.loginfo(f"Cached output for '{hook_name}'.")
 
                 self.context_requests_pending -= 1
                 if self.context_requests_pending <= 0:
@@ -492,21 +492,21 @@ class CognitionNode:
             if section_type in ['header', 'footer']:
                 section_name = cfg.get(f'{section_type}_name', section_type)
                 show_stats = cfg.get(f'show_{section_type}_stats', False)
-                show_ttl = cfg.get('show_routine_ttl', False)
+                show_ttl = cfg.get('show_hook_ttl', False)
 
                 for item in items:
-                    routine_name = item['config'].get('name', 'unnamed')
+                    hook_name = item['config'].get('name', 'unnamed')
                     content = item['content']
                     ttl = item['config'].get('ttl', 0)
                     token_count = len(content) // divisor
                     total_tokens += token_count
                     if show_ttl:
-                        content_str += f'<{routine_name} ttl="{ttl}">\n{content}\n</{routine_name}>\n'
+                        content_str += f'<{hook_name} ttl="{ttl}">\n{content}\n</{hook_name}>\n'
                     else:
-                        content_str += f'<{routine_name}>\n{content}\n</{routine_name}>\n'
+                        content_str += f'<{hook_name}>\n{content}\n</{hook_name}>\n'
                 
                 if show_stats:
-                    return f'<{section_name} routines="{len(items)}" tokens="{total_tokens}">\n{content_str.strip()}\n</{section_name}>'
+                    return f'<{section_name} hooks="{len(items)}" tokens="{total_tokens}">\n{content_str.strip()}\n</{section_name}>'
                 else:
                     return f'<{section_name}>\n{content_str.strip()}\n</{section_name}>'
 
@@ -534,7 +534,7 @@ class CognitionNode:
             
             return ""
 
-    def _construct_prompt_and_images(self, header_routines_data, footer_routines_data):
+    def _construct_prompt_and_images(self, header_hooks_data, footer_hooks_data):
             """
             Builds the final prompt for the LLM and the display strings for the UI.
             This refactored method correctly INLINES image content and omission notes.
@@ -542,10 +542,10 @@ class CognitionNode:
             file_tag_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)(.*?)(</file>)', re.DOTALL)
 
             # --- Build the initial text content using the new helper ---
-            header_str = self._format_prompt_section('header', header_routines_data)
+            header_str = self._format_prompt_section('header', header_hooks_data)
             io_buffer_messages = self.io.read_buffer()
             io_buffer_str = self._format_prompt_section('io_buffer', io_buffer_messages)
-            footer_str = self._format_prompt_section('footer', footer_routines_data)
+            footer_str = self._format_prompt_section('footer', footer_hooks_data)
             
             # --- PASS 1: Process the IO Buffer for image limiting and create final text ---
             my_config_limit = self.config.my_config.get('io_buffer', {}).get('max_io_buffer_media', 8)
@@ -611,41 +611,41 @@ class CognitionNode:
                 self.context_results.clear()
                 self.context_gathering_complete.clear()
 
-                header_to_run, footer_to_run = self.context.get_routines_to_execute()
-                routines_to_run = header_to_run + footer_to_run
-                self.context_requests_pending = len(routines_to_run)
+                header_to_run, footer_to_run = self.context.get_hooks_to_execute()
+                hooks_to_run = header_to_run + footer_to_run
+                self.context_requests_pending = len(hooks_to_run)
 
                 if self.context_requests_pending > 0:
-                    rospy.loginfo(f"Requesting {self.context_requests_pending} context routines...")
-                    for routine in routines_to_run:
+                    rospy.loginfo(f"Requesting {self.context_requests_pending} context hooks...")
+                    for hook in hooks_to_run:
                         out_msg = CognitionOutput(
                             type='context',
-                            content=f"<py>{routine['code']}</py>",
-                            filename=routine['name']
+                            content=f"<py>{hook['code']}</py>",
+                            filename=hook['name']
                         )
                         self.output_pub.publish(out_msg)
                     
                     completed = self.context_gathering_complete.wait(timeout=120.0)
                     if not completed:
-                        rospy.logwarn("Timed out waiting for context routines. Proceeding with what was received.")
+                        rospy.logwarn("Timed out waiting for context hooks. Proceeding with what was received.")
                 
                 with self.state_lock:
                     self.state = CognitionState.AWAITING_RESPONSE
                     rospy.loginfo("State transition to AWAITING_RESPONSE. Assembling prompt.")
                 
-                header_routines_data = []
-                for s in self.context.header_routines:
+                header_hooks_data = []
+                for s in self.context.header_hooks:
                     content = self.context_results.get(s['name'], self.context.cached_output.get(s.get('name')))
                     if content is not None:
-                        header_routines_data.append({'config': s, 'content': content})
+                        header_hooks_data.append({'config': s, 'content': content})
 
-                footer_routines_data = []
-                for s in self.context.footer_routines:
+                footer_hooks_data = []
+                for s in self.context.footer_hooks:
                     content = self.context_results.get(s['name'], self.context.cached_output.get(s.get('name')))
                     if content is not None:
-                        footer_routines_data.append({'config': s, 'content': content})
+                        footer_hooks_data.append({'config': s, 'content': content})
 
-                final_contents = self._construct_prompt_and_images(header_routines_data, footer_routines_data)
+                final_contents = self._construct_prompt_and_images(header_hooks_data, footer_hooks_data)
             
                 # --- API Throttling Logic ---
                 model_cfg = self.config.framework['main_model']

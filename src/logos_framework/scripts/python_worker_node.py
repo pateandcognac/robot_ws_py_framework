@@ -378,7 +378,7 @@ class PythonWorkerNode:
             stderr_str = stderr_str.strip()
 
             if request_type == 'context':
-                # Context routines should be clean.
+                # Context hooks should be clean.
                 if stdout_str: result_parts.append(stdout_str)
                 if stderr_str: result_parts.append(stderr_str)
             else:
