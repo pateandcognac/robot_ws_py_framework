@@ -5,14 +5,24 @@
     <!-- Construct the full path to the workspace -->
     <arg name="workspace_path" value="$(env HOME)/robot_workspaces/$(arg workspace)"/>
 
-    <!-- Launch the Cognition Node -->
-    <node name="cognition_node" pkg="logos_framework" type="cognition_node.py" output="screen">
+    <!-- Launch the Cognition Node in a python 3.11 virtual environment -->
+    <node name="cognition_node"
+        pkg="logos_framework"
+        type="cognition_node.py"
+        output="screen"
+        launch-prefix="/home/robot/robot_ws/.venv311/bin/python3">
+    <param name="workspace_path" value="$(arg workspace_path)" />
+    </node>
+
+
+    <!-- Launch the Python Worker Node TODO: create a new Python 3.8 virtual environment -->
+    <node name="python_worker_node" pkg="logos_framework" type="python_worker_node.py" output="screen">
         <param name="workspace_path" value="$(arg workspace_path)" />
     </node>
 
-    <!-- Launch the Python Worker Node -->
-    <node name="python_worker_node" pkg="logos_framework" type="python_worker_node.py" output="screen">
-        <param name="workspace_path" value="$(arg workspace_path)" />
+
+    <!-- Launch the web_ui Node -->
+    <node name="web_ui_node" pkg="logos_framework" type="web_ui_node.py" output="screen" launch-prefix="/home/robot/robot_ws/.venv311/bin/python3">
     </node>
 
     <!-- example CLI launch: roslaunch logos_framework start_framework.launch workspace:=my_workspace -->

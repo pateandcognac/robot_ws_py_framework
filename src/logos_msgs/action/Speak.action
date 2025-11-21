@@ -1,0 +1,15 @@
+# Goal: What Logos wants to say
+string utterance_text  # The full string with inline emoji, e.g., "Hello! 👋 I'm curious! 🤔"
+---
+# Result: Outcome of the entire speech action
+bool success             # True if the full utterance was processed, sent for playback, and total duration has elapsed
+string final_message     # e.g., "Utterance processing complete." or "Error during synthesis."
+float32 total_duration   # Total calculated duration of the full utterance in seconds
+---
+# Feedback: Progress updates during the speech action
+bool is_speaking         # True while the action server is actively processing chunks or waiting for the cumulative utterance duration to pass
+int32 current_chunk_index # 0-based index of the current text/emoji snippet being processed
+int32 total_chunks        # Total number of snippets the utterance was split into
+string text_snippet       # The text content of the current snippet (for debugging/logging)
+string emoji_snippet      # The emoji content of the current snippet (for debugging/logging)
+float32 chunk_duration    # Calculated duration of the current audio chunk in seconds

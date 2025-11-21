@@ -1,5 +1,7 @@
-#!/usr/bin/env python3
-# src/logos_framework/scripts/cognition_node.py
+#!/home/robot/robot_ws/.venv/bin/python3
+
+# file: ~/robot_ws/src/logos_framework/scripts/cognition_node.py
+
 import rospy
 import os
 import re
@@ -19,12 +21,18 @@ import base64
 import io
 from std_msgs.msg import String as StringMsg
 from logos_framework.msg import CognitionInput, CognitionOutput
+import sys
 
 yaml = YAML()
 
+import sys, os
+print("cog node sys.version:", sys.version)
+print("cog node sys.executable:", sys.executable)
+print("cog node PATH:", os.environ.get("PATH"))
+
 class ContextManager:
     """
-    Manages the loading, execution logic, and persistence of context hooks.
+    Manages the loading, execution logic, and persistence of Cognitive Hooks.
     """
     def __init__(self, workspace_path: Path, config: dict):
         """
@@ -501,9 +509,9 @@ class CognitionNode:
                     token_count = len(content) // divisor
                     total_tokens += token_count
                     if show_ttl:
-                        content_str += f'<{hook_name} ttl="{ttl}">\n{content}\n</{hook_name}>\n'
+                        content_str += f'<{hook_name} ttl="{ttl}">\n{content}\n</{hook_name}>\n\n'
                     else:
-                        content_str += f'<{hook_name}>\n{content}\n</{hook_name}>\n'
+                        content_str += f'<{hook_name}>\n{content}\n</{hook_name}>\n\n'
                 
                 if show_stats:
                     return f'<{section_name} hooks="{len(items)}" tokens="{total_tokens}">\n{content_str.strip()}\n</{section_name}>'
@@ -520,12 +528,12 @@ class CognitionNode:
                     content, token_count = msg.get("content", ""), msg.get("token_count", 0)
                     total_tokens += token_count
                     if msg_type == 'system':
-                        content_str += f'<!-- {msg_type}: {content} -->\n'
+                        content_str += f'<!-- {msg_type}: {content} -->\n\n'
                     else:
                         if show_cell_stats:
-                            content_str += f'<{msg_type} cell="{i}" id="{msg_id}" tokens="{token_count}">\n{content}\n</{msg_type}>\n'
+                            content_str += f'<{msg_type} cell="{i}" id="{msg_id}" tokens="{token_count}">\n{content}\n</{msg_type}>\n\n'
                         else:
-                            content_str += f'<{msg_type} cell="{i}">\n{content}\n</{msg_type}>\n'
+                            content_str += f'<{msg_type} cell="{i}">\n{content}\n</{msg_type}>\n\n'
                 
                 if show_stats:
                     return f'<{section_name} cells="{len(items)}" tokens="{total_tokens}">\n{content_str.strip()}\n</{section_name}>'
@@ -616,7 +624,7 @@ class CognitionNode:
                 self.context_requests_pending = len(hooks_to_run)
 
                 if self.context_requests_pending > 0:
-                    rospy.loginfo(f"Requesting {self.context_requests_pending} context hooks...")
+                    rospy.loginfo(f"Requesting {self.context_requests_pending} Cognitive Hooks...")
                     for hook in hooks_to_run:
                         out_msg = CognitionOutput(
                             type='context',
@@ -627,7 +635,7 @@ class CognitionNode:
                     
                     completed = self.context_gathering_complete.wait(timeout=120.0)
                     if not completed:
-                        rospy.logwarn("Timed out waiting for context hooks. Proceeding with what was received.")
+                        rospy.logwarn("Timed out waiting for Cognitive Hooks. Proceeding with what was received.")
                 
                 with self.state_lock:
                     self.state = CognitionState.AWAITING_RESPONSE

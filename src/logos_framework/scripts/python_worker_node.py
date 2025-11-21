@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+# file: ~/robot_ws/src/logos_framework/scripts/python_worker_node.py
+
 import rospy
 import sys
 import os
@@ -15,6 +17,7 @@ from enum import Enum
 from logos_framework.msg import CognitionInput, CognitionOutput
 from std_msgs.msg import String as StringMsg
 from ruamel.yaml import YAML
+
 
 
 class WorkerState(Enum):
@@ -178,6 +181,7 @@ class PythonWorkerNode:
             # We might want to consider shutting down if this fails, as the agent is crippled.
             return # Continue for now, but it will likely fail.
 
+        """"
         # 2. After API is loaded, load my_config.yaml to override default state.
         try:
             my_config_path = self.workspace_path / "state" / "my_config.yaml"
@@ -193,7 +197,8 @@ class PythonWorkerNode:
                     rospy.loginfo("Successfully updated logos.state from my_config.yaml.")
         except Exception as e:
             rospy.logerr(f"Error applying my_config.yaml to logos.state: {e}")
-            
+        """
+                
     def _output_callback(self, msg: CognitionOutput):
         """Handles incoming requests for code execution from the Cognition Node."""
         if msg.type in ['thoughts', 'chunk', 'state']:
@@ -329,7 +334,6 @@ class PythonWorkerNode:
 
             finally:
                 # 3d. This block runs ALWAYS: on success, interrupt, or error.
-                
                 # If the thread was flagged as terminated by the main loop, we must not publish a second result.
                 # We just clean up and exit quietly.
                 if getattr(threading.current_thread(), 'was_terminated_by_timeout', False):
@@ -344,7 +348,7 @@ class PythonWorkerNode:
                         self.state = WorkerState.IDLE
                         self.stdout_buffer.truncate(0); self.stdout_buffer.seek(0)
                         self.stderr_buffer.truncate(0); self.stderr_buffer.seek(0)
-                    return # Exit the function early.
+                    return # Exit the function early. This `return` is apparently "poor form" but it is what it is for now.
 
                 with self.interpreter_lock:
                     if 'loop_cognition' in self.interpreter.locals:

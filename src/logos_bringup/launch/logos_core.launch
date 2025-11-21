@@ -1,0 +1,36 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="base"       default="$(optenv TURTLEBOT_BASE kobuki)"/>
+  <arg name="battery"    default="$(optenv TURTLEBOT_BATTERY /proc/acpi/battery/BAT0)"/>
+  <arg name="stacks"     default="$(optenv TURTLEBOT_STACKS hexagons)"/>
+  <arg name="3d_sensor"  default="$(optenv TURTLEBOT_3D_SENSOR astra)"/>
+
+  <!-- 1. Robot Description (URDF/TF) -->
+  <include file="$(find turtlebot_bringup)/launch/includes/robot.launch.xml">
+    <arg name="base" value="$(arg base)" />
+    <arg name="stacks" value="$(arg stacks)" />
+    <arg name="3d_sensor" value="$(arg 3d_sensor)" />
+  </include>
+
+  <!-- 2. Logos Mobile Base (Motor, Mux, Smoother) -->
+  <include file="$(find logos_bringup)/launch/includes/logos_mobile_base.launch.xml">
+    <arg name="base" value="$(arg base)" />
+  </include>
+
+  <!-- 3. 3D Sensor (Astra) -->
+  <!-- We use the standard TB2 launch, but we can add args here if we need to tweak processing -->
+  <include file="$(find turtlebot_bringup)/launch/3dsensor.launch">
+    <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+    <arg name="scan_topic" value="scan"/>
+  </include>
+
+  <!-- 4. Battery Monitor (Optional but good to have) -->
+  <include unless="$(eval arg('battery') == 'None')" file="$(find turtlebot_bringup)/launch/includes/netbook.launch.xml">
+    <arg name="battery" value="$(arg battery)" />
+  </include>
+
+  <!-- 5. Hardware & Expression -->
+  <!-- Includes Arduinos, Arms, and Expressive Logic -->
+  <include file="$(find logos_hardware)/launch/logos_hardware.launch" />
+
+</launch>

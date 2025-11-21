@@ -24,7 +24,8 @@ body, html {
 
 .panel pre, .panel code {
     white-space: pre-wrap !important; /* Allow wrapping */
-    word-break: break-all;      /* Break long words/strings */
+    /* MODIFIED: Use overflow-wrap for better word-based wrapping */
+    overflow-wrap: break-word;
 }
 
 
@@ -76,9 +77,9 @@ textarea {
     padding: 8px;
     font-family: "Fira Code", "Courier New", monospace;
     font-size: 14px;
-    resize: vertical;
-    min-height: 150px;
-    max-height: 600px;
+    resize: none; /* MODIFIED: Disable manual resizing */
+    overflow-y: hidden; /* NEW: Hide scrollbar until it's needed */
+    min-height: 40px; /* NEW: A smaller initial height */
 }
 
 /* Split.js gutter style */
