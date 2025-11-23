@@ -1,45 +1,353 @@
 #!/home/robot/robot_ws/.venv/bin/python3
+
 # file: ~/robot_ws/src/logos_framework/scripts/cognition_node.py
 
 import rospy
-import sys
 import os
 import re
 import json
 import time
 import random
 import threading
-import base64
-import io
+import string
 from pathlib import Path
 from collections import deque
+from ruamel.yaml import YAML
 from enum import Enum
-import PIL.Image
-
-# Add the directory containing this script to sys.path so we can import local modules
-# even when run via the ROS devel-space wrapper.
-script_dir = Path(__file__).resolve().parent
-if str(script_dir) not in sys.path:
-    sys.path.insert(0, str(script_dir))
-
-# Google GenAI
 from google import genai
 from google.genai import types
-
-# ROS Messages
+import PIL.Image
+import base64
+import io
 from std_msgs.msg import String as StringMsg
 from logos_framework.msg import CognitionInput, CognitionOutput
-
-# Library Imports
-from cognition_lib.config_manager import ConfigManager
-from cognition_lib.io_manager import IOManager
-from cognition_lib.context_manager import ContextManager
-
 import sys
 
+yaml = YAML()
+
+import sys, os
 print("cog node sys.version:", sys.version)
 print("cog node sys.executable:", sys.executable)
 print("cog node PATH:", os.environ.get("PATH"))
+
+class ContextManager:
+    """
+    Manages the loading, execution logic, and persistence of Cognitive Hooks.
+    """
+    def __init__(self, workspace_path: Path, config: dict):
+        """
+        Initializes the ContextManager.
+
+        Args:
+            workspace_path: The root path of the agent's workspace.
+            config: The 'context' section of the framework_config.json.
+        """
+        rospy.loginfo("ContextManager: Initializing...")
+        self.workspace_path = workspace_path
+        self.state_path = self.workspace_path / "state"
+        self.config = config
+        self._lock = threading.RLock()
+
+        # Get header/footer names from config
+        self.header_name = self.config['header_name']
+        self.footer_name = self.config['footer_name']
+        self.header_config_path = self.state_path / f"{self.header_name}_config.yaml"
+        self.footer_config_path = self.state_path / f"{self.footer_name}_config.yaml"
+
+        # In-memory representation of hooks and their cached outputs
+        self.header_hooks = []
+        self.footer_hooks = []
+        self.cached_output = {}
+
+        self._load_configs() # Initial load
+        rospy.loginfo("ContextManager: Initialization complete.")
+
+    def _load_configs(self):
+        """Loads the header and footer YAML configuration files into memory."""
+        with self._lock:
+            try:
+                if self.header_config_path.exists():
+                    with open(self.header_config_path, 'r') as f:
+                        self.header_hooks = yaml.load(f) or []
+                else:
+                    self.header_hooks = []
+                    rospy.logwarn(f"ContextManager: Header config not found at {self.header_config_path}")
+
+                if self.footer_config_path.exists():
+                    with open(self.footer_config_path, 'r') as f:
+                        self.footer_hooks = yaml.load(f) or []
+                else:
+                    self.footer_hooks = []
+                    rospy.logwarn(f"ContextManager: Footer config not found at {self.footer_config_path}")
+            except Exception as e:
+                rospy.logerr(f"ContextManager: Error loading hook configurations: {e}")
+
+    def get_hooks_to_execute(self):
+        """
+        Determines which hooks need to be run in the current cycle.
+
+        Returns:
+            A tuple containing (list of header hooks to run, list of footer hooks to run).
+        """
+        with self._lock:
+            self._load_configs()
+            header_to_run = [s for s in self.header_hooks if self._should_run(s)]
+            footer_to_run = [s for s in self.footer_hooks if self._should_run(s)]
+        return header_to_run, footer_to_run
+
+    def _should_run(self, hook: dict):
+        """
+        Logic to decide if a hook should be executed based on its TTL and cache status.
+        - ttl > 0: Dynamic, runs every cycle.
+        - ttl < 0: Cached, runs only if not already in cache.
+        - ttl == 0: Disabled.
+        - ttl == +/-99: Pinned, always runs (dynamic) or runs once and stays forever (cached).
+        """
+        ttl = hook.get('ttl', 0)
+        name = hook.get('name', 'unnamed_hook')
+
+        if ttl == 0:
+            return False
+        if ttl > 0: # Dynamic hook
+            return True
+        if ttl < 0: # Cached hook
+            return name not in self.cached_output
+
+        return False
+
+    def update_and_save_configs(self):
+        """
+        Updates the TTLs of all hooks and writes the configurations back to their files.
+        This should be called once per cognition cycle.
+        """
+        with self._lock:
+            configs_changed = False
+            
+            # Process header hooks
+            updated_header_hooks = []
+            for s in self.header_hooks:
+                new_ttl, changed = self._get_updated_ttl(s)
+                s['ttl'] = new_ttl
+                if changed:
+                    configs_changed = True
+                
+                if new_ttl == 0 and s.get('name') in self.cached_output:
+                    rospy.loginfo(f"ContextManager: Invalidating cache for EOL hook '{s['name']}'.")
+                    del self.cached_output[s['name']]
+                    configs_changed = True
+
+
+                if s['ttl'] == 0 and self.config.get('remove_header_at_eol', False):
+                    rospy.loginfo(f"ContextManager: Removing EOL header hook '{s['name']}'.")
+                    configs_changed = True
+                    continue
+                updated_header_hooks.append(s)
+            self.header_hooks = updated_header_hooks
+
+            # Process footer hooks
+            updated_footer_hooks = []
+            for s in self.footer_hooks:
+                new_ttl, changed = self._get_updated_ttl(s)
+                s['ttl'] = new_ttl
+                if changed:
+                    configs_changed = True
+
+                if s['ttl'] == 0 and self.config.get('remove_footer_at_eol', False):
+                    rospy.loginfo(f"ContextManager: Removing EOL footer hook '{s['name']}'.")
+                    configs_changed = True
+                    continue
+                updated_footer_hooks.append(s)
+            self.footer_hooks = updated_footer_hooks
+
+            if configs_changed:
+                rospy.loginfo("ContextManager: Snippet TTLs changed, saving configs to disk.")
+                try:
+                    with open(self.header_config_path, 'w') as f:
+                        yaml.dump(self.header_hooks, f)
+                    with open(self.footer_config_path, 'w') as f:
+                        yaml.dump(self.footer_hooks, f)
+                except Exception as e:
+                    rospy.logerr(f"ContextManager: Failed to save updated hook configs: {e}")
+
+    def _get_updated_ttl(self, hook: dict):
+        """Calculates the new TTL for a hook."""
+        ttl = hook.get('ttl', 0)
+        original_ttl = ttl
+        
+        if ttl in [99, -99, 0]:
+            return ttl, False
+
+        if ttl > 0:
+            ttl -= 1
+        elif ttl < 0:
+            ttl += 1
+            
+        return ttl, ttl != original_ttl
+
+
+
+class ConfigManager:
+    """Handles loading and accessing all agent configuration files."""
+    def __init__(self, workspace_path: Path):
+        self.workspace_path = workspace_path
+        self.framework = {}
+        self.system_prompt = ""
+        self.my_config = {}
+        
+    def load_configs(self):
+        rospy.loginfo("ConfigManager: Loading configurations...")
+        try:
+            framework_path = self.workspace_path / ".system" / "framework_config.json"
+            prompt_path = self.workspace_path / ".system" / "system_prompt.txt"
+            with open(framework_path, 'r') as f: self.framework = json.load(f)
+            with open(prompt_path, 'r') as f: self.system_prompt = f.read()
+
+            my_config_path = self.workspace_path / "state" / "my_config.yaml"
+            if my_config_path.exists():
+                with open(my_config_path, 'r') as f: self.my_config = yaml.load(f)
+            else:
+                rospy.logwarn(f"ConfigManager: my_config.yaml not found at {my_config_path}. Using default values.")
+                self.my_config = {} # Ensure it's a dict
+        
+            # Perform templating on the system prompt
+            workspace_name = self.workspace_path.name
+            agent_settings = self.framework.get('agent_settings', {})
+            context_settings = self.framework.get('context', {})
+
+            self.system_prompt = self.system_prompt.replace('{{header_name}}', context_settings.get('header_name', ''))
+            self.system_prompt = self.system_prompt.replace('{{footer_name}}', context_settings.get('footer_name', ''))
+            self.system_prompt = self.system_prompt.replace('{{workspace_name}}', workspace_name)
+            self.system_prompt = self.system_prompt.replace('{{global_max_io_buffer_media}}', str(agent_settings.get('global_max_io_buffer_media', 'N/A')))
+            
+            rospy.loginfo("ConfigManager: System prompt templating complete.")
+
+            rospy.loginfo("ConfigManager: All configurations loaded successfully.")
+            return True
+
+        except Exception as e:
+            rospy.logerr(f"ConfigManager: Error loading configurations: {e}")
+            return False
+
+class IOManager:
+    """Handles thread-safe reading and writing to the agent's I/O files."""
+    def __init__(self, workspace_path: Path, framework_config: dict):
+        state_path = workspace_path / "state"
+        state_path.mkdir(exist_ok=True)
+        self.history_file = state_path / "io_history.jsonl"
+        self.buffer_file = state_path / "io_buffer.jsonl"
+        self._lock = threading.Lock()
+        self.framework_config = framework_config
+        self.id_counter = 0
+
+        # Load safety limits from config with sane defaults
+        limits = self.framework_config.get('io_safety_limits', {})
+        self.max_chars = limits.get('max_content_chars', 24000)
+        self.keep_head = limits.get('truncate_keep_head', 4000)
+        self.keep_tail = limits.get('truncate_keep_tail', 4000)
+
+        self._initialize_id_counter()
+
+    def _base36_encode(self, number, min_length=4):
+        """Converts an integer to a base36 string, zero-padded."""
+        alphabet = string.digits + string.ascii_lowercase
+        if number == 0:
+            return '0'.zfill(min_length)
+        base36 = ''
+        while number != 0:
+            number, i = divmod(number, 36)
+            base36 = alphabet[i] + base36
+        return base36.zfill(min_length)
+
+    def _initialize_id_counter(self):
+        """Reads the last message ID from the history file to set the counter."""
+        with self._lock:
+            if not self.history_file.exists():
+                self.id_counter = 0
+                rospy.loginfo("IOManager: History file not found. Starting message ID from 0.")
+                return
+
+            try:
+                with open(self.history_file, 'rb') as f:
+                    f.seek(0, os.SEEK_END)
+                    if f.tell() == 0:
+                        self.id_counter = 0
+                        return
+
+                    f.seek(-2, os.SEEK_END)
+                    while f.read(1) != b'\n':
+                        if f.tell() < 3:
+                           f.seek(0, os.SEEK_SET)
+                           break
+                        f.seek(-2, os.SEEK_CUR)
+                    
+                    last_line = f.readline().decode('utf-8')
+                    last_msg = json.loads(last_line)
+                    last_id_str = last_msg.get('id', 'msg-0').split('-')[-1]
+                    self.id_counter = int(last_id_str, 36) + 1
+                    rospy.loginfo(f"IOManager: Resuming message ID from {self.id_counter} (last was {last_id_str}).")
+
+            except Exception as e:
+                rospy.logerr(f"IOManager: Failed to initialize ID counter from history file: {e}. Starting from 0.")
+                self.id_counter = 0
+
+    def append_message(self, msg_type: str, content: str, filename: str = None):
+        with self._lock:
+            msg_id = f"msg-{self._base36_encode(self.id_counter)}"
+            self.id_counter += 1
+
+            divisor = self.framework_config.get('context', {}).get('token_estimation_divisor', 5)
+            # Token count should be based on the original, full content
+            token_count = len(content) // divisor
+
+            message_data = {
+                "id": msg_id,
+                "type": msg_type,
+                "timestamp": time.time(),
+                "token_count": token_count,
+                "content": content # Start with the original, full content
+            }
+            if filename:
+                message_data['filename'] = filename
+
+            try:
+                # --- HISTORY file always gets the FULL, untruncated content ---
+                history_line = json.dumps(message_data) + '\n'
+                with open(self.history_file, 'a') as f:
+                    f.write(history_line)
+
+                # --- BUFFER file gets potentially truncated content ---
+                buffer_content = content
+                if len(buffer_content) > self.max_chars:
+                    chars_removed = len(buffer_content) - (self.keep_head + self.keep_tail)
+                    rospy.logwarn(f"Message {msg_id} content is too long ({len(buffer_content)} chars). Truncating by {chars_removed} chars for io_buffer.")
+                    
+                    head = buffer_content[:self.keep_head]
+                    tail = buffer_content[-self.keep_tail:]
+                    truncation_notice = f"\n\n... [content truncated - {chars_removed} chars removed. Full content of message {msg_id} can be found in io_history.jsonl] ...\n\n"
+                    
+                    buffer_content = head + truncation_notice + tail
+                    
+                    # Update the message_data dictionary for the buffer file only
+                    message_data['content'] = buffer_content
+
+                buffer_line = json.dumps(message_data) + '\n'
+                with open(self.buffer_file, 'a') as f:
+                    f.write(buffer_line)
+
+                rospy.loginfo(f"IOManager: Appended message {msg_id} ({msg_type}).")
+                return msg_id
+            except Exception as e:
+                rospy.logerr(f"IOManager: Failed to write to I/O files: {e}")
+                return None
+            
+            
+    def read_buffer(self):
+        with self._lock:
+            if not self.buffer_file.exists():
+                return []
+            with open(self.buffer_file, 'r') as f:
+                return [json.loads(line) for line in f if line.strip()]
+
 
 class CognitionState(Enum):
     IDLE = 0
@@ -84,30 +392,12 @@ class CognitionNode:
         self.context_gathering_complete = threading.Event()
         self.api_delay_budget = 0.0
         self.last_api_call_time = time.time()
-        
-        # State tracking for feedback
-        self.has_thought_started = False
 
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
         self.input_sub = rospy.Subscriber('/cognition/input', CognitionInput, self._input_callback, queue_size=10)
         self.ui_state_pub = rospy.Publisher('/cognition/ui_state', StringMsg, queue_size=1, latch=True)
         self.processing_timer = rospy.Timer(rospy.Duration(0.25), self._process_queue)
         rospy.loginfo("Cognition Node: Ready and waiting for input.")
-
-    def _send_feedback(self, header, body="", sound_path=None, header_color="cyan", body_color="white", font="standard"):
-        """Helper to send feedback state to the UI/Subtitler."""
-        payload = {
-            "header": header,
-            "body": body,
-            "sound_path": sound_path,
-            "header_color": header_color,
-            "body_color": body_color,
-            "font": font
-        }
-        try:
-            self.output_pub.publish(CognitionOutput(type='feedback', content=json.dumps(payload)))
-        except Exception as e:
-            rospy.logwarn(f"Failed to publish feedback: {e}")
 
     def _input_callback(self, msg: CognitionInput):
         if msg.type == 'context' and self.state in [CognitionState.GATHERING_CONTEXT, CognitionState.AWAITING_RESPONSE]:
@@ -125,11 +415,6 @@ class CognitionNode:
             else:
                 rospy.logwarn(f"Received context message without a filename. Cannot process.")
             return
-        
-        # Feedback: Got Input (ignore context inputs)
-        # Simple heuristic: if it's not type 'context', it's a meaningful input trigger
-        if msg.type != 'context':
-            self._send_feedback("GOT INPUT", "", "got_input", "green")
 
         with self.queue_lock:
             self.incoming_queue.append(msg)
@@ -181,6 +466,7 @@ class CognitionNode:
                 return f'{match.group(1)}{match.group(3)}</file>\n<!-- Error loading image: {e} -->'
 
         # Use a regex that captures the whole tag block for consistency
+        # image_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)(.*?)</file>', re.DOTALL)
         image_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)(.*?)(</file>)', re.DOTALL)
 
         header_str_with_images = re.sub(image_pattern, embed_image_base64, header_str)
@@ -329,9 +615,7 @@ class CognitionNode:
 
     def _initiate_cognition_cycle(self):
             try:
-                rospy.loginfo("--- Starting Cognition Cycle ---")
-                # Reset flags
-                self.has_thought_started = False
+                rospy.loginfo("--- Starting Cognition Cycle ---")                
                 self.context_results.clear()
                 self.context_gathering_complete.clear()
 
@@ -339,12 +623,8 @@ class CognitionNode:
                 hooks_to_run = header_to_run + footer_to_run
                 self.context_requests_pending = len(hooks_to_run)
 
-                # Feedback: Calling Hooks
                 if self.context_requests_pending > 0:
-                    hook_names = ", ".join([h['name'] for h in hooks_to_run])
                     rospy.loginfo(f"Requesting {self.context_requests_pending} Cognitive Hooks...")
-                    self._send_feedback("CALLING HOOKS", hook_names, "calling_hooks", "yellow")
-
                     for hook in hooks_to_run:
                         out_msg = CognitionOutput(
                             type='context',
@@ -402,9 +682,6 @@ class CognitionNode:
                     try:
                         rospy.loginfo(f"Calling Gemini API (Attempt {attempt + 1}/{max_retries})...")
                         
-                        # Feedback: API Call
-                        self._send_feedback("API CALL", "", "api_call", "cyan")
-
                         # This is the original API call logic, now inside the loop
                         safety_settings = [
                             types.SafetySetting(
@@ -446,10 +723,6 @@ class CognitionNode:
 
                     except Exception as e:
                         rospy.logwarn(f"Gemini API call failed on attempt {attempt + 1}: {e}")
-                        
-                        # Feedback: Error
-                        self._send_feedback("API ERROR", str(e), "error", "red")
-
                         if attempt + 1 == max_retries:
                             rospy.logerr("All Gemini API retries failed. Aborting cognition cycle.")
                             # Abort the cycle. The 'finally' block will still run to reset state.
@@ -472,11 +745,6 @@ class CognitionNode:
                             if not text: continue
 
                             if getattr(part, "thought", False):
-                                # Feedback: Thinking (Trigger once per cycle)
-                                if not self.has_thought_started:
-                                    self._send_feedback("THINKING", "", "thinking", "blue")
-                                    self.has_thought_started = True
-
                                 self.output_pub.publish(CognitionOutput(type='thoughts', content=text))
                             else:
                                 self.output_pub.publish(CognitionOutput(type='chunk', content=text))

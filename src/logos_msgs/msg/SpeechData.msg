@@ -1,6 +1,9 @@
 # SpeechData.msg
 # published on /face/tts_chunk
-string text_snippet # text being spoken
-string emoji # facial and arm animation emoji identifier
-int16[] audio_data # spoken text_snippet
-float32 duration # of audio (and hence, intended duration of face or arm animation, or how long to display text_snippet for subtitle, or twist kobuki base)
+string text_snippet       # Text being spoken
+string emoji              # Facial/arm animation identifier
+int16[] audio_data        # Raw audio samples (PCM)
+int32 sample_rate         # e.g., 24000 for Kokoro, 22050 for Piper
+float32 duration          # Duration in seconds
+int32 current_chunk_index # using index to track last chunk
+int32 total_chunks

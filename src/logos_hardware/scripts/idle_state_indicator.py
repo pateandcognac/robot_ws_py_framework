@@ -17,13 +17,13 @@ from logos_msgs.msg import (
 # Global for preset emojis, loaded once
 PRESET_EMOJIS = set()
 
-# --- Emoji Parsing Logic (adapted from previous discussions) ---
+# --- Emoji Parsing Logic  ---
 def load_preset_emojis_once():
     global PRESET_EMOJIS
     if PRESET_EMOJIS: return
 
     emojis = set()
-    preset_files_path = rospy.get_param('~emoji_preset_path', '/home/robot/logos_ws/presets/face/*.json')
+    preset_files_path = rospy.get_param('~emoji_preset_path', '/home/robot/robot_ws/animations/face/*.json')
     preset_files = glob.glob(preset_files_path)
     if not preset_files:
         rospy.logwarn(f"No emoji preset files found at path: {preset_files_path} for FaceAmbienceNode.")
@@ -305,7 +305,7 @@ class FaceAmbienceNode:
 if __name__ == '__main__':
     try:
         # Add ROS parameters for paths if not already handled by launch file
-        rospy.set_param('~emoji_preset_path', rospy.get_param('~emoji_preset_path', '/home/robot/logos_ws/presets/face/*.json'))
+        rospy.set_param('~emoji_preset_path', rospy.get_param('~emoji_preset_path', '/home/robot/robot_ws/animations/face/*.json'))
         node = FaceAmbienceNode()
         node.run()
     except rospy.ROSInterruptException:

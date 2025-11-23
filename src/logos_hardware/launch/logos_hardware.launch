@@ -9,17 +9,15 @@
   -->
 
   <!-- 1. ARDUINO BRIDGES -->
-  <!-- Pan-Tilt Control (Mega) -->
+  <!-- Pan-Tilt Control (Arduino Mega) -->
   <node name="pantilt_serial_node" pkg="rosserial_python" type="serial_node.py" output="screen">
-    <param name="port" value="/dev/mega_duino"/> <!-- Updated to your udev rule -->
+    <param name="port" value="/dev/mega_duino"/> 
     <param name="baud" value="57600"/>
   </node>
 
-  <!-- Arm Control (Uno) -->
-  <!-- You used rosserial_server in the old file, but python in the other. 
-       Let's stick to python for consistency unless you need C++ performance. -->
-  <node name="arm_serial_node" pkg="rosserial_python" type="serial_node.py" output="screen">
-    <param name="port" value="/dev/uno_duino"/> <!-- Updated to your udev rule -->
+  <!-- Arm Control (Arduino Uno) -->
+    <node name="arm_serial_node" pkg="rosserial_python" type="serial_node.py" output="screen">
+    <param name="port" value="/dev/uno_duino"/> 
     <param name="baud" value="57600"/>
   </node>
 
@@ -29,16 +27,19 @@
   <node name="arm_playback" pkg="logos_hardware" type="arm_playback_node.py" output="screen"/>
   <node name="arm_controller" pkg="logos_hardware" type="arm_controller_node.py" output="screen"/>
   
-  <!-- State Monitor (Battery/Charging/Idle anims) -->
-  <node name="idle_state_monitor" pkg="logos_hardware" type="idle_state_indicator.py" output="screen"/>
 
   <!-- 3. THE FACE (C++) -->
   <!-- Note: This outputs to the terminal where you launch it! -->
   <!-- We do not usually put this in a launch file if we want to see it, 
        but if you run this launch file in a dedicated terminal, it works. -->
+  <!-- Run it with: rosrun logos_face face_node -->
   <!-- <node name="face_node" pkg="logos_face" type="face_node" output="screen"/> -->
 
-  <!-- 4. AUDIO (Placeholder for Kokoro) -->
-  <!-- We will add the Kokoro node here later -->
+  <!-- 4. TTS -->
+  <!-- rosrun logos_hardware tts_action_server.py  -->
+  <!-- rosrun logos_hardware face_playback.py -->
+
+  <node name="tts_action_server" pkg="logos_hardware" type="tts_action_server.py" output="screen"/>
+  <node name="tts_face_playback" pkg="logos_hardware" type="audio_and_face_playback.py" output="screen"/>
 
 </launch>
