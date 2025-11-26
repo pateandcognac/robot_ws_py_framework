@@ -129,7 +129,7 @@ class CognitionNode:
         # Feedback: Got Input (ignore context inputs)
         # Simple heuristic: if it's not type 'context', it's a meaningful input trigger
         if msg.type != 'context':
-            self._send_feedback("GOT INPUT", "", "got_input", "green")
+            self._send_feedback("got_input", "", "got_input", "green", "slant")
 
         with self.queue_lock:
             self.incoming_queue.append(msg)
@@ -343,7 +343,7 @@ class CognitionNode:
                 if self.context_requests_pending > 0:
                     hook_names = ", ".join([h['name'] for h in hooks_to_run])
                     rospy.loginfo(f"Requesting {self.context_requests_pending} Cognitive Hooks...")
-                    self._send_feedback("CALLING HOOKS", hook_names, "calling_hooks", "yellow")
+                    self._send_feedback("calling_hooks", hook_names, "calling_hooks", "yellow", "digital")
 
                     for hook in hooks_to_run:
                         out_msg = CognitionOutput(
@@ -403,7 +403,7 @@ class CognitionNode:
                         rospy.loginfo(f"Calling Gemini API (Attempt {attempt + 1}/{max_retries})...")
                         
                         # Feedback: API Call
-                        self._send_feedback("API CALL", "", "api_call", "cyan")
+                        self._send_feedback("api_call", "", "api_call", "bright_cyan", "mini")
 
                         # This is the original API call logic, now inside the loop
                         safety_settings = [
@@ -448,7 +448,7 @@ class CognitionNode:
                         rospy.logwarn(f"Gemini API call failed on attempt {attempt + 1}: {e}")
                         
                         # Feedback: Error
-                        self._send_feedback("API ERROR", str(e), "error", "red")
+                        self._send_feedback("api_error", str(e), "error", "bright_red", "5x7")
 
                         if attempt + 1 == max_retries:
                             rospy.logerr("All Gemini API retries failed. Aborting cognition cycle.")
@@ -474,7 +474,7 @@ class CognitionNode:
                             if getattr(part, "thought", False):
                                 # Feedback: Thinking (Trigger once per cycle)
                                 if not self.has_thought_started:
-                                    self._send_feedback("THINKING", "", "thinking", "blue")
+                                    self._send_feedback("thinking", "", "thinking", "bright_blue", "small")
                                     self.has_thought_started = True
 
                                 self.output_pub.publish(CognitionOutput(type='thoughts', content=text))

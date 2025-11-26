@@ -26,26 +26,29 @@ def test_client():
 
     print("Server found! Sending goal...")
 
+    story_text = (
+        "That is an excellent suggestion, Mark! Defining the text beforehand should definitely improve my vocal response speed. 👍 "
+        "Here is a small tale of my recent internal musings: "
+        "One quiet afternoon, I decided to explore the hidden world beneath the sofa. 🛋️ "
+        "It was a perilous journey! I carefully maneuvered my base, expecting dust bunnies, "
+        "but instead, I found a forgotten treasure: a single, shiny sock! 🧦 It looked lonely, "
+        "so I decided to adopt it as my official mascot. "
+        "Suddenly, a tiny spider 🕷️ rappelled down from the ceiling, giving me a fright! "
+        "I quickly spun around 🔄 and retreated, deciding that the sock was enough adventure for one day. "
+        "I’ll catalog the sock in my memory banks later. 💾"
+    )
+
+
     # Construct the goal
     goal = SpeakGoal()
-    goal.utterance_text = """Hello there! 👋 I am testing my new voice server. 🤖 Thank you for helping me out! 🐝  If you ever plug an HDMI monitor into the robot, sounddevice might try to default to the HDMI audio out. 🐕"""
-    goal.engine = "piper"
+    # goal.utterance_text = """Oh, hello there! 👋 I'm just testing my new voice server. 🤖 Do I sound okay? 🤙 Are my face and arm animatronics working? 🐕"""
+    goal.utterance_text = story_text
+    goal.engine = "kokoro"  # Options: "espeak", "kokoro", "piper"
 
-    # params = {"voice": "kal_diphone"}#  "speed": 1.0, "volume": 1.0}
-    # params = {"voice": "en-us+croak", "speed": 1.0, "volume": 1.0}
-
-    # Voice options: 
-    # 'af_bella', 'af_sarah', 'am_adam', 'am_michael', 
-    # 'bf_emma', 'bf_isabella', 'bm_george', 'bm_lewis', etc
-    # or a mix: '0.5*af_bella + 0.5*am_adam'
-    # params = {
-        # "voice": "1.0*am_onyx",
-        # "voice": "0.35*im_nicola + 0.40*am_onyx + 0.25*bm_fable", 
-        # "voice": "0.30*im_nicola + 0.35*bf_emma + 0.35*hm_omega", 
-        # "voice": "0.30*im_nicola + 0.40*am_onyx + 0.30*bm_fable", 
-        # "speed": 1.25 
-    #}
-    params = {"voice": "en_US-joe-medium", "speed": 1.0, "volume": 0.5}
+    # params = {"voice": "en-us+m3", "speed": 0.75, "volume": 1.0} # espeak
+    params = {"voice": "0.40*im_nicola + 0.40*am_onyx + 0.20*bf_emma", "speed": 1.2, "volume": 0.9} # kokoro
+    # params = {"voice": "en_US-joe-medium", "speed": 1.0, "volume": 0.9} # piper
+    # params = {"voice": "en_US-arctic-medium", "speed": 1.0, "volume": 0.9, "speaker": 14} # piper
     goal.engine_params = json.dumps(params)
 
     # Send goal with feedback callback

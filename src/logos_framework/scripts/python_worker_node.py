@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.8
 # file: ~/robot_ws/src/logos_framework/scripts/python_worker_node.py
 
 import rospy
@@ -16,6 +16,7 @@ from pathlib import Path
 from enum import Enum 
 from logos_framework.msg import CognitionInput, CognitionOutput
 from std_msgs.msg import String as StringMsg
+from std_msgs.msg import Bool
 from ruamel.yaml import YAML
 
 
@@ -90,6 +91,9 @@ class PythonWorkerNode:
         self.interpreter_lock = threading.Lock() # Protects the interpreter instance itself
         self.interpreter = None
         self._initialize_interpreter()
+
+        # `/python/is_executing` topic publisher, Boolean, latched
+        self.is_executing_pub = rospy.Publisher('/python/is_executing', Bool, queue_size=1, latch=True)
 
         #  Interrupt state and subscriber
         self.interrupt_request = None
@@ -269,7 +273,11 @@ class PythonWorkerNode:
             stderr_str = ""
             result_parts = []
 
+
             # 2. Set State to EXECUTING
+            if request_type == 'me':
+                self.is_executing_pub.publish(True)
+
             with self.state_lock:
                 self.state = WorkerState.EXECUTING
                 # Buffers are not cleared here; any async output that arrived just before
@@ -361,6 +369,7 @@ class PythonWorkerNode:
                     self.interrupt_request = None
                 
                 # 4. Set State to IDLE and Harvest Buffers
+                self.is_executing_pub.publish(False)
                 with self.state_lock:
                     self.state = WorkerState.IDLE
                     # If not interrupted, the strings are empty, so we capture the final buffer states.

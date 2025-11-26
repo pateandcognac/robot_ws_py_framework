@@ -55,7 +55,7 @@ class WebUINode:
         """
         Receives ANY input message and appends it to the UI's io_buffer.
         """
-        rospy.loginfo(f"Received cognition input of type '{msg.type}' to append to UI.")
+        rospy.loginfo(f"Received cognition input of type '{msg.type}'.")
         data = {
             'type': msg.type,
             'content': msg.content,
@@ -69,6 +69,8 @@ class WebUINode:
         Receives output from the cognition node.
         Handles streaming LLM chunks and complete, simulated messages.
         """
+        if msg.type == 'feedback' or msg.type == 'me': # Ignore feedback messages for UI and 'me' messages (because we'll capture the streamed chunks instead)
+            return
         if msg.type == 'chunk' and msg.content:
             # No log here, it would be too spammy.
             socketio.emit('stream_chunk', {'content': msg.content})

@@ -99,5 +99,5 @@ roslaunch logos_bringup logos_core.launch
 
 **3. Visualize:**
 ```bash
-```
 roslaunch turtlebot_rviz_launchers view_navigation.launch
+```

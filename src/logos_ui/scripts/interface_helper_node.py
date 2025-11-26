@@ -217,7 +217,7 @@ class InterfaceHelperNode:
                 f = Figlet(font=font, width=columns)
                 rendered = f.renderText(header)
             except Exception:
-                f = Figlet(font='standard', width=columns)
+                f = Figlet(font='term', width=columns) # 'term' is plaintext
                 rendered = f.renderText(header)
 
             color_code = COLOR_MAP.get(header_color_name.lower(), COLOR_MAGENTA)
@@ -255,14 +255,13 @@ class InterfaceHelperNode:
             self.figlet_printing = True
             columns, _ = shutil.get_terminal_size(fallback=(80, 20))
             
-            # Fallback logic for font if 'xtty' doesn't exist
-            font_name = 'xtty'
+            # Fallback logic for font if preferred doesn't exist
+            font_name = 'smslant'
             # List available fonts to check? For now just try/except
             try:
                 f = Figlet(font=font_name, width=columns)
                 rendered = f.renderText(header_text)
             except:
-                # Fallback to small if xtty missing
                 f = Figlet(font='small', width=columns)
                 rendered = f.renderText(header_text)
 
@@ -283,7 +282,7 @@ class InterfaceHelperNode:
         duration = msg.duration
 
         columns, _ = shutil.get_terminal_size(fallback=(80, 20))
-        fig = Figlet(font='thick', width=columns)
+        fig = Figlet(font='thick', width=columns) # thick font for tts caption
         rendered_text = fig.renderText(text_snippet)
 
         lines = rendered_text.splitlines()
