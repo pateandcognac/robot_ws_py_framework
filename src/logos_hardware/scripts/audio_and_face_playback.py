@@ -94,6 +94,9 @@ class EmotivePlaybackNode:
             if sample_rate <= 0:
                 sample_rate = 22050
 
+            # publish is_speaking True
+            self.is_speaking_pub.publish(Bool(data=True))
+
             # Convert incoming tuple/list to numpy int16 array
             audio_array = np.array(audio_data, dtype=np.int16)
             

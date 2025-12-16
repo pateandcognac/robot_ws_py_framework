@@ -54,7 +54,7 @@ ROOT_SOUND_DIR = os.path.expanduser("~/logos_ws/sound_files")
 
 class InterfaceHelperNode:
     def __init__(self):
-        rospy.init_node('tts_subtitler', anonymous=True)
+        rospy.init_node('interface_helper_node', anonymous=True)
 
         # Subscribers
         rospy.Subscriber('/face/tts_chunk', SpeechData, self.tts_callback)
@@ -155,13 +155,13 @@ class InterfaceHelperNode:
         color = COLOR_WHITE # Default
 
         if msg.type in ["py_result", "py_async"]:
-            color = COLOR_GREEN if msg.loop_cognition else COLOR_RED
+            color = COLOR_BRIGHT_GREEN if msg.loop_cognition else COLOR_BRIGHT_RED  
         elif msg.type == "system":
-            color = COLOR_BLUE if msg.loop_cognition else COLOR_CYAN
+            color = COLOR_BRIGHT_BLUE if msg.loop_cognition else COLOR_BRIGHT_CYAN
         elif msg.type == "human":
-            color = COLOR_WHITE
+            color = COLOR_BRIGHT_WHITE
         elif msg.type == "human_stt":
-            color = COLOR_YELLOW
+            color = COLOR_BRIGHT_WHITE
         elif msg.type in ["context"]:
             # Do not print context injections
             return
@@ -169,15 +169,15 @@ class InterfaceHelperNode:
             # Unknown type, skip or print grey
             return 
 
-        formatted = f"{color}{content}{COLOR_RESET}"
+        formatted = f"{color}<{msg.type}>\n{content}\n</{msg.type}>{COLOR_RESET}"
         self.safe_print(formatted)
 
     def handle_cognition_output(self, msg: CognitionOutput):
         """Handle outputs: chunks, feedback, and thoughts."""
         
         if msg.type == "chunk":
-            # Stream of consciousness / response
-            formatted = f"{COLOR_GREEN}{msg.content}{COLOR_RESET}"
+            # final response stream
+            formatted = f"{COLOR_BRIGHT_MAGENTA}{msg.content}{COLOR_RESET}"
             self.safe_print(formatted)
             
         elif msg.type == "me":
@@ -191,7 +191,7 @@ class InterfaceHelperNode:
             except json.JSONDecodeError:
                 rospy.logerr(f"Malformed JSON in feedback: {msg.content}")
 
-        elif msg.type == "thoughts":
+        elif msg.type == "thoughts": # abstracted summary of internal monologue
             self.render_thoughts(msg.content)
 
     # --- RENDERING HELPERS ---
@@ -237,7 +237,7 @@ class InterfaceHelperNode:
     def render_thoughts(self, content):
         """
         Parse thoughts: **Header** Body
-        Header: Light Blue Figlet (xtty)
+        Header: Light Blue Figlet
         Body: Grey
         """
         # Regex to find **Header** and the rest
@@ -255,15 +255,9 @@ class InterfaceHelperNode:
             self.figlet_printing = True
             columns, _ = shutil.get_terminal_size(fallback=(80, 20))
             
-            # Fallback logic for font if preferred doesn't exist
-            font_name = 'smslant'
-            # List available fonts to check? For now just try/except
-            try:
-                f = Figlet(font=font_name, width=columns)
-                rendered = f.renderText(header_text)
-            except:
-                f = Figlet(font='small', width=columns)
-                rendered = f.renderText(header_text)
+            font_name = 'computer'
+            f = Figlet(font=font_name, width=columns)
+            rendered = f.renderText(header_text)
 
             with self.print_lock:
                 print(f"{COLOR_BRIGHT_BLUE}{rendered}{COLOR_RESET}")
@@ -271,9 +265,9 @@ class InterfaceHelperNode:
             self.figlet_printing = False
             self.flush_print_buffer()
 
-        # Render Body (Grey)
+        # Render Body
         if body_text.strip():
-            self.safe_print(f"{COLOR_GREY}{body_text}{COLOR_RESET}")
+            self.safe_print(f"{COLOR_WHITE}{body_text}{COLOR_RESET}")
 
 
     def handle_tts_chunk(self, msg):
@@ -282,7 +276,7 @@ class InterfaceHelperNode:
         duration = msg.duration
 
         columns, _ = shutil.get_terminal_size(fallback=(80, 20))
-        fig = Figlet(font='thick', width=columns) # thick font for tts caption
+        fig = Figlet(font='thick', width=columns) # thick, thin, big, chunky, standard, computer, contessa, cybermedium, doom, fuzzy, nancyj, os2, pebbles, pepper, puffy, roman, rounded, script, slant, slscript, small, smscript, smslant, standard, stop, straight, threepoint  twopoint font for tts caption, 
         rendered_text = fig.renderText(text_snippet)
 
         lines = rendered_text.splitlines()
@@ -292,7 +286,7 @@ class InterfaceHelperNode:
         self.figlet_printing = True
 
         for line in lines:
-            colored_line = f"{COLOR_BRIGHT_CYAN}{line}{COLOR_RESET}"
+            colored_line = f"{COLOR_BRIGHT_MAGENTA}{line}{COLOR_RESET}"
             if line.strip():
                 self.safe_print(colored_line, hold_lock=True, is_figlet=True)
             else:

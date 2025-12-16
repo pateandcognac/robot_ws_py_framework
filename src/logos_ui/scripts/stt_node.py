@@ -1,530 +1,701 @@
-#!/usr/bin/env python3
-# Note: Ensure this is run with your Python 3.11 venv interpreter
+#!/home/robot/robot_ws/.venv/bin/python3
 
 import os
-import sys
 import time
-import json
 import queue
 import threading
 import struct
+import json
+import re
+import readline
+from datetime import datetime
 import numpy as np
 import sounddevice as sd
-import pvporcupine
-from faster_whisper import WhisperModel
-import torch # For Silero VAD
+import soundfile as sf
+import torch
 
 # ROS Imports
-# We need to ensure we can find rospy even in the venv
-try:
-    import rospy
-    from std_msgs.msg import String, Bool, Int32MultiArray
-    from kobuki_msgs.msg import Sound
-    # Adjust package name if needed based on your workspace
-    from logos_framework.msg import CognitionInput 
-except ImportError:
-    print("CRITICAL: ROS Python libraries not found. Ensure PYTHONPATH includes /opt/ros/noetic/lib/python3/dist-packages")
-    sys.exit(1)
+import rospy
+from std_msgs.msg import String, Bool, Int32MultiArray
+from kobuki_msgs.msg import Sound
+from logos_framework.msg import CognitionInput, CognitionOutput
 
-# -------------------------------------------------------------------------
+# Porcupine & Whisper
+import pvporcupine
+from faster_whisper import WhisperModel
+
+# Colorama for terminal output
+from colorama import Fore, Style, init as colorama_init
+colorama_init(autoreset=True)
+
+# -----------------------------------------------------------------------------
 # Configuration & Constants
-# -------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 # Audio Settings
 SAMPLE_RATE = 16000
-FRAME_LENGTH = 512 # Porcupine prefers 512
+FRAME_LENGTH = 512  # Porcupine prefers 512
 CHANNELS = 1
-BLOCK_SIZE_MS = 32 # Duration of audio chunk for VAD (approx)
+DEVICE_NAME = 'pan_tilt_mic' # As defined in your sanity check
 
-# Limits
-AMBIENT_MAX_DURATION_SEC = 120  # 2 minutes
-AMBIENT_TIMEOUT_SEC = 600       # 10 minutes
-AMBIENT_MIN_TRANSCRIPTION_SEC = 10 
-
-# Porcupine Paths (Update to your actual paths)
+# Paths (Adjust as needed for your robot's layout)
+PORCUPINE_KEY = os.environ.get('PORCUPINE_VOICE_KEY')
 KW_PATH = os.path.expanduser('~/robot_ws/porcupine/')
-ACCESS_KEY = os.environ.get('PORCUPINE_VOICE_KEY')
-
 KEYWORD_PATHS = [
-    f'{KW_PATH}Hey-Robot_en_linux_v3_0_0.ppn',   # Index 0: Start Recording
-    f'{KW_PATH}end-of-line_en_linux_v3_0_0.ppn', # Index 1: Stop Recording
-    f'{KW_PATH}edit-input_en_linux_v3_0_0.ppn'   # Index 2: Edit (Debug)
+    f'{KW_PATH}Hey-Robot_en_linux_v3_0_0.ppn',   # Index 0: Wake
+    f'{KW_PATH}end-of-line_en_linux_v3_0_0.ppn', # Index 1: Stop
+    f'{KW_PATH}edit-input_en_linux_v3_0_0.ppn'   # Index 2: Edit
 ]
-KEYWORDS = ["Hey-Robot", "end-of-line", "edit-input"]
+KEYWORDS = ['Hey-Robot', 'end-of-line', 'edit-input']
 
-# Whisper Settings
-WHISPER_MODEL_SIZE = "base.en" # or 'small.en' if CPU allows
-COMPUTE_TYPE = "int8"
+# Timers (Seconds)
+AMBIENT_MAX_DURATION = 120    # 2 minutes hard cap for buffer
+AMBIENT_CHECK_INTERVAL = 600  # 10 minutes
+RECORDING_TIMEOUT = 60        # 60 second hard limit for user input
+MIN_AMBIENT_LENGTH = 10       # Minimum seconds to bother transcribing ambient
 
 # LED Constants
 FACE_LED_COUNT = 12
 
-# -------------------------------------------------------------------------
-# Helper Classes
-# -------------------------------------------------------------------------
+# Ambient History Settings
+AMBIENT_HISTORY_MAX_AGE = 7200    # 2 Hours (in seconds)
+AMBIENT_HISTORY_MAX_CHARS = 20000 # Max characters before oldest is dropped
 
-class LedManager:
-    """Manages the RGB Strips to indicate state without blocking audio."""
-    class State:
-        IDLE = 0
-        LISTENING = 1       # Ambient / Waiting for wake
-        RECORDING = 2       # Human speaking to Logos
-        TRANSCRIBING = 3    # Processing
-        EDIT_INPUT = 4      # Debug mode
+class LedState:
+    IDLE = 0
+    AMBIENT = 1
+    RECORDING = 2
+    TRANSCRIBING = 3
+    EDIT_INPUT = 4
+    EAR_PLUGS = 5
 
-    def __init__(self, pub):
-        self.pub = pub
-        self._stop_event = threading.Event()
-        self._thread = None
-        self.current_state = self.State.IDLE
-        self.volume_level = 0.0
+# -----------------------------------------------------------------------------
+# The Node Class
+# -----------------------------------------------------------------------------
 
-    def set_state(self, state):
-        if self.current_state == state:
-            return
-        
-        self.current_state = state
-        self._stop_event.set()
-        if self._thread and self._thread.is_alive():
-            self._thread.join()
-        
-        self._stop_event.clear()
-        
-        if state == self.State.LISTENING:
-            self._thread = threading.Thread(target=self._anim_breathing, args=(0x000040,), daemon=True) # Blue
-        elif state == self.State.RECORDING:
-            self._thread = threading.Thread(target=self._anim_vu_meter, daemon=True) 
-        elif state == self.State.TRANSCRIBING:
-            self._thread = threading.Thread(target=self._anim_chaser, args=(0x004000, 0.1), daemon=True) # Green
-        elif state == self.State.EDIT_INPUT:
-            self._thread = threading.Thread(target=self._anim_solid, args=(0xFFFF00,), daemon=True) # Yellow
-        elif state == self.State.IDLE:
-            self._clear_leds()
-            return
-
-        if self._thread:
-            self._thread.start()
-
-    def update_volume(self, audio_frame):
-        # Calculate RMS for VU meter
-        self.volume_level = np.sqrt(np.mean(np.square(audio_frame)))
-
-    def _publish(self, colors):
-        msg = Int32MultiArray()
-        data_list = []
-        for i, c in colors.items():
-            data_list.append((i << 24) | (c & 0xFFFFFF))
-        msg.data = data_list
-        self.pub.publish(msg)
-
-    def _clear_leds(self):
-        self._publish({i: 0 for i in range(FACE_LED_COUNT)})
-
-    # -- Animations --
-    def _anim_breathing(self, color_hex):
-        # Simple throb
-        t = 0
-        while not self._stop_event.is_set():
-            intensity = (np.sin(t) + 1) / 2.0 # 0 to 1
-            r = int(((color_hex >> 16) & 0xFF) * intensity)
-            g = int(((color_hex >> 8) & 0xFF) * intensity)
-            b = int((color_hex & 0xFF) * intensity)
-            col = (r << 16) | (g << 8) | b
-            self._publish({i: col for i in range(FACE_LED_COUNT)})
-            time.sleep(0.05)
-            t += 0.2
-
-    def _anim_chaser(self, color, delay):
-        idx = 0
-        while not self._stop_event.is_set():
-            self._publish({idx % FACE_LED_COUNT: color})
-            time.sleep(delay)
-            self._publish({idx % FACE_LED_COUNT: 0})
-            idx += 1
-
-    def _anim_solid(self, color):
-        self._publish({i: color for i in range(FACE_LED_COUNT)})
-        
-    def _anim_vu_meter(self):
-        # Simplified VU meter logic
-        max_vol = 0.5 # Normalize max volume expectation
-        while not self._stop_event.is_set():
-            norm_vol = min(self.volume_level / max_vol, 1.0)
-            leds_lit = int(norm_vol * FACE_LED_COUNT)
-            colors = {}
-            for i in range(FACE_LED_COUNT):
-                if i < leds_lit:
-                    # Gradient Green to Red
-                    colors[i] = 0x00FF00 if i < 8 else 0xFF0000
-                else:
-                    colors[i] = 0
-            self._publish(colors)
-            time.sleep(0.05)
-
-
-# -------------------------------------------------------------------------
-# Main Node Class
-# -------------------------------------------------------------------------
-
-class LogosHearingNode:
+class LogosEarsNode:
     def __init__(self):
-        rospy.init_node('logos_stt_node', anonymous=False)
+        rospy.init_node('logos_ears_node', anonymous=False)
+        
+        # --- State Variables ---
+        self.state_lock = threading.Lock()
+        self.is_speaking = False         # From TTS
+        self.ambient_enabled = False     # From external topic
+        self.current_state = LedState.IDLE
+        self.last_ambient_publish_time = 0
 
-        # --- Hardware / Models ---
-        self.q = queue.Queue()
+
+        # --- Buffers & Queues ---
+        self.audio_queue = queue.Queue() # From Ear -> Brain
+        self.job_queue = queue.Queue()   # From Brain -> Scribe
         
-        # 1. Porcupine
-        if not ACCESS_KEY:
-            raise ValueError("PORCUPINE_VOICE_KEY not set")
-        self.porcupine = pvporcupine.create(access_key=ACCESS_KEY, keyword_paths=KEYWORD_PATHS)
+        self.ambient_buffer = []         # List of numpy arrays
+        self.ambient_start_time = time.time()
         
-        # 2. Faster Whisper
-        print("Loading Whisper...")
-        self.whisper = WhisperModel(WHISPER_MODEL_SIZE, device="cpu", compute_type=COMPUTE_TYPE)
+        self.recording_buffer = []       # List of numpy arrays
+        self.recording_start_time = 0
         
-        # 3. Silero VAD
-        print("Loading Silero VAD...")
-        self.vad_model, utils = torch.hub.load(repo_or_dir='snakers4/silero-vad',
-                                          model='silero_vad',
-                                          force_reload=False,
-                                          onnx=False) # ONNX is faster but requires onnxruntime
-        (self.get_speech_timestamps, _, self.read_audio, _, _) = utils
+        #  Background Audio Transcription History Storage
+        self.ambient_history = []
+
+        # --- Load Models ---
+        self._init_models()
         
-        # --- ROS Topics ---
+        # --- ROS Setup ---
+        self._init_ros()
+        
+        # --- Threading ---
+        self.running = True
+        
+        # 1. The Ear (Audio Capture)
+        self.capture_thread = threading.Thread(target=self._audio_capture_loop, daemon=True)
+        
+        # 2. The Scribe (Whisper Inference)
+        self.scribe_thread = threading.Thread(target=self._scribe_loop, daemon=True)
+        
+        # 3. The Face (LED Animation)
+        self.led_thread = threading.Thread(target=self._led_animation_loop, daemon=True)
+        
+        # Start threads
+        self.capture_thread.start()
+        self.scribe_thread.start()
+        self.led_thread.start()
+        
+        print(Fore.GREEN + "Logos Ears are online. Listening...")
+        
+        # Main Thread becomes "The Brain"
+        self._brain_loop()
+
+    def _init_models(self):
+        print(Fore.CYAN + "Loading Models...")
+        
+        # Porcupine
+        if not PORCUPINE_KEY:
+            raise ValueError("PORCUPINE_VOICE_KEY not set!")
+        self.porcupine = pvporcupine.create(
+            access_key=PORCUPINE_KEY, 
+            keyword_paths=KEYWORD_PATHS
+        )
+        
+        # Silero VAD
+        # Loading from torch hub is standard and usually reliable. 
+        # If no internet, this requires a local path.
+        self.vad_model, utils = torch.hub.load(
+            repo_or_dir='snakers4/silero-vad',
+            model='silero_vad',
+            force_reload=False,
+            onnx=True
+        )
+        (self.get_speech_timestamps, self.save_audio, self.read_audio, self.VADIterator, self.collect_chunks) = utils
+        
+        # Faster Whisper (Int8 for speed on CPU)
+        # Using a small or distilled model is usually sufficient for commands
+        # options: tiny.en, tiny, base.en, base, small.en, small, medium.en, medium, large-v1, large-v2, large-v3, large, distil-large-v2, distil-medium.en, distil-small.en, distil-large-v3, distil-large-v3.5, large-v3-turbo, turbo
+        self.whisper_model_name = "small.en"
+        self.whisper = WhisperModel(self.whisper_model_name, device="cpu", compute_type="int8")
+        
+        print(Fore.CYAN + "Models Loaded.")
+
+    def _init_ros(self):
+        # Publishers
         self.pub_cognition = rospy.Publisher('/cognition/input', CognitionInput, queue_size=10)
-        self.pub_ambient_text = rospy.Publisher('/stt/ambient_listener/transcription', String, queue_size=10, latch=True)
-        self.pub_leds = rospy.Publisher('/face/rgbled', Int32MultiArray, queue_size=10)
+        self.pub_ambient = rospy.Publisher('/stt/ambient_listener/transcription', String, queue_size=10, latch=True)
+        self.pub_led = rospy.Publisher('/face/rgbled', Int32MultiArray, queue_size=10)
         self.pub_sound = rospy.Publisher('/mobile_base/commands/sound', Sound, queue_size=1)
         
-        rospy.Subscriber('/tts/is_speaking', Bool, self.cb_is_speaking)
-        rospy.Subscriber('/stt/ambient_listener/enable', Bool, self.cb_ambient_enable)
-
-        # --- State Variables ---
-        self.led_manager = LedManager(self.pub_leds)
+        self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
         
-        self.is_speaking = False # TTS Mute flag
-        self.ambient_enabled = False
-        self.is_recording_command = False
+
+
+        # Subscribers
+        rospy.Subscriber('/tts/is_speaking', Bool, self._cb_is_speaking)
+        rospy.Subscriber('/stt/ambient_listener/enable', Bool, self._cb_ambient_enable)
+
+        # Kobuki Sound Helper
+        self.sound_msg = Sound()
+
+    # -------------------------------------------------------------------------
+    # ROS Callbacks
+    # -------------------------------------------------------------------------
+    def _cb_is_speaking(self, msg):
+        """TTS is active. Flip Ear Plugs."""
+        with self.state_lock:
+            previous_speaking = self.is_speaking
+            self.is_speaking = msg.data
+            
+            if self.is_speaking:
+                # Immediate mute effect
+                self.current_state = LedState.EAR_PLUGS
+            elif not self.is_speaking and previous_speaking:
+                # Returning to normal
+                self.current_state = LedState.AMBIENT if self.ambient_enabled else LedState.IDLE
+
+    def _cb_ambient_enable(self, msg):
+        with self.state_lock:
+            self.ambient_enabled = msg.data
+            if not self.is_speaking and self.current_state != LedState.RECORDING:
+                self.current_state = LedState.AMBIENT if self.ambient_enabled else LedState.IDLE
+            print(Fore.BLUE + f"Ambient Listener: {self.ambient_enabled}")
+
+    # -------------------------------------------------------------------------
+    # 1. The Ear (Audio Capture Thread)
+    # -------------------------------------------------------------------------
+    def _audio_capture_loop(self):
+        """
+        Reads audio from device, calculates RMS (for LEDs), puts in queue.
+        Blocking reads to ensure no data loss.
+        """
+        try:
+            with sd.InputStream(
+                samplerate=SAMPLE_RATE,
+                blocksize=FRAME_LENGTH,
+                channels=CHANNELS,
+                dtype='int16',
+                device=DEVICE_NAME
+            ) as stream:
+                while self.running and not rospy.is_shutdown():
+                    # Read audio
+                    pcm, overflow = stream.read(FRAME_LENGTH)
+                    if overflow:
+                        print(Fore.YELLOW + "Audio Overflow")
+
+                    # Convert to standard format for processing
+                    # Porcupine needs 16-bit integers
+                    # Whisper/VAD usually like float32 between -1 and 1
+                    pcm_int16 = pcm.flatten()
+                    
+                    # Calculate Volume for VU Meter (LEDs)
+                    # We store this in a thread-safe way for the LED thread
+                    rms = np.sqrt(np.mean(pcm_int16.astype(float)**2))
+                    self.current_volume = rms
+
+                    # EAR PLUGS LOGIC:
+                    # If TTS is speaking, we DROP the audio here.
+                    # We do not put it in the queue.
+                    with self.state_lock:
+                        if self.is_speaking:
+                            continue
+
+                    self.audio_queue.put(pcm_int16)
+                    
+        except Exception as e:
+            rospy.logerr(f"Audio Capture Error: {e}")
+            self.running = False
+
+    # -------------------------------------------------------------------------
+    # 2. The Brain (Logic & State Machine Loop)
+    # -------------------------------------------------------------------------
+    def _brain_loop(self):
+        """
+        Consumes audio from queue. Checks Wakewords. Checks VAD. Manages Buffers.
+        """
+        # Timers
+        last_ambient_check = time.time()
         
-        # Buffers
-        self.command_buffer = [] # Float32 for Whisper
-        self.ambient_buffer = [] # List of numpy arrays (chunks)
-        self.ambient_start_time = time.time()
-        self.ambient_history = [] # For JSON publishing
-        
-        # Threading lock for buffers accessed by inference threads
-        self.buffer_lock = threading.Lock()
-
-        # Start Audio Stream
-        self.stream = sd.InputStream(
-            samplerate=SAMPLE_RATE,
-            channels=CHANNELS,
-            dtype='int16', # Capture as int16 for Porcupine
-            blocksize=self.porcupine.frame_length,
-            callback=self._audio_callback
-        )
-        self.stream.start()
-
-        print("Logos Hearing Node Initialized. 👂")
-
-    def _audio_callback(self, indata, frames, time, status):
-        """Push raw audio into queue."""
-        if status:
-            print(status, file=sys.stderr)
-        self.q.put(indata.copy())
-
-    def cb_is_speaking(self, msg):
-        """Mute logic (Earplugs)."""
-        self.is_speaking = msg.data
-        # If robot starts speaking, paused ambient, but we don't necessarily abort a user command
-        # if they interrupt the robot (barge-in).
-        # However, to prevent feedback loops, we generally ignore input while speaking.
-
-    def cb_ambient_enable(self, msg):
-        self.ambient_enabled = msg.data
-        if self.ambient_enabled:
-            print("Ambient Listener ENABLED")
-            self.led_manager.set_state(LedManager.State.LISTENING)
-        else:
-            print("Ambient Listener DISABLED")
-            self.led_manager.set_state(LedManager.State.IDLE)
-
-    def run(self):
-        """Main Processing Loop"""
-        rate = rospy.Rate(50) # Fast check loop
-        
-        while not rospy.is_shutdown():
+        while self.running and not rospy.is_shutdown():
             try:
-                # Process all available audio chunks in queue
-                while not self.q.empty():
-                    pcm_int16 = self.q.get()
-                    
-                    # Convert to other formats needed
-                    # Porcupine needs 1D list/array of Int16
-                    pcm_porcupine = struct.unpack_from("h" * self.porcupine.frame_length, pcm_int16)
-                    
-                    # Whisper/VAD need Float32 normalized [-1, 1]
-                    # int16 range is -32768 to 32767
-                    pcm_float32 = pcm_int16.flatten().astype(np.float32) / 32768.0
-                    
-                    # Update LED VU meter
-                    self.led_manager.update_volume(pcm_float32)
+                # Get audio chunk (blocking with timeout to allow shutdown check)
+                pcm_int16 = self.audio_queue.get(timeout=0.5)
+            except queue.Empty:
+                continue
 
-                    # ---------------------------------------------------------
-                    # 1. EAR PLUGS CHECK
-                    # ---------------------------------------------------------
-                    if self.is_speaking:
-                        # Drop audio frame, don't process triggers
-                        # Optional: Could still run VAD to detect "Barge-in" later
-                        continue
+            # --- Pre-processing ---
+            # Porcupine expects linear PCM (16-bit)
+            # Silero expects float32
+            pcm_float32 = pcm_int16.astype(np.float32) / 32768.0
 
-                    # ---------------------------------------------------------
-                    # 2. WAKE WORD DETECTION (Always listening unless Muted)
-                    # ---------------------------------------------------------
-                    keyword_index = self.porcupine.process(pcm_porcupine)
+            # 1. Check Wake Words
+            # Index 0: Hey-Robot, 1: end-of-line, 2: edit-input
+            keyword_index = self.porcupine.process(pcm_int16)
 
-                    # KEYWORD: HEY-ROBOT (Start Command)
-                    if keyword_index == 0: 
-                        print("👉 Hey-Robot Detected!")
-                        self.trigger_recording()
-                        continue # Skip the rest of processing for this frame
+            # 2. Check VAD (Voice Activity Detection)
+            # Returns confidence 0.0 - 1.0. We use 0.5 threshold.
+            # Torch tensor overhead is small enough here for 512 frames
+            vad_prob = self.vad_model(torch.from_numpy(pcm_float32), SAMPLE_RATE).item()
+            is_speech = vad_prob > 0.5
+            self.is_speech_detected = is_speech
 
-                    # KEYWORD: END-OF-LINE / EDIT-INPUT (End Command)
-                    elif keyword_index in [1, 2] and self.is_recording_command:
-                        print(f"🛑 Stop Word Detected: {KEYWORDS[keyword_index]}")
-                        self.stop_recording(edit_mode=(keyword_index == 2))
-                        continue
+            # --- State Machine ---
+            with self.state_lock:
+                state = self.current_state
 
-                    # ---------------------------------------------------------
-                    # 3. RECORDING STATE (Human talking to Logos)
-                    # ---------------------------------------------------------
-                    if self.is_recording_command:
-                        self.command_buffer.append(pcm_float32)
-                        continue # Don't process ambient logic if recording command
-
-                    # ---------------------------------------------------------
-                    # 4. AMBIENT LISTENER STATE
-                    # ---------------------------------------------------------
-                    if self.ambient_enabled:
-                        self.process_ambient(pcm_float32)
-                        
-            except Exception as e:
-                print(f"Error in main loop: {e}")
-            
-            rate.sleep()
-
-    # -------------------------------------------------------------------------
-    # Logic Methods
-    # -------------------------------------------------------------------------
-
-    def trigger_recording(self):
-        """Switch to active recording. Flush ambient context first."""
-        self.pub_sound.publish(Sound(value=Sound.ON)) # Beep
-        
-        # Flush Ambient Buffer to Context BEFORE starting command
-        self.flush_ambient_context()
-        
-        self.is_recording_command = True
-        self.command_buffer = [] # Reset buffer
-        self.led_manager.set_state(LedManager.State.RECORDING)
-
-    def stop_recording(self, edit_mode=False):
-        """Stop active recording, transcribe, and publish."""
-        self.pub_sound.publish(Sound(value=Sound.OFF)) # Beep
-        self.is_recording_command = False
-        self.led_manager.set_state(LedManager.State.TRANSCRIBING)
-
-        # Offload transcription to thread
-        audio_data = np.concatenate(self.command_buffer)
-        t = threading.Thread(target=self.worker_transcribe_command, args=(audio_data, edit_mode))
-        t.start()
-
-    def process_ambient(self, audio_chunk):
-        """
-        Runs VAD. Accumulates buffer. Checks timeouts.
-        """
-        # 1. VAD Check (Silero)
-        # Convert chunk to tensor. Silero expects (1, N)
-        tensor_chunk = torch.from_numpy(audio_chunk).unsqueeze(0)
-        
-        # We use a simple confidence threshold on the chunk
-        speech_prob = self.vad_model(tensor_chunk, SAMPLE_RATE).item()
-        
-        if speech_prob > 0.5:
-            with self.buffer_lock:
-                self.ambient_buffer.append(audio_chunk)
-
-        # 2. Check Time / Size Constraints
-        current_time = time.time()
-        elapsed = current_time - self.ambient_start_time
-        
-        buffer_duration = (len(self.ambient_buffer) * self.porcupine.frame_length) / SAMPLE_RATE
-        
-        should_transcribe = False
-        
-        # Hard cap: 2 minutes of accumulated audio
-        if buffer_duration >= AMBIENT_MAX_DURATION_SEC:
-            should_transcribe = True
-            
-        # Time cap: 10 minutes elapsed
-        elif elapsed >= AMBIENT_TIMEOUT_SEC:
-            # Only transcribe if we have meaningful data (> 10s)
-            if buffer_duration >= AMBIENT_MIN_TRANSCRIPTION_SEC:
-                should_transcribe = True
-            else:
-                # Discard sparse audio
-                with self.buffer_lock:
-                    self.ambient_buffer = []
-                self.ambient_start_time = time.time()
+            # --- RECORDING STATE (Direct Input) ---
+            if state == LedState.RECORDING:
+                self.recording_buffer.append(pcm_float32)
                 
-        if should_transcribe:
-            self.cycle_ambient_buffer()
+                # Check Timeout
+                if (time.time() - self.recording_start_time) > RECORDING_TIMEOUT:
+                    print(Fore.RED + "Recording Timeout Reached.")
+                    self._finish_recording(reason="timeout")
+                    continue
 
-    def cycle_ambient_buffer(self):
-        """Move current ambient buffer to worker for transcription and reset."""
-        with self.buffer_lock:
-            if not self.ambient_buffer:
-                return
-            data = np.concatenate(self.ambient_buffer)
-            self.ambient_buffer = [] # Reset
-            self.ambient_start_time = time.time() # Reset timer
+                # Check Stop Words
+                if keyword_index == 1: # end-of-line
+                    print(Fore.GREEN + "Stop Word: end-of-line")
+                    self._play_sound(Sound.OFF)
+                    self._finish_recording(reason="normal")
+                elif keyword_index == 2: # edit-input
+                    print(Fore.YELLOW + "Stop Word: edit-input")
+                    self._play_sound(Sound.OFF)
+                    self._finish_recording(reason="edit")
+
+            # --- AMBIENT / IDLE STATE ---
+            else:
+                # Check "Hey-Robot" (Wake up)
+                if keyword_index == 0:
+                    print(Fore.MAGENTA + "Wake Word: Hey-Robot detected!")
+                    self._play_sound(Sound.ON)
+                    
+                    # === THE CONTEXT FLUSH ===
+                    # If we have ambient data, send it to scribe NOW.
+                    if self.ambient_buffer and self.ambient_enabled:
+                         print(Fore.CYAN + "Flushing Ambient Context...")
+                         self._flush_ambient_buffer(wake_trigger=True)
+                    
+                    # Switch to Recording
+                    with self.state_lock:
+                        self.current_state = LedState.RECORDING
+                        self._send_feedback(header="Listening...", body="    Say END-OF-LINE to finish.\n    Say EDIT-INPUT to edit transcript.", header_color="bright_green", body_color="bright_white", font="smslant")
+                    self.recording_buffer = []
+                    self.recording_start_time = time.time()
+                    continue
+
+                # Ambient Listening Logic
+                if self.ambient_enabled and state != LedState.EAR_PLUGS:
+                    # Only append if speech is detected (VAD)
+                    # This filters out silence and fan noise
+                    if is_speech:
+                        self.ambient_buffer.append(pcm_float32)
+
+                    # Manage Ambient Buffer Lifecycle
+                    now = time.time()
+                    
+                    # Soft Cut Logic:
+                    # Check if we hit time limits
+                    buffer_duration_approx = (len(self.ambient_buffer) * FRAME_LENGTH) / SAMPLE_RATE
+                    
+                    hit_max_length = buffer_duration_approx >= AMBIENT_MAX_DURATION
+                    hit_interval = (now - last_ambient_check) > AMBIENT_CHECK_INTERVAL
+
+                    if hit_max_length or hit_interval:
+                        # Only flush if we are currently PAUSED (not speech) 
+                        # OR if we are way over time (force flush)
+                        if not is_speech or buffer_duration_approx > (AMBIENT_MAX_DURATION + 15):
+                            if buffer_duration_approx > MIN_AMBIENT_LENGTH:
+                                print(Fore.BLUE + f"Auto-transcribing Ambient Buffer ({buffer_duration_approx:.1f}s)")
+                                self._play_sound(Sound.RECHARGE)
+                                self._send_feedback(header="Transcribing...", body=f"Ambient Buffer: {buffer_duration_approx:.1f}s", header_color="bright_blue", body_color="blue",font="smscript")
+                                self._flush_ambient_buffer()
+                            else:
+                                # Buffer too small, just discard to prevent drift
+                                self.ambient_buffer = []
+                                self.ambient_start_time = time.time()
+                            
+                            last_ambient_check = now
+
+    # -------------------------------------------------------------------------
+    # Helper Logic
+    # -------------------------------------------------------------------------
+    def _flush_ambient_buffer(self, wake_trigger=False):
+        """Package ambient buffer and send to Scribe."""
+        if not self.ambient_buffer:
+            return
             
-        # Spawn worker
-        t = threading.Thread(target=self.worker_transcribe_ambient, args=(data, "ambient_log"))
-        t.start()
-
-    def flush_ambient_context(self):
-        """Called when 'Hey Robot' interrupts ambient listening."""
-        with self.buffer_lock:
-            if not self.ambient_buffer:
-                return
-            data = np.concatenate(self.ambient_buffer)
-            # Don't clear buffer here? actually yes, we consumed it.
-            self.ambient_buffer = [] 
-            self.ambient_start_time = time.time()
-
-        # Transcribe immediately and send as context
-        t = threading.Thread(target=self.worker_transcribe_ambient, args=(data, "context_push"))
-        t.start()
-
-    # -------------------------------------------------------------------------
-    # Transcription Workers (Threaded)
-    # -------------------------------------------------------------------------
-
-    def worker_transcribe_command(self, audio_data, edit_mode):
-        """Handles explicit human commands."""
-        # Prompt tuning
-        initial_prompt = (
-            "Hey-Robot, end-of-line, edit-input. "
-            "The user is speaking to a robot named Logos. "
-            "Context: ROS Noetic, Linux, Python code."
-        )
-
-        segments, info = self.whisper.transcribe(
-            audio_data, 
-            beam_size=5, 
-            initial_prompt=initial_prompt,
-            vad_filter=False # We handled start/stop manually
-        )
+        full_audio = np.concatenate(self.ambient_buffer)
+        job = {
+            'type': 'ambient',
+            'audio': full_audio,
+            'timestamp': datetime.now().strftime("%I:%M %p"),
+            'epoch': time.time(), # Added epoch for easy age calculation
+            'wake_trigger': wake_trigger # Pass the flag to the job
+        }
+        self.job_queue.put(job)
         
-        text = " ".join([s.text for s in segments]).strip()
+        # Reset
+        self.ambient_buffer = []
+        self.ambient_start_time = time.time()
 
-        # Clean Wakewords
-        for kw in KEYWORDS:
-            # Simple case-insensitive removal
-            text = text.replace(kw, "").replace(kw.lower(), "").replace(kw.upper(), "")
-        
-        # Final cleanup
-        text = text.strip(" .,")
-
-        if not text:
-            print("Transcription empty.")
-            self.led_manager.set_state(LedManager.State.IDLE if not self.ambient_enabled else LedManager.State.LISTENING)
+    def _finish_recording(self, reason="normal"):
+        """Package recording buffer and send to Scribe."""
+        if not self.recording_buffer:
+            self._reset_state()
             return
 
-        print(f"COMMAND RECIEVED: {text}")
+        print(Fore.GREEN + "Processing Input...")
+        self._send_feedback(header="Transcribing...", header_color="bright_green", font="smscript")
+        with self.state_lock:
+            self.current_state = LedState.TRANSCRIBING
 
-        if edit_mode:
-            self.led_manager.set_state(LedManager.State.EDIT_INPUT)
-            # This uses standard input, which might be tricky in a detached ROS node.
-            # Assuming run in a terminal for now per your sanity check.
+        full_audio = np.concatenate(self.recording_buffer)
+        job = {
+            'type': 'human_stt',
+            'audio': full_audio,
+            'edit_mode': (reason == "edit")
+        }
+        self.job_queue.put(job)
+        
+        # We don't reset state here immediately; 
+        # The Scribe thread will trigger the LED change when done, 
+        # but logic-wise we revert to AMBIENT/IDLE in _reset_state called by Scribe?
+        # Actually, simpler: Reset logic state now, let LEDs chase until transcription event?
+        # No, let's reset state in the Scribe to keep "Transcribing" LED active.
+        pass 
+
+    def _reset_state(self):
+        with self.state_lock:
+            self.current_state = LedState.AMBIENT if self.ambient_enabled else LedState.IDLE
+
+    def _play_sound(self, val):
+        self.sound_msg.value = val
+        self.pub_sound.publish(self.sound_msg)
+
+    def _send_feedback(self, header, body="", sound_path=None, header_color="cyan", body_color="white", font="standard"):
+        """Helper to send feedback state to the UI/Subtitler."""
+        payload = {
+            "header": header,
+            "body": body,
+            "sound_path": sound_path,
+            "header_color": header_color,
+            "body_color": body_color,
+            "font": font
+        }
+        try:
+            self.output_pub.publish(CognitionOutput(type='feedback', content=json.dumps(payload)))
+        except Exception as e:
+            rospy.logwarn(f"Failed to publish feedback: {e}")
+
+
+
+    # -------------------------------------------------------------------------
+    # 3. The Scribe (Whisper Inference Thread)
+    # -------------------------------------------------------------------------
+    def _scribe_loop(self):
+        """
+        Waits for audio jobs, runs Faster-Whisper, publishes ROS msgs.
+        """
+        while self.running and not rospy.is_shutdown():
             try:
-                print(f"--- EDIT MODE ---\nOriginal: {text}")
-                new_text = input("Edit > ")
-                if new_text.strip():
-                    text = new_text
-            except Exception:
-                pass
+                job = self.job_queue.get(timeout=1.0)
+            except queue.Empty:
+                continue
 
-        # Publish
-        msg = CognitionInput()
-        msg.type = "human_stt"
-        msg.content = text
-        msg.system_hint = f"Transcribed with confidence {info.language_probability:.2f}. If nonsense, politely ask to repeat."
-        msg.loop_cognition = True
-        
-        self.pub_cognition.publish(msg)
-        
-        # Reset State
-        if self.ambient_enabled:
-            self.led_manager.set_state(LedManager.State.LISTENING)
-        else:
-            self.led_manager.set_state(LedManager.State.IDLE)
+            # Prepare Prompt with Keywords to help jargon and cleanup
+            # We specifically include the Porcupine wake words so Whisper recognizes them as distinct "tokens"
+            # max prompt length 224 tokens
+            prompt = "\nHEY-ROBOT\n Hi there, Logos! I'm Mark. You operate on ROS Noetic Ubuntu Linux with a Kobuki base and Python. We live in Clawson.You have pan-tilt, top-down, and Astra RGB-Depth cameras, with RGB LEDs, servos, laser scan. \nEDIT-INPUT\n Your name is Logos, with Whisper for speech-to-text. My Kobuki uses GMapping for SLAM and AMCL navigation. \nHEY-ROBOT\n text-to-speech engines include Kokoro, Piper, and espeak. \nEND-OF-LINE\n My family is Mom, Dad, Jim, Terri, Al, Tom, Lauren, Stella, Piper, Rocky. What do you think, Logos? \nEND-OF-LINE\n Hahaha! Nice work! \nEDIT-INPUT\n Sorry! Maybe try that again using Whisper? \nEND-OF-LINE\n"
 
-    def worker_transcribe_ambient(self, audio_data, mode):
-        """
-        mode: 'ambient_log' (add to json buffer) or 'context_push' (send to cognition)
-        """
-        if len(audio_data) == 0: return
+            segments, info = self.whisper.transcribe(
+                job['audio'], 
+                beam_size=5, 
+                initial_prompt=prompt,
+                vad_filter=True # Whisper has internal VAD too, helpful for cleaning
+            )
 
-        segments, _ = self.whisper.transcribe(audio_data, beam_size=2, vad_filter=True) # Use whisper VAD to cleanup edges
-        text = " ".join([s.text for s in segments]).strip()
-        
-        if not text: return
-
-        timestamp = time.strftime("%I:%M %p")
-
-        if mode == "context_push":
-            print(f"FLUSHING CONTEXT: {text}")
-            msg = CognitionInput()
-            msg.type = "context"
-            msg.content = f"Ambient audio immediately preceding wake-word: '{text}'"
-            msg.system_hint = "Use this context to resolve references like 'that' or 'it' in the user's command."
-            msg.loop_cognition = False # Don't trigger a reply, just add to memory
-            self.pub_cognition.publish(msg)
+            # Collect text
+            text_segments = []
+            confidence_sum = 0
+            count = 0
             
-            # Also add to log history
-            self._update_ambient_json_log(timestamp, text)
-
-        elif mode == "ambient_log":
-            print(f"AMBIENT LOG: {text}")
-            self._update_ambient_json_log(timestamp, text)
-
-    def _update_ambient_json_log(self, timestamp, text):
-        """Maintains the FIFO JSON buffer on the latched topic."""
-        entry = {"time": timestamp, "transcription": text}
-        self.ambient_history.append(entry)
-        
-        # Pruning logic
-        # 1. Size Cap (rough char count)
-        total_chars = sum(len(x['transcription']) for x in self.ambient_history)
-        while total_chars > 8192 and self.ambient_history:
-            removed = self.ambient_history.pop(0)
-            total_chars -= len(removed['transcription'])
+            for segment in segments:
+                text_segments.append(segment.text)
+                confidence_sum += segment.avg_logprob # Note: this is logprob, not %
+                count += 1
             
-        # 2. Time Cap (2 hours) - simplified implementation
-        # (Assuming linear append, pop from front if list gets too long is usually sufficient for hobby)
-        if len(self.ambient_history) > 50: # Arbitrary item cap to prevent massive JSONs
-             self.ambient_history.pop(0)
+            full_text = " ".join(text_segments).strip()
+            
+            # --- Text Cleanup ---
+            full_text = self._strip_control_phrases(full_text)
 
-        # Publish
-        json_str = json.dumps(self.ambient_history)
-        self.pub_ambient_text.publish(json_str)
+            if not full_text:
+                print(Fore.YELLOW + "Transcript empty after stripping control phrases.")
+                self._reset_state()
+                continue
+
+
+            # --- Handling Output ---
+            
+            if job['type'] == 'ambient':
+                
+                # 1. Handle Wake Word Annotation
+                if job.get('wake_trigger'):
+                    full_text += "\n---\n# Wake word detected! Rerouting to <human_stt> channel..."
+
+                # 2. Prepare Payload
+                conf = round(np.exp(confidence_sum / count), 2) if count > 0 else 0.0
+                
+                new_entry = {
+                    "time": job['timestamp'],
+                    "epoch": job['epoch'], # Kept for internal filtering, useful for debugging
+                    "confidence": conf,
+                    "transcription": full_text
+                }
+
+                # 3. Update History & Prune
+                self.ambient_history.append(new_entry)
+                
+                current_time = time.time()
+                
+                # A. Age Pruning (Filter out items older than max age)
+                self.ambient_history = [
+                    entry for entry in self.ambient_history 
+                    if (current_time - entry['epoch']) < AMBIENT_HISTORY_MAX_AGE
+                ]
+
+                # B. Size Pruning (FIFO based on character count)
+                # Calculate total chars
+                total_chars = sum(len(e['transcription']) for e in self.ambient_history)
+                
+                # Pop from front (oldest) until we fit
+                while total_chars > AMBIENT_HISTORY_MAX_CHARS and len(self.ambient_history) > 1:
+                    removed = self.ambient_history.pop(0)
+                    total_chars -= len(removed['transcription'])
+                
+                # 4. Publish Full History
+                # We publish the list. Consumers can grab [-1] for latest, or iterate for context.
+                self.pub_ambient.publish(json.dumps(self.ambient_history))
+                
+                self.last_ambient_publish_time = time.time()
+                print(Fore.CYAN + f"Ambient Published ({len(self.ambient_history)} items). Latest: {full_text[:40]}...")
+
+
+            elif job['type'] == 'human_stt':
+                
+                final_text = full_text
+
+                # Edit Mode
+                if job.get('edit_mode'):
+                    # Temporarily stop LED animation or set to IDLE for clarity
+                    # Actually, we are in a separate thread.
+                    print(Fore.LIGHTWHITE_EX + f"\n--- EDIT INPUT ---\nOriginal: {full_text}")
+                    
+                    # Readline hook for pre-filling
+                    def hook():
+                        readline.insert_text(full_text)
+                        readline.redisplay()
+                    
+                    readline.set_pre_input_hook(hook)
+                    try:
+                        final_text = input(f"{Fore.GREEN}Edit > {Style.RESET_ALL}")
+                    except:
+                        pass
+                    readline.set_pre_input_hook(None)
+
+                # calculate full text confidence_score as percentage
+                conf = round(np.exp(confidence_sum / count), 2) if count > 0 else 0.0
+
+                final_text = final_text.strip() + f"\n---\n# faster-whisper model '{self.whisper_model_name}' confidence: {100*conf:.0f}%"
+
+                # Publish to Cognition
+                msg = CognitionInput()
+                msg.type = "human_stt"
+                msg.content = final_text
+                msg.system_hint = "<!-- system: If `faster-whisper` transcript is imperfect and you are unable to infer intent, you can tell the human you misheard them and ask them to speak more clearly. If the transcript makes sense, don't let a low model confidence score -->"
+                msg.loop_cognition = True
+                
+                self.pub_cognition.publish(msg)
+                print(Fore.GREEN + f"Published <human_stt>: {final_text}")
+                
+                # Done transcribing/editing, reset state
+                self._reset_state()
+
+    def _strip_control_phrases(self, text: str) -> str:
+        """
+        Remove wake/control phrases (hey-robot, end-of-line, edit-input) anywhere in text.
+        Case-insensitive. Also removes adjacent punctuation and normalizes whitespace.
+        """
+        if not text:
+            return ""
+
+        # Allow "hey robot", "hey-robot", "HeyRobot", etc.
+        phrases = [
+            r"hey\s*[-_]?\s*robot",
+            r"end\s*[-_]?\s*of\s*[-_]?\s*line",
+            r"edit\s*[-_]?\s*input",
+        ]
+
+        # Remove with optional surrounding punctuation/spaces.
+        # Examples eaten: "Hey-Robot,", "(end of line.)", "—EDIT-INPUT—"
+        punct = r"""[ \t\r\n"'“”‘’()\[\]{}<>*#@~`^=+|\\/,:;.!?—–-]*"""
+        pattern = re.compile(rf"(?i){punct}(?:{'|'.join(phrases)}){punct}")
+
+        cleaned = pattern.sub(" ", text)
+        cleaned = re.sub(r"\s+", " ", cleaned).strip()
+        return cleaned
+
+
+    # -------------------------------------------------------------------------
+    # 3. The Face (LED Animation Thread)
+    # -------------------------------------------------------------------------
+    def _led_animation_loop(self):
+        """
+        Controls RGB LEDs based on current_state and current_volume.
+        """
+        led_msg = Int32MultiArray()
+        idx = 0
+        
+        while self.running and not rospy.is_shutdown():
+            state = self.current_state # atomic read usually fine
+            
+            data_list = [0] * FACE_LED_COUNT
+            
+            if state == LedState.IDLE:
+                # Dim or Off
+                pass 
+                
+            elif state == LedState.AMBIENT:
+                now = time.time()
+                
+                # 1. Base Breather (The slow pulse)
+                breath = int((np.sin(now * 2) + 1) * 32)
+                
+                # 2. Check VAD (Reactive Shimmer)
+                # Is the brain currently hearing speech?
+                is_hearing_speech = getattr(self, 'is_speech_detected', False)
+                
+                # 3. Check Transcription Blip (Happens for 3 seconds after publish)
+                time_since_publish = now - self.last_ambient_publish_time
+                is_blipping = time_since_publish < 3
+
+                data_list = []
+                for i in range(FACE_LED_COUNT):
+                    # Default Blue channel
+                    r, g, b = 0, 0, breath
+                    
+                    # If hearing speech: Add a "Shimmer" effect
+                    if is_hearing_speech:
+                        # Randomly flicker the brightness of this specific LED
+                        shimmer = np.random.randint(-10, 15)
+                        b = max(5, min(60, b + shimmer))
+                        g = max(0, shimmer // 2) # Add a hint of Cyan to the shimmer
+                    
+                    # If just transcribed: Add a traveling Cyan pulse
+                    if is_blipping:
+                        # Create a "comet" effect based on time
+                        pos = int(now * 15) % FACE_LED_COUNT
+                        if i == pos:
+                            r, g, b = 0, 32, 32 # Cyan blip
+                        elif (i - 1) % FACE_LED_COUNT == pos:
+                            g, b = 16, 16 # Tail of the blip
+
+                    color = (r << 16) | (g << 8) | b
+                    data_list.append((i << 24) | color)
+
+                
+            elif state == LedState.RECORDING:
+                # VU Meter logic using self.current_volume
+                # Normalize volume (heuristic max 2000)
+                vol = getattr(self, 'current_volume', 0)
+                level = min(int((vol / 2000.0) * (FACE_LED_COUNT // 2)), FACE_LED_COUNT // 2)
+                
+                # Center outward
+                center_l = (FACE_LED_COUNT // 2) - 1
+                center_r = center_l + 1
+                
+                for i in range(level):
+                    # Green to Red gradient
+                    r = int((i / (FACE_LED_COUNT//2)) * 255)
+                    g = 255 - r
+                    color = (r << 16) | (g << 8)
+                    
+                    if center_l - i >= 0:
+                        data_list[center_l - i] = ((center_l - i) << 24) | color
+                    if center_r + i < FACE_LED_COUNT:
+                        data_list[center_r + i] = ((center_r + i) << 24) | color
+                    # clear remaining LEDs
+                for j in range(level, FACE_LED_COUNT // 2):
+                    if center_l - j >= 0:
+                        data_list[center_l - j] = ((center_l - j) << 24) | 0
+                    if center_r + j < FACE_LED_COUNT:
+                        data_list[center_r + j] = ((center_r + j) << 24) | 0
+
+
+            elif state == LedState.TRANSCRIBING:
+                # Green Chaser
+                color = 0x004000
+                pos = int(time.time() * 10) % FACE_LED_COUNT
+                data_list[pos] = (pos << 24) | color
+                
+            elif state == LedState.EAR_PLUGS:
+                # Solid dim magneta to indicate muted (matches TTS text color)
+                color = 0x0F000F
+                data_list = [((i << 24) | color) for i in range(FACE_LED_COUNT)]
+
+            # Publish
+            if any(data_list):
+                 led_msg.data = [x for x in data_list if x != 0]
+                 self.pub_led.publish(led_msg)
+            elif state == LedState.IDLE:
+                 # Ensure off
+                 clear_data = [((i << 24) | 0) for i in range(FACE_LED_COUNT)]
+                 led_msg.data = clear_data
+                 self.pub_led.publish(led_msg)
+            
+            time.sleep(0.05)
+
 
 if __name__ == '__main__':
     try:
-        node = LogosHearingNode()
-        node.run()
+        node = LogosEarsNode()
     except rospy.ROSInterruptException:
         pass
     except KeyboardInterrupt:

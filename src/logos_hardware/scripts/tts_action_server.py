@@ -96,7 +96,7 @@ def synthesize_audio_remote(text, engine, params_json):
     }
 
     try:
-        response = requests.post(LARYNX_URL, json=payload, timeout=60.0) # 60s timeout for safety
+        response = requests.post(LARYNX_URL, json=payload, timeout=120.0) # timeout for safety
         
         if response.status_code != 200:
             rospy.logerr(f"TTS Server Error ({response.status_code}): {response.text}")
