@@ -60,10 +60,10 @@ class FaceAmbienceNode:
         self.current_render_mode = "unknown" # 'active' or 'idle'
 
         # --- Parameters ---
-        self.min_fps = rospy.get_param('~min_fps', 4)
-        self.def_fps = rospy.get_param('~default_fps', 16)
-        self.post_activity_duration = rospy.get_param('~post_activity_duration', 8.0) # Delay before going idle
-        self.fps_step_interval = rospy.get_param('~fps_reduction_step_interval', 15.0)
+        self.min_fps = rospy.get_param('~min_fps', 3)
+        self.def_fps = rospy.get_param('~default_fps', 18)
+        self.post_activity_duration = rospy.get_param('~post_activity_duration', 10.0) # Delay before going idle
+        self.fps_step_interval = rospy.get_param('~fps_reduction_step_interval', 30.0)
 
         # --- Publishers ---
         self.sine_wave_pub = rospy.Publisher('/face/mouth/sine_wave', MouthSine, queue_size=10)

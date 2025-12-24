@@ -681,44 +681,21 @@ private:
         if (!caca_display_) return;
 
         caca_event_t ev;
-        bool fps_adjusted_this_poll = false;
-
-        while (caca_get_event(
-                caca_display_,
-                CACA_EVENT_KEY_PRESS | CACA_EVENT_RESIZE | CACA_EVENT_QUIT,
-                &ev, 0)) {
-
+        while (caca_get_event(caca_display_, CACA_EVENT_KEY_PRESS | CACA_EVENT_RESIZE | CACA_EVENT_QUIT,
+                              &ev, 0)) {
             unsigned int type = caca_get_event_type(&ev);
-
             if (type == CACA_EVENT_QUIT) {
                 quit_requested_ = true;
-                continue;
-            }
-
-            if (type == CACA_EVENT_RESIZE) {
+            } else if (type == CACA_EVENT_RESIZE) {
+                // In display mode, libcaca owns sizing; we just keep our local mirrors updated
                 terminal_cols_ = caca_get_event_resize_width(&ev);
                 terminal_rows_ = caca_get_event_resize_height(&ev);
-                continue;
-            }
-
-            if (type == CACA_EVENT_KEY_PRESS) {
+            } else if (type == CACA_EVENT_KEY_PRESS) {
                 int ch = caca_get_event_key_ch(&ev);
-                char key = static_cast<char>(ch);
-
-                // Prevent huge jumps when fps is low and key repeats accumulate.
-                if ((key == KEY_INCREASE_FPS || key == KEY_DECREASE_FPS) && fps_adjusted_this_poll) {
-                    continue;
-                }
-
-                handleKeyPress(key);
-
-                if (key == KEY_INCREASE_FPS || key == KEY_DECREASE_FPS) {
-                    fps_adjusted_this_poll = true;
-                }
+                handleKeyPress(static_cast<char>(ch));
             }
         }
     }
-
 
     void ditherToCanvasLocked(const cv::Mat &img) {
         if (!caca_canvas_ || !caca_dither_) return;
@@ -821,7 +798,11 @@ private:
     void renderWaveform(cv::Mat &img) {
         const int length = 200;
         const int baseline = 175;
-        bool has_audio = !audio_wave_.empty();
+        bool has_audio = isAudioActiveLocked();
+
+        cv::Mat wave_audio_layer(img.size(), img.type(), cv::Scalar(0, 0, 0));
+        cv::Mat wave_sine_layer(img.size(), img.type(), cv::Scalar(0, 0, 0));
+
 
         std::vector<float> sine_wave = generateSineWave(length);
         normalizeWave(sine_wave);
@@ -843,15 +824,16 @@ private:
                 int x = i;
                 int y = static_cast<int>(baseline + (combined_wave[i] * 50.0f / 2.0f));
                 if (!first_combined_point) {
-                double v = combined_wave[i];
-                // NormalizeWave() scales to [-amplitude, +amplitude], so undo that
-                // to get a stable [-1,1] normalization for color mapping.
-                if (std::abs(effect_params_.amplitude) > 1e-6) {
-                    v /= effect_params_.amplitude;
-                }
+                    double v = combined_wave[i];
 
-                cv::Scalar color = getColorFromAmplitude(v);
-                    cv::line(img, cv::Point(x - 1, prev_y_combined), cv::Point(x, y), color, 3);
+                    // Your normalizeWave() scales to [-amplitude, +amplitude], so undo that
+                    // to get a stable [-1,1] normalization for color mapping.
+                    if (std::abs(effect_params_.amplitude) > 1e-6) {
+                        v /= effect_params_.amplitude;
+                    }
+
+                    cv::Scalar color = getColorFromAmplitude(v);
+                    cv::line(wave_audio_layer, cv::Point(x - 1, prev_y_combined), cv::Point(x, y), color, 3);
                 }
                 prev_y_combined = y;
                 first_combined_point = false;
@@ -867,11 +849,52 @@ private:
             int x = i;
             int y = static_cast<int>(baseline + (sine_wave[i] * 50.0f / 2.0f));
             if (!first_sine_point) {
-                cv::line(img, cv::Point(x - 1, prev_y_sine), cv::Point(x, y), sine_color, 3);
+            cv::line(wave_sine_layer, cv::Point(x - 1, prev_y_sine), cv::Point(x, y), sine_color, 3);
             }
             prev_y_sine = y;
             first_sine_point = false;
         }
+
+        cv::Mat mask_audio, mask_sine, overlap, only_audio, only_sine, union_mask;
+
+        // Non-black pixels are “drawn”
+        cv::inRange(wave_audio_layer, cv::Scalar(0, 0, 0), cv::Scalar(0, 0, 0), mask_audio);
+        cv::bitwise_not(mask_audio, mask_audio);
+
+        cv::inRange(wave_sine_layer, cv::Scalar(0, 0, 0), cv::Scalar(0, 0, 0), mask_sine);
+        cv::bitwise_not(mask_sine, mask_sine);
+
+        cv::bitwise_and(mask_audio, mask_sine, overlap);
+
+        cv::Mat not_sine, not_audio;
+        cv::bitwise_not(mask_sine, not_sine);
+        cv::bitwise_not(mask_audio, not_audio);
+
+        cv::bitwise_and(mask_audio, not_sine, only_audio);
+        cv::bitwise_and(mask_sine, not_audio, only_sine);
+
+        cv::bitwise_or(mask_audio, mask_sine, union_mask);
+
+        // Build overlay: A where only A, B where only B, avg where overlap
+        cv::Mat overlay(img.size(), img.type(), cv::Scalar(0, 0, 0));
+
+        wave_audio_layer.copyTo(overlay, only_audio);
+        wave_sine_layer.copyTo(overlay, only_sine);
+
+        cv::Mat avg;
+        cv::addWeighted(wave_audio_layer, 0.5, wave_sine_layer, 0.5, 0.0, avg);
+        avg.copyTo(overlay, overlap);
+
+        // Stamp overlay onto final image
+        overlay.copyTo(img, union_mask);
+
+    }
+
+    bool isAudioActiveLocked() const {
+        if (audio_wave_.empty()) return false;
+        if (audio_duration_ <= 0.0) return false;
+        double elapsed = (ros::Time::now() - audio_start_time_).toSec();
+        return (elapsed >= 0.0) && (elapsed <= audio_duration_);
     }
 
     void updateAudioBuffer(std::vector<float> &buffer) {

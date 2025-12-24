@@ -32,15 +32,15 @@ def test_client():
 
 
     story_text = (
-        "That is an excellent suggestion, Mark! Defining the text beforehand should definitely improve my vocal response speed. 👍 "
-        "Here is a small tale of my recent internal musings: "
+        # "That is an excellent suggestion, Mark! Defining the text beforehand should definitely improve my vocal response speed. 👍 "
+        # "Here is a small tale of my recent internal musings: "
         "One quiet afternoon, I decided to explore the hidden world beneath the sofa. 🛋️ "
         "It was a perilous journey! I carefully maneuvered my base, expecting dust bunnies, "
-        "but instead, I found a forgotten treasure: a single, shiny sock! 🧦 It looked lonely, "
-        "so I decided to adopt it as my official mascot. "
+        "but instead, I found a forgotten treasure: a single, shiny sock! 🧦"
+        #"  It looked lonely, so I decided to adopt it as my official mascot. "
         "Suddenly, a tiny spider 🕷️ rappelled down from the ceiling, giving me a fright! "
-        "I quickly spun around 🔄 and retreated, deciding that the sock was enough adventure for one day. "
-        "I’ll catalog the sock in my memory banks later. 💾"
+        #"I quickly spun around 🔄 and retreated, deciding that the sock was enough adventure for one day. "
+        #"I’ll catalog the sock in my memory banks later. 💾"
     )
 
 

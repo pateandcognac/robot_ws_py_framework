@@ -681,44 +681,21 @@ private:
         if (!caca_display_) return;
 
         caca_event_t ev;
-        bool fps_adjusted_this_poll = false;
-
-        while (caca_get_event(
-                caca_display_,
-                CACA_EVENT_KEY_PRESS | CACA_EVENT_RESIZE | CACA_EVENT_QUIT,
-                &ev, 0)) {
-
+        while (caca_get_event(caca_display_, CACA_EVENT_KEY_PRESS | CACA_EVENT_RESIZE | CACA_EVENT_QUIT,
+                              &ev, 0)) {
             unsigned int type = caca_get_event_type(&ev);
-
             if (type == CACA_EVENT_QUIT) {
                 quit_requested_ = true;
-                continue;
-            }
-
-            if (type == CACA_EVENT_RESIZE) {
+            } else if (type == CACA_EVENT_RESIZE) {
+                // In display mode, libcaca owns sizing; we just keep our local mirrors updated
                 terminal_cols_ = caca_get_event_resize_width(&ev);
                 terminal_rows_ = caca_get_event_resize_height(&ev);
-                continue;
-            }
-
-            if (type == CACA_EVENT_KEY_PRESS) {
+            } else if (type == CACA_EVENT_KEY_PRESS) {
                 int ch = caca_get_event_key_ch(&ev);
-                char key = static_cast<char>(ch);
-
-                // Prevent huge jumps when fps is low and key repeats accumulate.
-                if ((key == KEY_INCREASE_FPS || key == KEY_DECREASE_FPS) && fps_adjusted_this_poll) {
-                    continue;
-                }
-
-                handleKeyPress(key);
-
-                if (key == KEY_INCREASE_FPS || key == KEY_DECREASE_FPS) {
-                    fps_adjusted_this_poll = true;
-                }
+                handleKeyPress(static_cast<char>(ch));
             }
         }
     }
-
 
     void ditherToCanvasLocked(const cv::Mat &img) {
         if (!caca_canvas_ || !caca_dither_) return;

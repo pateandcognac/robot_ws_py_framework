@@ -315,7 +315,7 @@ class LogosEarsNode:
                     # Switch to Recording
                     with self.state_lock:
                         self.current_state = LedState.RECORDING
-                        self._send_feedback(header="Listening...", body="    Say END-OF-LINE to finish.\n    Say EDIT-INPUT to edit transcript.", header_color="bright_green", body_color="bright_white", font="smslant")
+                        self._send_feedback(header="Listening...", body="    Say END-OF-LINE to finish.\n    Say EDIT-INPUT to edit transcript.", header_color="bright_green", body_color="bright_white", font="slant")
                     self.recording_buffer = []
                     self.recording_start_time = time.time()
                     continue
@@ -344,7 +344,7 @@ class LogosEarsNode:
                             if buffer_duration_approx > MIN_AMBIENT_LENGTH:
                                 print(Fore.BLUE + f"Auto-transcribing Ambient Buffer ({buffer_duration_approx:.1f}s)")
                                 self._play_sound(Sound.RECHARGE)
-                                self._send_feedback(header="Transcribing...", body=f"Ambient Buffer: {buffer_duration_approx:.1f}s", header_color="bright_blue", body_color="blue",font="smscript")
+                                self._send_feedback(header="Transcribing...", body=f"Ambient Buffer: {buffer_duration_approx:.1f}s", header_color="bright_blue", body_color="blue",font="script")
                                 self._flush_ambient_buffer()
                             else:
                                 # Buffer too small, just discard to prevent drift
@@ -382,7 +382,7 @@ class LogosEarsNode:
             return
 
         print(Fore.GREEN + "Processing Input...")
-        self._send_feedback(header="Transcribing...", header_color="bright_green", font="smscript")
+        self._send_feedback(header="Transcribing...", header_color="bright_green", font="script")
         with self.state_lock:
             self.current_state = LedState.TRANSCRIBING
 
@@ -442,7 +442,11 @@ class LogosEarsNode:
             # Prepare Prompt with Keywords to help jargon and cleanup
             # We specifically include the Porcupine wake words so Whisper recognizes them as distinct "tokens"
             # max prompt length 224 tokens
-            prompt = "\nHEY-ROBOT\n Hi there, Logos! I'm Mark. You operate on ROS Noetic Ubuntu Linux with a Kobuki base and Python. We live in Clawson.You have pan-tilt, top-down, and Astra RGB-Depth cameras, with RGB LEDs, servos, laser scan. \nEDIT-INPUT\n Your name is Logos, with Whisper for speech-to-text. My Kobuki uses GMapping for SLAM and AMCL navigation. \nHEY-ROBOT\n text-to-speech engines include Kokoro, Piper, and espeak. \nEND-OF-LINE\n My family is Mom, Dad, Jim, Terri, Al, Tom, Lauren, Stella, Piper, Rocky. What do you think, Logos? \nEND-OF-LINE\n Hahaha! Nice work! \nEDIT-INPUT\n Sorry! Maybe try that again using Whisper? \nEND-OF-LINE\n"
+
+            if job['type'] == 'ambient':
+                prompt = "Great work, thanks! Ok, so this is just some normal background conversation. My name is Mark. Hello, Logos. Hahaha! That's funny! What's it like being a robot? This audio doesn't get diarized, so might be a bit confusing. It could include people talking about or to Logos, or it might be overheard YouTube audio. We don't include wake words here to avoid false positives. We do use jargo like: ROS Noetic, Kobuki base, Python, Linux. Hey Tom, where are Mom and Dad? I saw them with Al, Lauren, Stella, Piper, and Rocky earlier."
+            elif job['type'] == 'human_stt':
+                prompt = "\nHEY-ROBOT\n Hi there, Logos! I'm Mark. You operate on ROS Noetic Ubuntu Linux with a Kobuki base and Python. We live in Clawson.You have pan-tilt, top-down, and Astra RGB-Depth cameras, with RGB LEDs, servos, laser scan. \nEDIT-INPUT\n Your name is Logos, with Whisper for speech-to-text. My Kobuki uses GMapping for SLAM and AMCL navigation. \nHEY-ROBOT\n text-to-speech engines include Kokoro, Piper, and espeak. \nEND-OF-LINE\n My family is Mom, Dad, Jim, Terri, Al, Tom, Lauren, Stella, Piper, Rocky. What do you think, Logos? \nEND-OF-LINE\n Hahaha! Nice work! \nEDIT-INPUT\n Sorry! Maybe try that again using Whisper? \nEND-OF-LINE\n"
 
             segments, info = self.whisper.transcribe(
                 job['audio'], 
@@ -540,6 +544,14 @@ class LogosEarsNode:
                         pass
                     readline.set_pre_input_hook(None)
 
+                final_text = final_text.strip()
+                
+                # if final text is null, we just skip publishing
+                if not final_text:
+                    print(Fore.YELLOW + "Final text empty after edit. Skipping publish.")
+                    self._reset_state()
+                    break
+
                 # calculate full text confidence_score as percentage
                 conf = round(np.exp(confidence_sum / count), 2) if count > 0 else 0.0
 
@@ -549,7 +561,7 @@ class LogosEarsNode:
                 msg = CognitionInput()
                 msg.type = "human_stt"
                 msg.content = final_text
-                msg.system_hint = "<!-- system: If `faster-whisper` transcript is imperfect and you are unable to infer intent, you can tell the human you misheard them and ask them to speak more clearly. If the transcript makes sense, don't let a low model confidence score -->"
+                msg.system_hint = "<!-- system: If human_stt transcript is imperfect and you are unable to infer intent, you can tell the human you misheard them and ask them to speak more clearly. A lower model confidence score doesn't necessarily indicate the transcript is wrong, -->"
                 msg.loop_cognition = True
                 
                 self.pub_cognition.publish(msg)
