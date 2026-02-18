@@ -44,7 +44,13 @@ class PythonWorkerNode:
         src_path = self.workspace_path / "src"
         if src_path.exists():
             sys.path.insert(0, str(src_path))
-            rospy.loginfo(f"Added {src_path} to Python path for user-defined modules.")
+            rospy.loginfo(f"Added {src_path} to Python path for workspace packages.")
+            rospy.loginfo("sys.path (first 5 entries):\n" + "\n".join(sys.path[:5]))
+        else:
+            rospy.logfatal(f"Expected src path not found: {src_path}")
+            rospy.signal_shutdown("src path not found")
+            return
+
 
         try:
             os.chdir(self.workspace_path)
@@ -57,9 +63,10 @@ class PythonWorkerNode:
         
         try:
             from logos.exceptions import Interrupt as LogosInterrupt
-            self.LogosInterrupt = LogosInterrupt # Store the class for later use
+            self.LogosInterrupt = LogosInterrupt
         except ImportError:
-            rospy.logfatal("Could not import the 'logos' API package! Is it in the preload_api directory? Shutting down.")
+            rospy.logfatal("Could not import logos.exceptions.Interrupt. Check that workspace/src is on sys.path.")
+            rospy.logfatal(traceback.format_exc())
             rospy.signal_shutdown("Logos API not found.")
             return
 
@@ -171,6 +178,11 @@ class PythonWorkerNode:
     def _initialize_interpreter(self):
         """Creates a new interpreter instance and loads the API and config."""
         rospy.loginfo("Initializing new Python interpreter instance...")
+        
+        # Clear linecache to avoid stale code references
+        linecache.checkcache() 
+        linecache.cache.clear() 
+
         self.interpreter = code.InteractiveInterpreter()
         self._load_api_and_config()
 

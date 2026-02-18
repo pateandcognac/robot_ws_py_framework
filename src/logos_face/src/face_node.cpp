@@ -84,7 +84,7 @@ public:
         output_mode_ = nh_.param<std::string>("output_mode", "display");  // display | ansi
         caca_driver_ = nh_.param<std::string>("caca_driver", "ncurses");
 
-        // Dither defaults (match what you're doing today)
+        // Dither defaults
         dither_antialias_ = nh_.param<std::string>("dither_antialias", "default");
         dither_color_ = nh_.param<std::string>("dither_color", "full16");
         dither_charset_ = nh_.param<std::string>("dither_charset", "ascii");
@@ -833,7 +833,7 @@ private:
 
             std::vector<float> combined_wave(length, 0.0f);
             for (int i = 0; i < length; ++i) {
-                combined_wave[i] = 0.25f * sine_wave[i] + 0.75f * audio_buf[i];
+                combined_wave[i] = 0.05f * sine_wave[i] + 1.25f * audio_buf[i];
             }
             normalizeWave(combined_wave);
 

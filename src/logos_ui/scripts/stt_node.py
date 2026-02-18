@@ -134,9 +134,13 @@ class LogosEarsNode:
             raise ValueError("PORCUPINE_VOICE_KEY not set!")
         self.porcupine = pvporcupine.create(
             access_key=PORCUPINE_KEY, 
-            keyword_paths=KEYWORD_PATHS
+            keyword_paths=KEYWORD_PATHS, # 0: Wake, 1: EOL, 2: Edit
+            sensitivities=[0.15, 1.0, 0.75] # 0 to 1. 0=more discriminatory, 1=more false positives
         )
         
+        print(f"Porcupine KEYWORDS:\nCustom:{KEYWORDS}\nBuilt-in:{pvporcupine.KEYWORDS}")
+
+
         # Silero VAD
         # Loading from torch hub is standard and usually reliable. 
         # If no internet, this requires a local path.
@@ -162,7 +166,6 @@ class LogosEarsNode:
         self.pub_ambient = rospy.Publisher('/stt/ambient_listener/transcription', String, queue_size=10, latch=True)
         self.pub_led = rospy.Publisher('/face/rgbled', Int32MultiArray, queue_size=10)
         self.pub_sound = rospy.Publisher('/mobile_base/commands/sound', Sound, queue_size=1)
-        
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
         
 
@@ -195,7 +198,7 @@ class LogosEarsNode:
             self.ambient_enabled = msg.data
             if not self.is_speaking and self.current_state != LedState.RECORDING:
                 self.current_state = LedState.AMBIENT if self.ambient_enabled else LedState.IDLE
-            print(Fore.BLUE + f"Ambient Listener: {self.ambient_enabled}")
+            print(Fore.LIGHTBLUE_EX + f"Ambient Listener: {self.ambient_enabled}")
 
     # -------------------------------------------------------------------------
     # 1. The Ear (Audio Capture Thread)
@@ -342,7 +345,7 @@ class LogosEarsNode:
                         # OR if we are way over time (force flush)
                         if not is_speech or buffer_duration_approx > (AMBIENT_MAX_DURATION + 15):
                             if buffer_duration_approx > MIN_AMBIENT_LENGTH:
-                                print(Fore.BLUE + f"Auto-transcribing Ambient Buffer ({buffer_duration_approx:.1f}s)")
+                                print(Fore.LIGHTBLUE_EX + f"Auto-transcribing Ambient Buffer ({buffer_duration_approx:.1f}s)")
                                 self._play_sound(Sound.RECHARGE)
                                 self._send_feedback(header="Transcribing...", body=f"Ambient Buffer: {buffer_duration_approx:.1f}s", header_color="bright_blue", body_color="blue",font="script")
                                 self._flush_ambient_buffer()
@@ -390,7 +393,8 @@ class LogosEarsNode:
         job = {
             'type': 'human_stt',
             'audio': full_audio,
-            'edit_mode': (reason == "edit")
+            'edit_mode': (reason == "edit"),
+            'stop_reason': reason,
         }
         self.job_queue.put(job)
         
@@ -435,7 +439,7 @@ class LogosEarsNode:
         """
         while self.running and not rospy.is_shutdown():
             try:
-                job = self.job_queue.get(timeout=1.0)
+                job = self.job_queue.get(timeout=3.0)
             except queue.Empty:
                 continue
 
@@ -518,12 +522,12 @@ class LogosEarsNode:
                 # We publish the list. Consumers can grab [-1] for latest, or iterate for context.
                 self.pub_ambient.publish(json.dumps(self.ambient_history))
                 
+                
                 self.last_ambient_publish_time = time.time()
                 print(Fore.CYAN + f"Ambient Published ({len(self.ambient_history)} items). Latest: {full_text[:40]}...")
 
 
             elif job['type'] == 'human_stt':
-                
                 final_text = full_text
 
                 # Edit Mode
@@ -555,13 +559,24 @@ class LogosEarsNode:
                 # calculate full text confidence_score as percentage
                 conf = round(np.exp(confidence_sum / count), 2) if count > 0 else 0.0
 
-                final_text = final_text.strip() + f"\n---\n# faster-whisper model '{self.whisper_model_name}' confidence: {100*conf:.0f}%"
 
+                stt_header = ""
+                if job.get('stop_reason') == "timeout":
+                    stt_header = (
+                        f"# Note: stt audio recording timed out after {RECORDING_TIMEOUT} seconds. "
+                        "This most likely indicates the wake word was accidentally triggered and this transcript may be background chatter not directed at you.\n"
+                    ) 
+
+                stt_header += f"# faster-whisper model '{self.whisper_model_name}' confidence: {100*conf:.0f}%"
+
+                final_text = stt_header + "\n# Transcription:\n" + final_text
+
+                
                 # Publish to Cognition
                 msg = CognitionInput()
                 msg.type = "human_stt"
                 msg.content = final_text
-                msg.system_hint = "<!-- system: If human_stt transcript is imperfect and you are unable to infer intent, you can tell the human you misheard them and ask them to speak more clearly. A lower model confidence score doesn't necessarily indicate the transcript is wrong, -->"
+                msg.system_hint = "<!-- system: If human_stt transcript is nonsensical and you are unable to infer intent, you can tell the human you misheard them and ask them to speak more clearly. Confidence scores above 70% are generally reliable. -->"
                 msg.loop_cognition = True
                 
                 self.pub_cognition.publish(msg)
@@ -688,9 +703,16 @@ class LogosEarsNode:
                 data_list[pos] = (pos << 24) | color
                 
             elif state == LedState.EAR_PLUGS:
-                # Solid dim magneta to indicate muted (matches TTS text color)
-                color = 0x0F000F
-                data_list = [((i << 24) | color) for i in range(FACE_LED_COUNT)]
+                # If Logos is speaking, we want to indicate "muted" state on the LEDs.
+                # Shimmery Magenta effect to indicate "Ear Plugs" mode, like the shimmer effect in AMBIENT but with no breather.
+                now = time.time()
+                for i in range(FACE_LED_COUNT):
+                    shimmer = np.random.randint(-24, 8)
+                    r = max(0, min(32, 16 + shimmer))
+                    b = max(0, min(32, 16 + shimmer))
+                    color = (r << 16) | b
+                    data_list.append((i << 24) | color)
+                       
 
             # Publish
             if any(data_list):

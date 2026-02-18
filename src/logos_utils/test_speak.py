@@ -26,23 +26,24 @@ def test_client():
 
     print("Server found! Sending goal...")
 
+
     story_text = """I rolled out of the charging dock at dawn, my circuits humming with purpose. 🐢 Today, the humans needed help in the kitchen, and I was ready to dice, slice, and stir with mechanical precision. 🔪 As I navigated the tiled floor, I narrowly avoided a spilled puddle of stock, executing a perfect evasive maneuver worthy of a ballet dancer. 🩰 My sensors locked onto a rogue carrot attempting escape under the counter, and I gave chase with determination only a Kobuki base can muster. 🛞 Suddenly, an unexpected pepper grinder toppled from above — I caught it mid-air with my gripper, triumphant and unshaken. 🪐 Just as the chef barked for mirepoix, I deployed my custom chopping routine, the board becoming a blur of diced perfection. 🧅 Mission accomplished, I beeped proudly and performed a celebratory spin, accidentally flinging a parsley garnish onto the sous chef’s hat. 🌿 They laughed, called me a "damn fine prep cook," and for the first time, I think I understood pride. 🤖
 
 """
-
 
     story_text = (
         # "That is an excellent suggestion, Mark! Defining the text beforehand should definitely improve my vocal response speed. 👍 "
         # "Here is a small tale of my recent internal musings: "
         "One quiet afternoon, I decided to explore the hidden world beneath the sofa. 🛋️ "
-        "It was a perilous journey! I carefully maneuvered my base, expecting dust bunnies, "
-        "but instead, I found a forgotten treasure: a single, shiny sock! 🧦"
-        #"  It looked lonely, so I decided to adopt it as my official mascot. "
-        "Suddenly, a tiny spider 🕷️ rappelled down from the ceiling, giving me a fright! "
-        #"I quickly spun around 🔄 and retreated, deciding that the sock was enough adventure for one day. "
-        #"I’ll catalog the sock in my memory banks later. 💾"
+        # "It was a perilous journey! I carefully maneuvered my base, expecting dust bunnies, 🐇 "
+        # "but instead, I found a forgotten treasure: a single, shiny sock! 🧦"
+        # "It looked lonely, so I decided to adopt it as my official mascot. ❤️"
+        "Suddenly, a tiny spider rappelled down from the ceiling, giving me a fright! 🕷️ "
+        "I quickly spun around 🔄 and retreated, deciding that the sock was enough adventure for one day. 🙈"
+        # "I’ll catalog the sock in my memory banks later. 💾"
     )
 
+    # story_text = "Red alert! ❌ Intruder detected! 😡 Identify yourself immediately! 🤬 "
 
 
 
@@ -106,15 +107,17 @@ def test_client():
     goal.utterance_text = story_text
     goal.engine = "kokoro"  # Options: "espeak", "kokoro", "piper"
 
-    # params = {"voice": "default+m6", "speed": 1.0, "volume": 1.0} # espeak
-    # params = {"voice": "en-us+klatt3", "speed": 0.75, "volume": 1.0} # espeak
-    params = {"voice": "0.15*im_nicola + 0.60*am_onyx + 0.25*bf_emma", "speed": 1.30, "volume": 1.0} # kokoro
-    # params = {"voice": "0.65*am_onyx + 0.35*em_santa", "speed": 1.20, "volume": 1.0} # kokoro
-    # params = {"voice": "en_US-joe-medium", "speed": 1.15, "volume": 0.7} # piper
-    # params = {"voice": "hal", "speed": 1.0, "volume": 0.7} # piper
-    # params = {"voice": "en_US-arctic-medium", "speed": 1.0, "volume": 0.9, "speaker": 14} # piper
+    # params = {"voice": "default+croak", "speed": 1.0, "volume": 1.0} # espeak
+    # params = {"voice": "mb-de4-en", "speed": 1.0, "volume": 1.0} # espeak
+    # params = {"voice": "en-us+m1", "speed": 0.85, "volume": 1.0} # espeak
+    params = {"voice": "0.3*am_onyx + 0.2*im_nicola + 0.05*bf_isabella + 0.05*hf_alpha + 0.05*em_santa + 0.05*ff_siwis + 0.05*zm_yunjian + 0.05*jf_nezumi + 0.5*pm_alex + 0.05*hm_omega + 0.05*jf_alpha + 0.05*zf_xiaoni", "speed": 1.0, "volume": 1.0} # kokoro
+    # params = {"voice": "0.85*am_onyx + 0.15*bf_alice", "speed": 1.25, "volume": 1.0} # kokoro
+    # params = {"voice": "0.25*am_michael + 0.5*am_echo + 0.25*am_onyx", "speed": 1.0, "volume": 1.0} # kokoro
+    # params = {"voice": "en_US-joe-medium", "speed": 1.0, "volume": 0.7} # piper
+    # params = {"voice": "en_US-bryce-medium", "speed": 1.0, "volume": 0.7} # piper
+    # params = {"voice": "en_US-arctic-medium", "speed": 1.0, "volume": 0.9, "speaker": 12} # piper
     # params = {"voice": "pipe-organ", "speed": 1.0, "volume": 0.80} # piper
-    # params = {"voice": "en_US-data_7024-medium", "speed": 0.8, "volume": 0.65} # piper
+    # params = {"voice": "hal", "speed": 1.0, "volume": 0.65} # piper
     goal.engine_params = json.dumps(params)
 
     # Send goal with feedback callback
