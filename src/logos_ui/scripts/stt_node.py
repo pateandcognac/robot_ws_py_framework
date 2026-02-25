@@ -36,7 +36,7 @@ colorama_init(autoreset=True)
 SAMPLE_RATE = 16000
 FRAME_LENGTH = 512  # Porcupine prefers 512
 CHANNELS = 1
-DEVICE_NAME = 'pan_tilt_mic' # As defined in your sanity check
+DEVICE_NAME = 'pan_tilt_mic' 
 
 # Paths (Adjust as needed for your robot's layout)
 PORCUPINE_KEY = os.environ.get('PORCUPINE_VOICE_KEY')

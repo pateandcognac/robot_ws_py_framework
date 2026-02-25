@@ -7,6 +7,18 @@ import time
 import threading
 import string
 from pathlib import Path
+from datetime import datetime, timezone
+from typing import Any, Optional
+
+ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyz"
+
+# Epoch for photo IDs: Feb 8, 1977
+EPOCH = datetime(1977, 2, 8, tzinfo=timezone.utc)
+
+# Module-level state for per-second sequencing
+_last_second: Optional[int] = None
+_seq_in_second: int = 0
+
 
 class IOManager:
     """Handles thread-safe reading and writing to the agent's I/O files."""
@@ -25,54 +37,77 @@ class IOManager:
         self.keep_head = limits.get('truncate_keep_head', 4000)
         self.keep_tail = limits.get('truncate_keep_tail', 4000)
 
-        self._initialize_id_counter()
 
-    def _base36_encode(self, number, min_length=4):
-        """Converts an integer to a base36 string, zero-padded."""
-        alphabet = string.digits + string.ascii_lowercase
+    def base36_encode(number: int, min_length: int = 4) -> str:
+        """
+        Encode a non-negative integer as a zero-padded base36 string.
+
+        Args:
+            number: The integer to encode. Must be >= 0.
+            min_length: Minimum length of the returned string, left-padded
+                with '0' characters.
+
+        Returns:
+            A lowercase base36 string, at least `min_length` characters long.
+            Lexicographic sort == numeric sort when strings are same length.
+        """
+        if number < 0:
+            raise ValueError("Cannot encode negative numbers")
         if number == 0:
-            return '0'.zfill(min_length)
-        base36 = ''
-        while number != 0:
-            number, i = divmod(number, 36)
-            base36 = alphabet[i] + base36
-        return base36.zfill(min_length)
+            return "0" * min_length
 
-    def _initialize_id_counter(self):
-        """Reads the last message ID from the history file to set the counter."""
-        with self._lock:
-            if not self.history_file.exists():
-                self.id_counter = 0
-                rospy.loginfo("IOManager: History file not found. Starting message ID from 0.")
-                return
+        chars = []
+        while number:
+            chars.append(ALPHABET[number % 36])
+            number //= 36
+        result = "".join(reversed(chars))
+        return result.rjust(min_length, "0")
 
-            try:
-                with open(self.history_file, 'rb') as f:
-                    f.seek(0, os.SEEK_END)
-                    if f.tell() == 0:
-                        self.id_counter = 0
-                        return
 
-                    f.seek(-2, os.SEEK_END)
-                    while f.read(1) != b'\n':
-                        if f.tell() < 3:
-                           f.seek(0, os.SEEK_SET)
-                           break
-                        f.seek(-2, os.SEEK_CUR)
-                    
-                    last_line = f.readline().decode('utf-8')
-                    last_msg = json.loads(last_line)
-                    last_id_str = last_msg.get('id', 'msg-0').split('-')[-1]
-                    self.id_counter = int(last_id_str, 36) + 1
-                    rospy.loginfo(f"IOManager: Resuming message ID from {self.id_counter} (last was {last_id_str}).")
+    def make_time_id(prefix: str = "", now: Optional[datetime] = None) -> str:
+        """
+        Generate a time-based, 7-character, base36 ID with optional prefix, e.g. "sum-", "msg-"
 
-            except Exception as e:
-                rospy.logerr(f"IOManager: Failed to initialize ID counter from history file: {e}. Starting from 0.")
-                self.id_counter = 0
+        Format: 6 chars of seconds-since-epoch (base36) + 1 char burst sequence.
+        Lexicographic sort == chronological sort, including bursts within the
+        same second.
+
+        Args:
+            now: Optional datetime for testing. Defaults to UTC now.
+
+        Returns:
+            A 7-character string like "0a3f2x0".
+
+        Note to self:
+            6 base36 chars covers ~69 years from the 2025-01-01 epoch.
+            The burst digit supports up to 36 captures per second before
+            wrapping. More than enough for our camera cadence.
+        """
+        global _last_second, _seq_in_second
+
+        if now is None:
+            now = datetime.now(timezone.utc)
+
+        delta = now - EPOCH
+        second = int(delta.total_seconds())
+
+        # Update per-second sequence counter
+        if _last_second is None or second != _last_second:
+            _last_second = second
+            _seq_in_second = 0
+        else:
+            _seq_in_second = (_seq_in_second + 1) % len(ALPHABET)
+
+        ts_part = IOManager.base36_encode(second, min_length=6)
+        seq_part = ALPHABET[_seq_in_second]
+
+        return f"{prefix}{ts_part}{seq_part}"
+
+
 
     def append_message(self, msg_type: str, content: str, filename: str = None):
         with self._lock:
-            msg_id = f"msg-{self._base36_encode(self.id_counter)}"
+            msg_id = f"msg-{IOManager.make_time_id()}"
             self.id_counter += 1
 
             divisor = self.framework_config.get('context', {}).get('token_estimation_divisor', 5)

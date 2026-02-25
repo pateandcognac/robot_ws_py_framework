@@ -278,6 +278,8 @@ class CognitionNode:
             all_io_buffer_matches = list(file_tag_pattern.finditer(io_buffer_str))
             matches_to_keep = all_io_buffer_matches[-max_images_to_process:]
             tags_to_keep = {match.group(0) for match in matches_to_keep}
+            rospy.loginfo(f"Keeping {len(tags_to_keep)} images out of {len(all_io_buffer_matches)} found in IO buffer.")
+
 
             def selective_replacer(match):
                 full_tag_text = match.group(0)

@@ -1,7 +1,7 @@
 # Goal: What Logos wants to say and how to say it
 string utterance_text  # The full string with inline emoji, e.g., "Hello! 👋 I'm curious! 🤔"
-string engine          # "kokoro" (default), add piper, espeak, festival later
-string engine_params   # JSON string of engine specific parameters, e.g. '{"voice": "am_onyx", "speed": 1.1}'
+string engine          # "kokoro" (default), piper, espeak. add festival later? what else!?
+string engine_params   # JSON string of engine specific parameters, e.g. '{"voice": "am_onyx", "speed": 1.2}'
 ---
 # Result: Outcome of the entire speech action
 bool success             
