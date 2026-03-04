@@ -20,10 +20,12 @@ class ConfigManager:
         try:
             framework_path = self.workspace_path / ".system" / "framework_config.json"
             prompt_path = self.workspace_path / ".system" / "system_prompt.txt"
+            output_format_path = self.workspace_path / ".system" / "output_format.py"
             with open(framework_path, 'r') as f: self.framework = json.load(f)
             with open(prompt_path, 'r') as f: self.system_prompt = f.read()
+            with open(output_format_path, 'r') as f: self.output_format = f.read()
 
-            my_config_path = self.workspace_path / "state" / "my_config.yaml"
+            my_config_path = self.workspace_path / "config" / "my_config.yaml"
             if my_config_path.exists():
                 with open(my_config_path, 'r') as f: self.my_config = yaml.load(f)
             else:
@@ -35,11 +37,14 @@ class ConfigManager:
             agent_settings = self.framework.get('agent_settings', {})
             context_settings = self.framework.get('context', {})
 
-            self.system_prompt = self.system_prompt.replace('{{header_name}}', context_settings.get('header_name', ''))
-            self.system_prompt = self.system_prompt.replace('{{footer_name}}', context_settings.get('footer_name', ''))
+            self.system_prompt = self.system_prompt.replace('{{header_name}}', context_settings.get('header_name', 'header'))
+            self.system_prompt = self.system_prompt.replace('{{footer_name}}', context_settings.get('footer_name', 'footer'))
+            self.system_prompt = self.system_prompt.replace('{{io_buffer_name}}', context_settings.get('io_buffer_name', 'io_buffer'))
             self.system_prompt = self.system_prompt.replace('{{workspace_name}}', workspace_name)
             self.system_prompt = self.system_prompt.replace('{{global_max_io_buffer_media}}', str(agent_settings.get('global_max_io_buffer_media', 'N/A')))
-            
+            self.system_prompt = self.system_prompt.replace('{{output_format}}', self.output_format)
+            # print(self.system_prompt)
+
             rospy.loginfo("ConfigManager: System prompt templating complete.")
 
             rospy.loginfo("ConfigManager: All configurations loaded successfully.")

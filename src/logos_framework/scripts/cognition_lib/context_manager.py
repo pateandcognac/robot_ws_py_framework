@@ -21,15 +21,15 @@ class ContextManager:
         """
         rospy.loginfo("ContextManager: Initializing...")
         self.workspace_path = workspace_path
-        self.state_path = self.workspace_path / "state"
+        self.config_path = self.workspace_path / "config"
         self.config = config
         self._lock = threading.RLock()
 
         # Get header/footer names from config
         self.header_name = self.config['header_name']
         self.footer_name = self.config['footer_name']
-        self.header_config_path = self.state_path / f"{self.header_name}_config.yaml"
-        self.footer_config_path = self.state_path / f"{self.footer_name}_config.yaml"
+        self.header_config_path = self.config_path / f"{self.header_name}_config.yaml"
+        self.footer_config_path = self.config_path / f"{self.footer_name}_config.yaml"
 
         # In-memory representation of hooks and their cached outputs
         self.header_hooks = []

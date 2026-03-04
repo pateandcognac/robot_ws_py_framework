@@ -38,15 +38,29 @@ FRAME_LENGTH = 512  # Porcupine prefers 512
 CHANNELS = 1
 DEVICE_NAME = 'pan_tilt_mic' 
 
-# Paths (Adjust as needed for your robot's layout)
+# Paths
 PORCUPINE_KEY = os.environ.get('PORCUPINE_VOICE_KEY')
 KW_PATH = os.path.expanduser('~/robot_ws/porcupine/')
-KEYWORD_PATHS = [
-    f'{KW_PATH}Hey-Robot_en_linux_v3_0_0.ppn',   # Index 0: Wake
-    f'{KW_PATH}end-of-line_en_linux_v3_0_0.ppn', # Index 1: Stop
-    f'{KW_PATH}edit-input_en_linux_v3_0_0.ppn'   # Index 2: Edit
+
+WAKE_KEYWORD_PATH = f'{KW_PATH}Hey-Robot_en_linux_v3_0_0.ppn'
+CONTROL_KEYWORD_PATHS = [
+    f'{KW_PATH}end-of-line_en_linux_v3_0_0.ppn',  # index 0 in controls
+    f'{KW_PATH}edit-input_en_linux_v3_0_0.ppn'    # index 1 in controls
 ]
-KEYWORDS = ['Hey-Robot', 'end-of-line', 'edit-input']
+
+# Ambient built-ins (Porcupine defaults you listed)
+AMBIENT_BUILTIN_KEYWORDS = [
+    'view glass', 'grasshopper', 'snowboy', 'hey google', 'hey siri', 'alexa',
+    'porcupine', 'terminator', 'pico clock', 'smart mirror', 'jarvis', 'computer',
+    'ok google', 'picovoice', 'blueberry', 'hey barista', 'bumblebee', 'americano',
+    'grapefruit'
+]
+
+# Optional: VAD-gate ambient built-in hotwords (never gates hey-robot)
+GATE_AMBIENT_BUILTINS_WITH_VAD = False
+
+# Hotword debounce
+HOTWORD_DEBOUNCE_SEC = 0.0
 
 # Timers (Seconds)
 AMBIENT_MAX_DURATION = 120    # 2 minutes hard cap for buffer
@@ -63,11 +77,13 @@ AMBIENT_HISTORY_MAX_CHARS = 20000 # Max characters before oldest is dropped
 
 class LedState:
     IDLE = 0
-    AMBIENT = 1
-    RECORDING = 2
-    TRANSCRIBING = 3
-    EDIT_INPUT = 4
-    EAR_PLUGS = 5
+    AMBIENT_TRANSCRIBE = 1   # Ambient transcription only (dark blue breather)
+    AMBIENT_HOTWORD = 2      # Default hotword listening only (dark green breather)
+    AMBIENT_BOTH = 3         # Both active (blue <-> green crossfade, always lit)
+    RECORDING = 4
+    TRANSCRIBING = 5
+    EDIT_INPUT = 6
+    EAR_PLUGS = 7
 
 # -----------------------------------------------------------------------------
 # The Node Class
@@ -81,6 +97,7 @@ class LogosEarsNode:
         self.state_lock = threading.Lock()
         self.is_speaking = False         # From TTS
         self.ambient_enabled = False     # From external topic
+        self.hotword_enabled = False     # From external topic
         self.current_state = LedState.IDLE
         self.last_ambient_publish_time = 0
 
@@ -128,17 +145,40 @@ class LogosEarsNode:
 
     def _init_models(self):
         print(Fore.CYAN + "Loading Models...")
-        
-        # Porcupine
+
         if not PORCUPINE_KEY:
             raise ValueError("PORCUPINE_VOICE_KEY not set!")
-        self.porcupine = pvporcupine.create(
-            access_key=PORCUPINE_KEY, 
-            keyword_paths=KEYWORD_PATHS, # 0: Wake, 1: EOL, 2: Edit
-            sensitivities=[0.15, 1.0, 0.75] # 0 to 1. 0=more discriminatory, 1=more false positives
+
+        # 1) Wake only (always-on)
+        self.porcupine_wake = pvporcupine.create(
+            access_key=PORCUPINE_KEY,
+            keyword_paths=[WAKE_KEYWORD_PATH],
+            sensitivities=[0.15]
         )
+
+        # 2) Controls only (only processed during recording)
+        self.porcupine_controls = pvporcupine.create(
+            access_key=PORCUPINE_KEY,
+            keyword_paths=CONTROL_KEYWORD_PATHS,
+            sensitivities=[1.0, 0.75]
+        )
+
+        # 3) Ambient built-ins (only processed in ambient mode)
+        # Note: built-ins must be provided via keywords= (not keyword_paths=)
+        self.porcupine_builtins = pvporcupine.create(
+            access_key=PORCUPINE_KEY,
+            keywords=AMBIENT_BUILTIN_KEYWORDS,
+            sensitivities=[0.5] * len(AMBIENT_BUILTIN_KEYWORDS)
+        )
+
+        print(f"Porcupine WAKE: ['hey-robot']")
+        print(f"Porcupine CONTROLS: ['end-of-line', 'edit-input']")
+        print(f"Porcupine AMBIENT BUILT-INS: {AMBIENT_BUILTIN_KEYWORDS}")
+        print(f"All available built-ins (package): {pvporcupine.KEYWORDS}")
+
+        # --- NEW: hotword debounce bookkeeping
+        self._last_hotword_time = {}
         
-        print(f"Porcupine KEYWORDS:\nCustom:{KEYWORDS}\nBuilt-in:{pvporcupine.KEYWORDS}")
 
 
         # Silero VAD
@@ -167,12 +207,13 @@ class LogosEarsNode:
         self.pub_led = rospy.Publisher('/face/rgbled', Int32MultiArray, queue_size=10)
         self.pub_sound = rospy.Publisher('/mobile_base/commands/sound', Sound, queue_size=1)
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
-        
+        self.pub_hotword_detections = rospy.Publisher('/stt/hotword_listener/detections', String, queue_size=10)
 
 
         # Subscribers
         rospy.Subscriber('/tts/is_speaking', Bool, self._cb_is_speaking)
         rospy.Subscriber('/stt/ambient_listener/enable', Bool, self._cb_ambient_enable)
+        rospy.Subscriber('/stt/hotword_listener/enable', Bool, self._cb_hotword_enable)
 
         # Kobuki Sound Helper
         self.sound_msg = Sound()
@@ -191,14 +232,21 @@ class LogosEarsNode:
                 self.current_state = LedState.EAR_PLUGS
             elif not self.is_speaking and previous_speaking:
                 # Returning to normal
-                self.current_state = LedState.AMBIENT if self.ambient_enabled else LedState.IDLE
+                self.current_state = self._resolve_ambient_led_state()
 
     def _cb_ambient_enable(self, msg):
         with self.state_lock:
             self.ambient_enabled = msg.data
-            if not self.is_speaking and self.current_state != LedState.RECORDING:
-                self.current_state = LedState.AMBIENT if self.ambient_enabled else LedState.IDLE
+            if not self.is_speaking and self.current_state not in (LedState.RECORDING, LedState.TRANSCRIBING):
+                self.current_state = self._resolve_ambient_led_state()
             print(Fore.LIGHTBLUE_EX + f"Ambient Listener: {self.ambient_enabled}")
+
+    def _cb_hotword_enable(self, msg):
+        with self.state_lock:
+            self.hotword_enabled = msg.data
+            if not self.is_speaking and self.current_state not in (LedState.RECORDING, LedState.TRANSCRIBING):
+                self.current_state = self._resolve_ambient_led_state()
+            print(Fore.LIGHTGREEN_EX + f"Hotword Listener: {self.hotword_enabled}")
 
     # -------------------------------------------------------------------------
     # 1. The Ear (Audio Capture Thread)
@@ -263,17 +311,13 @@ class LogosEarsNode:
                 continue
 
             # --- Pre-processing ---
-            # Porcupine expects linear PCM (16-bit)
-            # Silero expects float32
             pcm_float32 = pcm_int16.astype(np.float32) / 32768.0
 
-            # 1. Check Wake Words
-            # Index 0: Hey-Robot, 1: end-of-line, 2: edit-input
-            keyword_index = self.porcupine.process(pcm_int16)
+            # 1) Wake word (always-on, ungated)
+            wake_idx = self.porcupine_wake.process(pcm_int16)  # 0 => hey-robot, -1 => none
+            wake_detected = (wake_idx == 0)
 
-            # 2. Check VAD (Voice Activity Detection)
-            # Returns confidence 0.0 - 1.0. We use 0.5 threshold.
-            # Torch tensor overhead is small enough here for 512 frames
+            # 2) VAD
             vad_prob = self.vad_model(torch.from_numpy(pcm_float32), SAMPLE_RATE).item()
             is_speech = vad_prob > 0.5
             self.is_speech_detected = is_speech
@@ -281,52 +325,79 @@ class LogosEarsNode:
             # --- State Machine ---
             with self.state_lock:
                 state = self.current_state
+                ambient_enabled = self.ambient_enabled
 
-            # --- RECORDING STATE (Direct Input) ---
+            # --- RECORDING STATE ---
             if state == LedState.RECORDING:
                 self.recording_buffer.append(pcm_float32)
-                
-                # Check Timeout
+
+                # Check timeout
                 if (time.time() - self.recording_start_time) > RECORDING_TIMEOUT:
                     print(Fore.RED + "Recording Timeout Reached.")
                     self._finish_recording(reason="timeout")
                     continue
 
-                # Check Stop Words
-                if keyword_index == 1: # end-of-line
+                # Only now do we pay for control hotwords
+                ctrl_idx = self.porcupine_controls.process(pcm_int16)  # 0 => eol, 1 => edit, -1 none
+
+                if ctrl_idx == 0:
                     print(Fore.GREEN + "Stop Word: end-of-line")
+                    self._publish_hotword("end-of-line")
                     self._play_sound(Sound.OFF)
                     self._finish_recording(reason="normal")
-                elif keyword_index == 2: # edit-input
+
+                elif ctrl_idx == 1:
                     print(Fore.YELLOW + "Stop Word: edit-input")
+                    self._publish_hotword("edit-input")
                     self._play_sound(Sound.OFF)
                     self._finish_recording(reason="edit")
 
-            # --- AMBIENT / IDLE STATE ---
+                continue  # keep recording unless stop/timeout handled
+
+            # --- AMBIENT / IDLE ---
             else:
-                # Check "Hey-Robot" (Wake up)
-                if keyword_index == 0:
+                # Wake -> publish + proceed (always-on, regardless of listening state)
+                if wake_detected:
                     print(Fore.MAGENTA + "Wake Word: Hey-Robot detected!")
+                    self._publish_hotword("hey-robot")
                     self._play_sound(Sound.ON)
-                    
-                    # === THE CONTEXT FLUSH ===
-                    # If we have ambient data, send it to scribe NOW.
-                    if self.ambient_buffer and self.ambient_enabled:
-                         print(Fore.CYAN + "Flushing Ambient Context...")
-                         self._flush_ambient_buffer(wake_trigger=True)
-                    
-                    # Switch to Recording
+
+                    if self.ambient_buffer and ambient_enabled:
+                        print(Fore.CYAN + "Flushing Ambient Context...")
+                        self._flush_ambient_buffer(wake_trigger=True)
+
                     with self.state_lock:
                         self.current_state = LedState.RECORDING
-                        self._send_feedback(header="Listening...", body="    Say END-OF-LINE to finish.\n    Say EDIT-INPUT to edit transcript.", header_color="bright_green", body_color="bright_white", font="slant")
+                        self._send_feedback(
+                            header="Listening...",
+                            body="    Say END-OF-LINE to finish.\n    Say EDIT-INPUT to edit transcript.",
+                            header_color="bright_green",
+                            body_color="bright_white",
+                            font="slant",
+                        )
                     self.recording_buffer = []
                     self.recording_start_time = time.time()
                     continue
 
-                # Ambient Listening Logic
-                if self.ambient_enabled and state != LedState.EAR_PLUGS:
-                    # Only append if speech is detected (VAD)
-                    # This filters out silence and fan noise
+                # Read hotword_enabled under lock
+                with self.state_lock:
+                    hotword_enabled = self.hotword_enabled
+
+                # Ambient built-in hotwords: ONLY when hotword_enabled (independent of transcription)
+                if hotword_enabled:
+                    should_check_builtins = True
+                    if GATE_AMBIENT_BUILTINS_WITH_VAD and not is_speech:
+                        should_check_builtins = False
+
+                    if should_check_builtins:
+                        builtin_idx = self.porcupine_builtins.process(pcm_int16)
+                        if builtin_idx >= 0:
+                            detected = AMBIENT_BUILTIN_KEYWORDS[builtin_idx]
+                            print(Fore.LIGHTGREEN_EX + f"Hotword Detection: {detected}")
+                            self._publish_hotword(detected)
+
+                # Ambient transcription buffering: ONLY when ambient_enabled (independent of hotwords)
+                if ambient_enabled:
                     if is_speech:
                         self.ambient_buffer.append(pcm_float32)
 
@@ -405,13 +476,39 @@ class LogosEarsNode:
         # No, let's reset state in the Scribe to keep "Transcribing" LED active.
         pass 
 
+    def _publish_hotword(self, word: str) -> None:
+        now = time.time()
+        last = self._last_hotword_time.get(word, 0.0)
+        if (now - last) < HOTWORD_DEBOUNCE_SEC:
+            return
+
+        self._last_hotword_time[word] = now
+        try:
+            self.pub_hotword_detections.publish(String(data=word))
+        except Exception as e:
+            rospy.logwarn(f"Failed to publish hotword '{word}': {e}")
+
     def _reset_state(self):
         with self.state_lock:
-            self.current_state = LedState.AMBIENT if self.ambient_enabled else LedState.IDLE
+            self.current_state = self._resolve_ambient_led_state()
 
     def _play_sound(self, val):
         self.sound_msg.value = val
         self.pub_sound.publish(self.sound_msg)
+
+    def _resolve_ambient_led_state(self):
+        """
+        Determine the correct LED state based on ambient_enabled and hotword_enabled.
+        Call under state_lock or when you know the flags are stable.
+        """
+        if self.ambient_enabled and self.hotword_enabled:
+            return LedState.AMBIENT_BOTH
+        elif self.ambient_enabled:
+            return LedState.AMBIENT_TRANSCRIBE
+        elif self.hotword_enabled:
+            return LedState.AMBIENT_HOTWORD
+        else:
+            return LedState.IDLE
 
     def _send_feedback(self, header, body="", sound_path=None, header_color="cyan", body_color="white", font="standard"):
         """Helper to send feedback state to the UI/Subtitler."""
@@ -629,35 +726,48 @@ class LogosEarsNode:
                 # Dim or Off
                 pass 
                 
-            elif state == LedState.AMBIENT:
+            elif state in (LedState.AMBIENT_TRANSCRIBE, LedState.AMBIENT_HOTWORD, LedState.AMBIENT_BOTH):
                 now = time.time()
                 
-                # 1. Base Breather (The slow pulse)
-                breath = int((np.sin(now * 2) + 1) * 32)
+                # 1. Base Breather Phase (shared sine wave)
+                breath_phase = (np.sin(now * 2) + 1) / 2.0  # 0.0 -> 1.0
+
+                # 2. Determine base color from state
+                if state == LedState.AMBIENT_TRANSCRIBE:
+                    # Dark blue breather to off
+                    base_r, base_g, base_b = 0, 0, int(breath_phase * 32)
+                elif state == LedState.AMBIENT_HOTWORD:
+                    # Dark green breather to off
+                    base_r, base_g, base_b = 0, int(breath_phase * 32), 0
+                else:
+                    # AMBIENT_BOTH: Smooth crossfade between blue and green, always lit.
+                    # Use a slower oscillation so the color shift is distinct from the brightness pulse.
+                    color_phase = (np.sin(now * 0.8) + 1) / 2.0  # 0.0 (green) -> 1.0 (blue)
+                    # Brightness never drops to zero — floor at ~50% intensity
+                    brightness = 0.5 + 0.5 * breath_phase
+                    base_r = 0
+                    base_g = int((1.0 - color_phase) * brightness * 32)
+                    base_b = int(color_phase * brightness * 32)
                 
-                # 2. Check VAD (Reactive Shimmer)
-                # Is the brain currently hearing speech?
+                # 3. Check VAD (Reactive Shimmer)
                 is_hearing_speech = getattr(self, 'is_speech_detected', False)
                 
-                # 3. Check Transcription Blip (Happens for 3 seconds after publish)
+                # 4. Check Transcription Blip (Happens for 3 seconds after publish)
                 time_since_publish = now - self.last_ambient_publish_time
                 is_blipping = time_since_publish < 3
 
                 data_list = []
                 for i in range(FACE_LED_COUNT):
-                    # Default Blue channel
-                    r, g, b = 0, 0, breath
+                    r, g, b = base_r, base_g, base_b
                     
                     # If hearing speech: Add a "Shimmer" effect
                     if is_hearing_speech:
-                        # Randomly flicker the brightness of this specific LED
-                        shimmer = np.random.randint(-10, 15)
-                        b = max(5, min(60, b + shimmer))
-                        g = max(0, shimmer // 2) # Add a hint of Cyan to the shimmer
+                        shimmer = np.random.randint(-30, 15)
+                        b = max(5, min(80, b + shimmer))
+                        g = max(0, min(80, g + shimmer // 2))
                     
                     # If just transcribed: Add a traveling Cyan pulse
                     if is_blipping:
-                        # Create a "comet" effect based on time
                         pos = int(now * 15) % FACE_LED_COUNT
                         if i == pos:
                             r, g, b = 0, 32, 32 # Cyan blip
@@ -734,3 +844,19 @@ if __name__ == '__main__':
         pass
     except KeyboardInterrupt:
         pass
+
+"""
+ROS Topics Summary:
+  Publishers:
+    /cognition/input          (CognitionInput)   - STT transcription results
+    /stt/ambient_listener/transcription (String)  - Ambient transcription history (latched)
+    /stt/hotword_listener/detections    (String)  - All hotword detections (not latched)
+    /face/rgbled              (Int32MultiArray)   - LED control
+    /mobile_base/commands/sound (Sound)           - Kobuki sounds
+    /cognition/output         (CognitionOutput)   - Feedback messages
+
+  Subscribers:
+    /tts/is_speaking          (Bool)  - Global ear plug
+    /stt/ambient_listener/enable (Bool) - Enable/disable ambient transcription
+    /stt/hotword_listener/enable (Bool) - Enable/disable default hotword detection
+"""

@@ -25,6 +25,9 @@ class IOManager:
     def __init__(self, workspace_path: Path, framework_config: dict):
         state_path = workspace_path / "state"
         state_path.mkdir(exist_ok=True)
+
+         # = self.framework_config.get('context', {})
+
         self.history_file = state_path / "io_history.jsonl"
         self.buffer_file = state_path / "io_buffer.jsonl"
         self._lock = threading.Lock()

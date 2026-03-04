@@ -151,7 +151,7 @@ class CognitionNode:
             if msg.loop_cognition:
                 should_start_cognition = True
             
-            default_system_hint = "<!-- system: Logos, please prepare your response. Wrap your output in <me> tags for proper parsing. -->\n\n<me>"
+            default_system_hint = "\n<!-- system: Logos, please prepare your response. Wrap your output in <me><py> tags for proper parsing. -->"
             if msg.system_hint:
                 self.last_received_system_hint = msg.system_hint + "\n" + default_system_hint
             else:
@@ -233,7 +233,7 @@ class CognitionNode:
                     return f'<{section_name}>\n{content_str.strip()}\n</{section_name}>'
 
             elif section_type == 'io_buffer':
-                section_name = 'io_buffer'
+                section_name = cfg.get('io_buffer_name', 'io_buffer')
                 show_stats = cfg.get('show_io_buffer_stats', False)
                 show_cell_stats = cfg.get('show_io_cell_stats', False)
 

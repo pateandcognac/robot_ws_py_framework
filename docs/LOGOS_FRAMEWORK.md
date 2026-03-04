@@ -2,7 +2,7 @@
 
 ROS package that wires together the cognition loop used by the Logos agent. It exposes custom messages, multiple ROS nodes, and a browser- as well as terminal-based UI so that human input, LLM output, and background Python execution can cooperate.
 
-The framework expects a writable *workspace* directory (passed in via the `~workspace_path` ROS parameter) that contains `.system/` configuration files and a `state/` directory for runtime artifacts.
+The framework expects a writable *workspace* directory (passed in via the `~workspace_path` ROS parameter) that contains `.system/` configuration files and a `config/` directory for runtime artifacts.
 
 ## Directory Map
 
@@ -42,7 +42,7 @@ Published on `/cognition/output` by the cognition node. Fields:
 ### `cognition_node.py`
 Main orchestration node. Key components:
 
-- **`ConfigManager`** loads `.system/framework_config.json`, `.system/system_prompt.txt`, and `state/my_config.yaml`, applies templating, and exposes agent, context, and model settings.
+- **`ConfigManager`** loads `.system/framework_config.json`, `.system/system_prompt.txt`, and `config/my_config.yaml`, applies templating, and exposes agent, context, and model settings.
 - **`IOManager`** keeps thread-safe history (`state/io_history.jsonl`) and prompt buffer (`state/io_buffer.jsonl`). Messages are truncated according to `io_safety_limits` and assigned Base36 IDs.
 - **`ContextManager`** reads header/footer hook YAML files, tracks TTL-based execution rules (`ttl>0` re-run each cycle, `<0` cached, `99/-99` pinned), and persists updates back to disk.
 - **Prompt assembly** stitches together header hooks, IO buffer, footer hooks, and the system hint. `<file path="...">` tags trigger inline image embedding with configurable caps (`global_max_io_buffer_media` vs. per-user overrides).
@@ -98,7 +98,7 @@ Lightweight terminal interface using `urwid`.
 ## Launching & Runtime Notes
 
 1. Ensure `GEMINI_API_KEY` is exported in the environment (the cognition node aborts otherwise).
-2. Prepare a workspace: `~/robot_workspaces/<name>/.system/framework_config.json`, `.system/system_prompt.txt`, and `state/` with hook YAML files (`<header_name>_config.yaml`, `<footer_name>_config.yaml`).
+2. Prepare a workspace: `~/robot_workspaces/<name>/.system/framework_config.json`, `.system/system_prompt.txt`, and `config/` with hook YAML files (`<header_name>_config.yaml`, `<footer_name>_config.yaml`).
 3. Start the stack:
    ```bash
    roslaunch logos_framework start_framework.launch workspace:=Logos
