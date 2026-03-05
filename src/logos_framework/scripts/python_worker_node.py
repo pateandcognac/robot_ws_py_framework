@@ -437,11 +437,11 @@ class PythonWorkerNode:
 
         if self.error_streak > 0:
             if self.error_streak == 1:
-                response_msg.system_hint = "<!-- system: Error detected during execution. Adjust your level of retries and debugging to the situational context. -->"
+                response_msg.system_hint = "<!-- system: Error detected during execution. Depending on the context of the current moment, this may be something you can ignore, and/or note for later. Adapt intelligently to the situation. -->"
             elif self.error_streak >= 2:
-                response_msg.system_hint = "<!-- system: Consecutive errors detected. Adjust your level of retries and debugging to the situational context. -->"
+                response_msg.system_hint = "<!-- system: Consecutive errors detected. Depending on the context of the current moment, this may be something you can ignore, and/or note for later. Adapt intelligently to the situation. -->"
             elif self.error_streak >= 3:
-                response_msg.system_hint = "<!-- system: Multiple consecutive errors detected. Pause. Deep breath. Take a step back. Review. Consider a different approach, asking for help, moving on, or a python reset. Avoid entering an infinite debug loop. And most importantly, don't stress out about it! ;) -->"
+                response_msg.system_hint = "<!-- system: Multiple consecutive errors detected. Pause. Deep breath. Take a step back. Review. Consider a different approach, asking for help, moving on, or a python reset. *Avoid entering a debug loop.* And most importantly, don't stress out about it! -->"
             
 
         self.input_pub.publish(response_msg)
