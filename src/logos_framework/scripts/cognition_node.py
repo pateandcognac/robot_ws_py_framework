@@ -114,11 +114,6 @@ class CognitionNode:
             hook_name = msg.filename
             if hook_name:
                 self.context_results[hook_name] = msg.content
-                hook_config = next((s for s in self.context.header_hooks + self.context.footer_hooks if s['name'] == hook_name), None)
-                if hook_config and hook_config.get('ttl', 0) < 0:
-                    self.context.cached_output[hook_name] = msg.content
-                    rospy.loginfo(f"Cached output for '{hook_name}'.")
-
                 self.context_requests_pending -= 1
                 if self.context_requests_pending <= 0:
                     self.context_gathering_complete.set()
@@ -200,6 +195,42 @@ class CognitionNode:
         except Exception as e:
             rospy.logerr(f"Failed to create or publish UI state: {e}")
 
+    def _format_hook_name_list(self, hook_names: list) -> str:
+            """Formats hook names for the empty-output summary line."""
+            if not hook_names:
+                return ""
+            if len(hook_names) == 1:
+                return hook_names[0]
+            if len(hook_names) == 2:
+                return f"{hook_names[0]} and {hook_names[1]}"
+            return f"{', '.join(hook_names[:-1])}, and {hook_names[-1]}"
+
+    def _build_hook_section_content(self, items: list, divisor: int) -> tuple[str, int]:
+            """Builds hook section content and summarizes hooks that returned only whitespace."""
+            non_empty_chunks = []
+            empty_hook_names = []
+            total_tokens = 0
+
+            for item in items:
+                hook_name = item['config'].get('name', 'unnamed')
+                content = item['content']
+                total_tokens += len(content) // divisor
+
+                if content.strip():
+                    non_empty_chunks.append(f'<{hook_name}>\n{content}\n</{hook_name}>')
+                else:
+                    empty_hook_names.append(hook_name)
+
+            section_chunks = []
+            if empty_hook_names:
+                hook_label = "Hook" if len(empty_hook_names) == 1 else "Hooks"
+                section_chunks.append(
+                    f"# {hook_label} {self._format_hook_name_list(empty_hook_names)} produced no output."
+                )
+            section_chunks.extend(non_empty_chunks)
+
+            return "\n\n".join(section_chunks), total_tokens
+
     def _format_prompt_section(self, section_type: str, items: list) -> str:
             """Helper to format a section (header, footer, io_buffer) for the prompt."""
             if not items:
@@ -214,18 +245,7 @@ class CognitionNode:
             if section_type in ['header', 'footer']:
                 section_name = cfg.get(f'{section_type}_name', section_type)
                 show_stats = cfg.get(f'show_{section_type}_stats', False)
-                show_ttl = cfg.get('show_hook_ttl', False)
-
-                for item in items:
-                    hook_name = item['config'].get('name', 'unnamed')
-                    content = item['content']
-                    ttl = item['config'].get('ttl', 0)
-                    token_count = len(content) // divisor
-                    total_tokens += token_count
-                    if show_ttl:
-                        content_str += f'<{hook_name} ttl="{ttl}">\n{content}\n</{hook_name}>\n\n'
-                    else:
-                        content_str += f'<{hook_name}>\n{content}\n</{hook_name}>\n\n'
+                content_str, total_tokens = self._build_hook_section_content(items, divisor)
                 
                 if show_stats:
                     return f'<{section_name} hooks="{len(items)}" tokens="{total_tokens}">\n{content_str.strip()}\n</{section_name}>'
@@ -364,14 +384,14 @@ class CognitionNode:
                     rospy.loginfo("State transition to AWAITING_RESPONSE. Assembling prompt.")
                 
                 header_hooks_data = []
-                for s in self.context.header_hooks:
-                    content = self.context_results.get(s['name'], self.context.cached_output.get(s.get('name')))
+                for s in header_to_run:
+                    content = self.context_results.get(s['name'])
                     if content is not None:
                         header_hooks_data.append({'config': s, 'content': content})
 
                 footer_hooks_data = []
-                for s in self.context.footer_hooks:
-                    content = self.context_results.get(s['name'], self.context.cached_output.get(s.get('name')))
+                for s in footer_to_run:
+                    content = self.context_results.get(s['name'])
                     if content is not None:
                         footer_hooks_data.append({'config': s, 'content': content})
 
@@ -500,7 +520,6 @@ class CognitionNode:
                 self.output_pub.publish(final_output)
             
             finally:
-                self.context.update_and_save_configs()
                 with self.state_lock:
                     self.state = CognitionState.IDLE
                 rospy.loginfo("--- Cognition Cycle Finished. State reset to IDLE. ---")

@@ -110,47 +110,172 @@ class EmotivePlaybackNode:
     def publish_animation(self, animation, duration):
         """
         Publishes facial animation commands based on frames.
-        Stretches/squashes animation to fit 'duration'.
+
+        Behavior:
+        - If duration < 2.0s:
+            Stretch the whole animation across the whole duration (original behavior).
+        - If duration >= 2.0s:
+            Loop NON-mouth frames in cycles of roughly 2-3 seconds until duration is filled.
+            MouthSine remains scaled to the full duration, not the loop duration.
         """
         if not animation:
             return
 
-        # Safety for division by zero
         if duration <= 0.0:
-            duration = 0.5 
+            duration = 0.5
 
-        step_duration = duration / len(animation)
-        
+        frame_count = len(animation)
+        if frame_count == 0:
+            return
+
+        # Keep original behavior for short clips
+        if duration < 2.0:
+            step_duration = duration / frame_count
+
+            for frame in animation:
+                for state_obj in frame:
+                    try:
+                        state_type = state_obj['state']
+                        params = state_obj['parameters']
+
+                        msg_class = globals().get(state_type)
+                        if not msg_class:
+                            rospy.logwarn(f"Unknown state type: {state_type}")
+                            continue
+
+                        msg = msg_class(**params)
+
+                        # Mouth remains scaled to the full duration
+                        if state_type.lower() == 'mouthsine':
+                            msg.duration = step_duration / 2.0
+                        else:
+                            msg.duration = step_duration
+
+                        pub_key = state_type.lower()
+                        if pub_key in self.pubs:
+                            self.pubs[pub_key].publish(msg)
+
+                    except Exception as e:
+                        rospy.logerr(f"Error publishing animation frame: {e}")
+
+                rospy.sleep(step_duration)
+
+            return
+
+        # -------------------------------------------------------------------------
+        # Longer clips: loop non-mouth keyframes in ~2-3 second cycles.
+        # MouthSine is handled separately and scaled across the full duration.
+        # -------------------------------------------------------------------------
+
+        # Pick a loop duration in the 2-3 second range.
+        # This chooses a number of loops that makes each loop land near 2.5s,
+        # then clamps loop length into [2.0, 3.0].
+        target_loop_duration = 2.5
+        loop_count = max(1, int(round(duration / target_loop_duration)))
+        loop_duration = duration / loop_count
+
+        # Clamp to 2-3 seconds if rounding got weird
+        if loop_duration < 2.0:
+            loop_duration = 2.0
+            loop_count = max(1, int(duration / loop_duration))
+        elif loop_duration > 3.0:
+            loop_duration = 3.0
+            loop_count = max(1, int(duration / loop_duration))
+
+        # Recompute leftover after integer loops
+        total_loop_time = loop_count * loop_duration
+        remaining_time = max(0.0, duration - total_loop_time)
+
+        # Publish mouth states once, scaled over the FULL duration.
+        # We do this up front so the mouth motion spans the whole utterance.
         for frame in animation:
             for state_obj in frame:
                 try:
                     state_type = state_obj['state']
+                    if state_type.lower() != 'mouthsine':
+                        continue
+
                     params = state_obj['parameters']
-                    
-                    # Dynamically instantiate message class
                     msg_class = globals().get(state_type)
                     if not msg_class:
                         rospy.logwarn(f"Unknown state type: {state_type}")
                         continue
-                    
+
                     msg = msg_class(**params)
-                    
-                    # MouthSine usually needs to oscillate faster or independently, 
-                    # but scaling it to the frame step is a safe default.
-                    if state_type.lower() == 'mouthsine':
-                        msg.duration = step_duration / 2
-                    else:
-                        msg.duration = step_duration
+
+                    # Spread mouth motion across the full clip duration.
+                    # Keeping your original "half-step" idea, but now based on full duration.
+                    msg.duration = max(0.05, duration / frame_count / 2.0)
 
                     pub_key = state_type.lower()
                     if pub_key in self.pubs:
                         self.pubs[pub_key].publish(msg)
-                    
+
                 except Exception as e:
-                    rospy.logerr(f"Error publishing animation frame: {e}")
-            
-            # Wait for the step duration before sending the next frame
-            rospy.sleep(step_duration)
+                    rospy.logerr(f"Error publishing mouth animation: {e}")
+
+        # Loop non-mouth frames
+        for _ in range(loop_count):
+            step_duration = loop_duration / frame_count
+
+            for frame in animation:
+                for state_obj in frame:
+                    try:
+                        state_type = state_obj['state']
+
+                        # Skip mouth here; already handled above
+                        if state_type.lower() == 'mouthsine':
+                            continue
+
+                        params = state_obj['parameters']
+                        msg_class = globals().get(state_type)
+                        if not msg_class:
+                            rospy.logwarn(f"Unknown state type: {state_type}")
+                            continue
+
+                        msg = msg_class(**params)
+                        msg.duration = step_duration
+
+                        pub_key = state_type.lower()
+                        if pub_key in self.pubs:
+                            self.pubs[pub_key].publish(msg)
+
+                    except Exception as e:
+                        rospy.logerr(f"Error publishing animation frame: {e}")
+
+                rospy.sleep(step_duration)
+
+        # If there is a little leftover time from integer loop division, fill it
+        # with one final partial pass of non-mouth frames.
+        if remaining_time > 0.05:
+            partial_frames = max(1, int(round((remaining_time / loop_duration) * frame_count)))
+            partial_step = remaining_time / partial_frames
+
+            for frame in animation[:partial_frames]:
+                for state_obj in frame:
+                    try:
+                        state_type = state_obj['state']
+
+                        if state_type.lower() == 'mouthsine':
+                            continue
+
+                        params = state_obj['parameters']
+                        msg_class = globals().get(state_type)
+                        if not msg_class:
+                            rospy.logwarn(f"Unknown state type: {state_type}")
+                            continue
+
+                        msg = msg_class(**params)
+                        msg.duration = partial_step
+
+                        pub_key = state_type.lower()
+                        if pub_key in self.pubs:
+                            self.pubs[pub_key].publish(msg)
+
+                    except Exception as e:
+                        rospy.logerr(f"Error publishing partial animation frame: {e}")
+
+                rospy.sleep(partial_step)
 
     def play_audio_threaded(self, audio_data, sample_rate):
         """Spawns a thread for audio playback."""
