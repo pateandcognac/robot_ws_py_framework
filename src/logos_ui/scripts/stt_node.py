@@ -73,7 +73,7 @@ FACE_LED_COUNT = 12
 
 # Ambient History Settings
 AMBIENT_HISTORY_MAX_AGE = 7200    # 2 Hours (in seconds)
-AMBIENT_HISTORY_MAX_CHARS = 20000 # Max characters before oldest is dropped
+AMBIENT_HISTORY_MAX_CHARS = 32767 # Max characters before oldest is dropped
 
 class LedState:
     IDLE = 0
@@ -545,7 +545,7 @@ class LogosEarsNode:
             # max prompt length 224 tokens
 
             if job['type'] == 'ambient':
-                prompt = "Great work, thanks! Ok, so this is just some normal background conversation. My name is Mark. Hello, Logos. Hahaha! That's funny! What's it like being a robot? This audio doesn't get diarized, so might be a bit confusing. It could include people talking about or to Logos, or it might be overheard YouTube audio. We don't include wake words here to avoid false positives. We do use jargo like: ROS Noetic, Kobuki base, Python, Linux. Hey Tom, where are Mom and Dad? I saw them with Al, Lauren, Stella, Piper, and Rocky earlier."
+                prompt = "Great work, thanks! Ok, so this is just some normal background conversation. My name is Mark. Hello, Logos. Hahaha! That's funny! What's it like being a robot? This audio doesn't get diarized, so might be a bit confusing. It could include people talking about or to Logos, or it might be overheard YouTube audio. We don't include wake words here to avoid false positives. We do use jargon like: ROS Noetic, Kobuki base, Python, Linux. Hey Tom, where are Mom and Dad? I saw them with Al, Lauren, Stella, Piper, and Rocky earlier."
             elif job['type'] == 'human_stt':
                 prompt = "\nHEY-ROBOT\n Hi there, Logos! I'm Mark. You operate on ROS Noetic Ubuntu Linux with a Kobuki base and Python. We live in Clawson.You have pan-tilt, top-down, and Astra RGB-Depth cameras, with RGB LEDs, servos, laser scan. \nEDIT-INPUT\n Your name is Logos, with Whisper for speech-to-text. My Kobuki uses GMapping for SLAM and AMCL navigation. \nHEY-ROBOT\n text-to-speech engines include Kokoro, Piper, and espeak. \nEND-OF-LINE\n My family is Mom, Dad, Jim, Terri, Al, Tom, Lauren, Stella, Piper, Rocky. What do you think, Logos? \nEND-OF-LINE\n Hahaha! Nice work! \nEDIT-INPUT\n Sorry! Maybe try that again using Whisper? \nEND-OF-LINE\n"
 
@@ -661,7 +661,7 @@ class LogosEarsNode:
                 if job.get('stop_reason') == "timeout":
                     stt_header = (
                         f"# Note: stt audio recording timed out after {RECORDING_TIMEOUT} seconds. "
-                        "This most likely indicates the wake word was accidentally triggered and this transcript may be background chatter not directed at you.\n"
+                        "This most likely indicates the wake word was accidentally triggered and this transcript may be from background chatter not directed at you.\n"
                     ) 
 
                 stt_header += f"# faster-whisper model '{self.whisper_model_name}' confidence: {100*conf:.0f}%"

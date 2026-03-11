@@ -10,7 +10,8 @@ import time
 import requests
 import io
 import scipy.io.wavfile as wavfile
-
+import threading
+from collections import deque
 from std_msgs.msg import Bool
 from logos_msgs.msg import SpeechData
 from logos_msgs.msg import SpeakAction, SpeakGoal, SpeakResult, SpeakFeedback 
@@ -134,105 +135,186 @@ class SpeakActionServer:
     def __init__(self, name):
         self._action_name = name
         self._speech_data_pub = rospy.Publisher('/face/tts_chunk', SpeechData, queue_size=10)
-        
+
         global g_is_speaking_pub
         g_is_speaking_pub = rospy.Publisher('/tts/is_speaking', Bool, queue_size=1, latch=True)
-        g_is_speaking_pub.publish(Bool(data=False)) 
+        g_is_speaking_pub.publish(Bool(data=False))
 
         load_preset_emojis_once()
 
-        self._as = actionlib.SimpleActionServer(self._action_name, SpeakAction, execute_cb=self.execute_cb, auto_start=False)
+        # FIFO queue of accepted goal handles
+        self._goal_queue = deque()
+        self._queue_lock = threading.Lock()
+        self._queue_cond = threading.Condition(self._queue_lock)
+        self._is_processing = False
+
+        # Lower-level ActionServer gives us manual control over queueing
+        self._as = actionlib.ActionServer(
+            self._action_name,
+            SpeakAction,
+            goal_cb=self.goal_cb,
+            cancel_cb=self.cancel_cb,
+            auto_start=False
+        )
         self._as.start()
-        rospy.loginfo(f"'{self._action_name}' Action Server Ready.")
+
+        self._worker_thread = threading.Thread(target=self._worker_loop, daemon=True)
+        self._worker_thread.start()
+
+        rospy.loginfo(f"'{self._action_name}' Action Server Ready (queued mode).")
 
     def set_is_speaking_state(self, speaking_status):
         global g_is_speaking_pub
         if g_is_speaking_pub:
             g_is_speaking_pub.publish(Bool(data=speaking_status))
 
-    def execute_cb(self, goal: SpeakGoal):
-            rospy.loginfo(f"Speak Goal: '{goal.utterance_text[:50]}...' via {goal.engine}")
-            
-            # 1. Turn flag ON. We do NOT turn it off in this node anymore.
-            self.set_is_speaking_state(True)
+    def goal_cb(self, goal_handle):
+        """
+        Accept every incoming goal and queue it for FIFO processing.
+        """
+        goal = goal_handle.get_goal()
+        preview = goal.utterance_text[:50].replace('\n', ' ')
+        rospy.loginfo(f"Queued Speak Goal: '{preview}...' via {goal.engine}")
 
-            feedback = SpeakFeedback()
-            result = SpeakResult()
-            
-            utterance_text = goal.utterance_text.replace('*', '')
+        goal_handle.set_accepted("Queued for synthesis")
 
-            if not utterance_text.strip():
-                self._as.set_succeeded(SpeakResult(success=False, final_message="Empty text", total_duration=0.0))
-                # If empty, we turn it off immediately because playback node won't get anything
+        with self._queue_cond:
+            self._goal_queue.append(goal_handle)
+            self._queue_cond.notify()
+
+    def cancel_cb(self, goal_handle):
+        """
+        We do not really use canceling, but handle it cleanly anyway.
+        If the goal is still waiting in the queue, remove it immediately.
+        If it is already being processed, the worker loop will notice later.
+        """
+        with self._queue_cond:
+            for queued_handle in list(self._goal_queue):
+                if queued_handle == goal_handle:
+                    self._goal_queue.remove(queued_handle)
+
+                    result = SpeakResult()
+                    result.success = False
+                    result.final_message = "Canceled while waiting in queue."
+                    result.total_duration = 0.0
+
+                    goal_handle.set_canceled(result, "Removed from queue")
+                    rospy.loginfo("Canceled queued speech goal before processing.")
+                    return
+
+        rospy.loginfo("Cancel requested for active goal; worker will handle if needed.")
+
+    def _worker_loop(self):
+        while not rospy.is_shutdown():
+            with self._queue_cond:
+                while not self._goal_queue and not rospy.is_shutdown():
+                    self._queue_cond.wait(timeout=0.5)
+
+                if rospy.is_shutdown():
+                    return
+
+                goal_handle = self._goal_queue.popleft()
+                self._is_processing = True
+
+            try:
+                self._process_goal(goal_handle)
+            except Exception as e:
+                rospy.logerr(f"Unhandled exception while processing speech goal: {e}")
+
+                result = SpeakResult()
+                result.success = False
+                result.final_message = f"Exception during synthesis: {e}"
+                result.total_duration = 0.0
+
+                try:
+                    goal_handle.set_aborted(result, "Speech synthesis failed")
+                except Exception as inner_e:
+                    rospy.logerr(f"Failed to abort goal cleanly: {inner_e}")
+            finally:
+                with self._queue_cond:
+                    self._is_processing = False
+
+    def _process_goal(self, goal_handle):
+        goal = goal_handle.get_goal()
+        rospy.loginfo(f"Processing Speak Goal: '{goal.utterance_text[:50]}...' via {goal.engine}")
+
+        self.set_is_speaking_state(True)
+
+        feedback = SpeakFeedback()
+        result = SpeakResult()
+
+        utterance_text = goal.utterance_text.replace('*', '')
+
+        if not utterance_text.strip():
+            result.success = False
+            result.final_message = "Empty text"
+            result.total_duration = 0.0
+            goal_handle.set_succeeded(result, "Empty utterance")
+            self.set_is_speaking_state(False)
+            return
+
+        if not PRESET_EMOJIS:
+            load_preset_emojis_once()
+
+        chunks = split_text_emoji(utterance_text, PRESET_EMOJIS)
+        feedback.total_chunks = len(chunks)
+        total_calculated_duration = 0.0
+        chunks_sent = 0
+
+        for i, (text_snippet, emoji_snippet) in enumerate(chunks):
+            # You said you won't really cancel/preempt, but this is cheap insurance.
+            status = goal_handle.get_goal_status()
+            if status and status.status in [2, 6, 7, 8]:
+                result.success = False
+                result.final_message = "Canceled during synthesis."
+                result.total_duration = total_calculated_duration
+                goal_handle.set_canceled(result, "Canceled during synthesis")
                 self.set_is_speaking_state(False)
                 return
 
-            if not PRESET_EMOJIS:
-                load_preset_emojis_once()
+            feedback.current_chunk_index = i
 
-            chunks = split_text_emoji(utterance_text, PRESET_EMOJIS)
-            feedback.total_chunks = len(chunks)
-            total_calculated_duration = 0.0
-            
-            # Track success of synthesis
-            chunks_sent = 0
+            audio_data_np, sample_rate = synthesize_audio_remote(
+                text_snippet,
+                goal.engine,
+                goal.engine_params
+            )
 
-            for i, (text_snippet, emoji_snippet) in enumerate(chunks):
-                if self._as.is_preempt_requested():
-                    self._as.set_preempted()
-                    result.success = False
-                    result.final_message = "Preempted."
-                    # If preempted during synthesis, we must kill the flag
-                    self.set_is_speaking_state(False)
-                    return
-
-                feedback.current_chunk_index = i
-                
-                # --- SYNTHESIS ---
-                audio_data_np, sample_rate = synthesize_audio_remote(text_snippet, goal.engine, goal.engine_params)
-                
-                # --- DURATION ---
-                if len(audio_data_np) > 0:
-                    chunk_duration = len(audio_data_np) / float(sample_rate)
-                else:
-                    chunk_duration = 0.5
-                
-                feedback.chunk_duration = chunk_duration
-                feedback.text_snippet = text_snippet
-                feedback.emoji_snippet = emoji_snippet
-                total_calculated_duration += chunk_duration
-
-                # --- PUBLISH SPEECH DATA ---
-                msg = SpeechData()
-                msg.text_snippet = text_snippet
-                msg.emoji = emoji_snippet if emoji_snippet in PRESET_EMOJIS else ""
-                msg.audio_data = audio_data_np.tolist()
-                msg.sample_rate = sample_rate
-                msg.duration = chunk_duration
-                # NEW FIELDS
-                msg.current_chunk_index = i
-                msg.total_chunks = len(chunks)
-
-                self._speech_data_pub.publish(msg)
-                
-                self._as.publish_feedback(feedback)
-                rospy.loginfo(f"  Chunk {i+1}/{len(chunks)} sent to playback.")
-                chunks_sent += 1
-
-            # --- IMMEDIATE SUCCESS ---
-            # We no longer wait for playback time. Synthesis is done.
-            if chunks_sent > 0:
-                result.success = True
-                result.final_message = "Synthesis Complete. Sent to playback."
+            if len(audio_data_np) > 0:
+                chunk_duration = len(audio_data_np) / float(sample_rate)
             else:
-                result.success = False
-                result.final_message = "No chunks generated."
-                self.set_is_speaking_state(False) # Fail safe
+                chunk_duration = 0.5
 
-            result.total_duration = total_calculated_duration
-            self._as.set_succeeded(result)
-            # Note: We do NOT call self.set_is_speaking_state(False) here. 
-            # The playback node handles that when the audio finishes.
+            feedback.chunk_duration = chunk_duration
+            feedback.text_snippet = text_snippet
+            feedback.emoji_snippet = emoji_snippet
+            total_calculated_duration += chunk_duration
+
+            msg = SpeechData()
+            msg.text_snippet = text_snippet
+            msg.emoji = emoji_snippet if emoji_snippet in PRESET_EMOJIS else ""
+            msg.audio_data = audio_data_np.tolist()
+            msg.sample_rate = sample_rate
+            msg.duration = chunk_duration
+            msg.current_chunk_index = i
+            msg.total_chunks = len(chunks)
+
+            self._speech_data_pub.publish(msg)
+            goal_handle.publish_feedback(feedback)
+
+            rospy.loginfo(f"  Chunk {i + 1}/{len(chunks)} sent to playback.")
+            chunks_sent += 1
+
+        if chunks_sent > 0:
+            result.success = True
+            result.final_message = "Synthesis Complete. Sent to playback."
+        else:
+            result.success = False
+            result.final_message = "No chunks generated."
+            self.set_is_speaking_state(False)
+
+        result.total_duration = total_calculated_duration
+        goal_handle.set_succeeded(result, "Synthesis complete")
             
 if __name__ == '__main__':
     try:
