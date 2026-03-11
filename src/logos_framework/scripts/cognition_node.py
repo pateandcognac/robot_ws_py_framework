@@ -159,41 +159,30 @@ class CognitionNode:
                 threading.Thread(target=self._initiate_cognition_cycle).start()
 
     def _publish_ui_state(self, header_str, io_buffer_str, footer_str):
-        def embed_image_base64(match):
-            relative_path = match.group(2) 
-            full_path = self.workspace_path / relative_path
+            def embed_image_url(match):
+                relative_path = match.group(2) 
+                # Simply point to a local web server route we will create in the UI node!
+                return f'{match.group(1)}{match.group(3)}</file>\n<img src="/workspace/{relative_path}">'
+
+            # Use a regex that captures the whole tag block for consistency
+            image_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)(.*?)(</file>)', re.DOTALL)
+
+            header_str_with_images = re.sub(image_pattern, embed_image_url, header_str)
+            io_buffer_str_with_images = re.sub(image_pattern, embed_image_url, io_buffer_str)
+            footer_str_with_images = re.sub(image_pattern, embed_image_url, footer_str)
+
+            ui_state = {
+                "header": header_str_with_images,
+                "io_buffer": io_buffer_str_with_images,
+                "footer": footer_str_with_images
+            }
             
             try:
-                with PIL.Image.open(full_path) as img:
-                    buffered = io.BytesIO()
-                    img_format = img.format if img.format else 'PNG'
-                    img.save(buffered, format=img_format)
-                    img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
-                    # This logic correctly APPENDS to the tag for the UI, which is fine for a UI.
-                    return f'{match.group(1)}{match.group(3)}</file>\n<img src="data:image/{img_format.lower()};base64,{img_str}">'
+                json_payload = json.dumps(ui_state)
+                self.ui_state_pub.publish(StringMsg(data=json_payload))
+                rospy.loginfo("Published UI state update (Using file URLs).")
             except Exception as e:
-                rospy.logerr(f"UI State: Could not process image {full_path}: {e}")
-                return f'{match.group(1)}{match.group(3)}</file>\n<!-- Error loading image: {e} -->'
-
-        # Use a regex that captures the whole tag block for consistency
-        image_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)(.*?)(</file>)', re.DOTALL)
-
-        header_str_with_images = re.sub(image_pattern, embed_image_base64, header_str)
-        io_buffer_str_with_images = re.sub(image_pattern, embed_image_base64, io_buffer_str)
-        footer_str_with_images = re.sub(image_pattern, embed_image_base64, footer_str)
-
-        ui_state = {
-            "header": header_str_with_images,
-            "io_buffer": io_buffer_str_with_images,
-            "footer": footer_str_with_images
-        }
-        
-        try:
-            json_payload = json.dumps(ui_state)
-            self.ui_state_pub.publish(StringMsg(data=json_payload))
-            rospy.loginfo("Published UI state update.")
-        except Exception as e:
-            rospy.logerr(f"Failed to create or publish UI state: {e}")
+                rospy.logerr(f"Failed to create or publish UI state: {e}")
 
     def _format_hook_name_list(self, hook_names: list) -> str:
             """Formats hook names for the empty-output summary line."""

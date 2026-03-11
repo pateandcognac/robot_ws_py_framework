@@ -93,7 +93,6 @@ class ArmPlaybackNode:
             
             # Scheduling logic:
             # If queue is empty, play now. If busy, append to end.
-            # (Using the same rudimentary scheduling logic as the speech callback for consistency)
             current_time = rospy.get_time()
             execution_time = current_time + (self.scheduled_animations.qsize() * duration)
             

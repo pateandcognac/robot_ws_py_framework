@@ -123,9 +123,32 @@ code.hljs {
 .io-cell-content {
     padding: 10px;
 }
-.io-cell-content img {
+
+/* NEW: General, responsive image styling for all panels */
+.panel img {
     max-width: 100%;
     height: auto;
-    border-radius: 4px;
-    margin-top: 5px;
+    display: block; /* Prevents inline spacing issues */
+    border-radius: 5px;
+    margin: 10px 0; /* Add some vertical spacing */
+}
+
+#status-bar {
+    background-color: #005080;
+    color: #88ccff;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    font-family: "Fira Code", "Courier New", monospace;
+    font-style: italic;
+    border-top: 1px solid #0070b0;
+}
+
+/* Remove highlight.js stuff and replace with basic dark pre tag */
+pre {
+    margin: 0;
+    padding: 1em;
+    border-radius: 5px;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    color: #d4d4d4; /* A nice default text color */
 }

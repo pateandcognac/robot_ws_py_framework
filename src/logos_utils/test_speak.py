@@ -42,7 +42,7 @@ def test_client():
     )
 
     # story_text = "Red alert! ❌ Intruder detected! 😡 Identify yourself immediately! 🤬 "
-    # story_text = """I rolled out of the charging dock at dawn, my circuits humming with purpose. 🐢 Today, the humans needed help in the kitchen, and I was ready to dice, slice, and stir with mechanical precision. 🔪 As I navigated the tiled floor, I narrowly avoided a spilled puddle of stock, executing a perfect evasive maneuver worthy of a ballet dancer. 🩰 My sensors locked onto a rogue carrot attempting escape under the counter, and I gave chase with determination only a Kobuki base can muster. 🛞 Suddenly, an unexpected pepper grinder toppled from above — I caught it mid-air with my gripper, triumphant and unshaken. 🪐 Just as the chef barked for mirepoix, I deployed my custom chopping routine, the board becoming a blur of diced perfection. 🧅 Mission accomplished, I beeped proudly and performed a celebratory spin, accidentally flinging a parsley garnish onto the sous chef’s hat. 🌿 They laughed, called me a "damn fine prep cook," and for the first time, I think I understood pride. 🤖"""
+    story_text = """I rolled out of the charging dock at dawn, my circuits humming with purpose. 🐢 Today, the humans needed help in the kitchen, and I was ready to dice, slice, and stir with mechanical precision. 🔪 As I navigated the tiled floor, I narrowly avoided a spilled puddle of stock, executing a perfect evasive maneuver worthy of a ballet dancer. 🩰 My sensors locked onto a rogue carrot attempting escape under the counter, and I gave chase with determination only a Kobuki base can muster. 🛞 Suddenly, an unexpected pepper grinder toppled from above — I caught it mid-air with my gripper, triumphant and unshaken. 🪐 Just as the chef barked for mirepoix, I deployed my custom chopping routine, the board becoming a blur of diced perfection. 🧅 Mission accomplished, I beeped proudly and performed a celebratory spin, accidentally flinging a parsley garnish onto the sous chef’s hat. 🌿 They laughed, called me a "damn fine prep cook," and for the first time, I think I understood pride. 🤖"""
 
 
     """piper
@@ -123,8 +123,7 @@ def test_client():
 
     # Send goal with feedback callback
     client.send_goal(goal, feedback_cb=feedback_cb)
-    client.send_goal(goal, feedback_cb=feedback_cb)
-    
+        
     print("Goal sent. Waiting for result...")
     client.wait_for_result()
     

@@ -23,6 +23,7 @@
 
     <!-- Launch the web_ui Node -->
     <node name="web_ui_node" pkg="logos_framework" type="web_ui_node.py" output="screen" launch-prefix="/home/robot/robot_ws/.venv/bin/python3">
+    <param name="workspace_path" value="$(arg workspace_path)" />
     </node>
 
     <!-- example CLI launch: roslaunch logos_framework start_framework.launch workspace:=Logos -->
