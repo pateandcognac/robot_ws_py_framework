@@ -37,10 +37,9 @@
   <!-- Interfaces with a Speak.action server -->
   <!-- We use the shell script wrapper to bridge ROS Noetic and the external venv -->
   <node pkg="logos_hardware" type="run_tts_server.sh" name="logos_tts_server" output="screen">
-      <!-- If your TTS server needs env vars, set them here -->
-      <!-- <env name="OPENAI_API_KEY" value="sk-..." /> -->
+
   </node>
-S python3.11 venv script: ~/src/logos_tts_server$ /home/robot/src/logos_tts_server/.venv/bin/python /home/robot/src/logos_tts_server/server.py -->
+  <!-- python3.11 venv script: ~/src/logos_tts_server$ /home/robot/src/logos_tts_server/.venv/bin/python /home/robot/src/logos_tts_server/server.py -->
 
 
   <!-- State Monitor (Battery/Charging/Idle anims) 

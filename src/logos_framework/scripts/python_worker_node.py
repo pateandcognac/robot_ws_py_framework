@@ -189,16 +189,31 @@ class PythonWorkerNode:
     def _load_api_and_config(self):
         """Imports the core logos API and loads user config into the interpreter's state."""
         # 1. Explicitly import the main package into the interpreter's global scope.
+        # Define everything we want pre-loaded into the environment.
+        # Move this to a ~/robot_workspaces/Logos/ dir so AI can add to it themselves
+
+        # load preload_script from file Logos
+        preload_script_fn = self.config.get("python", {}).get("preload_snippet", ".system/py_env_preload.py")
+        # open and load file content        
         try:
-            self.interpreter.runcode(compile("import logos", "<preload>", "exec"))
-            rospy.loginfo("Successfully imported 'logos' package into the interpreter's main namespace.")
+            with open(self.workspace_path / preload_script_fn, 'r') as f:
+                preload_script = f.read()
         except Exception as e:
-            rospy.logerr(f"CRITICAL: Failed to import the 'logos' package. API will not be available: {e}\n{traceback.format_exc()}")
-            # We might want to consider shutting down if this fails, as the agent is crippled.
+            rospy.logfatal(f"Failed to load preload script from {preload_script_fn}: {e}. Shutting down.")
+            rospy.signal_shutdown("Preload script load failure")
+            return
+        
+        try:
+            self.interpreter.runcode(compile(preload_script, "<preload>", "exec"))
+            rospy.loginfo(f"Successfully preloaded API, standard libraries, and {preload_script_fn} into the namespace.")
+        except Exception as e:
+            rospy.logerr(f"CRITICAL: Failed to load API. API will not be available: {e}\n{traceback.format_exc()}")
+            rospy.logerr(f"CRITICAL: Something is wrong. Consider shutting down. Logos is crippled.")
             return # Continue for now, but it will likely fail.
 
         """"
         # 2. After API is loaded, load my_config.yaml to override default state.
+        # this is now done via config.py merging defaults and preferences
         try:
             my_config_path = self.workspace_path / "state" / "my_config.yaml"
             if my_config_path.exists():
@@ -218,9 +233,10 @@ class PythonWorkerNode:
     def _output_callback(self, msg: CognitionOutput):
         """Handles incoming requests for code execution from the Cognition Node."""
         if msg.type in ['thoughts', 'chunk', 'state']:
-            return
+            return # ignore
         
-        # First check for <chat>CONTENT</chat> blocks and remove
+        # First check for <chat>CONTENT</chat> blocks and remove.
+        # Might want to use <chat> blocks instead of strictly <py> in some cases
         # They might contain reference to <py> tags that we must ignore.
         chat_pattern = re.compile(r'<chat>.*?</chat>', re.DOTALL)
         msg.content = chat_pattern.sub('', msg.content)
@@ -238,9 +254,9 @@ class PythonWorkerNode:
         
         try:
             timeout_str = match.group('timeout')
-            timeout_sec = float(timeout_str) if timeout_str else self.config.get("python", {}).get("default_timeout", 300)
+            timeout_sec = float(timeout_str) if timeout_str else self.config.get("python", {}).get("default_timeout", 36000)
         except (ValueError, TypeError):
-            timeout_sec = self.config.get("python", {}).get("default_timeout", 300)
+            timeout_sec = self.config.get("python", {}).get("default_timeout", 36000)
             rospy.logwarn(f"Invalid timeout value '{match.group('timeout')}', using default {timeout_sec}s.")
 
         rospy.loginfo(f"Executing code from '{msg.type}' message with timeout={timeout_sec}s, reset={do_reset}")
@@ -350,7 +366,7 @@ class PythonWorkerNode:
                 self.error_streak += 1
                 # Try to respect loop_cognition even if an error occurred before the end
                 with self.interpreter_lock:
-                    final_loop_cognition = self.interpreter.locals.get('loop_cognition', False)
+                    final_loop_cognition = self.interpreter.locals.get('loop_cognition', True)
 
             finally:
                 # 3d. This block runs ALWAYS: on success, interrupt, or error.
@@ -424,9 +440,9 @@ class PythonWorkerNode:
         response_msg = CognitionInput()
         
         # Determine the response type based on the request type
-        if msg_type == 'me':
+        if msg_type == 'me': 
             response_msg.type = 'py_result'
-        else: # 'context', 'state', etc.
+        else: # getting hook content
             response_msg.type = msg_type
 
         response_msg.content = content
@@ -441,7 +457,7 @@ class PythonWorkerNode:
             elif self.error_streak >= 2:
                 response_msg.system_hint = "<!-- system: Consecutive errors detected. Depending on the context of the current moment, this may be something you can ignore, and/or note for later. Adapt intelligently to the situation. -->"
             elif self.error_streak >= 3:
-                response_msg.system_hint = "<!-- system: Multiple consecutive errors detected. Pause. Deep breath. Take a step back. Review. Consider a different approach, asking for help, moving on, or a python reset. *Avoid entering a debug loop.* And most importantly, don't stress out about it! -->"
+                response_msg.system_hint = "<!-- system: Multiple consecutive errors detected. Consider a different approach, asking for help, moving on, or a python reset. *Avoid entering a debug loop.* And most importantly, don't stress out about it! -->"
             
 
         self.input_pub.publish(response_msg)

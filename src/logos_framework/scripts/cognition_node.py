@@ -65,7 +65,7 @@ class CognitionNode:
         self.context = ContextManager(self.workspace_path, self.config.framework['context'])
 
         try:
-            api_key = os.environ.get("GEMINI_API_KEY")
+            api_key = os.environ.get("FREE_GEMINI_API_KEY")
             if not api_key:
                 raise ValueError("GEMINI_API_KEY environment variable not set.")
             self.genai_client = genai.Client(api_key=api_key)
