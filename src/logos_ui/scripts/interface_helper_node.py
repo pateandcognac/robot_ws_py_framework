@@ -272,7 +272,7 @@ class InterfaceHelperNode:
 
     def handle_tts_chunk(self, msg):
         """Process tts_chunk messages (Scrolling Figlet)."""
-        text_snippet = msg.text_snippet
+        text_snippet = msg.text_snippet + "\n"
         duration = msg.duration
 
         columns, _ = shutil.get_terminal_size(fallback=(80, 20))

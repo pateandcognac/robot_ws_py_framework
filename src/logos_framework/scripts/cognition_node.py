@@ -90,7 +90,7 @@ class CognitionNode:
 
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
         self.input_sub = rospy.Subscriber('/cognition/input', CognitionInput, self._input_callback, queue_size=10)
-        self.ui_state_pub = rospy.Publisher('/cognition/ui_state', StringMsg, queue_size=1, latch=True)
+        self.ui_state_pub = rospy.Publisher('/cognition/ui_state', StringMsg, queue_size=2, latch=True)
         self.processing_timer = rospy.Timer(rospy.Duration(0.25), self._process_queue)
         rospy.loginfo("Cognition Node: Ready and waiting for input.")
 

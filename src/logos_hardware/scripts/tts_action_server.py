@@ -52,29 +52,64 @@ def load_preset_emojis_once():
     return PRESET_EMOJIS
 
 def split_text_emoji(text, preset_emojis):
-    """Refined splitter logic (Same as your provided code)."""
-    if not preset_emojis: return [(text, "")]
-    sorted_emojis = sorted(list(preset_emojis), key=len, reverse=True)
-    emoji_pattern = '|'.join(re.escape(emoji) for emoji in sorted_emojis)
-    pattern = f'({emoji_pattern})'
-    parts = re.split(pattern, text)
+    """
+    Split text into (text, emoji) pairs where:
+    - an emoji applies to the text immediately before it
+    - only the first emoji in a consecutive emoji run is kept
+    - whitespace-only gaps between emojis are treated as part of the same run
+    - leading emojis are ignored
+    - trailing text without an emoji is still returned
+    """
+    if not preset_emojis:
+        stripped = text.strip()
+        return [(stripped, "")] if stripped else []
 
-    final_result = []
+    sorted_emojis = sorted(preset_emojis, key=len, reverse=True)
+    emoji_pattern = "|".join(re.escape(emoji) for emoji in sorted_emojis)
+    parts = re.split(f"({emoji_pattern})", text)
+
+    results = []
     text_buffer = ""
-    for segment in parts:
-        if segment in preset_emojis:
-            final_result.append((text_buffer.strip(), segment))
-            text_buffer = ""
-        else:
-            text_buffer += segment
-    
-    if text_buffer.strip() or not final_result:
-        # Handle trailing text or empty input edge cases
-        if text_buffer.strip() or (not final_result and not text_buffer.strip() and text == ""):
-             final_result.append((text_buffer.strip(), ""))
+    pending_emoji = ""
+    in_emoji_run = False
 
-    filtered_result = [pair for pair in final_result if pair[0] or pair[1]]
-    return filtered_result if filtered_result else [(text, "")]
+    def flush_buffer(with_emoji=""):
+        nonlocal text_buffer
+        stripped = text_buffer.strip()
+        if stripped:
+            results.append((stripped, with_emoji))
+        text_buffer = ""
+
+    for part in parts:
+        if not part:
+            continue
+
+        if part in preset_emojis:
+            if text_buffer.strip():
+                # First emoji after real text closes that utterance.
+                if not pending_emoji:
+                    pending_emoji = part
+                flush_buffer(with_emoji=pending_emoji)
+                pending_emoji = ""
+                in_emoji_run = True
+            else:
+                # No text yet: leading emoji, or extra emoji in a run. Ignore it.
+                in_emoji_run = True
+            continue
+
+        # Non-emoji text
+        if in_emoji_run:
+            if part.isspace():
+                # Whitespace between emojis still counts as same emoji run.
+                continue
+            in_emoji_run = False
+
+        text_buffer += part
+
+    # Any remaining text becomes an utterance with no emoji.
+    flush_buffer(with_emoji="")
+
+    return results
 
 def synthesize_audio_remote(text, engine, params_json):
     """

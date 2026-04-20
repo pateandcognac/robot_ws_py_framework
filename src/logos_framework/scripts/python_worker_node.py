@@ -190,9 +190,8 @@ class PythonWorkerNode:
         """Imports the core logos API and loads user config into the interpreter's state."""
         # 1. Explicitly import the main package into the interpreter's global scope.
         # Define everything we want pre-loaded into the environment.
-        # Move this to a ~/robot_workspaces/Logos/ dir so AI can add to it themselves
 
-        # load preload_script from file Logos
+        # load preload_script from file
         preload_script_fn = self.config.get("python", {}).get("preload_snippet", ".system/py_env_preload.py")
         # open and load file content        
         try:
@@ -205,30 +204,12 @@ class PythonWorkerNode:
         
         try:
             self.interpreter.runcode(compile(preload_script, "<preload>", "exec"))
-            rospy.loginfo(f"Successfully preloaded API, standard libraries, and {preload_script_fn} into the namespace.")
+            rospy.loginfo(f"Successfully preloaded API, standard libraries, and `workspace/{preload_script_fn}` into the namespace.")
         except Exception as e:
             rospy.logerr(f"CRITICAL: Failed to load API. API will not be available: {e}\n{traceback.format_exc()}")
             rospy.logerr(f"CRITICAL: Something is wrong. Consider shutting down. Logos is crippled.")
             return # Continue for now, but it will likely fail.
 
-        """"
-        # 2. After API is loaded, load my_config.yaml to override default state.
-        # this is now done via config.py merging defaults and preferences
-        try:
-            my_config_path = self.workspace_path / "state" / "my_config.yaml"
-            if my_config_path.exists():
-                rospy.loginfo("Loading my_config.yaml to initialize logos.state...")
-                yaml = YAML()
-                with open(my_config_path, 'r') as f:
-                    my_config = yaml.load(f)
-
-                if my_config and 'logos' in self.interpreter.locals:
-                    logos_module = self.interpreter.locals['logos']
-                    self._update_state_from_config(logos_module.state, my_config)
-                    rospy.loginfo("Successfully updated logos.state from my_config.yaml.")
-        except Exception as e:
-            rospy.logerr(f"Error applying my_config.yaml to logos.state: {e}")
-        """
                 
     def _output_callback(self, msg: CognitionOutput):
         """Handles incoming requests for code execution from the Cognition Node."""
