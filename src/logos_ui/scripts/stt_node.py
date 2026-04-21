@@ -14,6 +14,16 @@ import sounddevice as sd
 import soundfile as sf
 import torch
 
+import sys
+
+# Prints a full descriptive string
+print(sys.version)
+
+# Prints a tuple (e.g., sys.version_info(major=3, minor=10, ...))
+print(sys.version_info)
+
+
+
 # ROS Imports
 import rospy
 from std_msgs.msg import String, Bool, Int32MultiArray
@@ -651,7 +661,8 @@ class LogosEarsNode:
                 if not final_text:
                     print(Fore.YELLOW + "Final text empty after edit. Skipping publish.")
                     self._reset_state()
-                    break
+                    continue
+                    #break
 
                 # calculate full text confidence_score as percentage
                 conf = round(np.exp(confidence_sum / count), 2) if count > 0 else 0.0

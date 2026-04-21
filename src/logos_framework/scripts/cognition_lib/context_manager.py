@@ -106,18 +106,18 @@ class ContextManager:
         """
         with self._lock:
             self._load_configs(force=False)
-            header_to_run = [hook.copy() for hook in self.header_hooks if self._is_active(hook)]
-            footer_to_run = [hook.copy() for hook in self.footer_hooks if self._is_active(hook)]
+            header_to_run = [hook.copy() for hook in self.header_hooks if self._is_enabled(hook)]
+            footer_to_run = [hook.copy() for hook in self.footer_hooks if self._is_enabled(hook)]
         return header_to_run, footer_to_run
 
-    def _is_active(self, hook: dict):
-        """Returns True when a hook config is explicitly marked active."""
-        active = hook.get('active', False)
-        if isinstance(active, bool):
-            return active
-        if active is not None:
+    def _is_enabled(self, hook: dict):
+        """Returns True when a hook config is explicitly marked enabled."""
+        enabled = hook.get('enabled', False)
+        if isinstance(enabled, bool):
+            return enabled
+        if enabled is not None:
             rospy.logwarn(
                 f"ContextManager: Hook '{hook.get('name', 'unnamed_hook')}' has non-boolean "
-                f"'active' value {active!r}; treating as inactive."
+                f"'enabled' value {enabled!r}; treating as False."
             )
         return False
