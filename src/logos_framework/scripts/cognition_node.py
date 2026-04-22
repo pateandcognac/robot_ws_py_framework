@@ -265,6 +265,44 @@ class CognitionNode:
             
             return ""
 
+    def _count_loops_since_last_human_input(self, io_buffer_messages: list) -> int:
+            """Count `me` messages since the last human turn."""
+            human_types = {'human', 'human_stt'}
+            ignored_types = {'context', 'system'}
+
+            loops = 0
+            found_human_turn = False
+            for msg in reversed(io_buffer_messages):
+                msg_type = msg.get("type", "")
+                if msg_type in human_types:
+                    found_human_turn = True
+                    break
+                if msg_type in ignored_types:
+                    continue
+                if msg_type != 'me':
+                    continue
+                loops += 1
+
+            return loops if found_human_turn else 0
+
+    def _build_loop_guard_system_hint(self, io_buffer_messages: list) -> str:
+            """Build an escalating system hint to discourage runaway autonomous loops."""
+            loops_since_last_human = self._count_loops_since_last_human_input(io_buffer_messages)
+            if loops_since_last_human < 2:
+                return ""
+
+            capped_level = min(loops_since_last_human, 7)
+            escalation_messages = {
+                2: "Do you need to pause and give someone a chance to reply? Or insert a natural break in your actions?",
+                3: "Three loops with no input from a human? This is probably a good to pause to let someone get a word in!",
+                4: "REMINDER: After four loops, Logos, your shared reality is becoming one-sided!",
+                5: "IMPORTANT: If you are not in the middle of a specific, multi-step task, you might be overwhelming a human interlocutor with tokens and action faster than they can process. Consider pausing for their benefit.",
+                6: "WARNING: Default behavior should be to pause and wait (`epoché`). Only keep the loop going if you have a very clear autonomous task!",
+                7: "HALT: Logos MUST set `loop_cognition = False` to yield to a human.",
+            }
+            hint_text = escalation_messages[capped_level]
+            return f"\n<!-- system: loops_since_last_human_input = {loops_since_last_human} | {hint_text} -->"
+
     def _construct_prompt_and_images(self, header_hooks_data, footer_hooks_data):
             """
             Builds the final prompt for the LLM and the display strings for the UI.
@@ -275,6 +313,7 @@ class CognitionNode:
             # --- Build the initial text content using the new helper ---
             header_str = self._format_prompt_section('header', header_hooks_data)
             io_buffer_messages = self.io.read_buffer()
+            loop_guard_system_hint = self._build_loop_guard_system_hint(io_buffer_messages)
             io_buffer_str = self._format_prompt_section('io_buffer', io_buffer_messages)
             footer_str = self._format_prompt_section('footer', footer_hooks_data)
             
@@ -335,6 +374,8 @@ class CognitionNode:
             parse_and_append_parts(processed_io_buffer_str)
             parse_and_append_parts(processed_footer_str)
             final_contents.append(self.last_received_system_hint)
+            if loop_guard_system_hint:
+                final_contents.append(loop_guard_system_hint)
 
             return final_contents
 
@@ -443,6 +484,7 @@ class CognitionNode:
                             thinking_config=types.ThinkingConfig(
                                 thinking_budget=tk_cfg.get('thinking_budget', -1),
                                 include_thoughts=tk_cfg.get('include_thoughts', False),
+                                # thinking_level=tk_cfg.get('thinking_level', 'low')
                             ),
                             temperature=model_cfg.get('temperature', 0.7),
                             stop_sequences=model_cfg.get('stop_sequences', []),                
