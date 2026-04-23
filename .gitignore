@@ -1,8 +1,6 @@
 devel/
 logs/
 build/
-bin/*
-!bin/prepare_workspace.sh
 lib/
 msg_gen/
 srv_gen/
@@ -271,8 +269,8 @@ __marimo__/
 devel/
 logs/
 build/
-bin/*
-!bin/prepare_workspace.sh
+# bin/*
+# !bin/prepare_workspace.sh
 lib/
 msg_gen/
 srv_gen/
@@ -418,7 +416,6 @@ dkms.conf
 
 # debug information files
 *.dwo
-src/logos_utils/face_animation_tool.py
 
 animations
 porcupine
