@@ -1,7 +1,8 @@
 devel/
 logs/
 build/
-bin/
+bin/*
+!bin/prepare_workspace.sh
 lib/
 msg_gen/
 srv_gen/
@@ -270,7 +271,8 @@ __marimo__/
 devel/
 logs/
 build/
-bin/
+bin/*
+!bin/prepare_workspace.sh
 lib/
 msg_gen/
 srv_gen/
