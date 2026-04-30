@@ -1,5 +1,16 @@
 #!/home/robot/robot_ws/.venv/bin/python3
 
+
+
+
+
+# TODO: ADD MEDIA PIPE SOUND CLASSIFIER
+
+
+
+
+
+
 import os
 import time
 import queue
@@ -245,12 +256,30 @@ class LogosEarsNode:
                 self.current_state = self._resolve_ambient_led_state()
 
     def _cb_ambient_enable(self, msg):
+        should_clear_ambient = False
+
         with self.state_lock:
+            was_enabled = self.ambient_enabled
             self.ambient_enabled = msg.data
-            if not self.is_speaking and self.current_state not in (LedState.RECORDING, LedState.TRANSCRIBING):
+
+            if was_enabled and not self.ambient_enabled:
+                self.ambient_buffer = []
+                self.ambient_history = []
+                self.ambient_start_time = time.time()
+                should_clear_ambient = True
+
+            if (
+                not self.is_speaking
+                and self.current_state not in (LedState.RECORDING, LedState.TRANSCRIBING)
+            ):
                 self.current_state = self._resolve_ambient_led_state()
+
             print(Fore.LIGHTBLUE_EX + f"Ambient Listener: {self.ambient_enabled}")
 
+        if should_clear_ambient:
+            self.pub_ambient.publish(json.dumps({}))
+            print(Fore.LIGHTBLUE_EX + "Ambient transcript cleared.")
+            
     def _cb_hotword_enable(self, msg):
         with self.state_lock:
             self.hotword_enabled = msg.data
@@ -672,7 +701,7 @@ class LogosEarsNode:
                 if job.get('stop_reason') == "timeout":
                     stt_header = (
                         f"# Note: stt audio recording timed out after {RECORDING_TIMEOUT} seconds. "
-                        "This most likely indicates the wake word was accidentally triggered and this transcript may be from background chatter not directed at you.\n"
+                        "This most likely indicates the wake word was accidentally triggered and this transcript may be from background chatter not directed at Logos.\n"
                     ) 
 
                 stt_header += f"# faster-whisper model '{self.whisper_model_name}' confidence: {100*conf:.0f}%"

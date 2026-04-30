@@ -20,7 +20,7 @@ class ConfigManager:
         try:
             framework_path = self.workspace_path / ".system" / "framework_config.json"
             prompt_path = self.workspace_path / ".system" / "system_prompt.txt"
-            output_format_path = self.workspace_path / ".system" / "output_format.py"
+            output_format_path = self.workspace_path / ".system" / "output_format.txt"
             with open(framework_path, 'r') as f: self.framework = json.load(f)
             with open(prompt_path, 'r') as f: self.system_prompt = f.read()
             with open(output_format_path, 'r') as f: self.output_format = f.read()

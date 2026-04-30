@@ -39,12 +39,12 @@
   <node pkg="logos_hardware" type="run_tts_server.sh" name="logos_tts_server" output="screen">
 
   </node>
+
   <!-- python3.11 venv script: ~/src/logos_tts_server$ /home/robot/src/logos_tts_server/.venv/bin/python /home/robot/src/logos_tts_server/server.py -->
 
-
-  <!-- State Monitor (Battery/Charging/Idle anims) -->
+  <!-- State Monitor (Battery/Charging/Idle anims) 
   <node name="idle_state_monitor" pkg="logos_hardware" type="idle_state_indicator.py" output="screen"/>
-  
+  -->
 
 
 

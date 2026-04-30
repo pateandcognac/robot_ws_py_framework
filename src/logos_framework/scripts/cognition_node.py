@@ -24,6 +24,7 @@ if str(script_dir) not in sys.path:
 
 # Google GenAI
 from google import genai
+from google.genai import errors as genai_errors
 from google.genai import types
 
 # ROS Messages
@@ -45,6 +46,49 @@ class CognitionState(Enum):
     IDLE = 0
     GATHERING_CONTEXT = 1
     AWAITING_RESPONSE = 2
+
+GEMINI_ERROR_GUIDANCE = {
+    (400, "INVALID_ARGUMENT"): {
+        "summary": "The Gemini request was malformed.",
+        "action": "Check the request body, model settings, API version, and any enabled features.",
+        "retryable": False,
+    },
+    (400, "FAILED_PRECONDITION"): {
+        "summary": "Gemini API access is not available for this key/project state.",
+        "action": "Enable billing or use a project/key that can access Gemini from this region.",
+        "retryable": False,
+    },
+    (403, "PERMISSION_DENIED"): {
+        "summary": "The Gemini API key does not have the required permissions.",
+        "action": "Check that FREE_GEMINI_API_KEY is the intended key and can access the configured model.",
+        "retryable": False,
+    },
+    (404, "NOT_FOUND"): {
+        "summary": "Gemini could not find the requested resource.",
+        "action": "Check the model name, API version, and any referenced files or resources.",
+        "retryable": False,
+    },
+    (429, "RESOURCE_EXHAUSTED"): {
+        "summary": "Gemini rate limit or quota was exceeded.",
+        "action": "Wait before retrying, reduce request rate, or request more quota.",
+        "retryable": True,
+    },
+    (500, "INTERNAL"): {
+        "summary": "Gemini hit an internal backend error.",
+        "action": "Retry after a short delay. If it persists, reduce context or try a lighter model.",
+        "retryable": True,
+    },
+    (503, "UNAVAILABLE"): {
+        "summary": "Gemini is temporarily overloaded or unavailable.",
+        "action": "Retry after a short delay or temporarily switch to a lighter model.",
+        "retryable": True,
+    },
+    (504, "DEADLINE_EXCEEDED"): {
+        "summary": "Gemini could not finish before the request deadline.",
+        "action": "Retry, reduce prompt/context size, or configure a larger client timeout.",
+        "retryable": True,
+    },
+}
 
 class CognitionNode:
     def __init__(self):
@@ -109,6 +153,144 @@ class CognitionNode:
         except Exception as e:
             rospy.logwarn(f"Failed to publish feedback: {e}")
 
+    def _gemini_error_info(self, exc: Exception) -> dict:
+        """Normalize Gemini/backend/network errors into UI-friendly guidance."""
+        code = getattr(exc, "code", None)
+        status = getattr(exc, "status", None)
+        message = getattr(exc, "message", None)
+
+        if isinstance(exc, genai_errors.APIError):
+            details = getattr(exc, "details", None)
+            if isinstance(details, dict):
+                error_details = details.get("error", details)
+                code = code or error_details.get("code")
+                status = status or error_details.get("status")
+                message = message or error_details.get("message")
+
+        if isinstance(code, str) and code.isdigit():
+            code = int(code)
+
+        guidance = GEMINI_ERROR_GUIDANCE.get((code, status))
+        if guidance is None:
+            guidance = next(
+                (
+                    item
+                    for (known_code, known_status), item in GEMINI_ERROR_GUIDANCE.items()
+                    if known_code == code and (not status or known_status == status)
+                ),
+                None
+            )
+
+        if guidance is None:
+            if isinstance(code, int) and 500 <= code < 600:
+                guidance = {
+                    "summary": "Gemini returned a backend server error.",
+                    "action": "Retry after a short delay. If it persists, reduce context or try another model.",
+                    "retryable": True,
+                }
+            elif isinstance(code, int) and 400 <= code < 500:
+                guidance = {
+                    "summary": "Gemini rejected the request.",
+                    "action": "Check API key permissions, model name, request body, and configured API features.",
+                    "retryable": False,
+                }
+            elif self._looks_like_retryable_transport_error(exc):
+                guidance = {
+                    "summary": "The Gemini request hit a transport or timeout error.",
+                    "action": "Retry after a short delay. Check network connectivity if this repeats.",
+                    "retryable": True,
+                }
+            else:
+                guidance = {
+                    "summary": "The Gemini request failed unexpectedly.",
+                    "action": "Check ROS logs for the full exception details.",
+                    "retryable": False,
+                }
+
+        return {
+            "code": code,
+            "status": status,
+            "message": message or str(exc),
+            "summary": guidance["summary"],
+            "action": guidance["action"],
+            "retryable": guidance["retryable"],
+            "exception_type": type(exc).__name__,
+        }
+
+    def _looks_like_retryable_transport_error(self, exc: Exception) -> bool:
+        retryable_names = (
+            "ConnectError",
+            "ConnectionError",
+            "ConnectTimeout",
+            "NetworkError",
+            "ReadError",
+            "ReadTimeout",
+            "RemoteProtocolError",
+            "TimeoutException",
+            "WriteError",
+            "WriteTimeout",
+        )
+        return any(cls.__name__ in retryable_names for cls in type(exc).mro())
+
+    def _format_gemini_error_body(self, info: dict, attempt: int, max_attempts: int) -> str:
+        error_id_parts = []
+        if info.get("code"):
+            error_id_parts.append(str(info["code"]))
+        if info.get("status"):
+            error_id_parts.append(str(info["status"]))
+        error_id = " ".join(error_id_parts) or info["exception_type"]
+
+        lines = [
+            f"Attempt {attempt}/{max_attempts}: {error_id}",
+            info["summary"],
+            info["action"],
+        ]
+        if info.get("message"):
+            lines.append(f"Message: {info['message']}")
+        return "\n".join(lines)
+
+    def _gemini_retry_delay(self, retry_cfg: dict, attempt_index: int) -> float:
+        backoff_factor = retry_cfg.get('backoff_factor_s', 2)
+        max_delay = retry_cfg.get('max_delay_s', 30)
+        jitter = retry_cfg.get('jitter_s', 1)
+        delay = (backoff_factor * (2 ** attempt_index)) + random.uniform(0, jitter)
+        return min(delay, max_delay)
+
+    def _build_gemini_config(self, model_cfg: dict):
+        safety_settings = [
+            types.SafetySetting(
+                category=types.HarmCategory.HARM_CATEGORY_HARASSMENT,
+                threshold=types.HarmBlockThreshold.BLOCK_NONE,
+            ),
+            types.SafetySetting(
+                category=types.HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+                threshold=types.HarmBlockThreshold.BLOCK_NONE,
+            ),
+            types.SafetySetting(
+                category=types.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+                threshold=types.HarmBlockThreshold.BLOCK_NONE,
+            ),
+            types.SafetySetting(
+                category=types.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+                threshold=types.HarmBlockThreshold.BLOCK_NONE,
+            ),
+        ]
+
+        tk_cfg = model_cfg.get('thinking_config', {})
+        media_res_str = model_cfg.get('media_resolution', 'MEDIUM')
+        return types.GenerateContentConfig(
+            safety_settings=safety_settings,
+            thinking_config=types.ThinkingConfig(
+                # thinking_budget=tk_cfg.get('thinking_budget', -1),
+                include_thoughts=tk_cfg.get('include_thoughts', False),
+                # thinking_level=tk_cfg.get('thinking_level', '')
+            ),
+            temperature=model_cfg.get('temperature', 1.0),
+            stop_sequences=model_cfg.get('stop_sequences', []),
+            max_output_tokens=model_cfg.get('max_output_tokens', 8192),
+            media_resolution=getattr(types.MediaResolution, media_res_str, types.MediaResolution.MEDIA_RESOLUTION_UNSPECIFIED),
+        )
+
     def _input_callback(self, msg: CognitionInput):
         if msg.type == 'context' and self.state in [CognitionState.GATHERING_CONTEXT, CognitionState.AWAITING_RESPONSE]:
             hook_name = msg.filename
@@ -124,7 +306,11 @@ class CognitionNode:
         # Feedback: Got Input (ignore context inputs)
         # Simple heuristic: if it's not type 'context', it's a meaningful input trigger
         if msg.type != 'context':
-            self._send_feedback("got_input", "", "got_input", "green", "slant")
+            if msg.loop_cognition == True:
+                color="bright_green"
+            else:
+                color="bright_red"
+            self._send_feedback("got_input", "", "got_input", color, "slant")
 
         with self.queue_lock:
             self.incoming_queue.append(msg)
@@ -395,7 +581,7 @@ class CognitionNode:
                 if self.context_requests_pending > 0:
                     hook_names = ", ".join([h['name'] for h in hooks_to_run])
                     rospy.loginfo(f"Requesting {self.context_requests_pending} Cognitive Hooks...")
-                    self._send_feedback("calling_hooks", hook_names, "calling_hooks", "yellow", "digital")
+                    self._send_feedback("calling_hooks", hook_names, "calling_hooks", "bright_yellow", "digital")
 
                     for hook in hooks_to_run:
                         out_msg = CognitionOutput(
@@ -408,10 +594,18 @@ class CognitionNode:
                     completed = self.context_gathering_complete.wait(timeout=120.0)
                     if not completed:
                         rospy.logwarn("Timed out waiting for Cognitive Hooks. Proceeding with what was received.")
+                        self._send_feedback(
+                            "hook_timeout",
+                            "Cognitive hooks timed out; continuing with available context.",
+                            "error",
+                            "bright_yellow",
+                            "mini"
+                        )
                 
                 with self.state_lock:
                     self.state = CognitionState.AWAITING_RESPONSE
                     rospy.loginfo("State transition to AWAITING_RESPONSE. Assembling prompt.")
+                # self._send_feedback("assembling_prompt", "Preparing context for Gemini.", "api_call", "bright_cyan", "mini")
                 
                 header_hooks_data = []
                 for s in header_to_run:
@@ -440,106 +634,94 @@ class CognitionNode:
 
                     if self.api_delay_budget > 0.01: # Avoid sleeping for tiny fractions
                         rospy.loginfo(f"Throttling API call by {self.api_delay_budget:.2f}s.")
+                        # self._send_feedback("api_throttle", f"Waiting {self.api_delay_budget:.1f}s before calling Gemini.", "api_call", "bright_yellow", "mini")
                         time.sleep(self.api_delay_budget)
                 
                 self.last_api_call_time = time.time()
 
                 # --- API Call with Retry Logic ---
                 retry_cfg = model_cfg.get('retry_config', {})
-                max_retries = retry_cfg.get('max_retries', 3)
-                backoff_factor = retry_cfg.get('backoff_factor_s', 2)
-                
-                stream = None
-                for attempt in range(max_retries):
+                max_attempts = max(1, retry_cfg.get('max_retries', 3))
+                gen_config = self._build_gemini_config(model_cfg)
+                complete_response_text = ""
+                last_chunk = None
+
+                for attempt_index in range(max_attempts):
+                    attempt = attempt_index + 1
+                    published_answer_text_this_attempt = False
                     try:
-                        rospy.loginfo(f"Calling Gemini API (Attempt {attempt + 1}/{max_retries})...")
-                        
-                        # Feedback: API Call
-                        self._send_feedback("api_call", "", "api_call", "bright_cyan", "mini")
-
-                        # This is the original API call logic, now inside the loop
-                        safety_settings = [
-                            types.SafetySetting(
-                                category=types.HarmCategory.HARM_CATEGORY_HARASSMENT,
-                                threshold=types.HarmBlockThreshold.BLOCK_NONE,
-                            ),
-                            types.SafetySetting(
-                                category=types.HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-                                threshold=types.HarmBlockThreshold.BLOCK_NONE,
-                            ),
-                            types.SafetySetting(
-                                category=types.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-                                threshold=types.HarmBlockThreshold.BLOCK_NONE,
-                            ),
-                            types.SafetySetting(
-                                category=types.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-                                threshold=types.HarmBlockThreshold.BLOCK_NONE,
-                            ),
-                        ]
-
-                        tk_cfg = model_cfg.get('thinking_config', {})
-                        media_res_str = model_cfg.get('media_resolution', 'MEDIA_RESOLUTION_UNSPECIFIED')
-                        gen_config = types.GenerateContentConfig(
-                            safety_settings=safety_settings,
-                            thinking_config=types.ThinkingConfig(
-                                thinking_budget=tk_cfg.get('thinking_budget', -1),
-                                include_thoughts=tk_cfg.get('include_thoughts', False),
-                                # thinking_level=tk_cfg.get('thinking_level', 'low')
-                            ),
-                            temperature=model_cfg.get('temperature', 0.7),
-                            stop_sequences=model_cfg.get('stop_sequences', []),                
-                            max_output_tokens=model_cfg.get('max_output_tokens', 8192),
-                            media_resolution=getattr(types.MediaResolution, media_res_str, types.MediaResolution.MEDIA_RESOLUTION_UNSPECIFIED),
+                        rospy.loginfo(f"Calling Gemini API (Attempt {attempt}/{max_attempts})...")
+                        self._send_feedback(
+                            "api_call",
+                            "",
+                             # "Gemini request attempt {attempt}/{max_attempts}",
+                            "api_call",
+                            "bright_cyan",
+                            "mini"
                         )
+
                         stream = self.genai_client.models.generate_content_stream(
                             model=model_cfg['model'], contents=final_contents, config=gen_config
                         )
-                        rospy.loginfo("API call successful, beginning stream processing.")
-                        break # Success! Exit the retry loop.
+                        rospy.loginfo("Gemini stream opened. Beginning stream processing.")
+                        # self._send_feedback("api_streaming", "Gemini is streaming a response.", "api_call", "bright_cyan", "mini")
+
+                        for chunk in stream:
+                            last_chunk = chunk
+                            if not chunk.candidates:
+                                continue
+                            candidate = chunk.candidates[0]
+                            if not candidate or not candidate.content:
+                                continue
+
+                            for part in candidate.content.parts:
+                                text = getattr(part, 'text', None)
+                                if not text:
+                                    continue
+
+                                if getattr(part, "thought", False):
+                                    # Feedback: Thinking (Trigger once per cycle)
+                                    if not self.has_thought_started:
+                                        self._send_feedback("thinking", "", "thinking", "bright_blue", "small")
+                                        self.has_thought_started = True
+                                        print("\n\n=== THOUGHTS ===\n\n")
+                                    self.output_pub.publish(CognitionOutput(type='thoughts', content=text))
+                                    print(text, end="", flush=True)
+                                else:
+                                    if complete_response_text == "":
+                                        print("\n\n=== FINAL RESPONSE ===\n\n")
+                                    print(text, end="", flush=True)
+                                    self.output_pub.publish(CognitionOutput(type='chunk', content=text))
+                                    complete_response_text += text
+                                    published_answer_text_this_attempt = True
+
+                        if last_chunk and getattr(last_chunk, 'usage_metadata', None):
+                            md = last_chunk.usage_metadata
+                            rospy.loginfo(f"Token usage — prompt: {md.prompt_token_count}, thoughts: {md.thoughts_token_count}, response: {md.candidates_token_count}, total: {md.total_token_count}, CACHED: {md.cached_content_token_count}")
+
+                        rospy.loginfo("Gemini API stream finished.")
+                        # self._send_feedback("api_done", "Gemini response complete.", "api_call", "bright_green", "mini")
+                        break
 
                     except Exception as e:
-                        rospy.logwarn(f"Gemini API call failed on attempt {attempt + 1}: {e}")
-                        
-                        # Feedback: Error
-                        self._send_feedback("api_error", str(e), "error", "bright_red", "5x7")
+                        info = self._gemini_error_info(e)
+                        error_body = self._format_gemini_error_body(info, attempt, max_attempts)
+                        rospy.logwarn(f"Gemini API failed on attempt {attempt}/{max_attempts}: {error_body}")
+                        self._send_feedback("api_error", error_body, "error", "bright_red", "5x7")
 
-                        if attempt + 1 == max_retries:
-                            rospy.logerr("All Gemini API retries failed. Aborting cognition cycle.")
-                            # Abort the cycle. The 'finally' block will still run to reset state.
-                            return 
-                        
-                        delay = (backoff_factor * (2 ** attempt)) + random.uniform(0, 1)
-                        rospy.loginfo(f"Waiting {delay:.2f}s before next retry.")
+                        can_retry = info["retryable"] and attempt < max_attempts and not published_answer_text_this_attempt
+                        if published_answer_text_this_attempt and info["retryable"]:
+                            rospy.logwarn("Gemini stream failed after answer text was published; not retrying to avoid duplicate chunks.")
+
+                        if not can_retry:
+                            rospy.logerr("Gemini API request failed without a remaining safe retry. Aborting cognition cycle.")
+                            return
+
+                        delay = self._gemini_retry_delay(retry_cfg, attempt_index)
+                        retry_body = f"Retrying Gemini request in {delay:.1f}s after {info.get('status') or info['exception_type']}."
+                        rospy.loginfo(retry_body)
+                        self._send_feedback("api_retry", retry_body, "api_call", "bright_yellow", "mini")
                         time.sleep(delay)
-
-                # --- Stream Processing  ---
-                complete_response_text = ""
-                if stream:
-                    for chunk in stream:
-                        if not chunk.candidates: continue
-                        candidate = chunk.candidates[0]
-                        if not candidate or not candidate.content: continue
-
-                        for part in candidate.content.parts:
-                            text = getattr(part, 'text', None)
-                            if not text: continue
-
-                            if getattr(part, "thought", False):
-                                # Feedback: Thinking (Trigger once per cycle)
-                                if not self.has_thought_started:
-                                    self._send_feedback("thinking", "", "thinking", "bright_blue", "small")
-                                    self.has_thought_started = True
-
-                                self.output_pub.publish(CognitionOutput(type='thoughts', content=text))
-                            else:
-                                self.output_pub.publish(CognitionOutput(type='chunk', content=text))
-                                complete_response_text += text
-                    
-                    if 'chunk' in locals() and getattr(chunk, 'usage_metadata', None):
-                        md = chunk.usage_metadata
-                        rospy.loginfo(f"Token usage — prompt: {md.prompt_token_count}, thoughts: {md.thoughts_token_count}, response: {md.candidates_token_count}, total: {md.total_token_count}")
-
-                rospy.loginfo("API stream finished.")
                 
                 complete_response_text = complete_response_text.strip()
                 if complete_response_text.startswith("<me>"): complete_response_text = complete_response_text[4:].lstrip()
