@@ -1186,17 +1186,28 @@ private:
         generateSineWaveInPlace(sine_wave_buffer_);
         normalizeWave(sine_wave_buffer_);
 
-        const bool has_audio = !audio_wave_.empty();
+        const double audio_elapsed = audio_wave_.empty()
+            ? 0.0
+            : (ros::Time::now() - audio_start_time_).toSec();
+
+        const bool has_audio =
+            !audio_wave_.empty() &&
+            audio_sample_rate_ > 0.0 &&
+            audio_elapsed <= audio_duration_;
+
+        if (!has_audio && !audio_wave_.empty()) {
+            audio_wave_.clear();
+            audio_duration_ = 0.0;
+        }
 
         if (has_audio) {
             updateAudioBuffer(audio_buffer_);
-            normalizeWave(audio_buffer_);
 
             for (int i = 0; i < length; ++i) {
-                combined_wave_[i] = 0.05f * sine_wave_buffer_[i] + 1.25f * audio_buffer_[i];
+                combined_wave_[i] = audio_buffer_[i];
             }
 
-            normalizeWave(combined_wave_);
+            normalizeWaveNoEffect(combined_wave_);
 
             bool first_combined_point = true;
             int prev_y_combined = 0;
@@ -1317,6 +1328,30 @@ private:
         for (float& v : wave) {
             v = (2.0f * (v - minv) / (maxv - minv) - 1.0f) *
                 static_cast<float>(effect_params_.amplitude);
+        }
+    }
+
+    void normalizeWaveNoEffect(std::vector<float>& wave) {
+        if (wave.empty()) {
+            return;
+        }
+
+        float minv = wave[0];
+        float maxv = wave[0];
+
+        for (const float v : wave) {
+            minv = std::min(minv, v);
+            maxv = std::max(maxv, v);
+        }
+
+        if (std::abs(maxv - minv) < 1e-9f) {
+            std::fill(wave.begin(), wave.end(), 0.0f);
+            return;
+        }
+
+        for (float& v : wave) {
+            v = (2.0f * (v - minv) / (maxv - minv) - 1.0f); // *
+                //static_cast<float>(effect_params_.amplitude);
         }
     }
 
