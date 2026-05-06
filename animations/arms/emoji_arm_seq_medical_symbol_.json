@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "⚕️",
+        "reasoning": "This animation sequence portrays a robot carefully holding a medical symbol, emphasizing precision and care. The robot's movements will be deliberate and controlled, reflecting the seriousness and responsibility associated with medical care. Frame 1: Both arms are extended forward and slightly downward, with the hands open and palms facing upward to receive the medical symbol. Frame 2: The right arm moves slightly upward to receive the symbol, with the wrist slightly angled to cradle it. The left arm remains in place, offering support. Frame 3: Both arms gently move the symbol closer to the robot's body.  Frame 4: Both arms carefully hold the medical symbol in front of the robot's chest, with the hands positioned to maintain a firm yet gentle grip. The entire motion aims for a calm, collected presentation of the medical symbol, reflecting the care and professionalism expected in a medical setting.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -15.0,
+                        "joint2": 10.0,
+                        "wrist": 15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -15.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 15.0,
+                        "wrist": 15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🔕",
+        "reasoning": "This animation sequence depicts the robot politely silencing itself, mimicking the 'bell with slash' emoji. It starts with arms in a neutral position and ends with the robot covering its 'mouth' to indicate silence. The sequence focuses on smooth transitions between keyframes, avoiding abrupt movements. The animation system will handle the smooth transitions between these keyframes. Frame 1: The robot's arms are at its sides, relaxed. This sets a neutral baseline. Frame 2: The arms begin to move upward, slightly outward, in preparation for covering the mouth.  Frame 3: Both arms are raised to the mouth area, positioning the hands to gently cover the mouth. Frame 4: The hands are adjusted slightly to ensure a natural pose covering the mouth. Frame 5: The hands remain gently covering the mouth, maintaining the silent gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 85.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 85.0,
+                        "wrist": -80.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 85.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

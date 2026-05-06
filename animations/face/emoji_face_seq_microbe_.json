@@ -1,0 +1,430 @@
+[
+  {
+    "emoji": "🦠",
+    "ideation": "The microbe should feel biological, parasitic, and strangely hypnotic. The performance avoids human-like facial logic; instead, it treats the face as a single-celled organism undulating in a petri dish. The 'eyes' act as vacuoles or nuclei that drift independently and occasionally fuse or split in appearance through scale changes. The mouth is the cell membrane—a constant, rhythmic ripple that speeds up during 'infection' or nutrient absorption. The color moves from a sickly fluorescent green to a deep, infectious viral purple, with the final frames showing a slow, pulsing mitosis-like reset.",
+    "frames": [
+      [
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_x": 0.0
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_y": 0.0
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "both",
+            "scale_x": 0.35
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "both",
+            "scale_y": 0.45
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "both",
+            "lid_height": 0.5
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "both",
+            "lid_angle": 15
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "both",
+            "color": "#76FF03"
+          }
+        },
+        {
+          "state": "MouthSine",
+          "parameters": {
+            "frequency": 1.2,
+            "amplitude": 0.25,
+            "phase": 0.0,
+            "phase_increment": 0.12,
+            "color": "#CCFF90"
+          }
+        }
+      ],
+      [
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "left",
+            "gaze_x": 0.45
+          }
+        },
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "right",
+            "gaze_x": -0.2
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "left",
+            "gaze_y": 0.3
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "right",
+            "gaze_y": -0.4
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "left",
+            "scale_x": 0.35
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "right",
+            "scale_x": 0.55
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "left",
+            "scale_y": 0.25
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "right",
+            "scale_y": 0.45
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "both",
+            "lid_height": 0.5
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "both",
+            "lid_angle": 15
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "both",
+            "color": "#76FF03"
+          }
+        },
+        {
+          "state": "MouthSine",
+          "parameters": {
+            "frequency": 2.4,
+            "amplitude": 0.25,
+            "phase": 0.0,
+            "phase_increment": 0.25,
+            "color": "#AEEA00"
+          }
+        }
+      ],
+      [
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "left",
+            "gaze_x": 0.45
+          }
+        },
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "right",
+            "gaze_x": -0.2
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "left",
+            "gaze_y": 0.3
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "right",
+            "gaze_y": -0.4
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "both",
+            "scale_x": 0.2
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "both",
+            "scale_y": 0.8
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "both",
+            "lid_height": 0.8
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "both",
+            "lid_angle": -10
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "both",
+            "color": "#C6FF00"
+          }
+        },
+        {
+          "state": "MouthSine",
+          "parameters": {
+            "frequency": 4.5,
+            "amplitude": 0.55,
+            "phase": 0.0,
+            "phase_increment": 0.4,
+            "color": "#D500F9"
+          }
+        }
+      ],
+      [
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "left",
+            "gaze_x": 0.45
+          }
+        },
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "right",
+            "gaze_x": -0.2
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "left",
+            "gaze_y": 0.3
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "right",
+            "gaze_y": -0.4
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "both",
+            "scale_x": 0.9
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "both",
+            "scale_y": 0.1
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "both",
+            "lid_height": -0.2
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "both",
+            "lid_angle": -10
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "both",
+            "color": "#AA00FF"
+          }
+        },
+        {
+          "state": "MouthSine",
+          "parameters": {
+            "frequency": 12.0,
+            "amplitude": 0.85,
+            "phase": 0.0,
+            "phase_increment": 1.1,
+            "color": "#FFFFFF"
+          }
+        }
+      ],
+      [
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_x": 0.0
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_y": 0.0
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "both",
+            "scale_x": 0.6
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "both",
+            "scale_y": 0.6
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "both",
+            "lid_height": 0.3
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "both",
+            "lid_angle": 0
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "both",
+            "color": "#6200EA"
+          }
+        },
+        {
+          "state": "MouthSine",
+          "parameters": {
+            "frequency": 0.8,
+            "amplitude": 0.4,
+            "phase": 0.0,
+            "phase_increment": 0.15,
+            "color": "#311B92"
+          }
+        }
+      ],
+      [
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_x": 0.0
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_y": 0.0
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "both",
+            "scale_x": 0.4
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "both",
+            "scale_y": 0.4
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "both",
+            "lid_height": 0.3
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "both",
+            "lid_angle": 0
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "both",
+            "color": "#1DE9B6"
+          }
+        },
+        {
+          "state": "MouthSine",
+          "parameters": {
+            "frequency": 0.5,
+            "amplitude": 0.15,
+            "phase": 0.0,
+            "phase_increment": 0.05,
+            "color": "#00BFA5"
+          }
+        }
+      ]
+    ]
+  }
+]

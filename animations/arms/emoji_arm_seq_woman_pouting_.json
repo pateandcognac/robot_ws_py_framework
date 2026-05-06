@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🙎‍♀️",
+        "reasoning": "This sequence depicts a pouting expression using the arms. The initial frame will show the arms slightly raised, palms facing inward, as if the person is slightly annoyed. The second frame will accentuate the pout by bringing the hands closer to the face, while the third frame will show a slight lowering of the arms as the pout subsides.  The fourth frame will show the arms returning to a more neutral position. The overall effect will convey the emotion of a mild pout. This will use the dual shoulder joints to create a natural, expressive movement. The wrists remain neutral, allowing focus on the arm movements.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 50.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

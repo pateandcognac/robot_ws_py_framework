@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "🕟",
+        "reasoning": "This animation sequence represents the time 4:30, using both arms to create the visual representation of the hands on a clock. The sequence will start with both arms extended to the sides, then transition to them forming the hands of a clock, and finally return to a resting position. The use of the two joints allows for expressive arm movements that are both smooth and easily understandable. Frame 1: Both arms start extended horizontally, palms down, creating the base of the clock. Frame 2: The right arm moves to point upwards to form the minute hand. Frame 3: The left arm moves to point to the 4, representing the hour hand. Frame 4: The left arm moves to the 4, representing the hour hand. Frame 5: The arms return to their starting position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -90.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 90.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -90.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -90.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "📊",
+        "reasoning": "This animation sequence will depict the robot presenting data, mimicking the action of someone pointing at a bar chart. The movement will focus on the right arm, extending it forward and slightly downward as if pointing to a chart. The left arm will remain at rest, providing balance and contrast. I will ensure that the arm movements are fluid and natural, with smooth transitions between frames. In the first frame, both arms start in a neutral position. The right arm is slightly bent, with the hand open, ready to move. The left arm rests at the side. The second frame shows the right arm extending forward as if pointing to the chart. The wrist is angled slightly downward to give a precise pointing effect. The third frame shows the right arm gently returning to a more relaxed state, not fully back to the resting pose. The fourth frame shows the right arm returning to its resting position, with the left arm remaining unchanged throughout. The smooth transitions between frames will give a natural, flowing animation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 10.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

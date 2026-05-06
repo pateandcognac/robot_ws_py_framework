@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "👂",
+        "reasoning": "This sequence aims to mimic the action of cupping a hand to the ear to enhance listening, simulating the gesture of straining to hear better. I'll prioritize the left arm for this action, creating a natural movement towards the ear while keeping the right arm in a relaxed or supportive posture. I'll use existing examples as guidelines to ensure smooth transitions and realistic joint/wrist movements. In the first frame, both arms rest at the sides, relaxed and neutral to set the scene. The left arm's joint1 has a slight inward rotation, joint2 angled slightly downward, and wrist neutral. The right arm mirrors this relaxed posture. In the second frame, the left arm begins to rise, with joint1 rotating to move the arm forward and joint2 pitching upward towards the ear. The wrist angles inward, preparing to cup the ear. The right arm remains relaxed. By the third frame, the left hand reaches the ear, with joint1 rotated further inward and joint2 adjusted to position the hand just behind the ear. The wrist curls inward at -90°, simulating the cupping action. The right arm remains relaxed, providing balance. In the fourth frame, the left arm moves slightly forward, as if straining to hear. The right arm remains relaxed. And finally, both arms return to their relaxed starting position, indicating the end of the listening gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 60.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 75.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 50.0,
+                        "joint2": 60.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

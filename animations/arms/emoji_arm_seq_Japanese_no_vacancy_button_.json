@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🈵",
+        "reasoning": "This animation sequence depicts a robot expressing 'no vacancy' using its arms.  The animation will start with both arms crossed firmly across the chest, indicating a definite 'no'. Then, the arms will shift slightly to emphasize the refusal, before returning to the initial crossed arms position. This creates a decisive, yet slightly animated, visual representation of the emoji. The use of both arms conveys a stronger sense of refusal than a single-arm gesture would. I will be checking examples for range of motion and ensuring the poses fit naturally with the robot's physical construction. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 65.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 50.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 75.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 65.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 50.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

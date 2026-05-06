@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🟡",
+        "reasoning": "This sequence will depict a robot playfully holding a yellow circle, emphasizing the roundness of the emoji.  The animation will be gentle and lighthearted, avoiding sharp movements. The robot will use both arms to cradle the imaginary circle, bringing them together in a soft, embracing motion.  We'll use the wrist to help create a sense of holding the circle rather than just positioning the arms. Frame 1 will start with the arms slightly raised and angled outwards, palms up, preparing to receive the circle. Frame 2 will show the arms coming together, palms facing each other, as if gently holding the circle. Frame 3 will have the arms move slightly closer, wrists slightly angled to better cradle the imaginary circle. Frame 4 will show a slight adjustment of the arms to maintain a comfortable and stable hold. Frame 5 will show the robot slowly returning to the initial position, maintaining the gentle and playful nature of the interaction.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 30.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 25.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

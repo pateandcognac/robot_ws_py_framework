@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🎨",
+        "reasoning": "This sequence aims to mimic the act of painting on a canvas, using the right arm to make broad, artistic strokes while the left arm remains relatively steady, as if holding a palette. I’ll focus on creating fluid, expressive movements with the right arm, while ensuring the left remains supportive, as if holding a palette. In the first frame, the left arm is positioned as if holding a palette, slightly angled outward and upward. joint1 rotates the left arm outward to position it for holding the palette, while joint2 pitches it upward. The wrist is kept neutral. The right arm, meanwhile, is extended forward, as if preparing to make a stroke on the canvas. joint1 rotates the right arm outward to angle it toward the canvas, while joint2 pitches it forward, with the wrist neutral. In the second frame, the right arm sweeps upward in a broad motion, simulating a large brushstroke. joint1 rotates the arm inward, while joint2 pitches it upward to create the upward stroke. The left arm remains static to maintain balance. By the third frame, the right arm sweeps back down, mimicking the completion of the brushstroke. joint1 rotates outward again, while joint2 pitches the arm downward, mirroring the first frame's position. In the fourth frame, the right arm sweeps across, simulating a horizontal stroke. joint1 rotates outward, while joint2 pitches the arm slightly downward, creating a horizontal motion. The left arm remains supportive, as if holding the palette. In the final frame, the right arm moves slightly upward, as if lifting the brush from the canvas, completing the painting motion. joint1 rotates slightly inward, and joint2 pitches the arm upward to lift the arm. The left arm remains steady, ready for the next color selection.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 25.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 25.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 25.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 25.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 25.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

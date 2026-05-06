@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🌘",
+        "reasoning": "This animation sequence will depict a robot mimicking the waning crescent moon's gentle decline.  The movement will be slow and deliberate, emphasizing the gradual decrease in light.  We'll use both arms to represent the moon's shape, starting with a full, almost embracing position, then slowly separating them to show the moon's diminishing size.  The final frame will show a small sliver of light remaining.  The arms will remain mostly close to the body and not move dramatically, keeping in line with the serene nature of the waning moon.  The wrist positions will be subtle, mostly keeping the palms facing each other or slightly angled toward the body. The animation will be done with both arms.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -15.0,
+                        "wrist": -15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -5.0,
+                        "wrist": -5.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🙂",
+        "reasoning": "This sequence aims to capture a slight smile, using subtle arm movements to convey a sense of gentle contentment or acknowledgement. The arms will move smoothly, avoiding any sudden jerks or exaggerated gestures. I’ll keep the movements small and fluid, reflecting the understated nature of the emoji. I’ll be referencing provided examples to ensure the arm positions and transitions remain within a natural, comfortable range for the robot. In the first frame, both arms are relaxed at the sides, palms facing slightly forward, with joint1 slightly rotated inward and joint2 pitching the arms downward. This creates a neutral, at-ease posture, setting a calm baseline for the subsequent movement. Moving to the second frame, both arms lift slightly outward, with joint1 rotating outward and joint2 pitching the arms upward a bit. The wrists rotate so the palms face forward, adding a touch of openness to the gesture. This small outward lift suggests a subtle acknowledgement or a gentle opening of the posture, reflecting the slight smile. In the third frame, the arms return to the relaxed position at the sides, palms facing slightly forward, with joint1 slightly rotated inward and joint2 pitching the arms downward. This subtle shift back to the neutral position creates a sense of balance and completion, as if the gesture has gracefully concluded. In the fourth frame, both arms lift slightly outward again, with joint1 rotating outward and joint2 pitching the arms upward a bit. The wrists rotate so the palms face forward, adding a touch of openness to the gesture. In the fifth and final frame, both arms return to their initial relaxed position at the sides, palms facing slightly forward, with joint1 slightly rotated inward and joint2 pitching the arms downward. This concludes the sequence on a calm and contented note, mirroring the gentle nature of the slight smile emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -70.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -70.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🎆",
+        "reasoning": "This sequence simulates the awe and excitement of watching fireworks. It starts with arms raised in anticipation, then a wider, upward motion to mimic the burst, and finally a slight lowering of the arms as if taking it all in. The sequence uses both arms for emphasis and mirrors the upward burst of fireworks. In the first frame, both arms are raised slightly, palms facing upward, anticipating the fireworks. joint1 is slightly outward for both arms, and joint2 pitches upward. The wrists are neutral. In the second frame, both arms move upward and outward in a burst-like motion, palms still facing upward. joint1 rotates outward, and joint2 pitches upward further. The wrists remain neutral to keep the movement smooth. In the third frame, the arms start to lower slightly, as if the viewer is taking in the spectacle. joint1 rotates inward slightly, and joint2 pitches downward. The wrists maintain their neutral position. In the fourth frame, the arms are mostly lowered, but still slightly raised, expressing lingering excitement. joint1 is nearly neutral, and joint2 is still slightly above the resting position. The wrists remain neutral. The final frame returns the arms to their neutral resting position, ending the firework display. This sequence uses the arms in a mirrored and fluid way, emphasizing the upward burst and then the calming aftermath. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

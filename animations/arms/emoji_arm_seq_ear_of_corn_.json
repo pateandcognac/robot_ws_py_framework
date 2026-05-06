@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🌽",
+        "reasoning": "This sequence mimics the act of picking or harvesting corn. It starts with both arms down, then one arm reaches up, picks the corn, then brings it down.  The other arm remains mostly static for balance. In the first frame, both arms hang down in a relaxed position. In the second frame, the right arm extends upwards, slightly rotated outward to reach for the corn.  The hand (wrist) angles slightly downward. The left arm remains in its neutral position for stability. In the third frame, the right hand is shown grasping the corn (at shoulder height). The wrist angles further to suggest gripping. In the fourth frame, the right arm begins to lower the corn back down. The hand (wrist) rotates slightly upward. The left arm remains still. The fifth frame shows the corn lowered, held gently near the side. Both arms are more relaxed than earlier. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 60.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 40.0,
+                        "wrist": -40.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

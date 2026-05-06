@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "✖️",
+        "reasoning": "This animation sequence will show the robot making a definitive \"X\" with its arms, conveying a sense of cancellation, denial, or prohibition.  The movement will start with arms at the sides, then transition to a clear \"X\" formation, and finally return to the resting position.  The animation will emphasize the sharp, decisive nature of the \"X\" gesture.  This is similar to the single-frame T-pose, but with a more dynamic and expressive motion.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,458 @@
+[
+  {
+    "emoji": "🏊‍♂️",
+    "ideation": "The animation depicts a rhythmic freestyle stroke. The robot's face becomes the surface of the water and the swimmer within it. The key is the 'breathing' cycle: eyes submerge and squint as the head turns, then flare open for a gasping breath. The mouth wave acts as the literal water surface—low amplitude while underwater, then a deep, high-frequency splash as the swimmer breaks the plane. Colors transition from deep submarine blues to bright, sun-sparkled cyans to represent the shift between the depths and the surface air.",
+    "frames": [
+      [
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_x": 0.0
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_y": -0.3
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "both",
+            "scale_x": 0.5
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "both",
+            "scale_y": 0.3
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "both",
+            "lid_height": -0.1
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "both",
+            "lid_angle": -5
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "both",
+            "color": "#1A5276"
+          }
+        },
+        {
+          "state": "MouthSine",
+          "parameters": {
+            "frequency": 0.4,
+            "amplitude": 0.1,
+            "phase": 0.0,
+            "phase_increment": 0.1,
+            "color": "#2980B9"
+          }
+        }
+      ],
+      [
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "left",
+            "gaze_x": -0.4
+          }
+        },
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "right",
+            "gaze_x": 0.7
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "left",
+            "gaze_y": 0.2
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "right",
+            "gaze_y": 0.4
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "both",
+            "scale_x": 0.5
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "left",
+            "scale_y": 0.2
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "right",
+            "scale_y": 0.6
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "left",
+            "lid_height": -0.3
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "right",
+            "lid_height": 0.5
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "both",
+            "lid_angle": -5
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "left",
+            "color": "#1A5276"
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "right",
+            "color": "#5DADE2"
+          }
+        },
+        {
+          "state": "MouthSine",
+          "parameters": {
+            "frequency": 1.2,
+            "amplitude": 0.3,
+            "phase": 0.0,
+            "phase_increment": 0.25,
+            "color": "#AED6F1"
+          }
+        }
+      ],
+      [
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "left",
+            "gaze_x": -0.4
+          }
+        },
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "right",
+            "gaze_x": 0.7
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "left",
+            "gaze_y": 0.2
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "right",
+            "gaze_y": 0.4
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "left",
+            "scale_x": 0.5
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "right",
+            "scale_x": 0.7
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "left",
+            "scale_y": 0.2
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "right",
+            "scale_y": 0.8
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "left",
+            "lid_height": -0.3
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "right",
+            "lid_height": 0.8
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "left",
+            "lid_angle": -5
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "right",
+            "lid_angle": 15
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "left",
+            "color": "#1A5276"
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "right",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "state": "MouthSine",
+          "parameters": {
+            "frequency": 2.5,
+            "amplitude": 0.7,
+            "phase": 1.5,
+            "phase_increment": 0.4,
+            "color": "#EBF5FB"
+          }
+        }
+      ],
+      [
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_x": 0.0
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_y": -0.5
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "both",
+            "scale_x": 0.4
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "both",
+            "scale_y": 0.25
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "both",
+            "lid_height": -0.2
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "both",
+            "lid_angle": -10
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "both",
+            "color": "#21618C"
+          }
+        },
+        {
+          "state": "MouthSine",
+          "parameters": {
+            "frequency": 0.3,
+            "amplitude": 0.15,
+            "phase": 3.14,
+            "phase_increment": 0.05,
+            "color": "#2E86C1"
+          }
+        }
+      ],
+      [
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_x": 0.0
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_y": -0.5
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "both",
+            "scale_x": 0.4
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "both",
+            "scale_y": 0.4
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "both",
+            "lid_height": 0.1
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "both",
+            "lid_angle": -10
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "both",
+            "color": "#3498DB"
+          }
+        },
+        {
+          "state": "MouthSine",
+          "parameters": {
+            "frequency": 6.0,
+            "amplitude": 0.5,
+            "phase": 3.14,
+            "phase_increment": 0.8,
+            "color": "#D6EAF8"
+          }
+        }
+      ],
+      [
+        {
+          "state": "EyeGazeX",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_x": 0.0
+          }
+        },
+        {
+          "state": "EyeGazeY",
+          "parameters": {
+            "eye_side": "both",
+            "gaze_y": -0.2
+          }
+        },
+        {
+          "state": "EyeScaleX",
+          "parameters": {
+            "eye_side": "both",
+            "scale_x": 0.5
+          }
+        },
+        {
+          "state": "EyeScaleY",
+          "parameters": {
+            "eye_side": "both",
+            "scale_y": 0.35
+          }
+        },
+        {
+          "state": "EyeLidHeight",
+          "parameters": {
+            "eye_side": "both",
+            "lid_height": 0.2
+          }
+        },
+        {
+          "state": "EyeLidAngle",
+          "parameters": {
+            "eye_side": "both",
+            "lid_angle": 0
+          }
+        },
+        {
+          "state": "EyeColor",
+          "parameters": {
+            "eye_side": "both",
+            "color": "#1F618D"
+          }
+        },
+        {
+          "state": "MouthSine",
+          "parameters": {
+            "frequency": 0.5,
+            "amplitude": 0.1,
+            "phase": 0.0,
+            "phase_increment": 0.12,
+            "color": "#5499C7"
+          }
+        }
+      ]
+    ]
+  }
+]

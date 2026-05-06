@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🪜",
+        "reasoning": "This animation sequence depicts the robot carefully climbing a ladder.  The movement will be deliberate and controlled, reflecting the careful nature of climbing.  The robot's arms will mimic the action of gripping and pulling itself upward. The lack of elbows necessitates a creative approach, focusing on the shoulder joints to simulate the arm movements.  The sequence emphasizes the upward motion while maintaining balance and stability.  The animation will start with the robot's arms outstretched, reaching for the ladder.  Then, the arms will pull the robot upward, and finally, the robot will reach a stable position at the top.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "😣",
+        "reasoning": "This sequence aims to capture the feeling of perseverance, using arm movements to express the effort involved.  The robot will start with fists clenched at its sides, then raise them in a determined gesture before bringing them back down in a gesture of resolve.  In the first frame, both arms are down by the sides, fists clenched inwards as if preparing for a challenge. Joint1 is neutral at 0.0, joint2 pitches the arms down at -90.0, and the wrists are rotated inward to -90.0. In the second frame, the arms bend at the 'elbows' (simulated by inward rotation of joint1) and raise upwards, showing the exertion of effort.  Joint1 rotates to 60.0, joint2 pitches upwards to 30.0, and wrists stay at -90.0. In the third frame, the arms straighten and push upwards, symbolizing the push to overcome the obstacle.  Joint1 goes to 0.0, joint2 to 90.0, and wrists remain at -90.0.  In the fourth frame, the arms return to the bent position, but slightly lower, showing continued effort. Joint1 stays at 60.0, joint2 goes to 15.0, and wrists stay at -90.0. Finally, in the fifth frame, the arms return to the sides, but the wrists now face outwards (0.0) in a gesture of quiet resolve, having pushed through the challenge. Joint1 and joint2 return to 0.0 and -90.0 respectively.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 30.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 90.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 15.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

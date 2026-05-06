@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "💆›‍♂️",
+        "reasoning": "This sequence simulates a person receiving a head massage. The left arm is relaxed at the side, while the right arm is involved in the massage motion. I'll use subtle adjustments to create a calming, relaxing experience. In the first frame, the left arm is at rest, slightly angled away from the body. The right arm is raised to head height, with the hand positioned as if gently cradling the head. In the second frame, the right arm moves slightly downward as if applying pressure to the head. The left arm remains still. In the third frame, the right arm moves slightly upward, changing the angle of pressure. The left arm remains still. In the fourth frame, the right arm returns to its initial position, completing a cycle. The left arm remains at rest, providing a contrast to the active right arm. This sequence emphasizes the gentle, repetitive movements of a massage.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

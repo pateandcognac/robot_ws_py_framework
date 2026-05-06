@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🌁",
+        "reasoning": "This sequence aims to depict the feeling of being enveloped in fog, using slow, deliberate arm movements to mimic the gradual obscuring of vision. The arms will move to gently cover the eyes, creating a sense of mystery and haziness. In the first frame, the arms start in a neutral position at the sides. In the second frame, the arms begin to rise, moving slowly towards the face. In the third frame, the hands gently cover the eyes, creating a sense of being lost in fog. In the fourth frame, the arms remain in position, reinforcing the feeling of being surrounded by fog. The fifth frame slowly lowers the arms back to their neutral position.  The overall effect should be a gradual and somewhat mysterious movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

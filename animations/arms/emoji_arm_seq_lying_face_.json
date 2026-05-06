@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "🤥",
+        "reasoning": "This sequence aims to capture the gesture of lying or exaggerating, where one might touch their nose or face with a hand, often accompanied by a slight shrug or a dismissive gesture with the other hand. Given the robot's limited arm movement, I'll focus on bringing one hand towards the face, while the other arm remains mostly neutral, adding a subtle secondary movement to enhance the overall expression. In the first frame, both arms rest at the sides, setting a neutral starting point. The right arm then begins to rise towards the face in the second frame, joint1 rotating inward and joint2 lifting the arm with a slight wrist rotation. The left arm shifts slightly outward to balance the pose. In the third frame, the right hand reaches close to the face as if touching the nose, with a slight adjustment of the wrist to mimic the lying gesture. The left arm drops down a little, adding to the casual, dismissive feel. The fourth frame sees the right arm returning to a lower position, joint2 pitching downward, as if retracting from the face after the 'lie'. Finally, in the fifth frame, both arms return to their resting positions at the sides, with a subtle shift in wrist angles to convey a sense of nonchalance or indifference, completing the lying gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": 70.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -90.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 25.0,
+                        "joint2": 85.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -85.0,
+                        "wrist": 15.0
+                    }
+                }
+            ]
+        ]
+    }
+]

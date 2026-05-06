@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🎬",
+        "reasoning": "This sequence mimics the action of holding and using a clapperboard. The robot will hold the clapperboard (imagined) in both hands, then bring them together with a decisive motion, before returning to a relaxed pose.  The movement should be precise and controlled, reflecting the professionalism associated with filmmaking.  The lack of elbows in the robot's arm design will be addressed by focusing on the shoulder joints' expressive range to suggest the action.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

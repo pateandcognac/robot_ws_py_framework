@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🍻",
+        "reasoning": "This animation sequence simulates the act of clinking beer mugs.  The robot will raise both arms, slightly angled outward, to bring the mugs (simulated by the robot's hands) together for a celebratory clink. The movement will be smooth yet expressive, focusing on the key moments of the action.  The arms will start in a relaxed position, rise to the clinking point, briefly hold the clink, and then return to a relaxed position. I will leverage the examples to ensure natural movement and avoid jerky motions. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

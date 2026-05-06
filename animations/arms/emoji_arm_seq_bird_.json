@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "🐦",
+        "reasoning": "This sequence mimics a bird taking flight.  The arms start down, then move up and out, ending in a position suggesting wings outstretched.  The slight inward and outward rotation of the arms simulates the flapping motion.  The wrists are subtly adjusted for more natural-looking 'wings'.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

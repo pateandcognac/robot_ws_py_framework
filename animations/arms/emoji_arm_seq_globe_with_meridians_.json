@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🌐",
+        "reasoning": "This sequence will show the robot holding a globe, emphasizing the roundness and the lines of longitude and latitude.  The animation will start with arms outstretched, palms up, as if presenting the globe. Then, the hands will gently close around the imaginary globe before returning to a neutral position.  The key is to create a smooth, deliberate movement that highlights the shape of the globe. The robot does not have hands, so the 'grasping' will be suggested by the arm positions.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

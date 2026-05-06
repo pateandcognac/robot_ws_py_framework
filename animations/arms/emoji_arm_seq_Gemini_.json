@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "♊",
+        "reasoning": "This animation sequence represents the duality of Gemini, using both arms to create a mirrored, yet slightly offset, movement that symbolizes the sign's two-sided nature. The arms will move in a wave-like motion, starting with a mirroring effect and then diverging to show the independent yet connected aspects of Gemini.  Each arm will have a slightly different timing and amplitude to visually represent this contrast. This sequence will use 5 frames to capture the flow of motion.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20,
+                        "joint2": 45,
+                        "wrist": 0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20,
+                        "joint2": 45,
+                        "wrist": 0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30,
+                        "joint2": 60,
+                        "wrist": 15
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30,
+                        "joint2": 60,
+                        "wrist": -15
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10,
+                        "joint2": 75,
+                        "wrist": 0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10,
+                        "joint2": 20,
+                        "wrist": 0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20,
+                        "joint2": 45,
+                        "wrist": -15
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20,
+                        "joint2": 75,
+                        "wrist": 15
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0,
+                        "joint2": 0,
+                        "wrist": 0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0,
+                        "joint2": 0,
+                        "wrist": 0
+                    }
+                }
+            ]
+        ]
+    }
+]

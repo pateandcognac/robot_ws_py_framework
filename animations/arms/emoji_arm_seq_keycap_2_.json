@@ -1,0 +1,79 @@
+[
+    {
+        "emoji": "2️⃣",
+        "reasoning": "This sequence will represent the number 2 using the robot's arms.  The animation will start with both arms down, then the right arm will move to form the top part of the 2, and finally, the left arm will form the bottom curve.  The movement should be deliberate and expressive, highlighting the shape of the number.  The final pose will hold for a brief moment before returning to the neutral position (though this return is not part of the provided animation frames).",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

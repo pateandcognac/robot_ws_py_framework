@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🧑‍🚀",
+        "reasoning": "This sequence simulates an astronaut preparing for a spacewalk, emphasizing the careful, deliberate movements required in a low-gravity environment. The astronaut will begin with arms at their sides, then raise them to check their equipment, and finally adopt a balanced, ready posture. The animation will use both arms, highlighting the precision needed in a spacewalk. In the first frame, the arms hang loosely at the sides, palms facing inward. This represents the astronaut's relaxed posture before the spacewalk. In the second frame, the astronaut begins to raise their arms, checking their equipment. The arms move upward and outward, with the wrists slightly rotated to simulate the action of inspecting gear. In the third frame, the astronaut checks their equipment further. The arms move to a position above shoulder level, palms facing outward, as if making sure everything is in place. In the fourth frame, the astronaut moves to a balanced, ready posture. The arms are slightly spread outward for balance, and the hands are now open, suggesting a sense of readiness. The final frame depicts the astronaut moving to a balanced, ready posture, arms slightly spread outward for balance, hands open, suggesting readiness for the spacewalk.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 75.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

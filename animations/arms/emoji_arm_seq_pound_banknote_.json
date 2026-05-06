@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "💷",
+        "reasoning": "This sequence will show the robot carefully handling a banknote, conveying care and precision.  The robot will initially hold the note gently, then move it closer, and finally place it carefully down.  The movement should be slow and deliberate, emphasizing the value of the money. The left arm will remain at the side for balance and to highlight the right arm's actions.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

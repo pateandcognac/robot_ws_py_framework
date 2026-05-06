@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🌊",
+        "reasoning": "This sequence mimics the gentle, flowing motion of a wave. The arms start in a relaxed position, then one arm gracefully rises and falls, creating a wave-like effect. The other arm provides counterbalance and enhances the fluidity of the motion.  The sequence will focus on smooth transitions between frames, ensuring the movement appears natural and not robotic. The robot does not have elbows, so I will need to simulate the wave effect using the two shoulder joints.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

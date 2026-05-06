@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "📥",
+        "reasoning": "This animation sequence depicts a robot gently receiving an incoming message or item, represented by the inbox_tray emoji.  The movement should be smooth and welcoming, suggesting the robot is ready to accept the incoming information. The sequence will involve both arms moving in a coordinated manner to create a receptive gesture. Frame 1 will show both arms slightly raised and angled inwards, palms facing upwards as if cupping an incoming object. Frame 2 will show the arms moving slightly closer together, maintaining the upward-facing palms, emphasizing the receptive gesture. Frame 3 will show the arms lowering slightly, as if the object has been received, and the palms remain upward-facing. Frame 4 will show the arms returning to a neutral position at the sides, indicating the action is complete. This gradual and welcoming movement conveys the 'receiving' aspect of the inbox_tray emoji effectively.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 35.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 15.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

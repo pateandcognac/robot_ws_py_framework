@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🥦",
+        "reasoning": "This animation sequence portrays a robot playfully inspecting a broccoli floret.  The movement is curious and gentle, reflecting the wholesome nature of the vegetable. The sequence begins with both arms relaxed at the sides. The left arm moves forward to gently hold the broccoli (simulated by a slight upward movement), while the right arm approaches to examine it more closely. The final frame shows both arms returning to a relaxed position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

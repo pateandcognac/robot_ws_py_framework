@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "😞",
+        "reasoning": "This sequence aims to express disappointment through a slumped posture and a subtle face touch. The robot will begin in a neutral position and transition into a pose of dejection, with its arms drooping and one hand lightly touching its face.  In the first frame, both arms start in a neutral, resting position at the sides of the body. joint1 is at 0.0, and joint2 is at -90.0, with wrists at 0.0, representing a relaxed, default stance. As the disappointment sets in, the arms begin to droop. In the second frame, joint2 for both arms increases to -60.0, raising the arms slightly, while joint1 remains neutral.  The wrists rotate slightly inward to -20.0. This subtle shift suggests a sense of unease. In the third frame, the left arm moves to lightly touch the face, conveying sadness or disappointment. joint1 rotates inward to 45.0, and joint2 increases to 70.0 to bring the hand up to the face. The wrist rotates further inward to -90.0, allowing the 'palm' to rest against the face. The right arm continues to droop, with joint2 decreasing further to -75.0 and the wrist rotating to -30.0 to emphasize the feeling of dejection.  Finally, in the fourth frame, both arms slump further, expressing the overall feeling of disappointment. The left arm remains near the face, while the right arm drops further, with joint2 reaching -85.0. The wrists maintain their inward rotation, enhancing the sense of sadness and resignation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -60.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -75.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -85.0,
+                        "wrist": -30.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🔊",
+        "reasoning": "This sequence simulates someone shouting or speaking loudly, using exaggerated arm movements to enhance the expression. The arms will move dynamically to emphasize the volume of the sound.  I'll reference previous examples to ensure smooth transitions and natural-looking gestures. In the first frame, both arms are positioned in a neutral state, neither too tense nor relaxed. In the second frame, both arms move outward and upward, as if the robot is gesturing emphatically while speaking.  The palms face forward, adding to the feeling of projection.  In the third frame, the arms move down and slightly inward, as if the robot is emphasizing a point with a slight pause before the next word. In the fourth frame, the arms move back outward and upward again, even higher than in the second frame, emphasizing the loudness of the sound. In the final frame, the arms return to a neutral position, completing the gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 75.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

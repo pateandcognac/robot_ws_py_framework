@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🖇️",
+        "reasoning": "This animation sequence will show the robot carefully connecting two imaginary paperclips.  The movement will be precise and deliberate, reflecting the delicate nature of the task.  The robot will use both arms, mirroring each other's movements for symmetry.  The animation will begin with the arms extended towards the center, then move to a position where the 'paperclips' are being joined, and finally end with the arms returning to a neutral position.  The wrists will be manipulated slightly to give the impression that the robot is holding the paperclips.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -10.0,
+                        "wrist": 10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

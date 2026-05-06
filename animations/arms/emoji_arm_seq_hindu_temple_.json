@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🛕",
+        "reasoning": "This sequence will depict a gesture of reverence or prayer, fitting for the Hindu temple emoji. The animation will involve a slow, deliberate lowering of the palms in a prayer-like motion.  The arms will start extended forward slightly and then gradually lower, suggesting a bow of respect. The movement will be symmetrical for both arms. I'll check other examples to ensure the movement is smooth and natural. In the first frame, both arms will start raised to shoulder height with palms together, similar to a prayer position.  joint1 will be slightly inward and joint2 will be around 20 degrees. The wrists will be angled slightly inward. In the second frame, the arms will lower slightly, maintaining the prayer-like posture. joint2 will decrease to around 10 degrees, bringing the hands closer to the body. In the third frame, the arms will lower further, almost to the waist level, with joint2 around 0 degrees, maintaining the prayer-like pose. In the fourth frame, the hands will move slightly away from each other to a more natural resting position, with the joint1 moving outwards slightly. Finally, the arms will rest at the sides in a relaxed position, with joint1 at 0 degrees and joint2 at -90 degrees, signifying the end of the prayer gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 20.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

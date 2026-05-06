@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "♍",
+        "reasoning": "This animation sequence represents the Virgo zodiac sign, often associated with precision, analysis, and detail-oriented nature.  The animation will show the robot carefully and deliberately tracing a Virgo symbol in the air with its right arm. The left arm will remain at rest, providing a contrast to the focused precision of the right arm.  The movement will be slow and deliberate, emphasizing the analytical nature of the sign. Frame 1 will start with both arms at rest at the sides. Frame 2 will show the right arm starting to move upward and outward to begin tracing the Virgo symbol. Frame 3 will show the right arm tracing the curved part of the Virgo symbol. Frame 4 will be the arm completing the symbol. Frame 5 will show the arm returning to rest.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 60.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

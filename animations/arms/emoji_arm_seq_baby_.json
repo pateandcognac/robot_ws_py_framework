@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "👶",
+        "reasoning": "This sequence aims to depict a baby's playful arm movements.  The movements will be somewhat uncoordinated, reflecting a baby's lack of fine motor control. We'll use a mix of small, jerky motions and slightly larger, more sweeping gestures, alternating between arms to emphasize the playful, unpredictable nature of a baby's actions.  The arms will not have a consistent pattern, but instead will move somewhat randomly to convey the feeling of a baby discovering its limbs. We will not have the arms in a consistent pose, but instead use random movements to simulate the feeling of a baby discovering its limbs. The frames will feature slightly irregular wrist positions to add to the natural, unsynchronized movements of the baby. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -30.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 50.0,
+                        "wrist": 30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 10.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": -20.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

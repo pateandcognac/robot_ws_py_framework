@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "🧌",
+        "reasoning": "This animation sequence aims to capture the mischievous and slightly unsettling nature of the troll emoji.  The animation will involve both arms, starting with a neutral position and progressing through a series of gestures that suggest slyness and a bit of menace.  The movement will be deliberate but not overly jerky, reflecting the troll's calculated nature. Frame 1 will show both arms at rest. Frame 2 will have the left arm raised, palm open, as if beckoning or gesturing. Frame 3 will show the right arm coming up, palm down, as if pushing or threatening. Frame 4 will have the left arm moving back down, while the right arm remains in its threatening position. Frame 5 will return both arms to a neutral position, but with a slight shift in posture to emphasize the finality of the gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

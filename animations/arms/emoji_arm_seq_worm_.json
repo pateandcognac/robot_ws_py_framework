@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🪱",
+        "reasoning": "This animation sequence depicts a robot mimicking the movement of a worm, conveying a sense of playful silliness or perhaps even a little bit of creepiness, depending on how the animation is implemented.  The robot will use its arms to simulate the worm's wriggling motion. Since the robot lacks elbows, the animation will rely on subtle changes in joint angles to achieve a realistic effect.  The lack of elbows means the robot will have to create an approximation of the worm's movement. Frames 1, 3, and 5 will be similar yet subtly different, creating the illusion of the worm stretching and contracting. The reasoning will focus on the subtle changes in joint angles and wrist positions to capture the essence of the worm's movement. The sequence will be 5 frames long for better clarity and expressiveness.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -70.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

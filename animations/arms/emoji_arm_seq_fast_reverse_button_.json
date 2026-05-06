@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "⏪",
+        "reasoning": "This animation sequence simulates the fast reverse action using a combination of arm movements that suggest rewinding or pulling something back. The sequence starts with both arms extended forward, then draws them back in a swift motion, followed by a slight pause before returning to the initial pose.  The animation emphasizes swift backward movement to reflect the speed implied by the \"fast\" in \"fast reverse\". The arms will move symmetrically for a balanced look.  Both hands will remain neutral throughout the animation, as if holding an invisible rewind button.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

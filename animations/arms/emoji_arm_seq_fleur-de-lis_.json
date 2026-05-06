@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "⚜️",
+        "reasoning": "This sequence simulates the elegant formation of a fleur-de-lis.  The animation will focus on a graceful, symmetrical movement of both arms, mirroring the flower's three petals.  The arms will start in a neutral position, then gracefully extend outward and upward before returning to a resting pose.  Each frame will represent a significant change in arm position, leaving smooth transitions to the animation system.  The robot's lack of elbows will be compensated for by using the shoulder joints to create a flowing movement.  In the first frame, both arms will start in a neutral, relaxed position at the sides.  In the second frame, both arms will begin to extend outward and upward, mirroring the upward-pointing petals of the fleur-de-lis, with the wrists slightly rotated inward to suggest a delicate shaping of the petals.  In the third frame, the arms will reach their peak, fully extended in the symmetrical shape of the fleur-de-lis.  In the fourth frame, the arms will begin to gracefully retract, moving back downward.  Finally, in the fifth frame, the arms will return to their initial neutral resting position, completing the elegant gesture. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 30.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 60.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 15.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

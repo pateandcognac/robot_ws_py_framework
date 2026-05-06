@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "☺️",
+        "reasoning": "This sequence aims to express a warm, genuine smile by combining gentle arm movements with subtle wrist rotations. The primary focus is on conveying a sense of ease and contentment. The animation begins with both arms held comfortably at the sides, establishing a relaxed and open posture. I'll ensure the transitions between frames are distinct yet fluid, reflecting the natural flow of a gentle swaying motion.  In the first frame, both arms rest comfortably at the sides, palms facing slightly forward to convey openness and warmth. Joint1 is set slightly outward, and joint2 pitches the arms downward in a relaxed manner. The wrists have a subtle inward rotation to enhance the natural feel. In the second frame, both arms move slightly forward and outward, as if extending a gentle embrace. Joint1 rotates further outward, while joint2 adjusts the pitch to bring the arms forward. The wrists remain subtly rotated inward. In the third frame, the arms return to their initial relaxed position at the sides. Joint1 and joint2 revert to their starting positions, and the wrists maintain their gentle inward curve. In the fourth frame, the arms move slightly inward and closer to the body, suggesting a sense of contentment and self-assurance. Joint1 rotates inward, and joint2 adjusts accordingly. The wrist rotation remains subtle. In the final frame, the arms settle back into the initial relaxed posture at the sides, completing the cycle of gentle swaying. This subtle movement enhances the overall impression of a warm, genuine smile.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -70.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": -10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

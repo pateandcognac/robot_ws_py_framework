@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "↘️",
+        "reasoning": "This animation sequence simulates the act of pointing downwards and to the right, using a combination of arm and wrist movements to guide the viewer's eye in the indicated direction.  The sequence will focus on the right arm primarily, with the left arm remaining in a relatively neutral position to provide contrast and balance.  The animation is designed to be clear and easily interpretable. Frame 1 starts with a relaxed neutral position, frame 2 begins the pointing gesture, frame 3 emphasizes the pointing direction, and frame 4 returns to a neutral position. \n\nFrame 1: Both arms begin in a relaxed, neutral position at the sides. This sets the stage for the subsequent pointing gesture. \n\nFrame 2: The right arm moves forward and slightly downward, initiating the pointing motion. The wrist is rotated to point accurately to the downward-right direction. The left arm remains relatively neutral for balance. \n\nFrame 3: The right arm extends further and angles more sharply downwards and to the right, emphasizing the pointing direction. The wrist is adjusted to ensure the pointing is precise and unambiguous. The left arm remains neutral.\n\nFrame 4: The right arm gently returns to a neutral position, the gesture having been made. The left arm remains neutral throughout.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": -30.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": -60.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🤞",
+        "reasoning": "This sequence aims to represent crossed fingers, a gesture often used to express hope or wish for good luck. Since the robot doesn't have fingers, the focus will be on creating a visual approximation of this gesture by positioning the arms close together in front of the body and slightly offsetting them to imply the crossing of fingers. Each frame will represent a distinct position in the sequence, with changes between frames generally significant enough to capture the essence of the gesture without relying on interpolation. In the first frame, both arms are held up in front of the body, slightly offset, with palms facing each other. joint1 for both arms rotates inward, bringing the arms close together. joint2 pitches the arms slightly forward, and the wrists are angled inward to suggest the hands are loosely clasped. This starting position mimics the beginning of the crossed fingers gesture. In the second frame, the arms move slightly closer together, increasing the impression that the hands are interlocked. joint1 rotates inward further, and joint2 adjusts the pitch to maintain the arms' forward position. The wrists rotate slightly to emphasize the interlocking. This subtle shift adds to the illusion of crossed fingers. In the third frame, the arms move slightly apart, as if releasing the crossed fingers gesture. joint1 rotates outward, and joint2 adjusts the pitch to maintain the arms' forward position. The wrists rotate back to their original position. This slight separation creates a more natural, less rigid feel. In the fourth frame, the arms return to the crossed position, reinforcing the gesture. joint1 rotates inward again, and joint2 adjusts the pitch. The wrists also rotate back to the interlocking position. This repetition emphasizes the hope or wish for good luck associated with crossed fingers. In the final frame, the arms move slightly downward and outward, as if relaxing after the gesture. joint1 rotates outward, and joint2 pitches the arms downward. The wrists return to a neutral position. This final movement adds a touch of realism to the sequence.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 50.0,
+                        "joint2": 30.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 60.0,
+                        "joint2": 35.0,
+                        "wrist": -40.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 55.0,
+                        "joint2": 25.0,
+                        "wrist": -50.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 65.0,
+                        "joint2": 30.0,
+                        "wrist": -35.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 35.0,
+                        "wrist": -40.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 55.0,
+                        "joint2": 40.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 50.0,
+                        "joint2": 30.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 60.0,
+                        "joint2": 35.0,
+                        "wrist": -40.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 40.0,
+                        "joint2": 10.0,
+                        "wrist": -20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 50.0,
+                        "joint2": 15.0,
+                        "wrist": -15.0
+                    }
+                }
+            ]
+        ]
+    }
+]

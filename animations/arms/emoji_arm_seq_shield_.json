@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "🛡️",
+        "reasoning": "This sequence depicts a defensive posture, using both arms to create a protective shield in front of the body. The arms move in a coordinated manner, starting from a relaxed position and gradually forming a protective barrier. The sequence will incorporate slight variations in arm positioning to avoid a rigid, mechanical look. In the first frame, both arms are in a neutral position at the sides, palms facing inward. In the second frame, both arms begin to move upward, with the left arm slightly higher than the right, and the wrists turned outward, as if preparing to block something. In the third frame, the arms are fully raised, creating a shield-like formation in front of the body, with the palms facing outward and the forearms slightly angled to enhance the protective look. In the fourth frame, the arms maintain the protective position, but with a slight adjustment in the wrist angle to improve the overall defensive posture. Finally, in the fifth frame, the arms slowly return to a neutral position, completing the defensive gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 30.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 30.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 40.0,
+                        "joint2": 25.0,
+                        "wrist": 75.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": 25.0,
+                        "wrist": 75.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

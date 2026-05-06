@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "❔",
+        "reasoning": "This sequence aims to capture the uncertainty and questioning implied by the white question mark emoji. The robot will tilt its head slightly, and its arms will move in a questioning, slightly hesitant manner.  The animation will start with arms relaxed, then move to a pose suggesting thought, and finally settle into a posture that reflects uncertainty.  I'll maintain a slight asymmetry to avoid a robotic look. I will consult the examples to ensure the range of motion is natural for the robot.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -70.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "🥴",
+        "reasoning": "This sequence aims to capture the feeling of dizziness or wooziness, using asynchronous arm movements and slight wrist rotations to create a sense of imbalance and disorientation.  I'll start with a somewhat neutral pose and gradually introduce more erratic movements to reflect the woozy feeling. In the first frame, both arms hang loosely at the sides, with joint1 slightly inward and joint2 pitched downward, creating a relaxed, almost droopy posture. The wrists are neutral. This sets the stage for the subsequent disoriented movements. In the second frame, the right arm lifts slightly, with joint1 rotating outward and joint2 pitching upward, as if trying to regain balance. The wrist twists slightly inward. The left arm remains relaxed, emphasizing the imbalance. By the third frame, the left arm lifts slightly as well, mirroring the right arm's previous movement, but with a slight delay, as if struggling to keep up.  The right arm begins to lower, with its wrist twisting outward. This asynchronous movement enhances the woozy effect.  In the fourth frame, the right arm drops further, while the left arm reaches its peak height, further exaggerating the imbalance and disorientation.  The wrists continue to rotate slightly, adding to the sense of instability. Finally, in the fifth frame, both arms return to a slightly more relaxed, but still somewhat unsteady position, with joint1 slightly inward and joint2 pitched downward. The wrists remain slightly offset, suggesting lingering dizziness.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -40.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -50.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -5.0,
+                        "joint2": -70.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -25.0,
+                        "joint2": -30.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -5.0,
+                        "joint2": -85.0,
+                        "wrist": 10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

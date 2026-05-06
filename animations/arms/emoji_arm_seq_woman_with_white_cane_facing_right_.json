@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "👩‍🦯‍➡️",
+        "reasoning": "This animation sequence portrays a woman using a white cane, moving to the right.  The focus is on the subtle yet purposeful movements of the arms, reflecting a sense of careful navigation. The right arm will swing naturally as she walks, mirroring the motion of her legs, while the left arm, holding the cane, will remain relatively stable, providing balance.  I'll use small, deliberate changes in joint angles for expressiveness. Frame 1: The starting position. The right arm is slightly back, and the left arm is extended to the side, holding the cane slightly forward. Frame 2: The right arm swings forward, mirroring a walking motion. The left arm and cane maintain their position, providing balance. Frame 3: The right arm is now forward, and the left arm and cane maintain their position. Frame 4: The right arm swings back, completing the walking cycle. The left arm and cane remain stable, providing a constant point of reference. Frame 5: The right arm is back, and the left arm and cane maintain their position. The subtle movements of the arms reflect the woman's careful navigation, creating a sense of realism and empathy.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -40.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🌂",
+        "reasoning": "This animation sequence depicts the action of closing an umbrella. Since our robot doesn't actually hold an umbrella, we'll simulate the action using arm movements.  The animation will focus on bringing both arms together in a smooth, controlled motion, mimicking the act of folding an umbrella. The sequence starts with the arms extended slightly upward as if holding an open umbrella overhead.  Then, in a smooth motion, the arms move downward and inward, as if bringing the umbrella down and closing it. Finally, the arms settle into a relaxed position at the sides. This sequence will use a combination of joint1 and joint2 movements to achieve a natural-looking action. The wrists should remain roughly neutral throughout to help the action seem more focused on the umbrella rather than the hands themselves.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

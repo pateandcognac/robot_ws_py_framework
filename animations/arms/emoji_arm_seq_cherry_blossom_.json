@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🌸",
+        "reasoning": "This sequence aims to capture the delicate beauty and gentle swaying of cherry blossoms. The animation will feature a slow, graceful movement of both arms, mimicking the gentle dance of blossoms in a soft breeze.  The arms will move in a wave-like pattern, emphasizing the fluidity and serenity of the scene.  I will use a combination of joint1 and joint2 to create a smooth, almost ethereal effect. The wrists will remain mostly neutral, allowing the focus to remain on the larger arm movements.  In the first frame, both arms will start in a relaxed position at the sides. In the second frame, the arms will begin to rise slowly, with a slight outward rotation at joint1 to create a gentle curve. In the third frame, the arms will reach their highest point, creating a soft arc. In the fourth frame, the arms will begin to descend gracefully, mirroring the upward movement.  Finally, in the fifth frame, the arms will return to their original relaxed position, completing the cycle.  This gentle, flowing movement aims to evoke the peaceful and beautiful image associated with cherry blossoms.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

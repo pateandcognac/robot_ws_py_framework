@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🚄",
+        "reasoning": "This animation sequence simulates the motion of a high-speed train speeding past. The arms mimic the forward movement and speed, with a slight back-and-forth motion to create a sense of momentum. The sequence starts with the arms extended forward, then moves to a more dynamic pose, and finally, returns to a slightly more relaxed state to convey the train's passage. In the first frame, both arms extend forward at shoulder height, palms facing forward to suggest a train's front. Joint1 is neutral, and joint2 is slightly forward. In frame two, both arms move back, creating a sense of the train's passing movement. Joint1 slightly rotates inward, and joint2 pitches back. The wrists remain neutral. In frame three, the arms move forward again, slightly lower than the first frame to create the feeling of momentum and speed. Joint1 and joint2 adjust to create a forward motion. In frame four, the arms return to a relaxed position at the sides, palms facing inward. Joint1 and joint2 return to a more neutral position to convey the train has passed. This sequence creates a dynamic and expressive animation that captures the essence of a high-speed train.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

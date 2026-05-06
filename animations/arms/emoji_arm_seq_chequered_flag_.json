@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🏁",
+        "reasoning": "This animation sequence simulates the act of waving a checkered flag to signal the end of a race. The right arm will hold the flag and perform the waving motion. The left arm will remain relatively still to maintain balance and contrast with the dynamic movement of the right arm. The sequence will emphasize the upward and downward motion of the flag to signal the finish.  I'll use the two joints and wrist to create a fluid wave, checking against the examples to ensure realistic motion and range. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

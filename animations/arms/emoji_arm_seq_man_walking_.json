@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🚶‍♂️",
+        "reasoning": "This sequence simulates the arm swing of a person walking. The arms move in opposition to each other, creating a natural, rhythmic motion. I'll focus on creating a smooth, alternating pattern of movement, with the arms swinging forward and back in a relaxed manner.  The sequence will emphasize the natural counter-movements of the arms during walking, ensuring the animation is both realistic and expressive. I'll reference previous examples to ensure the range of motion is appropriate and the transitions are fluid.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

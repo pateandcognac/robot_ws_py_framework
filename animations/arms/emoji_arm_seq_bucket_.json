@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🪣",
+        "reasoning": "This animation sequence shows the robot carefully lifting a bucket.  The robot will use both arms to lift the bucket, emphasizing a cautious and controlled movement. The sequence will begin with the arms extended downward, and then gradually move upward as the robot lifts the bucket. The hands will be positioned as if grasping the bucket's handle. The wrists will be slightly angled to maintain a natural grip.  There will be a slight pause at the top of the movement before returning to the starting position.  The overall animation should convey a sense of care and stability. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

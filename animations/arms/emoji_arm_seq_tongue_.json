@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "👅",
+        "reasoning": "This sequence mimics playfully sticking out the tongue.  The movement starts with both arms relaxed, then the right arm moves forward and upward, ending with the right wrist rotating to point the fingers toward the mouth, implying a tongue sticking out. The left arm remains relatively still to provide a contrast and balance.  In the first frame, both arms are at rest, neutral position.  The second frame shows the right arm starting to move forward and upward. The third frame shows the right arm fully extended, with the wrist rotated to mimic the tongue gesture. The fourth frame shows the right arm retracting slightly. The left arm remains still throughout. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 30.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

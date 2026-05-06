@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "🏩",
+        "reasoning": "This animation sequence aims to express the welcoming and romantic atmosphere associated with a love hotel.  The robot will use both arms in a gesture that suggests both openness and a sense of privacy.  The sequence will start with arms outstretched in a gesture of invitation, then move to a more closed-off position, suggesting a sense of intimacy.  Finally, the arms will return to a neutral position, ending the gesture.  Each arm will move in a synchronized manner to maintain balance and symmetry.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

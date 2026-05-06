@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🛍️",
+        "reasoning": "This sequence simulates the action of carrying shopping bags.  The animation will focus on a slight bend in the arms to suggest the weight of the bags, and a careful, controlled movement.  The bags will be carried in both arms, slightly away from the body.  I will use the examples to guide the range of motion and make the transitions smooth and natural. In the first frame, both arms will be slightly bent, holding the bags close to the body. The wrists will be slightly angled downward to mimic the way one holds shopping bags. In the second frame, the arms will move slightly outward, away from the body, to show the bags being carried. The wrists will remain angled downward. In the third frame, the arms will be slightly higher, suggesting a more relaxed posture, as if the person is walking with the bags. The wrists will remain angled downward. In the fourth frame, the arms will move slightly closer to the body, as if the person is adjusting their grip on the bags. The wrists will still be angled downward. Finally, in the fifth frame, the arms will return to their original position in frame one, but with a slight alteration to the wrist angle, creating a natural movement cycle.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -50.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -40.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": -30.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -45.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -50.0,
+                        "wrist": -10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🍟",
+        "reasoning": "This sequence mimics the action of someone excitedly reaching for and grabbing a plate of french fries.  The animation will emphasize anticipation and grabbing. The robot will start with its arms at its sides, then reach forward, and finally grasp (or at least gesture towards grasping) the fries.  Since the robot doesn't have hands, the 'grasping' will be indicated by a closing motion of the arms.  The movements will be exaggerated slightly for comedic effect, as if the robot is very hungry! The left arm will mostly mirror the right arm to simulate grabbing action. \n\n",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

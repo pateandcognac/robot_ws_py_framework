@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "〰️",
+        "reasoning": "This sequence simulates a gentle, flowing wave using both arms.  The movement should be slow and deliberate, conveying a sense of calm fluidity.  I will focus on subtle changes in joint angles to create a natural, wave-like motion. The arms will move in a mirrored fashion for a balanced appearance.  We will use the full range of motion to create the most expressive animation possible.  In the first frame, both arms start in a neutral position at the sides. Then, in the second frame, both arms move slightly forward and upward in a mirrored manner.  The third frame reverses the direction of the wave, bringing the arms back slightly downward and backward.  The fourth frame mirrors the second frame, returning the arms to the forward and upward position. Finally, the fifth frame returns the arms to the neutral starting position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -15.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -15.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "✨",
+        "reasoning": "This sequence aims to capture the whimsical and celebratory nature of sparkles.  The animation will involve a quick, upward flourish of both arms, followed by a gentle return to a relaxed position.  The movement should be light and airy, not forceful.  I'll use the joint angles to create a sense of playful energy. In the first frame, both arms start in a relaxed position at the sides.  In the second frame, both arms move upward and outward in a sweeping motion, palms facing slightly upward.  The wrists will be slightly flexed to enhance the expressiveness. In the third frame, the arms reach their peak height, with the wrists now fully flexed, creating a sense of joyful release.  In the fourth frame, the arms begin to gracefully return to their initial position. In the fifth frame, the arms are back in their relaxed, starting position, with a subtle suggestion of lingering movement. This sequence should evoke the feeling of light, sparkling energy.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 60.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 15.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

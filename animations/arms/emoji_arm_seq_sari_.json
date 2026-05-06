@@ -1,0 +1,81 @@
+[
+    {
+        "emoji": "🥻",
+        "reasoning": "This sequence depicts the act of wearing a sari, a traditional garment.  The animation will focus on the graceful movements involved in draping the fabric.  Since the robot lacks hands, the animation will instead focus on the arms' movements to suggest the actions of adjusting and arranging the sari. The first frame shows both arms extended slightly upward and outward, as if preparing to receive the sari fabric. The second frame shows the right arm moving downward and inward, as if pulling the fabric around the body. The third frame shows the left arm moving upward and inward, as if adjusting the fabric around the shoulder. The fourth frame shows both arms returning to a relaxed position, suggesting the sari is now draped. The fifth frame positions both arms gently at the sides, indicating the completion of the process. The overall movements should be slow and deliberate, emphasizing the elegance of the sari-wearing process.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

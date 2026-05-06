@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🪅",
+        "reasoning": "This animation sequence depicts a joyful, celebratory action, similar to throwing confetti or tossing a piñata. The animation will involve both arms in a dynamic, yet controlled, movement. I will use the existing examples to inform the range of motion and naturalness. Frame 1: Both arms start at the sides, slightly bent at the elbows. This creates a relaxed, anticipatory stance. Frame 2: Both arms rise simultaneously, palms facing each other. This simulates the gathering motion before the toss or throw. Frame 3: Both arms move outward and upward in a throwing motion.  This depicts the climactic action of flinging confetti or striking the piñata. Frame 4: After the throw, the arms return to a relaxed position near the sides, hands slightly open, as if celebrating the action. This completes the full gesture, showing both preparation and outcome.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 70.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

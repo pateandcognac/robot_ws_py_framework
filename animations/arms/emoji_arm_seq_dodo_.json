@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🦤",
+        "reasoning": "This sequence depicts a dodo bird's characteristic waddle, using the robot's arms to simulate the bird's wing movements.  The movement will be slow and deliberate, focusing on the slight shifting of weight from side to side.  The arms will swing gently, mimicking the motion of wings while walking. In the first frame, both arms will be slightly raised and angled outward, representing the dodo's wings in a neutral position.  The second frame will show a slight shift in weight, with the right arm moving slightly forward and down, while the left arm moves slightly back and up.  The third frame reverses the movement, with the left arm now forward and down, and the right arm back and up.  The fourth frame returns to the neutral position of the first frame to complete one full cycle of the waddle. The wrists remain neutral throughout to keep the focus on the wing-like arm movements.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

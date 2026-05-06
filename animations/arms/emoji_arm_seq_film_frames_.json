@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🎞️",
+        "reasoning": "This animation sequence mimics the action of holding a film reel.  The robot will hold an imaginary film reel between its hands. The movement will be slow and deliberate, emphasizing the careful handling of a delicate object. The sequence will begin with arms extended forward, palms facing each other, then move to a position where the hands are slightly closer, simulating a gentle embrace of the imaginary film reel. The final frame will show the robot holding the reel steadily in front of it. The left arm will mirror the right arm's movement. This will involve a careful coordination of joint1 (roll) and joint2 (pitch) to create a smooth, believable animation. The wrists will turn slightly inward to create a natural grasp.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 10.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

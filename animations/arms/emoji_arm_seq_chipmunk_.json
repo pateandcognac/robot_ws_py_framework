@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🐿️",
+        "reasoning": "This animation sequence will depict a chipmunk gathering nuts. The animation will focus on the use of both arms to mimic the action of collecting and holding nuts. Frame 1 will show both arms extended forward, palms up, as if reaching for nuts. Frame 2 will show both arms bending at the elbow to bring the nuts closer to the body. Frame 3 shows both arms raising to bring the nuts to the face, as if to eat them. Frame 4 depicts both arms bringing the nuts to the mouth.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

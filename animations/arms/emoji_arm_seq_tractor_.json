@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🚜",
+        "reasoning": "This animation sequence depicts the robot operating a tractor, emphasizing the gripping and steering actions.  The sequence will focus on the robot's arms mimicking the actions of holding onto the steering wheel and operating the controls. We'll use a 4-frame sequence to capture the key moments of this activity. Frame 1 shows the robot's arms in a neutral position, ready to start working. Frame 2 shows the robot gripping the steering wheel, with arms slightly bent and hands positioned on the imaginary wheel. Frame 3 shows the robot adjusting the steering, turning the imaginary wheel slightly to one side. Frame 4 shows the robot returning to a neutral position after completing a turn. The left arm will represent gripping while the right arm will be steering.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -40.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -40.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "✏️",
+        "reasoning": "This animation sequence depicts the act of writing or drawing with a pencil.  It will focus on the right arm, using the joints to create a smooth, controlled movement. The left arm will remain mostly stationary for contrast.  The sequence will start with the pencil lifted, then move to a writing position, and end with the pencil resting.  The wrist will be used to subtly control the pencil's angle. The robot will mimic the natural human movements when writing or drawing.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 45.0,
+                        "wrist": 30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 0.0,
+                        "wrist": -30.0
+                    }
+                }
+            ]
+        ]
+    }
+]

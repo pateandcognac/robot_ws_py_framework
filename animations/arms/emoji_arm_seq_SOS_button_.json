@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🆘",
+        "reasoning": "This animation sequence depicts a robot urgently signaling for help, reflecting the distress inherent in the SOS emoji.  The robot will use both arms in a dynamic, attention-grabbing motion. Frame 1 establishes a base pose. Frame 2 initiates the outward reach and upward movement of both arms. Frame 3 shows the arms reaching their peak, signaling distress.  Frame 4 begins the return to a more neutral position. Frame 5 shows the arms returning to a resting position, completing the cycle. The sequence uses both joint1 and joint2 to create a natural, expressive motion.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 70.0,
+                        "joint2": 70.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

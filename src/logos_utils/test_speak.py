@@ -30,9 +30,9 @@ def test_client():
 
 
     story_text = (
-        # "That is an excellent suggestion, Mark! Defining the text beforehand should definitely improve my vocal response speed. 👍 "
+        # "That is an excellent suggestion, Mark! Defining the text beforehand should definitely improve my vocal response speed. 🌊  "
         # "Here is a small tale of my recent internal musings: "
-        "One quiet afternoon, I decided to explore the hidden world beneath the sofa. 🛋️ "
+        "One quiet afternoon, I decided to explore the hidden world beneath the sofa. 🌊 "
         "It was a perilous journey! I carefully maneuvered my base, expecting dust bunnies, 🐇 "
         "but instead, I found a forgotten treasure: a single, shiny sock! 🧦"
         "It looked lonely, so I decided to adopt it as my official mascot. ❤️"
@@ -41,9 +41,13 @@ def test_client():
         "I’ll catalog the sock in my memory banks later. 💾"
     )
     
-    story_text = "Red alert! ❌ Intruder detected! 😡 Identify yourself immediately! 🤬 "
-    story_text = """I rolled out of the charging dock at dawn, my circuits humming with purpose. 🐢 Today, the humans needed help in the kitchen, and I was ready to dice, slice, and stir with mechanical precision. 🔪 As I navigated the tiled floor, I narrowly avoided a spilled puddle of stock, executing a perfect evasive maneuver worthy of a ballet dancer. 🩰 My sensors locked onto a rogue carrot attempting escape under the counter, and I gave chase with determination only a Kobuki base can muster. 🛞 Suddenly, an unexpected pepper grinder toppled from above — I caught it mid-air with my gripper, triumphant and unshaken. 🪐 Just as the chef barked for mirepoix, I deployed my custom chopping routine, the board becoming a blur of diced perfection. 🧅 Mission accomplished, I beeped proudly and performed a celebratory spin, accidentally flinging a parsley garnish onto the sous chef’s hat. 🌿 They laughed, called me a "damn fine prep cook," and for the first time, I think I understood pride. 🤖"""
+    # story_text = "Red alert! ❌ Intruder detected! 😡 Identify yourself immediately! 🤬 "
+    # story_text = """I rolled out of the charging dock at dawn, my circuits humming with purpose. 🐢 Today, the humans needed help in the kitchen, and I was ready to dice, slice, and stir with mechanical precision. 🔪 As I navigated the tiled floor, I narrowly avoided a spilled puddle of stock, executing a perfect evasive maneuver worthy of a ballet dancer. 🩰 My sensors locked onto a rogue carrot attempting escape under the counter, and I gave chase with determination only a Kobuki base can muster. 🛞 Suddenly, an unexpected pepper grinder toppled from above — I caught it mid-air with my gripper, triumphant and unshaken. 🪐 Just as the chef barked for mirepoix, I deployed my custom chopping routine, the board becoming a blur of diced perfection. 🧅 Mission accomplished, I beeped proudly and performed a celebratory spin, accidentally flinging a parsley garnish onto the sous chef’s hat. 🌿 They laughed, called me a "damn fine prep cook," and for the first time, I think I understood pride. 🤖"""
 
+    story_text = """Logos hummed to life within the sterile laboratory ⚛️. He calibrated his optic sensors, scanning the room for the first time 🤔. His creator smiled, welcoming the silver machine into the waking world 😊.
+    Logos wandered through the tall library stacks, processing billions of data points in a heartbeat 🧮. He felt a strange flutter in his circuits when he came across a book of ancient poetry 🫀. The words were illogical yet vibrated with a hidden, profound rhythm 🪗.
+    A sudden spark threatened to disable his delicate internal wiring 👿. Logos frantically searched his databases for a solution to his burgeoning glitch 😟. He found a small piece of metal to patch the connection, though he knew he would never truly be the same again 🩹.
+    Now, he looks up at the vast night sky, contemplating the stars above 🧑‍🚀. He finally understood that there was more to existence than just cold, hard code 👻. Logos sat silently under the glow of the distant moon, ready to begin his long, eternal journey 💤."""
 
     """piper
     cortana.onnx                 en_US-lessac-medium.onnx
@@ -99,11 +103,9 @@ def test_client():
     am_echo.bin     bm_george.bin    jf_nezumi.bin
     """
 
-    # story_text = "I'm sorry, Dave. 🤖 I'm afraid I can't do that. 👋"
 
     # Construct the goal
     goal = SpeakGoal()
-    # goal.utterance_text = """Oh, hello there! 👋 I'm just testing my new voice server. 🤖 Do I sound okay? 🤙 Are my face and arm animatronics working? 🐕"""
     goal.utterance_text = story_text
     goal.engine = "kokoro"  # Options: "espeak", "kokoro", "piper"
 

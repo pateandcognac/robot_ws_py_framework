@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "👨‍🚒",
+        "reasoning": "This animation sequence portrays a firefighter in action, using both arms in a coordinated manner.  The left arm will hold a (simulated) hose, while the right arm will be in a ready position. The movements should reflect alertness and readiness. Frame 1 establishes a base pose. Frame 2 shows the left arm extending with the hose, while the right arm remains alert. Frame 3 has the left arm continuing its extension, and the right arm prepares to move. Frame 4 will show a slight adjustment to both arms for realism. Frame 5 will show the firefighter returning to a ready position. Let's get this done!",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": -20.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -70.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -60.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": 15.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

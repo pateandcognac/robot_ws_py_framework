@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🍳",
+        "reasoning": "This sequence simulates the stirring motion used while cooking.  The robot will mimic the act of stirring a pot on a stove. The right arm will perform the primary stirring action, while the left arm will rest lightly on the counter for stability.  This will be a 4-frame sequence. Frame 1: Both arms are relaxed at the side. Frame 2: The right arm is positioned as if holding a spoon/spatula, slightly bent at the 'elbow' (simulated by the joint angles). Left arm rests lightly on a counter. Frame 3: The right arm performs a downward stirring motion. Left arm remains stable. Frame 4: The right arm returns to the starting position of frame 2, completing one stirring cycle. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -40.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

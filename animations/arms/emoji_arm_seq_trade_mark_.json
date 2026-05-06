@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "™️",
+        "reasoning": "This animation sequence will represent the trademark symbol's circular motion and emphasis on ownership.  The animation will focus on a circular motion of both arms, starting with them extended outward, then bringing them together in a 'holding' motion before returning to the sides.  This will emphasize the encompassing nature of a trademark.  The movements should be smooth and deliberate, conveying a sense of importance and ownership. The robot arms, lacking elbows, will simulate this circular motion using the shoulder joints, creating a sense of controlled power and precision.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

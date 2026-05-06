@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🛜",
+        "reasoning": "This animation sequence depicts a robot interacting with a wireless signal, perhaps playfully.  The sequence will show the robot's arms moving in a way that suggests curiosity and interaction with an unseen signal. We'll use a three-frame sequence for simplicity and impact. Frame 1: The robot's arms are initially at its sides, relaxed, palms facing inwards. Frame 2: The robot's arms extend outward, palms facing upward, slightly tilted, as if trying to 'catch' the wireless signal. Frame 3: The robot's arms curl slightly inwards, palms still facing upward, as if inspecting the signal. This conveys a sense of playful investigation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -15.0,
+                        "joint2": 10.0,
+                        "wrist": 45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

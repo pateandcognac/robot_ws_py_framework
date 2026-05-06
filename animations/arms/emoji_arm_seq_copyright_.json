@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "©️",
+        "reasoning": "This sequence will depict a protective gesture, as if cradling a precious object, symbolizing the protective nature of copyright. The animation will involve bringing both arms forward, slightly cradling the space in front of the robot’s chest. The arms will move in a coordinated manner, starting with a neutral position, moving to a protective stance, and then returning to a relaxed pose. This sequence emphasizes the safeguarding aspect of copyright. In frame 1, both arms start in a relaxed position at the robot's sides. Frame 2 shows both arms moving forward, slightly upward, with the hands cupped inward, as if gently protecting something in front of the chest. Frame 3 shows the arms moving back to a neutral position, but this time with a subtle inward rotation, as if the protection is still implied but relaxed. Frame 4 returns the arms to the relaxed position at the robot’s sides, completing the sequence.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

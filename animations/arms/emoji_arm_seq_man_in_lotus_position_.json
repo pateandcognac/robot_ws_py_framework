@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🧘‍♂",
+        "reasoning": "This sequence depicts a person sitting in a lotus position, focusing on the peaceful and centered nature of the pose.  The arms will be positioned gently on the knees, expressing serenity and stillness. The movement will be slow and deliberate, emphasizing the calmness of meditation. The lack of elbow joints in the robot's arms will be addressed by creating a posture that suggests the arms resting naturally, without the need for complex bending. In the first frame, both arms are slightly raised and positioned near the chest area. This sets the stage for a gradual movement toward the knees. The slight upward initial movement is a prelude to the calming gesture that will follow. In the second frame, the arms gently move downward, approaching the knees. The wrists are kept straight, with the palms facing downward, and the arms are slightly angled to make the transition look natural. In the third frame, the arms are fully resting on the knees. This posture conveys the serenity of the meditation posture. The final frame holds the pose, emphasizing the stillness and peacefulness of the meditation. It is a slow, contemplative movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

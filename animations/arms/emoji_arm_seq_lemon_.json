@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🍋",
+        "reasoning": "This sequence will show the robot expressing a slight sourness or tangy reaction to the lemon. The animation will start with the robot's arms at its sides, then bring the hands up to the mouth as if tasting something tart, and finally recoil in a slight 'pucker' of displeasure.  The left arm will do the most expressive work. The right arm will subtly mirror the movement, adding to the overall reaction. In the first frame, both arms are relaxed at the sides. In the second frame, the left arm lifts to the mouth, slightly rotated outwards, with the wrist angled to make the hand seem as if it's about to touch the mouth. The right arm will also lift slightly. In the third frame, both arms are near the mouth, mimicking the tasting of the lemon, with the left arm more expressive. Finally, the fourth frame will show the left arm recoiling, as if the lemon is too sour, with a slight twist of the wrist and the right arm also slightly recoiling. This will create a natural, expressive reaction.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 40.0,
+                        "wrist": -20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 25.0,
+                        "joint2": 30.0,
+                        "wrist": -30.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": -10.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

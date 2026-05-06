@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🕵️‍♂️",
+        "reasoning": "This sequence aims to capture the essence of a detective's investigative actions, using subtle and precise arm movements. The animation starts with a neutral pose and transitions into a gesture of observation, as if the detective is examining a clue. The right arm moves to mimic holding and inspecting an object, while the left arm provides balance and reinforces the focused posture. Throughout the sequence, I'll ensure the movements are distinct and deliberate, reflecting the detective's careful and observant nature. In the first frame, both arms are positioned neutrally at the sides, with joint1 slightly inward and joint2 pitching downward, creating a relaxed yet attentive stance. The wrists are kept straight, maintaining a professional demeanor. Moving to the second frame, the right arm begins to rise and bend at the 'elbow' (simulated by joint2), as if reaching out to grasp something. joint1 rotates slightly outward to facilitate the movement. The wrist angles inward at -30°, preparing to hold an object delicately. The left arm remains at the side, providing balance. By the third frame, the right arm is raised and positioned as if holding a small object, perhaps a piece of evidence, close to the face for examination. joint1 rotates further outward, and joint2 adjusts to bring the 'hand' closer. The wrist further rotates inward, now at -60°, to suggest carefully holding the object. The left arm remains steady, ensuring the detective's posture remains balanced and focused. In the fourth frame, the right arm moves slightly downward, as if the detective is considering the object. joint2 lowers the arm a bit, while joint1 and the wrist maintain their positions. This subtle movement adds a layer of thoughtfulness to the gesture. Finally, in the fifth frame, the right arm returns to a neutral position at the side, but with the wrist still slightly angled, as if retaining a sense of the object's weight and significance. The left arm also returns to its neutral position, completing the sequence with a sense of careful consideration.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -5.0,
+                        "joint2": -20.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -60.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -60.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": -30.0
+                    }
+                }
+            ]
+        ]
+    }
+]

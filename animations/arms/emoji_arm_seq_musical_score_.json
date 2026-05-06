@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🎼",
+        "reasoning": "This sequence will depict a conductor leading an orchestra.  The right arm will make the sweeping motions of a conductor's baton, while the left arm will remain more subtly expressive.  The lack of elbows necessitates a creative approach to emulating the fluid grace of conducting, relying on shoulder movements and wrist rotations.  Each frame will represent a significant change in the gesture, leaving the interpolation to the animation system.  I'll use joint1 to control the overall direction of the arm and joint2 to manage the vertical position. Wrist rotation will add finesse and expressiveness.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🪲",
+        "reasoning": "This sequence animates the robot mimicking a beetle, using its arms to suggest antennae and legs. The movement will be slow and deliberate, emphasizing the insect's creeping motion. Frame 1 starts with the arms extended forward, slightly downward, suggesting the beetle's antennae. Then, in Frame 2, the arms move slightly outward and upward, simulating the beetle's legs lifting for a step. Frame 3 mirrors Frame 2, but with the arms moving to the other side, suggesting alternating steps. Finally, Frame 4 returns the arms to the initial position, completing a single 'step' cycle. Small variations in wrist angles will make the movements more natural, and the overall slow pace of the animation will emphasize the beetle's crawling motion.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

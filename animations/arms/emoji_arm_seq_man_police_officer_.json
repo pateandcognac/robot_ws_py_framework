@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "👮‍♂‍",
+        "reasoning": "This sequence portrays a police officer's authoritative yet controlled stance.  The animation starts with the arms at the sides, then transitions to a hand-on-hip posture on the left side, followed by a hand-on-belt posture on the right side, and then back to a neutral pose. The left hand stays on the hip, emphasizing a calm authority. The right hand moves to the belt, suggesting readiness. This creates a sense of preparedness and control, fitting for a police officer. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": -75.0,
+                        "wrist": 19.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": -75.0,
+                        "wrist": 19.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🐗",
+        "reasoning": "This sequence will depict a boar charging. The animation will focus on the powerful forward thrust of the front legs, which we can simulate with the robot's arms.  The boar's head will be implied by the forward-reaching arms. We'll use a 3-frame sequence to show the build-up and release of energy in the charge. Frame 1 will show the boar poised to charge, with its arms slightly back. Frame 2 will capture the full power of the charge, with arms extended forward. Frame 3 will show the boar's arms retracting after the charge. The boar's tusks are not explicitly represented, but the aggressive forward motion will imply them. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🎹",
+        "reasoning": "This sequence simulates playing a keyboard, focusing on the rhythmic hand movements. The arms will move alternately, creating a fluid, expressive animation. Each frame represents a distinct position, not an intermediary step.  I'll use slight variations in joint angles and wrist positions to avoid rigidity. Frame 1: Both arms are positioned as if hovering over the keyboard. The wrists are angled slightly upward to simulate readiness. Frame 2: The right arm moves downward to strike a key, the wrist is angled slightly downwards and the left arm remains in its initial position. Frame 3: The right arm returns to its initial hovering position while the left arm moves downward to strike a key, mimicking the alternating hand movements of a pianist. Frame 4: Both arms return to the initial hovering position, completing the cycle.  This sequence should convey the natural flow of playing a keyboard instrument.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

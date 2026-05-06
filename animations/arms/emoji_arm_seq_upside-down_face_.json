@@ -1,0 +1,81 @@
+[
+    {
+        "emoji": "🙃",
+        "reasoning": "This sequence aims to capture the playful, silly nature of the upside-down face emoji by having the robot mimic a lighthearted 'I'm dizzy' gesture. The arms will move in a somewhat uncoordinated but still fluid manner, reflecting the disorientation implied by the emoji.  In the first frame, both arms start in a relaxed, slightly droopy position. joint1 is neutral, and joint2 pitches the arms slightly downward, giving them a loose, 'hanging' feel. The wrists are kept neutral, palms facing inward. This sets the stage for the dizzy motion.  In the second frame, the right arm lifts slightly, as if trying to regain balance, while the left arm remains relaxed. joint1 rotates the right arm outward, and joint2 pitches it upward. The wrist turns slightly outward, adding to the off-balance feel.  By the third frame, the left arm lifts while the right arm drops, continuing the uncoordinated, dizzy motion.  joint1 rotates the left arm outward, and joint2 pitches it upward, mirroring the right arm's previous movement.  The right arm returns to its relaxed position. In the fourth frame, both arms lift slightly, with the wrists turning inward, as if trying to steady themselves.  joint1 rotates both arms slightly inward, and joint2 pitches them upward. The slight inward turn of the wrists adds to the sense of regaining balance. Finally, in the fifth frame, both arms return to the initial relaxed, droopy position, completing the 'dizzy spell.'",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -10.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -10.0,
+                        "wrist": -20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🍲",
+        "reasoning": "This animation sequence portrays a robot interacting with a pot of food, conveying a sense of care and anticipation.  The sequence starts with both arms at rest, then moves to a gesture of presenting the food, and finally ends with a gentle return to the rest position.  I'll focus on smooth transitions between frames, using small but significant changes in joint angles to avoid jerky movements. In the first frame, both arms are in a neutral, relaxed position. In the second frame, the robot's arms move up and slightly forward. The wrists rotate outward (positive values) to mimic the act of holding a pot with both hands. In the third frame, the arms move slightly down, indicating the robot is presenting the pot. The wrists rotate slightly inward, but still outward enough to hold the pot.  The fourth frame returns the robot's arms to a neutral position. This gentle movement ensures a fluid and natural presentation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -20.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -45.0,
+                        "wrist": 25.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "‼️",
+        "reasoning": "This animation sequence will depict a robot expressing alarm or emphasis using exaggerated arm movements. The double exclamation mark suggests a strong sense of urgency, so the animation will be sharp and dynamic.  I'll use a combination of rapid, upward arm movements with slight outward rotations, and will add wrist movements to convey the robot's heightened state.  Each arm's movement will be independent, but synchronized to create a unified expression of surprise. The sequence will use 5 frames for maximum expressiveness. Frame 1 will show the robot in a neutral position. Frame 2 will show both arms starting to rise, with wrists angled. Frame 3 will be the peak of the gesture, with arms raised and wrists angled differently. Frame 4 will show the arms beginning to return to a neutral position, but with a lingering effect. Frame 5 will show the arms fully back to neutral.  I'll ensure the transitions between frames are significant, leaving the interpolation to the animation system.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 75.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 75.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

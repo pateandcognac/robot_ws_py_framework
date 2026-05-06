@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "🫡",
+        "reasoning": "This sequence aims to create a respectful saluting gesture with the right hand, while the left arm remains at the side. The movement should be crisp and precise, reflecting the formality of a salute.  In the first frame, both arms are at the sides in a relaxed, neutral position. joint1 is at 0 degrees for both, and joint2 pitches them downward to -90 degrees, letting them hang naturally. The wrists are at 0 degrees. This sets a neutral starting point. In the second frame, the right arm begins to rise towards the temple. joint1 rotates slightly outward to position the arm for the salute, while joint2 pitches it upward. The wrist rotates to 90 degrees to bring the palm forward. The left arm remains at the side. In the third frame, the right hand reaches the temple, completing the salute. joint2 adjusts to ensure the hand is at the correct height, maintaining the crispness of the movement. The left arm remains still. In the fourth frame, the right arm begins to lower. joint2 pitches the arm downward, initiating the return to the resting position. In the final frame, the right arm returns to its relaxed position at the side, matching the initial frame. The left arm remains still throughout, maintaining a formal and respectful posture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 30.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

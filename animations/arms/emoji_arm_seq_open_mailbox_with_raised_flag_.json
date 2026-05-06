@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "📬",
+        "reasoning": "This animation sequence simulates the action of opening a mailbox and raising a flag to signal 'mail received'.  The robot will use its right arm to mimic the opening of the mailbox and its left arm to raise a flag (represented by the arm's position). I'll ensure a smooth transition between frames, with the robot's arm movements reflecting the natural action of opening a mailbox and raising a flag, as if responding to the arrival of new mail. In the first frame, both arms will start in a neutral position, suggesting readiness. In the second frame, the right arm will move forward and slightly downward, simulating the act of opening a mailbox door. In the third frame, the left arm will move upward and outward, mimicking the raising of a flag. In the fourth frame, the right arm will remain open, while the left arm will continue to hold the flag high. Finally, in the fifth frame, both arms will return to the neutral starting position, creating a complete gesture. The movement will be expressive and reflect the anticipation and satisfaction of receiving mail. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 80.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

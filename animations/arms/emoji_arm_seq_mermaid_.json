@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🧜‍♀️",
+        "reasoning": "This sequence aims to mimic the graceful, flowing movements of a mermaid's tail, using the robot's arms to suggest the underwater elegance. The arms will move in a fluid, undulating pattern, suggesting the mermaid's fins propelling her through the water.  I'll ensure smooth transitions between frames and use slight wrist variations to enhance the expressiveness. In the first frame, both arms are extended downwards, slightly outward, mimicking the relaxed posture of a mermaid at rest. The wrists are angled slightly inward, palms facing each other. In the second frame, the left arm moves upward and outward, while the right arm moves downward and slightly inward, simulating the alternating motion of a mermaid's tail. The wrists adjust slightly to enhance the fluidity of the movement. In the third frame, the left arm returns to its initial downward position, while the right arm moves upward, mirroring the motion from the previous frame. Again, the wrists adjust to maintain the smooth, wave-like motion. In the fourth frame, both arms return to the relaxed starting position, completing one full cycle of the undulating motion.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 45.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -60.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 45.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": -10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

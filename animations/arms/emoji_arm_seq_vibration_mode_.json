@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "📳",
+        "reasoning": "This sequence simulates the feeling of a vibrating phone, using a rhythmic, subtle shaking motion. The arms will move slightly up and down, creating a gentle vibration effect. I'll ensure the movements are smooth and natural, using small adjustments to the joint angles to avoid a rigid, mechanical look.  I'll maintain a relatively neutral posture, with the arms slightly forward, to suggest the phone is being held.  The wrists will remain neutral throughout to keep the focus on the subtle up-and-down motion. This sequence should convey the subtle yet persistent vibration of the phone.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 5.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

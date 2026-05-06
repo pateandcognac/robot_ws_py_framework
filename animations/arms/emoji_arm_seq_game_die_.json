@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🎲",
+        "reasoning": "This animation sequence simulates the rolling of a die, using both arms to mimic the tossing motion. The arms move in a coordinated manner, creating a dynamic yet controlled action. I'll draw on existing examples to ensure smooth transitions and natural-looking movements. Frame 1: Both arms are held slightly upward, palms facing each other, as if cupping the die. Frame 2: The arms are extended forward, simulating the release of the die. Frame 3: The arms swing back slightly, as if following through with the toss. Frame 4: The arms settle into a neutral position after the toss. Frame 5: The arms slowly lower back to resting position. This sequence captures the anticipation, action, and settling of the die toss. I will ensure that each frame has a clear and distinct pose, emphasizing the dynamic nature of the toss.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

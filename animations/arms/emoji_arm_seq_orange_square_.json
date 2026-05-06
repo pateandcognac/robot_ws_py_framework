@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🟧",
+        "reasoning": "This animation sequence represents the vibrant energy and playful nature of the orange square emoji.  It will involve a dynamic movement where both arms move in a synchronized, almost dance-like motion. The arms will start in a neutral position, then move in a circular motion, mimicking the shape of the square, before returning to rest. This movement suggests the feeling of playful energy and excitement, which aligns with the emoji's bright and attention-grabbing color.  The sequence will use a combination of joint1 rotations and joint2 pitches to create the circular motion.  The wrists will remain neutral for simplicity and to focus attention on the arm's movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

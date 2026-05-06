@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🧶",
+        "reasoning": "This animation sequence depicts the robot gently cradling a ball of yarn, mimicking the care and attention often associated with knitting or crocheting.  The movement will be slow and deliberate, emphasizing the delicate nature of the yarn.  The robot will use both arms to create a sense of gentle support. I will use the examples to ensure smooth transitions and natural-looking arm movements. In the first frame, both arms are extended slightly forward and upward. joint1 will be set to around 20 degrees for both arms, creating a gentle outward curve. joint2 will be set to around 30 degrees, lifting the arms to chest height. The wrists will be slightly rotated inward, about -15 degrees, to create a gentle cupping motion.  In the second frame, the arms move slightly closer to the center, as if gently cradling the yarn. joint1 will decrease to around 10 degrees, bringing the arms in slightly, while joint2 remains around 30 degrees. The wrist rotation will stay at about -15 degrees. In the third frame, the arms lower very slightly, maintaining the cradling position. joint2 will decrease to 25 degrees. joint1 remains around 10 degrees.  The wrists remain at -15 degrees. In the fourth frame, the arms return to the first frame position. This creates a slight rocking motion. The final position will match the first frame. This cyclical motion suggests a gentle, repetitive action associated with handling yarn.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": -15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 30.0,
+                        "wrist": -15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 25.0,
+                        "wrist": -15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": -15.0
+                    }
+                }
+            ]
+        ]
+    }
+]

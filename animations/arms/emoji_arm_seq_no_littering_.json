@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🚯",
+        "reasoning": "This sequence aims to depict a clear message of prohibition against littering.  The animation will show both arms extending outward, then moving downward in a sweeping motion as if actively preventing something from being dropped. The final frame will show the arms returning to a neutral position.  The sequence will emphasize a decisive, authoritative movement to communicate the seriousness of the message.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

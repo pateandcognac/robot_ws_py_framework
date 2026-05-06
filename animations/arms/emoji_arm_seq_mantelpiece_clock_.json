@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🕰️",
+        "reasoning": "This animation sequence will show the robot admiring a mantelpiece clock, perhaps in a museum or antique shop.  The sequence will start with the robot's arms at its sides, then move to a position where both hands are cupping the clock, then gently lowering the hands to the sides, and finally returning to a neutral position.  This will use a slow, deliberate pace to emphasize the appreciation of the clock. This animation will be done with the right arm only, because the left arm can remain in a relaxed position to emphasize the right arm's movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🥳",
+        "reasoning": "This sequence aims to capture the exuberant joy of the partying face emoji 🥳 by creating a dynamic arm movement that suggests dancing or celebration.  The robot will move its arms in an alternating up-and-down motion, with slight variations in each frame to avoid stiffness and create a sense of lively movement.  The wrists will also rotate to add to the celebratory feel. In the first frame, the right arm is raised high, while the left arm is positioned lower. The right arm's joint1 is rotated outward, and joint2 is pitched upward to its maximum. The wrist is rotated slightly inward.  The left arm is positioned with joint1 rotated inward, joint2 pitched downward, and the wrist neutral. This creates an initial pose of excitement.  In the second frame, the arms switch positions.  The left arm is now raised with joint1 outward and joint2 high, while the right arm is lowered. This alternation creates a sense of dynamic movement. The wrists mirror the previous frame. The third frame mirrors the first, with the right arm high and the left low, continuing the dance-like motion.  The fourth frame mirrors the second, solidifying the back-and-forth movement while maintaining a sense of rhythm and joy.  In the final frame, both arms are raised in a wide, celebratory gesture.  Joint1 for both arms is rotated outward, joint2 is pitched high, and the wrists are rotated outward. This final pose captures the overall feeling of celebration and joy associated with the 🥳 emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 90.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 90.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

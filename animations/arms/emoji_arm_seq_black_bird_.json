@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🐦‍⬛",
+        "reasoning": "This sequence will depict a bird in flight.  The arms will mimic wings, with a flapping motion. Because the robot has no elbows, the animation will focus on shoulder movement to simulate the up-and-down motion of wings. Frame 1 will show both arms extended to the sides, slightly downward, representing the starting position of the wing flap. Frame 2 will have the arms raised and angled slightly back, simulating the upward stroke of the wings. Frame 3 will return the arms to a position similar to Frame 1, completing the downstroke. Frame 4 will have the arms raised again, but slightly less than in Frame 2, to show a less powerful second upstroke. Frame 5 will return the arms to a position of rest, slightly lower than Frame 1, and closer to the body.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

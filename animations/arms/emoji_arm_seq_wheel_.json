@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🛞",
+        "reasoning": "This animation sequence depicts the robot playfully mimicking the spinning motion of a wheel.  The animation will focus on a circular motion of both arms, creating a sense of rotation and playful energy.  The sequence will emphasize the smooth transition between frames, highlighting the robot's capacity for expressive movement. The robot's arms will move in a coordinated manner, starting with both arms outstretched to the sides. Then, the arms will move upward, mimicking the upward trajectory of a spinning wheel, before returning to their original position. This circular motion will be repeated, creating a dynamic and engaging animation.  In the final frame, the arms will return to a neutral position, completing the gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "👩‍🏫",
+        "reasoning": "This animation sequence depicts a teacher explaining something on a whiteboard or blackboard. The left arm is positioned as if holding onto something, while the right arm gestures expressively. The sequence begins with the right arm extended slightly to the side, the left arm slightly bent to imply something is held in the hand. Then, the right arm moves in a sweeping motion, as if tracing something on a board. Next, the right arm points to a specific spot before returning to a neutral position. The left arm remains relatively still throughout the sequence. The sequence ends with both arms returning to a relaxed position. This sequence attempts to capture the essence of teaching, with the emphasis on the right arm's gesture and the left arm’s implied stability.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

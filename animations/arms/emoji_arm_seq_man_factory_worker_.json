@@ -1,0 +1,79 @@
+[
+    {
+        "emoji": "👨‍🏭",
+        "reasoning": "This animation sequence depicts a factory worker's movements.  The worker will have one arm raised in a gesture of holding something overhead, while the other arm is bent as if holding something at waist height.  The sequence will show a slight shift in weight and posture to add realism. Frame 1 will show a neutral pose, while frames 2-4 show the arms moving into place and then returning to a more neutral pose. Frame 1: Both arms are down at the sides, slightly forward. Frame 2: The right arm is raised at a 45-degree angle, while the left arm is bent at the elbow (simulated by joint angles) holding something. Frame 3: The right arm stays in place, while the left arm shifts slightly, showing subtle movement. Frame 4: The right arm lowers slightly, and the left arm straightens, indicating the worker is putting something down.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 40.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

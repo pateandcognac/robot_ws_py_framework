@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🐷",
+        "reasoning": "This sequence will depict a pig's playful snuffling and rooting behavior.  The animation will focus on the robot's arms mimicking the action of a pig's snout searching for food.  The arms will move in a coordinated, slightly clumsy manner to enhance the playful nature of the emoji. Frame 1 will show the arms in a neutral position; Frame 2 will show the arms moving downwards in a slight 'digging' motion, the wrists slightly rotated outward to simulate a snuffling snout; Frame 3 will have the arms raising slightly, as if the pig has found something; Frame 4 will show the arms moving back to the neutral position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

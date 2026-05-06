@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🆙",
+        "reasoning": "This animation sequence simulates pressing an upward-pointing button.  The robot will use both arms to emphasize the action. The movement will be deliberate and controlled, focusing on the hands coming together above the button before separating again. Frame 1 shows both arms starting in a neutral position. In Frame 2, both arms move upward, with the hands slightly apart to simulate the approaching button. In Frame 3, the hands come together to represent pressing the button. Frame 4 shows the hands separating slightly. Frame 5 returns both arms to a relaxed state.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

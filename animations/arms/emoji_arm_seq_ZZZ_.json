@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "💤",
+        "reasoning": "This sequence aims to represent the stillness and drooping posture of sleep, as suggested by the 💤 emoji.  The robot's arms will gradually lower, mimicking the relaxation of muscles as sleep sets in.  The movements will be subtle and slow, reflecting the gentle descent into slumber. In the first frame, both arms are held slightly up and outward, as if still partially awake. Joint1 rotates both arms slightly outward, and joint2 pitches them slightly upward. The wrists are kept neutral.  As sleep approaches in the second frame, the arms begin to lower. Joint2 pitches the arms further downward, while joint1 rotates slightly inward, bringing the arms closer to the body. The wrists remain neutral. In the third frame, the arms lower further, now hanging loosely.  Joint2 continues to pitch the arms downward, approaching a fully relaxed position.  Joint1 keeps the arms slightly inward. Finally, in the fourth frame, the arms reach their lowest point, signifying deep sleep. Joint2 pitches the arms fully downward to -90 degrees, letting them hang heavy and limp. Joint1 keeps the arms slightly inward, completing the image of peaceful slumber.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

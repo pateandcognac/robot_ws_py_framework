@@ -1,0 +1,72 @@
+[
+    {
+        "emoji": "🌯",
+        "reasoning": "This animation sequence depicts the robot playfully interacting with an imaginary burrito.  The sequence starts with both arms at rest, then moves to grabbing the burrito, bringing it close to the face, and finally, taking a bite.  The sequence focuses on smooth transitions between keyframes, avoiding jerky movements. The robot's lack of elbows is accounted for by using the shoulder joints to create the necessary motions. The hand positions are simplified to convey the action clearly. Frame 1: Both arms are at the sides. Frame 2: The robot's arms are extended to grab an imaginary burrito. Frame 3: The robot is pulling the burrito close to its face. Frame 4: The robot is taking a bite out of the burrito. Frame 5: Both arms return to their resting position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

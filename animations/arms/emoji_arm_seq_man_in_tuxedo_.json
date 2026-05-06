@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🤵‍♂",
+        "reasoning": "This animation sequence depicts a man in a tuxedo making a polite, welcoming gesture. It starts with arms at the sides, transitions to a slight forward gesture with palms up, then returns to the neutral position. Frame 1: The arms hang naturally at the sides, conveying a relaxed but formal posture. Frame 2: The arms move slightly forward and upward, palms facing upward in a welcoming gesture. Frame 3: The arms return to the relaxed, neutral position at the sides. This simple yet elegant sequence emphasizes the formality of the tuxedo while adding a touch of approachability.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

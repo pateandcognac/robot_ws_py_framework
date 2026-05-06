@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🌼",
+        "reasoning": "This sequence aims to capture the gentle, unfolding nature of a blossom. The animation will feature both arms moving in a slow, graceful arc, mimicking the delicate opening of a flower's petals.  The movement will be subtle yet expressive, focusing on the fluidity of the motion rather than sharp, dramatic changes.  The starting posture is a relaxed position, with the arms gently raised. Then, the arms gracefully extend outward and upward, followed by a slight pause before returning to a relaxed state. This will give a sense of blossoming and gentle unfolding.  Throughout the sequence, the wrists will maintain a neutral position, keeping the focus on the graceful arc of the arms.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

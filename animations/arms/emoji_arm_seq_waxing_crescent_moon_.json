@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🌒",
+        "reasoning": "This sequence will depict a slow, graceful arm movement reminiscent of the moon's gentle waxing phase.  The animation will focus on a single arm, the right arm, moving upwards in an arc, symbolizing the moon's ascent in the night sky. The left arm will remain at rest to provide contrast and enhance the visual impact. The movement will be smooth and deliberate, avoiding abrupt changes in position.  The slight upward curve of the arm will mirror the shape of the waxing crescent moon itself.  The wrist will remain relatively neutral throughout, allowing the focus to remain on the arm's arc. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

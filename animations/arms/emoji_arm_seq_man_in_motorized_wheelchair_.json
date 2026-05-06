@@ -1,0 +1,81 @@
+[
+    {
+        "emoji": "👨‍🦼",
+        "reasoning": "This animation sequence depicts a person in a motorized wheelchair, focusing on the subtle yet expressive movements of the arms. The arms will remain relatively still, conveying a sense of calm and focus, but with slight movements to avoid rigidity. In the first frame, both arms are relaxed at the sides, slightly angled outward to suggest a comfortable and alert posture. The wrists are neutral, palms facing inward. In the second frame, the left arm subtly lifts, as if the person is gently adjusting their grip on the controls. The right arm remains in place. In the third frame, the left arm returns to its initial position. In the fourth frame, the right arm slightly adjusts, mimicking the subtle movements of someone operating a motorized wheelchair.  In the final frame, both arms return to the initial resting position. This sequence conveys a sense of calm control and gentle interaction with the wheelchair.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

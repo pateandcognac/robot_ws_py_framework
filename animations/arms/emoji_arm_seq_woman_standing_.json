@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🧍‍♀️",
+        "reasoning": "This animation sequence depicts a woman standing calmly and naturally.  The key is to create a relaxed, neutral pose that subtly conveys stillness and composure. The sequence will focus on minimal movement, avoiding any abrupt or exaggerated gestures. The robot's arms will remain at its sides, with only slight adjustments to the joints between frames to avoid a completely static animation.  The slight variations will give a sense of natural, subtle movement. The neutral pose should also reflect the calm and relaxed nature of the emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 2.0,
+                        "joint2": -88.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -2.0,
+                        "joint2": -88.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

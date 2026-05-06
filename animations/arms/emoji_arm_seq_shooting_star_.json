@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🌠",
+        "reasoning": "This sequence will depict a wish-making gesture, as if the robot is looking up at and making a wish upon a shooting star. It begins with both arms raised slightly, palms up, in anticipation. Then, one arm moves to make a wish, followed by a return to the original position.  The sequence will be short, sweet, and expressive. The other arm will remain largely static to focus attention on the wishing motion. I will use slight variations in joint angles to create the illusion of natural movement, avoiding overly rigid or mechanical motions. I'll use existing examples as a guide for range of motion and fluidity.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 80.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

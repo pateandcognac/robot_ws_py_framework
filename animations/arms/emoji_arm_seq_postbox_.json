@@ -1,0 +1,59 @@
+[
+    {
+        "emoji": "📮",
+        "reasoning": "This animation sequence simulates the act of posting a letter, emphasizing the upward motion of dropping the letter into the postbox.  The robot will mimic this by extending its right arm and then bringing it back down, keeping the left arm at its side for balance.  I will use a 3-frame sequence for simplicity, focusing on clear changes in arm position between frames. Frame 1 shows the initial posture: the right arm is extended forward and upward, as if holding a letter.  The left arm remains neutral at the side.  In Frame 2, the right arm moves downward, mimicking the act of dropping the letter into the box. The left arm remains still, providing contrast.  Finally, in Frame 3, both arms return to a neutral resting position. This sequence creates a simple yet clear representation of the action of posting a letter.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🛻",
+        "reasoning": "This animation sequence will depict the robot playfully mimicking the action of driving a pickup truck.  The sequence will focus on the robot's arms, simulating the gripping of a steering wheel and the shifting of gears.  The left arm will primarily simulate the act of steering, and the right arm will simulate the shifting of gears.  The left arm will be more dynamic, while the right arm shows more focused, smaller movements. We'll keep the arm movements expressive and within the robot's physical capabilities, while ensuring the overall animation is clear and understandable.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 0.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 0.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

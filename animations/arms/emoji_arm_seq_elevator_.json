@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🛗",
+        "reasoning": "This animation sequence depicts the robot operating an elevator. It begins with both arms at the sides, then moves to pressing a button, and finally returns to a neutral position.  The primary focus is on the right arm, which interacts with the imagined elevator button. The left arm provides balance and visual context. Frame 1: Both arms start in a neutral, relaxed position. Frame 2: The right arm extends forward and slightly upward to press a button (simulated). The left arm remains relatively still, providing visual counterbalance. Frame 3: The right arm returns to a position slightly forward of its resting position, implying the button press is complete. The left arm remains in a relaxed position. Frame 4: Both arms return to the neutral position, ending the sequence. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

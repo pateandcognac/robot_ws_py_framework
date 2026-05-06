@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🏰",
+        "reasoning": "This animation sequence depicts a robot admiring a majestic castle, perhaps from afar. The sequence will focus on the robot's arms expressing awe and wonder. The robot will have one arm extended forward as if pointing, while the other arm rests gracefully at its side. The animation will emphasize a slow, deliberate movement, suggesting careful observation. Frame 1: Both arms start in a neutral position, suggesting a calm initial state. Frame 2: The right arm extends forward and upward, with the wrist slightly angled, as if pointing towards the castle. The left arm remains relaxed. Frame 3: The right arm pauses in a static position, maintaining the pointing gesture. The left arm slowly rises slightly towards the chest. Frame 4: The robot's arms return to a neutral position. This suggests the robot is done gazing at the castle and is returning to a normal state. The overall motion is slow and deliberate, creating a sense of calm observation and appreciation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 60.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 60.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

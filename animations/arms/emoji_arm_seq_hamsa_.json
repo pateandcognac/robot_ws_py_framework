@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🪬",
+        "reasoning": "This animation sequence depicts the robot presenting a hamsa, expressing protection, good luck, or serenity.  The movement starts with arms slightly away from the body, palms up, then brings them together in a gesture of offering.  The final frame shows the hands slightly more together, emphasizing the protective nature of the hamsa.  The movement should be slow and deliberate to convey a sense of calm and intention. The two-joint system allows for a natural arc of movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

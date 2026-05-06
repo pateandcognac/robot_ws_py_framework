@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🟢",
+        "reasoning": "This sequence aims to express the simple, calm feeling often associated with the green circle emoji.  The animation will feature a slow, gentle swaying motion of both arms, suggesting a relaxed and peaceful state.  The movement will be subtle, avoiding any abrupt changes in position.  The arms will start at the sides, slightly swaying outward, then inward, and finally returning to a relaxed position.  This should convey a sense of gentle rhythm and tranquility. I'll be keeping the movements small to avoid overdoing it.  The wrists will have minimal rotation to keep the focus on the slow, rhythmic swaying of the arms themselves.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

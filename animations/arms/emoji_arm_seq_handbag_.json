@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "👜",
+        "reasoning": "This sequence simulates the action of a robot picking up a handbag.  The robot will use both arms to carefully lift the bag.  The movement should be slow and deliberate, emphasizing the careful handling of a delicate object. The first frame shows the arms in a neutral position. The second frame shows the arms reaching down, and the third shows the arms lifting the handbag. The fourth frame shows the arms holding the handbag securely. The fifth shows the arms carrying the handbag.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

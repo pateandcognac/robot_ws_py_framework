@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "😲",
+        "reasoning": "This sequence aims to capture the surprise and shock of the 😲 emoji, using a combination of arm and wrist movements. It starts with both arms at the sides and quickly brings them up to cover the mouth, showing a classic reaction to astonishment. Throughout the sequence, I'll focus on creating distinct keyframes that highlight the progression of the gesture, allowing the animation system to smoothly connect them. In the first frame, both arms are relaxed at the sides, with the palms facing inward. This is a neutral starting position, setting the stage for the sudden movement to come. joint1 is at 0.0 for both arms, and joint2 pitches the arms straight down to -90.0, letting them hang naturally by the sides. The wrists are at 0.0, maintaining the palms facing inward. In the second frame, both arms move slightly outward. joint1 rotates slightly outwards for both arms, and joint2 pitches the arms up slightly, preparing for the movement towards the face. The wrist angles change slightly to -10.0 to begin turning the palms upwards. This is a transitional pose, creating anticipation for the next movement. In the third frame, both arms are raised quickly to cover the mouth, mimicking a surprised reaction. joint1 rotates the arms further outwards to 25.0, and joint2 pitches them upward to 85.0, bringing them near the face. The wrists rotate inwards to -90.0, positioning the hands to cover the mouth naturally. This pose captures the primary emotion of the emoji. Finally, the fourth frame shows a slight lowering of the hands, as if the initial shock is subsiding. The arms are slightly lower and angled away from the face, joint1 and joint2 both decrease by a small amount, such as from 85.0 to 80.0, and wrists stay at -90.0. This last pose adds a touch of realism to the gesture, making it feel less static and more dynamic.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -60.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 85.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

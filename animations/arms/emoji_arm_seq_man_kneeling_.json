@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🧎‍♂",
+        "reasoning": "This sequence depicts a person kneeling, focusing on the natural posture of the arms.  The robot's lack of elbows requires careful consideration of how to convey a sense of supplication or rest. The animation will start with arms hanging loosely, then move to a slightly more forward position, and finally a position suggesting rest. Frame 1 shows a neutral position. Frame 2 brings the arms slightly forward. Frame 3 shows the arms at rest. Frame 4 shows the arms more forward again.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

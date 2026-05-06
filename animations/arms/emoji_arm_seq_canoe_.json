@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🛶",
+        "reasoning": "This animation sequence depicts the act of paddling a canoe.  The motion will focus on a rhythmic back-and-forth movement of the arms, mimicking the paddling action.  Since the robot arms are simplified, we'll emphasize the overall motion rather than precise hand positions. The left arm will lead, followed by the right. We'll avoid extreme angles to keep the motion fluid and realistic within the robot's physical limitations. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

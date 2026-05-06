@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🌆",
+        "reasoning": "This animation sequence aims to capture the feeling of looking out at a cityscape at dusk. It's a moment of quiet contemplation, perhaps a slight sense of awe at the beauty of the scene. To achieve this, we will use a combination of arm poses that suggest observation and appreciation. The animation will start with arms relaxed at the sides, then slowly move to a position that mimics looking out at a distant view, and finally settle into a pose that conveys a sense of peaceful contemplation.  The left arm will be used to emphasize the viewing gesture while the right arm will remain comparatively relaxed. The sequence will be slow and deliberate to reflect the calm and peaceful mood. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

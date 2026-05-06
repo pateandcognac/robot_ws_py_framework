@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "❄️",
+        "reasoning": "This sequence will show the robot marveling at a snowflake, starting with arms outstretched in wonder, then bringing the hands together gently as if protecting the delicate snowflake, and finally returning to a relaxed pose.  The movement will be slow and deliberate, reflecting the peaceful and delicate nature of the snowflake. The arms will move symmetrically to maintain balance and visual harmony.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

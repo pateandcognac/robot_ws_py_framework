@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "💈",
+        "reasoning": "This animation sequence simulates the spinning motion of a barber pole using exaggerated arm movements.  The arms will move in a circular motion, alternating between positions to create the illusion of a rotating cylinder.  The lack of elbows will be addressed by using the wrist to 'imply' the barber pole's spiral.  Both arms will work together to create the effect, mimicking the continuous motion of the barber's pole. In the first frame, both arms extend outward, palms facing down.  The arms are slightly angled, creating a diagonal line mimicking the barber pole's shape. In the second frame, the left arm moves upward and slightly forward, while the right arm moves downward and slightly backward, creating the impression of a rotation. In the third frame, the arms reverse their positions from the second frame. The left arm moves down and back, and the right arm moves up and forward. The wrists will slightly rotate to maintain a downward-facing orientation. In the fourth frame, the arms return to a position similar to the first frame, completing the cycle. The slight differences in arm positioning from frame one will create a visual sense of motion. In the fifth frame, the arms return to the starting position to complete a full cycle.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -70.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -70.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

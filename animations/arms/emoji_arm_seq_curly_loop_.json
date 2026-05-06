@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "➰",
+        "reasoning": "This animation sequence depicts a looping motion, representing the continuous nature of a loop or cycle.  The arms will move in a circular pattern, mimicking the shape of the emoji. We will use a 4-frame animation to capture the key moments of this circular movement. The movement is somewhat abstract and doesn't have an exact real-world equivalent, so we'll use the robot's arm capabilities to best approximate a looping motion.  Both arms will mirror each other's movements, creating a visually balanced animation.  The wrists will remain relatively neutral to avoid distraction from the main circular arm motion.  The key is to create a sense of continuous flow, even though the animation is composed of discrete frames.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

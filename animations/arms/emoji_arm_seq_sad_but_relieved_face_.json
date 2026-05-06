@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "😥",
+        "reasoning": "This sequence aims to capture the mixed emotions of sadness and relief conveyed by the 😥 emoji. It begins with a gesture of wiping tears away from the eyes, followed by a subtle slump of the shoulders to indicate the lingering sadness, and ends with a gentle outward movement of the arms, symbolizing a sense of release or acceptance. In the first frame, both arms are raised towards the face, with joint2 pitching them upward and joint1 rotating them inward. The wrists are angled inward at -45.0 to mimic wiping tears. This pose represents the sadness component of the emoji. In the second frame, the arms lower slightly, with joint2 pitching downward to -45.0, as if the tears have been wiped away. The wrists remain angled inward at -30.0. This subtle shift represents the transition from active sadness to a more subdued emotional state. In the third frame, both arms slump downwards, with joint2 pitching further down to -75.0 and joint1 rotating slightly outward to 10.0. The wrists rotate to a neutral 0.0. This slumping motion signifies the lingering sadness and exhaustion. In the fourth frame, the arms begin to move outward, with joint1 rotating further outward to 45.0 and joint2 pitching slightly upward to -60.0. The wrists remain neutral. This outward movement represents the beginning of the relief phase, suggesting a release of tension. In the final frame, the arms extend slightly further outward, with joint1 rotating to 60.0 and joint2 pitching to -45.0. The wrists rotate outward to 45.0, palms facing slightly upward. This final pose symbolizes acceptance and a sense of relief, completing the transition from sadness to a more peaceful state.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 75.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -45.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

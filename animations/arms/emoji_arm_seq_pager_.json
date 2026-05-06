@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "📟",
+        "reasoning": "This sequence simulates holding and looking at a pager, focusing on bringing the pager up to eye level and using the other hand to interact with it. The movements are deliberate, mimicking how someone would handle and read a pager. In the first frame, both arms are relaxed at the sides. The right arm is angled slightly inward, representing the start of the pager-holding motion. In the second frame, the right arm raises, bringing the pager closer to eye level. The left arm remains down, mimicking how someone would support the weight of the pager. By the third frame, the right arm continues to raise, positioning the pager at eye level for reading. The left arm begins to move up, preparing to interact with the pager. In the fourth frame, the left hand moves to the pager, as if typing a message. The right arm maintains the pager's position, keeping it steady for interaction. Finally, in the fifth frame, both arms lower slightly, as if after reading or sending a message. The left arm remains slightly raised, ready for further interaction, while the right arm continues to support the pager.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 40.0,
+                        "joint2": 30.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -5.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "👩‍❤️‍👩",
+        "reasoning": "This animation sequence portrays two robots embracing, mirroring the affection conveyed by the 👩‍❤️‍👩 emoji.  The robots will use a synchronized movement to show unity. Each arm movement will be carefully planned to convey the tenderness of the embrace, avoiding any abrupt or robotic actions.  The sequence begins with both robots' arms at their sides, progressing to a gentle embrace, and finally settling into a comfortable close position.  The arms' movements will be synchronized for both robots to highlight the couple's connection.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 60.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 60.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 60.0,
+                        "joint2": -20.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 60.0,
+                        "joint2": -20.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

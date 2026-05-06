@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "⛄",
+        "reasoning": "This sequence will depict a snowman's shy, almost bashful demeanor.  The animation will start with arms slightly raised, palms facing inward, as if the snowman is self-conscious or unsure of itself.  The arms will then move slightly downward, before returning to a more relaxed, neutral position. This will create a subtle, endearing movement.  The slight downward movement of the arms suggests a moment of hesitation or shyness, before settling into a more comfortable pose.  The overall effect should be charming and expressive.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

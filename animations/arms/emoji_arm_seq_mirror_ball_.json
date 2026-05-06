@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🪩",
+        "reasoning": "This animation sequence simulates the act of someone playfully mimicking a disco ball's movements, using a combination of arm movements to create a sense of spinning and light reflection. The robot's arm movements will capture this feeling of playful mirroring. The sequence will focus on dynamic arm positions and smooth transitions to capture the essence of the emoji. In the first frame, both arms start in a neutral, relaxed position, with a slight inward roll to the shoulders, simulating a moment of anticipation before the movement begins. The wrists are neutral. In the second frame, both arms move upward, with a slight outward roll of the shoulders, and the wrists rotate outward to reflect the light. This mirrors the beginning of the disco ball's rotation. By the third frame, the arms have swung outward to their fullest extent, mimicking a full rotation of the disco ball. The wrists continue their outward rotation, creating a more dynamic sense of the movement. In the fourth frame, the arms start to swing back down, with the wrists rotating inward to balance the visual effect. This simulates a slowing down of the disco ball's rotation. Finally, in the fifth frame, the arms return to their starting position, completing the cycle and conveying the cyclical nature of a disco ball's spin. The slight variations in joint angles and wrist rotations add a sense of playful spontaneity to the gesture, making it feel less mechanical and more expressive.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🌇",
+        "reasoning": "This animation sequence portrays the feeling of watching a sunset, with arms outstretched in a gesture of awe and peace.  The sequence starts with arms at rest, then moves to arms raised, palms up, followed by a slight lowering and outward extension, and finally ending with a relaxed pose. The subtle movement aims to capture the calmness and wonder associated with a sunset. Frame 1: Arms are relaxed at the sides. Frame 2: Arms slowly raise upward, palms facing upwards. Frame 3: Arms extend slightly outward, palms still up, and lowered slightly. Frame 4: Arms return to a relaxed position at the sides. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

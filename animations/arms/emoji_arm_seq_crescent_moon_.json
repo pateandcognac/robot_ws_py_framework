@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🌙",
+        "reasoning": "This sequence will show the robot gently cradling a crescent moon, mimicking a protective or comforting gesture.  The animation will focus on the slow, deliberate movement of both arms to create a sense of calmness and care. The first frame will show the arms slightly raised and angled to the sides, palms facing upward, ready to receive the moon. The second frame will bring the arms slightly closer, palms facing upward, creating a gentle cradle shape. The third frame will show the hands further inward, almost meeting to fully cradle the moon. The final frame will show the hands gently resting on each other, completing the protective gesture. The slight variations in arm angles and wrist positions will add to the natural flow of the movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

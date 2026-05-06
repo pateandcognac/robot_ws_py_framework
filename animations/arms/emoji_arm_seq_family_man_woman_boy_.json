@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "👨‍👩‍👦",
+        "reasoning": "This animation sequence will depict a family embracing.  The movement will start with arms slightly out to the sides, then move to a hug, and then return to a relaxed but close position.  The focus is on conveying warmth and togetherness.  Since the robot has no elbows, the hug will be shown as a close approximation of arms around each other, focusing on the overall embracing posture rather than precise hand placement. The arms will move in a coordinated fashion, mirroring each other's movements.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

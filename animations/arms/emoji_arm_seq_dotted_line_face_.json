@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🫥",
+        "reasoning": "This animation sequence portrays a sense of awkwardness or hidden emotion, aligning with the dotted-line face emoji. The arms will start in a slightly withdrawn position, move to cover the face, and then return to a neutral position. The movement should be slow and deliberate, emphasizing the character's shyness or discomfort.  The animation will avoid sudden, jerky movements, opting instead for a more deliberate progression of poses. Frame 1: Arms slightly drawn inward, palms facing inward, suggesting a hesitant posture. Frame 2: Arms move upward and outward, with hands covering the face, expressing shyness or a desire for concealment. Frame 3: The hands begin to move away from the face, slightly lowered, indicating a slow release of the protective gesture. Frame 4: The arms return to a relaxed position at the sides, reflecting a return to a neutral state, but with lingering hesitation. The slight asymmetry in the arm positions adds to the subtle awkwardness of the gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 40.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

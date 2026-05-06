@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "😯",
+        "reasoning": "This sequence aims to capture the surprised and hushed reaction conveyed by the 😯 emoji. The animation focuses on bringing the hands up towards the face, as if to cover a gasp, followed by a slight retraction and lowering of the arms to convey the 'hushed' aspect.  The wrists play a key role in mimicking the natural curvature of hands partially covering a mouth.  In the first frame, both arms are positioned slightly away from the body, palms facing inwards, poised for movement.  This sets a neutral starting point before the surprise sets in.  In the second frame, both arms move swiftly upwards towards the face, with wrists rotating to bring the palms towards the mouth. Joint2 pitches both arms upward, creating the upward motion, while joint1 rotates both arms slightly inwards to position them correctly.  The wrist rotation is crucial here, as it helps to mimic the shape of hands covering a mouth.  By the third frame, the arms retract slightly, pulling back from the face while maintaining the upward angle.  This slight pull-back conveys the 'hushed' part of the expression, as if suppressing a surprised vocalization. In the fourth frame, the hands lower slightly further, moving away from the mouth. This action reinforces the hushed reaction. The final frame shows the arms returning closer to the sides of the body, while still maintaining some of the upward angle from the previous frames. This gradual return to a neutral position adds to the overall naturalness of the sequence.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 85.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 75.0,
+                        "wrist": -80.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 60.0,
+                        "wrist": -70.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -15.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

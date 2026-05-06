@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🥯",
+        "reasoning": "This sequence mimics the action of carefully holding a bagel, emphasizing gentle handling.  The animation starts with both arms extended, palms up, as if ready to receive the bagel. Then, the arms move inward, cupping the bagel gently. Finally, the arms move slightly upward, as if lifting the bagel to take a bite. The slight variations in joint angles and wrist positions throughout the sequence are meant to convey a sense of care and precision.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🐁",
+        "reasoning": "This sequence will animate the robot to mimic a mouse's inquisitive and slightly nervous movements. The animation will focus on small, jerky movements to capture the mouse's cautious nature.  The robot will start with its arms slightly raised, then bring one arm forward, as if sniffing or exploring, before returning to a more neutral position. The other arm will remain relatively static, providing a sense of balance and contrast.  The sequence will conclude with a slightly apprehensive pose, suggesting the mouse is still alert to its surroundings. Frame 1 will establish a slightly raised and cautious posture. Frame 2 will have one arm reach forward. Frame 3 will show the arm retracting. Frame 4 will show a slightly apprehensive pose.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 5.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -10.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": 5.0,
+                        "wrist": -20.0
+                    }
+                }
+            ]
+        ]
+    }
+]

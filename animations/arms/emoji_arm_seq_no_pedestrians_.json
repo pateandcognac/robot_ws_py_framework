@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🚷",
+        "reasoning": "This animation sequence will visually represent the meaning of the no pedestrians emoji.  The robot will use its arms to create a clear, simple 'stop' gesture.  The sequence will begin with the arms at the sides, then raise to shoulder height in a 'stop' position, then lower back down to a neutral pose.  This avoids overly complex or ambiguous movements. The use of both arms creates a stronger visual impact than using just one arm. The sequence will use 3 frames for clarity and impact.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🎾",
+        "reasoning": "This sequence simulates the act of serving a tennis ball. The right arm starts back, then swings forward to mimic the serve. The left arm remains relatively still for balance. In the first frame, the right arm is pulled back, with joint1 rotated inward and joint2 pitched downward; the wrist is angled slightly downward. The left arm is in a neutral position. The second frame shows the right arm starting its forward swing, with joint1 rotating outward and joint2 pitching upward. The wrist is now pointing forward. The third frame depicts the peak of the serve, with the right arm fully extended forward, joint1 rotated outward, and joint2 pitched upward, the wrist is slightly upward. The fourth frame shows the follow-through, with the right arm continuing its forward momentum, with joint1 now slightly rotated inward, and joint2 slightly downward. The left arm remains neutral throughout, providing a counterbalance to the right arm's movement. The final frame shows both arms returning to a neutral position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 60.0,
+                        "joint2": -60.0,
+                        "wrist": -20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -40.0,
+                        "joint2": 40.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -70.0,
+                        "joint2": 80.0,
+                        "wrist": 30.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

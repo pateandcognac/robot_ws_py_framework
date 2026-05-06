@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🌦️",
+        "reasoning": "This sequence portrays a robot reacting to the sun peeking behind a rain cloud. The animation will start with the robot's arms down, then it will slowly raise them in a gesture of cautious optimism, and finally, it will relax its arms back down, conveying a sense of relief or contentment.  The movement will be slow and deliberate, reflecting the gradual change in weather. The robot's arms will move in a similar manner to the 'arms_up_palms_forward' example, but with more gradual and hesitant movements. The reasoning behind each frame is described below. Frame 1: Arms are at the sides, representing the initial state of the weather. Frame 2: Arms start to rise, representing the first rays of sunshine. Frame 3: Arms reach a peak, demonstrating the full emergence of the sun. Frame 4: Arms begin to lower, showing the robot's relaxation as the sun is out. Frame 5: Arms return to their original position, signifying the settled weather.  This sequence is designed to be slow, not abrupt, to reflect the gradual change in weather.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 15.0,
+                        "wrist": 15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🚋",
+        "reasoning": "This animation sequence simulates the act of holding onto a tram's handrail, conveying a sense of movement and anticipation. The robot's arms will mimic the posture of someone gripping a rail while standing on a moving vehicle. To achieve this, I'll use a combination of joint rotations and slight wrist adjustments to create a natural and believable posture. The sequence will begin with the arms slightly raised and angled forward, then transition to a more secure grip, and finally relax slightly as the 'ride' continues.  The left and right arms will move in a coordinated manner, slightly offset to reflect the asymmetrical nature of holding onto a rail.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 20.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 30.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": 25.0,
+                        "wrist": 15.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -15.0,
+                        "joint2": 25.0,
+                        "wrist": -15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 20.0,
+                        "wrist": -10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

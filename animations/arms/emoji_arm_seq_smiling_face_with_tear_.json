@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🥲",
+        "reasoning": "This sequence aims to capture the bittersweet feeling of the 🥲 emoji, where a single tear rolls down the face while a gentle smile is present. It conveys a sense of relief, quiet joy, or a touch of sadness.  The left hand will delicately wipe the tear away, while the right arm remains at rest, creating a sense of gentle vulnerability.  In the first frame, the left arm lifts towards the eye area, palm facing inward as if about to wipe a tear.  The right arm remains relaxed at the side.  In the second frame, the left hand gently touches the face near the eye, pausing briefly. The right arm remains still. The third frame shows the left hand moving down slightly, as if wiping the tear away. The fourth frame has the left hand moving further down, completing the wiping motion. The right arm still remains at rest. Finally, in the fifth frame, the left arm returns to a relaxed position at the side, joining the right arm. This sequence focuses on subtle movements to create a tender, emotional gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 25.0,
+                        "joint2": 80.0,
+                        "wrist": -80.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 70.0,
+                        "wrist": -70.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": 50.0,
+                        "wrist": -60.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

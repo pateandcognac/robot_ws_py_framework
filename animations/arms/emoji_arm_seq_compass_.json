@@ -1,0 +1,72 @@
+[
+    {
+        "emoji": "🧭",
+        "reasoning": "This animation sequence shows the robot carefully holding and consulting a compass, emphasizing precision and focus.  The movement will be deliberate and controlled, reflecting the careful nature of navigation. Frame 1 will show both arms extended slightly forward, with the hands cupped together as if holding the compass. Frame 2 will shift the left arm slightly backward, while the right arm moves forward, creating a subtle tilting motion. Frame 3 will show both arms returning to a more balanced position, as if the robot is studying the compass. Frame 4 will have the robot's arms move slightly upward, as if reading the compass's needle. Frame 5 will show the robot bringing the compass closer, as if for a final check. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

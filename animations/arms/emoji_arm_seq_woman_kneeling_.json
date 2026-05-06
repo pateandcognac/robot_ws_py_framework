@@ -1,0 +1,81 @@
+[
+    {
+        "emoji": "🧎‍♀️",
+        "reasoning": "This sequence depicts a woman kneeling, emphasizing the posture of prayer or reverence. The arms will be positioned in a gesture of supplication or quiet contemplation. I'll use the examples to ensure smooth transitions and keep the movements fluid. Frame 1: Both arms are positioned in front of the body, hands clasped together as if in prayer. The arms gently curve downward, demonstrating a respectful posture. Frame 2: The right arm moves slightly outward and upward, as if to emphasize a point or add a gesture of supplication. The left arm remains largely still, providing contrast and balance. Frame 3: The right arm returns to its original position, maintaining the prayerful pose. The left arm now moves slightly outward and upward, providing a mirrored effect to the previous movement. Frame 4: Both arms gently curve downward to emphasize the prayerful pose once more. This creates a subtle, rhythmic movement that enhances the gesture's solemnity and quiet contemplation. Frame 5: The hands softly rest on the knees, the arms relaxed but maintaining a respectful posture. This represents the end of the gentle movement. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🐈‍⬛",
+        "reasoning": "This sequence aims to capture the essence of a cat stretching, focusing on a smooth, natural extension of the arms. Given the robot's two-joint arm structure, I'll prioritize creating a sense of elongation and relaxation. In the first frame, both arms are positioned slightly forward and bent at the 'elbows' (simulated by joint2), with wrists curled inward as if the cat is about to begin its stretch. This starting pose creates a sense of anticipation. In the second frame, both arms extend forward, stretching outward. joint1 rotates slightly outward, and joint2 straightens to create the extension. The wrists remain curled inward, maintaining the cat-like posture. By the third frame, the arms reach their peak extension, with joint2 fully straightened and joint1 rotated outward, mimicking a cat fully extending its paws. The wrists begin to uncurl slightly, adding to the sense of release. In the fourth frame, the arms begin to retract, with joint2 bending again and joint1 rotating inward, as if the cat is relaxing after the stretch. The wrists return to their initial curled position. Finally, in the fifth frame, the arms return to the initial relaxed, slightly forward position, completing the stretching cycle. Throughout the sequence, the subtle changes in joint angles and wrist positions create a fluid, natural-looking stretch, capturing the feline grace of the black cat emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": -5.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 5.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

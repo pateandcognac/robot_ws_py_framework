@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "®️",
+        "reasoning": "This animation sequence represents the act of officially registering something, emphasizing the formality and importance of the process. The robot will use both arms to create a sense of deliberate action, with smooth transitions between frames. In the first frame, the robot's arms start in a neutral position at the sides, suggesting readiness for the action. In the second frame, the robot brings both hands up, palms facing each other, as if carefully holding a document or object, symbolizing the item being registered. In the third frame, the robot moves the hands closer together, emphasizing the act of registration. In the fourth frame, the robot brings both arms down to the sides, signifying the completion of the process. The final frame shows the robot in a slightly more relaxed pose, suggesting a sense of accomplishment and closure. This animation is designed to be fluid and deliberate, reflecting the careful nature of the registration process.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

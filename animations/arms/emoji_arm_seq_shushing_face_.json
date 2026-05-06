@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🤫",
+        "reasoning": "This sequence aims to capture the 'shushing' gesture, bringing the right index finger to the lips while the left arm rests comfortably. Since the robot doesn't have fingers, I'll use wrist rotation and arm positioning to create the illusion of the 'shush.'  I'll reference the provided examples to ensure the movements are within the robot's capabilities and appear natural. In the first frame, both arms are relaxed at the sides. The right arm is slightly raised, preparing for the 'shush,' while the left arm hangs loosely. This neutral starting position sets a calm tone before the gesture begins. Moving to the second frame, the right arm bends at the 'elbow' (simulated by joint2) and rises towards the face, with the wrist turning inward to mimic bringing a finger to the lips. The left arm remains relaxed, providing balance. In the third frame, the right arm moves closer to the face, as if holding the 'shush' pose. The wrist rotates further inward to emphasize the gesture. The left arm shifts slightly to maintain balance. In the fourth frame, the right arm retracts slightly, as if releasing the 'shush.' The wrist begins to rotate back to a neutral position. Finally, in the fifth frame, the right arm returns to its relaxed position at the side, while the left arm remains mostly still throughout the sequence, ensuring the focus stays on the 'shushing' action.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 25.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 85.0,
+                        "wrist": -80.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": 60.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

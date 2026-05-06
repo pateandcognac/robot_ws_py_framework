@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "😁",
+        "reasoning": "This sequence aims to capture the pure joy and excitement of a beaming face with smiling eyes, using dynamic arm movements to express overflowing happiness.  I'll focus on creating a sequence that embodies a burst of positive energy, referencing examples like the celebratory gesture for 🎉 to ensure the movements are expressive and natural.  In the first frame, both arms are raised to the sides, palms facing slightly forward, in a gesture of excitement. joint1 is rotated outward for both arms, and joint2 pitches them upward, creating an open and welcoming posture.  Moving to the second frame, the arms swing upward above the head, mimicking a spontaneous expression of joy.  joint2 angles both arms upward to their maximum, creating a sense of reaching for the sky. The wrists rotate slightly inward to emphasize the upward motion. In the third frame, the arms swing back down to the sides, with a slight overshoot to add a playful bounce to the movement.  joint2 pitches the arms slightly downward to create the overshoot, while joint1 rotates them outward. The wrists remain neutral.  In the fourth frame, the arms come back up, but not as high as the second frame, creating a rhythmic up-and-down motion. This adds a touch of dynamism and reinforces the feeling of uncontainable happiness. The wrist twist slightly outwards, adding an element of anticipation or surprise to the gesture.  Finally, in the fifth frame, the arms settle back to the starting position, with a gentle sway to emphasize the lingering feeling of joy.  This final touch adds a sense of completion to the gesture while maintaining the overall sense of happiness.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 70.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 90.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20,
+                        "joint2": 80,
+                        "wrist": 20
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 70.0,
+                        "wrist": 20.0
+                    }
+                }
+            ]
+        ]
+    }
+]

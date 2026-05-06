@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🌔",
+        "reasoning": "This animation sequence will depict the robot gently cradling a waxing gibbous moon. The sequence starts with the robot's arms outstretched, palms up, to receive the moon.  Then, the arms will slowly curve inward, bringing the moon closer to the robot's chest, and finally they will gently rest the moon against its chest.  The movement should be slow, deliberate, and gentle to reflect the peaceful and serene nature of the moon. The arms will not have elbows, they will be straight arms on two shoulder joints. Joint1 will be used to rotate the arms inward and outward, and Joint2 will be used to pitch the arms up and down. The wrists will be used to adjust the angle of the palms. The left and right arms will perform the same motion in unison.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": -10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "👈",
+        "reasoning": "This sequence aims to create a leftward pointing gesture with the left arm, reminiscent of giving directions or highlighting something of interest. The right arm remains passive, providing balance and a natural stance. Throughout the sequence, I'll focus on distinct key poses for the left arm, ensuring smooth transitions between frames while maintaining clarity in the pointing direction. The two-joint arm structure will be used effectively to create a realistic pointing motion.  In the first frame, both arms rest neutrally at the sides, establishing a relaxed starting posture. This sets the stage for the subsequent pointing gesture.  In the second frame, the left arm lifts slightly, preparing for the directional cue. The wrist rotates slightly inward, anticipating the pointing action. In the third frame, the left arm extends fully towards the left, with the wrist adjusting to point directly leftward. This clearly indicates the intended direction. Meanwhile, the right arm remains at the side, maintaining balance. The fourth frame shows the left arm slightly retracting from the full extension, as if to add emphasis or prepare for another gesture. Finally, in the fifth frame, the left arm returns to its resting position at the side, completing the gesture. The distinct positions of the left arm in each frame, combined with the static right arm, create a clear and expressive pointing animation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -10.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -90.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -70.0,
+                        "joint2": -10.0,
+                        "wrist": 70.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

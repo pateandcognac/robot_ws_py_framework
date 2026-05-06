@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "💽",
+        "reasoning": "This animation sequence simulates the action of holding and presenting a computer disk.  The robot will hold the disk (imagined) in both hands, bringing them together before presenting it forward.  The movement should be smooth and deliberate, reflecting the careful handling often associated with data storage media. The lack of elbows in the robot arm requires creative use of shoulder joints to convey the action. I will ensure each frame shows a significant change in position, not an intermediary step.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -30.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🐼",
+        "reasoning": "This animation sequence will portray a panda's playful and curious nature.  The panda will start with its arms relaxed, then raise them in a curious 'look around' motion, followed by a gentle lowering of its arms, and finally returning to a relaxed pose.  The sequence will use the robot's two shoulder joints to capture the gentle arc of a panda's arm movements, with slight wrist rotations for additional expressiveness. The movement should be smooth and avoid jerky movements.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": 10.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🥁",
+        "reasoning": "This sequence simulates the motion of playing a drum, focusing on the alternating arm movements and the slight wrist adjustments needed to mimic the striking of drumsticks. The robot's arms will move in a coordinated fashion, striking an imaginary drum in front of it. I'll ensure that the transitions between frames are fluid, and that the movements are not too rigid.  In the first frame, both arms are raised slightly, preparing to strike the drum. The wrists are angled to mimic a drumstick grip. In the second frame, the right arm strikes down, the left arm is raised. In the third frame, the left arm strikes down, the right arm is raised. In the fourth frame, both arms return to their original position, ending the sequence. The movement is not intended to be perfectly symmetrical, allowing for a more natural appearance.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 70.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 70.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

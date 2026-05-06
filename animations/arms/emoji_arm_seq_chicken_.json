@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🐔",
+        "reasoning": "This sequence mimics a chicken's movements, starting with its wings slightly raised, then flapping them vigorously before returning to a neutral position. The arms will move in a coordinated manner, simulating the up-and-down motion of wings.  I'll use the robot's two joints to create a natural flapping motion. The wrists will be slightly angled to enhance the wing-like effect. In the first frame, both arms are slightly raised and angled outward, palms facing downward. In the second frame, the arms move vigorously downward, mimicking the downward stroke of a chicken's wings.  In the third frame, the arms are raised again, completing the upward stroke of the wing flap. Finally, in the fourth frame, the arms return to a neutral position, with slight variation to add a touch of realism.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -90.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 60.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

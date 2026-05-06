@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🦛",
+        "reasoning": "This animation sequence will portray a hippopotamus's characteristic slow, deliberate movements. The hippo will have its arms slightly raised and slightly forward in a welcoming gesture, reflecting its generally calm demeanor, but with some subtle movement to suggest a gentle swaying or rocking motion.  The animation will use a 4-frame sequence to capture this movement effectively.  Both arms will mirror each other's movements. Frame 1 will be the starting position, with both arms slightly raised and forward. Frame 2 will show a subtle shift, with the arms moving slightly outward. Frame 3 will mirror Frame 2, but with the arms moving slightly inward. Finally, Frame 4 will return to the original position of Frame 1, completing the gentle swaying motion. This creates a sense of calm and relaxed movement, characteristic of a hippopotamus.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

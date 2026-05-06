@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "📛",
+        "reasoning": "This animation sequence simulates the action of proudly displaying a name badge.  The robot will hold the badge (represented by the space between its hands) at chest height, ensuring it's visible. The movement will be deliberate and confident. Frame 1 starts with both arms at the sides.  Frame 2 shows both arms moving upward and slightly inward. Frame 3 shows the hands positioned to display the badge, with the wrists slightly rotated to showcase the badge effectively. Frame 4 shows the arms holding the badge steadily, maintaining a confident posture. Frame 5 returns the robot's arms to a relaxed position. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 0.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 10.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

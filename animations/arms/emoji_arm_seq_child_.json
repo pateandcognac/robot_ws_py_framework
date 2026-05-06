@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🧒",
+        "reasoning": "This sequence aims to capture the playful, curious nature of a child. The animation will show both arms in a gentle, inquisitive movement. The arms will start in a relaxed position, then gently raise to shoulder height, and finally settle back into a neutral pose. I will use the existing examples to maintain a natural range of motion and ensure the poses fit naturally with the robot's physical construction. In the first frame, both arms are at the sides, slightly angled inward. joint1 is slightly inward, and joint2 is pitched downward. The wrists are neutral. This represents a calm and relaxed posture. In the second frame, both arms begin to rise, slightly outward and upward. joint1 rotates slightly outward, and joint2 pitches upward. The wrists remain neutral. This shows a beginning of curious exploration. In the third frame, the arms reach shoulder height, slightly angled outward. joint1 rotates outward further, and joint2 pitches upward to shoulder height. The wrists remain neutral. This depicts the peak of curiosity and engagement.  In the fourth frame, the arms start to lower, mirroring the movement of the second frame. joint1 rotates slightly inward, and joint2 pitches downward. The wrists remain neutral, indicating a gradual return to a relaxed state. In the fifth frame, the arms return to their original relaxed position. joint1 and joint2 return to their initial values. The wrists remain neutral, signifying the end of the inquisitive gesture. This sequence reflects a child's curious exploration in a gentle and playful manner.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🏛️",
+        "reasoning": "This sequence will show the robot admiring a classical building, starting with arms at the sides, then raising them in wonder, and finally bringing the hands together in appreciation.  The movements will be slow and deliberate, reflecting thoughtful observation. The robot's posture will emphasize awe and respect for the architecture.  In the first frame, the arms will be at rest. In the second frame, the arms will slowly raise to shoulder height, palms facing inward. In the third frame, the hands will slowly come together in a gesture of appreciation. In the fourth frame, the hands will move slightly downward, maintaining the respectful posture, before returning to the rest position in the fifth frame.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

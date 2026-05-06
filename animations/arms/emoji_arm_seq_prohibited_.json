@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🚫",
+        "reasoning": "This animation sequence will show both arms extending forward, palms down, in a clear \"stop\" gesture.  The movement will begin with arms relaxed at the sides, then extend forward, palms down, before returning to a neutral position. This mimics the visual of a stop sign, effectively conveying prohibition. I'll ensure smooth transitions between frames and reference examples to make sure the arm movements feel natural and emphatic. The sequence will emphasize the directness and clarity of the prohibition.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

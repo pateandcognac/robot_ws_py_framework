@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🔱",
+        "reasoning": "This animation sequence depicts a robot wielding a trident, emphasizing the three prongs.  The robot's movements will be powerful and controlled, reflecting the trident's might.  We'll use a three-frame sequence to highlight the key moments of the gesture: the initial raise, the steady hold, and the final return. The left arm will remain at the side for balance and contrast. Frame 1 shows the robot raising the trident. Frame 2 shows the robot holding the trident steady, ready to strike. Frame 3 shows the robot lowering the trident. The animation will focus on the right arm, with the left arm remaining largely stationary for balance.  The right arm's joint1 will rotate outward, and joint2 will pitch upward and downward, creating an arc-like motion with the trident. The wrist will remain mostly neutral for the first two frames, then rotate slightly downward in the final frame.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": -20.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🚧",
+        "reasoning": "This animation sequence simulates the act of carefully placing or setting down two objects, representing the barriers in the construction emoji.  The robot will use both arms to perform this task. I'll focus on smooth transitions between frames, ensuring each frame represents a significant change in the arm's position. I will also make sure the overall movement mimics the carefulness associated with construction work. Frame 1 shows both arms extended forward at shoulder height, palms facing downwards, ready to place the objects. Frame 2 shows the right arm moving slightly downward and inward, as if placing a barrier on the ground. The left arm remains in place, maintaining balance. Frame 3 shows the left arm moving downward and inward in a similar manner, mirroring the right arm's action. Frame 4 shows both arms returning to a neutral position at the sides, completing the action.  The slight variations in wrist angles will add realism.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

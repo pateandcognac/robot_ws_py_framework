@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🧲",
+        "reasoning": "This sequence simulates the attraction of a magnet, using both arms to represent the magnetic force pulling objects together. The arms will move in a coordinated manner, starting from a neutral position and gradually moving towards each other, mimicking the drawing-in effect of a magnet.  The sequence will conclude with both arms reaching towards each other, palms facing inward, simulating the two poles of the magnet meeting. The slight variations in joint angles and wrist positions between frames will help to create a more natural and less rigid animation.  I will reference other examples to ensure the arm transitions are fluid and realistic.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": -60.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": -60.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,79 @@
+[
+    {
+        "emoji": "💔",
+        "reasoning": "This sequence depicts a heartbroken pose, starting with arms crossed tightly over the chest, then slowly opening outward to reveal a vulnerable posture. The final frame shows the arms dropping in defeat or despair. I'll use subtle movements to create a sense of emotional progression. In frame 1, both arms are tightly crossed over the chest, reflecting the initial shock and pain of heartbreak. joint1 is rotated inward for both arms, and joint2 pitches upward slightly. The wrists are angled inward to maintain a tense posture. In frame 2, the arms begin to open, but still maintain a defensive position. joint1 slightly rotates outward, and joint2 lowers slightly. The wrists partially relax but retain some inward angle. Frame 3 shows a more significant opening of the arms, with joint1 rotating outward and joint2 continuing to lower. The wrists fully relax to a neutral position, symbolizing the beginning of acceptance or vulnerability. In frame 4, the arms fully drop to the sides, indicating defeat or despair. joint1 returns to a neutral position, and joint2 pitches downward completely, with the wrists also neutral. This posture reflects the emotional weight of heartbreak.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 65.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 50.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 40.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": 40.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

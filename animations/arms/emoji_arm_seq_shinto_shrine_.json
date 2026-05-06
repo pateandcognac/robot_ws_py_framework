@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "⛩️",
+        "reasoning": "This sequence will depict a bowing gesture, common in showing respect at Shinto shrines.  The animation will focus on a smooth, controlled lowering and raising of the arms, mirroring the respectful nature of a bow.  The arms will move in unison, maintaining symmetry throughout the sequence.  I will use the existing examples to guide the range of motion and ensure the transitions are natural and fluid.  The final frame will return to a neutral, relaxed pose.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

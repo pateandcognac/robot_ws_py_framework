@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "👤",
+        "reasoning": "This animation sequence will portray a contemplative or thoughtful pose, fitting the mysterious nature of the bust in silhouette emoji. The animation will involve a slow, deliberate movement of the arms, emphasizing the stillness and quiet introspection implied by the emoji. The sequence will use a three-frame structure to highlight the key moments of this gesture. In the first frame, the arms will hang naturally at the sides, suggesting a relaxed yet attentive posture. The robot will appear calm and collected, preparing for the subtle movements to follow. In the second frame, the arms will rise to shoulder height in a gentle, almost hesitant manner, with the palms facing inward. This movement will suggest introspection, as if the robot is considering something internally.  The third frame will show the robot's hands gently raised to the chin, as if in deep thought. This final pose will emphasize the contemplative nature of the gesture. The subtle movements of the arms, combined with the inward-facing palms, will create an animation sequence that is both visually appealing and emotionally resonant, aligning with the contemplative and mysterious nature of the 👤 emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

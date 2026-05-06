@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "✊",
+        "reasoning": "This sequence aims to capture the essence of a raised fist, symbolizing strength, resilience, or protest. Given the robot's lack of fingers, the gesture will focus on raising the arm dynamically and holding it firm, conveying determination.  The left arm remains neutral, providing balance and focus. In the first frame, both arms are relaxed by the sides. joint1 is neutral at 0, joint2 is at -90 degrees, and the wrists are at 0, representing a natural resting position. As we move to the second frame, the right arm starts to rise, driven by joint2 increasing its angle towards 90 degrees. joint1 rotates slightly outward (-20 degrees) to position the arm away from the body, preparing for the upward motion. The wrist remains neutral. The left arm remains at rest, maintaining balance. The third frame sees the right arm fully raised in a fist-like gesture. joint2 reaches 90 degrees, pointing straight up. joint1 is adjusted further to -45 degrees, ensuring the arm is clearly presented. The wrist rotates to 90 degrees, making the 'fist' more pronounced. The left arm remains relaxed. The fourth frame holds the raised fist, solidifying the gesture of strength or defiance. Finally, the fifth frame brings the right arm back down to the resting position, mirroring the first frame.  This completes the raised fist gesture, emphasizing the controlled and deliberate nature of the movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

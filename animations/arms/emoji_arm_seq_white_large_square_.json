@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "⬜",
+        "reasoning": "This animation sequence will portray a robot expressing neutrality or perhaps a sense of blankness.  The animation will involve a slow, deliberate movement, starting with arms at the sides, then slowly raising them to shoulder height, and finally returning to a neutral position.  This will visually align with the simplicity and lack of strong emotion associated with a blank square. The robot's actions will communicate a feeling of emptiness or neutrality.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

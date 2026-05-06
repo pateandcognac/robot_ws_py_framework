@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🚹",
+        "reasoning": "This animation sequence uses a playful yet slightly awkward approach to convey the concept of a men's restroom. The robot's movements should not be overly suggestive or explicit but rather hint at the somewhat private nature of the location. The sequence opens with both arms raised in a vague gesture that could be interpreted as a questioning or slightly hesitant pose, suggesting uncertainty about the restroom's location. Next, the robot might bring one arm down in a gesture that seems like it's searching for a door or sign. The other arm could remain gesturing, showing some continued uncertainty. In the third frame, the robot could subtly point down toward the ground, as if indicating the location of the restroom. The final frame would show both arms returning to a relaxed posture, as if the location has been confirmed. This playful approach uses the robot's physical limitations to express the somewhat ambiguous and private nature of the men's restroom.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -20.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

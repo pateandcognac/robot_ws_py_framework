@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🪤",
+        "reasoning": "This animation sequence depicts a robot cautiously approaching a mousetrap, conveying a sense of alertness and anticipation. The robot's movements will be slow and deliberate, reflecting its awareness of the potential danger. Frame 1 shows both arms slightly raised and extended forward, palms facing inward, as if the robot is cautiously reaching out to examine the mousetrap. Frame 2 shows the robot's arms moving slightly closer to the mousetrap, with a subtle adjustment in joint angles to show a more inquisitive posture. Frame 3 illustrates the robot's arms pausing briefly, mirroring a moment of hesitation or careful observation before interacting with the trap. Finally, frame 4 shows the arms returning to a neutral position, suggesting the robot has completed its examination and is preparing for the next action, perhaps deciding whether to engage with the trap or move away.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 5.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

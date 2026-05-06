@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "👨‍💼",
+        "reasoning": "This animation sequence depicts a businessman in a thoughtful pose, perhaps considering a business proposal or reviewing documents. The animation will show the character holding an imaginary briefcase in one hand and tapping the other hand against the chin, in a thoughtful pose. The sequence begins with both arms at the side, transitioning to the briefcase pose, then tapping the chin, and finally returning to the resting position. This animation will show the character’s thoughtfulness and seriousness, fitting with the professional image of the emoji. The sequence uses both arms to create a more dynamic pose and focuses on small, deliberate movements to showcase the character's concentration.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": -75.0,
+                        "wrist": 19.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 25.0,
+                        "joint2": 90.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -90.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

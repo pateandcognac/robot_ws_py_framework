@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🟰",
+        "reasoning": "This animation sequence will visually represent the balance implied by the heavy equals sign.  The robot will hold out both arms, palms up, as if weighing two equal objects.  The movement will start with arms at rest, then extend outward and upward, and finally settle into a balanced pose.  The slight variation in angles between frames avoids a stiff, mechanical look. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 30.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 20.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 15.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

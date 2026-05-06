@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🚡",
+        "reasoning": "This animation sequence simulates the motion of riding an aerial tramway. The robot's arms will mimic the feeling of holding onto a cable or bar while moving along.  The sequence will focus on a slight swaying motion, reflecting the gentle movement of the tramway. Frame 1 will show the robot's arms outstretched, palms down, gripping an imaginary cable. Frame 2 will show a slight upward sway, and Frame 3 a slight downward sway. Frame 4 will return to the initial position, and Frame 5 will show the robot's arms slightly lowered, as if the ride is coming to an end. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 70.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

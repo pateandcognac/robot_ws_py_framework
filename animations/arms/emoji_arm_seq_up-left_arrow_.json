@@ -1,0 +1,59 @@
+[
+    {
+        "emoji": "↖️",
+        "reasoning": "This sequence aims to direct attention towards the upper-left using pointed arm gestures.  The primary focus is on the left arm, which takes on the pointing role, while the right arm provides a supporting gesture by being raised slightly. In the first frame, both arms start at rest, hanging loosely at the sides. The left arm then initiates an upward and leftward movement by adjusting joint1 to rotate inward and joint2 to pitch upward. The right arm rises slightly, with joint2 pitching upward, to complement the left arm's motion. In the third frame, the left arm extends further towards the upper-left direction, with joint1 rotating further inward and joint2 reaching a higher pitch. The wrist rotates to align with the pointing direction. The right arm remains slightly raised. This sequence conveys clear directionality, suitable for the ↖️ emoji, by utilizing distinct arm positions and wrist rotation to emphasize the target area.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 75.0,
+                        "joint2": 75.0,
+                        "wrist": 75.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

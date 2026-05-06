@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "👨‍👨‍👧",
+        "reasoning": "This animation sequence depicts a family embracing.  The father figures (represented by the two arms) will form a protective arc over the child (implied in the center). The movement will be slow and deliberate, emphasizing the warmth and closeness of the family unit.  The animation focuses on the arms enveloping each other and gently lowering. The arms don't have elbows, so the movement will be simulated using the shoulder joints. Frame 1 will show arms extending outwards, mimicking the broad protective gesture. Frame 2 will show the arms beginning to move inwards and slightly downwards, creating a gentle arc. Frame 3 will show the arms almost completely enveloping each other, close to the body, and angled downwards. Frame 4 will show the arms in a final, resting position, gently cradling the implied child in the center. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 70.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 70.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -15.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -15.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 0.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 0.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "😍",
+        "reasoning": "This sequence aims to capture the blissful, lovestruck feeling of the 😍 emoji, using gentle arm and wrist movements to express affection and adoration.  The robot will bring its hands up towards its face in a gesture of sweet embrace, then extend them outward as if sending love towards the adored object. In the first frame, both arms are raised to chest height, palms facing inward, as if holding something precious close to the heart. Joint1 is slightly inward, and joint2 pitches the arms forward.  The wrists are neutral. This pose represents the initial feeling of being lovestruck. In the second frame, the arms move slightly upward and closer together, suggesting a gentle embrace. Joint2 increases the pitch, bringing the hands closer to the face. The wrists rotate slightly inward, enhancing the feeling of tenderness. In the third frame, the arms extend outward and slightly downward, palms facing forward, as if sending out love and affection. Joint1 rotates outward, and joint2 decreases the pitch. The wrists rotate to face forward, completing the gesture of sending love. In the fourth frame, the arms return to the chest, palms facing inward, as if cherishing the feeling of love. This creates a sense of completion and contentment. Finally, the arms relax slightly downwards, similar to the first frame, but with a gentler, more relaxed posture, suggesting a lingering feeling of affection. This concluding pose reinforces the overall emotion of the emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 60.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 40.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

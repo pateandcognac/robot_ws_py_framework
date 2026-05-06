@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "👽",
+        "reasoning": "This sequence aims to capture the mysterious and otherworldly nature of the 👽 emoji. The robot will mimic a slow, curious head tilt by moving its arms in a fluid, inquisitive manner. The left arm will reach out and upward, as if exploring an unseen force, while the right arm remains slightly lower, adding to the sense of cautious wonder.  In the first frame, both arms start in a neutral, slightly raised position. The left arm is positioned slightly higher than the right, initiating the tilt. In the second frame, the left arm extends further upward and outward, as if reaching towards something unknown. The right arm remains lower, creating a sense of balance and asymmetry. By the third frame, the left arm curves slightly, mimicking a gentle probing motion. The right arm stays relatively still, maintaining the tilted posture. In the fourth frame, the left arm retracts slightly, as if pulling back from the unseen force.  Finally, in the fifth frame, both arms return to a neutral position, concluding the inquisitive gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 20.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": 40.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 10.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

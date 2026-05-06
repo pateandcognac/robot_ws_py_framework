@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🛑",
+        "reasoning": "This sequence simulates a robot halting its movements, mimicking the function of a stop sign. The animation will emphasize a sudden stop, with arms extending outward and then returning to a neutral position.  Both arms will move in tandem for a unified and clear message. I'll ensure the movements are sharp and deliberate, using the two joints to create a clear sense of urgency and cessation.  I'll check against examples to ensure the range of motion is appropriate and the transitions are sharp. In the first frame, both arms are in a neutral position at the sides.  This sets the scene for the abrupt halt. In the second frame, both arms extend outward and slightly upward, mimicking a sudden halt.  joint1 will rotate outward to extend the arms, while joint2 pitches slightly upward to emphasize the stop. The wrists will be neutral, palms facing forward. In the third frame, the arms return to a slightly more neutral position, but still not entirely at rest. This indicates the action of stopping is almost complete. In the fourth frame, both arms return to the resting position, conveying the complete halt. This final pose reinforces the clear message of the stop sign. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 70.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

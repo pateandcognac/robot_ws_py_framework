@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "☪️",
+        "reasoning": "This animation sequence will depict a gesture of reverence or contemplation, suitable for the star and crescent emoji.  The robot will bring both hands together in a prayer-like position, then slowly lower them.  This conveys a sense of peace and reflection. The movement will be slow and deliberate to emphasize the thoughtful nature of the gesture.  The lack of elbows means we'll rely on shoulder movement to create a graceful arc.  The wrists will be slightly angled to show the palms together.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 30.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 15.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

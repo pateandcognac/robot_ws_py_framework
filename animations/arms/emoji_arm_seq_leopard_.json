@@ -1,0 +1,81 @@
+[
+    {
+        "emoji": "🐆",
+        "reasoning": "This animation sequence for the leopard emoji will depict a stealthy, observant stance. The robot will start with its arms slightly bent, palms facing inward, as if ready to pounce. Then, one arm will extend forward, while the other remains slightly bent, mimicking the way a leopard might stalk its prey. Finally, both arms will return to a neutral position, as if the leopard has decided not to attack. This sequence will showcase the leopard's agility and predatory nature. The movements will be smooth and deliberate, reflecting the animal's quiet grace. \nFrame 1: Both arms are slightly bent, palms facing inward, as if poised to strike. \nFrame 2: The left arm extends forward, while the right arm remains slightly bent. \nFrame 3: Both arms return to a neutral position, indicating alertness.\nFrame 4: The left arm returns to the neutral position. The right arm is raised slightly, as if scanning the surroundings. \nFrame 5: Both arms are again in a neutral position, ready for any movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

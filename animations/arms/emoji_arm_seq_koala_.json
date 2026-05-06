@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🐨",
+        "reasoning": "This animation sequence aims to capture the relaxed and cuddly nature of a koala.  The koala is known for its calm demeanor and slow movements, so the animation will reflect this.  The sequence will focus on the arms gently hugging or embracing something, which is a common pose associated with koalas and their relaxed personalities.  The movements will be slow and deliberate, emphasizing the gentle nature of the creature. We'll use both arms in a symmetrical motion for a balanced, cuddly visual.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "💢",
+        "reasoning": "This animation aims to express the frustration and agitation associated with the anger symbol (💢) through tense arm movements. The robot's arms will move in short, agitated bursts, reflecting the building intensity of anger.  In the first frame, both arms are held stiffly at the sides, with joint1 slightly rotated inward and joint2 pitching the arms slightly back. The wrists are straight, reflecting restrained tension. In the second frame, both arms tense up further, with joint1 rotating inward more and joint2 pitching them slightly forward.  This inward motion represents the internalization of anger.  The wrists remain neutral.  In the third frame, the arms extend slightly outward and up, as if preparing to lash out, with joint1 rotating outward and joint2 pitching up.  The wrists rotate outwards to -45 degrees, adding to the sense of impending action. In the fourth frame, the arms return inwards sharply, with joint1 rotating inwards and joint2 pitching down, as if retracting from the verge of an outburst. The wrists rotate inwards to 45 degrees, emphasizing the restrained action. This sharp inward motion represents suppressed anger. In the final frame, the arms return to the tense, initial position, but with a slight tremor added to joint1, as if vibrating with residual anger. The wrists also return to a neutral 0 degrees.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -30.0,
+                        "joint2": -40.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -12.0,
+                        "joint2": -72.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

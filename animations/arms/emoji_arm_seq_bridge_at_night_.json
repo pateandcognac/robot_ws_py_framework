@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🌉",
+        "reasoning": "This animation sequence will depict a robot gazing at a nighttime bridge, a scene often associated with tranquility and reflection.  The robot will adopt a posture of quiet observation, with hands gently clasped in front as if holding a small object representing the bridge. The sequence will start with arms slightly raised and end with a contemplative pose, emphasizing the scene's peaceful nature.  The left arm will maintain the majority of the movement, while the right arm provides a subtle counterpoint.  The robot's posture will mirror the stillness of the night, while the subtle movements of the arms will suggest the robot is actively processing the scene before it. The motion will be slow and deliberate, conveying the quiet atmosphere of the night.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": 40.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 15.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": 35.0,
+                        "wrist": 45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

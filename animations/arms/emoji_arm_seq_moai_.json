@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🗿",
+        "reasoning": "This animation sequence for the Moai emoji (🗿) will depict a slow, deliberate head turn, suggesting the stoic and ancient nature of the Moai statues.  The robot's arms will remain largely still, with subtle movements to maintain balance and avoid stiffness. The animation will focus on conveying a sense of weight and stillness, reflecting the Moai's imposing presence. Frame 1 will show the robot in a neutral pose, both arms hanging relaxed at its sides.  In Frame 2, the robot will start turning its head slightly to the left, with a slight counter-balance shift in the robot's weight, which will be reflected by an infinitesimal movement of the arms to maintain equilibrium.  Frame 3 shows the head at the maximum left turn, with the arms remaining still but subtly adjusting their position to maintain balance. Frame 4 shows the head returning to the center, again with minute adjustments in arm position. Finally, in Frame 5, the head returns to the neutral position, and the arms resume their relaxed posture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -5.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -5.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

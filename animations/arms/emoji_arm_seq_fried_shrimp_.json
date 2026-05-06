@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🍤",
+        "reasoning": "This animation sequence depicts a robot playfully mimicking the action of enjoying fried shrimp.  The sequence will involve bringing both hands together near the mouth, then moving the hands away as if savoring the taste.  The movement will be subtle and expressive, reflecting the enjoyment of food. In the first frame, both arms are in a neutral position.  In the second frame, both arms move towards the mouth, palms facing each other. In the third frame, the hands are near the mouth, as if holding an imaginary shrimp. In the fourth frame, the hands pull slightly away from the mouth, as if in the enjoyment of the taste and the fifth frame shows the arms returning to a relaxed position.  The movement will use a combination of joint1 and joint2 to create natural-looking arm movements. The wrists will be slightly adjusted to enhance the expressiveness of the gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 30.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

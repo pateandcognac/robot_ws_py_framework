@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "♾️",
+        "reasoning": "This animation sequence represents the continuous loop of infinity using a circular motion of both arms. The arms move in a coordinated manner, creating a visual representation of the symbol's never-ending nature. Each frame will show a distinct phase of the circular motion, from a starting position to the completion of a full circle. The reasoning behind each frame's arm positions will explain how joint1 (shoulder roll) and joint2 (shoulder pitch) work together to achieve the desired circular path, and how the wrist position remains unchanged throughout the movement. This animation will showcase the elegant and flowing nature of infinity, using the robot's arm mechanics effectively.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

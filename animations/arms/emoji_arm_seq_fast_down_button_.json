@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "⏬",
+        "reasoning": "This animation sequence simulates the act of quickly pressing a downward-facing button.  The primary focus is on the right arm, which performs the pressing action, while the left arm remains relatively still to maintain balance.  The sequence emphasizes speed and decisiveness through distinct, large movements between frames.  The robot's lack of elbows means the arm movement relies heavily on the shoulder joints, which pivot and rotate to create the illusion of a quick, downward push.  Reference to existing examples ensures the movement is within the robot's capabilities and appears natural. Frame 1: The right arm starts in a neutral position slightly raised, poised above the imaginary button. Frame 2: The arm shoots downward, demonstrating the pressing action. The wrist rotates slightly to mimic the act of pressing. Frame 3: The arm quickly returns to the raised starting position, the movement mirroring the quick release of the button. Frame 4: The arm settles back into a neutral position, indicating the completion of the action.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

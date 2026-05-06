@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🤠",
+        "reasoning": "This sequence aims to capture the spirit of the cowboy hat face emoji, which often conveys a sense of nonchalance, coolness, or a 'howdy' greeting. Given the robot's arm structure, I'll simulate a casual tip of the hat motion with the right hand, while the left arm remains relaxed. I’ll ensure the right arm’s movements feel natural and not too mechanical.  In the first frame, both arms rest loosely at the sides, palms facing inwards. This neutral position creates a relaxed posture, fitting with the cowboy’s easygoing nature. In the second frame, the right arm lifts slightly, with the wrist bending to mimic the gesture of grasping a hat brim. The left arm remains relaxed to maintain balance and focus attention on the hat-tipping action. joint1 rolls the right arm forward, and joint2 raises it slightly, while the wrist angles to -90°, as if holding the brim of a hat. By the third frame, the right arm lifts further to complete the hat tip, with the wrist straightening slightly. joint1 rotates slightly outward, and joint2 lifts further, mimicking the upward motion of tipping a hat. The left arm remains relaxed, providing a natural counterpoint to the right arm’s movement. In the fourth and final frame, the right arm returns to its relaxed position at the side, simulating the end of the hat tip. Both arms are now back in their initial relaxed posture, ready for the next gesture or simply conveying a casual, 'howdy' vibe.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20,
+                        "joint2": 20,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "⏳",
+        "reasoning": "This animation sequence will depict the robot appearing to hold an hourglass, emphasizing the passage of time.  The sequence will begin with the robot's arms extended forward, then transition to the arms slightly lowered, as if holding a delicate object, and finally end with the arms slightly raised, as if presenting the hourglass. The arms will remain relatively close together throughout the animation, mimicking the shape of an hourglass.  The wrists will be slightly angled for a more natural presentation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 15.0,
+                        "wrist": 10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

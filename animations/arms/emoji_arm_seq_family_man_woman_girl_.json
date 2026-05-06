@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "👨‍👩‍👧",
+        "reasoning": "This animation sequence depicts a family embracing. It starts with the robot's arms outstretched in a welcoming gesture, then moves to a gentle embrace, and finally settles into a protective posture. The sequence uses subtle movements to create a feeling of warmth and togetherness. The robot's arm movements are smooth and expressive, reflecting the loving nature of the family depicted in the emoji.  The use of both arms in a symmetrical manner emphasizes the family unit and conveys a sense of unity. The slight downward angle in the final frame adds a touch of protectiveness, suggesting that the robot is safeguarding the family. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": -60.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -15.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

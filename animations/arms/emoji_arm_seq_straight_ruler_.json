@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "📏",
+        "reasoning": "This animation sequence will show the robot carefully measuring something.  The robot will hold the ruler (represented by the arms) horizontally and then move it to the right. The movement will be slow and deliberate to emphasize the precision of measurement.  The left arm will remain relatively still, acting as an anchor point, while the right arm will do most of the work.  I will use the robot's shoulder joints and wrist to create the illusion of holding and moving a ruler. The robot does not have hands, so the \"holding\" will be implied by the arm's position. The slight inward turn of the wrists in the frames will help to convey a sense of grip.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 90.0,
+                        "joint2": -10.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 90.0,
+                        "joint2": -10.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 90.0,
+                        "joint2": -10.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 70.0,
+                        "joint2": -10.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 90.0,
+                        "joint2": -10.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 50.0,
+                        "joint2": -10.0,
+                        "wrist": 10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🤿",
+        "reasoning": "This animation sequence depicts a robot preparing to dive, mimicking the action of putting on a diving mask. The robot will start with its arms at its sides, then bring them up to simulate putting on a mask, and finally, lower the arms into a diving stance. Frame 1: The arms are at the sides. Frame 2: The robot brings both arms up to face level, palms facing inward. Frame 3: The arms move slightly forward and downward, simulating the action of adjusting the mask. Frame 4: The arms go down to the sides, palms facing inward, in a diving stance. Frame 5: Both arms are lowered, and the wrists rotate slightly upward, mimicking the motion of preparing to dive.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 20.0
+                    }
+                }
+            ]
+        ]
+    }
+]

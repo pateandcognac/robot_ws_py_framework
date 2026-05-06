@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🪁",
+        "reasoning": "This animation sequence depicts the robot playfully interacting with a kite.  The action starts with both arms outstretched as if holding the kite's string, then transitions to a slight pull, a release, and finally a relaxed posture. The movement should be smooth yet dynamic, reflecting the joy of flying a kite. The robot's lack of elbows will be addressed by using the shoulder joints to create a feeling of pulling and releasing the string.  The wrist positions will aid in conveying the feeling of holding and releasing the string. Frame 1: Arms extend outward and slightly upward, simulating the holding of the kite string. Frame 2: Slight pulling motion, with the arms moving slightly downward. Frame 3: The arms return to a neutral position, suggesting the release of the kite string. Frame 4: The arms relax to their sides, indicating the end of the action.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

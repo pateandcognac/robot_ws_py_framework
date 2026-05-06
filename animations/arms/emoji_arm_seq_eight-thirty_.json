@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🕣",
+        "reasoning": "This animation sequence portrays the time eight-thirty (8:30) using arm positions to represent the clock hands. The left arm will represent the hour hand, and the right arm will represent the minute hand. I will leverage the two-joint system to create a fluid, expressive clock-like movement. In the first frame, the left arm points to the eight, slightly angled downward, with the right arm pointing straight up to simulate the 30-minute mark. In the second frame, the left arm moves slightly to represent the transition between eight and nine. The right arm remains in the same position. In the third frame, the left arm completes its transition to the position just before the nine, while the right arm remains unchanged. This represents the continuous movement of the hour hand.  In the fourth frame, the left arm moves slightly to the position just before the nine, while the right arm remains unchanged.  This represents the continuous movement of the hour hand. In the final frame, the left arm points to the position just before the nine, while the right arm remains pointing straight up, representing eight-thirty. The slight variations in the positions of the arms between frames are used to create a smooth, continuous motion, mimicking the movement of the clock hands. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -25.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -15.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

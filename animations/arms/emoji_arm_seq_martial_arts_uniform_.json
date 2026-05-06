@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🥋",
+        "reasoning": "This sequence aims to capture the spirit of martial arts—discipline, precision, and strength—through a series of controlled arm movements. The animation starts with a ready stance, transitions into a defensive block, and culminates in a swift strike. Throughout, I'll focus on maintaining balance and conveying a sense of focused power.  In the first frame, the robot adopts a ready stance. The left arm is slightly bent and held in front of the body, while the right arm is positioned slightly behind, mimicking a classic martial arts guard.  The second frame initiates a defensive block. The left arm rises swiftly to a guarding position in front of the face, wrist rotated inward for protection. The right arm remains poised, ready to counter. The third frame transitions into an attack. The right arm extends forward in a swift strike, wrist rotated to deliver impact. The left arm returns slightly, maintaining balance and readiness.  The fourth frame sees the robot return to the ready stance, arms poised to repeat the sequence or transition into another movement. The controlled, deliberate movements evoke the discipline and focus inherent in martial arts.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 45.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

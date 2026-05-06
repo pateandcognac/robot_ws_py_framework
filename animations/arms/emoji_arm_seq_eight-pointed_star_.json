@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "✴️",
+        "reasoning": "This animation sequence will depict the robot forming an eight-pointed star shape with its arms.  The movement will be deliberate and symmetrical, emphasizing the precise geometry of the star. The sequence will start with the arms at rest, then move to a wide, open position, followed by the arms moving to form the points of the star.  The final frame will show a slight pause before a return to the rest position (this return is not included, as per instructions).  The arms will maintain a consistent angle throughout the sequence, to emphasize the sharpness and precision of the star shape. The wrists will rotate to enhance the visual representation of the pointed arms.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

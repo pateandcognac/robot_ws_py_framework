@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🎀",
+        "reasoning": "This animation sequence simulates the action of playfully holding and presenting a ribbon, emphasizing the light and graceful nature of the object.  The robot will use both arms, creating a delicate and inviting gesture.  The movements will be smooth, with a focus on creating a visually appealing arc. The robot’s lack of elbows will necessitate a focus on the shoulder joints (joint1 and joint2) to achieve the necessary movement.  Each frame will represent a distinct pose, conveying the progression of the gesture.\n\nFrame 1: Both arms start in a relaxed position at the sides, slightly angled outward. This creates a welcoming, open posture. The wrists remain neutral.\n\nFrame 2: The right arm extends upward and slightly outward, as if holding the ribbon at a slight angle. The left arm moves slightly outward and upward, creating a balanced and elegant gesture.  The wrists are slightly rotated to emphasize the ribbon's presentation.\n\nFrame 3: The right arm lowers slightly, continuing the graceful arc of presenting the ribbon. The left arm moves to match, creating a more balanced presentation. The wrists slightly adjust to hold the ribbon in a more natural position.\n\nFrame 4: Both arms return to a relaxed position by the sides, maintaining the gentle, inviting feel of the initial posture. The wrists are brought back to a neutral position, completing the movement. \n",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 15.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 70.0,
+                        "wrist": -15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": 20.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 60.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

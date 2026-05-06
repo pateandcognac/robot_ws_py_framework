@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🦠",
+        "reasoning": "This sequence will show the robot inspecting a microbe, mimicking the action of looking closely at something small and potentially dangerous. The robot will use both arms to simulate holding a magnifying glass and carefully examining the microbe. This will involve a combination of precise movements and subtle changes in wrist and joint positions to create a believable and expressive animation sequence. The animation will start with the arms in a relaxed position and gradually move into a detailed inspection pose. The hands will mimic the act of holding a magnifying glass, and the subtle movements of the arms will show the robot's focus and concentration. This will use 5 frames to capture the progression of the action. Frame 1: The robot starts with both arms at its sides, neutral position. Frame 2: The robot brings both arms forward, slightly bent at the shoulder, palms facing each other as if it is holding an invisible magnifying glass. Frame 3: The robot brings the arms closer to its face as it focuses on the microbe. Frame 4: The arms move slightly to the side, changing the angle of observation. Frame 5: The robot returns to a neutral position, having completed its inspection. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

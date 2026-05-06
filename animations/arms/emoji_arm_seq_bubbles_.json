@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🫧",
+        "reasoning": "This sequence mimics the act of gently blowing bubbles. It starts with both arms relaxed at the sides, then moves to a blowing motion, and ends with the arms returning to a relaxed state. The animation will be slow and deliberate, emphasizing the gentle nature of blowing bubbles. The use of slight wrist movements will add to the realism of the gesture. In frame 1, both arms are at the sides, in a relaxed posture. Frame 2 shows both arms moving slightly upward and outward in a circular motion, mimicking the action of blowing bubbles. The wrists are slightly rotated, as if cupping the hands. Frame 3 captures the moment just after blowing, with the arms slightly lower than in frame 2, and the wrists rotating slightly more to simulate the release of the bubbles. Frame 4 shows the arms returning to their relaxed position at the sides.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🐧",
+        "reasoning": "This animation sequence will portray a penguin's characteristic waddle.  The robot will mimic the side-to-side motion of a penguin's walk by swaying its arms in a rhythmic pattern.  The arms will remain relatively low to the ground to depict the penguin's posture.  The small variation in wrist positions will add to the natural waddle. Frame 1 will show the arms positioned slightly to the left, Frame 2 shifts to the right, and Frame 3 returns to the left, creating a looping animation that can be repeated.  Frame 4 will be a slightly more forward position, and Frame 5 will return the arms to a neutral position to make a complete loop.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -80.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -80.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -80.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

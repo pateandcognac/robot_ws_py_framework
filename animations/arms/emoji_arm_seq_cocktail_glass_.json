@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🍸",
+        "reasoning": "This animation sequence depicts a robot delicately holding a cocktail glass.  The robot will hold the glass with both arms, mirroring the careful way a person might hold a fine drink. The movement will be slow and controlled, emphasizing the elegance of the gesture.  The sequence will begin with the arms slightly raised, palms facing each other, then the hands will gently come together around the glass. The final pose will be a slight downward tilt, as if the robot is taking a sip, before returning to the initial position. The arms will not move independently, always working in unison to maintain balance and visual appeal.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 10.0,
+                        "wrist": -60.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -10.0,
+                        "wrist": -60.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "🤖",
+        "reasoning": "This sequence aims to capture the mechanical, somewhat stiff nature of a robot performing a simple greeting or introduction gesture. The movements are deliberately less fluid than human gestures, with distinct stops and starts to emphasize the robotic nature.  In the first frame, both arms are at the sides, joint1 neutral, and joint2 pitching the arms straight down. Wrists are at 0. This represents a standard, at-rest robotic posture. In the second frame, the right arm lifts to the side in a straight, mechanical motion. joint1 rotates outward to 90 degrees, and joint2 pitches the arm to a straight-out position at 0 degrees. The wrist remains neutral at 0.  The left arm remains at rest.  This isolates the movement to one arm, highlighting the controlled execution. The third frame shows the right arm rotating slightly forward from the shoulder.  joint1 rotates back towards neutral to 45 degrees, keeping the arm raised, while joint2 remains at 0. The wrist rotates to -90 degrees, turning the palm forward in a presentational gesture.  The left arm remains static. This slight forward rotation suggests an almost hesitant, mechanical 'wave.' In the fourth frame, the right arm returns to the position in frame two.  joint1 rotates back to 90 degrees, joint2 remains at 0, and the wrist rotates back to neutral at 0. This creates a clear, distinct return motion. Finally, in the fifth frame, the right arm returns to the resting position at the side, mirroring the first frame. Both arms are now back at rest, completing the robotic greeting sequence.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

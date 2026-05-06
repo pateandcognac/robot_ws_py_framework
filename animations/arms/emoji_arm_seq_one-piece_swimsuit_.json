@@ -1,0 +1,59 @@
+[
+    {
+        "emoji": "🩱",
+        "reasoning": "This animation sequence will portray a joyful, confident pose appropriate for someone wearing a one-piece swimsuit.  The animation will start with arms relaxed at the sides, then move to a pose with arms slightly raised, hands on hips, and finally, a pose with one arm raised in a playful wave. This sequence uses both arms, showcasing the robot's full range of motion, but focuses on expressive, natural movements. The robot's arms are controlled by two joints at the shoulders: joint1 rolls/rotates the arms inward or outward, and joint2 pitches off of joint1. The robot's wrist position can also be adjusted to enhance the expressiveness of the pose.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": -75.0,
+                        "wrist": 19.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -40.0,
+                        "joint2": -75.0,
+                        "wrist": 19.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -25.0,
+                        "joint2": 90.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

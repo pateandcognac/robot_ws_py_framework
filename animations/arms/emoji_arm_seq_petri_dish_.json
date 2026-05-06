@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🧫",
+        "reasoning": "This animation sequence will show the robot carefully holding a petri dish. The robot will use both arms to cradle the dish, emphasizing care and precision.  The movement will be slow and deliberate, reflecting the delicate nature of scientific work. Frame 1 shows the arms extending towards the dish, Frame 2 shows the arms gently lifting the dish, Frame 3 shows the dish being held securely, Frame 4 shows the arms moving slightly to adjust the dish for optimal viewing.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

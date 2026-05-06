@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "⛷️",
+        "reasoning": "This animation sequence simulates the motion of a skier, focusing on the arm movements that help maintain balance and propel the skier forward.  The arms will move in a coordinated, rhythmic pattern, mimicking the motion of ski poles. I'll ensure a natural flow by referencing existing examples, paying close attention to how joint angles create a sense of movement and balance. Frame 1 shows the skier starting their motion. Both arms are extended forward, angled slightly downward, simulating the placement of ski poles. Frame 2 shows the arms moving back as if pushing against the snow to gain momentum. Frame 3 shows the arms moving forward again, ready for the next push. Frame 4 brings the arms back again, completing a full cycle.  Frame 5 returns the arms to a ready position, slightly forward, mirroring frame 1 to prepare for the next push.  The slight variations in joint angles and wrist positions add subtle realism to the motion, preventing it from becoming too robotic.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

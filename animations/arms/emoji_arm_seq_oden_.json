@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🍢",
+        "reasoning": "This sequence mimics the action of carefully holding and presenting a pair of oden skewers.  The robot will hold the skewers (imagined to be in its hands) out in front of it, emphasizing the delicacy and care involved. The movement will be slow and deliberate. Frame 1 begins with both arms slightly raised and angled inward, hands positioned as if cradling the oden. Frame 2 shows the robot bringing its arms slightly closer to its body, emphasizing the care in holding the skewers. Frame 3 shows the robot gently extending its arms forward, presenting the oden. Frame 4 shows the arms returning to a slightly more relaxed posture, keeping the oden presented but less formally.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 25.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

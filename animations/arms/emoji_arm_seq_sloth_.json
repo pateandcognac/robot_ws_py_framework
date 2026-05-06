@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "🦥",
+        "reasoning": "This sequence aims to capture the slow, deliberate movements of a sloth.  The animation starts with both arms hanging loosely at the sides, then slowly raises one arm as if reaching for a branch, followed by the other. Given the sloth's relaxed nature, the movements will be minimal and smooth, focusing on conveying a sense of gentle effort.  In the first frame, both arms hang down loosely at the sides. joint1 is slightly rotated inward, and joint2 pitches the arms downward, giving them a relaxed, hanging posture. The wrists are kept neutral. This represents the sloth's typical resting pose. In the second frame, the left arm begins to rise slowly. joint1 rotates slightly outward, and joint2 pitches the arm upward a small amount, initiating the reaching motion. The right arm remains hanging.  In the third frame, the left arm reaches a bit higher, with joint2 continuing to pitch the arm upward. The wrist rotates slightly outward, as if the sloth is preparing to grasp a branch. The right arm still hangs loosely. In the fourth frame, the right arm now begins its slow ascent, mirroring the left arm's earlier movement. joint1 rotates slightly outward, and joint2 pitches the arm upward. The left arm maintains its raised position. Finally, in the fifth frame, both arms are slightly raised, as if the sloth has found a comfortable hanging position. Both joint2s are pitched upward, and the wrists are slightly rotated outward. This final pose emphasizes the sloth's deliberate, unhurried movements and its preference for hanging.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -5.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -40.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -40.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -5.0,
+                        "joint2": -60,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -50.0,
+                        "wrist": 20.0
+                    }
+                }
+            ]
+        ]
+    }
+]

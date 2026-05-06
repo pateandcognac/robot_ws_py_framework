@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🤱",
+        "reasoning": "This sequence depicts a mother gently cradling her baby while breastfeeding.  The animation focuses on the nurturing and protective nature of the pose.  The arms create a soft, enveloping shape around the baby.  Since the robot lacks hands, the 'hold' will be implied through arm position and subtle movements. We will focus on the gentle rocking motion. The left arm will be positioned lower to simulate supporting the baby's weight, while the right arm provides a more protective, upper cradle.  The sequence starts with a stable pose and gradually transitions to a slight rocking motion, emphasizing the tender moment. The subtle shifts in joint angles will create a gentle rhythm.  I will aim for realism without overcomplicating the motion, given the limitations of the two-joint arm.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -5.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -55.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -15.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "🟦",
+        "reasoning": "This sequence will depict a robot expressing calmness or stability, aligning with the solid, reliable visual of a blue square.  The animation will feature slow, deliberate movements, emphasizing steadiness rather than rapid action. The arms will move in a gentle, symmetrical pattern, reflecting the square's balanced form.  The sequence will transition from a neutral, resting position to a slightly raised, then back to neutral, reinforcing the sense of calm composure.  The robot's arms will not extend fully outward, but remain within a range suggesting quiet confidence.  The use of negative joint values will be limited, reflecting the sense of stability and groundedness. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

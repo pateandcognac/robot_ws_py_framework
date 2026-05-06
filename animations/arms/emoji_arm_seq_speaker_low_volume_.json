@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "🔈",
+        "reasoning": "This sequence depicts a robot gently lowering its hands to indicate a decrease in volume.  The movement is slow and deliberate, emphasizing the quiet nature of the emoji. The robot's arms will start in a neutral position, then move downward in a controlled manner, with the palms facing inward. The final frame shows the arms at a lower position, suggesting the reduction in volume.  The subtle movement aims to convey a sense of careful quietening rather than a sudden stop.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

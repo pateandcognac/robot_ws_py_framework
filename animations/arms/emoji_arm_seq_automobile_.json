@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🚗",
+        "reasoning": "This animation sequence simulates the action of holding a steering wheel and driving.  The robot will mimic the motions of a driver gripping and turning the wheel. The sequence emphasizes the hands-on nature of driving. Frame 1 begins with the arms outstretched, palms facing each other, in preparation for gripping an imaginary steering wheel. Frame 2 shows the arms slightly bent, simulating the grip on the wheel.  Frame 3 shows a slight turn of the wheel, with one arm moving more than the other. Frame 4 shows the arms returning to a more neutral position, and the final frame shows the arms relaxed and at rest.  This sequence captures the key moments of driving, avoiding unnecessary intermediate frames.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 15.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 15.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

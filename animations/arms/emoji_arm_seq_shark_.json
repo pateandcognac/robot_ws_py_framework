@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🦈",
+        "reasoning": "This animation sequence simulates a shark swimming, using the robot arms to mimic the fins. The movement will be fluid and rhythmic, with the arms moving in a coordinated way. The sequence will start with the arms extended to the sides, then move them in a wave-like motion, and finally return to the starting position. I'll make sure the transitions between frames are smooth and the overall movement feels natural for a robot with the given constraints. In the first frame, the arms are extended to the sides, mimicking the shark's body position. joint1 is set to 0 for both arms, and joint2 is set to -90 to keep them slightly below the horizontal plane. The wrists are neutral. In the second frame, the left arm moves upward and slightly forward, simulating the movement of a pectoral fin. joint1 rotates slightly outward, and joint2 pitches upward. The right arm moves downward and slightly backward. joint1 rotates slightly inward, and joint2 pitches downward. The wrists are adjusted slightly to enhance the fin-like motion. In the third frame, the left arm returns to the neutral position, while the right arm moves upward and forward. This creates a wave-like motion. In the fourth frame, the right arm returns to the neutral position, mirroring the left arm's motion in the previous frame. In the fifth frame, both arms return to the starting position, completing the swimming motion.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -110.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -110.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

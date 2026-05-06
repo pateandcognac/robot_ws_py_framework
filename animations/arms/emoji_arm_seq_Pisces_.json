@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "♓",
+        "reasoning": "This sequence aims to evoke the flowing, graceful movements associated with Pisces, a water sign. The arms will mimic the sinuous motion of swimming fish, creating a sense of fluidity and gentle rhythm. I’ll focus on smooth transitions between frames, using the dual-joint system to its fullest potential while referencing examples to ensure the movements stay within the robot's physical limitations. In the first frame, both arms are extended forward, slightly angled outward, with the wrists rotated inward, as if the robot is beginning a graceful swim stroke. joint1 rotates both arms outward, and joint2 pitches them slightly forward, creating a streamlined position. Moving to the second frame, the arms begin to sweep downward and outward, mimicking the tail fin of a fish propelling through water. joint1 rotates the arms further outward, and joint2 pitches them downward, creating a flowing curve. The wrists rotate slightly outward, adding to the impression of water resistance. By the third frame, the arms have reached the lowest point of the 'swim' motion, with the wrists rotated fully outward. joint1 maintains the outward rotation, and joint2 reaches its maximum downward pitch, creating the deepest part of the underwater 'wave.' In the fourth frame, the arms begin to rise again, reversing the motion and preparing for the next 'swim' cycle. joint1 rotates the arms inward, and joint2 pitches them upward, creating an upward curve that mirrors the downward motion. The wrists rotate slightly inward, as if preparing to catch the next 'wave.' Finally, in the fifth frame, the arms return to their starting position, completing one full cycle of the swimming motion. joint1 and joint2 reset to their initial positions, creating a seamless loop that can be repeated to create a continuous, flowing movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": -40.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": 45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

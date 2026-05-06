@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "➕",
+        "reasoning": "This animation sequence depicts the robot holding up both arms, palms facing outward to simulate the arms creating the shape of a plus sign. The sequence begins with the arms relaxed at the sides, then raises them to shoulder height, and finally slightly angles the wrists to better represent the plus sign. This pose expresses openness to a choice or decision, often used with emojis like ➕ or ⚖️.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 15.0,
+                        "wrist": 20.0
+                    }
+                }
+            ]
+        ]
+    }
+]

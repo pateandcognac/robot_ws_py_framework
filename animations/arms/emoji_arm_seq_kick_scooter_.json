@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🛴",
+        "reasoning": "This animation sequence depicts the act of kicking a scooter into motion. It focuses on the natural arm movements involved in maintaining balance and propelling oneself forward.  The left arm will act as a counterbalance, while the right arm will initiate the kicking motion. The lack of elbows in the robot's design necessitates creative use of shoulder joints to convey the dynamic movement. Frame 1 will show the robot in a poised position, ready to start kicking. The right arm will be slightly bent and back as if preparing to push off the ground and the left arm will be in a natural counterbalance position. Frame 2 will show the right arm pushing backward, generating power for the kick. The left arm will swing forward slightly for better balance. Frame 3 will show the right arm returning to a neutral position as the robot starts moving forward, while the left arm extends outward to maintain balance. Frame 4 will show the robot in motion, arms slightly forward to maintain balance and stability. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

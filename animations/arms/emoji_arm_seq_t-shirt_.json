@@ -1,0 +1,72 @@
+[
+    {
+        "emoji": "👕",
+        "reasoning": "This animation sequence simulates the action of putting on a t-shirt.  The movement will be exaggerated for clarity. Frame 1 shows both arms extended slightly forward and downward, palms facing upward, as if reaching for the shirt. Frame 2 shows the left arm reaching upward and slightly to the right, as if lifting and positioning the t-shirt. The right arm is slightly lower, palms facing upward, as if ready to support the shirt. Frame 3 shows both arms moving downward, as if pulling the t-shirt over the head. Frame 4 shows both arms lowered to the sides, palms facing inward, as if the t-shirt is now on. Frame 5 shows both arms relaxed at the sides.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 80.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -80.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

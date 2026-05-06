@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🚑",
+        "reasoning": "This animation sequence simulates the urgent, back-and-forth motion of an ambulance's lights. The arms will move in a synchronized, flashing pattern to mimic this effect. The animation will focus on creating a sense of urgency and movement, highlighting the critical nature of the ambulance's role.  I'll use a simple pattern of extending both arms outwards, then bringing them back, to emulate the flashing pattern of the lights. This will be achieved by adjusting the joint angles (joint1 and joint2) to control the arm's extension and retraction, and the wrists will remain neutral to keep the focus on the arm movement. The overall movement should be quick and repetitive, emphasizing the ambulance's speed and purpose.  The left arm will lead and the right arm will follow in a synchronized pattern.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -50.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 50.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 50.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -50.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

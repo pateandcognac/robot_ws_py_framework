@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "😦",
+        "reasoning": "This sequence aims to express dismay or shock, reflecting the 😦 emoji, by having the robot bring its hands up to its face, palms facing inward, in a gesture of surprise or disbelief.  The arms will move quickly, reflecting a startled reaction.  I'll keep the wrists flexible to enhance the naturalness of the gesture. In the first frame, both arms are at the robot's sides in a neutral, resting pose. joint1 is at 0.0, and joint2 is at -90.0, with wrists at 0.0.  This starting position sets the stage for the sudden movement to come. In the second frame, both arms jerk upwards towards the face. joint1 rotates outward to about 45.0, and joint2 pitches the arms up to 70.0.  The wrists rotate inward to -90.0, so the palms face the face, as if the robot is shielding itself or expressing disbelief.  In the third frame, the arms move slightly closer to the face, intensifying the expression of shock.  joint1 increases to 60.0, and joint2 remains at 70.0. The wrists stay at -90.0, maintaining the inward-facing palm position.  In the final frame, the arms drop slightly, as if the initial shock is starting to wear off. joint2 reduces to 60.0, while joint1 remains at 60.0, and the wrists stay at -90.0.  This slight lowering of the arms adds a touch of realism to the gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 60.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

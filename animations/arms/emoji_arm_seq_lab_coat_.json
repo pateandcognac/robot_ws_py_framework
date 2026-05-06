@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🥼",
+        "reasoning": "This animation sequence depicts a scientist carefully examining something, using the lab coat as a visual cue.  The sequence starts with arms relaxed, then moves to one arm extended as if holding an object, and finally returns to rest.  The movement should be deliberate and precise, reflecting the careful nature of scientific work.  The right arm will be used for the primary action because it is generally the dominant arm for many people. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

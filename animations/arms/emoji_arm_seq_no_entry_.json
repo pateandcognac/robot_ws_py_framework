@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "⛔",
+        "reasoning": "This animation sequence will portray a robot emphatically signaling a halt or prohibition, reflecting the meaning of the no entry symbol. The animation will use both arms in a decisive, outward-pushing motion, creating a clear visual barrier. The movement will be sharp and direct, not fluid, to reinforce the authoritative nature of the 'no entry' signal.  Frame 1 will show both arms extended horizontally, palms facing forward, creating a clear stop signal. Then, in frame 2, both arms will move slightly forward, enhancing the stop signal. In frame 3, both arms simultaneously move back to the initial position, creating a rhythmic, almost emphatic halt. Finally, in frame 4, both arms will drop back to the sides, conveying the end of the 'no entry' signal. Each frame will contain significant changes in arm positions to accentuate the message.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

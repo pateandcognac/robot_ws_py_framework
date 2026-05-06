@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🔸",
+        "reasoning": "This animation sequence will depict a robot gently presenting the small orange diamond. The robot will start with its arms at its sides, then extend its arms forward to offer the diamond, before returning to its resting position. This will involve a smooth transition between frames, showcasing the robot's capability for delicate movements. The sequence will use 4 frames to convey the action clearly. Frame 1 shows the robot in a neutral stance. In Frame 2, the arms extend slightly forward. Frame 3 shows the arms fully extended, presenting the diamond. In Frame 4, the arms gracefully return to their resting position. This sequence will emphasize the robot's gentle and careful handling of the object.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

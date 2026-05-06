@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "❤️‍🔥",
+        "reasoning": "This animation sequence portrays the excitement and passion associated with the \"heart on fire\" emoji.  The sequence begins with both arms held close to the chest, then extends outward in an embracing motion, before returning to a more relaxed pose, suggesting a burst of emotion followed by a settling of feelings.  The use of both arms emphasizes the expansive nature of the emotion. The slight outward rotation of joint1 and the upward pitch of joint2 on both arms in frame 2 conveys a sense of joyful release. The return to a more neutral position in frame 3-4-5 suggests the emotion's intensity subsiding. In the final frame, the arms return to a more neutral position, implying that the passion remains but is no longer as outwardly expressed.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

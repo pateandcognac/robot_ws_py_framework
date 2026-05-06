@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "💓",
+        "reasoning": "This animation sequence depicts a robot expressing affection or excitement represented by the beating heart emoji. The animation will focus on a gentle, rhythmic movement of both arms, mimicking the gentle rise and fall of a heartbeat. The arms will move in a synchronized, wave-like motion, conveying a sense of warmth and affection.  The movements will be subtle and not overly dramatic to maintain a gentle and tender feel.  I will use the examples provided as a guide to ensure the movements are fluid and expressive within the robot's physical constraints. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🤧",
+        "reasoning": "This sequence aims to recreate the arm motions associated with a sneeze, specifically focusing on bringing a hand up to cover the mouth or nose area. I’ll approach this task with fluid but distinct movements, making use of the dual shoulder-like joints. Since the arm movement is controlled by two joints without an elbow, I’ll ensure clear transitions between frames, avoiding excessive interpolation. I will leverage the provided examples to confirm the range of motion and ensure the sneeze appears natural. Starting in the first frame, both arms are relaxed at the sides to establish a neutral starting position. The left arm is slightly angled inward to add a bit more naturalism to the relaxed pose. In the second frame, the right arm begins to rise towards the face. joint1 rotates inward, and joint2 pitches upward to bring the hand closer to the nose and mouth. The left arm remains relaxed at the side. This upward motion of the right arm is the key action of the sequence, mimicking the act of quickly bringing a hand up to cover a sneeze. By the third frame, the right hand arrives near the face, with the wrist rotated inward to imply covering the mouth. joint2 adjusts slightly to ensure the hand is positioned correctly. The left arm remains relaxed. In the fourth frame, the right arm begins to lower back down as if the sneeze has just finished, and the hand is moving away from the face. joint1 begins to rotate outwards and downwards, and joint2 pitches downwards, preparing for a return to the resting position. The left arm remains passive. Finally, in the fifth frame, both arms return to the relaxed position at the sides, completing the sequence.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": -20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

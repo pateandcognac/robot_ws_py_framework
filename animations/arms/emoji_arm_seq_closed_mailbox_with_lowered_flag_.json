@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "&#128231;",
+        "reasoning": "This animation sequence will depict a robot interacting with a closed mailbox, conveying a sense of checking for mail or simply acknowledging its presence.  The robot will use one arm to approach the mailbox with a curious, yet gentle movement. The other arm will stay neutral, providing a sense of balance and natural posture. The three frames will capture the start, middle, and end of the interaction, focusing on a smooth yet deliberate movement. In the first frame, both arms are at rest. In the second frame, the right arm extends towards the mailbox, with the hand slightly open, as if gently checking the mailbox. The left arm remains neutral. The final frame shows the right arm gently pulling away from the mailbox, suggesting a completed check. The entire sequence conveys a sense of casual curiosity and respect for the mailbox's closed status.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

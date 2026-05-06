@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🍀",
+        "reasoning": "This sequence will show the robot gently cupping both hands together as if holding a four-leaf clover. The movement starts with arms at the sides, then raises to chest height before gently cupping. The final frame shows a slight pause before returning to a neutral position (not shown in this sequence). The sequence emphasizes the gentle, careful nature of handling something precious like a four-leaf clover.  I'll use the existing examples as a guide for smooth transitions, ensuring that the movement is fluid and natural, while also capturing the essence of the emoji. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

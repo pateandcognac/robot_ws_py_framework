@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🌋",
+        "reasoning": "This animation sequence depicts a robot reacting to a volcano, starting with arms at its sides, then raising them in alarm, and finally bringing them down in a gesture of resignation or acceptance.  The movement will be somewhat jerky to reflect the suddenness of the event and the emotional shift. Frame 1: Arms start at the side. Frame 2:  Arms shoot up in a 'Oh no!' pose. Frame 3: Arms are brought down slowly in a gesture of acceptance or resignation. Frame 4: Arms settle back to the sides.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

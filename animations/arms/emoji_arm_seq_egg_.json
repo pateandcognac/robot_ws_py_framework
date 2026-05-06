@@ -1,0 +1,39 @@
+[
+    {
+        "emoji": "🥚",
+        "reasoning": "This sequence mimics the gentle, protective action of holding an egg. It starts with arms outstretched, palms up, then brings the hands together in a cradle-like motion to protect the egg.  The movement should be slow and deliberate, emphasizing care.  I'll use a three-frame sequence for simplicity and clarity. Frame 1 shows the initial outstretched position, Frame 2 shows hands moving together, and Frame 3 shows the egg gently cradled. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

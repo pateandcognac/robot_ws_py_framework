@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🎴",
+        "reasoning": "This sequence depicts a playful, almost flirtatious interaction with playing cards, using both arms in a coordinated yet slightly asymmetrical manner to convey a sense of lightheartedness. The animation begins with a gentle presentation of the cards, followed by a slight flourish, and ends with a relaxed pose.  The robot's lack of elbows will be compensated for with expressive wrist movements and subtle changes in shoulder joint positions. In the first frame, the right arm is slightly bent, bringing the cards up towards the face. The left arm is relaxed, providing balance. In the second frame, the right arm gently moves the cards forward, as if offering them to someone. The left arm subtly moves to create a more inviting posture. The third frame shows a slight flourish, with the right arm extending outward, the left arm mimicking a gesture of playful invitation. In the fourth frame, the right arm returns to the presentation pose, and the left arm returns to a relaxed position, implying an elegant conclusion to the presentation. Finally, the fifth frame shows both arms returning to a neutral position, suggesting the end of the gesture. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": -60.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

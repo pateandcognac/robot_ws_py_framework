@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🧙‍♀️",
+        "reasoning": "This sequence depicts a woman mage performing a spell. It starts with arms outstretched to the sides, then moves to a pose with both arms raised, palms facing inward, and finally returns to the starting position. The movement should be smooth and controlled, reflecting the concentration required for spellcasting.  The slight pause in the middle frame enhances the sense of magical energy gathering before release.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "⏫",
+        "reasoning": "This animation sequence simulates the quick upward motion implied by the fast up button emoji.  The robot will use both arms to create an upward thrusting gesture.  The sequence will focus on a sharp upward movement, conveying speed and efficiency.  The arms will start slightly below shoulder level, then quickly rise to above shoulder level before returning to the starting position. The wrists will remain neutral for simplicity and to avoid distracting from the core upward motion. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

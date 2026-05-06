@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🌌",
+        "reasoning": "This sequence depicts a robot gazing up in wonder at the night sky, perhaps lost in thought about the vastness of space. The animation will feature a slow, deliberate raising of both arms, as if reaching for the stars, followed by a gentle lowering.  The arms will move symmetrically, maintaining a sense of calm and reverence.  The wrists will remain mostly neutral, allowing the focus to remain on the graceful arc of the arms.  The movement will be slow and deliberate to emphasize the sense of awe. The first frame shows the arms relaxed at the sides. The second shows the arms halfway up. The third shows the arms at their highest point. The fourth shows the arms starting to lower. The fifth frame shows the arms back to their starting position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -15.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -30.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -15.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "📓",
+        "reasoning": "This animation sequence depicts a robot interacting with a notebook.  The action will involve bringing both arms forward as if to open the notebook. Frame 1 will show the arms at rest, Frame 2 the arms moving forward and slightly upward, Frame 3 the arms hovering above a notebook, and Frame 4 the arms coming to rest on the notebook, with the palms facing down.  Frame 5 will show the arms slowly moving upward, pulling the notebook toward the face. The robot's arms lack elbows, so the movements will focus on shoulder rotations and wrist positioning to convey the intended actions.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

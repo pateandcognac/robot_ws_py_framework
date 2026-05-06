@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🚌",
+        "reasoning": "This animation sequence simulates the action of a person waiting for or looking for a bus. The sequence will start with the arms at the sides, then move to a position of looking around, and then back to a neutral resting position. The overall gesture should convey a sense of anticipation and attentiveness. Frame 1: Both arms will be at the sides in a neutral position. Frame 2: The right arm is raised, and the hand is brought up to the forehead to shield the eyes from the sun or to look further down the road for the bus. The left arm will move to the side, with a slight bend in the elbow to create a more natural-looking posture. Frame 3: The right arm drops back to the side in the neutral position. The left arm returns to its neutral position also. Frame 4: The arms return to the neutral position at the sides and remain there. This sequence is short, but should effectively convey the intended gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🪇",
+        "reasoning": "This sequence animates the robot shaking maracas.  The arms will move in a rhythmic pattern, alternating between positions to simulate the shaking motion. The wrists will be slightly flexed to enhance the realism of holding the maracas. I'll keep the movements relatively small to avoid making the animation look too exaggerated.  The frames will emphasize the key points of the shaking motion, allowing for smooth transitions between them. I will check existing examples to ensure the range of motion and naturalness of the shaking motion.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -45.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": -20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -45.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -15.0,
+                        "joint2": -20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ]
+        ]
+    }
+]

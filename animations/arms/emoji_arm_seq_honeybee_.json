@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🐝",
+        "reasoning": "This sequence simulates a honeybee flitting its wings by having the robot move its arms up and down in a rapid, fluttering motion.  The arms will move in a synchronized, slightly erratic pattern to mimic the chaotic but controlled flight of a bee.  The wrists will remain mostly neutral, but with slight adjustments to add to the natural, non-robotic feel. I'll use the examples to guide the smooth transitions and avoid stiff movements. Frame 1: Arms start slightly raised, palms facing each other, mimicking a bee's wings slightly up. Frame 2: Arms move down, palms still facing each other, simulating the downward stroke of the wings. Frame 3: Arms move back up, but not as high as frame 1, palms still facing each other, adding to the slight erratic motion. Frame 4: Arms drop slightly lower than in frame 2, palms still facing each other, continuing the irregular wing motion. Frame 5: Arms return to the starting position in frame 1, completing the cycle. Small variations in joint angles and wrist positions will create a more natural, less mechanical movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

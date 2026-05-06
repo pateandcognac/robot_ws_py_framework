@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "😟",
+        "reasoning": "This sequence aims to capture the feeling of worry or concern using arm and hand gestures.  I'll use both arms, bringing them up towards the face and then slightly outwards in a gesture that suggests anxiety or nervousness.  The movements will be somewhat restrained, reflecting the inward focus of worry.  I'll reference the provided examples to ensure the arm movements stay within the robot's physical limitations and appear natural. In the first frame, both arms start at the sides, slightly raised, with palms facing inward.  This sets a neutral yet slightly tense starting position.  joint1 is slightly rotated outward for both arms, and joint2 pitches them slightly upward. In the second frame, the arms begin to move upward and inward, towards the face, as if the robot is about to touch its face in worry.  joint1 rotates further outward, while joint2 increases the upward pitch. The wrists rotate slightly inward.  In the third frame, the arms move slightly further upward and the hands rotate a bit more inward, as if expressing heightened concern.  joint2 pitches the arms up slightly higher, and the wrists rotate further inward. In the fourth frame, the arms move slightly outwards, away from the face, in a gesture of helplessness or anxiety. joint1 rotates inward slightly, while joint2 reduces the upward pitch a bit. The wrists remain angled inward.  In the final frame, the arms lower slightly, but remain raised and tense, reflecting ongoing worry.  joint2 reduces the upward pitch further, but the arms remain above the resting position.  The wrists also remain slightly angled inward.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 60.0,
+                        "wrist": -60.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30,
+                        "wrist": -30.0
+                    }
+                }
+            ]
+        ]
+    }
+]

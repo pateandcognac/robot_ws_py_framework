@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🔺",
+        "reasoning": "This animation sequence will depict a robot pointing upwards with both arms, mimicking the sharp, upward-pointing nature of the red triangle. The animation will focus on the dynamic upward movement and the precision of the pointing.  In the first frame, both arms start slightly outward and downward, as if starting from a resting position. By the second frame, the arms move upward, with the palms turned upward, in a gesture of pointing up. The third frame will show the hands moving slightly towards the center, maintaining the upward pointing gesture. The final frame will show the arms returning slightly back towards their starting position, but still maintaining the gesture slightly.  This emphasizes the upward pointing of the emoji, and the movements should be sharp and precise, reflecting the geometric nature of the triangle.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 70.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 80.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

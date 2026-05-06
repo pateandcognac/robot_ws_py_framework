@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🩷",
+        "reasoning": "This sequence aims to express the gentle, loving feeling associated with a pink heart.  The animation will feature both arms moving in a synchronized, embracing motion, drawing the hands together in front of the chest. This conveys a feeling of warmth and affection. The movement will be slow and deliberate, emphasizing the tenderness of the gesture. In the first frame, the robot's arms start at its sides, relaxed. In the second frame, the arms begin to move upwards and towards the center, palms facing each other, as if beginning to draw themselves toward a hug. In the third frame, both arms are fully raised and are now in the embrace, palms together in a gentle gesture, creating the visual of a heart. In the fourth frame, the arms gently lower, maintaining the embrace for a moment longer, holding the gesture. In the final frame, the arms return to their original relaxed position at the robot's sides.  Each movement is slow and deliberate, reflecting the gentle nature of the pink heart emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 30.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

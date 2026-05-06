@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🏞️",
+        "reasoning": "This animation sequence depicts a robot appreciating a national park scene, starting with arms relaxed and moving to a gesture of awe and wonder, then settling into a peaceful observation.  The movement is slow and deliberate, reflecting the calm of nature. Frame 1: Arms are at the sides, relaxed. Frame 2: Both arms slowly rise, palms facing upwards, in a gesture of wonder. Frame 3: Arms gently spread outward, palms facing forward, as if embracing the scenery. Frame 4: Arms slowly return to a relaxed position at the side, but with a slight upward tilt to suggest continued appreciation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

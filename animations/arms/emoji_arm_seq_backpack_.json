@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🎒",
+        "reasoning": "This animation sequence depicts the robot gently lifting an imaginary backpack onto its back.  The movement should be smooth and controlled, reflecting a careful and deliberate action.  The robot's arms will mimic the motion of lifting and placing a backpack, emphasizing the upward movement and then settling into a neutral position. Frame 1 starts with both arms down and slightly forward, mimicking a reaching motion. Frame 2 shows the arms lifting and slightly curving backward, as if the backpack is being lifted. Frame 3 positions the arms as the backpack is settled onto the back, with the arms slightly angled upward and inward. Frame 4 shows the arms returning to a neutral position, suggesting the backpack is secured. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

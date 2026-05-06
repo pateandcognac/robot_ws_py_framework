@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🐍",
+        "reasoning": "This animation sequence simulates a snake slithering motion using the robot arms.  The arms will move in a wave-like pattern, mimicking the sinuous movement of a snake.  The lack of elbows will require creative use of the shoulder joints to create the illusion of a flowing movement.  I'll focus on creating distinct keyframes that emphasize the undulation of the snake's body. The left arm will lead the movement, while the right arm follows in a slightly delayed manner, creating a sense of continuous motion.  The wrists will remain relatively neutral to avoid unnecessary complexity and to maintain a focus on the arm's movement. I’ll use the examples of waving or party popper animations for inspiration, adapting their fluid and alternating motions to simulate the slithering movement of a snake.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 40.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

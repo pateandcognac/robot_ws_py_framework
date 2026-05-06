@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🚱",
+        "reasoning": "This sequence aims to depict a warning or cautionary gesture related to non-potable water. The animation will involve both arms moving in a way that suggests a stop or prohibition, similar to a traffic signal. Frame 1 will begin with both arms outstretched, palms facing forward. Frame 2 will move the arms down to shoulder height, palms still facing forward. Frame 3 will have the arms angled outward, palms facing downward, mimicking a stop sign. Frame 4 will have the arms coming back to a slightly more relaxed position, palms facing each other. Frame 5 will end with the arms at the side, suggesting the warning has been conveyed.  The overall movement should be measured and deliberate, reflecting the seriousness of the message.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

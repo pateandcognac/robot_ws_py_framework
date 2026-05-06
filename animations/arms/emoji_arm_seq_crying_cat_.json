@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "😿",
+        "reasoning": "This sequence aims to capture the feeling of sadness and wiping away tears, referencing the crying cat emoji. The robot will mimic wiping its eyes with its hands/arms, then bring the arms down to the sides in a defeated posture. In the first frame, both arms start by the sides of the face, slightly angled. The wrists are rotated so the palms face inward, as if wiping tears. In the second frame, both arms move downward, continuing the wiping motion. The wrists stay rotated inward, keeping the palms facing the face as the arms lower. By the third frame, the arms reach the bottom of the face, ending the wiping gesture. The palms still face inward, emphasizing the sadness. In the fourth frame, both arms drop to the sides, palms facing slightly forward. This defeated posture reinforces the emotion of sadness. In the final frame, the arms stay at the sides but rotate slightly inward, as if slumping in despair. The wrists also rotate slightly, adding to the overall sense of dejection.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 50.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -90.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

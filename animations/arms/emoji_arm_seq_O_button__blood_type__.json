@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🅾️",
+        "reasoning": "This animation sequence will represent the universal 'O' blood type symbol using arm poses.  The circular shape will be mimicked by having the robot's arms move in a circular motion around its body. The arms will start at rest, then move to one side, then to the other, and finally return to rest to complete the circle. This will help to visualize the roundness of the O symbol. The arms will not be raised significantly, keeping the gesture subtle and appropriate for the context of a blood type symbol.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

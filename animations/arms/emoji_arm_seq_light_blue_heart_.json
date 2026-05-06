@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🩵",
+        "reasoning": "This sequence aims to express the gentle, loving feeling associated with the light blue heart emoji.  The animation will show both arms moving in a soft, embracing motion.  The movement will be slow and deliberate, conveying a sense of warmth and care. The arms will start in a relaxed position, then gently raise and curve inward before returning to a relaxed state.  This will use a combination of joint1 (shoulder roll) and joint2 (shoulder pitch) movements to create the embracing gesture.  Wrist movements will be minimal to maintain a calm and gentle feel. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 0.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

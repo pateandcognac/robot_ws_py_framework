@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🥟",
+        "reasoning": "This animation sequence portrays the act of carefully holding and presenting a dumpling, emphasizing gentle handling and appreciation. The sequence starts with both arms slightly raised, palms facing upwards, as if ready to receive the dumpling. Then, both arms move inward, cupping the dumpling in a protective gesture. The hands tilt slightly downward to cradle the dumpling, reflecting care. In the final frame, the arms move slightly forward and upward, presenting the dumpling with a gentle gesture. The overall movement is slow and deliberate, reflecting the delicate nature of the food.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 30.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -30.0
+                    }
+                }
+            ]
+        ]
+    }
+]

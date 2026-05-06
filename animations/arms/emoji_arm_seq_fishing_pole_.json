@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🎣",
+        "reasoning": "This sequence simulates the act of fishing, focusing on the right arm's movement to cast and reel in a fishing rod. The left arm remains mostly still, providing a sense of balance. The sequence will incorporate subtle changes in joint angles to create a natural, fluid motion. In the first frame, the right arm is extended forward and slightly upward, with the wrist angled to mimic holding a fishing rod. The left arm remains relaxed at the side. In the second frame, the right arm is drawn back, preparing for the cast. The wrist rotates slightly, preparing to release the line. The left arm remains still. In the third frame, the right arm moves forward in a casting motion, with the wrist angled downward. The left arm remains still. In the fourth frame, the right arm is extended forward, holding the rod, waiting for a bite. The left arm remains still. In the fifth frame, the right arm is slightly bent, as if reeling in a fish. The wrist rotates slightly, suggesting the line is being pulled in. The left arm remains still.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": -20.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 30.0,
+                        "wrist": -40.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 20.0
+                    }
+                }
+            ]
+        ]
+    }
+]

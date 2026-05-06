@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🌅",
+        "reasoning": "This sequence depicts the robot gently raising its arms to welcome the sunrise, conveying a sense of peace and hope. The movement is slow and deliberate, emphasizing the calm and serene nature of the scene.  The arms start at the sides, then rise in a graceful arc, and finally pause in a position that suggests contemplation and appreciation. The left arm mirrors the right arm's movement, creating symmetry and balance.  The wrists remain neutral throughout, emphasizing the relaxed and natural flow of the movement. This sequence uses 4 frames to capture the essence of the sunrise emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

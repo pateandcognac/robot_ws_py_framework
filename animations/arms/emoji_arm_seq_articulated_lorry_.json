@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🚛",
+        "reasoning": "This animation sequence will mimic the movement of a lorry's articulated joint, showing the connection between the cab and the trailer.  The robot's arms will simulate this movement, with the left arm representing the cab and the right arm the trailer.  We will use a short, three-frame sequence to highlight the pivotal movement. Frame 1 will show the arms extended in a straight line, representing the lorry driving straight. Frame 2 will show the left arm slightly angled to the left and the right arm angled to the right, simulating the start of a turn. Frame 3 will show the arms fully bent, mimicking the lorry's cab and trailer at maximum articulation during a sharp turn.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

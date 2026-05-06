@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "📄",
+        "reasoning": "This animation sequence simulates the action of carefully placing a sheet of paper down on a surface. The robot will use both arms to gently place the paper, emphasizing the precision and care involved. The sequence will begin with arms extended, as if holding the paper, and end with the arms returning to a relaxed position. The movement will be slow and deliberate, reflecting the careful nature of handling a document. In the first frame, both arms are extended forward, palms facing each other, as if holding an invisible sheet of paper. Joint1 is rotated inward, and joint2 is pitched slightly downward to create a stable 'holding' position. The wrists are adjusted to point downward slightly, giving the impression that the robot is supporting the paper. In the second frame, the arms move slightly downward, beginning the process of placing the paper on a surface. The movement is slow and controlled, with minimal change in joint angles, reflecting the careful approach. In the third frame, the arms are lowered further, and the hands gently touch the surface. Joint2 is lowered, and the wrists are adjusted to maintain the paper's position. In the fourth frame, the arms are nearly back to their rest position, having gently placed the imaginary paper on a surface. Joint2 is slightly raised to keep the hands hovering above the surface momentarily. Finally, in the fifth frame, the arms are fully back to their resting position at the sides, mimicking the completion of the action. This slow and deliberate sequence emphasizes the careful handling of the document.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 10.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -10.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

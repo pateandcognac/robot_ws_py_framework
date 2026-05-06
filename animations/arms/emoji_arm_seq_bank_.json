@@ -1,0 +1,79 @@
+[
+    {
+        "emoji": "🏦",
+        "reasoning": "This animation sequence will depict a robot interacting with a bank, perhaps making a transaction or inquiring about services.  The sequence will involve a gesture of presenting something (like a card or document) then a gesture of receiving something (like a receipt or card).  The movement will be deliberate and precise, reflecting the seriousness of a financial transaction.  The robot will use both arms, with the left arm presenting something and the right arm receiving something. Frame 1 will have both arms outstretched, palms facing upwards and slightly towards each other in anticipation; Frame 2 will show the left arm extending slightly forward, while the right arm pulls back slightly, as if presenting a document; Frame 3 will show the right arm extending out to receive something; Frame 4 will show both arms returning to a neutral position, indicating the transaction is complete.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

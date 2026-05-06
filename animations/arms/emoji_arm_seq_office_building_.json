@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🏢",
+        "reasoning": "This animation sequence will portray a robot interacting with an office building, perhaps admiring its structure or perhaps looking for a job. The sequence starts with the robot's arms at its side, then raises them in a gesture of observation, and finally, brings them back down.  The movement should be smooth and deliberate, reflecting a thoughtful interaction with the building. The robot is not touching the building; this is a pure arm animation sequence.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -15.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

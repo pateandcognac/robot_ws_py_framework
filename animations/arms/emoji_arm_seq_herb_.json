@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🌿",
+        "reasoning": "This sequence will depict a gentle, nurturing gesture, reflecting the peaceful and natural image associated with the herb emoji. The robot will use both arms in a slow, deliberate movement, mimicking the act of carefully tending to a plant.  In the first frame, both arms are at rest, hanging naturally to the sides. In the second frame, both arms will slowly rise, joint1 rotating slightly outward and joint2 pitching upward, bringing the hands to about chest level, palms facing inward. In the third frame, the arms will slightly curve inward as if cradling a plant, with joint1 adjusting to bring the arms toward the body. In the fourth frame, both arms will gently lower, with the palms facing down, as if placing the plant back down. The final frame will return the arms to their resting position. This sequence avoids jerky movements, emphasizing the calm and careful nature of tending to a plant.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

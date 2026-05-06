@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🪹",
+        "reasoning": "This animation sequence depicts the bittersweet feeling of an empty nest.  It starts with arms outstretched, as if embracing children, then slowly lowers them to the sides, ending in a slightly slumped posture reflecting a sense of quiet sadness.  The movement is slow and deliberate, reflecting the emotional weight of the moment.  The right arm will move slightly more dramatically than the left to add a touch of asymmetry and realism to the gesture. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 50.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

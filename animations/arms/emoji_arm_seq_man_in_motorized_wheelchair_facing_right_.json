@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "👨‍🦼‍➡️",
+        "reasoning": "This sequence depicts a person in a motorized wheelchair facing right.  The animation will focus on the natural arm movements of someone operating such a chair.  We'll avoid overly dramatic gestures, instead opting for subtle movements that suggest control and engagement with the chair. The left arm will be positioned to suggest control of the joystick or other controls, while the right arm might be used for balance, or to hold something. The right arm might also stay at rest. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -25.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

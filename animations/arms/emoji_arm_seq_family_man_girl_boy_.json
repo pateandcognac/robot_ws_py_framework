@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "👨‍👧‍👦",
+        "reasoning": "This animation sequence aims to depict a protective and encompassing gesture, reflecting the familial bond represented by the emoji.  The animation will focus on the robot's arms creating a gentle, enclosing space.  I will use both arms to form a cradle-like shape, suggesting care and security. The movement will be slow and deliberate to emphasize the emotion.  The robot will not be performing any actions; the focus is solely on the posture. In frame one, both arms are extended slightly outward, palms up. The arms are positioned to create a welcoming space. In frame two, the arms start to curve inward, bringing the palms closer together as if gently cradling something precious. In frame three, the arms almost meet, creating a secure, protective space. In frame four, the arms slightly relax, maintaining the gentle embrace, but less tightly. This suggests a balance between protection and openness.  In frame five, the arms return to a slightly more open position, but still conveying warmth and care. This allows for a sense of continuity and readiness for interaction.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -15.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 0.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -10.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": -20.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

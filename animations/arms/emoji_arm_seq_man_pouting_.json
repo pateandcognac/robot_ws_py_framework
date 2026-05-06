@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🙎‍♂️",
+        "reasoning": "This sequence shows a pouting expression using the arms. The arms will start at the side, then move up to the face, and then return to the side. The movement should be slow and deliberate to highlight the pouting. The head will remain tilted slightly downwards throughout the sequence to enhance the pouting expression. In the first frame, both arms are at the sides in a neutral position, mirroring the initial state of rest. In the second frame, the arms begin to move upward, with a slight outward rotation at the shoulder joints and a forward pitch to position the hands near the face. The wrists will turn slightly inward to emphasize the pouting expression. In the third frame, the hands reach the face, and the arms hold the position briefly. The wrists maintain their inward rotation, framing the face in a pouting gesture. In the fourth frame, the arms begin to return to their neutral position, moving downward and inwards. The wrists start to untwist back to their neutral position. The fifth frame shows the arms back in their neutral position at the sides, completing the pouting gesture and returning to the resting position. This sequence uses smooth transitions between frames, focusing on the slow and deliberate movement of the arms to communicate the emotion effectively.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 40.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

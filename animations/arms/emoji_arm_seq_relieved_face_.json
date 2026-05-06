@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "😌",
+        "reasoning": "This sequence aims to depict a subtle calming gesture, reflecting the sense of relief conveyed by the 😌 emoji. The robot's arms will move slowly and smoothly, transitioning from a slightly raised, tense position to a relaxed, resting state at the sides. The movements will be subtle, focusing on conveying a sense of easing tension and gentle release. In the first frame, both arms are slightly raised and angled outward, as if holding a breath or bracing for something. joint1 is rotated slightly outward, and joint2 pitches the arms slightly upward. The wrists are neutral, palms facing inward. This pose suggests a subtle tension, like holding onto a feeling. In the second frame, the arms begin to lower, initiating the release of tension. joint1 rotates inward, bringing the arms closer to the body, while joint2 pitches the arms slightly downward. The wrists remain neutral, maintaining a smooth, controlled movement. This gradual lowering of the arms represents the initial easing of tension. In the third frame, the arms continue to lower, approaching their resting position. joint1 rotates further inward, aligning the arms closer to the sides of the body, and joint2 pitches the arms further downward. The wrists remain neutral, preserving the gentle flow of the movement. This further lowering of the arms emphasizes the ongoing release of tension. In the fourth frame, the arms reach their final resting position at the sides. joint1 is now neutral, aligning the arms with the body, and joint2 pitches the arms straight down to -90 degrees, allowing them to hang loosely. The wrists remain neutral, completing the transition to a relaxed state. This final resting position signifies the complete release of tension and the embodiment of relief.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

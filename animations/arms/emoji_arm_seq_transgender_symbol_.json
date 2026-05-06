@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "⚧️",
+        "reasoning": "This animation sequence for the transgender symbol (⚧️) aims to represent a sense of fluidity and transition.  It uses a combination of arm movements to symbolize change and self-expression. The sequence focuses on a slow, deliberate movement of both arms, starting with a neutral position and progressing to a position that suggests openness and acceptance.  The arms do not move in a way that is overtly gendered, but rather in a way that is fluid and non-binary.  The intention is to visually convey the essence of the transgender experience. Frame 1: Both arms begin at the sides in a neutral position. Frame 2: The left arm moves slightly upward and outward, while the right arm moves slightly downward and inward. Frame 3: The left arm continues its upward and outward movement, while the right arm continues its downward and inward movement. Frame 4: Both arms reach a slightly open position, suggesting a sense of acceptance and openness. Frame 5: Both arms return to the initial neutral position. This cyclical motion symbolizes the continuous journey of self-discovery and transition.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 40.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -40.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

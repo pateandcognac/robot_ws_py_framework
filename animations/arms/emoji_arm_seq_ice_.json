@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🧊",
+        "reasoning": "This animation sequence will depict the robot carefully holding an imaginary ice cube. The robot will initially hold its hands open, then slowly bring its hands together to gently grasp the cube, and finally return its hands to a relaxed position. The sequence will emphasize the delicate nature of handling ice, using smooth transitions and subtle wrist movements. The robot’s lack of elbows will be compensated for by using joint1 and joint2 to create a fluid arc of motion.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🧎‍♀️‍➡️",
+        "reasoning": "This sequence depicts a woman kneeling and facing right.  The animation will focus on the natural posture of the arms during this action.  The arms will be slightly forward and down, implying relaxation or submission, while maintaining a natural pose.  Frame 1 will show the arms in a neutral position, Frame 2 will show a slight movement forward, Frame 3 will show the arms dropping a little lower, and Frame 4 will show a more relaxed posture. The right arm might be slightly lower to emphasize the direction of her gaze.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "📦",
+        "reasoning": "This animation sequence portrays the careful handling of a package, emphasizing the robot's gentle movements and precision.  The robot will initially hold its arms out slightly to receive the package, and then gently bring it to its center. The sequence begins with the arms slightly extended to receive the package, and then shows the robot bringing the package closer to its center.  The final frame displays a more relaxed posture, after the package has been secured.  Each step uses subtle changes in joint angles and wrist positions to show the careful handling of the package. This will give the robot a more expressive and fluid animation. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "⛵",
+        "reasoning": "This sequence simulates the act of holding a sailboat's tiller, steering it through the water. The animation will focus on the right arm, which actively steers, while the left arm provides balance.  The robot will subtly shift its weight and posture to enhance the realism of the action.  The sequence will use a three-frame structure to convey the feeling of gentle movement and control. Frame 1: The robot's right arm is positioned as if gently holding the tiller. The left arm hangs loosely at its side for balance. Frame 2: The right arm moves slightly to port (left), adjusting the tiller to change the sailboat's course. The left arm moves slightly to starboard (right) to compensate. Frame 3: The right arm returns to center, holding the tiller steady, and the left arm returns to its original position. This cyclical movement suggests the continuous adjustments needed to steer a sailboat.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -50.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

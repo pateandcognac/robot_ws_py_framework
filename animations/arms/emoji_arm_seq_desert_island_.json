@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🏝️",
+        "reasoning": "This animation sequence portrays a sense of longing and hope, often associated with the imagery of a desert island.  The sequence begins with arms outstretched, expressing a yearning for escape or a reaching toward the distant island.  Then, the arms slowly lower, perhaps reflecting a moment of quiet contemplation or acceptance of the situation. Finally, one arm rests gently on the chest, suggesting a feeling of comfort or self-reliance.  The other arm remains slightly raised, possibly indicating a continued sense of hope or anticipation of rescue.  This contrast between yearning and acceptance creates a more dynamic and nuanced animation.  The robot's posture will communicate these feelings effectively, and the micro-movements will enhance the emotional impact.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

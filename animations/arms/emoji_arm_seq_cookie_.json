@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🍪",
+        "reasoning": "This sequence mimics the action of someone reaching for a cookie, emphasizing the anticipation and satisfaction. It uses a 3-frame sequence for brevity and impact. The first frame shows both arms relaxed at the sides. The second frame shows the right arm reaching out, and the third shows the hand gently grasping the cookie (represented by a slight downward and inward movement of the arm). The left arm remains mostly still to emphasize the action of the right arm.  The wrist will rotate slightly to mimic a hand cupping the cookie.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🎛️",
+        "reasoning": "This animation sequence simulates the action of adjusting control knobs.  The robot will use both arms, mimicking the careful, precise movements needed for such a task.  The sequence focuses on small, deliberate movements to emphasize control and precision.  I'll use the existing examples as a guide, ensuring that each frame is distinct and expresses a unique stage in the interaction with the control knobs. Frame 1 shows both arms extended and positioned as if the robot is about to reach for the knobs. Frame 2 shows the arms moving slightly inward and downward, as if grasping the knobs. Frame 3 shows a slight twisting motion, as if turning the knobs. Frame 4 shows the arms returning to a more neutral position, subtly indicating the completion of the adjustment. Frame 5 shows the arms returning to a relaxed position, as the robot steps back from the control knobs. I will maintain a balance between the two arms, ensuring that the movements are synchronized and that the overall effect is natural and fluid.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -20.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

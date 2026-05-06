@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🦪",
+        "reasoning": "This animation sequence depicts a robot carefully holding an oyster, emphasizing gentleness and precision.  The robot's movements should be slow and deliberate, reflecting the delicate nature of the object.  We will use a three-frame sequence to highlight the key moments: initial approach, secure grasp, and presentation. Frame 1 shows the robot's arms extending forward in anticipation of the oyster, with hands slightly open and ready to receive. Frame 2 captures the moment of contact, with the arms gently curving inward to cradle the oyster, ensuring a firm yet gentle grip.  Frame 3 shows the robot presenting the oyster with a slight upward lift, showcasing the treasure within. The right arm will primarily carry out the actions, while the left arm acts as a supporting counterweight.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": 15.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🧪",
+        "reasoning": "This animation sequence shows the robot carefully holding a test tube.  The robot will hold the test tube with both arms, using a gentle, precise movement.  Frame 1 starts with arms slightly raised and angled, ready to receive the test tube. Frame 2 shows the arms gently curving inward to cradle the test tube. Frame 3 shows the test tube held securely, with the arms slightly adjusted for better support. Frame 4 shows the robot holding the test tube steadily, ready for observation or experimentation. Frame 5 shows the robot slowly lowering the test tube to a safe location. The sequence emphasizes careful handling and scientific precision.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 10.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 0.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": -10.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

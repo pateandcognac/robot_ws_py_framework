@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🔓",
+        "reasoning": "This animation sequence depicts the unlocking of something, using the arms to simulate the opening of a lock or similar mechanism. The sequence starts with both arms in a neutral position, then transitions to a pulling motion, followed by a gesture that suggests success. The left arm will primarily perform the unlocking action, while the right arm will provide visual balance and support. In the first frame, both arms are at rest, slightly angled outward to suggest readiness. In the second frame, the left arm moves forward and slightly upward, as if grasping a handle or latch. The right arm moves slightly backward for balance. In the third frame, the left arm pulls downward, simulating the unlocking action. The right arm remains in its previous position. In the fourth frame, both arms move back to a relaxed position, but with a slight upward tilt to suggest accomplishment. The final frame shows both arms returning to a neutral position, but with a subtle expression of success. This sequence aims to create a sense of action and resolution, reflecting the unlocking process.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

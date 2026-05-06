@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🐳",
+        "reasoning": "This sequence simulates a whale spouting water.  The animation will focus on a single arm, mimicking the upward motion of a whale's spout. The other arm will remain relatively still for contrast.  I'll use smooth transitions between frames, ensuring the motion feels natural and fluid. The arm will start in a relaxed position, then arc upward, and finally return to a resting position.  The wrist will rotate to enhance the spouting effect. \nFrame 1: The left arm is in a neutral position at the side, and the right arm is slightly raised and angled forward, wrist slightly rotated to mimic a spout forming. \nFrame 2: The right arm moves upward, with a greater curvature. The wrist is rotated to point the spout upwards.  The left arm remains still. \nFrame 3: The right arm reaches its peak, wrist is rotated to maximize the spout effect. The left arm remains still, providing contrast. \nFrame 4: The right arm begins to descend, the wrist rotates back slightly. The left arm remains still. \nFrame 5: The right arm returns to the neutral position, the left arm remains in its neutral position. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 60.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 75.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

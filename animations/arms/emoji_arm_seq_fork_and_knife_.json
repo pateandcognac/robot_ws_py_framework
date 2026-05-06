@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🍴",
+        "reasoning": "This sequence simulates the action of holding a fork and knife, preparing to eat. The animation will focus on bringing both arms forward and positioning the hands as if holding utensils. The sequence will start with arms at the sides, then move to a preparatory pose, and finally show the hands positioned as if holding a fork and knife. The left arm will hold the fork, and the right arm will hold the knife. This pose is often associated with mealtimes or dining experiences. I'll ensure smooth transitions between frames and reference examples to make sure the arm movements are natural and realistic.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 0.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

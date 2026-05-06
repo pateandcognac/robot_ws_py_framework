@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🕍",
+        "reasoning": "This sequence will depict a gesture of reverence or prayer.  The animation will show the robot bringing its hands together in a prayer-like position, then slowly lowering them.  The movement will be slow and deliberate, reflecting the solemnity of the gesture. The robot will not have any facial expression. The movement is focused on the arms and hands. Frame 1: The arms start at the sides, slightly angled forward. Frame 2: The arms move upward, the hands begin to come together in front of the chest. Frame 3: The hands are joined together in a prayer position, palms touching. Frame 4: The hands slowly lower, maintaining contact. Frame 5: The hands return to the sides, completing the gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

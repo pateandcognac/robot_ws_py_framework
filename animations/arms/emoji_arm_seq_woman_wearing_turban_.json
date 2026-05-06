@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "👳‍♀️",
+        "reasoning": "This animation sequence will depict a woman adjusting her turban, conveying a sense of grace and self-care. The movements will be slow and deliberate, emphasizing the gentle interaction with the headwear.  The animation will focus on the hands interacting with the head and will not include any exaggerated or dynamic movements. The left arm will remain largely still, providing a counterpoint to the right arm's movement. Frame 1: The right arm moves upward towards the turban, palm facing upward and slightly inward. Frame 2: The right hand gently touches and adjusts the turban with the wrist slightly angled. Frame 3: The right arm moves slightly downward and outward, away from the head, maintaining a gentle touch. Frame 4: The right arm moves back to its resting position, suggesting the adjustment is complete. The left arm remains at the side, with a slight inward rotation to create a relaxed and natural counterbalance.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 70.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": 60.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": 40.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

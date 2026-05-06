@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🔪",
+        "reasoning": "This sequence simulates the careful handling of a kitchen knife, emphasizing precision and control.  The robot will initially hold the knife with both arms, then carefully bring it closer to the body, and finally place it down gently.  The animation will focus on smooth, controlled movements, avoiding any jerky or sudden actions, reflecting the need for caution when handling sharp objects. The robot's lack of elbows will be compensated for by a combination of joint movements to simulate a precise grip and controlled movements. In the first frame, both arms extend outward, simulating a reaching motion to grab the knife. Joint1 for both arms will be rotated slightly outward, and joint2 will be slightly pitched downward. The wrists will be angled to simulate a secure grip on the knife. Frame two shows the robot bringing the knife closer to the body, simulating a careful pulling motion. Both arms will move inward, with joint1 rotating inward and joint2 pitching slightly upward. The wrists will adjust to maintain a firm grip. Frame three demonstrates the robot lowering the knife down, simulating the motion of placing it down gently. Both arms will move downward, with joint1 rotating slightly inward and joint2 pitching downward. The wrists will adjust to maintain control over the knife. Frame four shows both arms returning to a relaxed position. Both arms will return to a neutral position, with joint1 at 0 and joint2 at -90. The wrists will also return to a neutral position. This reflects the completion of the knife-handling task. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -60.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

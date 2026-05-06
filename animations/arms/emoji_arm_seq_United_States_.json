@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "🇺🇸",
+        "reasoning": "This animation sequence represents a feeling of patriotism and national pride, using a combination of hand gestures to symbolize the unity and strength of the United States.  The animation will start with both arms at the sides, then move to a position of presenting something, and finally end with both arms raised in a celebratory motion. This uses the existing examples to guide the joint rotations and wrist positions for a natural and expressive animation.  The use of both arms together emphasizes unity and cooperation, central to the concept of the United States. The transition between each frame will be handled by a separate interpolation system.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "☕",
+        "reasoning": "This sequence depicts the robot gently cradling a warm mug.  The animation starts with arms slightly raised, palms facing each other, preparing to receive the mug. Then, the arms move inward to cradle the mug, and finally, the arms settle into a comfortable, relaxed position, holding the mug close to the body. The slight inward roll of joint1 helps to simulate the protective and nurturing aspect of holding a warm drink. The downward pitch of joint2 ensures the mug rests securely in the arms, making the animation feel natural and inviting. This sequence conveys warmth, comfort, and appreciation of the beverage. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

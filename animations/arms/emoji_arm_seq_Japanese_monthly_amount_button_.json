@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🈷️",
+        "reasoning": "This animation sequence represents the concept of monthly payments or a recurring schedule, using arm movements to suggest a cyclical pattern or the turning of pages on a calendar.  The animation will use both arms to create a sense of repetition. The movement starts with arms outstretched, then they come together, symbolizing the closing of a month or the completion of a cycle, before opening up again to start a new cycle.  I'll utilize slight variations in joint angles to avoid rigidness and to create a more organic, flowing movement.  The final pose will be similar to the initial pose but not identical, to represent the continuous nature of monthly payments.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": 5.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

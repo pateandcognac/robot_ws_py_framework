@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "💒",
+        "reasoning": "This sequence depicts a gesture of joined hands, symbolizing unity and togetherness, fitting for a wedding.  The animation will show a gradual joining of hands, starting with arms extended and ending with palms pressed together.  The movement should feel deliberate and gentle, reflecting the solemnity of the occasion.  I will leverage the two-joint system to create a natural-looking motion, avoiding any jerky or abrupt transitions.  The robot's lack of elbows will be compensated by smooth changes in joint angles, creating the appearance of flowing movement. The wrists will subtly rotate to ensure a natural hand position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 30.0,
+                        "wrist": -40.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

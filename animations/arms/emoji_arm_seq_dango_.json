@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🍡",
+        "reasoning": "This animation sequence will depict a robot playfully holding and admiring a dango (🍡). The robot's movements will be gentle and curious, reflecting the sweet and charming nature of the treat.  The animation will focus on the robot's right arm, while the left arm remains relaxed at its side.  The animation will be 4 frames long. Frame 1: The robot's right arm extends toward the dango, hand slightly open in anticipation. Frame 2: The robot gently grasps the dango with its right arm, hand slightly curled to hold the treat securely. Frame 3: The right arm moves closer to the robot's face as if to admire the dango. Frame 4: The robot slowly lowers its arm with the dango, showing satisfaction and contentment. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": -30.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": -30.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": -30.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

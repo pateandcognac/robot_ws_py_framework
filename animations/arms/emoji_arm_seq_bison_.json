@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🦬",
+        "reasoning": "This sequence will depict a bison's powerful stance and potential movement.  The animation will focus on the front legs and head to capture the essence of this animal.  Since the robot doesn't have legs, I'll represent the bison's powerful presence by having the robot's arms mimic the forward thrusting of a bison's head and shoulders. Frame 1 will show the arms in a neutral, relaxed position. Frame 2 will show the arms moving forward and slightly downward, mimicking a bison lowering its head. Frame 3 will show a slight upward movement of the arms, as if the bison is raising its head again. Frame 4 will show a repeat of the forward and downward movement. Frame 5 will show the return to the neutral position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

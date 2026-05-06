@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🔰",
+        "reasoning": "This sequence depicts a robot enthusiastically starting a new task. The animation begins with arms at the sides, transitioning to a raised-arm posture, followed by a slight bow and finally returning to the relaxed state. Frame 1 shows a neutral pose, establishing a baseline. Frame 2 depicts both arms raised slightly, palms facing forward, to show eagerness. Frame 3 shows a slight bow, with both arms moving forward and slightly downward. Frame 4 returns to the neutral pose, completing the gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 30.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

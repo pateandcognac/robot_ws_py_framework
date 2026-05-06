@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🥪",
+        "reasoning": "This sequence mimics the action of someone preparing to eat a sandwich.  It starts with both arms relaxed, then moves to a position of holding the sandwich, and finally to a position of bringing it to the mouth.  The robot does not have hands, so the motion implies holding and eating. The slight outward rotation in joint1 creates a more natural posture. Frame 1 is the neutral position. Frame 2 shows both arms moving up to grasp the sandwich, slightly inward at the shoulders. Frame 3 shows the sandwich being lifted to the mouth, and Frame 4 shows the arms returning to a relaxed position after the sandwich is (presumably) eaten. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

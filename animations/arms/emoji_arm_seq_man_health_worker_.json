@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "👨‍⚕️",
+        "reasoning": "This animation sequence depicts a health worker performing a check-up, starting with hands at sides, then moving to a hand on shoulder, and finally a hand on the arm. The left arm will remain mostly still, slightly angled outward to simulate a relaxed yet attentive posture. The right arm will execute the key movements. In the first frame, both arms are relaxed at the sides, palms facing inward. In the second frame, the right arm moves slightly upward and forward, with the wrist rotated to ensure the palm is facing upward. This mimics the motion of checking a patient's shoulder or upper arm. The left arm remains relatively unchanged. In the third frame, the right arm moves further downward, with the wrist rotated to ensure the hand is making contact with the patient's arm. This signifies a more thorough check-up. The left arm remains in the same relaxed position as before. In the fourth frame, the right arm returns to the neutral position, while the left arm remains relaxed. This completes the examination, and the health worker is ready to move on.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

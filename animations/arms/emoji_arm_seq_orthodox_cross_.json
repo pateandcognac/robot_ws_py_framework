@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "☦️",
+        "reasoning": "This sequence depicts a reverent gesture, mimicking the crossing of oneself with a devout posture.  The arms will move in a deliberate, precise manner, reflecting solemnity and reverence.  The robot’s lack of elbows will be compensated for by emphasizing the movement of the shoulders and wrists to suggest the crossing of oneself. I’ll use examples to check for natural range of motion and ensure the transitions feel graceful and intentional. In the first frame, both arms hang relaxed at the side, palms facing inward, setting a calm base for the gesture.  In the second frame, the right arm moves across the body towards the left side, with the wrist slightly angled to suggest the motion of a cross. In the third frame, the left arm moves across the chest towards the right side, mimicking the motion of making a cross. The wrists are angled to create the visual effect of the arms crossing over each other. In the fourth frame, the arms remain in place for a brief pause, emphasizing the gesture’s devout nature. The wrists are slightly adjusted to maintain a natural crossed position. In the final frame, the arms return to their resting position, suggesting the completion of the religious gesture. The wrists and shoulder joints relax into their neutral positions, returning to the resting state.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 65.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -15.0,
+                        "joint2": -85.0,
+                        "wrist": 19.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 65.0,
+                        "joint2": 70.0,
+                        "wrist": -80.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 80.0,
+                        "wrist": -80.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 65.0,
+                        "joint2": 70.0,
+                        "wrist": -80.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 80.0,
+                        "wrist": -80.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

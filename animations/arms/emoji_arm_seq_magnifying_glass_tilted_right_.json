@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🔎",
+        "reasoning": "This animation sequence simulates the action of examining something closely using a magnifying glass. The robot will hold the magnifying glass (represented by the right arm) and tilt it to the right, focusing on an unseen object. The left arm will remain at the side for balance. The sequence will highlight the tilting motion of the magnifying glass. In frame 1, the robot's right arm is extended, holding the magnifying glass at eye level, with the palm facing forward. In frame 2, the right arm tilts slightly to the right, the wrist rotates to maintain the proper viewing angle. The left arm remains at the side. In frame 3, the right arm tilts further to the right, the wrist rotates more to keep the magnifying glass stable. In frame 4, the right arm returns to a neutral position; it is no longer tilted to the right. The left arm remains at the side.  This sequence uses the right arm to mimic examining an object, while the left arm remains relaxed for a balanced pose. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": 0.0,
+                        "wrist": -60.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

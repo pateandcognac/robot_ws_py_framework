@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "⚛️",
+        "reasoning": "This animation sequence will represent the atom symbol using a circular motion of both arms. The arms will start at the sides, then move upward and outward in a circular motion, and finally return to their starting position. The circular motion will symbolize the orbiting electrons in an atom. The sequence will consist of 4 frames. Frame 1: Arms are at the sides. Frame 2: Arms are raised and outward. Frame 3: Arms return to the sides. Frame 4: Arms come together in front of the body.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

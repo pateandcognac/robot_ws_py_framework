@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "👝",
+        "reasoning": "This animation sequence simulates the action of carefully holding a clutch bag. The robot will use both arms to cradle the bag close to its body. The movement starts with the arms outstretched slightly, then brings the arms inward to gently hold the bag. The animation ends with the arms slightly relaxed but still holding the bag. The sequence focuses on a gentle, careful movement that communicates a sense of care and possession of the clutch bag. The animation is designed to emphasize the delicate nature of the clutch bag and the careful way it is handled. Frame 1 will show both arms moving forward and slightly inward. Frame 2 shows the robot bringing the arms in closer to the body and slightly down. Frame 3 has the arms in a relaxed, secure hold. Frame 4 will have the arms return to a resting position but keep the bag close to the body.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

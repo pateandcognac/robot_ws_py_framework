@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "😩",
+        "reasoning": "This sequence aims to embody weariness and exhaustion, using slow, deliberate arm movements to convey a sense of depletion.  I'll focus on creating a sense of weight and drag in the arms, as if the robot is struggling to hold them up.  I'll be referencing the provided examples to ensure the movements stay within the robot's physical limitations while effectively communicating the intended emotion. In the first frame, both arms hang heavy at the sides, with joint1 slightly inward and joint2 pitched slightly downward. The wrists are neutral, palms facing inward. This posture establishes a baseline of low energy and dejection.  In the second frame, the robot brings both hands up to its face, palms covering the eyes in a gesture of despair or exhaustion. joint1 rotates inward, while joint2 brings the arms up towards the face. The wrists rotate inward so that the palms can cover the eyes. This action expresses the overwhelming nature of the weariness.  In the third frame, the arms slide slowly down the face, as if the robot lacks the energy to even hold them up.  joint2 pitches the arms downward, creating a sense of collapse and surrender.  The wrists rotate slightly outward as the hands move away from the face. In the fourth frame, the arms fall heavily back to the sides, ending in a slightly lower and more slumped position than the initial frame. joint1 rotates slightly inward, and joint2 is pitched further downward, emphasizing the feeling of complete exhaustion. The wrists remain neutral, palms facing inward. This final posture reinforces the sense of weariness and defeat.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 85.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 60.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -15.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

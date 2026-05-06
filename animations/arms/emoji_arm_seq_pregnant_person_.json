@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🫄",
+        "reasoning": "This sequence aims to portray the gentle, protective nature often associated with pregnancy.  The animation will focus on a slow, graceful movement of the hands towards the abdomen, conveying a sense of nurturing and care. The arms will move somewhat independently, enhancing the natural, fluid quality of the gesture.  The overall pace of the animation should be slow and deliberate. The robot's lack of elbows will be accounted for by careful positioning of the arms, using the shoulder joints to simulate the necessary movements.  In the first frame, both arms will start in a relaxed posture at the sides.  In the second frame, the right arm will begin to lift, moving towards the stomach area. The left arm will remain somewhat still.  In the third frame, the left arm will start to move towards the stomach area, while the right arm completes the motion. The hands will be positioned gently on the abdomen, mirroring the protective nature often associated with pregnancy. In the fourth frame, both arms slightly adjust their position, creating a gentle, supportive hug-like motion around the abdomen, emphasizing the sense of care and protection.  The palms will be turned slightly inward. The final frame will show both arms gently curving over the stomach area. The slight curving of the arms will emphasize the care and protection, and the palms will face inwards, completing the gesture. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 25.0,
+                        "joint2": 5.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 25.0,
+                        "joint2": 5.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

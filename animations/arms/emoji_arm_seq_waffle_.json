@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🧇",
+        "reasoning": "This sequence simulates the act of carefully holding a waffle, conveying a sense of delicious anticipation.  The animation will focus on a gentle, deliberate movement of both arms to cradle the imaginary waffle.  The arms will move in a coordinated manner, mirroring each other to emphasize the careful handling of the treat. I'll refer to previous examples to ensure smooth transitions between frames and a natural look. Frame 1: Both arms start in a neutral position at the sides, palms facing inward.  Frame 2: Both arms move upward and slightly inward, mimicking the act of receiving a waffle. The wrists will slightly rotate outward, preparing to cradle the waffle. Frame 3: Both arms gently curve inward, creating a supportive cradle for the waffle. The wrists will tilt slightly downward to enhance the protective gesture. Frame 4: Both arms remain in a gentle cradle, suggesting the waffle is being observed with relish.  The wrists will maintain their downward tilt. Frame 5: The arms slowly return to a neutral position, suggesting the waffle is about to be enjoyed. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -45.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

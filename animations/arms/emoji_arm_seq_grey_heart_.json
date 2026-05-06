@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🩶",
+        "reasoning": "This sequence aims to express the gentle, melancholic feeling often associated with a grey heart.  The animation will feature a slow, deliberate embrace, starting with arms outstretched and ending in a hug-like position. The movement will be subtle and restrained, reflecting the subdued emotion.  The robot's lack of elbows will be compensated for by focusing on subtle changes in joint angles and wrist positions to create a sense of warmth and melancholy. \n\nFrame 1: Both arms extend slightly outward and upward with palms facing inward.  This conveys a sense of openness and vulnerability, ready for the embrace.  The initial movement is quite restrained, reflecting the quiet sadness of a grey heart. \n\nFrame 2: The arms move closer to the body, starting the embrace. The joint1 angles shift inward slightly, and joint2 pitches downward, creating a gentle curve. The wrists turn slightly inward, allowing the hands to approach each other. \n\nFrame 3: The arms fully embrace, forming a gentle hug. Joint1 angles continue to move inwards, and joint2 pitches the arms further, bringing them close to the body. The wrists are almost touching, suggesting a self-comforting embrace.\n\nFrame 4: The arms maintain the hug-like position but settle slightly, suggesting that the emotion is settling. The changes from Frame 3 are subtle, reflecting the calmness that follows a moment of quiet sadness.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": -20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -40.0,
+                        "wrist": -40.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 55.0,
+                        "joint2": -35.0,
+                        "wrist": -35.0
+                    }
+                }
+            ]
+        ]
+    }
+]

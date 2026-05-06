@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🟫",
+        "reasoning": "This animation sequence will portray a robot reacting to the brown square emoji, \"🟫\", in a way that reflects contemplation and perhaps a slight hint of confusion or uncertainty about its meaning.  The robot will initially bring its arms up to its face, as if examining the square, then slowly bring them back down in a gesture that suggests mild perplexity. The sequence emphasizes gradual changes in arm position to highlight the robot's thought process. Frame 1: The arms begin in a neutral position. Frame 2: Both arms rise, palms facing inward, toward the face. Frame 3: The arms pause near the face, as if observing the square closely. Frame 4: The arms begin to slowly drop. Frame 5: The arms return to a neutral position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

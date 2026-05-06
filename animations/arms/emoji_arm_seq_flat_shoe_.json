@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🥿",
+        "reasoning": "This animation sequence will show the robot gently picking up a pair of flat shoes. The robot's arms will move in a careful, deliberate manner, reflecting the delicate nature of the shoes. In the first frame, both arms will be at rest, with the palms facing inward. In the second frame, both arms will move forward and slightly downward, as if reaching for the shoes. The wrists will rotate slightly to allow the robot's hands to grasp the shoes. In the third frame, the robot will lift the shoes slightly. Both arms will move upward, maintaining a gentle grip on the shoes. In the fourth frame, the robot will bring the shoes to its chest. The arms will move inward, and the wrists will rotate slightly to secure the shoes. In the fifth frame, the robot will rest the shoes on its chest before returning to the starting pose.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

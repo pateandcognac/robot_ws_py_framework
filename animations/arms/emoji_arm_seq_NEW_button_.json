@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🆕",
+        "reasoning": "This animation sequence simulates the unveiling of something new, using a combination of both arms to create a sense of reveal.  The movement starts with both arms at the side, then they sweep outward and upward, before settling into a presentation-style pose.  The sequence emphasizes the moment of discovery and excitement associated with something new. Frame 1: Both arms start in a neutral position. Frame 2: Both arms move outward and upward, palms up, suggesting an upward motion. Frame 3: Both arms reach a peak position, palms facing forward, in a gesture similar to a reveal or presentation. Frame 4: The arms settle into a slightly lower position, maintaining the reveal stance but with a more relaxed posture. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

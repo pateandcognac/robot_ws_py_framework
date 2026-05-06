@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🏍️",
+        "reasoning": "This sequence simulates the act of riding a motorcycle.  The animation will focus on the upper body, emulating the hand and arm positions a rider might use to grip the handlebars.  Since the robot doesn't have hands, we'll approximate the grip. The left arm will mimic the clutch/brake, and the right will be positioned like the throttle.  We'll use subtle changes to make it look natural. Frame 1 will start with the arms slightly extended forward, simulating a relaxed posture before starting the bike. Frame 2 will show the arms bending slightly at the shoulder, with the left arm further inward to mimic a clutch/brake movement. Frame 3 will show a slight adjustment, with the left arm slightly straightened and the right arm pulled back. Frame 4 will show the arms returning to a more neutral position, but slightly forward to simulate the ongoing movement of riding.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": -15.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": -15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

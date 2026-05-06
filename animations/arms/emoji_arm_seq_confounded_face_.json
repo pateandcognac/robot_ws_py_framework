@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "😖",
+        "reasoning": "This sequence aims to capture the feeling of being confounded, using arm and hand movements to express confusion and frustration. The animation starts with the hands moving towards the face, as if trying to grasp the situation, followed by a shaking motion to express disbelief, and ends with the arms dropping to the sides in defeat. Throughout, I'll ensure smooth transitions and distinct keyframes to avoid choppy movements. In the first frame, both arms are raised with palms facing inward, as if reaching up to hold the head in confusion. joint1 rotates both arms slightly inward, and joint2 pitches them upward. The wrists are angled at -45.0 to bring the hands closer to the face. Moving to the second frame, the arms shake slightly, as if trying to dispel the confusion. joint1 rotates the arms outward a bit, and joint2 adjusts to create a small shaking motion. The wrists remain angled inward. The third frame returns the arms to a position similar to the first frame, creating a back-and-forth motion that emphasizes the confounded feeling. joint1 rotates the arms back inward, and joint2 adjusts the pitch. The wrists stay at -45.0. In the fourth frame, the arms drop to the sides, palms facing forward, as if giving up in frustration. joint1 rotates the arms to a neutral position, and joint2 pitches them downward. The wrists rotate to 0.0. Finally, in the fifth frame, the arms remain at the sides, but the wrists rotate inward to -45.0, adding a subtle touch of continued frustration. This sequence captures the progression of emotions associated with being confounded, starting with confusion and ending with resignation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 75.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 70.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 75.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

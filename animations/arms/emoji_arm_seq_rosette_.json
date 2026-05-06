@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🏵️",
+        "reasoning": "This sequence will depict the robot gently cradling a delicate rosette, emphasizing care and appreciation.  The movement will be slow and deliberate, focusing on the precision of the hand movements. The robot will use both arms to support the rosette, creating a sense of protection and reverence.  The sequence will begin with the arms extended, and then gently bring the rosette close to the robot's chest.  The final frame will show the arms holding the rosette close, with a slight upward tilt to suggest admiration.  The arms will not move in a rigid manner, but rather with a gentle, flowing motion. This is similar to how one would handle a delicate flower.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -40.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -40.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 40.0,
+                        "joint2": -20.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": -20.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": 10.0,
+                        "wrist": 45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

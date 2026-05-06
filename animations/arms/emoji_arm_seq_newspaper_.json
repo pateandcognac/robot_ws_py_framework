@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "📰",
+        "reasoning": "This sequence depicts the act of reading a newspaper. The robot will hold the imaginary newspaper in both hands, initially at a distance, then bring it closer to read, and finally lower it. To create a natural-looking animation, I'll use slight variations in joint angles and wrist positions. The first frame shows the robot holding the newspaper slightly away from the body, as if just picking it up. Both arms are extended outwards, the wrists are angled slightly downward, and the palms face each other. The second frame shows the robot bringing the newspaper closer to its face to read. Both arms move inward, and the wrists rotate to adjust the angle of the newspaper. The third frame shows the robot holding the newspaper closer to the face, with the arms and hands more relaxed and naturally angled. The final frame shows the robot lowering the newspaper, returning the arms to a neutral position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 20.0,
+                        "wrist": -40.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 30.0,
+                        "wrist": -50.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

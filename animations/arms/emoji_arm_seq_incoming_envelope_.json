@@ -1,0 +1,59 @@
+[
+    {
+        "emoji": "📨",
+        "reasoning": "This animation sequence simulates the action of receiving an incoming email or message. It starts with both arms at rest, then one arm reaches out to receive the envelope, and finally both arms return to rest, implying the message has been received.  The animation uses subtle movements to avoid being overly dramatic, reflecting the calm and quiet nature of receiving an email. The robot doesn't actually *hold* the envelope; instead, the animation mimics the gesture of receiving it. The single arm movement is intended to represent the act of receiving something rather than explicitly handling an object. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

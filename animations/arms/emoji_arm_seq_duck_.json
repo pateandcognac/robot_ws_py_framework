@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🦆",
+        "reasoning": "This sequence mimics a duck swimming, using fluid arm movements to simulate paddling. The arms move in a coordinated, alternating pattern, creating a sense of motion and rhythm.  I'll use the robot's two-joint arms to approximate this motion.  The wrists will be used to help express the 'scooping' motion of the duck's feet.  I'll ensure that the transitions are smooth and believable, using slight variations in the joint angles to avoid a mechanical look.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

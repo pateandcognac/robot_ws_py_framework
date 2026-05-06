@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🙀",
+        "reasoning": "This sequence aims to capture the shocked, wide-eyed fear of the 🙀 emoji, primarily using arm movements to express surprise and recoil.  The robot's arms will initially be raised to the sides of the face, as if to shield it, and then quickly retract downwards in a startled motion.  The wrists will be angled to emphasize the defensive nature of the pose. In the first frame, both arms are raised high, palms facing inward towards the face, as if protecting it from something frightening. joint1 is rotated slightly outward, and joint2 pitches the arms upward.  The wrists are turned inward at -90 degrees. This mimics the instinctive reaction of shielding oneself.  In the second frame, the arms begin to lower slightly, but the palms still face inward, maintaining the guarded posture. joint2 decreases slightly, beginning the recoil. In the third frame, the arms drop further and begin to rotate outwards, away from the face, as if pushing something scary away. joint1 increases, and joint2 decreases further.  The wrists begin to rotate outwards as well. This transition captures the recoil from the initial shock. In the fourth frame, the arms are lowered significantly, extending downwards and slightly outwards, with palms facing slightly forward. joint1 increases further, and joint2 is now negative, pitching the arms downwards.  The wrists are close to neutral. This final pose represents the aftermath of the shock, a mix of fear and residual surprise.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 60.0,
+                        "wrist": -70.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -40.0,
+                        "wrist": 10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

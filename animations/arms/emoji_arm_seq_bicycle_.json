@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🚲",
+        "reasoning": "This animation sequence simulates the motion of pedaling a bicycle.  The arms will move in a circular motion, mimicking the turning of the handlebars.  The sequence will focus on the rhythmic movement of the arms, alternating between pushing and pulling motions to simulate the pedaling action.  The robot's lack of elbows will be compensated by exaggerating the shoulder movements to create a convincing illusion of pedaling. The left arm will lead, starting in a forward position, then moving down and back, while the right arm follows in a mirrored motion. This will create a natural-looking circular motion. Because this is a robot with no lower body, the animation will focus on the action of the arms to convey the action of riding a bike.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

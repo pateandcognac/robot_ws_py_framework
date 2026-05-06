@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "☁️",
+        "reasoning": "This sequence will depict a gentle, floating motion, suggesting the lightheartedness and airy nature of clouds.  The arms will move in a soft, wave-like pattern, mirroring the way clouds drift in the sky.  I'll use subtle variations in joint angles and wrist positions to create a sense of effortless movement. The lack of elbows in the robot's arm design will require careful choreography to simulate a fluid, natural-looking gesture.  Both arms will participate, moving in a coordinated but not identical fashion.  The sequence will emphasize the soft and yielding nature of clouds, avoiding any sharp or angular movements.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

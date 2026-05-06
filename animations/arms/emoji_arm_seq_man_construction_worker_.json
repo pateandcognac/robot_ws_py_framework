@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "👷‍♂",
+        "reasoning": "This animation sequence depicts a construction worker's arm movements.  The worker is likely holding tools, so the movements emphasize stability and controlled actions. Frame 1 shows arms slightly bent at the elbows (simulated by adjusting joint2), hands positioned as if holding tools. Frame 2 shows a slight upward adjustment of the arms, as if lifting a tool. Frame 3 shows the arms returning to the original position, and Frame 4 shows a slight downward movement as if placing a tool down.  The overall animation should convey careful and deliberate actions.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

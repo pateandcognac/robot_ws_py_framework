@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "👌",
+        "reasoning": "This sequence aims to create the 'OK' hand gesture, typically made by forming a circle with the thumb and index finger. Since the robot lacks fingers, I'll simulate this by slightly rotating the right wrist inward, as if pinching the index finger and thumb together, while keeping the other joints relatively neutral. The left arm will remain at rest, providing balance and directing attention to the right arm's gesture. In the first frame, both arms rest at the sides in a relaxed, neutral posture, with all joints at or near their default positions. This prepares the viewer for the upcoming gesture. In the second frame, the right arm starts to rise, moving slightly forward and upward, with the wrist rotating inward. This action mimics the beginning of the 'OK' gesture. The left arm remains at rest, providing counterbalance and enhancing the focus on the right arm. By the third frame, the right arm continues to rise, with the wrist rotating further inward to complete the 'OK' gesture. The right arm remains steady, ensuring the gesture is clear and distinct. In the fourth frame, the right arm holds the 'OK' position, emphasizing the completion of the gesture. The left arm remains neutral, providing balance. In the final frame, the right arm returns to its resting position at the side, signaling the end of the gesture. The left arm stays neutral throughout, providing balance and directing the viewer's attention to the right arm’s movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

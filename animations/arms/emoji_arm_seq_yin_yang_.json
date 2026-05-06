@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "☯️",
+        "reasoning": "This sequence aims to visually represent the balance and harmony inherent in the yin-yang symbol.  The animation will start with the arms spread wide, symbolizing openness, then transition to a pose where the arms are brought together, representing unity. Finally, the arms will return to the initial open position, showcasing the cyclical nature of balance.  Each arm will move in a coordinated way to reflect the continuous flow between opposing forces. The sequence will use a total of 4 frames. Frame 1: Arms are extended wide to the sides, palms facing up, symbolizing the openness and inclusivity of the yin-yang concept. Frame 2: Arms start to move towards the center, palms facing each other, representing the coming together of opposing forces. Frame 3: Arms meet in the center, palms pressed together, symbolizing the unity and balance achieved through the integration of opposites. Frame 4: Arms gracefully return to the initial wide position, completing the cycle and reinforcing the idea of continuous balance and harmony.  I'll use small adjustments in joint angles to create a smooth and natural transition between poses, avoiding jerky movements.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

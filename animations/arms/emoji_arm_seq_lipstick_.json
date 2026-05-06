@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "💄",
+        "reasoning": "This sequence mimics the action of applying lipstick. The animation will focus on the right arm, which holds the lipstick, while the left arm remains relatively still to create a natural balance. The sequence will start with the right arm raised to the mouth, then move through the application process, and finally end with the arm returning to a relaxed position.  The robot's lack of fingers will be addressed by using the overall hand position and wrist angle to suggest lipstick application.  Reference to the examples of hand movements to the face will help guide the natural flow of the motion. Frame 1 shows the right arm raised to the mouth, the wrist angled slightly to suggest applying lipstick. Frame 2 shows a slight downward movement, simulating the lipstick being applied. Frame 3 shows the arm pulling back slightly, completing the application. Frame 4 shows the arm returning to a relaxed position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 25.0,
+                        "joint2": 85.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 75.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": 80.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

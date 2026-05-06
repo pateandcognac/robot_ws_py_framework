@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "💑",
+        "reasoning": "This animation sequence depicts a couple embracing, using both arms to create a heart-like shape.  The movement will be slow and deliberate, conveying affection and closeness. Frame 1: Both arms start slightly raised and outward, palms facing each other. Frame 2: The arms move inward, closing the gap between them. Frame 3: The arms fully embrace, forming a heart shape around the center. Frame 4: The arms maintain the embrace, conveying a sense of lasting affection. Frame 5: The arms slowly return to a relaxed position, leaving a lingering sense of warmth and connection.  I will use joint1 to control the outward/inward rotation, and joint2 to control the upward/downward pitch of the arms. The wrists will be adjusted to create the heart shape and ensure the palms are correctly positioned.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 30.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 60.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 60.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

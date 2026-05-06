@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🐋",
+        "reasoning": "This sequence aims to mimic the movement of a whale's tail as it dives into the ocean. Given the robot's limitations (no elbow joint), the focus will be on creating a smooth, wave-like motion with both arms working together to convey the whale's graceful descent.  I'll begin with the arms raised, then create a downward, sweeping movement, followed by a return to the starting position to suggest a cyclical, underwater motion.  In the first frame, both arms are raised and slightly curved outward, mimicking the beginning of a whale's dive as it arches its back.  joint1 rotates the arms outward, and joint2 pitches them upward. The wrists are kept neutral. In the second frame, the arms begin their downward sweep, with joint2 pitching downward, while joint1 maintains the outward rotation.  This creates the smooth, curved motion of the whale's tail. In the third frame, the arms continue their descent, reaching their lowest point. joint2 pitches the arms further downward, and joint1 rotates slightly inward, mimicking the tail's movement as it propels the whale deeper. The wrists remain neutral. In the fourth frame, the arms begin to rise again, preparing for the next wave-like motion. joint2 pitches upward, while joint1 rotates slightly outward again, mirroring the initial upward curve of the dive. In the final frame, the arms return to their starting position, completing the cycle. This sequence, while simplified, effectively captures the essence of a whale's dive using the robot's arm movements.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -40.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -30.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

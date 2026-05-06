@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🏠",
+        "reasoning": "This animation sequence depicts the robot gently cradling a house, emphasizing care and protection.  The sequence starts with the arms outstretched slightly, palms up, as if preparing to receive something.  The hands then come together to form a protective cradle, before gently lowering the imaginary house to a safe position. Finally, the arms return to a relaxed position.  The movement should be slow and deliberate, conveying a sense of gentle care.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -70.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

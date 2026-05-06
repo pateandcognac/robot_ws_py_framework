@@ -1,0 +1,79 @@
+[
+    {
+        "emoji": "🤚",
+        "reasoning": "This sequence aims to create the 'raised back of hand' gesture, commonly used as a signal to stop or as a gesture of disagreement. Given the robot's lack of fingers, the focus will be on presenting the back of the hand clearly, utilizing joint1 and joint2 to achieve a raised hand with the proper orientation. The left arm will remain neutral for balance and focus on the gesture. In the first frame, both arms are at the sides in a relaxed posture, with palms facing inward. This sets a neutral starting point, preparing for the subsequent raise of the right hand. In the second frame, the right arm begins to rise, with joint1 rotating outward to move the arm away from the body and joint2 pitching it upward to a 45-degree angle. The wrist also rotates inward to -90 degrees, turning the back of the hand forward, mimicking the beginning of the gesture. The left arm remains relaxed at the side. The third frame sees the right arm raised higher, with joint2 pitching upward to 90 degrees. The wrist remains rotated to keep the back of the hand presented. The left arm stays neutral to maintain the focus. Finally, the fourth frame positions the right arm in the fully raised 'stop' position. joint1 is adjusted slightly outward to -10.0 to position the arm directly in front, with joint2 pitching the arm to its full upward 90-degree extension. The wrist maintains its inward rotation to emphasize the back of the hand. The left arm remains at rest throughout the sequence, providing balance and directing attention to the right arm’s gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 90.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

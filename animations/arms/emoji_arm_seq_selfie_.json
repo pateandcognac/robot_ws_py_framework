@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🤳",
+        "reasoning": "This animation sequence simulates taking a selfie. The robot will hold the phone (represented by the arm position) up near the face and then lower it slightly, as if adjusting the angle or checking the shot. The sequence will focus on the right arm, which holds the phone, while the left arm remains relaxed. In the first frame, the right arm is raised to shoulder height, slightly angled outward, and the wrist is rotated to simulate holding a phone. The left arm remains at the side. In the second frame, the right arm moves slightly higher and closer to the face, as if the robot is taking the selfie. In the third frame, the right arm lowers slightly, as if adjusting the angle of the phone. In the fourth frame, the right arm returns to the initial position, suggesting the selfie is complete. The left arm remains mostly still throughout the sequence, providing a contrast to the active right arm.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 60.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 30.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

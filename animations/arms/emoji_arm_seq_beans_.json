@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🫘",
+        "reasoning": "This sequence mimics the action of planting beans, starting with arms at rest and ending with arms gently lowered after a planting motion. The sequence uses a combination of both arms in a synchronized, yet slightly offset manner to simulate the act of planting multiple beans. I will ensure smooth transitions while checking against existing examples to confirm the range of motion and naturalness of the planting motion. In the first frame, both arms start in a neutral position at the side, with a slight outward roll at joint1 and a downward pitch of -90° at joint2.  Wrists remain neutral. In the second frame, both arms lift, with the left arm slightly ahead of the right. joint1 rotates slightly outward, and joint2 pitches upward to about 45°. The wrists remain neutral. This mimics the action of scooping up the beans. The third frame shows both arms moving downward, with the right arm slightly ahead. joint2 pitches downward to about -45°, and joint1 rotates slightly inward. This action simulates the planting motion. In the fourth frame, the arms return to the neutral position, mimicking the end of the planting motion. joint2 returns to -90°, and joint1 rotates back to a neutral position. The wrists remain neutral. This concludes the planting sequence. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": 40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

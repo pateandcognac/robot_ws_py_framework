@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🫠",
+        "reasoning": "This sequence aims to capture the feeling of melting or drooping, using downward arm motions and slight wrist rotations to create a sense of collapse. In the first frame, both arms start in a neutral, upright position, with joint1 slightly inward and joint2 positioned upward. The wrists are neutral, palms facing inward. This creates a sense of anticipation before the 'melt.'  In the second frame, the arms begin to droop, with joint2 pitching downward for both arms, starting the melting motion. The wrists rotate slightly inward to emphasize the feeling of deflation. By the third frame, the arms droop further, with joint2 continuing to pitch downward, bringing the arms closer to the body. The wrists rotate further inward, enhancing the sense of collapse. In the fourth frame, the arms reach their lowest point, with joint2 pitching downward as far as possible, completing the 'melting' effect. The wrists rotate inward to their maximum extent, emphasizing the finality of the droop. Finally, the fifth frame introduces a slight bounce or recoil, with joint2 pitching upward slightly for both arms, as if the robot is briefly regaining composure after the melt. The wrists return to a neutral position, suggesting a momentary pause before potentially melting again.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -15.0,
+                        "joint2": 20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -20.0,
+                        "wrist": -40.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -25.0,
+                        "joint2": -70.0,
+                        "wrist": -60.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

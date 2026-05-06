@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🍎",
+        "reasoning": "This animation sequence depicts a robot playfully interacting with an imagined apple. The sequence starts with both arms extended forward, palms up, as if reaching for an apple. Then, one arm moves to mimic picking up the apple, and the other arm brings it towards the face to eat it. Finally, both arms are relaxed at the sides. In the first frame, both arms are in front of the robot, palms up, to receive the apple. In the second frame, the right arm bends to pick the apple, while the left arm remains at the position of the first frame. The third frame shows the right arm bringing the apple to the mouth, while the left arm returns to the first frame's position. The fourth frame shows both arms returning to a neutral position, as the robot enjoys the apple. This sequence simulates a natural interaction between the robot and the apple.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

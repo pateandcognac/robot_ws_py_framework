@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🐓",
+        "reasoning": "This sequence will mimic a rooster's proud strutting and wing-flapping.  The robot will use both arms in a coordinated motion, alternating between frames to create a dynamic, almost comical effect.  The movements will be exaggerated to highlight the rooster's flamboyant nature. Frame 1 will show both arms slightly raised, with the wrists angled outward to suggest wings. Frame 2 will show the left arm lowered, and the right arm raised higher. Frame 3 will mirror Frame 2, with the right arm lowered and the left raised higher. Frame 4 will bring both arms back to the initial raised position, completing the cycle.  The reasoning behind this movement is to create a visual representation of a rooster's characteristic wing-flapping and proud strut.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": 60.0,
+                        "wrist": -60.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 40.0,
+                        "joint2": 60.0,
+                        "wrist": -60.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

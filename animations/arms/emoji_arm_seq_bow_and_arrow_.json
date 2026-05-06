@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🏹",
+        "reasoning": "This sequence depicts the action of drawing a bow and arrow, focusing on the arm movements involved. The left arm pulls the bowstring back, while the right arm holds the bow steady.  The sequence will emphasize the transition from a relaxed stance to a fully drawn bow. To make the animation more dynamic, I'll incorporate some subtle movements in the right arm to show balance and preparation for the shot. I will use the provided examples as a guide, but will ensure that the range of motion stays within the robot's physical limitations, as described in the instructions. In the first frame, both arms are at rest. The left arm is slightly inward, and the right arm hangs by the side. This sets a neutral starting position before the action begins. In the second frame, the right arm begins to stabilize the bow, holding it firmly. The left arm starts to pull the bowstring back slightly. This is a transition frame illustrating the beginning of the draw. By the third frame, the right arm remains steady, while the left arm draws the string further back. The wrist slightly rotates to mimic the natural curve of drawing an arrow. This emphasizes the action of the draw. In the fourth frame, the bow is fully drawn. The left arm extends backward, and the bow is stretched taut. The right arm maintains its position to ensure stability. This posture reflects the tension and readiness before the shot. In the fifth frame, the bow is still fully drawn, but the left arm and body move slightly forward, simulating the aiming phase before the release of the arrow. This adds a more dynamic and nuanced final pose.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -15.0,
+                        "wrist": -30.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 70.0,
+                        "joint2": 15.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 60.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

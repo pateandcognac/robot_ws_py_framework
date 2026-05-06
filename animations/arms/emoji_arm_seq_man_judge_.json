@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "👨‍⚖️",
+        "reasoning": "This animation sequence depicts a judge's thoughtful and deliberate gestures. The sequence starts with the arms resting at the sides, then progresses to a pose with hands steepled, followed by a hand gesture suggesting careful consideration, before returning to a neutral position. Frame 1: Both arms rest at the sides, palms facing inwards. Frame 2: The hands come together in a steeple position in front of the chest, suggesting thoughtfulness and deliberation. Frame 3: One hand moves to rest on the other, creating a pose that suggests careful consideration. Frame 4: Both arms return to the neutral resting position. The subtle variations in hand and arm positions convey a sense of gravitas and measured decision-making, reflecting the character of a judge. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

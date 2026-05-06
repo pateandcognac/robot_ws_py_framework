@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🏨",
+        "reasoning": "This animation sequence will depict a welcoming gesture, suitable for a hotel.  The robot will extend both arms slightly outward and downward, palms up, as if offering a warm greeting or service.  The arms will move in a smooth, inviting arc. The animation will emphasize gentle movement to convey a sense of calm and hospitality. Frame 1 will have the arms at the sides. Frame 2 will show arms starting to move out. Frame 3 will show arms in the final welcoming position. Frame 4 will show arms returning to the sides.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🧗‍♀️",
+        "reasoning": "This sequence simulates a climbing motion, focusing on alternating arm movements and slight body shifts to mimic the physical exertion and balance required in climbing.  The arms will move asynchronously to create a realistic climbing motion.  In the first frame, the right arm reaches high, as if gripping a hold, while the left arm is lower, providing support. joint1 for the right arm rotates inward, and joint2 pitches it upward.  The left arm, with joint1 rotated outward, is positioned lower with joint2.  In the second frame, the left arm reaches higher, mirroring the initial position of the right arm, while the right arm moves lower, preparing to reach for the next hold. This switch in arm positions creates the alternating motion of climbing.  The third frame has the right arm reaching even higher, extending the body upward as if gaining ground.  The left arm provides support, slightly bent, ready to push the body higher.  The fourth frame shows the left arm reaching high again, pulling the body up, with the right arm lower, preparing for the next move. This continuous alternation between arm positions creates a believable climbing sequence.  The fifth frame emphasizes the upward movement, with both arms reaching high, as if securing a strong grip and preparing to pull the body upward. This pose reflects the climber's determination and upward progress.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 90.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 90.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 25.0,
+                        "joint2": 45.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -25.0,
+                        "joint2": 90.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -25.0,
+                        "joint2": 90.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 25.0,
+                        "joint2": 45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20,
+                        "joint2": 90,
+                        "wrist": -90
+                    }
+                }
+            ]
+        ]
+    }
+]

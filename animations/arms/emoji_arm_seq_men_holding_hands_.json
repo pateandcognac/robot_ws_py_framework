@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "👬",
+        "reasoning": "This animation sequence depicts two robots holding hands, emphasizing connection and friendship.  The movement should be smooth and gentle, suggesting a natural and comfortable interaction. I'll use a 4-frame sequence to highlight the key moments of the gesture. The robot's lack of elbows will be compensated by careful wrist positioning and joint movements to create the illusion of a natural hand clasp. Frame 1 will show both robots with arms slightly extended outward, palms facing each other in preparation to clasp hands.  Frame 2 shows the hands meeting and beginning to grasp each other. Frame 3 depicts the full hand clasp, with arms adjusted slightly to create a comfortable and stable hold. Finally, Frame 4 will have the robots holding hands, but with a slight adjustment to their posture to add a touch of natural variation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 40.0,
+                        "joint2": -15.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": -15.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 35.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 35.0,
+                        "joint2": 0.0,
+                        "wrist": 45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

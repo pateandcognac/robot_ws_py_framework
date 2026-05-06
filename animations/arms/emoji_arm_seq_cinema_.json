@@ -1,0 +1,75 @@
+[
+    {
+        "emoji": "🎦",
+        "reasoning": "This animation sequence simulates the act of looking intently at a movie screen.  The robot will hold its hands up to frame the screen, mimicking the way someone might focus on a movie.  The movement will be deliberate and somewhat formal, reflecting the seriousness of watching a film. In frame one, the arms will be at rest. In frame two, both arms will raise to frame an imaginary screen, with the hands slightly cupped. In frame three, the hands will move closer together to better frame the \"screen.\" In frame four, the robot will slightly lean forward, intensifying the viewing experience. In frame five, the arms will lower back to a neutral position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 40.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 40.0,
+                        "wrist": -20.0
+                    }
+                },
+                {
+                    "state": "BodyPose",
+                    "parameters": {
+                        "lean": 10
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "BodyPose",
+                    "parameters": {
+                        "lean": 0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "🧰",
+        "reasoning": "This animation sequence depicts the robot carefully handling a toolbox. The movement starts with both arms at rest, then the robot extends one arm to pick up the toolbox, holds it for a moment, and then returns the toolbox to its original place. Frame 1 shows both arms relaxed at the sides. Frame 2 shows the right arm extending to grasp the toolbox. Frame 3 shows the right arm holding the toolbox. Frame 4 shows the right arm returning the toolbox to its original position. Frame 5 shows both arms returning to their resting position. The left arm remains mostly still throughout the sequence, acting as a counterbalance to the right arm's movements. This provides a sense of stability and control while the robot manipulates the toolbox. The movements are slow and deliberate, reflecting careful handling of the tool. This sequence emphasizes the robot's gentleness and precision, and the importance of the toolbox. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

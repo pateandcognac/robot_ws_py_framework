@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🌍",
+        "reasoning": "This animation sequence will show the robot gently cradling a globe, emphasizing the care and attention given to the world.  The movement will be slow and deliberate, conveying a sense of responsibility and global awareness. The sequence will start with the robot's arms slightly apart, then bring the arms together to cradle the imaginary globe, and then return to a relaxed position.  The robot will not have any hands, but the arms will be positioned to create the illusion of holding the globe. This animation will emphasize the emotion of care for the whole world and could be used for emojis like 🌍 or 🌎. Frame 1: Arms slightly open, hands slightly up, palms facing in. Frame 2: Arms move together to cradle the invisible globe, palms facing up. Frame 3: Arms move back to open position, palms facing inward.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

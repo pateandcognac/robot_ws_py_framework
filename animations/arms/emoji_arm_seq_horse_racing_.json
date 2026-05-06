@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🏇",
+        "reasoning": "This animation sequence simulates the motion of a jockey riding a horse, focusing on the upper body movement.  Since our robot lacks a horse, we'll focus on the jockey's arm movements to convey the excitement and dynamism of horse racing.  The animation will emphasize a forward-leaning posture with arms outstretched, suggesting balance and momentum.  We'll use a combination of joint rotations to create a sense of movement and anticipation. The left arm will mimic a slight grip and the right arm will be more expressive, mimicking the jockey’s posture and the overall movement. The sequence will begin with a neutral position, gradually transition to a forward-leaning posture, then back to a more neutral position, mimicking the rhythm of a horse race. The sequence will end with a subtle return to a neutral pose, suggesting the end of the race or a brief pause between strides.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -30.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

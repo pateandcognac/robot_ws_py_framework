@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🚽",
+        "reasoning": "This animation sequence depicts a robot using a toilet.  The sequence will show the robot reaching out, then pulling down its pants, and finally sitting.  Since the robot has no legs, we will only show the upper body movement. Because the robot has no hands, we will simulate the action of pulling down pants by moving the arms downward and inward. The arms will move in a way that suggests the robot is interacting with the toilet, mimicking the actions of a person using a toilet. The arms will be used to simulate the actions of pulling down pants and then sitting down. Frame 1: Arms extended forward, palms down. Frame 2: Arms move down and inward, simulating the action of pulling down pants. Frame 3: Arms move slightly up and inward, simulating the action of sitting on the toilet. Frame 4: Arms in a relaxed position, simulating the robot being seated on the toilet.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🚩",
+        "reasoning": "This animation sequence simulates planting a flag, starting with both arms at rest and culminating in the left arm holding the flag aloft. The right arm provides support and balance. The sequence uses a three-frame approach, emphasizing clear transitions and avoiding intermediate steps. Frame 1: Both arms start in a neutral, relaxed position. The left arm is slightly raised to mimic preparation for planting the flag. Frame 2: The left arm extends upward, while the right arm extends to provide balance and support. The wrists are angled slightly to simulate the action of planting the flag. Frame 3: The left arm holds the flag aloft in a victory pose, and the right arm returns to the side. This final pose represents the successful planting of the flag.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

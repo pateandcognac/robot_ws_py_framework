@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🛰️",
+        "reasoning": "This animation sequence will depict the robot interacting with a satellite, starting with arms outstretched, then moving to a position as if holding the satellite, and finally returning to a neutral pose.  The sequence will emphasize the robot's careful handling of the satellite. The robot does not have hands, so the 'holding' will be simulated by positioning arms appropriately.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

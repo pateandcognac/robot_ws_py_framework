@@ -1,0 +1,81 @@
+[
+    {
+        "emoji": "😠",
+        "reasoning": "This sequence aims to express anger through a series of tense arm movements, culminating in crossed arms and tight fists.  The robot lacks actual fists, but we can simulate the gesture by angling the wrists inward. The movements should be sharp and abrupt to reflect the emotion. In the first frame, both arms are held stiffly at the sides, joint1 slightly inward, joint2 straight down, and wrists neutral. This represents contained anger. In the second frame, both arms lift slightly, joint2 moving to a 45-degree angle, while joint1 stays inward and wrists rotate inward to -45 degrees, as if beginning to clench.  This shows the anger escalating. In the third frame, the arms move outwards slightly, joint1 rotating to 45 degrees, while joint2 remains at 45 degrees and wrists turn further inward to -90 degrees, simulating tightening fists. This indicates building frustration. In the fourth frame, the arms cross, left arm slightly higher, joint1 at 70 degrees for the left and 60 degrees for the right, joint2 at 70 degrees for both, wrists maintaining the -90-degree inward rotation. This signifies the anger becoming outwardly directed. Finally, the fifth frame intensifies the crossed arms, joint1 tightening to 80 degrees for the left and 70 degrees for the right, joint2 at 80 degrees for both, and wrists locked at -90 degrees. This represents the peak of the angry expression, with the crossed arms and 'fists' conveying a closed-off and hostile posture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 70.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 60.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 80.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 70.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

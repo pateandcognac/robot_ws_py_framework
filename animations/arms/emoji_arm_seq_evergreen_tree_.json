@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🌲",
+        "reasoning": "This sequence aims to evoke the quiet strength and resilience of an evergreen tree, using subtle arm movements to suggest growth and stability. The robot's arms will move in a slow, deliberate manner, mirroring the steady, upward growth of a tree. I'll start with a grounded pose, then extend the arms outward and slightly upward to symbolize branches reaching towards the sky. The limited joint structure of the robot will be used to create a sense of rootedness and upward growth. In the first frame, both arms rest at the sides, slightly angled outward, with joint1 rotated slightly outward and joint2 pitching the arms downward. This grounded pose represents the tree's roots and stability. The wrists are neutral, keeping the palms facing inward. In the second frame, the arms begin to extend outward, with joint1 rotating further outward and joint2 pitching the arms slightly upward, mimicking branches reaching out. The wrists remain neutral. By the third frame, the arms reach their full extension, symbolizing the tree's growth towards the sky. joint1 maintains its outward rotation, while joint2 pitches the arms slightly higher. The wrists rotate slightly outward, as if the branches are gently swaying in the breeze. In the fourth frame, the arms lower slightly, suggesting the tree's resilience against the elements, with joint2 adjusting the pitch downward. Finally, in the fifth frame, the arms return to their initial grounded pose, emphasizing the tree's rootedness and stability. This sequence uses minimal movement to capture the essence of an evergreen tree, focusing on slow, deliberate motions to convey strength and resilience.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -40.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": -50.0,
+                        "wrist": 15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

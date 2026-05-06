@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "📕",
+        "reasoning": "This animation sequence shows the robot gently holding a closed book in front of its body.  The movement is slow and deliberate, emphasizing the careful handling of the book.  The sequence starts with both arms slightly raised and the hands positioned to receive the book.  Then, the hands gently close around the book, before settling into a comfortable resting position. The final frame shows the robot holding the book close to its chest. This conveys care and respect for the book, suitable for an emoji like 📕. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 10.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": -10.0,
+                        "wrist": -60.0
+                    }
+                }
+            ]
+        ]
+    }
+]

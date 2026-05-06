@@ -1,0 +1,122 @@
+[
+    {
+        "emoji": "🧑‍🧒‍🧒",
+        "reasoning": "This animation sequence aims to depict a family scene with two children. The adult will have their arms open in a welcoming gesture while each child will have one arm reaching towards the adult.  The sequence will emphasize the warmth and connection within the family. To achieve this, I will use a combination of joint1 and joint2 movements to create natural-looking arm poses. The adult's arms will be slightly curved to create a more inviting posture, while the children's arms will be extended towards the adult. This demonstrates the closeness and affection within the family unit.  The sequence will progress from a neutral starting position to a full embrace, capturing the essence of family connection. The transition between frames will focus on gradual, natural movements to avoid sudden, robotic-like actions.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "child_left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "child_right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "child_left",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "child_right",
+                        "joint1": -20.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 60.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -60.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "child_left",
+                        "joint1": 30.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "child_right",
+                        "joint1": -30.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

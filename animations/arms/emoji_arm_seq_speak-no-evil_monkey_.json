@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🙊",
+        "reasoning": "This sequence depicts the monkey covering its mouth, a classic representation of the speak-no-evil monkey.  The animation will focus on bringing both arms up to cover the mouth, emphasizing the secrecy or shushing implied by the emoji.  The movements will be smooth but deliberate, reflecting the intent to suppress speech.  I will check existing examples for guidance on joint ranges and natural movements. Frame 1: The starting position will have both arms hanging relaxed at the sides. Frame 2: Both arms begin to rise, rotating outward at the shoulder (joint1) and pitching upward (joint2). The wrists begin to turn inward. Frame 3: The arms continue to rise, now almost at shoulder height. The wrists are now fully rotated to bring the palms together over the mouth. Frame 4: The arms complete the gesture, with the hands gently covering the mouth. The wrists are slightly adjusted to ensure a natural, comfortable pose. Frame 5 (optional): A slight pause, with the hands still covering the mouth, before the arms eventually return to their relaxed position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 75.0,
+                        "wrist": -75.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 35.0,
+                        "joint2": 85.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 35.0,
+                        "joint2": 85.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

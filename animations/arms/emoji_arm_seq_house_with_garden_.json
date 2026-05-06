@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🏡",
+        "reasoning": "This animation sequence depicts a gentle, welcoming gesture, suggesting the cozy and inviting feeling associated with a house with a garden. The arms move in a slow, deliberate manner, reflecting the peaceful atmosphere of a home. In frame 1, both arms are extended slightly forward and outward, palms facing upward, as if presenting or offering the house.  Frame 2 sees the arms move slightly downward, maintaining the open palms and outward extension, suggesting a welcoming embrace. Frame 3 brings the arms in slightly closer to the body, still with open palms, as if inviting someone closer. The final frame shows the arms returning to a relaxed position at the sides, maintaining the welcoming atmosphere.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -60.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -60.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

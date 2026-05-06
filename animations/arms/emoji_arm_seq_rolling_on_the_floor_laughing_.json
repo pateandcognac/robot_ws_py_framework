@@ -1,0 +1,81 @@
+[
+    {
+        "emoji": "🤣",
+        "reasoning": "This sequence aims to capture the physical expression of rolling on the floor laughing. Since the robot can't actually roll, the arm movements will convey the chaotic, joyful energy of the emoji. The movements will be exaggerated and somewhat erratic to mimic the uncontrolled nature of laughter.  In the first frame, both arms are up in the air, with joint1 rotated inward and joint2 pitched upward, wrists slightly flexed. This mimics the throwing back of the head in laughter. The second frame has the left arm swinging down and across the body as if flailing, with joint1 rotating outward and joint2 pitching downward. The right arm remains up, but joint2 pitches slightly forward, as if off balance. The third frame has the right arm swinging down and across the body, mirroring the previous motion of the left arm, while the left arm comes back up. This creates a sense of uncontrolled movement. In the fourth frame, both arms are back up in the air, similar to the first frame but with slight variations in joint angles to avoid perfect repetition. This reinforces the cyclical, repetitive nature of laughter. The final frame has both arms flung out to the sides, with joint1 rotated outward and joint2 pitched downward, wrists loose. This represents a final burst of energy as if the robot is completely overwhelmed with laughter.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -40.0,
+                        "joint2": 90.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 40.0,
+                        "joint2": -45.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -40.0,
+                        "joint2": 60.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": 70.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": -45.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -30.0,
+                        "joint2": 80.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -70.0,
+                        "wrist": 30.0
+                    }
+                }
+            ]
+        ]
+    }
+]

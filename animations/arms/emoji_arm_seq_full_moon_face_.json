@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🌝",
+        "reasoning": "This sequence aims to capture the serene and calming feeling associated with a full moon.  The animation will feature a slow, gentle rise of both arms, mimicking the moon's gradual ascent in the night sky. The arms will move in a synchronized, graceful manner, emphasizing the peaceful and tranquil nature of the emoji.  The wrists will be slightly angled to create a soft, inviting gesture.  The movement will be deliberate and measured, avoiding any abrupt or jerky motions.  Each frame represents a distinct stage of this upward motion, and the final frame will hold the arms at their peak height before beginning to gently lower back down. The arms will stay close to the body throughout the sequence, symbolizing calm and tranquility rather than expansive gestures.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -60.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 0.0,
+                        "wrist": 30.0
+                    }
+                }
+            ]
+        ]
+    }
+]

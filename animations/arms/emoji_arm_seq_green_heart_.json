@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "💚",
+        "reasoning": "This animation sequence expresses affection and care, mirroring the feeling evoked by the green heart emoji.  The robot will use both arms in a gesture that gently cradles something precious. The movement starts with arms slightly raised and angled inward, then moves to a gentle embrace before returning to a relaxed position.  The use of both arms suggests a warm, encompassing feeling, appropriate for the emoji. Frame 1 shows arms raised slightly towards the chest, palms facing each other. Frame 2 shows the arms moving inward to embrace an invisible object. Frame 3 shows the arms slightly lower, gently holding the invisible object. Frame 4 returns the arms to a relaxed neutral position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 30.0,
+                        "wrist": -60.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

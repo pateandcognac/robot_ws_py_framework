@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🏊‍♂️",
+        "reasoning": "This sequence simulates the arm movements of a person swimming freestyle.  The arms move in a reciprocal pattern, pulling and recovering in a smooth, continuous motion.  We'll focus on creating keyframes that capture the distinct phases of the stroke, leveraging the robot's two-joint arm structure to mimic the motion as closely as possible.  The robot's lack of elbows will require us to be creative in portraying the swimming motion. We'll use the wrist to indicate the direction of the hand in the water, as well as the rotation of the arms.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -20.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 30.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -20.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

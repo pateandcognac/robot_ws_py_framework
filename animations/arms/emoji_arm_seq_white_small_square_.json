@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "▫️",
+        "reasoning": "This animation sequence will depict a robot's arms expressing curiosity or careful observation, reflecting the small, unassuming nature of the white square emoji. The movement will be subtle, focusing on precise hand and arm positioning to convey attention to detail. The sequence will start with arms at rest, then move to a position of focused attention, and end with a slight return to a more relaxed pose. Frame 1 will show the robot's arms at its sides, in a relaxed pose, as a starting point. Frame 2 will depict both arms moving slightly forward, with the hands cupped, as if examining the square, showcasing focused attention. Frame 3 will have the arms in a slightly more relaxed position, but still forward, as if the robot is still observing the square but is now a bit less tense. Finally, Frame 4 will return the arms to a neutral resting position, indicating completion of observation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -20.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -45.0,
+                        "wrist": -15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🏌️‍♀️",
+        "reasoning": "This sequence simulates a golf swing, focusing on the right arm's movement for the swing. The left arm will maintain a stable, balanced position throughout the sequence. The robot's lack of elbows will be addressed by creating a fluid, sweeping motion with the right arm, using the shoulder joints to achieve the necessary arc. The wrists will subtly adjust to maintain a natural grip and follow-through. In the first frame, the right arm is positioned as if holding a golf club, slightly back. The left arm is positioned for balance and stability. In the second frame, the robot starts its downswing, with the right arm moving forward and downward in a smooth arc. The left arm remains stable to provide counterbalance. The third frame shows the right arm at its lowest point of the swing, just before impact. The left arm remains steady. The fourth frame shows the follow-through, with the right arm completing its arc and continuing its upward motion. The left arm remains in a stable position. In the fifth frame, the right arm returns to a relaxed position, and the left arm continues its balanced position. This sequence captures the key moments of a golf swing in a way that is both expressive and realistic given the robot's arm design.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -60.0,
+                        "joint2": -10.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -80.0,
+                        "joint2": 20.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

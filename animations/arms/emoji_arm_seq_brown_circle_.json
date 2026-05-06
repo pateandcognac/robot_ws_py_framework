@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "🟤",
+        "reasoning": "This sequence will depict a robot expressing curiosity or contemplation using the brown circle emoji.  The animation will involve the robot bringing its hands together in front of its body, as if examining something small and intriguing.  The movement will be gentle and thoughtful, reflecting the emoji's earthy and somewhat mysterious tone. The arms will start in a relaxed position and then move in a smooth, deliberate manner.  The final frame will show the hands close together, but not quite touching, to emphasize the careful observation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 15.0,
+                        "wrist": -20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 15.0,
+                        "wrist": -20.0
+                    }
+                }
+            ]
+        ]
+    }
+]

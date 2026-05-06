@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🚓",
+        "reasoning": "This animation sequence will depict a robot directing traffic, mimicking the function of a police car.  The robot will use sweeping arm movements to simulate the guiding of vehicles.  The animation will focus on clear, distinct poses rather than subtle transitions, allowing the animation system to handle smooth interpolations. Frame 1: The robot's arms will be extended outward, palms down, creating a broad, 'stop' gesture. Frame 2: The left arm sweeps upward, in a diagonal motion, indicating that traffic on the left can proceed. Frame 3: The left arm returns to the neutral position while the right arm moves upward in a diagonal motion to signal that the traffic on the right can proceed. Frame 4:  Both arms will return to the initial 'stop' position, completing the cycle and ready for repeating the sequence.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 90.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 90.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

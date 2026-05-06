@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🟩",
+        "reasoning": "This animation sequence will depict a robot expressing growth, stability, and perhaps a hint of cautious optimism, reflecting the visual of a solid, grounded green square. The arms will move in a way that suggests both groundedness and a slight upward trend, symbolizing growth. The movement will be slow and deliberate, avoiding abrupt changes.  The first frame will show the arms at rest. The second frame will show a slight upward lift in both arms. The third frame will show the arms held at a steady position, signifying stability. Finally, the fourth frame will represent a slight downward shift, symbolizing a return to balance.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

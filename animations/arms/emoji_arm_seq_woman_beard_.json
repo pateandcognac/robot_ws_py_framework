@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "🧔‍♀️",
+        "reasoning": "This sequence will show a slight, questioning tilt of the head, conveyed through arm movements. The arms will start in a neutral position, move to a pose that subtly suggests a head tilt, and then return to neutral. This reflects the ambiguity often associated with the emoji. The movement will be understated to avoid overwhelming the emoji's inherent subtlety. Frame 1 will show both arms relaxed at the sides. Frame 2 will feature the left arm slightly raised and rotated outward, while the right arm moves down and inward, creating a subtle counterbalance that mimics a head tilt. Frame 3 will return both arms to their original neutral position. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

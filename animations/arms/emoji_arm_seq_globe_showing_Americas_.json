@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🌎",
+        "reasoning": "This sequence shows the robot presenting the world, focusing on the Americas.  The animation will start with the robot's arms at its sides, then move to cradling an invisible globe, and finally rest. The robot will use both arms to showcase the globe. The movement should be slow and deliberate, emphasizing the importance of the subject. Frame 1 shows arms at rest. Frame 2 shows the arms rising to cradle the globe. Frame 3 shows the arms holding the globe steadily. Frame 4 shows the arms gently lowering the globe. Frame 5 shows the arms returning to rest.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

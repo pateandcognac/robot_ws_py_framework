@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "👨‍💻",
+        "reasoning": "This animation sequence depicts a technologist engrossed in their work.  The overall posture should convey concentration and focus. The left arm will rest on the desk or table, while the right arm will interact with a keyboard or mouse. We will use subtle movements to show engagement without making the motion too dramatic. Frame 1: The starting position will have both arms slightly forward. The left arm will be slightly lower and more relaxed, while the right will be slightly more elevated, as if poised over a keyboard. Frame 2: The right arm moves slightly downward, simulating the action of typing or using a mouse. The left arm remains largely static. Frame 3: The right arm returns to its original position, and the left arm moves slightly upward, perhaps adjusting something on the table or desk. Frame 4:  Both arms return to the slightly forward, relaxed posture from frame 1, suggesting a moment of reflection before continuing the work.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

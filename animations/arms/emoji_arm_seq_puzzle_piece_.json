@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🧩",
+        "reasoning": "This animation sequence shows the robot carefully examining a puzzle piece, mimicking the thoughtfulness and precision associated with solving puzzles.  The robot will hold the piece up to examine it closely before placing it down. Frame 1 starts with both arms relaxed at the sides. Then, the robot brings its right arm forward to pick up the puzzle piece, holding it up to eye-level, while the left arm rests at the side. In Frame 2, the right arm holds the piece up, slightly rotated, as if the robot is studying its shape and how it might fit. Frame 3 shows the right arm moving down to place the piece back down. The final Frame 4 shows both arms returning to their resting position. The animation uses subtle movements to emphasize the careful nature of the task.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

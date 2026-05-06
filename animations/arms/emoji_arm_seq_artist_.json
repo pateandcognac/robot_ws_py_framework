@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🧑‍🎨",
+        "reasoning": "This animation sequence depicts an artist at work, using both arms in a fluid motion that captures the creative process. The sequence starts with both arms relaxed at the sides, then transitions to a painting motion, followed by a thoughtful pose, and finally returns to rest. The left arm mimics holding a brush, while the right arm guides or supports. I'll ensure smooth transitions by using slight adjustments between frames, referencing previous examples for natural arm movements. Frame 1 shows the arms at rest, setting the stage. Frame 2 begins the painting motion, with the left arm angled up and slightly forward, mimicking holding a brush. The right arm is positioned for support or guidance. Frame 3 shows a thoughtful pause, where the left arm moves slightly away from the canvas, as if the artist is considering their next stroke. The right arm remains in a supportive position. Finally, Frame 4 returns the arms to a relaxed state, ending the sequence.  The slight adjustments between frames will give a fluid appearance.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 30.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

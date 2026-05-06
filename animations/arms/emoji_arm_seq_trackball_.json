@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🖲️",
+        "reasoning": "This sequence simulates the action of using a trackball, primarily with the right hand. The left hand rests on the surface next to the trackball, providing stability and context. In the first frame, the left hand is positioned low, palm down, representing a resting position on the table or desk. The right hand hovers slightly above, ready to interact with the trackball.  The right wrist is angled slightly, anticipating the trackball motion. In the second frame, the right hand shifts slightly to the right, mimicking the movement of rolling the trackball. The left hand remains stationary, maintaining its supporting role. The third frame shows the right hand moving back to center, completing one full rotation of the trackball.  The subtle shift in wrist angle suggests the hand is guiding the trackball's movement. The fourth frame has the right hand shift slightly to the left, mirroring the motion from frame two but in the opposite direction.  This back-and-forth motion creates a natural flow for the trackball interaction.  Finally, in the fifth frame, the right hand returns to its central position, poised for further input. The left hand stays consistent throughout, providing a grounded and realistic feel to the interaction.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -50.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -50.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -50.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -50.0,
+                        "wrist": -10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

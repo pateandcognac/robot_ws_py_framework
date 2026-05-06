@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🧾",
+        "reasoning": "This animation sequence will show the robot carefully examining a receipt. The robot will hold the receipt in both hands, bringing it close to its face to examine the details. Then, it will slowly move the receipt away from its face, as if it has finished its examination. The movement will be slow and deliberate, reflecting careful attention to detail. The starting frame will show the robot holding the receipt in front of it, arms slightly bent to provide a more natural pose. The following frame will bring the receipt closer to the face, simulating a careful examination. Then, the receipt is slowly moved away, with the final frame showing it back in the original position, but with a slight change in angle, implying the examination is complete. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

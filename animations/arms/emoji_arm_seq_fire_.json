@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🔥",
+        "reasoning": "This sequence simulates the act of playfully tossing something into a fire, perhaps a marshmallow or a small piece of paper.  The animation will focus on the right arm, with the left arm remaining relatively still for contrast.  The movement will be dynamic, with clear start, peak, and end points.  I will use the examples to ensure the arm movements are fluid and within the robot's physical constraints. Frame 1: The right arm starts in a relaxed position at the side, slightly bent at the 'shoulder' (joint2). The wrist is neutral. Frame 2: The right arm begins to move upward and forward in an arc, simulating the throwing motion. The wrist starts to rotate slightly, preparing to release the object. Frame 3: The arm reaches its highest point, with the wrist fully rotated to release the object. The arm is extended slightly. Frame 4: The arm starts to return to its resting position, with a slight downward motion and the wrist rotating back to neutral. Frame 5: The arm is back to its original resting position, ready for another 'toss'. The left arm remains largely still throughout to emphasize the action of the right arm.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 45.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 70.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

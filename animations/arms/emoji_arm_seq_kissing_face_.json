@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "😗",
+        "reasoning": "This sequence aims to capture the gesture of a kiss, with the robot's arms mimicking the gentle placement of hands on the face before extending outward for the kiss. In the first frame, both arms are positioned near the face, with joint1 rotated inward and joint2 pitched upward, as if the robot is gently cupping its face. The wrists are rotated inward at -45.0 degrees. In the second frame, the arms extend slightly outward, with joint1 rotating outward and joint2 pitching forward. The wrists rotate further inward to -90.0 degrees, as if preparing to blow a kiss. In the third frame, the arms extend further outward, with joint1 and joint2 continuing their outward rotation and pitch, respectively. The wrists now face forward, at 0.0 degrees, as the kiss is 'blown' outward. In the final frame, the arms return to a relaxed position at the sides, with joint1 at 0.0, joint2 at -90.0, and wrists at 0.0, signifying the end of the gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 70.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 40.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

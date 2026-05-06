@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🏥",
+        "reasoning": "This sequence aims to evoke a sense of care and support, fitting the 🏥 emoji, by having the robot offer a comforting gesture. It starts with a neutral stance and transitions into a gentle, open-armed posture. In the first frame, both arms are relaxed at the sides, conveying a sense of calm and readiness. joint1 is at 0.0, keeping the arms aligned with the body, and joint2 is at -90.0, letting the arms hang naturally. The wrists are at 0.0, maintaining a neutral palm position. This sets the stage for a supportive gesture. In the second frame, the arms begin to open outward, as if offering a hug or support. joint1 rotates outward to 45.0 for both arms, while joint2 adjusts to -45.0, creating a gentle curve in the arms. The wrists rotate slightly inward to -45.0, presenting the palms in a welcoming gesture. This open posture symbolizes care and empathy. In the third frame, the arms extend further outward, emphasizing the offer of support. joint1 increases its outward rotation to 60.0, widening the embrace, while joint2 remains at -45.0. The wrists also rotate further inward to -60.0, enhancing the welcoming gesture. This broader stance reinforces the message of comfort and care. In the final frame, the arms return slightly towards the body, maintaining an open and inviting posture while suggesting a gentle embrace. joint1 decreases its rotation to 50.0, bringing the arms slightly closer, while joint2 remains at -45.0. The wrists adjust to -50.0, keeping the palms open and welcoming. This subtle shift maintains the sense of care while preparing for a return to a neutral position or a different gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -45.0,
+                        "wrist": -60.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": -45.0,
+                        "wrist": -50.0
+                    }
+                }
+            ]
+        ]
+    }
+]

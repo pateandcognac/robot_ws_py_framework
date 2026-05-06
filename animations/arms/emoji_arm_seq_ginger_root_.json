@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🫚",
+        "reasoning": "This animation sequence will show the robot delicately holding and inspecting a ginger root, emphasizing care and curiosity.  The robot's movements should be slow and deliberate. The sequence will focus on the robot's interaction with an unseen ginger root, implying its presence. Frame 1: Both arms begin slightly forward and slightly apart, palms facing each other as if in anticipation of receiving the root. Frame 2: The right arm moves slightly down and to the side, as if carefully receiving the ginger root. The left arm moves slightly up and forward, preparing to support or examine the root. Frame 3: Both arms move inward and upward, cradling the imaginary root gently. The wrists are slightly tilted inward, as if the robot is examining the root closely. Frame 4: The robot's left arm returns to its initial position, while the right arm slightly raises, as if presenting or showing off the root. The wrists slightly rotate outward in this frame, implying a satisfied inspection. Frame 5:  Both arms return to their resting position, implying the end of the interaction.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 40.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 25.0,
+                        "joint2": 40.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

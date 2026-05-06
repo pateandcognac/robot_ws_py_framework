@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🎭",
+        "reasoning": "This sequence will depict a robot gracefully mimicking a theatrical bow, emphasizing the performing arts theme. The sequence will focus on a smooth, controlled movement of both arms, reflecting the elegance often associated with stage performances. Each frame will represent a distinct stage in the bow, highlighting the transition from a neutral posture to a full bow and back to neutral. The robot's physical constraints will be carefully considered to avoid stiff, unnatural motions. Frame 1: The robot starts in a neutral position, arms at its sides. The robot's arms are in a neutral position, ready to begin the bow. Frame 2: The robot's arms move slightly forward and upward, initiating the bow. The arms bend slightly at the \"shoulders\", moving with a controlled and graceful motion. Frame 3: The robot's arms extend forward and downward, completing the bow. The robot's body leans slightly, adding to the effect of a full bow. Frame 4: The robot's arms return to a slightly forward position. The arms move back up from the bow, retracting slowly. Frame 5: The robot's arms are back to the neutral position, completing the bow.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

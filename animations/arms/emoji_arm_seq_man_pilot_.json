@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "👨‍✈️",
+        "reasoning": "This animation sequence portrays a pilot in control of an aircraft. The sequence begins with the pilot's arms outstretched, gripping the controls, then transitions to a more relaxed posture as the plane stabilizes before finally returning to a neutral position. Frame 1 shows the arms extended, mirroring the intensity of controlling an aircraft. Frame 2 shows the arms slightly relaxed, indicating a moment of stability. Frame 3 shows the arms returning to the neutral position, conveying a sense of calm and control. The left arm remains slightly more relaxed than the right arm to simulate the subtle differences in how a pilot might hold the controls. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -10.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -10.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

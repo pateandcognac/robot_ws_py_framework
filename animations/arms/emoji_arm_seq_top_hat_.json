@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🎩",
+        "reasoning": "This animation sequence will depict a robot elegantly tipping its hat.  The robot will use both arms to perform this action. The sequence will start with both arms at rest, then move to a position where both arms are raised, palms facing each other to lift the hat (which is not physically modeled here), and finally return to the resting position. This will be a three-frame animation. Frame 1: The robot's arms are at rest, hanging naturally at its sides. Frame 2: The robot raises both arms in a graceful arc, palms facing each other, as if supporting an invisible top hat. Frame 3: The robot returns its arms to their resting position. This sequence conveys politeness and respect, consistent with the emoji's meaning.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "☣️",
+        "reasoning": "This animation sequence depicts a robot reacting to a biohazard symbol, conveying a sense of caution and alarm.  The sequence begins with arms at rest, then transitions to arms raised in a defensive posture, followed by a slight lowering of the arms as if assessing the threat, before finally settling into a cautious, observant position.  The use of both arms adds to the feeling of apprehension. The slight variations in joint angles and wrist positions help to create a more natural, less robotic movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,59 @@
+[
+    {
+        "emoji": "🏙️",
+        "reasoning": "This sequence simulates a person looking upward at a cityscape, perhaps in awe or wonder. The arms will remain at the sides for the majority of the animation, but the head will tilt back slightly to emphasize the upward gaze. The animation will start with a neutral pose, then the head will tilt back, and finally, it will return to neutral.  The arms provide visual grounding to keep the motion from becoming too distracting.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "HeadPose",
+                    "parameters": {
+                        "tilt": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "HeadPose",
+                    "parameters": {
+                        "tilt": 30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "HeadPose",
+                    "parameters": {
+                        "tilt": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

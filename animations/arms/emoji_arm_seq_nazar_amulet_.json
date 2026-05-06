@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🧿",
+        "reasoning": "This animation sequence for the nazar amulet emoji (🧿) will focus on a protective gesture. The robot will gently raise its hands in a circular motion, mimicking the amulet's shape and suggesting a warding-off action. The movement will be slow and deliberate, emphasizing the protective aspect. The sequence will begin with the arms at rest and end with them returning to a relaxed position. The sequence will use both arms in a coordinated, symmetrical way, to reflect the amulet's balanced nature.  The arms will move in a circular motion, starting low and moving upward before returning to the starting position. This mirrors the shape of the nazar amulet itself and suggests a protective gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 30.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

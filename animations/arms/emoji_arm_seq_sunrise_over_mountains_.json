@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🌄",
+        "reasoning": "This sequence simulates the act of looking up at a sunrise over mountains. The arms will start in a neutral position, then raise upward to frame the view, and finally settle into a position of quiet contemplation. The animation will focus on the upward motion of the arms to encompass the vastness of the scene, and the final frame will show a more relaxed posture. The overall effect should be one of awe and wonder. In the first frame, both arms are at the sides in a neutral position. In the second frame, both arms begin to rise, framing the imaginary view of the sunrise. The wrists are slightly rotated to enhance the framing effect. In the third frame, both arms reach their highest point, fully framing the view. In the fourth frame, the arms start to lower, but remain elevated, expressing continued appreciation of the scene. In the final frame, both arms settle into a slightly lower, more relaxed position, conveying a sense of quiet contemplation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 60.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 40.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": 30.0,
+                        "wrist": 5.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🚇",
+        "reasoning": "This animation sequence depicts a person holding onto the poles inside a subway car.  The motion will involve a slight lean forward and a gripping motion with both arms.  The robot does not have hands or fingers but we can create a reasonable approximation of this gesture. We will ensure that this is done in a smooth and natural way by leveraging the robot's two-joint system and referencing previous examples for realistic arm movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -50.0,
+                        "wrist": -40.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": -20.0
+                    }
+                }
+            ]
+        ]
+    }
+]

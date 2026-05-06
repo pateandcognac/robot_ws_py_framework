@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🐯",
+        "reasoning": "This sequence aims to capture the playful yet powerful essence of the tiger emoji 🐯 by having the robot mimic a tiger's pounce. The animation focuses on short, deliberate movements, building anticipation before a final, expressive pose.  The two-joint arm system allows for a surprising range of motion, and I’ll use this to my advantage to convey the tiger’s energy. In the first frame, both arms are positioned low and slightly forward, mimicking a crouched stance. joint1 rotates both arms slightly inward, and joint2 pitches them downward, preparing for the pounce. The wrists are angled slightly upward, like a tiger's paws about to strike. Moving to the second frame, the arms lift slightly, creating a sense of coiled energy. joint2 adjusts to bring the arms a bit higher, while joint1 rotates them further inward, increasing the tension. The wrists remain angled upward, maintaining the predatory posture.  In the third frame, the arms extend outward and upward in a swift, pouncing motion. joint1 rotates outward, and joint2 pitches the arms upward, simulating the tiger’s leap. The wrists bend inward, as if the tiger is about to grasp its prey. For the fourth frame, the arms pull back slightly, as if the tiger has landed after its pounce.  joint1 rotates inward, and joint2 lowers the arms slightly, creating a sense of impact. Finally, in the fifth frame, the arms return to a relaxed, neutral position, preparing for the next playful pounce or settling back into a composed stance.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -40.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -40.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

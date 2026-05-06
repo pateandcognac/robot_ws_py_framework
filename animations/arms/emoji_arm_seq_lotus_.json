@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🪷",
+        "reasoning": "This sequence aims to capture the serene and peaceful essence of the lotus flower emoji (🪷).  The animation will focus on a slow, deliberate opening of the arms, mirroring the unfolding of a lotus blossom. The movement will be gentle and graceful, avoiding any sudden or jerky motions.  The overall feel should be one of calm and tranquility.  The robot's arms will start in a relaxed position and gradually extend to the sides, mimicking the opening of a lotus flower’s petals.  The final frame will showcase a posture of gentle openness and serenity.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

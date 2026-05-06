@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🌗",
+        "reasoning": "This sequence depicts a robot gently cupping its hands around an unseen object, suggesting the moon's gentle presence.  The movement is slow and deliberate, emphasizing the calm, nocturnal nature of the last quarter moon. The robot's arms will start in a neutral position, then slowly move to cradle the unseen moon before returning to rest.  This will use a smooth, symmetrical movement between both arms. Frame 1 showcases a neutral, resting pose. Frame 2 begins the inward movement, bringing both arms up to embrace the imaginary moon. Frame 3 shows the arms fully cradling the moon, creating the image of the moon being held gently. Frame 4 begins the return to rest, and Frame 5 completes the return to the neutral position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

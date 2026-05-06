@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🥙",
+        "reasoning": "This animation sequence depicts the robot carefully holding a stuffed flatbread, emphasizing the gentle handling required for such food. The sequence starts with the robot's arms outstretched, palms up, as if ready to receive the flatbread. Then, the arms move to cradle the flatbread, emphasizing the soft, delicate nature of the food. The final frame shows the robot holding the flatbread close to its body, as if ready to take a bite. The movement is slow and deliberate, focusing on the careful handling of the flatbread. The sequence uses the robot's two-joint arms to create a natural, lifelike motion, and the arm movements are coordinated to ensure that the flatbread is always supported and protected.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

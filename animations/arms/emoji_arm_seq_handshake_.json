@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🤝",
+        "reasoning": "This sequence simulates a handshake, focusing on the right arm extending and making slight up-and-down movements to mimic the motion. The left arm remains at the side for balance and visual clarity. Throughout the sequence, I will ensure smooth transitions and maintain a natural arm posture, referencing the provided examples for guidance on range of motion and joint coordination. In the first frame, both arms are relaxed at the sides, palms facing inward. The right arm is positioned slightly forward, anticipating the handshake. joint1 rotates the right arm outward, and joint2 pitches it slightly downward. The left arm remains neutral, with joint1 slightly inward and joint2 pitched downward. Moving to the second frame, the right arm extends forward, as if reaching for the other person's hand. joint1 rotates further outward, and joint2 pitches the arm forward to full extension. The wrist rotates to an angle of -20.0 to simulate a natural hand position for a handshake. The left arm remains still, providing balance. In the third frame, the right arm moves slightly upward, as if gripping the other person's hand. joint2 pitches the arm upward slightly, while the wrist remains angled for the handshake. In the fourth frame, the right arm moves slightly downward, completing the handshake motion. joint2 pitches the arm downward slightly, while the wrist remains angled for the handshake. Finally, in the fifth frame, the right arm retracts back to the side, and both arms return to their relaxed positions, palms facing inward. This concludes the handshake sequence.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 30.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

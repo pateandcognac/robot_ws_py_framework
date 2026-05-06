@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🛸",
+        "reasoning": "This animation sequence depicts a robot reacting to a flying saucer, starting with a surprised, upward-looking posture and ending with arms outstretched as if reaching for the object.  The sequence uses both arms and includes changes in joint angles and wrist positions to create a dynamic and expressive movement. Frame 1: Both arms start in a neutral position, slightly raised in surprise. Frame 2: The left arm moves slightly outward and upward, while the right arm begins to extend outward and forward. Frame 3: Both arms continue to extend outward in a reaching motion, palms open. Frame 4: Both arms are fully extended, palms up, in a gesture of awe or wonder.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 40.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 70.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

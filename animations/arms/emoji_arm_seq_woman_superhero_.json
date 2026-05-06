@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🦸‍♀️",
+        "reasoning": "This sequence depicts a superhero pose, starting with arms at the sides and dynamically transitioning to a powerful, confident stance. The movement is designed to convey strength and readiness, reflecting the superhero persona. Frame 1 begins with a neutral stance, arms at the sides. Frame 2 shows the arms beginning to rise, suggesting the start of a powerful pose. Frame 3 captures the peak of the pose, arms raised in a confident display of strength. Frame 4 shows a slight lowering of the arms, maintaining the powerful pose but with a hint of control. Frame 5 concludes with a return to a neutral stance, with the arms at the sides, but with a hint of residual power in the pose.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

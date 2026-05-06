@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🤡",
+        "reasoning": "This sequence aims to capture the playful and mischievous essence of a clown by incorporating exaggerated arm movements. The animation starts with both arms extended outwards as if inviting the audience to join in the fun. Then, one arm bends at the 'elbow' (simulated using joint2) in a playful, exaggerated manner, followed by the other arm mirroring the action. Finally, both arms return to the starting position, ready for another round of clowning around. Throughout the sequence, I'll ensure that the movements are large and dynamic, reflecting the energetic and expressive nature of a clown.  I'll also vary the wrist positions to add a touch of whimsy and unpredictability. By carefully orchestrating these movements, the animation will effectively convey the clown's playful spirit and create a visually engaging experience.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -60.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

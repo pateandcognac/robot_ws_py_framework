@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🎢",
+        "reasoning": "This sequence simulates the excitement and thrill of a roller coaster ride. The arms will move dynamically, reflecting the ups and downs of the coaster.  Frame 1 starts with arms up, anticipating the ride. Frame 2 shows arms out to the sides, as if experiencing the initial drop. Frame 3 depicts arms raised in a celebratory pose, representing the peak of the ride. Frame 4 shows arms down and slightly forward, mirroring the descent. Frame 5 ends with arms at rest, suggesting the ride's conclusion.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

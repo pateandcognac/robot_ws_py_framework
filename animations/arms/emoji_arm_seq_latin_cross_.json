@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "✝️",
+        "reasoning": "This sequence depicts a solemn gesture of reverence, using both arms to form the shape of a Latin cross. The movement starts with the arms at the sides, then rises slowly to form the cross, and finally returns to a neutral position. The slow deliberate movements aim to convey respect and contemplation.  The robot's lack of elbows requires careful positioning to create a believable cross shape. In the first frame, the arms begin at the sides. In the second frame, the arms rise and move to roughly form the cross shape. In the third frame, the arms hold the cross position before returning to a neutral position. In the fourth frame, the arms return to a relaxed position at the side. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -90.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "⏸️",
+        "reasoning": "This animation sequence depicts the robot bringing both arms forward and then stopping them mid-motion, to create the sense of pausing or stopping something. The arms move outward and forward, and then stop in that position in a decisive manner. This is meant to convey the feeling of suddenly stopping an action. The first frame shows both arms at rest. The second shows both arms moving outward, beginning the pause gesture. The third frame shows the arms forward, mimicking the pause symbol. The last frame shows the robot holding the arms still, conveying a sense of decision and stillness. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🐤",
+        "reasoning": "This sequence will depict a baby chick pecking at the ground for food, then looking up inquisitively.  The movement will be primarily focused on the head and neck, but I will use subtle arm movements to enhance the overall effect.  The arms will remain largely still, mirroring the chick's small size and the fact that a chick doesn't use its wings to move in this way.  The overall effect should be cute and endearing. The first frame shows a neutral starting position. The second frame shows the head lowered as if pecking, with the arms slightly moving forward to suggest a gentle approach. The third frame shows the head lifting back up, with the arms returning to a neutral position. The fourth frame shows a slight pause, with the head tilted slightly upwards, suggesting curiosity.  The fifth frame returns the arms and head to the initial neutral position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

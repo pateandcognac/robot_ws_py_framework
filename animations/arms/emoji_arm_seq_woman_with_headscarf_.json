@@ -1,0 +1,81 @@
+[
+    {
+        "emoji": "🧕",
+        "reasoning": "This animation sequence portrays a woman modestly adjusting her headscarf.  The movement is slow and deliberate, reflecting a calm and gentle demeanor. The animation will focus on the hands moving near the head, with subtle shifts in arm position to avoid abrupt movements. The overall impression should be one of quiet grace and self-care. Frame 1: Both arms start at the sides in a relaxed posture. Frame 2: The right arm moves upward to the head, with the hand gently touching the headscarf. Frame 3: The left arm moves upward and the right arm slightly adjusts the headscarf. Frame 4: Both arms return to their starting position, maintaining a calm and composed posture. Frame 5: The arms remain still, maintaining the calm and composed posture from Frame 4.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

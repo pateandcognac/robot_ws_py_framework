@@ -1,0 +1,59 @@
+[
+    {
+        "emoji": "🚃",
+        "reasoning": "This animation sequence simulates the motion of a train car, focusing on the rhythmic back-and-forth movement of the arms to mimic the rocking of a railway car. The sequence will use a three-frame structure to capture the essence of this rocking motion. In the first frame, both arms are extended outward to the sides, slightly tilted downward.  This simulates the initial position before the rocking starts. joint1 for both arms will be set at 45 degrees, rotating them outward, while joint2 is set at -30 degrees, tilting them downward. The wrists remain neutral at 0.0. In the second frame, the left arm swings slightly upward and forward, while the right arm moves downward and slightly backward, imitating a rocking motion. The joint1 values for the left and right arms will be adjusted accordingly, perhaps increasing the left's joint1 value to 60 and reducing the right's to 30. joint2 will be adjusted for both arms (left arm increases to 10, right arm decreases to -50). The wrists stay neutral. Finally, in the third frame, the arms return to a position mirroring the first frame, but with a slight variation to suggest the continuing rocking motion. The joint1 and joint2 values will be reversed from frame 2, and the wrists will remain neutral, completing the rocking cycle. This subtle variation between frames 1 and 3 generates a sense of continuous movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 60.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": -50.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 60.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

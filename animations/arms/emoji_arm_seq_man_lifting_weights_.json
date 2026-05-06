@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🏋️‍♂️",
+        "reasoning": "This sequence simulates a weightlifter performing a clean and jerk. The left arm will mimic the lifting motion of the barbell, while the right arm will maintain a supporting position. The sequence will showcase the power and control of the lift. In the first frame, both arms start in a neutral position, with the left arm slightly forward, preparing to receive the weight. The right arm mirrors the position, ready to assist. The second frame shows the left arm beginning to lift the barbell. The arm angles upward, with the wrist facing downward, simulating the grip on the barbell. The right arm maintains a supporting role, positioned slightly closer to the body. In the third frame, the left arm is at its highest point, mimicking the successful lift. The right arm offers support, positioned slightly higher than in the previous frame. In the fourth frame, the left arm begins to descend slowly and steadily, and the right arm mirrors the position, maintaining balance. The fifth frame shows both arms returning to their neutral starting positions, indicating the successful completion of the lift.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 40.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -60.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 70.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 20.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 40.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -60.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

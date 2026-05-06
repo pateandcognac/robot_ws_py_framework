@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "☢️",
+        "reasoning": "This animation sequence will portray a warning, using arm movements to convey caution and alert. The robot will start with arms at its sides, then extend them outward in a 'stop' gesture, and finally bring its arms back to a neutral position. This three-frame sequence is concise and effective in conveying the warning implied by the radioactive symbol. Frame 1: Arms at sides, neutral pose. Frame 2: Arms extended outward, palms forward. Frame 3: Arms return to sides, neutral pose.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

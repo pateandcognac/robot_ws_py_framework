@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "♠️",
+        "reasoning": "This animation sequence will depict a robot subtly mimicking the action of drawing a playing card from a deck.  The focus is on a slow, deliberate movement for the left arm, while the right arm remains neutral to maintain balance and convey a sense of careful attention.  The sequence will emphasize the precision of the action, reflecting the strategic nature often associated with the spade suit.  I will use the examples to guide the range of motion and ensure the movements appear smooth and natural for a robot with two-joint arms. Frame 1: The left arm starts in a relaxed position at the side, slightly angled back with the palm facing inward. This is a neutral starting point. Frame 2: The left arm moves forward and slightly upward, as if reaching for a card from a deck. The wrist rotates slightly inward, suggesting a subtle grasping motion. Frame 3: The left arm retracts slightly while the wrist rotates further inward, simulating the act of picking up a card. The movement is slow and controlled. Frame 4: The left arm moves back to the side, with the wrist now angled more inward, as if holding the card close to the body. The movement is deliberate and precise. Frame 5: The left arm returns to the neutral relaxed position, the card is now presumably in place. The right arm remains stationary throughout the sequence.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -20.0,
+                        "wrist": -20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": -60.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

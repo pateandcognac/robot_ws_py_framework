@@ -1,0 +1,79 @@
+[
+    {
+        "emoji": "🎓",
+        "reasoning": "This sequence depicts a celebratory arm pose often associated with graduation. It starts with arms raised in a 'V' shape, symbolizing victory, then transitions to a pose where the arms are slightly lowered, mimicking the act of receiving a diploma or cap, and finally settles into a more relaxed, yet still celebratory pose.  The right arm will be the primary focus, with the left arm providing support and balance.  I will check examples for range of motion. Frame 1: Arms in a 'V' shape above the head, palms facing each other. Frame 2: Right arm lowers slightly, while the left arm remains high, as if receiving something. Frame 3: Both arms lower, but still slightly raised, palms open in a gesture of accomplishment. Frame 4: Arms relax to a more natural position, palms facing inward.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

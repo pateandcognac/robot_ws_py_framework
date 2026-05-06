@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🐲",
+        "reasoning": "This animation sequence will portray a dragon's breath, using the arms to simulate the exhalation of fire. The movement will be dynamic, starting with a slight pause, building up to a powerful expulsion, and then slowly returning to a neutral pose. The animation will utilize both arms in a coordinated motion, with slight variations in their movements to add realism and personality to the gesture. In the first frame, both arms will start in a neutral position, slightly back and down. The wrists will be neutral. This creates a sense of anticipation. In the second frame, the arms will move forward and upward, simulating the beginning of the breath. The wrists will rotate slightly outward. In the third frame, the arms will reach their peak position, simulating the full exhalation of fire. The wrists will be fully rotated outward, emphasizing the forceful expulsion. The arms will be extended outward, with the hands slightly upward. The arms will then start to return to the neutral position. In the fourth frame, the arms will move backward and downward, the wrists rotating inward, and the movement will be less forceful than in the previous frame. Finally, in the fifth frame, both arms will be back in the neutral position, ending the animation. The slight variations in wrist rotation will add a level of detail that enhances the realism and expressiveness of the animation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -40.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 10.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

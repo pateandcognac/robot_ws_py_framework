@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🪿",
+        "reasoning": "This sequence depicts a goose extending its wings, perhaps in preparation for flight or as a display of dominance.  The arms will mimic this movement, with a slight upward curve to suggest the wings' shape.  The sequence will start with the arms at the sides, then extend outward, and finally settle into a poised position.  The robot's lack of elbows will be compensated for by the use of wrist movements to enhance the pose's expressiveness.  We will use a 3 frame sequence for simplicity and visual clarity.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 70.0,
+                        "joint2": -20.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 10.0,
+                        "wrist": 30.0
+                    }
+                }
+            ]
+        ]
+    }
+]

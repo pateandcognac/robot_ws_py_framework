@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "👍",
+        "reasoning": "This sequence aims to create a thumbs-up gesture using the robot's arm. Since the robot doesn't have thumbs, the gesture will be represented by raising the right arm with a closed fist, palm facing forward, similar to a thumbs-up. The left arm will remain at the side. The motion will be performed in distinct keyframes, allowing the interpolation system to handle smooth transitions. In Frame 1, both arms are at rest at the sides, establishing a neutral starting position. The right arm then begins to rise in Frame 2, bending at the 'elbow' (simulated by joint2) with the 'fist' (wrist) oriented as if preparing for a thumbs-up. Frame 3 shows the right arm raised higher, with the 'fist' facing forward, completing the thumbs-up gesture. The left arm remains at rest throughout the sequence. Frame 4 has the right arm slightly lowered, anticipating returning to rest. Finally, Frame 5 returns both arms to the resting position at the sides.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

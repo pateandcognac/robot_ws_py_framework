@@ -1,0 +1,59 @@
+[
+    {
+        "emoji": "🖼️",
+        "reasoning": "This sequence mimics carefully holding a framed picture.  The robot will gently hold the picture with both hands, palms facing up, arms slightly bent.  The movement will start with the arms extended, then gently lower into the holding position.  The final frame will show the robot holding the picture steadily.  The slight differences between frames will emphasize the care taken in handling the artwork. The right arm will be slightly higher to mimic a more natural holding position. This pose shows care and reverence for the artwork.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -40.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 25.0,
+                        "joint2": -30.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 25.0,
+                        "joint2": -40.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

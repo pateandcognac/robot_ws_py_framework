@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🆎",
+        "reasoning": "This animation sequence represents the AB blood type using a combination of arm movements that visually represent the 'A' and 'B' components. The sequence starts with both arms extended, palms facing outward, suggesting the separate A and B antigens. Then, the arms move towards each other, palms facing each other, to symbolize the combination of A and B within the AB blood type. Finally, the arms return to their starting position, emphasizing the unique co-existence of both antigens.  The slight variation in arm positions throughout the sequence adds a dynamic element, avoiding static poses and enhancing the visual representation of the AB blood type.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -60.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 90.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

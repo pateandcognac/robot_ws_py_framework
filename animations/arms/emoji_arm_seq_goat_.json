@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🐐",
+        "reasoning": "This animation sequence will depict a goat's head-butting motion.  Since our robot lacks a head, we'll simulate the headbutt using the arms. The movement will be forceful and slightly clumsy, reflecting a goat's energetic nature. The animation will focus on the left arm, with the right arm providing a counterbalance.  We'll use a three-frame sequence to capture the essence of the movement. Frame 1 will show both arms in a neutral position. Frame 2 will show the left arm thrusting forward, and Frame 3 will show the left arm recoiling slightly after the impact.  The right arm will remain largely static to provide a point of reference for the left arm's movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

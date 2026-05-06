@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🕉️",
+        "reasoning": "This sequence will depict a meditative pose, reflecting the serenity and spirituality associated with the Om symbol. The animation will focus on slow, deliberate movements of the arms, emphasizing calm and inner peace. In the first frame, both arms will start at the sides in a relaxed position, palms facing inward. Then, in the second frame, the arms will slowly raise, bending at the 'shoulders,' palms facing each other, as if in prayer.  The arms will not raise fully overhead but will stop at roughly chest height. In the third frame, the hands will slowly move together, palms touching, as if holding a small, precious object, reflecting the preciousness of peace and inner calm. The arms will remain at roughly chest height.  In the fourth frame, the hands will remain together, but the arms will slowly begin to lower, maintaining the sense of reverence.  In the fifth frame, both arms will return to the starting position, relaxed at the sides, palms facing inward.  The entire sequence will be slow and deliberate, mirroring the peacefulness of meditation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

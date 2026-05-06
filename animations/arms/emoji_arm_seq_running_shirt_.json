@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🎽",
+        "reasoning": "This animation sequence simulates the arm movements of someone running while wearing a racing bib. The arms will swing naturally in opposition to each other, and the motion will be slightly exaggerated to emphasize the running action. The animation will focus on the rhythmic motion of the arms, with the hands remaining relatively relaxed.  I will use the existing examples to guide the range of motion and ensure the poses are fluid and natural. In the first frame, the left arm is forward and slightly down, while the right arm is back and slightly up.  This sets up the oppositional swing of running.  In the second frame, the arms reverse positions: the left arm is back and the right is forward.  This is the opposite swing of the first frame.  The third frame mirrors the first, continuing the rhythmic swing.  The fourth frame mirrors the second frame, completing a full cycle of the arm swing. The fifth frame will be a slight variation of the first frame, showing a subtle change in the position of the arms to indicate the continued running motion. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -15.0,
+                        "joint2": -25.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": 25.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

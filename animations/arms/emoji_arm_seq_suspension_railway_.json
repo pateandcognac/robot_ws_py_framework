@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🚟",
+        "reasoning": "This animation sequence will depict the robot mimicking the action of holding onto and riding a suspension railway.  The robot will use both arms to simulate holding onto the overhead bar, creating a sense of movement and stability.  The animation will emphasize a slight rocking motion to give the impression of the railway car's movement. Frame 1 will show the arms extended upward, Frame 2 will show a slight downward tilt to one side, Frame 3 will show a similar tilt to the other side, and Frame 4 will return to the initial upward position. Frame 5 will show the arms returning to a resting position. This sequence uses the robot's two-joint arm system to create a dynamic yet believable representation of riding a suspension railway.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🧡",
+        "reasoning": "This animation sequence expresses warmth and affection, using both arms in a gentle, embracing gesture. The arms will move in a synchronized, flowing motion, starting with a relaxed position and gradually moving to an embracing posture, then returning to a relaxed position. This mirrors the gentle, welcoming nature of the orange heart emoji. The movement is not overly dramatic; rather, it focuses on soft, fluid transitions between poses, enhancing the heart's warm and welcoming energy.  The timing between the frames will be crucial to capture the gentle, embracing movement of the arms.  I'll start with a neutral position and gradually bring both arms together in a warm embrace before gently returning them to their sides.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

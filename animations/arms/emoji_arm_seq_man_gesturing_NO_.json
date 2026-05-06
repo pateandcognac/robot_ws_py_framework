@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🙅‍♂️",
+        "reasoning": "This animation sequence depicts a person gesturing \"no\" using both hands. The sequence begins with the arms slightly raised and angled outward, palms facing forward as if preparing to make the gesture. The arms then move to a more pronounced position, with the palms facing outward and the hands slightly curved, emphasizing the rejection. The final frame shows the arms returning to a slightly more relaxed posture, conveying a sense of finality or completion of the gesture. The subtle changes between frames add nuance and a sense of natural movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 60.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 50.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

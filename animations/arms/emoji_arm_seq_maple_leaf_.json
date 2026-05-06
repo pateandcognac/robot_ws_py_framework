@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🍁",
+        "reasoning": "This sequence will depict a gentle, swirling motion of the arms, mimicking the falling and twirling of maple leaves. The movement will be slow and graceful, emphasizing the delicate nature of the leaves.  The arms will move in a coordinated, mirroring pattern, creating a sense of balance and harmony.  Because the arms lack elbows, I will use the shoulder joints to create a fluid, swirling effect, similar to a leaf caught in a gentle breeze. The wrists will be used to add subtle variations in the hand positions, making the movement even more expressive.  Frame one will start with both arms at rest. Frame two will bring the arms up and out to the sides, palms facing upward. Frame three will show the arms swirling slightly inward, palms still upward. Frame four will have the arms moving downward in a mirroring motion. Frame five will end by bringing both arms back to a resting position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 15.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

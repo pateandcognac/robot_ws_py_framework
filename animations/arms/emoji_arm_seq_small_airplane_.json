@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🛩️",
+        "reasoning": "This sequence mimics the action of playfully holding a small airplane, emphasizing the lightheartedness of the emoji.  The animation will involve a gentle upward lift of both arms, followed by a slight rocking motion, and then a return to a neutral pose. The arms will move in a coordinated manner, with a focus on smooth transitions.  I will ensure that the joint movements are within the robot's capabilities, referencing previous examples for guidance. Frame 1 will show both arms at rest. Frame 2 will show both arms gently lifting the imaginary plane. Frame 3 will show a slight rocking motion, as if the plane is in flight. Frame 4 will show the arms returning to a position slightly higher than the rest position. Frame 5 will show the arms returning to rest.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": 5.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

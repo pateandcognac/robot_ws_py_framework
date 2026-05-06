@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🗞️",
+        "reasoning": "This sequence shows the robot holding a rolled-up newspaper.  The robot will hold the paper in both hands, initially at chest height, then raise it slightly, and finally lower it back down. The movement is slow and deliberate to emphasize the weight and importance of the newspaper.  The arms will not move independently.  The sequence will emphasize the careful handling of the paper.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

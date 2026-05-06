@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🙁",
+        "reasoning": "This sequence aims to express mild disappointment or sadness through subtle arm movements. The robot will slightly lower its arms and turn its palms inward, conveying a sense of dejection.  In the first frame, both arms start in a neutral, resting position at the sides, with joint1 at 0.0 and joint2 at -90.0. The wrists are also at 0.0, keeping the palms facing inward. This represents a default, relaxed posture.  In the second frame, both arms lower slightly, with joint2 adjusting to -80.0. This subtle downward movement suggests a decrease in energy or enthusiasm. The wrists rotate slightly inward to -20.0, adding to the sense of closure or sadness.  In the third frame, the arms move slightly further down, with joint2 now at -70.0. This continues the downward trend, emphasizing the feeling of disappointment.  The wrists rotate further inward to -40.0, enhancing the sense of inward reflection or sadness. The subtle changes in arm and wrist position across the frames create a natural progression of the emotion, avoiding any sudden or jerky movements.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -80.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -70.0,
+                        "wrist": -40.0
+                    }
+                }
+            ]
+        ]
+    }
+]

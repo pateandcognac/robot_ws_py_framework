@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "👖",
+        "reasoning": "This animation sequence will mimic the action of someone adjusting their jeans, perhaps pulling them up or smoothing them down.  It will involve both arms, with a focus on the hands interacting with the hip and leg area.  The sequence will be concise and use distinct positions to represent the start, middle, and end of the adjustment.  I'll pay close attention to the natural movements of the arms and hands to create a realistic-looking animation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": -75.0,
+                        "wrist": 19.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -75.0,
+                        "wrist": -19.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": -75.0,
+                        "wrist": 19.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -75.0,
+                        "wrist": -19.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🚸",
+        "reasoning": "This animation sequence depicts children crossing, focusing on the protective and guiding aspect. The robot will extend both arms outward, slightly downward, to mimic the action of guiding children across a street. The movements will be smooth and deliberate, emphasizing care and safety.  The sequence will start with the robot's arms at its sides, then extend them outward, slightly downward, as if guiding children. The arms will then lower slightly before returning to a neutral position.  The slight downward angle conveys the protective gesture of guiding, rather than simply pointing.  The use of both arms emphasizes the encompassing nature of the protection.  The movement will be symmetrical and consistent, reflecting the even attention given to the children.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

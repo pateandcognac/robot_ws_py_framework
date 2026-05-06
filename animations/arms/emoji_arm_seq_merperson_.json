@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🧜",
+        "reasoning": "This sequence aims to mimic a merperson's graceful, flowing movements.  The animation will focus on the arms, which will move in a fluid, wave-like motion, evoking the feeling of swimming.  Since our robot lacks elbows, the movement will be achieved through the combination of joint1 (roll) and joint2 (pitch), creating an elegant, undulating effect. The wrists will also play a role, subtly altering the hand positions to enhance the sense of movement. The left arm will lead, creating a sense of forward motion. Frame 1 shows both arms extended to the sides, mimicking a calm, poised start. Frame 2 shows the left arm beginning its upward sweep, while the right arm remains relatively still. Frame 3 shows the left arm reaching its peak, while the right arm now begins its movement. Frame 4 shows the left arm starting its downward arc, mirroring the right arm's upward movement.  Frame 5 shows both arms returning to their original position, completing the cycle.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 45.0,
+                        "wrist": 15.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": 70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -60.0,
+                        "wrist": -15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -15.0,
+                        "joint2": 20.0,
+                        "wrist": -15.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

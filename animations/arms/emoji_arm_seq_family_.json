@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "👪",
+        "reasoning": "This animation sequence aims to represent the concept of family through a warm, encompassing gesture.  The arms will move in a way that suggests protection, care, and togetherness.  The sequence will start with the arms open in a welcoming pose, then move to encompass a space, and finally settle into a gentle, protective embrace.  Given the robot's arm structure, we'll focus on creating a sense of warmth using arm positioning and subtle wrist adjustments.  We'll avoid overly dramatic movements to maintain a calm and comforting feel, suitable for representing the serenity and closeness of family.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 0.0,
+                        "wrist": 45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

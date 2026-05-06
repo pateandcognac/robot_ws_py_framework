@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "😰",
+        "reasoning": "This sequence aims to represent the anxiety and sweat of the 😰 emoji through fidgety, repetitive hand motions. The robot's arms will move nervously, reflecting the inner turmoil associated with anxiety.  In the first frame, both arms are raised slightly with palms facing inward, as if the robot is wringing its hands. joint1 rotates both arms slightly outward, and joint2 pitches them forward.  The wrists are angled slightly inward. This starting pose conveys a sense of nervousness and unease. In the second frame, the arms move slightly closer together, increasing the hand-wringing effect. joint1 rotates inward while joint2 remains relatively stable, bringing the hands closer to each other as if expressing worry or discomfort. The wrist angles increase slightly, intensifying the fidgeting motion. In the third frame, the arms move apart again, returning to a position similar to the first frame, but with a slight variation in joint2 to create a sense of restlessness. The wrists rotate slightly outward, adding to the fidgeting effect. This back-and-forth motion mimics the repetitive movements often associated with anxiety.  In the fourth frame, the arms move closer together again, similar to the second frame. This repetition emphasizes the cyclical nature of anxious thoughts and behaviors.  Finally, in the fifth frame, the arms return to the initial position from the first frame, completing the cycle of fidgeting and reinforcing the feeling of anxiousness.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 30.0,
+                        "wrist": -40.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30,
+                        "joint2": 25.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": -30.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🤼‍♀️",
+        "reasoning": "This sequence simulates a wrestling match, focusing on the dynamic arm movements of two opponents.  The animation will emphasize the struggle and exertion involved in a wrestling match. I will use both arms to create a sense of grappling and tension. The arms will move in opposition to each other, reflecting the push and pull of the match.  I'll use a combination of joint1 and joint2 rotations to create a sense of power and movement. The wrists will be used to show the grip and tension of the wrestlers' hands. I'll ensure that the movements are fluid, but also show the effort involved in the match. The sequence will end with both arms in a locked position to show the final grapple.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -20.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -60.0,
+                        "joint2": 0.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 60.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -75.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 75.0,
+                        "joint2": -15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

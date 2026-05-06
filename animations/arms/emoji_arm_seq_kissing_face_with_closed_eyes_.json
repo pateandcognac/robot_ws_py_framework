@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "😚",
+        "reasoning": "This sequence aims to capture the affectionate gesture of blowing a kiss. The animation starts with both hands coming together near the mouth, then one arm extends outward as if blowing the kiss into the air. The other arm returns to a relaxed position at the side.  In the first frame, both hands are brought together in front of the face, palms facing each other. joint1 rotates both arms inward, while joint2 pitches them upward. The wrists are angled slightly inward, as if holding something delicate.  In the second frame, the right arm extends forward slightly, as if preparing to blow the kiss. joint2 pitches the right arm further outward, and the wrist rotates to an outward angle. The left arm remains in place. The third frame shows the right arm fully extended, with the wrist rotated to simulate the 'blowing' action. joint1 rotates the right arm slightly outward, and joint2 maintains its outward pitch. The left arm begins to lower towards a resting position.  In the fourth and final frame, the right arm returns to a neutral position at the side, while the left arm remains relaxed.  This simple yet expressive sequence conveys the gentle affection of a blown kiss.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 60.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 40.0,
+                        "joint2": 60.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 30.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

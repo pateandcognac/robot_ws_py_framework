@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "📣",
+        "reasoning": "This sequence simulates the action of using a megaphone, focusing on the right arm's movement to convey the act of shouting or announcing something. The left arm will remain at the side for balance and to emphasize the right arm's active role. The sequence will start with the arm at rest, then move to a position of holding the megaphone, and finally end with a gesture that reinforces the announcement. I will be checking other examples to ensure the arm transitions are smooth and visually appealing, given the robot's two-joint system. In the first frame, both arms are in a neutral position at the sides. The right arm is slightly angled outward and the left arm hangs naturally, palms facing the body. In the second frame, the right arm lifts and extends outward, simulating holding a megaphone.  The wrist is angled slightly outward, as if gripping the megaphone's handle. The left arm remains still for balance. In the third frame, the right arm extends forward, as if shouting into the megaphone. The wrist is slightly rotated to indicate the megaphone's direction. The left arm remains in its neutral position. In the fourth frame, the right arm remains extended but lowers slightly, as if the announcement is complete. The wrist is rotated back to a more neutral position. The left arm still remains in its neutral position. Finally, in the fifth frame, the right arm returns to its rest position and the left arm stays neutral. This creates a complete cycle of using a megaphone, from the initial pose to the final return to rest.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -60.0,
+                        "joint2": 30.0,
+                        "wrist": 25.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 20.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

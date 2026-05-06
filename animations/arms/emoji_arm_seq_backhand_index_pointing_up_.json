@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "👆",
+        "reasoning": "This sequence aims to create the gesture of pointing upwards with the back of the hand, as if indicating 'up there' or 'look above.' Given the robot's lack of fingers, the focus will be on lifting the arm and angling the wrist to suggest the upward point. I'll start with a neutral pose and transition into the upward point, referencing examples to ensure the movement feels natural and expressive. In the first frame, both arms are relaxed at the sides, with joint1 slightly inward and joint2 pitched downward, creating a neutral starting position. The wrists are also neutral. In the second frame, the right arm begins to rise, with joint1 rolling outward to position the arm and joint2 pitching it upward. The wrist is neutral, palms facing each other. In the third frame, the right arm extends further upward, with joint2 pitching the arm closer to vertical. The wrist rotates inward at -90 degrees, turning the back of the hand forward to mimic the upward point. The left arm remains relaxed. In the fourth frame, the right arm reaches its highest point, with joint2 at its maximum upward pitch. The wrist maintains its inward rotation, solidifying the pointing gesture. Finally, in the fifth frame, the right arm returns to the starting position, with joint1 and joint2 resetting to their neutral states, and the wrist also returning to neutral.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

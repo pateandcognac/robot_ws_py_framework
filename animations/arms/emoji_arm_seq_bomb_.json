@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "💣",
+        "reasoning": "This animation sequence depicts a robot reacting to a bomb, starting with a surprised pose, moving to a defensive posture, and then ending in a gesture of relief or celebration once the bomb is diffused or turns out to be a dud. The robot does not have hands, so the gestures are approximations. Frame 1: The robot is surprised, arms raised slightly outward, palms up. Frame 2: The robot is startled, arms are pulled in close to the body, elbows bent (simulated by wrist position). Frame 3: The robot is relieved, arms out wide in a 'phew' gesture. Frame 4: The robot celebrates, arms raised in a 'victory' pose.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 0.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 70.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 90.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

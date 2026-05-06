@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🦨",
+        "reasoning": "This animation sequence portrays a skunk's cautious and slightly defensive posture.  The animation will start with the arms slightly raised, palms facing forward, as if the skunk is sniffing the air.  Then, the arms will move slightly to the sides, palms still facing forward, as if it's assessing its surroundings. Finally, the arms will drop to a more relaxed position, but still slightly alert. This will showcase the skunk's cautious nature and preparedness to defend itself if necessary.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

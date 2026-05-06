@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🥺",
+        "reasoning": "This sequence aims to represent the 🥺 emoji, conveying a sense of pleading or begging.  It does so by bringing the hands together in a clasped position near the face, as if beseeching someone, followed by a slight separation and return to the clasped position to emphasize the plea. The arm movements are kept smooth and somewhat slow to reflect the emotional vulnerability of the expression. In the first frame, both arms are brought up towards the face, palms together as if in prayer. Joint1 rotates the arms inward, while joint2 pitches them upward. The wrists are angled slightly inward, bringing the hands together in a clasped position. This represents the initial gesture of pleading. In the second frame, the clasped hands move slightly downward and away from the face, as if emphasizing the plea. Joint2 decreases slightly, lowering the arms, while joint1 rotates slightly outward, creating a small separation between the hands. This adds a subtle dynamic to the gesture. In the third frame, the hands return to the clasped position near the face, reinforcing the pleading gesture. Joint1 rotates inward again, and joint2 increases, bringing the hands back together. This repetition emphasizes the earnestness of the plea. In the fourth frame, the hands separate slightly again, mirroring the second frame. This creates a rhythmic back-and-forth motion that adds to the emotional intensity of the plea. Finally, in the fifth frame, the hands return to the initial clasped position, concluding the pleading gesture. This final pose reinforces the sense of vulnerability and hope associated with the 🥺 emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 70.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 60.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 70.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 60.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 70.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

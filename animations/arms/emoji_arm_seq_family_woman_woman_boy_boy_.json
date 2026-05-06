@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "👩‍👩‍👦‍👦",
+        "reasoning": "This animation sequence depicts a family embracing.  It starts with arms open wide, then moves to a hug, and finally settles into a gentle embrace. The movement is designed to be warm, inviting, and subtly animated to avoid appearing too stiff or mechanical.  The use of slight variations in joint angles adds to the natural flow of the motion. The arms are designed to move in a way that is both natural and expressive, emphasizing the loving and protective nature of the family unit.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": -60.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -15.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": -30.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🗒️",
+        "reasoning": "This animation sequence will show the robot delicately holding a notepad.  The robot will initially hold the notepad with both arms, then transition to holding it with one, and finally return to a neutral position. This conveys a sense of careful handling and attention to the notepad.  The robot does not have hands, so the arms will be positioned to imply holding the notepad in a gentle manner. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

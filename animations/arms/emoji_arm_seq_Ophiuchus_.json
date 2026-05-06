@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "⛎",
+        "reasoning": "This animation sequence depicts Ophiuchus, the serpent bearer, by having the robot mimic the act of holding a snake.  The movement will focus on the arms creating a cradle, emphasizing the act of carefully holding something.  The sequence will start with arms out to the side, then move to create the cradle, and end with a slight shift in balance as if the snake is slightly heavy. The robot's lack of hands will be simulated by having the wrists slightly angled, implying a gentle grasp.  The left arm will do most of the work.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 0.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 15.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 15.0,
+                        "wrist": 45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

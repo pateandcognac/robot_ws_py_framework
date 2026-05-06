@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🫀",
+        "reasoning": "This animation sequence simulates the beating of a heart using both arms. The arms will mimic the rhythmic expansion and contraction of a heart. The sequence will consist of four frames that highlight the key positions of the heart beat, starting with a relaxed state and progressing through expansion and contraction. In the first frame, both arms will hang down by the robot's sides, palms facing inward. This represents the heart in its resting phase. In the second frame, both arms will move outward and slightly upward, palms facing forward.  This mimics the expansion phase of the heart's beat. The third frame will show both arms retracting inward and downward, as the heart contracts. The palms will remain facing forward. The fourth frame will return to the resting position of frame one, completing the cycle. By alternating between these positions, the animation will effectively convey the rhythmic pulsing of a heart.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

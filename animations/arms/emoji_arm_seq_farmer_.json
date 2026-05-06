@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🧑‍🌾",
+        "reasoning": "This sequence depicts a farmer working in their field, using both arms in a natural, rhythmic motion. The animation will show a combination of reaching, lifting, and carrying movements to capture the essence of farm work. I'll use the two-joint system of the robot to simulate these motions naturally. In the first frame, both arms are slightly bent at the elbows, with the hands held out as if gripping a tool or seed. The wrists are slightly rotated to imply a relaxed grip. The second frame shows one arm reaching down, as if planting something in the soil. In the third frame, the other arm lifts something, simulating the act of harvesting a crop. In the fourth frame, both arms are brought together with the hands held up, as if carrying a bunch of harvested crops. The final frame shows the farmer returning to a relaxed pose, with the arms slightly bent but more relaxed than in the first frame. I'll ensure the transition between each frame is smooth and natural, conveying the continuous nature of farm work.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -45.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -45.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 70.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -5.0,
+                        "joint2": -55.0,
+                        "wrist": -5.0
+                    }
+                }
+            ]
+        ]
+    }
+]

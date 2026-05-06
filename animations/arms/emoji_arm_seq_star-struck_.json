@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🤩",
+        "reasoning": "This sequence aims to capture the feeling of being star-struck or awestruck, using arm motions that convey surprise and wonder. It starts with a neutral pose and transitions to a gesture where the arms are raised and slightly curved, with palms facing upward, as if receiving or expressing amazement.  The right arm begins higher than the left and finishes lower than the left. In the first frame, both arms are relaxed at the sides in a neutral position, with joint1 slightly inward and joint2 pitching the arms downward. The wrists are also neutral, palms facing inward. This sets a baseline of calmness before the expression of awe.  In the second frame, the arms begin to rise, with the right arm moving slightly faster and higher than the left.  joint1 rotates both arms outward, and joint2 pitches them upward, with the right arm's joint2 angle greater than the left's. The wrists begin to rotate outward as well, starting to turn the palms upward. This asymmetrical movement adds a touch of naturalism to the expression of surprise.  By the third frame, both arms are raised higher, with the palms facing fully upward, as if in astonishment.  The right arm is now slightly lower than the left, rotated slightly inward.  joint2 for both arms is near 90 degrees, maximizing the height of the gesture.  The wrists are rotated to approximately 90 degrees. This pose emphasizes the feeling of being star-struck, with the open palms suggesting receptiveness to the wondrous sight.  In the fourth frame, the arms lower slightly as if the initial shock is wearing off but wonder remains.  joint2 angles decrease a bit, and the wrists remain rotated outward. This subtle lowering of the arms adds a touch of realism to the motion, as if the initial burst of surprise is settling into a sustained sense of wonder.  In the final frame, the arms return closer to the sides but remain slightly raised and open, as if still basking in the afterglow of the star-struck moment. joint1 rotates the arms slightly inward, and joint2 angles decrease further, while the wrists remain somewhat rotated outward. This final pose suggests a lingering sense of awe, completing the expression.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -25.0,
+                        "joint2": 60.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -35.0,
+                        "joint2": 85.0,
+                        "wrist": 75.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -35.0,
+                        "joint2": 90.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -15.0,
+                        "joint2": 85.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 80.0,
+                        "wrist": 75.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 75.0,
+                        "wrist": 75.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -60.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -5.0,
+                        "joint2": -70.0,
+                        "wrist": 45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🎟️",
+        "reasoning": "This animation sequence will mimic the action of holding and presenting an admission ticket. The robot will hold the ticket (represented by a slight hand position change) in its right hand and then extend its arm forward to present it. The left arm will remain mostly neutral throughout, creating a balance and focus on the ticket presentation. The robot's movement should be smooth and deliberate, conveying attentiveness and politeness. In frame 1, the right arm is slightly raised and angled toward the robot's body, with the wrist angled slightly down to simulate holding the ticket. The left arm hangs loosely by the side. In frame 2, the right arm moves slightly forward while the wrist remains angled. The left arm shifts slightly to create balance. In frame 3, the right arm is extended forward, presenting the ticket, with the wrist slightly tilted upward. The left arm remains neutral. In frame 4, the right arm retracts slightly, ending the presentation, while the left arm remains stable. In frame 5, both arms return to a neutral, relaxed position. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": -20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -10.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 10.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

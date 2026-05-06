@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "🔶",
+        "reasoning": "This animation sequence will depict a robot presenting the large orange diamond, as if showcasing a precious gem. The robot will use both arms to create a sense of careful presentation.  The sequence will start with both arms at the sides, then move to a position where the arms are extended forward, gently cradling the diamond, and finally return to a relaxed position.  The use of both arms will emphasize the value and importance of the object being presented.  The animation will be smooth and controlled, reflecting a sense of care and precision.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

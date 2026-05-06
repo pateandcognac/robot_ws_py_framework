@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🚮",
+        "reasoning": "This animation sequence depicts a robot diligently disposing of litter.  The action focuses on the left arm picking up the trash and placing it in a bin (represented by the robot's body). The right arm remains mostly at rest, but will move slightly to accommodate the left arm's movement. I'll maintain a natural, fluid motion, drawing inspiration from the examples, and make sure the transition between frames is clear and expressive.\n\nFrame 1: The robot starts with both arms at its sides in a neutral position. This sets the scene and prepares for the action. \nFrame 2: The left arm bends to pick up a piece of trash. The joint1 rotates inward, and joint2 pitches the arm downward. The wrist rotates to grip the imaginary trash.\nFrame 3: The left arm moves toward the robot's body (the bin). The joint1 rotates slightly outward, and joint2 pitches the arm upward to bring the trash to the bin.\nFrame 4: The left arm releases the trash. The joint1 returns to a neutral position, and joint2 moves the arm back to a resting position.\nFrame 5: Both arms return to their starting positions, the action complete.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 30.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

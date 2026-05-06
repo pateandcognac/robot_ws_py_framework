@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "👸",
+        "reasoning": "This sequence portrays a princess-like pose, starting with hands gently placed near the face, moving to a graceful arm extension, and ending with a regal pose. The movements are slow and deliberate, emphasizing elegance. Frame 1: Both arms are raised, and positioned near the face. The wrists are angled to give the impression that the hands are gently placed on the cheeks, creating a demure expression. Frame 2: The right arm extends outward in a graceful gesture. The left arm moves slightly forward, as if presenting something or extending a hand in greeting. Frame 3: The left arm gracefully rises to be parallel with the right arm. Both arms are slightly angled to give a regal touch. Frame 4: Both arms lower slightly, coming to rest in a regal pose. The wrists are angled slightly inward, giving the impression of hands resting gently.  The overall effect is to create a fluid, elegant sequence that captures the essence of a princess's demeanor.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": 70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -30.0,
+                        "wrist": -10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

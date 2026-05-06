@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🥬",
+        "reasoning": "This sequence mimics the gentle swaying of leafy greens in a breeze.  The movement will be slow and deliberate, focusing on a gentle back-and-forth motion. The arms will start in a neutral position, move to a slight outward curve, then back to neutral, and finally to a slight inward curve before returning to neutral. This cyclical pattern creates a sense of calm and natural movement, representing the organic nature of leafy greens.  The wrists will remain neutral throughout, allowing the focus to remain on the arm's gentle swaying. This animation should evoke a feeling of peace and tranquility, associated with the imagery of leafy greens. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

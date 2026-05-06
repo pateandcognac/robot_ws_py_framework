@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🧝‍♀️",
+        "reasoning": "This animation sequence will portray the elegance and grace associated with an elf. The movement should be fluid and deliberate, emphasizing the ethereal quality of the character. We will use a combination of arm poses to convey this. Frame 1 will start with both arms slightly raised and extended outward, palms facing each other. This will suggest a poised, almost regal stance.  In Frame 2, the left arm will gracefully move upward, the wrist slightly bent, as if gesturing or casting a spell. The right arm will remain in a similar position as Frame 1. Frame 3 will reverse the arm positions from Frame 2, with the right arm now moving upwards while the left arm returns to its initial position.  Frame 4 will showcase both arms returning to the initial pose of Frame 1, completing the elegant gesture. This cyclical movement creates a sense of fluidity and magic, befitting the elf emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 60.0,
+                        "wrist": 30.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": -20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -45.0,
+                        "joint2": 60.0,
+                        "wrist": 30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ]
+        ]
+    }
+]

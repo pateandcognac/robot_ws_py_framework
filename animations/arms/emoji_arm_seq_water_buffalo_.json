@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🐃",
+        "reasoning": "This animation sequence will portray a water buffalo's characteristic slow, deliberate movements.  The animation will focus on a gentle head-lowering motion, which is often associated with grazing or a sense of calm.  Since our robot lacks the physical characteristics of a water buffalo (like a head and neck), we will simulate the head-lowering action by using the arms. Frame 1 will start with the arms in a neutral position. Frame 2 will show the arms moving downward slightly, mimicking the lowering of the head. Frame 3 will show the arms in a lower position, representing the head fully lowered. Finally, Frame 4 will show the arms returning to the neutral position to complete the cycle. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

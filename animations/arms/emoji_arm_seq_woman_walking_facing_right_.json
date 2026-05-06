@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "🚶‍♀️‍➡️",
+        "reasoning": "This animation sequence depicts a woman walking towards the right. The left arm will swing naturally forward and backward, while the right arm will move in a complementary, yet slightly less pronounced motion.  The slight asymmetry will enhance the realism of the walking motion. The sequence will focus on distinct keyframes, leaving smooth transitions between them to the animation system.  The overall impression should be one of casual, natural movement. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": -75.0,
+                        "wrist": -5.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 15.0,
+                        "joint2": 20.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": -60.0,
+                        "wrist": 5.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 15.0,
+                        "joint2": -75.0,
+                        "wrist": -5.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🉐",
+        "reasoning": "This animation sequence simulates the excitement of a great bargain, using a combination of arm movements to express both surprise and delight. The sequence begins with a gesture of anticipation, transitioning to a celebratory pose, and finally settling into a contented expression of satisfaction. The use of both arms emphasizes the double meaning of the emoji, where two hands represent double the value. In the first frame, both arms are slightly raised in front of the robot's body, hands open in anticipation.  Joint1 is slightly inward, and joint2 is positioned around 45 degrees. The wrists are neutral. In the second frame, both arms move outward and upward in a gesture of surprise and delight, palms facing outward. Joint1 rotates outward, and joint2 is raised to around 75 degrees. The wrists remain neutral. In the third frame, the arms move slightly downward, hands coming together as if holding something precious. Joint1 moves slightly inward, and joint2 drops to around 60 degrees. The wrists are slightly rotated inward to simulate holding something together. In the fourth frame, the arms settle into a contented pose, with both hands gently placed near the face, as if reflecting on the amazing bargain. Joint1 rotates slightly inward, and joint2 moves to around 45 degrees. The wrists are neutral. This final pose conveys satisfaction and contentment. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 60.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

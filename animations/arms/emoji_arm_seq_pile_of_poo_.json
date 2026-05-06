@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "💩",
+        "reasoning": "This sequence aims to playfully express the \"pile of poo\" emoji using exaggerated arm movements. The animation will start with both arms relaxed, then move to a disgusted expression, followed by a wiping motion and finally back to a relaxed state.  The robot arms lack elbows, so the movements will be stylized but still convey the emotion. Frame 1: neutral pose. Frame 2: arms slightly raised and brought together as if to smell the bad odor. Frame 3: One arm moves downward as if wiping. Frame 4: Return to neutral pose.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

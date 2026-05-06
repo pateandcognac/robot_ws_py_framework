@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "👇",
+        "reasoning": "This sequence aims to create a downward pointing gesture with the right arm, similar to the '👇' emoji. The left arm will remain at rest, providing balance and directing attention to the primary gesture. Throughout the motion, I'll focus on distinct keyframes that capture the start, middle, and end of the pointing action.  In the first frame, both arms are in a neutral, relaxed position at the sides. joint1 is at 0.0, aligning both arms with the body, and joint2 pitches them downward to -90.0. The wrists remain at 0.0, maintaining a natural resting pose. This sets the stage for the subsequent pointing gesture. In the second frame, the right arm begins its downward motion. joint1 rotates slightly inward to position the arm for pointing, while joint2 pitches the arm forward and then downward to about -45.0 degrees, initiating the downward trajectory. The right wrist rotates to -90.0 degrees to ensure the hand points directly downward. The left arm remains at rest, maintaining balance and focus on the right arm's movement. In the third frame, the right arm extends further downward, completing the pointing gesture. joint2 pitches the arm to its lowest point at -90.0 degrees, solidifying the downward direction. The wrist remains at -90.0 degrees to maintain the hand's downward orientation.  The left arm stays relaxed at the side. In the fourth and final frame, the right arm returns to its neutral resting position at the side, mirroring the initial frame. This completes the pointing gesture and prepares the robot for subsequent actions.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -90.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

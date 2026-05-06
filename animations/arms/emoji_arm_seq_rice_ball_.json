@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🍙",
+        "reasoning": "This sequence mimics the action of carefully holding a rice ball.  The animation will focus on gentle, precise movements to emphasize the delicacy of the food.  The robot will initially hold its hands open slightly, then carefully cup its hands to gently grasp the rice ball, finally holding it close to its chest. The right arm will do most of the work, while the left arm supports.  I'll make sure the transitions between frames are smooth and natural. Frame 1: Both arms start in a relaxed position, slightly forward, palms facing upwards. Frame 2: The right arm moves forward and the wrist angles slightly downward, as if cupping something. The left arm moves slightly forward to support. Frame 3: Both hands gently close around the rice ball, which is held near the chest. Frame 4: The arms maintain their position around the rice ball, indicating the rice ball is safely held.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -40.0,
+                        "wrist": -30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -50.0,
+                        "wrist": -20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": -40.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -10.0,
+                        "joint2": -50.0,
+                        "wrist": -20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": -40.0
+                    }
+                }
+            ]
+        ]
+    }
+]

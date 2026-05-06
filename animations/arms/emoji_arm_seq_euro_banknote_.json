@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "💶",
+        "reasoning": "This animation sequence portrays the careful handling of a valuable object, representing the euro banknote. The robot will hold its 'hands' out in a protective gesture, emphasizing the importance of the currency. The sequence begins with the robot's arms extended outward, palms up, as if presenting the banknote. Then, the arms move slightly inward, bringing the 'hands' closer together, as if cradling the banknote. Next, the robot gently lowers its arms, as if placing the banknote down carefully. Finally, the arms return to a neutral position, signifying the completion of the action.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

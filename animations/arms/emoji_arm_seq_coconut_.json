@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🥥",
+        "reasoning": "This sequence mimics the act of gently cradling a coconut. It starts with arms open wide, then brings them together to hold the coconut, and finally shows a slight rocking motion.  The animation focuses on the gentle and protective movement associated with holding something precious and fragile like a coconut. The arms will move in a coordinated manner, with the palms facing upwards to cradle the imagined coconut. I'll use slight variations in the wrist positions to make the animation seem more natural and less robotic. The left arm will generally lead the motion, followed closely by the right arm to ensure a smooth, coordinated movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 0.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

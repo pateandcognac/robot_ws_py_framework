@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🍼",
+        "reasoning": "This sequence simulates a robot gently cradling a baby bottle.  The movement is slow and deliberate, emphasizing care. The robot's lack of hands necessitates a creative approach; we'll use the arms to create an encompassing gesture. In the first frame, both arms are extended slightly forward and inward, palms facing upward, as if ready to receive the bottle. In the second frame, the arms move slightly closer to the body, and upward, suggesting the bottle is being held. In the third frame, the arms gently cradle the bottle, moving slightly downward and inward to create a protective gesture.  The final frame shows the arms returning to a slightly more relaxed position, though still holding the bottle close.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

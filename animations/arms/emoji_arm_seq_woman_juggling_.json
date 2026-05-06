@@ -1,0 +1,99 @@
+[
+    {
+        "emoji": "🤹‍♀️",
+        "reasoning": "This sequence simulates the act of juggling, focusing on the dynamic arm movements and hand positions to capture the essence of the activity. The animation should convey a sense of skill and coordination, with fluid transitions between frames. I'll use both arms actively, with slight variations in timing and position to add realism and avoid mechanical movements. In the first frame, both arms start in a wide arc, preparing for the throws. The hands are open and palms facing upward, ready to launch the imaginary juggling objects. Joint1 will rotate the arms outward, and joint2 will pitch them slightly upward. In the second frame, the right arm is in the middle of its upward arc, while the left arm is slightly downward, as if one object has been thrown and the other is about to be. Joint1 and joint2 will be adjusted for each arm to create this staggered effect. In the third frame, the left arm is in the middle of its upward arc, while the right arm is slightly downward, mirroring the second frame's action. This is the opposite movement from the second frame. The fourth frame is similar to the first frame, with both arms in a wide arc, completing a full cycle, ready to begin the process again. The subtle variations in joint angles and the coordinated arm movements create the illusion of juggling. Finally, in the fifth frame, the arms return to a relaxed position, indicating the end of the juggling action. The slight differences in arm positions throughout the frames convey the fluidity of the gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 60.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 60.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": 10.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "👡",
+        "reasoning": "This animation sequence will show the robot delicately picking up a sandal. The movement should be slow and careful, reflecting the fragility of the object.  The right arm will perform the primary action, while the left arm will provide balance and support. I will use small, precise movements, avoiding overly dramatic gestures.  The sequence will consist of 4 frames. Frame 1: Both arms start in a neutral position. Frame 2: The right arm moves slightly forward and downward, the hand opening to receive the sandal. Frame 3: The right arm lifts the sandal gently, maintaining a horizontal orientation. Frame 4: The right arm moves the sandal to a slightly higher position, ready for placement. The left arm remains mostly still, providing a point of balance.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 15.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 5.0,
+                        "joint2": 30.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

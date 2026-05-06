@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🌰",
+        "reasoning": "This animation sequence portrays a robot carefully holding a chestnut, emphasizing the delicate nature of the object. It starts with both arms at the sides, then brings the hands together in a cupping motion before gently closing around the imaginary chestnut. Finally, the robot brings the chestnut up to eye level to admire it, before returning to a resting position. Each frame represents a significant change in arm position.  The animation uses a slow, deliberate pace, highlighting the careful handling of the chestnut. The robot's movements are gentle and precise, reflecting the emotion of appreciation for the small, delicate object.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 10.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

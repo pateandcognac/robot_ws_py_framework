@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "🏬",
+        "reasoning": "This animation sequence will depict a welcoming gesture, as if the robot is inviting someone into a department store. The sequence starts with the arms relaxed at the sides, then opens to a wide welcoming gesture, and then returns to rest.  The movement should be fluid and inviting, emphasizing openness and approachability. The robot's lack of elbows will be compensated for by using the shoulder joints to create a natural arc in the movement.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -75.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

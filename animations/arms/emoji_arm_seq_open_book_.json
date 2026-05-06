@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "📖",
+        "reasoning": "This sequence animates the action of opening a book.  The robot will initially hold the book closed, then smoothly open it to a comfortable reading position.  The movement will be deliberate and gentle, reflecting the careful handling of a book. We'll focus on using the robot's two-joint arms to create a natural opening motion. In frame 1, both arms will be positioned as if holding a closed book against the chest.  In frame 2, the left arm will start to move away from the book, rotating outward at the shoulder, as the right arm begins to rotate outward, pulling the book open.  The right arm will move further outward and downward in frame 3, while the left arm continues its upward and outward motion, creating a smooth pivoting effect. The final frame, frame 4, shows the book fully open, with the left arm supporting the book's left side and the right arm supporting the right side, both arms positioned in a comfortable reading stance. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 60.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 60.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 75.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 75.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 80.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 80.0,
+                        "joint2": -75.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

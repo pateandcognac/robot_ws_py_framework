@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "💼",
+        "reasoning": "This animation sequence will show the robot carefully holding a briefcase.  The robot will use both arms to cradle the briefcase, suggesting care and responsibility.  The motion will start with arms extended, then lower to grasp the briefcase, and finally settle into a steady hold. The robot's arms do not have elbows, so the motion will be a smooth arc. The neutral wrist position will emphasize the briefcase as the focus of the gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

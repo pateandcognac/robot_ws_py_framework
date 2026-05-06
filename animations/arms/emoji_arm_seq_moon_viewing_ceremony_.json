@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🎑",
+        "reasoning": "This animation sequence depicts a serene moon viewing, focusing on gentle, upward arm movements that evoke a sense of peaceful contemplation.  The arms will move gracefully, mirroring the quiet beauty of the scene.  The sequence avoids sudden movements, maintaining a calm and contemplative atmosphere. Frame 1 shows the arms at rest. Frame 2 gently raises the arms, palms up. Frame 3 shows a slight pause, with arms still elevated.  Frame 4 brings the arms down slowly. Frame 5 returns the arms to a neutral position. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

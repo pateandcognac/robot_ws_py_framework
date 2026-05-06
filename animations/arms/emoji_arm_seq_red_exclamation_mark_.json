@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "❗",
+        "reasoning": "This animation sequence portrays a robot expressing urgent warning or attention-grabbing behavior, fitting the exclamation mark's meaning.  The robot will raise both arms and point its index fingers (simulated by wrist positioning), emphasizing the warning. Frame 1 starts with arms at sides. Frame 2 shows both arms rising. Frame 3 shows fingers pointing directly forward. Frame 4 lowers the arms slightly, maintaining the pointed finger gesture. Frame 5 returns to a neutral stance, suggesting the warning has been given.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": 60.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

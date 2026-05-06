@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🌪️",
+        "reasoning": "This sequence simulates the swirling motion of a tornado using both arms. The arms move in a circular pattern, mimicking the vortex of a tornado.  The sequence begins with arms extended to the sides, then moves to a position where arms are raised and slightly bent, suggesting the upward pull of a tornado. The arms then move to a position where they are circling, mimicking the swirling motion, and finally they settle back down to a neutral position.  The wrists are slightly angled to enhance the swirling effect. This sequence aims to capture the dynamic and powerful nature of a tornado.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 30.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

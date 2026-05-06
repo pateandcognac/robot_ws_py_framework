@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🐚",
+        "reasoning": "This sequence will mimic the gentle, spiraling movement of a seashell, using both arms in a coordinated, flowing motion. The arms will move in a circular path, with the left arm leading, creating a sense of elegance and grace. The wrists will rotate slightly to enhance the visual representation of a spiral.  I will check the examples to ensure smooth transitions and appropriate range of motion for the robot's arm structure. Frame 1: Both arms start in a relaxed, slightly outward position, ready to begin the spiral motion. Frame 2: The left arm moves upward and slightly inward, leading the circular path. The right arm begins to follow, positioning itself slightly lower and more outward. Frame 3: The left arm continues its upward movement, while the right arm moves upward and inward, mirroring the left arm's motion. Frame 4: Both arms complete a half-circle, with the left arm reaching its highest point and the right arm reaching its middle point. Frame 5: Both arms return to a relaxed position, completing the spiral motion.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -30.0,
+                        "joint2": 45.0,
+                        "wrist": 20.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": -45.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 75.0,
+                        "wrist": 40.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": 15.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 90.0,
+                        "wrist": 60.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

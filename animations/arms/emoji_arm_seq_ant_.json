@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🐜",
+        "reasoning": "This animation sequence simulates an ant carrying something heavy, using both arms to mimic the effort. The movement should be slow and deliberate, emphasizing the weight of the object.  The sequence will show the ant lifting, carrying, then setting down the object.  I'll use slight variations in joint angles and wrist positions to create a more natural, less robotic feel. In the first frame, both arms are lowered, slightly bent, ready to lift.  In the second frame, both arms lift the object, with the arms slightly bent and positioned forward. In the third frame, the arms are extended, showing the ant moving the object forward.  In the fourth frame, the arms are slightly bent again, as the ant lowers the object to the ground. In the final frame, the arms return to their resting position. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

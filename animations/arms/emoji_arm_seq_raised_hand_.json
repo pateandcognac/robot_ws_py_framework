@@ -1,0 +1,79 @@
+[
+    {
+        "emoji": "✋",
+        "reasoning": "This sequence aims to create the gesture of a raised hand, as if asking a question or signaling for attention. Given that the robot has two shoulder-like joints and adjustable wrists, I will focus on a smooth, upward motion of the right arm, while the left arm remains at rest to maintain balance and focus.  I'll begin with both arms in a neutral position and transition the right arm upward in distinct steps, referencing the examples to ensure the movements look natural and expressive. In the first frame, both arms are at rest by the robot's sides, with the palms facing inward.  This neutral stance creates a sense of readiness before the intended action. The parameters for joint1 and joint2 are set to 0.0 and -90.0 respectively for both arms, establishing a relaxed starting pose.  Moving to the second frame, the right arm begins its upward journey.  joint1 rotates the arm slightly outward to allow for a natural lifting motion, while joint2 increases its angle to bring the arm forward and up. The wrist angle adjusts slightly to present the hand as if preparing to be raised fully. The left arm remains at rest, providing stability and contrast to the right arm's movement. In the third frame, the right arm continues its ascent, with joint2 pitching the arm closer to a vertical position.  The wrist rotates to maintain a natural hand orientation as the arm rises.  The left arm remains stationary, anchoring the pose.  Finally, in the fourth frame, the right arm reaches its fully raised position, signifying the completion of the gesture.  joint2 reaches its maximum value, positioning the arm vertically, and the wrist adjusts to ensure the hand is presented clearly.  The left arm remains at rest, completing the raised hand gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 45.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -25.0,
+                        "joint2": 75.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -25.0,
+                        "joint2": 90.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

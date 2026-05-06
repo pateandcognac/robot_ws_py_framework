@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "⭕",
+        "reasoning": "This animation sequence will portray a robot gently cradling an unseen object, representing the emptiness or potential within the hollow red circle. The movement will be slow and deliberate, emphasizing care and curiosity. Frame 1 begins with both arms outstretched, palms upward, as if presenting an open space. Frame 2 shows both arms curving inward, palms still facing upward, as if gently guiding the unseen object towards the center. Frame 3 brings the arms together, palms facing each other, forming a protective cradle. Frame 4 shows the arms slightly lowered, keeping the object cradled close. Frame 5 ends with the arms back in their initial outstretched position, suggesting the object is carefully released or the moment of contemplation is finished. The left and right arms will mirror each other's movements, creating a symmetrical and gentle gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

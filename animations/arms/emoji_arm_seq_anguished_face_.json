@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "😧",
+        "reasoning": "This sequence aims to capture the feeling of anguish, shock, or distress using arm and hand movements.  I'll use both arms, bringing them up towards the face initially, as if to cover it in a moment of shock or despair. Then, I'll have them drop slightly and move outward, conveying a sense of helplessness or disbelief. Throughout the sequence, I'll focus on creating smooth transitions between poses, keeping in mind the robot's joint structure.  In the first frame, both arms move upwards quickly towards the face, palms facing inwards, as if reacting to a sudden shock. joint1 rotates inwards, and joint2 pitches upward sharply. The wrists rotate to -90 degrees. In the second frame, the arms remain raised, but the hands rotate slightly outward, wrists changing to -45 degrees, palms angled slightly away from the face, as if the initial shock is giving way to disbelief. In the third frame, the arms drop slightly, joint2 pitching downwards a bit, as if weighed down by distress, while also moving slightly outwards, joint1 rotating outwards.  The wrists rotate back to -90 degrees, palms now facing slightly more inward again, reflecting a sense of helplessness.  In the final frame, the arms lower further, joint2 pitching downwards more, and spread slightly wider, joint1 rotating outwards a bit more, enhancing the feeling of despair and vulnerability.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 80.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 50.0,
+                        "joint2": 50.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": 20.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

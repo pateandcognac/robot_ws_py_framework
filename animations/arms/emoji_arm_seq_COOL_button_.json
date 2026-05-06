@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🆒",
+        "reasoning": "This animation sequence for the 🆒 emoji aims to represent a feeling of coolness and nonchalant confidence.  The animation will use a combination of arm movements to convey this feeling. The sequence starts with the robot's arms at its sides, then moves into a pose that suggests a confident, slightly aloof stance. The arms will then return to a relaxed position.  The movement will be fluid but not excessively dramatic. We will use the robot's two-jointed arms to create the illusion of a relaxed but stylish pose. Frame 1 shows the arms at rest, Frame 2 brings the arms into a position that is slightly raised and angled outward, suggesting a relaxed confidence. Frame 3 subtly shifts the arm position, and Frame 4 returns the arms to their resting position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

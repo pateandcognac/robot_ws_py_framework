@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🥊",
+        "reasoning": "This sequence simulates the action of a boxer readying for a punch, focusing on the left arm's movement. The right arm will remain partially raised in a guard position for balance and to emphasize the left arm's action. The sequence will be composed of 4 frames, capturing the key moments of the punch preparation. In the first frame, both arms are raised in a boxer's guard position, with the left arm slightly lower than the right, ready to deliver the punch. joint1 for both arms is rotated outward to create a defensive posture, while joint2 pitches both arms slightly forward. The wrists are angled slightly inward to emphasize the defensive stance. In the second frame, the left arm begins its powerful extension forward, with joint1 rolling the arm inward to create momentum and joint2 pitching the arm downward for force. The wrist remains slightly angled inward to prepare for impact. The right arm stays in a guard position, creating contrast. In the third frame, the left arm is in its most extended position, the wrist rotated outward, ready to strike. joint1 reaches its peak rotation, while joint2 pitches the arm downward to create a forceful impact. The right arm remains in a guard position. In the final frame, the left arm starts to retract, drawing back to prepare for the next punch. joint1 rotates outward, and joint2 pitches the arm upward, resetting the position for a repeated punch. The right arm remains in a guard position. The sequence emphasizes the preparation and delivery of a punch and then the recovery position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 60.0,
+                        "joint2": 10.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": 40.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -40.0,
+                        "joint2": -40.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": 40.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -80.0,
+                        "joint2": -80.0,
+                        "wrist": 90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": 40.0,
+                        "wrist": 10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": -10.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 40.0,
+                        "joint2": 40.0,
+                        "wrist": 10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

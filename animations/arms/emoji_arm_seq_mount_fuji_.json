@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🗻",
+        "reasoning": "This sequence depicts a robot admiring Mount Fuji, starting with arms at its side, then raising them in awe, and finally bringing them down in a contemplative pose. The sequence aims for a slow, deliberate, and respectful portrayal of the gesture, mirroring the majesty of the mountain. Frame 1 begins with a neutral pose. Frame 2 shows both arms rising, palms facing each other in a gesture of reverence. Frame 3 shows the arms raised slightly higher, emphasizing the awe. Frame 4 brings the arms down slowly, palms still facing each other, in a contemplative gesture. Frame 5 ends with arms at the sides, in a relaxed pose.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 60.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 15.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

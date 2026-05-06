@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "♨️",
+        "reasoning": "This animation sequence depicts a robot relaxing in a hot spring.  The movement should be slow, gentle, and convey a sense of calm and warmth. We'll use both arms in a pose that suggests comfort and immersion.  The arms will start slightly raised, then drop to a more relaxed position, and finally settle in a comfortable resting pose. The overall movement should be fluid and not jerky.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

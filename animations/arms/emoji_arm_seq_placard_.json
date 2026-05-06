@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🪧",
+        "reasoning": "This animation sequence depicts a robot holding a placard, emphasizing a clear, concise message.  The robot will extend both arms to hold the placard steady, simulating a presentation or demonstration. The movement will be measured and deliberate, avoiding unnecessary motions. Frame 1 starts with the arms slightly elevated in preparation. Frame 2 shows the placard being held steadily at waist height. Frame 3 shows both arms at the sides, suggesting the presentation has ended. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

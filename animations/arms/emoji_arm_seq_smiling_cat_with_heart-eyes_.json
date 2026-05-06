@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "😻",
+        "reasoning": "This sequence aims to capture the lovestruck, adoring expression of the smiling cat with heart eyes emoji. The robot will mimic a gesture of clutching its face with its hands, as if overwhelmed by affection. The arm and wrist movements are designed to convey a sense of playful excitement and intense adoration. In the first frame, both arms are raised to the sides of the face, palms inward, as if the robot is about to cup its face. Joint1 is rotated outward, and joint2 pitches the arms upward. The wrists are angled inward at -90 degrees to bring the hands close to the face. In the second frame, the arms move slightly closer together, gently pressing against the 'cheeks.' Joint1 rotates further inward, and joint2 adjusts slightly to maintain the upward position. The wrists remain angled inward, emphasizing the gentle pressure. In the third frame, the arms move slightly outward again, creating a gentle rocking or swaying motion. Joint1 rotates slightly outward, and joint2 maintains the arms' upward position. The wrists remain inward. In the fourth frame, the arms move back inward, closer together, as if squeezing the face gently. Joint1 rotates inward, and joint2 adjusts to keep the arms close to the face. The wrists remain angled. Finally, in the fifth frame, the arms return to the starting position, slightly wider apart, palms facing inward, ready to repeat the gesture. This back-and-forth motion adds a playful, almost giddy quality to the gesture, conveying the overwhelming adoration of the heart-eyes emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 85.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 85.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 25.0,
+                        "joint2": 85.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

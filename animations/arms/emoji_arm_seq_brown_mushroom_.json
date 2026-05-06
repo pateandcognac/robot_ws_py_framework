@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🍄‍🟫",
+        "reasoning": "This animation sequence will depict a robot interacting with a mushroom, conveying curiosity and gentle exploration. The robot will initially hover its arms over the mushroom, then gently touch it, and finally retract its arms, suggesting a moment of contemplation.  The movement will be slow and deliberate, reflecting the calm and peaceful nature of the mushroom emoji. The robot's movements will be smooth and non-threatening, mirroring the gentle nature of the mushroom.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

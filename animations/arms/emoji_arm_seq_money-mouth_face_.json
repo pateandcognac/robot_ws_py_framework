@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🤑",
+        "reasoning": "This sequence aims to capture the exuberant feeling of the money-mouth face emoji 🤑, where someone is so excited about money that their eyes turn into dollar signs.  The animation will involve the arms moving in a celebratory, money-grabbing gesture.  In the first frame, both arms are extended forward as if reaching for money, palms open and facing upwards. joint1 is slightly inward, joint2 is pitched forward, and wrists are rotated to face upward. This sets the stage for the money-grabbing motion.  In the second frame, the arms bend at the \"elbows\" (simulated by joint2 pitching) and the hands move closer to the body in a scooping motion, as if gathering money. joint1 rotates slightly outward. The wrists rotate slightly inward.  The third frame has the arms extending outwards again, now with the \"elbows\" locked (joint2 pitched upward) and palms facing downwards, as if showering oneself with the collected money. joint1 rotates outward, and the wrists rotate to face downwards. In the fourth frame, the arms return to the initial reaching position, palms open and facing upwards, ready for another round of money-grabbing. joint1 is slightly inward, joint2 is pitched forward, and wrists are rotated to face upward.  The fifth and final frame brings the arms down to the sides in a relaxed posture, as if satisfied with the money collected. joint1 is neutral, joint2 is pitched downward, and the wrists are neutral.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 60.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 45.0,
+                        "wrist": 45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

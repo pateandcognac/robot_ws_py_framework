@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🔒",
+        "reasoning": "This animation sequence will depict the robot securing something, implying a locking action.  The sequence will begin with both arms outstretched, palms facing each other, as if holding an object. Then, the arms will move inward and downward, simulating the action of locking. Finally, the arms will return to a relaxed position, signifying the completion of the locking process. The robot's posture will shift subtly to reflect the action.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -45.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

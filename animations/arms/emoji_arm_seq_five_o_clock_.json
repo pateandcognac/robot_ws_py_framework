@@ -1,0 +1,108 @@
+[
+    {
+        "emoji": "🕔",
+        "reasoning": "This animation sequence depicts a robot checking a clock, mimicking the action implied by the 5 o'clock emoji.  The robot will use its right arm to point at an imaginary clock, while the left arm remains mostly still.  The movement will be composed, deliberate, and slightly formal, reflecting the structure and time-keeping nature of the emoji. Frame 1: The starting position. The right arm is hanging relaxed at the side. The left arm is gently resting at the side as well. Frame 2: The robot's right arm begins to extend toward the imaginary clock face. Joint1 rotates slightly outward and joint2 pitches the arm upward and forward. The wrist is angled slightly downward. Frame 3: The right arm points directly at the imaginary clock face. Joint1 and joint2 are adjusted to maintain a pointing pose. The wrist is now pointed directly at the clock. Frame 4: The right arm is slightly lowered, as if the robot is done looking at the time. The left arm remains relatively static. Frame 5: The robot's arm returns to the starting position, relaxed at the side.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 40.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -10.0,
+                        "joint2": 10.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

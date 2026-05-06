@@ -1,0 +1,68 @@
+[
+    {
+        "emoji": "⏏️",
+        "reasoning": "This animation sequence simulates the action of pushing an eject button.  The robot will use its right arm to perform the action, while the left arm remains at rest.  The movement will be a short, decisive push.  The sequence will start with the arm slightly raised and angled towards the button, then move to the button's location and finish with the arm returning to its resting position.  I will ensure that the movements are smooth and natural, avoiding any jerky or unnatural transitions. I will also ensure that the final pose is clear and unambiguous, communicating the action of 'eject' effectively. The robot does not have hands; therefore, the final position of the arm will focus on the arm's final position and orientation to represent the action rather than the detailed hand movements.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

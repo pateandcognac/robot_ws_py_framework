@@ -1,0 +1,88 @@
+[
+    {
+        "emoji": "🎫",
+        "reasoning": "This animation sequence depicts the robot carefully holding a ticket, emphasizing the delicate nature of the object. The sequence starts with both arms at the sides, then moves to carefully presenting the ticket, and finally returning to a neutral position. Frame 1 shows both arms hanging naturally at the sides, ready for the action. In Frame 2, the robot's right arm moves forward and upward, with the wrist slightly angled to simulate the action of holding a ticket. The left arm remains neutral. Frame 3 shows the ticket presented, with both arms carefully positioned to showcase the ticket. The right arm is more extended, and the left arm is slightly raised in a supporting position. The wrists are angled to cradle the ticket. Frame 4 shows the robot returning to a neutral state, with both arms returning to their relaxed positions at the sides.  This sequence highlights the careful presentation of the ticket, conveying a sense of importance and anticipation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 20.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": 45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -30.0,
+                        "joint2": 30.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 10.0,
+                        "joint2": -85.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

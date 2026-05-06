@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🐄",
+        "reasoning": "This sequence will show the robot mimicking a cow's gentle, swaying movements.  It will involve a slow, rhythmic movement of both arms, suggesting the calm and peaceful nature of a cow.  The arms won't move too much, keeping the animation subtle and in line with the cow's demeanor.  We'll use a slight outward rotation at joint1 to suggest a relaxed posture, and a gentle swinging motion using joint2.  The wrists will remain mostly neutral, with slight adjustments for a more natural look. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -40.0,
+                        "wrist": 5.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -70.0,
+                        "wrist": -5.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

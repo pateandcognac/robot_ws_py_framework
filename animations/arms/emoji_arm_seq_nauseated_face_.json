@@ -1,0 +1,90 @@
+[
+    {
+        "emoji": "🤢",
+        "reasoning": "This sequence aims to evoke a feeling of nausea, using subtle arm and wrist movements to convey discomfort. The animation starts with both arms held slightly away from the body, suggesting a sense of unease. Then, one arm moves towards the mouth as if to cover it, while the other arm remains slightly extended, maintaining balance and adding to the overall feeling of sickness. I referenced examples to ensure smooth, natural-looking transitions between frames.  In the first frame, both arms are slightly extended outward and downward, with palms facing inward. joint1 rotates both arms outward, and joint2 pitches them downward. This creates a baseline of discomfort, as if the robot is trying to create space around itself. In the second frame, the left arm begins to rise towards the mouth, joint1 rotates inward, and joint2 pitches the arm upward, while the wrist rotates to angle the hand towards the face. The right arm remains extended, providing balance.  The third frame has the left arm positioned as if covering the mouth, with the wrist rotated further inward to emphasize the gesture. The right arm remains extended but lowers slightly, reflecting the shift in weight and adding to the feeling of nausea. In the fourth frame, the left arm moves slightly away from the mouth, as if the feeling of nausea has momentarily subsided. The right arm remains lowered.  Finally, in the fifth frame, both arms return to the initial extended position, palms facing inward, suggesting a lingering sense of unease and potential recurrence of nausea.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30.0,
+                        "joint2": 70.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 40.0,
+                        "joint2": 80.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 25.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 30,
+                        "joint2": 70.0,
+                        "wrist": -45.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 25.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

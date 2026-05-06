@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "👨‍🔬",
+        "reasoning": "This animation sequence depicts a scientist meticulously working in a lab. The sequence will start with arms at the sides, then move to holding a beaker, followed by writing in a notebook, and finally returning to a neutral pose. Frame 1: The scientist starts with arms at their sides, relaxed and ready for action. Frame 2: The scientist picks up a beaker, holding it with slight care. The left arm is bent at a specific angle, holding the beaker steadily, while the right arm remains in a relaxed position, ready to support the beaker if needed. Frame 3: The scientist puts the beaker down and picks up a notebook to write something, perhaps an observation or formula. The left arm is lowered slightly and the right arm is now the one holding the notebook. Frame 4: The scientist carefully places the notebook down and returns to their original neutral pose. The arms are relaxed at their sides, ready for the next step in their experiment.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

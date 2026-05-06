@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🏎️",
+        "reasoning": "This animation sequence simulates the act of gripping a racing wheel and leaning forward with anticipation.  The robot will mimic the intense focus and excitement of a race car driver.  Because the robot arms lack elbows, the poses will focus on shoulder and wrist movements to imply the necessary actions. Frame 1 will show the robot in a neutral position. Frame 2 will show the robot's hands coming together in front of the body, as if gripping the wheel. Frame 3 will show the robot leaning forward, and frame 4 will show the arms extended forward, mimicking the forward motion of a car.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 0.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🌨️",
+        "reasoning": "This sequence will show the robot gently pushing snow upward with both arms, mimicking the action of creating or pushing a cloud of snow. The movement will be slow and deliberate, with a focus on smooth transitions between frames.  I'll ensure that the robot's arm movements are expressive and convey the feeling of interacting with light, fluffy snow. The robot will start with its arms down, then lift them, push the snow, and then return its arms to the relaxed resting position.  I'll check examples to ensure the arm movements are natural and expressive.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

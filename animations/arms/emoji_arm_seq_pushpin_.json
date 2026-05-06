@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "📌",
+        "reasoning": "This animation sequence simulates the action of pushing a pin into a surface. It starts with both arms extended forward, then one arm moves down to simulate the pushing action, and finally both arms return to a neutral position.  The sequence uses a combination of joint1 (roll) and joint2 (pitch) for natural-looking movements. The use of both arms helps to emphasize the \"pushing\" motion, making it more expressive than if only one arm was used. The final frame is a return to a neutral position.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -80.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

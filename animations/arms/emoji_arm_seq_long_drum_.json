@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🪘",
+        "reasoning": "This animation sequence simulates the act of playing a long drum.  The robot will mimic the motions of a drummer, using both arms in a coordinated manner.  The key is to show a rhythmic back-and-forth motion, with clear changes in arm position between frames to emphasize the beat. We'll use the robot's two shoulder joints to create a fluid, expressive movement. The first frame will show both arms raised, ready to strike the drum. The second frame captures the moment of impact, with arms slightly bent. The third frame shows the arms returning to the starting position, and the fourth frame shows a slight pause before the next beat.  Each frame represents a distinct position in the sequence, with significant changes in joint angles between frames. The animation system will handle the smooth transitions.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 15.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": 50.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

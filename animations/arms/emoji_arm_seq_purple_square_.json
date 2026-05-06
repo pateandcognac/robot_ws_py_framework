@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🟪",
+        "reasoning": "This animation sequence aims to represent the mysterious and somewhat enigmatic nature of the purple square emoji. The sequence will start with the arms at rest, transition to a pose suggesting curiosity or contemplation, then to a pose hinting at a hidden secret, and finally back to rest. The overall animation should portray a sense of intrigue and playful mystery. Frame 1: Both arms will be at rest. Frame 2: The robot will bring both hands up to its face, as if examining something closely or deep in thought. Frame 3: The robot will pull its hands back slightly, as if holding a secret close to its chest. Frame 4: Both arms will return to a neutral position. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 70.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 0.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

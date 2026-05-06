@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🧼",
+        "reasoning": "This sequence mimics the action of washing hands. It starts with arms extended slightly forward, palms up, as if receiving soap. Then, the arms move to a scrubbing motion, before returning to a resting position. Finally, the arms move slightly up and out, as if rinsing. The left arm will mirror the right arm's movements. In the first frame, both arms are extended slightly forward, palms up, ready to receive soap. joint1 is rotated slightly inward, and joint2 pitches the arms forward to shoulder height. The wrists are angled slightly up to emphasize the open palms. In the second frame, both arms move to a scrubbing motion. joint1 rotates outward, and joint2 pitches the arms slightly downward, bringing the hands closer to the body. The wrists are rotated slightly inward to simulate the movement of scrubbing. In the third frame, the hands come to a rest. joint1 and joint2 return to a neutral position, with the arms hanging relaxed at the side, slightly forward, with palms facing inward. In the fourth frame, both arms lift slightly upward and outward, as if rinsing. joint1 rotates slightly outward, and joint2 pitches the arms slightly upward. The wrists are rotated slightly to emphasize the outward motion. This mimics the action of rinsing one's hands. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 0.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": -30.0,
+                        "wrist": -20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

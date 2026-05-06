@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🩸",
+        "reasoning": "This sequence simulates a single drop of blood falling.  Since our robot doesn't have hands capable of holding or dripping anything, we'll represent the falling drop using a stylized arm movement that evokes the feeling of something falling. The overall movement will be subtle, focusing on a downward motion of one arm and a slight recoil. Frame 1 will show both arms relaxed at the side. Frame 2 will have the left arm begin to move downward, as if it is the source of the drop. Frame 3 will show the left arm at the bottom of its arc, and Frame 4 will show both arms returning to their resting position.  This will create a visual effect suggesting a small, quick event.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 10.0,
+                        "joint2": -100.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

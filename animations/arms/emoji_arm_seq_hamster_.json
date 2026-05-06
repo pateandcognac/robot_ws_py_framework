@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "🐹",
+        "reasoning": "This animation sequence will depict a hamster's characteristically quick and curious movements.  The robot will mimic this by using short, jerky movements of its arms, alternating between exploring and sniffing. The sequence will use both arms to create a sense of lively energy and will be concise to reflect the hamster's rapid actions. Frame 1 will show both arms in a slightly raised position, palms facing forward, as if the hamster is sniffing the air. Frame 2 will show the left arm reaching forward, the right arm slightly retracted, suggesting a movement forward and a tentative investigation. Frame 3 will reverse this, with the right arm reaching forward and the left arm pulling back.  Frame 4 will return to the initial sniffing pose, completing a cycle of investigation. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 20.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 20.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": -20.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

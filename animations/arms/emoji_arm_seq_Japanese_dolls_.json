@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🎎",
+        "reasoning": "This animation sequence depicts two dolls bowing slightly, representing the respectful nature of Japanese culture and the traditional aesthetic of the dolls.  The movement is slow and deliberate, emphasizing the elegance and formality associated with the emoji.  The arms will move in a coordinated manner, mirroring each other's movements for visual harmony. Frame 1 shows the dolls in a neutral standing posture. In Frame 2, the arms of both dolls begin to move slightly forward and downward in a bowing motion. In Frame 3, the bowing motion continues, with the arms moving further downward, and the dolls maintaining a slight bend at the waist. Finally, in Frame 4, the dolls return to their initial standing position, completing the bowing gesture.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

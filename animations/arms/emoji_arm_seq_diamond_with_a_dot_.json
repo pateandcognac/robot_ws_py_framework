@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "💠",
+        "reasoning": "This animation sequence aims to represent the multifaceted nature of the diamond with a dot emoji (💠) through a series of arm movements that suggest both precision and a touch of mystery. The robot will use both arms, creating a visually engaging sequence that reflects the emoji's complex geometry. Frame 1 starts with both arms held forward, palms facing each other, as if the robot is presenting something delicate. This represents the initial focus on the object. The arms then move to frame 2, where they rotate slightly outward, as if examining the object from different angles, symbolizing the multiple facets of the diamond. Frame 3 brings the hands closer together, with palms still facing each other, suggesting a careful observation of the object's core. In frame 4, the arms move slightly upward and outward while the palms rotate to face upward, as if the robot is lifting the object and presenting it. This gesture hints at the value and significance associated with the diamond. Finally, in frame 5, the arms return to their initial position, leaving the viewer with a sense of completion and intrigue. The sequence uses subtle changes in arm position to create a sense of careful movement and curiosity, reflecting the emotion and meaning associated with the emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 15.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 15.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 5.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 45.0,
+                        "joint2": 30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": 15.0,
+                        "wrist": -45.0
+                    }
+                }
+            ]
+        ]
+    }
+]

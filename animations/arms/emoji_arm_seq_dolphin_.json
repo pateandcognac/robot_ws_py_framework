@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🐬",
+        "reasoning": "This sequence imitates a dolphin's swimming motion, using fluid arm movements to capture the grace and energy of the creature.  The animation focuses on creating a sense of flowing movement, emphasizing the smooth transitions between frames.  The arms will move in a synchronized, wave-like pattern, mimicking the fluidity of a dolphin's body in water.  In the first frame, both arms are extended to the sides, slightly upward, simulating the dolphin's initial position before a dive. Joint1 is slightly rotated outward, and joint2 is pitched upward. The wrists are rotated slightly inward.  The second frame sees the arms moving downward in a sweeping motion, mirroring the dolphin's downward stroke. Joint1 rotates slightly inward, and joint2 pitches downward.  The wrists are rotated outward.  In the third frame, the arms are brought back upward, creating a sense of upward momentum. Joint1 rotates outward, and joint2 pitches upward. The wrists rotate inward.  Frame four mirrors the downward motion of frame two, further emphasizing the cyclical movement.  The final frame shows both arms returning to the starting position, completing the cycle and preparing for the next movement.  The timing of the movement and the slight variations in joint angles help create a sense of realism and energy, capturing the essence of the dolphin's swimming motion.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -40.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 40.0,
+                        "wrist": -10.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -30.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": 30.0,
+                        "wrist": -10.0
+                    }
+                }
+            ]
+        ]
+    }
+]

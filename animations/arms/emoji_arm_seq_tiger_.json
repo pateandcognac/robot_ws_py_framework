@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🐅",
+        "reasoning": "This sequence will depict a tiger's stealthy approach, focusing on the front paws (represented by the robot's hands) and the way a tiger might subtly lower its body to get closer to prey.  The animation will emphasize a slow, deliberate movement of the arms. The first frame shows both arms extended forward, mimicking a tiger's front paws reaching out. The second frame will show the arms slightly lowered, as if the tiger's weight is shifting forward. The third frame will have the arms lowered further, and angled slightly inward, simulating the tiger getting closer to its target. The final frame will have the arms slightly raised again in a ready position, as the tiger is about to pounce. The wrists will remain neutral throughout to keep the focus on the arm movements.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -10.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -30.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

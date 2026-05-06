@@ -1,0 +1,41 @@
+[
+    {
+        "emoji": "🍱",
+        "reasoning": "This animation sequence will show the robot delicately holding a bento box, emphasizing care and appreciation for the meal.  The movement will be slow and controlled, reflecting a mindful approach to eating. The sequence starts with arms slightly raised and open, ready to receive the box, then moves to a gentle, cradling position, and finally settles into a comfortable holding pose. In the first frame, the arms are slightly raised in anticipation, palms facing upwards. This conveys readiness and expectation. In the second frame, the arms gently move inward and downward, cradling the imaginary bento box. The wrists subtly turn inward, suggesting careful handling. The third frame shows the arms in a stable, comfortable holding position, close to the body. The palms are slightly cupped, reinforcing the careful handling. This frame emphasizes the robot's contentment and enjoyment. ",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 15.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 0.0,
+                        "wrist": -30.0
+                    }
+                }
+            ]
+        ]
+    }
+]

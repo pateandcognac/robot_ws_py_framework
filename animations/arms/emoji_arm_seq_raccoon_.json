@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🦝",
+        "reasoning": "This animation sequence will portray a raccoon's characteristically curious and slightly mischievous nature.  The raccoon will use its front paws (simulated by the robot arms) to investigate something, perhaps sniffing or subtly pawing at an object just out of reach. The movement will start with arms at rest, then move forward to investigate, and finally pull back slightly as if deciding whether to get closer. The animation will use subtle shifts between frames to maintain a natural flow.  The animation uses both arms in a symmetrical way to enhance the curious and somewhat cautious approach.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -30.0,
+                        "wrist": 20.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": -20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -40.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

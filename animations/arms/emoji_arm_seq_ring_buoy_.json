@@ -1,0 +1,63 @@
+[
+    {
+        "emoji": "🛟",
+        "reasoning": "This sequence simulates the act of playfully holding a ring buoy. The animation will focus on the arms gently lifting the buoy, then moving it slightly to the side to show off the buoy, and finally returning to a relaxed pose.  The movement should be smooth, conveying a sense of lightheartedness and playfulness. In the first frame, both arms are positioned slightly below shoulder height, palms facing inward, ready to lift the buoy. joint1 is rotated slightly inward, and joint2 pitches the arms slightly upward. The wrists remain neutral. The second frame shows both arms lifting the ring buoy to about shoulder height, palms still facing inward. joint2 pitches the arms upward, and joint1 remains slightly inward. The wrists are slightly angled upward. In the third frame, the buoy is moved slightly to the side, as if being shown off, to the right. The right arm moves slightly outward, while the left arm remains largely in the same position. The wrists continue to angle slightly upward. In the fourth frame, both arms return to the position of the second frame. The buoy is centered again. The fifth frame shows both arms returning to a relaxed position at the sides, with the arms slightly curved downward. joint1 and joint2 return to their neutral positions, and the wrists are neutral. This sequence uses subtle movements to convey a sense of gentle playfulness and fun.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 10.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 30.0,
+                        "joint2": 45.0,
+                        "wrist": 15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 45.0,
+                        "wrist": 15.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

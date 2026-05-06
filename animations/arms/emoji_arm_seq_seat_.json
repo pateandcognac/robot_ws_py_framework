@@ -1,0 +1,50 @@
+[
+    {
+        "emoji": "💺",
+        "reasoning": "This animation sequence simulates someone settling into a seat.  It begins with arms slightly raised, as if preparing to sit, then moves to a relaxed position with arms at the sides, finally ending with a comfortable posture. The robot's lack of elbows necessitates a focus on shoulder movements to convey the action naturally.  I will use slight variations in joint angles to avoid rigid, mechanical movements.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 10.0,
+                        "joint2": 20.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 5.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 15.0,
+                        "joint2": -70.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]

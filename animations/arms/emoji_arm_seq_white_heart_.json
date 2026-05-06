@@ -1,0 +1,52 @@
+[
+    {
+        "emoji": "🤍",
+        "reasoning": "This sequence aims to express the gentle, pure emotion associated with the white heart emoji. The animation will involve a slow, deliberate movement of both arms to create a gesture of offering or presenting something precious.  The arms will move in a synchronized manner, starting in a neutral position and gradually moving upward in a soft, embracing motion. The use of small, incremental adjustments in joint angles will create a graceful, non-robotic feel, fitting the delicate nature of the emoji.  The final pose will suggest a gentle embrace or presentation.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": -90.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 20.0,
+                        "joint2": -45.0,
+                        "wrist": -45.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 40.0,
+                        "joint2": 0.0,
+                        "wrist": -90.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 30.0,
+                        "joint2": 15.0,
+                        "wrist": -90.0
+                    }
+                }
+            ]
+        ]
+    }
+]

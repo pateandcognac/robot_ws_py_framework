@@ -1,0 +1,70 @@
+[
+    {
+        "emoji": "😈",
+        "reasoning": "This sequence aims to capture a playful, mischievous mood associated with the 😈 emoji. The animation starts with both arms bent at the 'elbows' (simulated using joint2), raised to shoulder height, and palms facing up as if presenting something. Then, one arm playfully swipes across in front of the body, hinting at a devious plan, while the other arm returns to a relaxed position. Finally, both arms end in a relaxed but slightly raised posture, ready for the next mischievous act. In the first frame, both arms are raised to shoulder height, 'elbows' bent, and palms facing slightly upward. joint1 is neutral, joint2 is at 45 degrees for both arms, and the wrists are at 0 degrees. This pose conveys a playful, almost presenting gesture. In the second frame, the left arm swipes across the body, with joint1 rotating inward to -45 degrees and joint2 pitching slightly downward to 20 degrees. The wrist rotates to -90 degrees, as if concealing something. Meanwhile, the right arm relaxes slightly, with joint2 moving to -45 degrees and the wrist remaining neutral. This contrasting movement adds a touch of mischievousness. In the third frame, the left arm returns to a relaxed, slightly raised position, with joint1 at 0 degrees and joint2 at -20 degrees. The wrist remains at -90 degrees. The right arm stays relaxed, with joint2 at -60 degrees. This pose suggests a readiness for the next playful or mischievous action. In the fourth frame, both arms are positioned slightly away from the body, with joint1 at -20 degrees for both and joint2 at -45 degrees. The wrists stay neutral. This final pose hints at anticipation and playfulness, capturing the mischievous essence of the 😈 emoji.",
+        "frames": [
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": 0.0,
+                        "joint2": 45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": -45.0,
+                        "joint2": 20.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "left",
+                        "joint1": 0.0,
+                        "joint2": -20.0,
+                        "wrist": -90.0
+                    }
+                },
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "right",
+                        "joint1": 0.0,
+                        "joint2": -60.0,
+                        "wrist": 0.0
+                    }
+                }
+            ],
+            [
+                {
+                    "state": "ArmPose",
+                    "parameters": {
+                        "side": "both",
+                        "joint1": -20.0,
+                        "joint2": -45.0,
+                        "wrist": 0.0
+                    }
+                }
+            ]
+        ]
+    }
+]
