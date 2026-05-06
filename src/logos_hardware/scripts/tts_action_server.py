@@ -59,6 +59,7 @@ def split_text_emoji(text, preset_emojis):
     - whitespace-only gaps between emojis are treated as part of the same run
     - leading emojis are ignored
     - trailing text without an emoji is still returned
+    - punctuation immediately after an emoji is moved before the emoji split
     """
     if not preset_emojis:
         stripped = text.strip()
@@ -73,6 +74,8 @@ def split_text_emoji(text, preset_emojis):
     pending_emoji = ""
     in_emoji_run = False
 
+    trailing_punctuation_pattern = re.compile(r"^(\s*)([.!?,;:…\"'”’)\]]+)(.*)$")
+
     def flush_buffer(with_emoji=""):
         nonlocal text_buffer
         stripped = text_buffer.strip()
@@ -80,8 +83,12 @@ def split_text_emoji(text, preset_emojis):
             results.append((stripped, with_emoji))
         text_buffer = ""
 
-    for part in parts:
+    i = 0
+    while i < len(parts):
+        part = parts[i]
+
         if not part:
+            i += 1
             continue
 
         if part in preset_emojis:
@@ -89,22 +96,45 @@ def split_text_emoji(text, preset_emojis):
                 # First emoji after real text closes that utterance.
                 if not pending_emoji:
                     pending_emoji = part
+
+                # Look ahead for punctuation immediately after the emoji.
+                if i + 1 < len(parts):
+                    next_part = parts[i + 1]
+
+                    if next_part and next_part not in preset_emojis:
+                        match = trailing_punctuation_pattern.match(next_part)
+
+                        if match:
+                            leading_space, punctuation, remainder = match.groups()
+
+                            # Move punctuation before the emoji split.
+                            text_buffer = text_buffer.rstrip() + punctuation
+
+                            # Keep any remaining text after the punctuation.
+                            # Usually this will be empty, but this keeps the parser safe.
+                            parts[i + 1] = leading_space + remainder
+
                 flush_buffer(with_emoji=pending_emoji)
                 pending_emoji = ""
                 in_emoji_run = True
             else:
                 # No text yet: leading emoji, or extra emoji in a run. Ignore it.
                 in_emoji_run = True
+
+            i += 1
             continue
 
         # Non-emoji text
         if in_emoji_run:
             if part.isspace():
                 # Whitespace between emojis still counts as same emoji run.
+                i += 1
                 continue
+
             in_emoji_run = False
 
         text_buffer += part
+        i += 1
 
     # Any remaining text becomes an utterance with no emoji.
     flush_buffer(with_emoji="")
