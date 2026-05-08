@@ -281,8 +281,8 @@ class CognitionNode:
         return types.GenerateContentConfig(
             safety_settings=safety_settings,
             thinking_config=types.ThinkingConfig(
-                # thinking_budget=tk_cfg.get('thinking_budget', -1),
-                include_thoughts=tk_cfg.get('include_thoughts', False),
+                thinking_budget=tk_cfg.get('thinking_budget', 0),
+                include_thoughts=tk_cfg.get('include_thoughts', True),
                 # thinking_level=tk_cfg.get('thinking_level', '')
             ),
             temperature=model_cfg.get('temperature', 1.0),

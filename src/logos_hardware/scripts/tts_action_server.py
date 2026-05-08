@@ -74,7 +74,7 @@ def split_text_emoji(text, preset_emojis):
     pending_emoji = ""
     in_emoji_run = False
 
-    trailing_punctuation_pattern = re.compile(r"^(\s*)([.!?,;:…\"'”’)\]]+)(.*)$")
+    trailing_punctuation_pattern = re.compile(r"^(\s*)([.!?,;:…\"'“”‘’)\]\}]+)(\s*)(.*)$")
 
     def flush_buffer(with_emoji=""):
         nonlocal text_buffer
@@ -105,14 +105,20 @@ def split_text_emoji(text, preset_emojis):
                         match = trailing_punctuation_pattern.match(next_part)
 
                         if match:
-                            leading_space, punctuation, remainder = match.groups()
+                            leading_space, punctuation, after_punctuation_space, remainder = match.groups()
 
                             # Move punctuation before the emoji split.
                             text_buffer = text_buffer.rstrip() + punctuation
 
-                            # Keep any remaining text after the punctuation.
-                            # Usually this will be empty, but this keeps the parser safe.
-                            parts[i + 1] = leading_space + remainder
+                            # Preserve sensible spacing before any remaining text.
+                            #
+                            # Example:
+                            # "Text ⚛️?! More text"
+                            #
+                            # becomes:
+                            # ("Text?!", "⚛️")
+                            # ("More text", "")
+                            parts[i + 1] = after_punctuation_space + remainder
 
                 flush_buffer(with_emoji=pending_emoji)
                 pending_emoji = ""

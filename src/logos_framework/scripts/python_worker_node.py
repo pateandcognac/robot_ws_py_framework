@@ -168,8 +168,8 @@ class PythonWorkerNode:
                         self.stderr_buffer.truncate(0); self.stderr_buffer.seek(0)
 
                         content = ""
-                        if stdout: content += f"# async stdout\n{stdout.strip()}\n"
-                        if stderr: content += f"# async stderr\n{stderr.strip()}\n"
+                        if stdout: content += f"# stdout\n{stdout.strip()}\n"
+                        if stderr: content += f"# stderr\n{stderr.strip()}\n"
                         
                         # Publish as py_async. loop_cognition could be set True programatically.
                         self._publish_result(msg_type='py_async', content=content.strip(), loop_cognition=loop_cognition, filename="async_output")
