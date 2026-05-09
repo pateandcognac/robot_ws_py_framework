@@ -1,218 +1,780 @@
-# logos_face (ROS Noetic) — Logos ASCII Face Node
+# Logos Face Node
 
-`logos_face` renders Logos’s face by drawing into an OpenCV bitmap (`cv::Mat`), then converting that bitmap into colored ASCII using **libcaca dithering**.  
-The rendering style intentionally comes from **bitmap → ASCII conversion** (we do *not* use libcaca drawing primitives).
+`logos_face` is a ROS Noetic C++ node that renders the animated terminal face for Logos.
 
-This node supports two output paths:
+It draws:
 
-- **Display mode (recommended):** libcaca **display** drivers (default: `ncurses`, but can use `x11` or `gl` for experiments)
-- **ANSI fallback:** export libcaca canvas to ANSI and brute-force print to `stdout`
+- Two expressive eyes
+- Eye gaze, scale, lid height, lid angle, and color animation
+- A sine-wave mouth/effect layer
+- A live audio waveform mouth layer
+- Terminal or libcaca display output
+- A live JSON state topic for other tools to inspect the face state
 
-FPS is controlled by the node’s ROS timer and is intended to remain compatible with external “idle / activity FPS controller” logic.
-
----
-
-## Features
-
-- OpenCV bitmap renderer for:
-  - eyes (gaze, scale, lid height, lid angle, color)
-  - mouth waveform (sine + optional audio waveform blend)
-- libcaca bitmap dithering for ASCII output
-- Output backends:
-  - libcaca display drivers (`ncurses` default; `x11`, `gl` experimental)
-  - ANSI stdout fallback mode
-- Dynamic reconfigure for rendering tweaks (FPS + libcaca dither settings + output mode/driver)
+The node is designed for a terminal-based robot face, using OpenCV for image rendering and `libcaca` for terminal/display dithering.
 
 ---
 
-## Topics
+## Node Name
 
-### Subscribed
-- `/face/eye_gaze_x` (`logos_msgs/EyeGazeX`)
-- `/face/eye_gaze_y` (`logos_msgs/EyeGazeY`)
-- `/face/eye_scale_x` (`logos_msgs/EyeScaleX`)
-- `/face/eye_scale_y` (`logos_msgs/EyeScaleY`)
-- `/face/eye_lid_height` (`logos_msgs/EyeLidHeight`)
-- `/face/eye_lid_angle` (`logos_msgs/EyeLidAngle`)
-- `/face/eye_color` (`logos_msgs/EyeColor`)
-- `/face/mouth/sine_wave` (`logos_msgs/MouthSine`)
-- `/face/mouth/audio_wave` (`logos_msgs/AudioWave`)
-
-### Published
-- `/notification/rgbled` (`std_msgs/Int32MultiArray`)
-- `/face/live_state/eye_gaze_x` (`logos_msgs/EyeGazeX`)
-- `/face/live_state/eye_gaze_y` (`logos_msgs/EyeGazeY`)
-- `/face/live_state/eye_scale_x` (`logos_msgs/EyeScaleX`)
-- `/face/live_state/eye_scale_y` (`logos_msgs/EyeScaleY`)
-- `/face/live_state/eye_lid_height` (`logos_msgs/EyeLidHeight`)
-- `/face/live_state/eye_lid_angle` (`logos_msgs/EyeLidAngle`)
-- `/face/live_state/eye_color` (`logos_msgs/EyeColor`)
-- `/face/live_state/mouth_sine_wave` (`logos_msgs/MouthSine`)
-
-> Note: the live-state publishers are intended to expose the *current interpolated state* (useful for debugging / introspection).
+```bash
+logos_face
+````
 
 ---
 
-## Parameters (ROS params)
+## Main Source File
 
-These can be set in a launch file or via `rosparam`.
+This README describes the C++ face node implementation in `FaceNodeCpp`.
 
-- `~fps` (int, default `8`)  
-  Render FPS (ROS timer period). External FPS controllers can update this via dynamic reconfigure.
+The node subscribes to face-control topics, renders the current state into an OpenCV image, converts it to a terminal-friendly representation using `libcaca`, and continuously refreshes the display at the configured FPS.
 
-- `~output_mode` (string, default `display`)  
-  - `display`: use libcaca display drivers
-  - `ansi`: export canvas to ANSI and print to stdout
+---
 
-- `~caca_driver` (string, default `ncurses`)  
-  libcaca driver name when `output_mode=display`. Common options:
-  - `ncurses` (terminal UI)
-  - `x11` (X11 window)
-  - `gl` (OpenGL)
-  - `slang`, etc.
+## Dependencies
 
-- Dither tuning (strings; defaults match current code):
-  - `~dither_antialias` (default `default`)
-  - `~dither_color` (default `full16`)
-  - `~dither_charset` (default `ascii`)
-  - `~dither_algorithm` (default `ordered4`)
+This node uses:
+
+* ROS Noetic
+* OpenCV
+* dynamic_reconfigure
+* libcaca
+* `logos_msgs`
+* `logos_face` dynamic reconfigure config
+
+System/package-level dependencies include:
+
+```bash
+sudo apt install libcaca-dev
+```
+
+ROS dependencies should be handled through the workspace package manifests, but the important ROS-side dependencies are:
+
+```xml
+<depend>roscpp</depend>
+<depend>std_msgs</depend>
+<depend>dynamic_reconfigure</depend>
+<depend>logos_msgs</depend>
+<depend>opencv</depend>
+```
+
+---
+
+## Subscribed Topics
+
+### Eye Control
+
+#### `/face/eye_gaze_x`
+
+Message type:
+
+```text
+logos_msgs/EyeGazeX
+```
+
+Controls horizontal eye gaze.
+
+#### `/face/eye_gaze_y`
+
+Message type:
+
+```text
+logos_msgs/EyeGazeY
+```
+
+Controls vertical eye gaze.
+
+#### `/face/eye_scale_x`
+
+Message type:
+
+```text
+logos_msgs/EyeScaleX
+```
+
+Controls horizontal eye size.
+
+#### `/face/eye_scale_y`
+
+Message type:
+
+```text
+logos_msgs/EyeScaleY
+```
+
+Controls vertical eye size.
+
+#### `/face/eye_lid_height`
+
+Message type:
+
+```text
+logos_msgs/EyeLidHeight
+```
+
+Controls eyelid height.
+
+#### `/face/eye_lid_angle`
+
+Message type:
+
+```text
+logos_msgs/EyeLidAngle
+```
+
+Controls eyelid angle.
+
+The left and right eyes use mirrored lid-angle behavior so symmetrical expressions can be commanded more naturally.
+
+#### `/face/eye_color`
+
+Message type:
+
+```text
+logos_msgs/EyeColor
+```
+
+Controls eye color.
+
+Expected color format:
+
+```text
+#RRGGBB
+```
+
+Invalid or missing colors fall back to green:
+
+```text
+#00FF00
+```
+
+---
+
+### Mouth / Waveform Control
+
+#### `/face/mouth/sine_wave`
+
+Message type:
+
+```text
+logos_msgs/MouthSine
+```
+
+Controls the procedural sine-wave mouth/effect layer.
+
+Fields used by the node include:
+
+* `frequency`
+* `amplitude`
+* `phase`
+* `phase_increment`
+* `color`
+* `duration`
+
+This layer is useful as an idle mouth animation, decorative waveform, or expression effect.
+
+#### `/face/mouth/audio_wave`
+
+Message type:
+
+```text
+logos_msgs/AudioWave
+```
+
+Controls the live audio waveform mouth layer.
+
+The audio data is expected as signed 16-bit-style sample values. The node normalizes incoming samples into floating point values from approximately `-1.0` to `1.0`.
+
+Fields used by the node include:
+
+* `data`
+* `sample_rate`
+
+The audio waveform is rendered while the received buffer is still “current.” Once playback time exceeds the known duration of the received audio buffer, the audio wave is cleared.
+
+---
+
+## Published Topics
+
+### `/face/live_state/json`
+
+Message type:
+
+```text
+std_msgs/String
+```
+
+Publishes a JSON snapshot of the current face state.
+
+Example structure:
+
+```json
+{
+  "timestamp": 1234567890.1234,
+  "left_eye": {
+    "gaze_x": 0.0,
+    "gaze_y": 0.0,
+    "scale_x": 1.0,
+    "scale_y": 1.0,
+    "lid_height": 1.0,
+    "lid_angle": 0.0,
+    "color": "#00FF00"
+  },
+  "right_eye": {
+    "gaze_x": 0.0,
+    "gaze_y": 0.0,
+    "scale_x": 1.0,
+    "scale_y": 1.0,
+    "lid_height": 0.5,
+    "lid_angle": 0.0,
+    "color": "#00FF00"
+  },
+  "mouth": {
+    "frequency": 1.0,
+    "amplitude": 1.0,
+    "phase": 0.0,
+    "phase_increment": 0.1,
+    "color": "#00FF00"
+  },
+  "duration": 0.125
+}
+```
+
+This is mainly useful for letting another process use Logos’s face state for derived effect. For example, eye color -> LED color, or, eye gaze -> base twist. 
+
+---
+
+## Parameters
+
+The node uses private ROS parameters.
+
+### `fps`
+
+Type:
+
+```text
+int
+```
+
+Default:
+
+```text
+8
+```
+
+Controls render refresh rate.
+
+The node clamps keyboard-adjusted FPS between:
+
+```text
+1 and 24
+```
+
+---
+
+### `output_mode`
+
+Type:
+
+```text
+string
+```
+
+Default:
+
+```text
+display
+```
+
+Supported behavior:
+
+* `display`: use a libcaca display
+* any other value: fall back to ANSI terminal output
+
+---
+
+### `caca_driver`
+
+Type:
+
+```text
+string
+```
+
+Default:
+
+```text
+ncurses
+```
+
+The libcaca display driver to use.
+
+Common options may include:
+
+```text
+ncurses
+x11
+slang
+raw
+```
+
+Available drivers depend on the local libcaca installation.
+
+---
+
+### `dither_antialias`
+
+Type:
+
+```text
+string
+```
+
+Default:
+
+```text
+default
+```
+
+Passed to libcaca dithering.
+
+---
+
+### `dither_color`
+
+Type:
+
+```text
+string
+```
+
+Default:
+
+```text
+full16
+```
+
+Passed to libcaca dithering.
+
+This affects how much color survives the terminal/display conversion. If the face looks too flat or color-banded, this is one of the first settings to experiment with.
+
+---
+
+### `dither_charset`
+
+Type:
+
+```text
+string
+```
+
+Default:
+
+```text
+ascii
+```
+
+Passed to libcaca dithering.
+
+---
+
+### `dither_algorithm`
+
+Type:
+
+```text
+string
+```
+
+Default:
+
+```text
+ordered4
+```
+
+Passed to libcaca dithering.
+
+---
+
+### `render_px_per_char_x`
+
+Type:
+
+```text
+double
+```
+
+Default:
+
+```text
+1.0
+```
+
+Controls horizontal render resolution relative to terminal/canvas width.
+
+---
+
+### `render_px_per_char_y`
+
+Type:
+
+```text
+double
+```
+
+Default:
+
+```text
+1.0
+```
+
+Controls vertical render resolution relative to terminal/canvas height.
 
 ---
 
 ## Dynamic Reconfigure
 
-Dynamic reconfigure exposes:
-- `fps`
-- `output_mode`, `caca_driver`
-- `dither_antialias`, `dither_color`, `dither_charset`, `dither_algorithm`
+The node supports dynamic reconfigure through:
 
-### Important note on switching output modes at runtime
-Switching `output_mode` / `caca_driver` on the fly will reinitialize libcaca objects.  
-If keyboard input behaves oddly after switching, restart the node.
+```text
+logos_face/FaceNodeConfig
+```
 
-(We can make hot-switching fully clean later, but the current implementation keeps things simple and stable.)
+Runtime-adjustable settings include:
+
+* FPS
+* output mode
+* libcaca driver
+* dither antialias
+* dither color
+* dither charset
+* dither algorithm
+* render pixel scaling
+
+Changing output mode or libcaca driver may require restarting the node if keyboard behavior becomes weird.
 
 ---
 
 ## Keyboard Controls
 
-### In **display mode** (`output_mode=display`)
-Keyboard events come from libcaca’s event system.
+When running in ANSI terminal mode, the node supports keyboard controls.
 
-- `q` : quit
-- `[` / `]` : decrease / increase FPS
-- `\` : clear screen
+Some keyboard controls are also handled when using a libcaca display.
 
-> Resize handling is managed by libcaca; manual cols/rows controls are not used.
+| Key | Action                  |
+| --- | ----------------------- |
+| `q` | Quit                    |
+| `r` | Re-detect terminal size |
+| `a` | Decrease columns        |
+| `d` | Increase columns        |
+| `s` | Decrease rows           |
+| `w` | Increase rows           |
+| `[` | Decrease FPS            |
+| `]` | Increase FPS            |
+| `\` | Clear screen            |
 
-### In **ANSI mode** (`output_mode=ansi`)
-Keyboard handling uses a raw terminal input thread (termios).
-
-- `q` : quit
-- `r` : re-detect terminal size (and resize canvas)
-- `a` / `d` : decrease / increase columns
-- `w` / `s` : decrease / increase rows
-- `[` / `]` : decrease / increase FPS
-- `\` : clear screen
-
----
-
-## Environment Variables (Optional)
-
-libcaca also supports environment variables that can influence output (handy for quick experiments):
-
-- `CACA_DRIVER` — choose display driver (e.g. `ncurses`, `x11`, `gl`)
-- `CACA_GEOMETRY` — force display geometry (e.g. `98x75`)
-- `CACA_FONT` — font selection (mostly relevant to some windowed drivers)
-
-You can use these instead of (or alongside) ROS params depending on your setup.
+Terminal size controls only apply in ANSI mode.
 
 ---
 
-## Example Launch Patterns
+## Rendering Overview
 
-### Terminal display (recommended default)
-```xml
-<node pkg="logos_face" type="logos_face" name="logos_face" output="screen">
-  <param name="output_mode" value="display"/>
-  <param name="caca_driver" value="ncurses"/>
-  <param name="fps" value="8"/>
-</node>
+Each render frame does roughly this:
+
+1. Check for quit events and keyboard input.
+2. Update render geometry.
+3. Update animated eye and mouth parameters.
+4. Clear the OpenCV image.
+5. Render both eyes.
+6. Render the mouth waveform.
+7. Convert the OpenCV image to RGBA.
+8. Make pure black transparent.
+9. Dither the image into a libcaca canvas.
+10. Refresh the display or print ANSI output.
+11. Publish live face state JSON.
+
+---
+
+## Eye Rendering
+
+Each eye is rendered as an ellipse.
+
+Eye position is affected by:
+
+* `gaze_x`
+* `gaze_y`
+
+Eye shape is affected by:
+
+* `scale_x`
+* `scale_y`
+
+The eyelid is rendered as a thick angled line, then the area above the lid is erased to black. This creates the appearance of expressive blinking, squinting, and attitude.
+
+The eye outline uses the current mouth/effect color, which helps visually tie the eye expression and mouth animation together.
+
+---
+
+## Mouth Rendering
+
+The mouth has two layers:
+
+1. Audio waveform layer
+2. Sine waveform layer
+
+The audio waveform is drawn when fresh audio data is available.
+
+The sine waveform is always drawn and acts as the base animated mouth/effect line.
+
+Both are rendered near the lower part of the face, using this baseline:
+
+```cpp
+const int baseline = static_cast<int>(img.rows * 0.875);
 ```
 
-### ANSI stdout fallback
+The wave height uses approximately:
 
-```xml
-<node pkg="logos_face" type="logos_face" name="logos_face" output="screen">
-  <param name="output_mode" value="ansi"/>
-  <param name="fps" value="8"/>
-</node>
+```cpp
+img.rows * 0.125
 ```
 
-### Experimental X11 window
+So the mouth occupies the lower eighth of the rendered face area.
 
-```xml
-<node pkg="logos_face" type="logos_face" name="logos_face" output="screen">
-  <param name="output_mode" value="display"/>
-  <param name="caca_driver" value="x11"/>
-</node>
+---
+
+## Audio Waveform Color Behavior
+
+The audio waveform can be colored by vertical distance from the mouth baseline.
+
+The intended behavior is:
+
+* Near the baseline: violet / cooler color
+* Medium movement: blue, cyan, green, yellow, orange
+* Peak distance from baseline: red
+
+This means the color represents where the waveform is vertically on the face, not the raw audio sample value.
+
+Both positive and negative peaks can be treated as “peaks” by using absolute distance from the baseline.
+
+This produces a compressed full-spectrum look on quieter audio and a more spread-out rainbow effect on larger waveform movement.
+
+---
+
+## Color Utilities
+
+Colors are generally handled as hex strings:
+
+```text
+#RRGGBB
 ```
 
-### Experimental OpenGL output
+Internally, OpenCV uses BGR channel order, so helper functions convert between hex RGB strings and OpenCV BGR values.
+
+Invalid color strings fall back to:
+
+```text
+#00FF00
+```
+
+---
+
+## Animation System
+
+Most face parameters animate over time.
+
+The node stores:
+
+* current value
+* start value
+* target value
+* duration
+* start time
+* active/inactive state
+
+Animated values are linearly interpolated each frame.
+
+This is used for:
+
+* eye gaze
+* eye scale
+* eyelid height
+* eyelid angle
+* eye color
+* sine wave frequency
+* sine wave amplitude
+* sine wave phase
+* sine wave phase increment
+* sine wave color
+
+---
+
+## Audio Handling
+
+When an audio message arrives:
+
+1. The node stores the audio sample buffer.
+2. It converts sample values into normalized floats.
+3. It records the sample rate.
+4. It records the start time.
+5. It computes the audio duration.
+
+During rendering, the node calculates elapsed time and displays the matching segment of the audio buffer.
+
+When the elapsed time exceeds the audio duration, the stored audio buffer is cleared.
+
+---
+
+## Running the Node
+
+Example:
+
+```bash
+rosrun logos_face logos_face
+```
+
+Or from a launch file:
 
 ```xml
 <node pkg="logos_face" type="logos_face" name="logos_face" output="screen">
-  <param name="output_mode" value="display"/>
-  <param name="caca_driver" value="gl"/>
+    <param name="fps" value="8" />
+    <param name="output_mode" value="display" />
+    <param name="caca_driver" value="ncurses" />
+    <param name="dither_color" value="full16" />
+    <param name="dither_charset" value="ascii" />
+    <param name="dither_algorithm" value="ordered4" />
 </node>
 ```
 
 ---
 
-## Rendering Notes / Design Constraints
+## Testing With Example Messages
 
-* The node intentionally renders via:
+Set both eyes green:
 
-  1. OpenCV bitmap drawing (eyes/waveform)
-  2. libcaca dither of the bitmap into a character canvas
+```bash
+rostopic pub /face/eye_color logos_msgs/EyeColor "eye_side: 'both'
+color: '#00FF00'
+duration: 0.5"
+```
 
-* Transparency rule:
+Look left:
 
-  * **Pure black (0,0,0)** pixels are treated as transparent via the alpha channel.
-  * This is intentional; do not change unless you want to alter the look.
+```bash
+rostopic pub /face/eye_gaze_x logos_msgs/EyeGazeX "eye_side: 'both'
+gaze_x: -1.0
+duration: 0.5"
+```
 
-* Performance notes:
+Look right:
 
-  * libcaca canvas/dither/display are kept **persistent** to reduce per-frame allocation churn.
-  * FPS is controlled by ROS timer; do not replace with libcaca frame pacing if you rely on external FPS management.
+```bash
+rostopic pub /face/eye_gaze_x logos_msgs/EyeGazeX "eye_side: 'both'
+gaze_x: 1.0
+duration: 0.5"
+```
+
+Change the sine mouth color:
+
+```bash
+rostopic pub /face/mouth/sine_wave logos_msgs/MouthSine "frequency: 2.0
+amplitude: 1.0
+phase: 0.0
+phase_increment: 0.2
+color: '#00FFFF'
+duration: 0.5"
+```
 
 ---
 
 ## Troubleshooting
 
-### “Display driver failed, fell back to ANSI”
+### The face is too small, stretched, or squashed
 
-* The requested driver may not be available on the system.
-* Try `ncurses` first.
-* Ensure you have an X session running before trying `x11` or `gl`.
+Adjust:
 
-### “Keyboard controls don’t work”
+```text
+render_px_per_char_x
+render_px_per_char_y
+```
 
-* In `display` mode: events are handled by libcaca; focus must be on the display window/terminal.
-* In `ansi` mode: the node uses raw terminal input; ensure it is run in the terminal you expect.
-
-### Looks stretched / wrong aspect ratio
-
-* libcaca drivers differ in how they map pixels to character cells.
-* You can experiment with:
-
-  * terminal font
-  * `CACA_GEOMETRY`
-  * dither settings (charset/algorithm)
+Terminal character cells are not square, so the face may need different X/Y scaling depending on the terminal and font.
 
 ---
 
-## License / Credits
+### Colors look wrong or washed out
 
-* Uses **libcaca** for ASCII art dithering and optional display backends.
-* Uses **OpenCV** for bitmap rendering.
+Experiment with:
+
+```text
+dither_color
+dither_algorithm
+dither_charset
+```
+
+Also check whether the terminal supports enough colors.
+
+---
+
+### The display does not start
+
+Try a different libcaca driver:
+
+```bash
+rosrun logos_face logos_face _caca_driver:=ncurses
+```
+
+Or try ANSI mode by setting `output_mode` to something other than `display`.
+
+---
+
+### Keyboard input behaves strangely after changing output mode
+
+Restart the node.
+
+The code warns about this because switching between libcaca display mode and ANSI terminal mode at runtime can leave terminal input behavior in a weird state.
+
+---
+
+### The mouth waveform is mostly one color
+
+Check the audio waveform color mapping.
+
+For a full vertical-spectrum mouth effect, color should be based on rendered vertical distance from the mouth baseline, not directly on raw sample value.
+
+---
+
+## Notes For Future Development
+
+Possible improvements:
+
+* Add separate parameters for audio-mouth color mode.
+* Add a configurable mouth baseline.
+* Add a configurable mouth height.
+* Add smoother gradient coloring by splitting long waveform segments into smaller colored pieces.
+* Add ROS parameters for rainbow hue endpoints.
+* Add a debug overlay showing FPS, terminal size, and render size.
+* Add blink presets and emotional expression presets.
+* Add a proper “speaking” mode that fades the sine wave behind the audio waveform.
+* Add launch-file presets for different terminal types.
+
+---
+
+## Practical Mental Model
+
+The node is basically:
+
+```text
+ROS messages in
+    ↓
+animated face state
+    ↓
+OpenCV image
+    ↓
+RGBA conversion with black transparency
+    ↓
+libcaca terminal/display rendering
+    ↓
+live JSON state out
+```
+
+It is not trying to be a photoreal face. It is a terminal puppet face, which is honestly much funnier and more Logos-appropriate anyway.
