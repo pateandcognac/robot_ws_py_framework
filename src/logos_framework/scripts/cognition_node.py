@@ -135,8 +135,29 @@ class CognitionNode:
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
         self.input_sub = rospy.Subscriber('/cognition/input', CognitionInput, self._input_callback, queue_size=10)
         self.ui_state_pub = rospy.Publisher('/cognition/ui_state', StringMsg, queue_size=2, latch=True)
+        self.face_cmd_pub = rospy.Publisher('/face/emoji_command', StringMsg, queue_size=5)
         self.processing_timer = rospy.Timer(rospy.Duration(0.25), self._process_queue)
         rospy.loginfo("Cognition Node: Ready and waiting for input.")
+
+    def _publish_face_feedback(self, emoji, duration=3.0):
+        """Publish emoji-driven face feedback for cognition state changes."""
+        payload = json.dumps({"emoji": emoji, "duration": duration})
+        try:
+            self.face_cmd_pub.publish(StringMsg(data=payload))
+        except Exception as e:
+            rospy.logwarn(f"Failed to publish face feedback: {e}")
+
+    def _face_feedback_for_header(self, header):
+        feedback_map = {
+            "got_input": ("📥", 2.0),
+            "calling_hooks": ("🔎", 3.0),
+            "hook_timeout": ("⚠️", 3.0),
+            "api_call": ("🤖", 3.0),
+            "thinking": ("🤔", 3.0),
+            "api_error": ("😵", 4.0),
+            "api_retry": ("🔁", 3.0),
+        }
+        return feedback_map.get(header)
 
     def _send_feedback(self, header, body="", sound_path=None, header_color="cyan", body_color="white", font="standard"):
         """Helper to send feedback state to the UI/Subtitler."""
@@ -150,6 +171,9 @@ class CognitionNode:
         }
         try:
             self.output_pub.publish(CognitionOutput(type='feedback', content=json.dumps(payload)))
+            face_feedback = self._face_feedback_for_header(header)
+            if face_feedback:
+                self._publish_face_feedback(*face_feedback)
         except Exception as e:
             rospy.logwarn(f"Failed to publish feedback: {e}")
 

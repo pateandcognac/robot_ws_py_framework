@@ -226,6 +226,7 @@ class LogosEarsNode:
         self.pub_cognition = rospy.Publisher('/cognition/input', CognitionInput, queue_size=10)
         self.pub_ambient = rospy.Publisher('/stt/ambient_listener/transcription', String, queue_size=10, latch=True)
         self.pub_led = rospy.Publisher('/face/rgbled', Int32MultiArray, queue_size=10)
+        self.pub_face_cmd = rospy.Publisher('/face/emoji_command', String, queue_size=5)
         self.pub_sound = rospy.Publisher('/mobile_base/commands/sound', Sound, queue_size=1)
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
         self.pub_hotword_detections = rospy.Publisher('/stt/hotword_listener/detections', String, queue_size=10)
@@ -549,6 +550,23 @@ class LogosEarsNode:
         else:
             return LedState.IDLE
 
+    def _publish_face_feedback(self, emoji, duration=3.0):
+        """Publish emoji-driven face feedback for STT state changes."""
+        payload = json.dumps({"emoji": emoji, "duration": duration})
+        try:
+            self.pub_face_cmd.publish(String(data=payload))
+        except Exception as e:
+            rospy.logwarn(f"Failed to publish face feedback: {e}")
+
+    def _face_feedback_for_header(self, header, body):
+        if header == "Listening...":
+            return ("🧏‍♂️", 3.0)
+        if header == "Transcribing...":
+            if "Ambient Buffer" in body:
+                return ("🛰️", 3.0)
+            return ("📝", 3.0)
+        return None
+
     def _send_feedback(self, header, body="", sound_path=None, header_color="cyan", body_color="white", font="standard"):
         """Helper to send feedback state to the UI/Subtitler."""
         payload = {
@@ -561,6 +579,9 @@ class LogosEarsNode:
         }
         try:
             self.output_pub.publish(CognitionOutput(type='feedback', content=json.dumps(payload)))
+            face_feedback = self._face_feedback_for_header(header, body)
+            if face_feedback:
+                self._publish_face_feedback(*face_feedback)
         except Exception as e:
             rospy.logwarn(f"Failed to publish feedback: {e}")
 

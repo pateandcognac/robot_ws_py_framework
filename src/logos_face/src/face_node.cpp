@@ -349,10 +349,16 @@ private:
 
     void initAmplitudeColorLut() {
         for (int i = 0; i < 256; ++i) {
-            const float hue = static_cast<float>(i) / 255.0f * 179.0f;
+            // OpenCV hue range is 0..179.
+            // 135 is violet-ish, 0 is red.
+            // This makes index 0 = violet, index 255 = red.
+            const float t = static_cast<float>(i) / 255.0f;
+            const float hue = 135.0f * (1.0f - t);
+
             cv::Mat hsv(1, 1, CV_8UC3, cv::Scalar(hue, 255, 255));
             cv::Mat bgr;
             cv::cvtColor(hsv, bgr, cv::COLOR_HSV2BGR);
+
             const cv::Vec3b c = bgr.at<cv::Vec3b>(0, 0);
             amplitude_color_lut_[i] = cv::Scalar(c[0], c[1], c[2]);
         }
@@ -1219,12 +1225,16 @@ private:
                 );
 
                 if (!first_combined_point) {
-                    double v = combined_wave_[i];
-                    if (std::abs(effect_params_.amplitude) > 1e-6) {
-                        v /= effect_params_.amplitude;
-                    }
+                    const double max_wave_height = static_cast<double>(img.rows) * 0.125;
+                    const int color_y = (std::abs(y - baseline) > std::abs(prev_y_combined - baseline))
+                        ? y
+                        : prev_y_combined;
 
-                    const cv::Scalar color = getColorFromAmplitude(v);
+                    const cv::Scalar color = getColorFromVerticalDistance(
+                        color_y,
+                        baseline,
+                        max_wave_height
+                    );
 
                     cv::line(
                         img,
@@ -1372,10 +1382,21 @@ private:
         );
     }
 
-    cv::Scalar getColorFromAmplitude(double v_norm) const {
-        v_norm = clampDouble(v_norm, -1.0, 1.0);
-        int idx = static_cast<int>(std::lround((v_norm + 1.0) * 0.5 * 255.0));
+    cv::Scalar getColorFromVerticalDistance(
+        int y,
+        int baseline,
+        double max_wave_height
+    ) const {
+        if (max_wave_height <= 1e-6) {
+            return amplitude_color_lut_[0];
+        }
+
+        const double distance_from_baseline = std::abs(static_cast<double>(y - baseline));
+        const double t = clampDouble(distance_from_baseline / max_wave_height, 0.0, 1.0);
+
+        int idx = static_cast<int>(std::lround(t * 255.0));
         idx = std::max(0, std::min(255, idx));
+
         return amplitude_color_lut_[idx];
     }
 

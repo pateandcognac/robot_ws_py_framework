@@ -76,6 +76,7 @@ class FaceAmbienceNode:
         self.color_pub = rospy.Publisher('face/eye_color', EyeColor, queue_size=10)
         self.state_mon_pub = rospy.Publisher('/face/state_mon', SpeechData, queue_size=10)
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
+        self.arm_cmd_pub = rospy.Publisher('/arm/emoji_command', RosString, queue_size=5)
 
         # --- Subscribers ---
         # New boolean topic for speech status
@@ -174,6 +175,7 @@ class FaceAmbienceNode:
                     "dither_algorithm": "random"
                 }
                 self.current_render_mode = "idle"
+                self._publish_arm_emoji_command("🧍", duration=3.0)
                 # Send feedback one time when switching to idle
                 self._send_feedback("- - - idle - - -")
 
@@ -251,6 +253,13 @@ class FaceAmbienceNode:
         # Lightweight feedback helper
         payload = {"header": header, "body": "", "header_color": "bright_blue", "font": "standard"}
         self.output_pub.publish(CognitionOutput(type='feedback', content=json.dumps(payload)))
+
+    def _publish_arm_emoji_command(self, emoji, duration=3.0):
+        payload = json.dumps({"emoji": emoji, "duration": duration})
+        try:
+            self.arm_cmd_pub.publish(RosString(data=payload))
+        except Exception as e:
+            rospy.logwarn(f"Failed to publish arm emoji command: {e}")
 
     def run(self):
         rospy.loginfo("Face Ambience Node running...")

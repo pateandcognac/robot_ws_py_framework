@@ -19,7 +19,7 @@ def test_client():
     
     # This will block until the server is found. 
     # If it hangs here, the topic names are definitely mismatched.
-    if not client.wait_for_server(rospy.Duration(5.0)):
+    if not client.wait_for_server(rospy.Duration(10.0)):
         print(f"ERROR: Action server '{client_name}' not found within 5 seconds.")
         print("Run 'rostopic list | grep goal' to see available action topics.")
         return
@@ -113,8 +113,8 @@ def test_client():
     # params = {"voice": "en-us+m7", "speed": 1.1, "volume": 1.0} # espeak
     # params = {"voice": "en-wm", "speed": 0.85, "volume": 1.0} # espeak
     # params = {"voice": "0.3*am_onyx + 0.2*im_nicola + 0.05*bf_isabella + 0.05*hf_alpha + 0.05*em_santa + 0.05*ff_siwis + 0.05*zm_yunjian + 0.05*jf_nezumi + 0.5*pm_alex + 0.05*hm_omega + 0.05*jf_alpha + 0.05*zf_xiaoni", "speed": 1.275, "volume": 1.0} # kokoro
-    # params = {"voice": "0.2*am_onyx + 0.15*im_nicola + 0.1*bf_isabella + 0.05*hf_alpha + 0.1*em_santa + 0.05*ff_siwis + 0.1*zm_yunjian + 0.05*jf_nezumi + 0.05*pm_alex + 0.05*hm_omega + 0.05*jf_alpha + 0.05*zf_xiaoni", "speed": 1.275, "volume": 1.0} # kokoro
-    params = {"voice": "0.85*am_onyx + 0.15*bf_alice", "speed": 1.25, "volume": 1.0} # kokoro
+    params = {"voice": "0.3*am_onyx + 0.1*im_nicola + 0.05*bf_isabella + 0.1*hf_alpha + 0.05*em_santa + 0.05*ff_siwis + 0.1*zm_yunjian + 0.05*jf_nezumi + 0.05*pm_alex + 0.05*hm_omega + 0.05*jf_alpha + 0.05*zf_xiaoni", "speed": 1.275, "volume": 1.0} # kokoro
+    # params = {"voice": "0.85*am_onyx + 0.15*bf_alice", "speed": 1.25, "volume": 1.0} # kokoro
     # params = {"voice": "0.25*am_michael + 0.25*am_echo + 0.5*am_onyx", "speed": 1.3, "volume": 1.0} # kokoro
     # params = {"voice": "en_US-joe-medium", "speed": 1.0, "volume": 0.9} # piper
     # params = {"voice": "en_US-bryce-medium", "speed": 1.2, "volume": 0.7} # piper
