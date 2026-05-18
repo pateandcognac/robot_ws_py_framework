@@ -62,8 +62,8 @@ class FaceAmbienceNode:
         # --- Parameters ---
         self.min_fps = rospy.get_param('~min_fps', 4)
         self.def_fps = rospy.get_param('~default_fps', 16)
-        self.post_activity_duration = rospy.get_param('~post_activity_duration', 10.0) # Delay before going idle
-        self.fps_step_interval = rospy.get_param('~fps_reduction_step_interval', 60.0)
+        self.post_activity_duration = rospy.get_param('~post_activity_duration', 4.0) # Delay before going idle
+        self.fps_step_interval = rospy.get_param('~fps_reduction_step_interval', 30.0)
 
         # --- Publishers ---
         self.sine_wave_pub = rospy.Publisher('/face/mouth/sine_wave', MouthSine, queue_size=10)
@@ -175,9 +175,9 @@ class FaceAmbienceNode:
                     "dither_algorithm": "random"
                 }
                 self.current_render_mode = "idle"
-                self._publish_arm_emoji_command("🧍", duration=3.0)
+                self._publish_arm_emoji_command("🧍", duration=2.0)
                 # Send feedback one time when switching to idle
-                self._send_feedback("- - - idle - - -")
+                self._send_feedback("IDLE")
 
         # If a specific FPS is requested (during gradual reduction), override it
         if specific_fps is not None:
@@ -251,7 +251,7 @@ class FaceAmbienceNode:
 
     def _send_feedback(self, header):
         # Lightweight feedback helper
-        payload = {"header": header, "body": "", "header_color": "bright_blue", "font": "standard"}
+        payload = {"header": header, "body": "", "header_color": "bright_blue", "font": "terminal"}
         self.output_pub.publish(CognitionOutput(type='feedback', content=json.dumps(payload)))
 
     def _publish_arm_emoji_command(self, emoji, duration=3.0):

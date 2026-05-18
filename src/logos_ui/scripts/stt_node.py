@@ -4,7 +4,7 @@
 
 
 
-# TODO: ADD MEDIA PIPE SOUND CLASSIFIER
+# MediaPipe YAMNet audio classifier — see audio_classifier_sampler.py
 
 
 
@@ -96,6 +96,16 @@ FACE_LED_COUNT = 12
 AMBIENT_HISTORY_MAX_AGE = 7200    # 2 Hours (in seconds)
 AMBIENT_HISTORY_MAX_CHARS = 32767 # Max characters before oldest is dropped
 
+# Audio Classifier Settings (MediaPipe YAMNet)
+CLASSIFIER_MODEL_PATH      = os.path.expanduser('~/robot_ws/models/yamnet.tflite')
+CLASSIFIER_SAMPLE_INTERVAL = 10.0  # seconds between classifier dispatches
+CLASSIFIER_SAMPLE_DURATION = 2.5   # seconds of audio per sample
+CLASSIFIER_SAMPLE_FRAMES   = int(CLASSIFIER_SAMPLE_DURATION * SAMPLE_RATE / FRAME_LENGTH)  # ~78 frames
+CLASSIFIER_BOOST_FACTOR    = 0.5   # temporal confidence boost per repeated detection
+CLASSIFIER_TOP_K           = 10    # max YAMNet labels per sample
+CLASSIFIER_SCORE_THRESHOLD = 0.05  # minimum score to include in output
+CLASSIFIER_BLIP_DURATION   = 2.0   # seconds for amber LED overlay after each sample
+
 class LedState:
     IDLE = 0
     AMBIENT_TRANSCRIBE = 1   # Ambient transcription only (dark blue breather)
@@ -135,6 +145,13 @@ class LogosEarsNode:
         
         #  Background Audio Transcription History Storage
         self.ambient_history = []
+
+        # --- Audio Classifier (MediaPipe YAMNet) ---
+        self.classifier_enabled          = False
+        self.classifier_sampler          = None   # lazy-loaded on first enable
+        self.classifier_sample_buffer    = []     # rolling window of pcm_float32 frames
+        self.last_classifier_sample_time = 0.0    # for LED blip timing
+        self._classifier_job_pending     = False  # prevent queue pile-up
 
         # --- Load Models ---
         self._init_models()
@@ -230,12 +247,13 @@ class LogosEarsNode:
         self.pub_sound = rospy.Publisher('/mobile_base/commands/sound', Sound, queue_size=1)
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
         self.pub_hotword_detections = rospy.Publisher('/stt/hotword_listener/detections', String, queue_size=10)
-
+        self.pub_classifier = rospy.Publisher('/stt/audio_classifier/events', String, queue_size=1, latch=True)
 
         # Subscribers
         rospy.Subscriber('/tts/is_speaking', Bool, self._cb_is_speaking)
         rospy.Subscriber('/stt/ambient_listener/enable', Bool, self._cb_ambient_enable)
         rospy.Subscriber('/stt/hotword_listener/enable', Bool, self._cb_hotword_enable)
+        rospy.Subscriber('/stt/audio_classifier/enable', Bool, self._cb_classifier_enable)
 
         # Kobuki Sound Helper
         self.sound_msg = Sound()
@@ -287,6 +305,40 @@ class LogosEarsNode:
             if not self.is_speaking and self.current_state not in (LedState.RECORDING, LedState.TRANSCRIBING):
                 self.current_state = self._resolve_ambient_led_state()
             print(Fore.LIGHTGREEN_EX + f"Hotword Listener: {self.hotword_enabled}")
+
+    def _cb_classifier_enable(self, msg):
+        with self.state_lock:
+            was_enabled = self.classifier_enabled
+            self.classifier_enabled = msg.data
+
+        if msg.data and not was_enabled:
+            self._init_classifier_model()
+            print(Fore.YELLOW + f"Audio Classifier: Enabled")
+        elif not msg.data and was_enabled:
+            if self.classifier_sampler:
+                self.classifier_sampler.reset()
+            self.classifier_sample_buffer = []
+            self._classifier_job_pending = False
+            self.pub_classifier.publish(json.dumps({}))
+            print(Fore.YELLOW + f"Audio Classifier: Disabled, history cleared")
+
+    def _init_classifier_model(self):
+        """Lazy-load MediaPipe YAMNet. Called once on first enable."""
+        if self.classifier_sampler is not None:
+            return
+        try:
+            from audio_classifier_sampler import AudioClassifierSampler
+            self.classifier_sampler = AudioClassifierSampler(
+                model_path=CLASSIFIER_MODEL_PATH,
+                boost_factor=CLASSIFIER_BOOST_FACTOR,
+                top_k=CLASSIFIER_TOP_K,
+                score_threshold=CLASSIFIER_SCORE_THRESHOLD,
+            )
+            print(Fore.YELLOW + "Audio Classifier: MediaPipe YAMNet loaded.")
+        except Exception as e:
+            rospy.logerr(f"Audio Classifier: Failed to load model: {e}")
+            with self.state_lock:
+                self.classifier_enabled = False
 
     # -------------------------------------------------------------------------
     # 1. The Ear (Audio Capture Thread)
@@ -342,7 +394,8 @@ class LogosEarsNode:
         """
         # Timers
         last_ambient_check = time.time()
-        
+        last_classifier_sample = time.time()
+
         while self.running and not rospy.is_shutdown():
             try:
                 # Get audio chunk (blocking with timeout to allow shutdown check)
@@ -452,7 +505,7 @@ class LogosEarsNode:
                     hit_interval = (now - last_ambient_check) > AMBIENT_CHECK_INTERVAL
 
                     if hit_max_length or hit_interval:
-                        # Only flush if we are currently PAUSED (not speech) 
+                        # Only flush if we are currently PAUSED (not speech)
                         # OR if we are way over time (force flush)
                         if not is_speech or buffer_duration_approx > (AMBIENT_MAX_DURATION + 15):
                             if buffer_duration_approx > MIN_AMBIENT_LENGTH:
@@ -464,8 +517,37 @@ class LogosEarsNode:
                                 # Buffer too small, just discard to prevent drift
                                 self.ambient_buffer = []
                                 self.ambient_start_time = time.time()
-                            
+
                             last_ambient_check = now
+
+                # --- Audio Classifier Rolling Buffer ---
+                # Independent of ambient mode and VAD. Buffers all audio (speech
+                # and non-speech) so YAMNet can classify whatever is in the room.
+                # Runs only in AMBIENT/IDLE state — RECORDING branch's `continue`
+                # naturally skips this block, keeping user speech out of samples.
+                with self.state_lock:
+                    classifier_enabled = self.classifier_enabled
+
+                if classifier_enabled:
+                    self.classifier_sample_buffer.append(pcm_float32)
+                    # Keep a rolling window; discard oldest frames beyond sample size
+                    if len(self.classifier_sample_buffer) > CLASSIFIER_SAMPLE_FRAMES:
+                        self.classifier_sample_buffer = self.classifier_sample_buffer[-CLASSIFIER_SAMPLE_FRAMES:]
+
+                    now = time.time()
+                    if (
+                        not self._classifier_job_pending
+                        and len(self.classifier_sample_buffer) >= CLASSIFIER_SAMPLE_FRAMES
+                        and (now - last_classifier_sample) >= CLASSIFIER_SAMPLE_INTERVAL
+                    ):
+                        sample = np.concatenate(self.classifier_sample_buffer[-CLASSIFIER_SAMPLE_FRAMES:])
+                        self.job_queue.put({'type': 'audio_classify', 'audio': sample, 'epoch': now})
+                        self._classifier_job_pending = True
+                        last_classifier_sample = now
+                else:
+                    # Free memory when classifier is off
+                    if self.classifier_sample_buffer:
+                        self.classifier_sample_buffer = []
 
     # -------------------------------------------------------------------------
     # Helper Logic
@@ -598,6 +680,32 @@ class LogosEarsNode:
             try:
                 job = self.job_queue.get(timeout=3.0)
             except queue.Empty:
+                continue
+
+            # --- Audio Classify jobs bypass Whisper entirely ---
+            if job['type'] == 'audio_classify':
+                self._classifier_job_pending = False
+
+                if self.classifier_sampler is None:
+                    continue
+
+                if len(job['audio']) < 15600:   # YAMNet needs at least ~0.975 s
+                    continue
+
+                self.last_classifier_sample_time = time.time()
+
+                try:
+                    raw = self.classifier_sampler.classify(job['audio'])
+                    payload = self.classifier_sampler.get_publication_payload()
+                    self.pub_classifier.publish(json.dumps(payload))
+
+                    top = ', '.join(
+                        f"{c['name']}({c['score']:.2f})"
+                        for c in raw['categories'][:3]
+                    ) if raw['categories'] else '(none above threshold)'
+                    print(Fore.YELLOW + f"Audio Classifier: {top}")
+                except Exception as e:
+                    rospy.logwarn(f"Audio Classifier: classify() failed: {e}")
                 continue
 
             # Prepare Prompt with Keywords to help jargon and cleanup
@@ -784,8 +892,18 @@ class LogosEarsNode:
             data_list = [0] * FACE_LED_COUNT
             
             if state == LedState.IDLE:
-                # Dim or Off
-                pass 
+                # When the audio classifier is enabled, show a very dim slow amber
+                # breath so there's a passive indication that something is listening.
+                # Max 1/255 red, 1/255 green — barely visible in daylight.
+                if self.classifier_enabled:
+                    now = time.time()
+                    breath = (np.sin(now * 0.4) + 1) / 2.0   # ~12.5 s period
+                    r = int(breath * 1)
+                    g = int(breath * 1)
+                    b = int(breath * 0)
+                    for i in range(FACE_LED_COUNT):
+                        color = (r << 16) | (g << 8 ) | b
+                        data_list[i] = (i << 24) | color
                 
             elif state in (LedState.AMBIENT_TRANSCRIBE, LedState.AMBIENT_HOTWORD, LedState.AMBIENT_BOTH):
                 now = time.time()
@@ -831,9 +949,18 @@ class LogosEarsNode:
                     if is_blipping:
                         pos = int(now * 15) % FACE_LED_COUNT
                         if i == pos:
-                            r, g, b = 0, 32, 32 # Cyan blip
+                            r, g, b = 0, 32, 32  # Cyan head
                         elif (i - 1) % FACE_LED_COUNT == pos:
-                            g, b = 16, 16 # Tail of the blip
+                            g, b = 16, 16  # Cyan tail
+
+                    # If audio classifier just ran: Add a warm magenta traveling pulse
+                    time_since_classify = now - self.last_classifier_sample_time
+                    if 0 < time_since_classify < CLASSIFIER_BLIP_DURATION:
+                        pos = int(now * 12) % FACE_LED_COUNT  # slightly slower than cyan
+                        if i == pos:
+                            r, g, b = 8, 0, 8  
+                        elif (i - 1) % FACE_LED_COUNT == pos:
+                            r, g, b = 16, 0, 16  
 
                     color = (r << 16) | (g << 8) | b
                     data_list.append((i << 24) | color)
@@ -909,15 +1036,17 @@ if __name__ == '__main__':
 """
 ROS Topics Summary:
   Publishers:
-    /cognition/input          (CognitionInput)   - STT transcription results
-    /stt/ambient_listener/transcription (String)  - Ambient transcription history (latched)
-    /stt/hotword_listener/detections    (String)  - All hotword detections (not latched)
-    /face/rgbled              (Int32MultiArray)   - LED control
-    /mobile_base/commands/sound (Sound)           - Kobuki sounds
-    /cognition/output         (CognitionOutput)   - Feedback messages
+    /cognition/input                     (CognitionInput)   - STT transcription results
+    /stt/ambient_listener/transcription  (String, latched)  - Ambient transcription history
+    /stt/hotword_listener/detections     (String)           - All hotword detections
+    /stt/audio_classifier/events         (String, latched)  - YAMNet audio classification history
+    /face/rgbled                         (Int32MultiArray)  - LED control
+    /mobile_base/commands/sound          (Sound)            - Kobuki sounds
+    /cognition/output                    (CognitionOutput)  - Feedback messages
 
   Subscribers:
-    /tts/is_speaking          (Bool)  - Global ear plug
-    /stt/ambient_listener/enable (Bool) - Enable/disable ambient transcription
-    /stt/hotword_listener/enable (Bool) - Enable/disable default hotword detection
+    /tts/is_speaking             (Bool) - Global ear plug
+    /stt/ambient_listener/enable (Bool) - Enable/disable ambient Whisper transcription
+    /stt/hotword_listener/enable (Bool) - Enable/disable Porcupine built-in hotword detection
+    /stt/audio_classifier/enable (Bool) - Enable/disable MediaPipe YAMNet audio classification
 """
