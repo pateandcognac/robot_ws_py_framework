@@ -32,7 +32,7 @@ Wake word (`hey-robot`) is **always on** — it doesn't need to be enabled.
 
 | Topic | Type | Description |
 |---|---|---|
-| `/tts/is_speaking` | `Bool` | When `true`, mic input is muted ("ear plugs") |
+| `/tts/is_speaking` | `Bool` | When `true`, mic input is muted ("ear plugs") for STT and audio classification |
 | `/stt/ambient_listener/enable` | `Bool` | Enable/disable ambient Whisper transcription |
 | `/stt/hotword_listener/enable` | `Bool` | Enable/disable Porcupine built-in hotword detection |
 | `/stt/audio_classifier/enable` | `Bool` | Enable/disable MediaPipe YAMNet audio classifier |
@@ -131,7 +131,7 @@ jarvis
 
 ### `/stt/audio_classifier/events`
 
-Publishes a JSON object with two sections: a 10-minute rolling history of per-minute aggregated classifications, and a short list of the most recent raw samples.
+Publishes a JSON object with two sections: a 10-minute rolling history of per-minute aggregated classifications, and a short list of the most recent raw samples. When `/tts/is_speaking` is true, the classifier pauses and clears any partial sample window so Logos's own voice and speech-driven servo noise are not classified.
 
 Publishes `{}` (empty object) when classifier is disabled or cleared.
 

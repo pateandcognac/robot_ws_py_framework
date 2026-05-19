@@ -307,7 +307,7 @@ class CognitionNode:
             thinking_config=types.ThinkingConfig(
                 thinking_budget=tk_cfg.get('thinking_budget', 256),
                 include_thoughts=tk_cfg.get('include_thoughts', True),
-                #thinking_level=tk_cfg.get('thinking_level', 'LOW')
+                # thinking_level=tk_cfg.get('thinking_level', 'MINIMAL')
             ),
             temperature=model_cfg.get('temperature', 1.0),
             stop_sequences=model_cfg.get('stop_sequences', []),

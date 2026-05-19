@@ -270,6 +270,9 @@ class LogosEarsNode:
             if self.is_speaking:
                 # Immediate mute effect
                 self.current_state = LedState.EAR_PLUGS
+                # Keep robot speech and speech-driven servo noise out of the
+                # next YAMNet sample window.
+                self.classifier_sample_buffer = []
             elif not self.is_speaking and previous_speaking:
                 # Returning to normal
                 self.current_state = self._resolve_ambient_led_state()
@@ -521,14 +524,16 @@ class LogosEarsNode:
                             last_ambient_check = now
 
                 # --- Audio Classifier Rolling Buffer ---
-                # Independent of ambient mode and VAD. Buffers all audio (speech
-                # and non-speech) so YAMNet can classify whatever is in the room.
+                # Independent of ambient mode and VAD. Buffers all non-robot
+                # audio (speech and non-speech) so YAMNet can classify whatever
+                # is in the room without learning Logos's own voice/servo noise.
                 # Runs only in AMBIENT/IDLE state — RECORDING branch's `continue`
                 # naturally skips this block, keeping user speech out of samples.
                 with self.state_lock:
                     classifier_enabled = self.classifier_enabled
+                    is_speaking = self.is_speaking
 
-                if classifier_enabled:
+                if classifier_enabled and not is_speaking:
                     self.classifier_sample_buffer.append(pcm_float32)
                     # Keep a rolling window; discard oldest frames beyond sample size
                     if len(self.classifier_sample_buffer) > CLASSIFIER_SAMPLE_FRAMES:
@@ -545,7 +550,8 @@ class LogosEarsNode:
                         self._classifier_job_pending = True
                         last_classifier_sample = now
                 else:
-                    # Free memory when classifier is off
+                    # Free memory when classifier is off, and prevent samples
+                    # from spanning across the ear-plugs interval.
                     if self.classifier_sample_buffer:
                         self.classifier_sample_buffer = []
 
@@ -687,6 +693,12 @@ class LogosEarsNode:
                 self._classifier_job_pending = False
 
                 if self.classifier_sampler is None:
+                    continue
+
+                with self.state_lock:
+                    is_speaking = self.is_speaking
+
+                if is_speaking:
                     continue
 
                 if len(job['audio']) < 15600:   # YAMNet needs at least ~0.975 s
