@@ -103,12 +103,17 @@ def test_client():
     am_echo.bin     bm_george.bin    jf_nezumi.bin
     """
 
+    """
+    (us1_mbrola kal_diphone us3_mbrola don_diphone ked_diphone rab_diphone us2_mbrola en1_mbrola cmu_us_slt_arctic_hts)
+    """
 
     # Construct the goal
     goal = SpeakGoal()
     goal.utterance_text = story_text
-    goal.engine = "piper"  # Options: "espeak", "kokoro", "piper"
+    goal.engine = "festival"  # Options: "espeak", "kokoro", "piper"
 
+
+    params = {"voice": "us2_mbrola", "speed": 1.00, "volume": 1.0} 
     # params = {"voice": "default+croak", "speed": 1.0, "volume": 1.0} # espeak
     # params = {"voice": "en-us+m7", "speed": 1.1, "volume": 1.0} # espeak
     # params = {"voice": "en-wm", "speed": 0.85, "volume": 1.0} # espeak
@@ -116,7 +121,7 @@ def test_client():
     # params = {"voice": "0.3*am_onyx + 0.1*im_nicola + 0.05*bf_isabella + 0.1*hf_alpha + 0.05*em_santa + 0.05*ff_siwis + 0.1*zm_yunjian + 0.05*jf_nezumi + 0.05*pm_alex + 0.05*hm_omega + 0.05*jf_alpha + 0.05*zf_xiaoni", "speed": 1.275, "volume": 1.0} # kokoro
     # params = {"voice": "0.85*am_onyx + 0.15*bf_alice", "speed": 1.25, "volume": 1.0} # kokoro
     # params = {"voice": "0.25*am_michael + 0.25*am_echo + 0.5*am_onyx", "speed": 1.3, "volume": 1.0} # kokoro
-    params = {"voice": "en_US-joe-medium", "speed": 1.0, "volume": 0.9} # piper
+    # params = {"voice": "en_US-joe-medium", "speed": 1.0, "volume": 0.9} # piper
     # params = {"voice": "en_US-bryce-medium", "speed": 1.2, "volume": 0.7} # piper
     # params = {"voice": "en_US-arctic-medium", "speed": 1.3, "volume": 0.9, "speaker": 0} # piper
     # params = {"voice": "pipe-organ", "speed": 1.0, "volume": 0.80} # piper
