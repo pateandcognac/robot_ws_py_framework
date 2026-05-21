@@ -18,6 +18,33 @@
 
             <div id="input-container">
                  <div class="controls">
+                    <button id="runtime-config-toggle" type="button" title="Runtime Gemini settings">Config</button>
+                    <div id="runtime-config-popover" class="runtime-config-popover" hidden>
+                        <div class="config-grid">
+                            <label for="api-profile-select">API</label>
+                            <select id="api-profile-select"></select>
+
+                            <label for="model-preset-select">Preset</label>
+                            <select id="model-preset-select"></select>
+
+                            <label for="model-input">Model</label>
+                            <input type="text" id="model-input">
+
+                            <label for="thinking-level-select">Thinking</label>
+                            <select id="thinking-level-select"></select>
+
+                            <label for="media-resolution-select">Media</label>
+                            <select id="media-resolution-select"></select>
+
+                            <label for="files-api-toggle">Files API</label>
+                            <input type="checkbox" id="files-api-toggle">
+
+                            <label for="key-failover-toggle">Failover</label>
+                            <input type="checkbox" id="key-failover-toggle">
+                        </div>
+                        <div id="runtime-config-status"></div>
+                    </div>
+
                     <label for="type-input">Type:</label>
                     <input type="text" id="type-input" value="human">
                     

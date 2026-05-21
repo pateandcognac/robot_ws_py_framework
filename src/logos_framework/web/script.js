@@ -9,6 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const loopCognitionControls = document.getElementById('loop-cognition-controls');
     const middlePane = document.getElementById('middle-pane');
     const statusBar = document.getElementById('status-bar'); // NEW
+    const runtimeConfigToggle = document.getElementById('runtime-config-toggle');
+    const runtimeConfigPopover = document.getElementById('runtime-config-popover');
+    const apiProfileSelect = document.getElementById('api-profile-select');
+    const modelPresetSelect = document.getElementById('model-preset-select');
+    const modelInput = document.getElementById('model-input');
+    const thinkingLevelSelect = document.getElementById('thinking-level-select');
+    const mediaResolutionSelect = document.getElementById('media-resolution-select');
+    const filesApiToggle = document.getElementById('files-api-toggle');
+    const keyFailoverToggle = document.getElementById('key-failover-toggle');
+    const runtimeConfigStatus = document.getElementById('runtime-config-status');
 
     Split(['#header', '#middle-pane', '#footer'], {
         sizes: [25, 50, 25],
@@ -21,6 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     socket.on('connect', () => {
         console.log('Connected to server!');
+    });
+
+    socket.on('runtime_config_state', (data) => {
+        renderRuntimeConfig(data);
     });
 
     socket.on('full_update', (data) => {
@@ -94,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modeToggle.addEventListener('change', () => {
         if (modeToggle.checked) {
             loopCognitionControls.style.display = 'none';
-            typeInput.value = 'ai';
+            typeInput.value = 'debug';
         } else {
             loopCognitionControls.style.display = 'inline';
             typeInput.value = 'human';
@@ -103,12 +117,133 @@ document.addEventListener('DOMContentLoaded', () => {
 
     humanInput.addEventListener('input', autoResizeTextarea);
 
+    runtimeConfigToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        runtimeConfigPopover.hidden = !runtimeConfigPopover.hidden;
+    });
+
+    document.addEventListener('click', (event) => {
+        if (
+            !runtimeConfigPopover.hidden
+            && !runtimeConfigPopover.contains(event.target)
+            && event.target !== runtimeConfigToggle
+        ) {
+            runtimeConfigPopover.hidden = true;
+        }
+    });
+
+    runtimeConfigPopover.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    apiProfileSelect.addEventListener('change', () => {
+        emitRuntimeConfig({api_profile: apiProfileSelect.value});
+    });
+
+    modelPresetSelect.addEventListener('change', () => {
+        if (modelPresetSelect.value) {
+            modelInput.value = modelPresetSelect.value;
+            emitRuntimeConfig({model: modelPresetSelect.value});
+        }
+    });
+
+    modelInput.addEventListener('change', () => {
+        const model = modelInput.value.trim();
+        if (model) {
+            emitRuntimeConfig({model});
+        }
+    });
+
+    thinkingLevelSelect.addEventListener('change', () => {
+        emitRuntimeConfig({thinking_level: thinkingLevelSelect.value});
+    });
+
+    mediaResolutionSelect.addEventListener('change', () => {
+        emitRuntimeConfig({media_resolution: mediaResolutionSelect.value});
+    });
+
+    filesApiToggle.addEventListener('change', () => {
+        emitRuntimeConfig({use_files_api: filesApiToggle.checked});
+    });
+
+    keyFailoverToggle.addEventListener('change', () => {
+        emitRuntimeConfig({key_failover: keyFailoverToggle.checked});
+    });
+
+    function emitRuntimeConfig(update) {
+        socket.emit('runtime_config_set', update);
+    }
+
+    function setSelectOptions(select, values, labelsByValue = {}) {
+        const previousValue = select.value;
+        select.innerHTML = '';
+        values.forEach((value) => {
+            const option = document.createElement('option');
+            option.value = value;
+            option.textContent = labelsByValue[value] || value;
+            select.appendChild(option);
+        });
+        if (values.includes(previousValue)) {
+            select.value = previousValue;
+        }
+    }
+
+    function renderRuntimeConfig(config) {
+        const profiles = config.api_profiles || ['free', 'paid'];
+        setSelectOptions(apiProfileSelect, profiles);
+        apiProfileSelect.value = config.api_profile || profiles[0];
+
+        const presets = config.model_presets || [];
+        const presetValues = presets.map((preset) => preset.model);
+        const presetLabels = {};
+        presets.forEach((preset) => {
+            presetLabels[preset.model] = preset.label;
+        });
+        setSelectOptions(modelPresetSelect, ['', ...presetValues], {'': 'Custom', ...presetLabels});
+        modelPresetSelect.value = presetValues.includes(config.model) ? config.model : '';
+        modelInput.value = config.model || '';
+
+        const thinkingLevels = config.thinking_levels || ['minimal', 'low', 'medium', 'high'];
+        setSelectOptions(thinkingLevelSelect, thinkingLevels);
+        thinkingLevelSelect.value = config.thinking_level || 'low';
+
+        const mediaResolutions = config.media_resolutions || [
+            'MEDIA_RESOLUTION_UNSPECIFIED',
+            'MEDIA_RESOLUTION_LOW',
+            'MEDIA_RESOLUTION_MEDIUM',
+            'MEDIA_RESOLUTION_HIGH'
+        ];
+        setSelectOptions(mediaResolutionSelect, mediaResolutions);
+        mediaResolutionSelect.value = config.media_resolution || 'MEDIA_RESOLUTION_MEDIUM';
+
+        filesApiToggle.checked = Boolean(config.use_files_api);
+        keyFailoverToggle.checked = Boolean(config.key_failover);
+        renderRuntimeStatus(config);
+    }
+
+    function renderRuntimeStatus(config) {
+        const available = config.api_key_available || {};
+        const keyState = Object.keys(available)
+            .map((profile) => `${profile}:${available[profile] ? 'ready' : 'missing'}`)
+            .join(' ');
+        const status = config.status || {};
+        const bits = [
+            `active:${config.api_profile || 'unknown'}`,
+            keyState,
+            `files:${config.files_cache_entries || 0}`
+        ];
+        if (status.last_failover) bits.push(status.last_failover);
+        if (status.files_api_last_event) bits.push(status.files_api_last_event);
+        if (status.last_error) bits.push(status.last_error);
+        runtimeConfigStatus.textContent = bits.filter(Boolean).join(' | ');
+    }
+
     function sendMessage() {
         const content = humanInput.value.trim();
         if (content) {
             const message = {
                 content: content,
-                type: typeInput.value.trim() || 'human',
+                type: modeToggle.checked ? 'debug' : (typeInput.value.trim() || 'human'),
                 loop_cognition: loopCognitionCheckbox.checked,
                 mode: modeToggle.checked ? 'output' : 'input'
             };

@@ -131,7 +131,7 @@ jarvis
 
 ### `/stt/audio_classifier/events`
 
-Publishes a JSON object with two sections: a 10-minute rolling history of per-minute aggregated classifications, and a short list of the most recent raw samples. When `/tts/is_speaking` is true, the classifier pauses and clears any partial sample window so Logos's own voice and speech-driven servo noise are not classified.
+Publishes a JSON object with two sections: a 10-minute rolling history of per-minute aggregated classifications, and a short list of the most recent raw samples. When `/tts/is_speaking` is true, the classifier pauses and clears any partial sample window so Logos's own voice and speech-driven servo noise are not classified. Direct `hey-robot` speech input also takes priority: the wake word clears any partial sample window, and queued classifier samples are dropped while user input is recording or transcribing.
 
 Publishes `{}` (empty object) when classifier is disabled or cleared.
 

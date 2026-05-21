@@ -22,6 +22,12 @@ socketio = SocketIO(app)
 # Global variable to hold workspace path for Flask
 WORKSPACE_PATH = ""
 
+def ensure_py_block(content: str) -> str:
+    content = content or ""
+    if "<py" in content and "</py>" in content:
+        return content
+    return f"<py>{content}</py>"
+
 # --- ROS Node Class ---
 class WebUINode:
     def __init__(self):
@@ -38,8 +44,11 @@ class WebUINode:
 
         self.cognition_input_pub = rospy.Publisher('/cognition/input', CognitionInput, queue_size=10)
         self.cognition_output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
+        self.runtime_config_pub = rospy.Publisher('/cognition/runtime_config/set', StringMsg, queue_size=5)
+        self.latest_runtime_config = {}
 
         rospy.Subscriber('/cognition/ui_state', StringMsg, self.ui_state_callback)
+        rospy.Subscriber('/cognition/runtime_config/state', StringMsg, self.runtime_config_callback)
         rospy.Subscriber('/cognition/input', CognitionInput, self.cognition_input_callback)
         rospy.Subscriber('/cognition/output', CognitionOutput, self.cognition_output_callback)
 
@@ -51,6 +60,13 @@ class WebUINode:
             socketio.emit('full_update', data)
         except json.JSONDecodeError as e:
             rospy.logerr(f"Failed to decode UI state JSON: {e}")
+
+    def runtime_config_callback(self, msg):
+        try:
+            self.latest_runtime_config = json.loads(msg.data)
+            socketio.emit('runtime_config_state', self.latest_runtime_config)
+        except json.JSONDecodeError as e:
+            rospy.logerr(f"Failed to decode runtime config JSON: {e}")
 
     def cognition_input_callback(self, msg: CognitionInput):
         data = {
@@ -104,6 +120,8 @@ def serve_workspace_file(filename):
 @socketio.on('connect')
 def handle_connect():
     rospy.loginfo('Web client connected.')
+    if getattr(ros_node, 'latest_runtime_config', None):
+        socketio.emit('runtime_config_state', ros_node.latest_runtime_config)
 
 @socketio.on('human_input')
 def handle_human_input(json_data):
@@ -111,9 +129,9 @@ def handle_human_input(json_data):
         mode = json_data.get('mode', 'input')
         if mode == 'output':
             msg = CognitionOutput()
-            msg.type = json_data.get('type', 'ai') 
-            msg.content = json_data.get('content', '')
-            msg.filename = "webui" 
+            msg.type = 'debug'
+            msg.content = ensure_py_block(json_data.get('content', ''))
+            msg.filename = "webui_debug"
             ros_node.cognition_output_pub.publish(msg)
         else:
             msg = CognitionInput()
@@ -125,6 +143,27 @@ def handle_human_input(json_data):
             ros_node.cognition_input_pub.publish(msg)
     except Exception as e:
         rospy.logerr(f"Error processing human input from web: {e}")
+
+@socketio.on('runtime_config_set')
+def handle_runtime_config_set(json_data):
+    try:
+        allowed_keys = {
+            'api_profile',
+            'fallback_api_profile',
+            'key_failover',
+            'model',
+            'thinking_level',
+            'media_resolution',
+            'use_files_api',
+        }
+        payload = {
+            key: value
+            for key, value in json_data.items()
+            if key in allowed_keys
+        }
+        ros_node.runtime_config_pub.publish(StringMsg(data=json.dumps(payload)))
+    except Exception as e:
+        rospy.logerr(f"Error processing runtime config update from web: {e}")
 
 if __name__ == '__main__':
     try:

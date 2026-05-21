@@ -464,6 +464,10 @@ class LogosEarsNode:
 
                     with self.state_lock:
                         self.current_state = LedState.RECORDING
+                        # Direct speech input takes priority over passive room
+                        # classification. Do not let pre-wake audio bleed into
+                        # the next YAMNet window.
+                        self.classifier_sample_buffer = []
                         self._send_feedback(
                             header="Listening...",
                             body="    Say END-OF-LINE to finish.\n    Say EDIT-INPUT to edit transcript.",
@@ -697,18 +701,26 @@ class LogosEarsNode:
 
                 with self.state_lock:
                     is_speaking = self.is_speaking
+                    state = self.current_state
 
-                if is_speaking:
+                if is_speaking or state in (LedState.RECORDING, LedState.TRANSCRIBING):
                     continue
 
                 if len(job['audio']) < 15600:   # YAMNet needs at least ~0.975 s
                     continue
 
-                self.last_classifier_sample_time = time.time()
-
                 try:
                     raw = self.classifier_sampler.classify(job['audio'])
                     payload = self.classifier_sampler.get_publication_payload()
+
+                    with self.state_lock:
+                        is_speaking = self.is_speaking
+                        state = self.current_state
+
+                    if is_speaking or state in (LedState.RECORDING, LedState.TRANSCRIBING):
+                        continue
+
+                    self.last_classifier_sample_time = time.time()
                     self.pub_classifier.publish(json.dumps(payload))
 
                     top = ', '.join(
@@ -753,7 +765,8 @@ class LogosEarsNode:
 
             if not full_text:
                 print(Fore.YELLOW + "Transcript empty after stripping control phrases.")
-                self._reset_state()
+                if job['type'] == 'human_stt':
+                    self._reset_state()
                 continue
 
 

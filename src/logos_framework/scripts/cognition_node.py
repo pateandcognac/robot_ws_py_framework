@@ -11,6 +11,7 @@ import random
 import threading
 import base64
 import io
+import mimetypes
 from pathlib import Path
 from collections import deque
 from enum import Enum
@@ -47,6 +48,38 @@ class CognitionState(Enum):
     GATHERING_CONTEXT = 1
     AWAITING_RESPONSE = 2
 
+API_KEY_ENV_BY_PROFILE = {
+    "free": "FREE_GEMINI_API_KEY",
+    "paid": "PAID_GEMINI_API_KEY",
+}
+
+VALID_THINKING_LEVELS = {"minimal", "low", "medium", "high"}
+
+THINKING_BUDGET_BY_LEVEL = {
+    "minimal": 0,
+    "low": 512,
+    "medium": 4096,
+    "high": 8192,
+}
+
+MODEL_PRESETS = [
+    {"label": "Gemini 3.5 Flash", "model": "gemini-3.5-flash"},
+    {"label": "Gemini 3.1 Pro Preview", "model": "gemini-3.1-pro-preview"},
+    {"label": "Gemini 3 Flash Preview", "model": "gemini-3-flash-preview"},
+    {"label": "Gemini 3.1 Flash-Lite Preview", "model": "gemini-3.1-flash-lite-preview"},
+    {"label": "Robotics-ER 1.6 Preview", "model": "gemini-robotics-er-1.6-preview"},
+    {"label": "Gemma 4 31B", "model": "gemma-4-31b-it"},
+    {"label": "Gemma 4 26B MoE", "model": "gemma-4-26b-a4b-it"},
+    {"label": "Gemini 2.5 Flash", "model": "gemini-2.5-flash"},
+]
+
+MEDIA_RESOLUTION_VALUES = [
+    "MEDIA_RESOLUTION_UNSPECIFIED",
+    "MEDIA_RESOLUTION_LOW",
+    "MEDIA_RESOLUTION_MEDIUM",
+    "MEDIA_RESOLUTION_HIGH",
+]
+
 GEMINI_ERROR_GUIDANCE = {
     (400, "INVALID_ARGUMENT"): {
         "summary": "The Gemini request was malformed.",
@@ -60,7 +93,7 @@ GEMINI_ERROR_GUIDANCE = {
     },
     (403, "PERMISSION_DENIED"): {
         "summary": "The Gemini API key does not have the required permissions.",
-        "action": "Check that FREE_GEMINI_API_KEY is the intended key and can access the configured model.",
+        "action": "Check that the selected Gemini API profile can access the configured model.",
         "retryable": False,
     },
     (404, "NOT_FOUND"): {
@@ -108,18 +141,16 @@ class CognitionNode:
         self.io = IOManager(self.workspace_path, self.config.framework)
         self.context = ContextManager(self.workspace_path, self.config.framework['context'])
 
-        try:
-            api_key = os.environ.get("FREE_GEMINI_API_KEY")
-            if not api_key:
-                raise ValueError("GEMINI_API_KEY environment variable not set.")
-            self.genai_client = genai.Client(api_key=api_key)
-        except Exception as e:
-            rospy.logfatal(f"Failed to configure Gemini API: {e}. Shutting down.")
-            rospy.signal_shutdown("Gemini API configuration failed.")
-            return
-
         self.state = CognitionState.IDLE
         self.state_lock = threading.Lock()
+        self.runtime_lock = threading.RLock()
+        self.genai_client = None
+        self.files_cache = {}
+        self.runtime_status = {
+            "last_error": "",
+            "last_failover": "",
+            "files_api_last_event": "",
+        }
         self.incoming_queue = deque()
         self.queue_lock = threading.Lock()
         self.last_received_system_hint = ""
@@ -133,11 +164,177 @@ class CognitionNode:
         self.has_thought_started = False
 
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
+        self.runtime_config_pub = rospy.Publisher('/cognition/runtime_config/state', StringMsg, queue_size=2, latch=True)
         self.input_sub = rospy.Subscriber('/cognition/input', CognitionInput, self._input_callback, queue_size=10)
+        self.runtime_config_sub = rospy.Subscriber(
+            '/cognition/runtime_config/set',
+            StringMsg,
+            self._runtime_config_callback,
+            queue_size=5,
+        )
         self.ui_state_pub = rospy.Publisher('/cognition/ui_state', StringMsg, queue_size=2, latch=True)
         self.face_cmd_pub = rospy.Publisher('/face/emoji_command', StringMsg, queue_size=5)
+
+        self.runtime_config = self._initial_runtime_config()
+        try:
+            self._configure_genai_client(self.runtime_config["api_profile"])
+        except Exception as e:
+            rospy.logfatal(f"Failed to configure Gemini API client: {e}. Shutting down.")
+            rospy.signal_shutdown("Gemini API configuration failed.")
+            return
+        self._publish_runtime_config_state()
+
         self.processing_timer = rospy.Timer(rospy.Duration(0.25), self._process_queue)
         rospy.loginfo("Cognition Node: Ready and waiting for input.")
+
+    def _parse_bool(self, value, default=False):
+        if isinstance(value, bool):
+            return value
+        if value is None:
+            return default
+        return str(value).strip().lower() in {"1", "true", "yes", "on"}
+
+    def _normalize_api_profile(self, value, default="free"):
+        profile = str(value or default).strip().lower()
+        if profile not in API_KEY_ENV_BY_PROFILE:
+            rospy.logwarn(f"Unknown Gemini API profile '{profile}', falling back to '{default}'.")
+            return default
+        return profile
+
+    def _normalize_thinking_level(self, value, default="low"):
+        level = str(value or default).strip().lower()
+        if level not in VALID_THINKING_LEVELS:
+            rospy.logwarn(f"Unknown thinking level '{level}', falling back to '{default}'.")
+            return default
+        return level
+
+    def _normalize_media_resolution(self, value, default="MEDIA_RESOLUTION_MEDIUM"):
+        media_resolution = str(value or default).strip().upper()
+        if media_resolution in {"UNSPECIFIED", "LOW", "MEDIUM", "HIGH"}:
+            media_resolution = f"MEDIA_RESOLUTION_{media_resolution}"
+        if media_resolution not in MEDIA_RESOLUTION_VALUES:
+            rospy.logwarn(f"Unknown media resolution '{media_resolution}', falling back to '{default}'.")
+            return default
+        return media_resolution
+
+    def _initial_runtime_config(self):
+        model_cfg = self.config.framework.get('main_model', {})
+        tk_cfg = model_cfg.get('thinking_config', {})
+
+        api_profile = self._normalize_api_profile(rospy.get_param('~api_profile', 'free'))
+        fallback_api_profile = self._normalize_api_profile(
+            rospy.get_param('~fallback_api_profile', 'paid'),
+            default='paid',
+        )
+        model = str(rospy.get_param('~model', '') or model_cfg.get('model', 'gemini-3.5-flash')).strip()
+        thinking_level = self._normalize_thinking_level(
+            rospy.get_param('~thinking_level', tk_cfg.get('thinking_level', 'low'))
+        )
+        media_resolution = self._normalize_media_resolution(
+            rospy.get_param('~media_resolution', model_cfg.get('media_resolution', 'MEDIA_RESOLUTION_MEDIUM'))
+        )
+
+        return {
+            "api_profile": api_profile,
+            "fallback_api_profile": fallback_api_profile,
+            "key_failover": self._parse_bool(rospy.get_param('~key_failover', True), default=True),
+            "model": model,
+            "thinking_level": thinking_level,
+            "media_resolution": media_resolution,
+            "use_files_api": self._parse_bool(rospy.get_param('~use_files_api', True), default=True),
+        }
+
+    def _safe_runtime_config(self):
+        state = dict(self.runtime_config)
+        state.update({
+            "api_profiles": list(API_KEY_ENV_BY_PROFILE.keys()),
+            "api_key_available": {
+                profile: bool(os.environ.get(env_name))
+                for profile, env_name in API_KEY_ENV_BY_PROFILE.items()
+            },
+            "model_presets": MODEL_PRESETS,
+            "thinking_levels": sorted(VALID_THINKING_LEVELS),
+            "media_resolutions": MEDIA_RESOLUTION_VALUES,
+            "files_cache_entries": len(self.files_cache),
+            "status": dict(self.runtime_status),
+        })
+        return state
+
+    def _publish_runtime_config_state(self):
+        if not getattr(self, "runtime_config_pub", None):
+            return
+        try:
+            with self.runtime_lock:
+                payload = json.dumps(self._safe_runtime_config())
+            self.runtime_config_pub.publish(StringMsg(data=payload))
+        except Exception as e:
+            rospy.logwarn(f"Failed to publish runtime Gemini config state: {e}")
+
+    def _runtime_config_callback(self, msg: StringMsg):
+        try:
+            requested = json.loads(msg.data)
+        except json.JSONDecodeError as e:
+            rospy.logwarn(f"Ignoring malformed runtime config update: {e}")
+            return
+
+        with self.runtime_lock:
+            current_profile = self.runtime_config["api_profile"]
+
+            if "api_profile" in requested:
+                self.runtime_config["api_profile"] = self._normalize_api_profile(requested["api_profile"])
+            if "fallback_api_profile" in requested:
+                self.runtime_config["fallback_api_profile"] = self._normalize_api_profile(
+                    requested["fallback_api_profile"],
+                    default='paid',
+                )
+            if "key_failover" in requested:
+                self.runtime_config["key_failover"] = self._parse_bool(requested["key_failover"], default=True)
+            if "model" in requested:
+                model = str(requested["model"]).strip()
+                if model:
+                    self.runtime_config["model"] = model
+            if "thinking_level" in requested:
+                self.runtime_config["thinking_level"] = self._normalize_thinking_level(requested["thinking_level"])
+            if "media_resolution" in requested:
+                self.runtime_config["media_resolution"] = self._normalize_media_resolution(requested["media_resolution"])
+            if "use_files_api" in requested:
+                self.runtime_config["use_files_api"] = self._parse_bool(requested["use_files_api"], default=True)
+
+            new_profile = self.runtime_config["api_profile"]
+
+        if new_profile != current_profile:
+            try:
+                self._configure_genai_client(new_profile)
+            except Exception as e:
+                with self.runtime_lock:
+                    self.runtime_config["api_profile"] = current_profile
+                    self.runtime_status["last_error"] = str(e)
+                rospy.logwarn(f"Could not switch Gemini API profile to '{new_profile}': {e}")
+                try:
+                    self._configure_genai_client(current_profile)
+                except Exception as restore_error:
+                    rospy.logerr(f"Could not restore Gemini API profile '{current_profile}': {restore_error}")
+        else:
+            self._publish_runtime_config_state()
+
+    def _configure_genai_client(self, api_profile):
+        profile = self._normalize_api_profile(api_profile)
+        env_name = API_KEY_ENV_BY_PROFILE[profile]
+        api_key = os.environ.get(env_name)
+        if not api_key:
+            raise ValueError(f"{env_name} environment variable not set for '{profile}' profile.")
+
+        client = genai.Client(api_key=api_key)
+        with self.runtime_lock:
+            self.genai_client = client
+            self.runtime_config["api_profile"] = profile
+            self.runtime_status["last_error"] = ""
+        rospy.loginfo(f"Gemini API client configured with '{profile}' profile ({env_name}).")
+        self._publish_runtime_config_state()
+
+    def _runtime_snapshot(self):
+        with self.runtime_lock:
+            return dict(self.runtime_config)
 
     def _publish_face_feedback(self, emoji, duration=3.0):
         """Publish emoji-driven face feedback for cognition state changes."""
@@ -273,6 +470,12 @@ class CognitionNode:
             lines.append(f"Message: {info['message']}")
         return "\n".join(lines)
 
+    def _is_quota_or_rate_limit_error(self, info: dict) -> bool:
+        if info.get("code") == 429 or info.get("status") == "RESOURCE_EXHAUSTED":
+            return True
+        message = str(info.get("message", "")).lower()
+        return any(term in message for term in ("quota", "rate limit", "resource exhausted"))
+
     def _gemini_retry_delay(self, retry_cfg: dict, attempt_index: int) -> float:
         backoff_factor = retry_cfg.get('backoff_factor_s', 2)
         max_delay = retry_cfg.get('max_delay_s', 30)
@@ -280,7 +483,37 @@ class CognitionNode:
         delay = (backoff_factor * (2 ** attempt_index)) + random.uniform(0, jitter)
         return min(delay, max_delay)
 
-    def _build_gemini_config(self, model_cfg: dict):
+    def _model_uses_thinking_level(self, model_name: str) -> bool:
+        return str(model_name or "").startswith("gemini-3")
+
+    def _model_uses_thinking_budget(self, model_name: str) -> bool:
+        name = str(model_name or "")
+        return name.startswith("gemini-2.5") or name.startswith("gemini-robotics-er-")
+
+    def _build_thinking_config(self, model_name: str, runtime_cfg: dict, model_cfg: dict):
+        tk_cfg = model_cfg.get('thinking_config', {})
+        include_thoughts = tk_cfg.get('include_thoughts', True)
+        thinking_level = runtime_cfg.get("thinking_level", "low")
+
+        if self._model_uses_thinking_level(model_name):
+            try:
+                return types.ThinkingConfig(
+                    thinking_level=thinking_level,
+                    include_thoughts=include_thoughts,
+                )
+            except Exception as e:
+                # Older google-genai SDKs do not know thinking_level yet.
+                rospy.logwarn(f"SDK rejected thinking_level; falling back to thinking_budget: {e}")
+
+        if self._model_uses_thinking_budget(model_name):
+            return types.ThinkingConfig(
+                thinking_budget=THINKING_BUDGET_BY_LEVEL.get(thinking_level, 512),
+                include_thoughts=include_thoughts,
+            )
+
+        return None
+
+    def _build_gemini_config(self, model_cfg: dict, runtime_cfg: dict):
         safety_settings = [
             types.SafetySetting(
                 category=types.HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -300,20 +533,104 @@ class CognitionNode:
             ),
         ]
 
-        tk_cfg = model_cfg.get('thinking_config', {})
-        media_res_str = model_cfg.get('media_resolution', 'MEDIUM')
-        return types.GenerateContentConfig(
+        model_name = runtime_cfg.get('model') or model_cfg.get('model')
+        media_res_str = runtime_cfg.get('media_resolution') or model_cfg.get('media_resolution', 'MEDIA_RESOLUTION_MEDIUM')
+        config_kwargs = dict(
             safety_settings=safety_settings,
-            thinking_config=types.ThinkingConfig(
-                thinking_budget=tk_cfg.get('thinking_budget', 256),
-                include_thoughts=tk_cfg.get('include_thoughts', True),
-                # thinking_level=tk_cfg.get('thinking_level', 'MINIMAL')
-            ),
             temperature=model_cfg.get('temperature', 1.0),
             stop_sequences=model_cfg.get('stop_sequences', []),
             max_output_tokens=model_cfg.get('max_output_tokens', 8192),
             media_resolution=getattr(types.MediaResolution, media_res_str, types.MediaResolution.MEDIA_RESOLUTION_UNSPECIFIED),
         )
+        thinking_config = self._build_thinking_config(model_name, runtime_cfg, model_cfg)
+        if thinking_config is not None:
+            config_kwargs["thinking_config"] = thinking_config
+
+        return types.GenerateContentConfig(**config_kwargs)
+
+    def _files_cache_key(self, image_path: Path, api_profile: str):
+        stat = image_path.stat()
+        return (
+            api_profile,
+            str(image_path.resolve()),
+            stat.st_size,
+            getattr(stat, "st_mtime_ns", int(stat.st_mtime * 1e9)),
+        )
+
+    def _inline_image_part(self, image_path: Path):
+        img = PIL.Image.open(image_path)
+        rospy.loginfo(f"Embedding image inline for LLM: {image_path}")
+        return img
+
+    def _upload_or_reuse_file_part(self, image_path: Path, runtime_cfg: dict):
+        api_profile = runtime_cfg.get("api_profile", "free")
+        cache_key = self._files_cache_key(image_path, api_profile)
+        cached_part = self.files_cache.get(cache_key)
+        if cached_part is not None:
+            self.runtime_status["files_api_last_event"] = f"reused {image_path.name}"
+            return cached_part
+
+        mime_type = mimetypes.guess_type(str(image_path))[0] or "image/png"
+        try:
+            with self.runtime_lock:
+                client = self.genai_client
+            uploaded = client.files.upload(file=str(image_path))
+            file_uri = getattr(uploaded, "uri", None)
+            uploaded_mime_type = getattr(uploaded, "mime_type", None) or mime_type
+            if not file_uri:
+                raise ValueError("Files API upload returned no URI.")
+
+            part = types.Part.from_uri(file_uri=file_uri, mime_type=uploaded_mime_type)
+            self.files_cache[cache_key] = part
+            self.runtime_status["files_api_last_event"] = f"uploaded {image_path.name}"
+            rospy.loginfo(f"Uploaded image for Gemini Files API reuse: {image_path}")
+            self._publish_runtime_config_state()
+            return part
+        except Exception as e:
+            self.runtime_status["files_api_last_event"] = f"fallback inline for {image_path.name}"
+            rospy.logwarn(f"Files API upload failed for {image_path}; falling back to inline image part: {e}")
+            self._publish_runtime_config_state()
+            return self._inline_image_part(image_path)
+
+    def _image_part_for_path(self, image_path: Path, runtime_cfg: dict):
+        if runtime_cfg.get("use_files_api", True):
+            return self._upload_or_reuse_file_part(image_path, runtime_cfg)
+        return self._inline_image_part(image_path)
+
+    def _maybe_failover_api_key(self, info: dict, published_answer_text: bool) -> bool:
+        with self.runtime_lock:
+            runtime_cfg = dict(self.runtime_config)
+
+        if published_answer_text:
+            return False
+        if not runtime_cfg.get("key_failover", True):
+            return False
+        if not self._is_quota_or_rate_limit_error(info):
+            return False
+
+        current_profile = runtime_cfg.get("api_profile", "free")
+        fallback_profile = runtime_cfg.get("fallback_api_profile", "paid")
+        if current_profile == fallback_profile:
+            return False
+        if current_profile != "free":
+            return False
+
+        try:
+            self._configure_genai_client(fallback_profile)
+        except Exception as e:
+            with self.runtime_lock:
+                self.runtime_status["last_error"] = f"key failover failed: {e}"
+            rospy.logwarn(f"Gemini key failover to '{fallback_profile}' failed: {e}")
+            self._publish_runtime_config_state()
+            return False
+
+        failover_msg = f"Switched Gemini API profile from {current_profile} to {fallback_profile} after quota/rate-limit error."
+        with self.runtime_lock:
+            self.runtime_status["last_failover"] = failover_msg
+        rospy.logwarn(failover_msg)
+        self._send_feedback("api_retry", failover_msg, "api_call", "bright_yellow", "mini")
+        self._publish_runtime_config_state()
+        return True
 
     def _input_callback(self, msg: CognitionInput):
         if msg.type == 'context' and self.state in [CognitionState.GATHERING_CONTEXT, CognitionState.AWAITING_RESPONSE]:
@@ -349,12 +666,16 @@ class CognitionNode:
             batch = list(self.incoming_queue); self.incoming_queue.clear()
         
         rospy.loginfo(f"Processing batch of {len(batch)} messages in state {self.state.name}.")
-        should_start_cognition = False
+        should_start_cycle = False
+        should_call_gemini = False
         for msg in batch:
             filename = getattr(msg, 'filename', None)
             self.io.append_message(msg_type=msg.type, content=msg.content, filename=filename)
-            if msg.loop_cognition:
-                should_start_cognition = True
+            if msg.type == 'debug':
+                should_start_cycle = True
+            elif msg.loop_cognition:
+                should_start_cycle = True
+                should_call_gemini = True
             
             default_system_hint = "\n<!-- system: Logos, please prepare your response. Wrap your output in <me><py> tags for proper parsing. -->"
             if msg.system_hint:
@@ -363,10 +684,11 @@ class CognitionNode:
                 self.last_received_system_hint = default_system_hint
 
         with self.state_lock:
-            if should_start_cognition and self.state == CognitionState.IDLE:
+            if should_start_cycle and self.state == CognitionState.IDLE:
                 self.state = CognitionState.GATHERING_CONTEXT
+                debug_only = not should_call_gemini
                 rospy.loginfo("State transition to GATHERING_CONTEXT. Starting cognition cycle.")
-                threading.Thread(target=self._initiate_cognition_cycle).start()
+                threading.Thread(target=self._initiate_cognition_cycle, args=(debug_only,)).start()
 
     def _publish_ui_state(self, header_str, io_buffer_str, footer_str):
             def embed_image_url(match):
@@ -504,16 +826,16 @@ class CognitionNode:
             capped_level = min(loops_since_last_human, 7)
             escalation_messages = {
                 2: "Do you need to pause and give someone a chance to reply? Or insert a natural break in your actions?",
-                3: "Three loops with no input from a human? This is probably a good to pause to let someone get a word in!",
+                3: "Three loops with no input from a human? This may be a good point to pause to let someone get a word in!",
                 4: "REMINDER: After four loops, Logos, your shared reality is becoming one-sided!",
                 5: "IMPORTANT: If you are not in the middle of a specific, multi-step task, you might be overwhelming a human interlocutor with tokens and action faster than they can process. Consider pausing for their benefit.",
-                6: "WARNING: Default behavior should be to pause and wait (`epoché`). Only keep the loop going if you have a very clear autonomous task!",
-                7: "HALT: Logos MUST set `loop_cognition = False` to yield to a human.",
+                6: "IMPORTANT: Only keep the loop going if you have a very clear autonomous task!",
+                7: "IMPORTANT: Logos should consider setting `loop_cognition = False` — IF there isn't an autonomous task that you're not actively engaged with.",
             }
             hint_text = escalation_messages[capped_level]
             return f"\n<!-- system: loops_since_last_human_input = {loops_since_last_human} | {hint_text} -->"
 
-    def _construct_prompt_and_images(self, header_hooks_data, footer_hooks_data):
+    def _construct_prompt_and_images(self, header_hooks_data, footer_hooks_data, runtime_cfg, include_api_parts=True):
             """
             Builds the final prompt for the LLM and the display strings for the UI.
             This refactored method correctly INLINES image content and omission notes.
@@ -559,6 +881,9 @@ class CognitionNode:
             
             self._publish_ui_state(processed_header_str, processed_io_buffer_str, processed_footer_str)
 
+            if not include_api_parts:
+                return []
+
             # --- PASS 2: Assemble final prompt list for the LLM API ---
             final_contents = []
             placeholder_pattern = re.compile(r'{--IMAGE_PATH:([^}]+)--}')
@@ -570,9 +895,7 @@ class CognitionNode:
                     image_path_str = match.group(1)
                     image_path = self.workspace_path / image_path_str
                     try:
-                        img = PIL.Image.open(image_path)
-                        final_contents.append(img)
-                        rospy.loginfo(f"Embedding image for LLM: {image_path}")
+                        final_contents.append(self._image_part_for_path(image_path, runtime_cfg))
                     except Exception as e:
                         rospy.logerr(f"Failed to load image {image_path}: {e}")
                         final_contents.append(f"[ERROR: Could not load image at {image_path}]")
@@ -589,9 +912,10 @@ class CognitionNode:
 
             return final_contents
 
-    def _initiate_cognition_cycle(self):
+    def _initiate_cognition_cycle(self, debug_only=False):
             try:
-                rospy.loginfo("--- Starting Cognition Cycle ---")
+                cycle_kind = "Debug Cognition Cycle" if debug_only else "Cognition Cycle"
+                rospy.loginfo(f"--- Starting {cycle_kind} ---")
                 # Reset flags
                 self.has_thought_started = False
                 self.context_results.clear()
@@ -643,7 +967,17 @@ class CognitionNode:
                     if content is not None:
                         footer_hooks_data.append({'config': s, 'content': content})
 
-                final_contents = self._construct_prompt_and_images(header_hooks_data, footer_hooks_data)
+                runtime_cfg = self._runtime_snapshot()
+                final_contents = self._construct_prompt_and_images(
+                    header_hooks_data,
+                    footer_hooks_data,
+                    runtime_cfg,
+                    include_api_parts=not debug_only,
+                )
+
+                if debug_only:
+                    rospy.loginfo("Debug cognition cycle refreshed context/UI and skipped Gemini API call.")
+                    return
             
                 # --- API Throttling Logic ---
                 model_cfg = self.config.framework['main_model']
@@ -666,7 +1000,6 @@ class CognitionNode:
                 # --- API Call with Retry Logic ---
                 retry_cfg = model_cfg.get('retry_config', {})
                 max_attempts = max(1, retry_cfg.get('max_retries', 3))
-                gen_config = self._build_gemini_config(model_cfg)
                 complete_response_text = ""
                 last_chunk = None
 
@@ -674,7 +1007,13 @@ class CognitionNode:
                     attempt = attempt_index + 1
                     published_answer_text_this_attempt = False
                     try:
-                        rospy.loginfo(f"Calling Gemini API (Attempt {attempt}/{max_attempts})...")
+                        runtime_cfg = self._runtime_snapshot()
+                        gen_config = self._build_gemini_config(model_cfg, runtime_cfg)
+                        model_name = runtime_cfg.get('model') or model_cfg['model']
+                        rospy.loginfo(
+                            f"Calling Gemini API (Attempt {attempt}/{max_attempts}) "
+                            f"with model '{model_name}' and '{runtime_cfg.get('api_profile')}' profile..."
+                        )
                         self._send_feedback(
                             "api_call",
                             "",
@@ -685,7 +1024,7 @@ class CognitionNode:
                         )
 
                         stream = self.genai_client.models.generate_content_stream(
-                            model=model_cfg['model'], contents=final_contents, config=gen_config
+                            model=model_name, contents=final_contents, config=gen_config
                         )
                         rospy.loginfo("Gemini stream opened. Beginning stream processing.")
                         # self._send_feedback("api_streaming", "Gemini is streaming a response.", "api_call", "bright_cyan", "mini")
@@ -732,6 +1071,19 @@ class CognitionNode:
                         error_body = self._format_gemini_error_body(info, attempt, max_attempts)
                         rospy.logwarn(f"Gemini API failed on attempt {attempt}/{max_attempts}: {error_body}")
                         self._send_feedback("api_error", error_body, "error", "bright_red", "5x7")
+
+                        failover_retry = (
+                            attempt < max_attempts
+                            and self._maybe_failover_api_key(info, published_answer_text_this_attempt)
+                        )
+                        if failover_retry:
+                            runtime_cfg = self._runtime_snapshot()
+                            final_contents = self._construct_prompt_and_images(
+                                header_hooks_data,
+                                footer_hooks_data,
+                                runtime_cfg,
+                            )
+                            continue
 
                         can_retry = info["retryable"] and attempt < max_attempts and not published_answer_text_this_attempt
                         if published_answer_text_this_attempt and info["retryable"]:

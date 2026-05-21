@@ -1,6 +1,13 @@
 <launch>
     <!-- Argument to specify which agent workspace to use -->
     <arg name="workspace" default="default_agent" doc="The name of the workspace directory inside ~/robot_workspaces/"/>
+    <arg name="api_profile" default="free" doc="Runtime Gemini API profile: free or paid."/>
+    <arg name="fallback_api_profile" default="paid" doc="Runtime Gemini API profile to use for quota failover."/>
+    <arg name="key_failover" default="true" doc="Automatically switch from free to fallback API profile on quota/rate-limit errors."/>
+    <arg name="model" default="" doc="Optional Gemini/Gemma model override; empty uses workspace framework_config.json."/>
+    <arg name="thinking_level" default="low" doc="Gemini thinking level: minimal, low, medium, or high."/>
+    <arg name="media_resolution" default="MEDIA_RESOLUTION_MEDIUM" doc="Global media resolution for Gemini requests."/>
+    <arg name="use_files_api" default="true" doc="Upload image files once and reuse Gemini Files API references when possible."/>
 
     <!-- Construct the full path to the workspace -->
     <arg name="workspace_path" value="$(env HOME)/robot_workspaces/$(arg workspace)"/>
@@ -12,6 +19,13 @@
         output="screen"
         launch-prefix="/home/robot/robot_ws/.venv/bin/python3">
     <param name="workspace_path" value="$(arg workspace_path)" />
+    <param name="api_profile" value="$(arg api_profile)" />
+    <param name="fallback_api_profile" value="$(arg fallback_api_profile)" />
+    <param name="key_failover" value="$(arg key_failover)" />
+    <param name="model" value="$(arg model)" />
+    <param name="thinking_level" value="$(arg thinking_level)" />
+    <param name="media_resolution" value="$(arg media_resolution)" />
+    <param name="use_files_api" value="$(arg use_files_api)" />
     </node>
 
 

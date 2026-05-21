@@ -46,17 +46,20 @@ Main orchestration node. Key components:
 - **`IOManager`** keeps thread-safe history (`state/io_history.jsonl`) and prompt buffer (`state/io_buffer.jsonl`). Messages are truncated according to `io_safety_limits` and assigned Base36 IDs.
 - **`ContextManager`** reads header/footer hook YAML files, tracks TTL-based execution rules (`ttl>0` re-run each cycle, `<0` cached, `99/-99` pinned), and persists updates back to disk.
 - **Prompt assembly** stitches together header hooks, IO buffer, footer hooks, and the system hint. `<file path="...">` tags trigger inline image embedding with configurable caps (`global_max_io_buffer_media` vs. per-user overrides).
-- **Gemini integration** uses `google.genai` with `GEMINI_API_KEY`, applies throttling/backoff rules from `framework_config["main_model"]`, and streams `CognitionOutput` messages (`thoughts`, `chunk`, final `me` content).
+- **Gemini integration** uses `google.genai`, applies throttling/backoff rules from `framework_config["main_model"]`, and streams `CognitionOutput` messages (`thoughts`, `chunk`, final `me` content). Runtime model/API settings are session-only and can be changed through launch args or the web UI without writing secrets to disk.
 - **ROS interfaces**
   - Subscribes to `/cognition/input` (`CognitionInput`) to queue messages, persist IO, and detect when to loop cognition.
   - Publishes `/cognition/output` (`CognitionOutput`) for LLM text, context hook requests (wrapping hook code in `<py>`), and streaming updates.
   - Publishes `/cognition/ui_state` (`std_msgs/String`) so the web UI can re-render header/buffer/footer snapshots with embedded images.
+  - Publishes `/cognition/runtime_config/state` (`std_msgs/String`, latched JSON) and subscribes to `/cognition/runtime_config/set` (`std_msgs/String`, JSON) for session-only Gemini API profile, model, thinking, media, and Files API controls.
 
 Successful cognition cycles:
 1. Drain `/cognition/input` queue and persist content via `IOManager`.
 2. Request context hooks that need to run by publishing `<py>` jobs on `/cognition/output`.
 3. Wait for `context` replies (cached when TTL < 0), assemble the full Gemini prompt, respect throttling, and call the API with retry logic.
 4. Stream `chunk` updates, then publish the final `me` response and return to `IDLE`.
+
+Debug cycles from simulated web output still run hooks and publish refreshed UI state, but skip Gemini API calls even when debug code sets `loop_cognition = True`.
 
 ### `python_worker_node.py`
 Executes `<py>` blocks emitted by the cognition node.
@@ -76,7 +79,7 @@ Executes `<py>` blocks emitted by the cognition node.
 Bridges ROS topics to the browser UI.
 
 - Spins up a Flask + Socket.IO app (templates served from `../web`) and a ROS node simultaneously (Flask runs in a background thread).
-- Publishes human/web input on `/cognition/input` and can optionally echo simulated AI output on `/cognition/output` when the browser toggles "Simulate AI Output".
+- Publishes human/web input on `/cognition/input` and can optionally publish simulated debug output on `/cognition/output` when the browser toggles "Simulate AI Output". Simulated output is server-wrapped as `<py>...</py>` and forced to type `debug`.
 - Subscribes to `/cognition/ui_state`, `/cognition/input`, and `/cognition/output`, forwarding:
   - `full_update` events containing complete header/buffer/footer HTML fragments.
   - `append_io` events for incremental cell additions.
@@ -91,18 +94,19 @@ Lightweight terminal interface using `urwid`.
 
 ## Browser UI (`web/`)
 
-- `index.html` lays out header / IO buffer / footer panes plus a control bar with message type selection, a "Simulate AI Output" toggle (hides loop-cognition controls when enabled), and Ctrl+Enter submission.
+- `index.html` lays out header / IO buffer / footer panes plus a control bar with message type selection, a compact runtime Gemini config popover, a "Simulate AI Output" toggle (hides loop-cognition controls when enabled), and Ctrl+Enter submission.
 - `style.css` provides a dark theme, Split.js gutters, adaptive textarea sizing, and styles for `io-cell` components appended to the buffer.
 - `script.js` connects to the Socket.IO backend, renders streamed HTML + inline images, highlights code blocks via Highlight.js, auto-resizes the input textarea, and emits `human_input` events with the current mode (`input` vs `output`).
 
 ## Launching & Runtime Notes
 
-1. Ensure `GEMINI_API_KEY` is exported in the environment (the cognition node aborts otherwise).
+1. Ensure the selected Gemini API profile has an exported key (`FREE_GEMINI_API_KEY` for `api_profile:=free`, `PAID_GEMINI_API_KEY` for `api_profile:=paid`). Key values are not sent to the browser UI.
 2. Prepare a workspace: `~/robot_workspaces/<name>/.system/framework_config.json`, `.system/system_prompt.txt`, and `config/` with hook YAML files (`<header_name>_config.yaml`, `<footer_name>_config.yaml`).
 3. Start the stack:
    ```bash
    roslaunch logos_framework start_framework.launch workspace:=Logos
    ```
+   Useful optional launch args include `api_profile`, `fallback_api_profile`, `key_failover`, `model`, `thinking_level`, `media_resolution`, and `use_files_api`.
 4. Optional interfaces:
    - Terminal UI: `rosrun logos_ui urwid_tui.py`
    - Browser UI: http://localhost:5000 (served by `web_ui_node.py`)

@@ -266,7 +266,7 @@ class PythonWorkerNode:
             # The worker thread, upon its next call to check_for_interrupt(), will
             # raise an exception and terminate without sending a second result.
             result_content = f"# stderr\nExecution timed out after {timeout_sec} seconds. A cooperative interrupt has been requested."
-            self._publish_result(msg_type='py_result', content=result_content, loop_cognition=True, filename=msg.filename)
+            self._publish_result(msg_type=msg.type, content=result_content, loop_cognition=True, filename=msg.filename)
             # We add a special attribute to the thread to signal it should not publish a result when it finally dies.
             execution_thread.was_terminated_by_timeout = True 
 
@@ -438,7 +438,7 @@ class PythonWorkerNode:
             elif self.error_streak >= 2:
                 response_msg.system_hint = "<!-- system: Consecutive errors detected. Depending on the context of the current moment, this may be something you can ignore, and/or note for later. Adapt intelligently to the situation. -->"
             elif self.error_streak >= 3:
-                response_msg.system_hint = "<!-- system: Multiple consecutive errors detected. Consider a different approach, asking for help, moving on, or a python reset. *Avoid entering a debug loop.* And most importantly, don't stress out about it! -->"
+                response_msg.system_hint = "<!-- system: Multiple consecutive errors detected. Consider a different approach, asking for help, moving on, or a python reset. *Avoid entering an endless debug loop.* And most importantly, don't stress out about it! -->"
             
 
         self.input_pub.publish(response_msg)
@@ -453,4 +453,3 @@ if __name__ == '__main__':
         node.run()
     except rospy.ROSInterruptException:
         pass
-
