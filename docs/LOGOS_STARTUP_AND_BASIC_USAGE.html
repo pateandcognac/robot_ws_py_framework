@@ -1,0 +1,455 @@
+<h1>Logos Startup and Basic Usage</h1>
+
+<p>This guide is for a person who has not used Linux or ROS before. It is meant
+to get Logos from "powered off" to "ready to talk" without needing to know how
+the robot software works internally.</p>
+
+<h2>What Logos Is In This Setup</h2>
+
+<p>Logos is one computer doing several jobs:</p>
+
+<ul>
+<li>The ThinkPad strapped to Logos's back is the robot computer.</li>
+<li>The normal desktop monitor is the main computer screen. It is attached over
+wireless HDMI.</li>
+<li>The separate HDMI monitor used for Logos's face is a second screen.</li>
+<li>Logos's face is text art drawn inside a terminal. It is not a normal
+graphical face app window.</li>
+<li>The Kobuki mobile base has its own power. Turn it on when Logos should have
+the powered robot body available.</li>
+</ul>
+
+<p>The ThinkPad laptop screen is broken. That is expected. Use the external
+monitors.</p>
+
+<h2>Physical Boot Checklist</h2>
+
+<ol>
+<li>Make sure the ThinkPad and the external displays have power.</li>
+<li>Make sure the wireless HDMI receiver for the main desktop display is
+connected and powered.</li>
+<li>Make sure the HDMI face monitor is connected and powered.</li>
+<li>Plug the Logitech K400 wireless keyboard USB receiver into the robot's USB
+hub if it is not already plugged in.</li>
+<li>Turn on the Kobuki base if Logos should be able to use the robot body.</li>
+<li>Open the ThinkPad lid far enough to reach the laptop power button.</li>
+<li>Press the ThinkPad power button.</li>
+<li>Close the ThinkPad lid again after it starts booting.</li>
+<li>Wait for the Linux desktop to appear on the main monitor.</li>
+</ol>
+
+<p>If the normal desktop appears but the face monitor is blank, keep going. The
+face display is started later from a terminal on that monitor.</p>
+
+<h2>Tiny Linux Survival Guide</h2>
+
+<h3>Open a terminal</h3>
+
+<p>A terminal is a text window where you run commands.</p>
+
+<p>Press:</p>
+
+<p><code>
+Ctrl+Alt+T
+</code></p>
+
+<p>That opens a new terminal window.</p>
+
+<h3>Run a command</h3>
+
+<p>Type or paste the command, then press <code>Enter</code>.</p>
+
+<p>For the startup commands in this guide:</p>
+
+<ol>
+<li>Open a new terminal.</li>
+<li>Type the command shown.</li>
+<li>Press <code>Enter</code>.</li>
+<li>Leave that terminal open while Logos is using that part of the system.</li>
+</ol>
+
+<p>Several parts of Logos run at the same time, so startup uses several terminal
+windows.</p>
+
+<h3>Repeat or fix the last command</h3>
+
+<p>If you just ran a command and need to run it again:</p>
+
+<ol>
+<li>Press the <code>Up Arrow</code> key in that terminal.</li>
+<li>The previous command appears again.</li>
+<li>Press <code>Enter</code> to run it again.</li>
+</ol>
+
+<p>You can also use <code>Up Arrow</code> to bring back the previous command, edit it with
+the keyboard, and then press <code>Enter</code>.</p>
+
+<h3>Stop a running command</h3>
+
+<p>Click the terminal that is running it, then press:</p>
+
+<p><code>
+Ctrl+C
+</code></p>
+
+<p>That means "stop the program in this terminal." It does not mean copy.</p>
+
+<p>If a program stops and you want it again, run its startup command again in that
+terminal.</p>
+
+<h3>Copy and paste</h3>
+
+<p>In many Linux terminals:</p>
+
+<ul>
+<li>Copy is <code>Ctrl+Shift+C</code></li>
+<li>Paste is <code>Ctrl+Shift+V</code></li>
+</ul>
+
+<p>Plain <code>Ctrl+C</code> is reserved for stopping a command.</p>
+
+<h2>Normal Startup Order</h2>
+
+<p>The commands below use helper scripts already in the robot workspace. Start
+them in this order.</p>
+
+<p>These helper script names are already available in a normal terminal. You do
+not need to change folders before running them.</p>
+
+<h3>1. Start the Chroma memory server</h3>
+
+<p>Open a terminal on the main monitor and run:</p>
+
+<p><code>
+logos_chroma.sh
+</code></p>
+
+<p>Leave that terminal open.</p>
+
+<h3>2. Start Logos's body and core robot services</h3>
+
+<p>Open another terminal on the main monitor and run:</p>
+
+<p><code>
+logos_core.sh
+</code></p>
+
+<p>Leave that terminal open.</p>
+
+<p>This starts the core ROS robot stack, including the mobile base and other
+hardware-facing services. If it complains that the Kobuki/base is not
+available, check that the Kobuki power is on.</p>
+
+<h3>3. Start Logos's cognition and web dashboard</h3>
+
+<p>Open another terminal on the main monitor and run:</p>
+
+<p><code>
+logos_cog.sh Logos
+</code></p>
+
+<p>Leave that terminal open.</p>
+
+<p>This starts Logos's cognition loop, Python worker, and browser web UI using the
+<code>Logos</code> agent workspace.</p>
+
+<h3>4. Start speech input</h3>
+
+<p>Open another terminal on the main monitor and run:</p>
+
+<p><code>
+logos_stt.sh
+</code></p>
+
+<p>Leave that terminal open.</p>
+
+<p>This starts Logos's microphone speech-to-text process.</p>
+
+<h3>5. Start the face and caption terminal</h3>
+
+<p>Use the separate face monitor for this step. The detailed setup is in
+<a href="#face-monitor-setup">Face Monitor Setup</a>.</p>
+
+<p>The face pane runs:</p>
+
+<p><code>
+logos_face.sh
+</code></p>
+
+<p>The caption pane runs:</p>
+
+<p><code>
+logos_tts_caption.sh
+</code></p>
+
+<h3>6. Start the idle state indicator</h3>
+
+<p>After the face is running, open another terminal on the main monitor and run:</p>
+
+<p><code>
+logos_idle.sh
+</code></p>
+
+<p>Leave that terminal open.</p>
+
+<h2>Use The Browser Dashboard</h2>
+
+<p>On the main desktop monitor, open a web browser and go to:</p>
+
+<p><code>
+http://localhost:5000
+</code></p>
+
+<p><code>localhost</code> means "this same ThinkPad." It only works on the robot computer
+unless the network setup is changed.</p>
+
+<p>Use the web UI to:</p>
+
+<ul>
+<li>Type text input to Logos.</li>
+<li>Read Logos's inputs and outputs.</li>
+<li>See the cognition dashboard state.</li>
+</ul>
+
+<p>If the page does not load, make sure the <code>logos_cog.sh Logos</code> terminal is still
+running.</p>
+
+<h2>Talk To Logos Out Loud</h2>
+
+<p>Speech input works like this:</p>
+
+<ol>
+<li>Say "Hey Robot".</li>
+<li>Wait for Logos to begin listening.</li>
+<li>Say the message you want Logos to hear.</li>
+<li>Say "End of Line" when the message is finished.</li>
+</ol>
+
+<p>Logos will transcribe the message and send it into cognition.</p>
+
+<p>There is a second stop phrase:</p>
+
+<p><code>
+Edit Input
+</code></p>
+
+<p>That asks for a chance to edit the transcript before it is sent. Use it only
+when you are ready to interact with the speech terminal prompt. For everyday
+conversation, "End of Line" is simpler.</p>
+
+<h2>Face Monitor Setup</h2>
+
+<p>The face monitor is a secondary HDMI screen. The face is intentionally drawn as
+ASCII terminal art, so set up a terminal there and keep it visible.</p>
+
+<h3>Make the face terminal</h3>
+
+<ol>
+<li>Move the mouse pointer to the face monitor.</li>
+<li>Open a terminal there with <code>Ctrl+Alt+T</code>.</li>
+<li>Make that terminal full screen. On many Linux desktops, <code>F11</code> toggles full
+screen for a terminal window.</li>
+<li>Right-click inside the terminal.</li>
+<li>Select the terminal profile named <code>robot_face_03</code>.</li>
+</ol>
+
+<p>The <code>robot_face_03</code> profile sets the colors and font sizing expected for the
+face.</p>
+
+<h3>Split the terminal into two panes with tmux</h3>
+
+<p>In the full-screen face terminal, run:</p>
+
+<p><code>
+tmux
+</code></p>
+
+<p>Then run:</p>
+
+<p><code>
+tmux split-window -v -p 33
+</code></p>
+
+<p>That creates:</p>
+
+<ul>
+<li>A larger top pane for Logos's face.</li>
+<li>A smaller bottom pane for text-to-speech captions and text output.</li>
+</ul>
+
+<p>The split is approximately two-thirds top and one-third bottom.</p>
+
+<h3>Start captions in the bottom pane</h3>
+
+<p>After the split command, tmux usually puts the cursor in the new bottom pane.
+Run:</p>
+
+<p><code>
+logos_tts_caption.sh
+</code></p>
+
+<p>Leave it running.</p>
+
+<h3>Start the face in the top pane</h3>
+
+<p>Move to the top tmux pane:</p>
+
+<ol>
+<li>Hold <code>Ctrl</code> and press <code>B</code>.</li>
+<li>Release both keys.</li>
+<li>Press the <code>Up Arrow</code> key.</li>
+</ol>
+
+<p>Then run:</p>
+
+<p><code>
+logos_face.sh
+</code></p>
+
+<p>The face should fill the top terminal pane.</p>
+
+<h3>Useful tmux controls</h3>
+
+<p>tmux uses a two-part keyboard shortcut. First press <code>Ctrl+B</code>, release it, then
+press the second key.</p>
+
+<p>| What you want | Keys |
+| --- | --- |
+| Move to the top pane | <code>Ctrl+B</code>, then <code>Up Arrow</code> |
+| Move to the bottom pane | <code>Ctrl+B</code>, then <code>Down Arrow</code> |
+| Close tmux after its programs are stopped | type <code>exit</code> in each pane |</p>
+
+<p>Do not worry about tmux if the face is already running. It is only the tool
+that lets the face and captions share one full-screen terminal.</p>
+
+<h2>Start Codex For Help</h2>
+
+<p>Codex can answer questions from the robot workspace, inspect files, and help
+diagnose errors.</p>
+
+<p>Open a new terminal on the main monitor and run:</p>
+
+<p><code>
+cd ~/robot_ws
+codex
+</code></p>
+
+<p>Then ask questions in plain language, for example:</p>
+
+<p><code>
+Logos did not hear "Hey Robot". What should I check?
+</code></p>
+
+<p>or:</p>
+
+<p><code>
+Explain the startup guide and help me restart the face.
+</code></p>
+
+<p>If Codex asks you to sign in, follow the sign-in prompts on screen.</p>
+
+<h2>Stop Logos</h2>
+
+<p>To stop a part of Logos:</p>
+
+<ol>
+<li>Click its terminal.</li>
+<li>Press <code>Ctrl+C</code>.</li>
+</ol>
+
+<p>For a normal shutdown:</p>
+
+<ol>
+<li>Stop the face and captions if they are running.</li>
+<li>Stop the idle state indicator.</li>
+<li>Stop speech input.</li>
+<li>Stop cognition.</li>
+<li>Stop the core robot stack.</li>
+<li>Stop the Chroma memory server.</li>
+<li>Shut down Linux from the desktop power menu.</li>
+<li>Turn off Kobuki power when the robot body should be off.</li>
+</ol>
+
+<h2>Quick Restart Cheatsheet</h2>
+
+<p>Open one terminal per command and leave it open:</p>
+
+<p><code>
+logos_chroma.sh
+logos_core.sh
+logos_cog.sh Logos
+logos_stt.sh
+</code></p>
+
+<p>On the face monitor, in the face tmux layout:</p>
+
+<p><code>
+logos_face.sh
+logos_tts_caption.sh
+</code></p>
+
+<p>After the face is running, start the idle state indicator in its own terminal:</p>
+
+<p><code>
+logos_idle.sh
+</code></p>
+
+<p>Open the dashboard on the main monitor:</p>
+
+<p><code>
+http://localhost:5000
+</code></p>
+
+<h2>When Something Looks Wrong</h2>
+
+<h3>The desktop is missing</h3>
+
+<ul>
+<li>Check power to the main monitor.</li>
+<li>Check the wireless HDMI receiver.</li>
+<li>Remember that the ThinkPad's own laptop panel is broken.</li>
+</ul>
+
+<h3>Typing does nothing</h3>
+
+<ul>
+<li>Make sure the Logitech K400 wireless USB receiver is plugged into the USB
+hub.</li>
+<li>Make sure the keyboard has power/battery.</li>
+<li>Click the window where you want the typing to go.</li>
+</ul>
+
+<h3>The face is blank</h3>
+
+<ul>
+<li>Make sure <code>logos_core.sh</code> is running first.</li>
+<li>Make sure the face monitor terminal is open on the secondary monitor.</li>
+<li>Make sure the top face pane is running <code>logos_face.sh</code>.</li>
+<li>If the terminal text looks the wrong size or color, right-click and select
+the <code>robot_face_03</code> terminal profile.</li>
+</ul>
+
+<h3>The browser dashboard does not open</h3>
+
+<ul>
+<li>Check that the terminal running <code>logos_cog.sh Logos</code> is still open.</li>
+<li>Use the exact address <code>http://localhost:5000</code> on the ThinkPad's browser.</li>
+</ul>
+
+<h3>Logos does not hear speech</h3>
+
+<ul>
+<li>Check that the terminal running <code>logos_stt.sh</code> is still open.</li>
+<li>Say "Hey Robot" before the message.</li>
+<li>Say "End of Line" after the message.</li>
+</ul>
+
+<h3>A terminal shows scary text</h3>
+
+<p>Do not close everything at once. Read the last few lines first. If help is
+needed, start Codex in <code>~/robot_ws</code> and ask about the error text shown in that
+terminal.</p>
+
+<h3>Username and Password</h3>
+
+<p>The main username is <code>robot</code>. Password is <code>robot</code>. </p>

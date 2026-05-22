@@ -1,15 +1,8 @@
 #!/home/robot/robot_ws/.venv/bin/python3
-
-
-
-
-
-# MediaPipe YAMNet audio classifier — see audio_classifier_sampler.py
-
-
-
-
-
+# This runs in a Python 3.11.13 environment
+# Despite ROS Noetic being Python 3.8
+# Because our node is simply publishing some strings and simple message types, it works okay
+# but we won't make a habit of it :D
 
 import os
 import time
@@ -29,10 +22,11 @@ import sys
 
 # Prints a full descriptive string
 print(sys.version)
+# 3.11.13 (main, Jun  4 2025, 08:57:30) [GCC 9.4.0]
 
-# Prints a tuple (e.g., sys.version_info(major=3, minor=10, ...))
+# Prints a tuple
 print(sys.version_info)
-
+# sys.version_info(major=3, minor=11, micro=13, releaselevel='final', serial=0)
 
 
 # ROS Imports
