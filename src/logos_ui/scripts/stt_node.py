@@ -88,17 +88,16 @@ OPENWAKEWORD_MODEL_FORMATS = ('onnx', 'tflite')
 CORE_WAKEWORDS = {
     'wake': 'hey_robot',
     'end': 'end_of_line',
-    'edit': 'Cancel_That',
+    'edit': 'cancel_that',
 }
 CORE_WAKEWORD_THRESHOLDS = {
     'wake': 0.5,
     'end': 0.5,
-    'edit': 0.5,
+    'edit': 0.85,
 }
 
-# Optional passive hotword listener. Keep this list small on purpose; the
-# vendored collection is much larger, but only configured labels are published.
-PASSIVE_HOTWORDS = () #'jarvis', 'computer', 'skynet')
+# Passive hotwords are selected dynamically through
+# `/stt/hotword_listener/enable`; all of them use this confidence threshold.
 PASSIVE_HOTWORD_THRESHOLD = 0.5
 
 # Reuse the existing Silero pass with a loose wakeword gate and a stricter
@@ -110,7 +109,7 @@ WAKEWORD_VAD_WINDOW_SEC = 0.5
 WAKEWORD_VAD_WINDOW_FRAMES = max(1, int(WAKEWORD_VAD_WINDOW_SEC * SAMPLE_RATE / FRAME_LENGTH))
 
 # OpenWakeWord predictions can stay high across adjacent chunks.
-HOTWORD_DEBOUNCE_SEC = 1.0
+HOTWORD_DEBOUNCE_SEC = 1.5
 
 # Timers (Seconds)
 AMBIENT_MAX_DURATION = 120    # 2 minutes hard cap for buffer
@@ -157,7 +156,7 @@ class LogosEarsNode:
         self.state_lock = threading.Lock()
         self.is_speaking = False         # From TTS
         self.ambient_enabled = False     # From external topic
-        self.hotword_enabled = False     # From external topic
+        self.hotword_enabled = False     # True while passive models are loaded
         self.current_state = LedState.IDLE
         self.last_ambient_publish_time = 0
         self.reset_wakewords_pending = False
@@ -220,30 +219,22 @@ class LogosEarsNode:
             CORE_WAKEWORDS,
             CORE_WAKEWORD_THRESHOLDS,
         )
-        self.passive_wakeword_models = self._discover_role_models(
-            {label: label for label in PASSIVE_HOTWORDS},
-            {label: PASSIVE_HOTWORD_THRESHOLD for label in PASSIVE_HOTWORDS},
-        )
         frameworks = {
             model['framework']
-            for model in (
-                list(self.core_wakeword_models.values())
-                + list(self.passive_wakeword_models.values())
-            )
+            for model in self.core_wakeword_models.values()
         }
         self._validate_feature_models(frameworks)
 
         self.core_wakewords = self._load_wakeword_models(self.core_wakeword_models)
-        self.passive_wakewords = self._load_wakeword_models(self.passive_wakeword_models)
+        self.passive_hotword_directories = ()
+        self.passive_wakeword_models = {}
+        self.passive_wakewords = {}
 
         print(
             "OpenWakeWord CORE: "
             f"{[model['label'] for model in self.core_wakeword_models.values()]}"
         )
-        print(
-            "OpenWakeWord PASSIVE ALLOWLIST: "
-            f"{[model['label'] for model in self.passive_wakeword_models.values()]}"
-        )
+        print("OpenWakeWord PASSIVE: waiting for requested hotwords.")
 
         # Hotword debounce bookkeeping
         self._last_hotword_time = {}
@@ -385,7 +376,7 @@ class LogosEarsNode:
         # Subscribers
         rospy.Subscriber('/tts/is_speaking', Bool, self._cb_is_speaking)
         rospy.Subscriber('/stt/ambient_listener/enable', Bool, self._cb_ambient_enable)
-        rospy.Subscriber('/stt/hotword_listener/enable', Bool, self._cb_hotword_enable)
+        rospy.Subscriber('/stt/hotword_listener/enable', String, self._cb_hotword_enable)
         rospy.Subscriber('/stt/audio_classifier/enable', Bool, self._cb_classifier_enable)
 
         # Kobuki Sound Helper
@@ -437,11 +428,89 @@ class LogosEarsNode:
             print(Fore.LIGHTBLUE_EX + "Ambient transcript cleared.")
             
     def _cb_hotword_enable(self, msg):
+        hotword_directories = self._parse_passive_hotword_payload(msg.data)
+        if hotword_directories is None:
+            return
+
+        hotword_directories = tuple(hotword_directories)
         with self.state_lock:
-            self.hotword_enabled = msg.data
+            if hotword_directories == self.passive_hotword_directories:
+                return
+            self.passive_hotword_directories = ()
+            self.passive_wakeword_models = {}
+            self.passive_wakewords = {}
+            self.hotword_enabled = False
+            self.reset_wakewords_pending = True
+            if (
+                not self.is_speaking
+                and self.current_state not in (LedState.RECORDING, LedState.TRANSCRIBING)
+            ):
+                self.current_state = self._resolve_ambient_led_state()
+
+        if not hotword_directories:
+            print(Fore.LIGHTGREEN_EX + "Hotword Listener: Disabled")
+            return
+
+        try:
+            passive_wakeword_models = self._discover_role_models(
+                {directory: directory for directory in hotword_directories},
+                {
+                    directory: PASSIVE_HOTWORD_THRESHOLD
+                    for directory in hotword_directories
+                },
+            )
+            frameworks = {
+                model['framework']
+                for model in passive_wakeword_models.values()
+            }
+            self._validate_feature_models(frameworks)
+            passive_wakewords = self._load_wakeword_models(passive_wakeword_models)
+        except Exception as exc:
+            rospy.logerr(
+                "Hotword Listener: failed to load passive hotwords %s: %s",
+                list(hotword_directories),
+                exc,
+            )
+            return
+
+        with self.state_lock:
+            self.passive_hotword_directories = hotword_directories
+            self.passive_wakeword_models = passive_wakeword_models
+            self.passive_wakewords = passive_wakewords
+            self.hotword_enabled = bool(hotword_directories)
             if not self.is_speaking and self.current_state not in (LedState.RECORDING, LedState.TRANSCRIBING):
                 self.current_state = self._resolve_ambient_led_state()
-            print(Fore.LIGHTGREEN_EX + f"Hotword Listener: {self.hotword_enabled}")
+            labels = [
+                model['label']
+                for model in self.passive_wakeword_models.values()
+            ]
+            print(Fore.LIGHTGREEN_EX + f"Hotword Listener: {labels or 'Disabled'}")
+
+    def _parse_passive_hotword_payload(self, payload):
+        """Return requested passive hotword model directories from JSON."""
+        try:
+            hotwords = json.loads(payload)
+        except (TypeError, json.JSONDecodeError) as exc:
+            rospy.logwarn(f"Hotword Listener: expected JSON hotword list: {exc}")
+            return None
+
+        if not isinstance(hotwords, list):
+            rospy.logwarn("Hotword Listener: expected JSON list of hotword names.")
+            return None
+
+        directories = []
+        seen = set()
+        for hotword in hotwords:
+            if not isinstance(hotword, str) or not hotword.strip():
+                rospy.logwarn(
+                    "Hotword Listener: hotword list entries must be non-empty strings."
+                )
+                return None
+            directory = hotword.strip()
+            if directory not in seen:
+                directories.append(directory)
+                seen.add(directory)
+        return directories
 
     def _cb_classifier_enable(self, msg):
         with self.state_lock:
@@ -630,14 +699,10 @@ class LogosEarsNode:
                     self.recording_start_time = time.time()
                     continue
 
-                # Read hotword_enabled under lock
-                with self.state_lock:
-                    hotword_enabled = self.hotword_enabled
-
                 # Passive hotwords are independent of ambient transcription.
-                if hotword_enabled:
-                    for role in passive_detections:
-                        detected = self.passive_wakeword_models[role]['label']
+                for role in passive_detections:
+                    detected = self._wakeword_label(role)
+                    if detected:
                         print(Fore.LIGHTGREEN_EX + f"Hotword Detection: {detected}")
                         self._publish_hotword(detected)
 
@@ -736,11 +801,12 @@ class LogosEarsNode:
 
             with self.state_lock:
                 hotword_enabled = self.hotword_enabled
+                passive_wakewords = self.passive_wakewords
 
             if hotword_enabled:
                 passive_detections.update(
                     self._predict_model_groups(
-                        self.passive_wakewords,
+                        passive_wakewords,
                         wakeword_frame,
                         allow_detections,
                     )
@@ -1332,6 +1398,6 @@ ROS Topics Summary:
   Subscribers:
     /tts/is_speaking             (Bool) - Global ear plug
     /stt/ambient_listener/enable (Bool) - Enable/disable ambient Whisper transcription
-    /stt/hotword_listener/enable (Bool) - Enable/disable passive OpenWakeWord detections
+    /stt/hotword_listener/enable (String JSON list) - Set passive OpenWakeWord hotwords
     /stt/audio_classifier/enable (Bool) - Enable/disable MediaPipe YAMNet audio classification
 """

@@ -13,8 +13,8 @@ The STT node is Logos's ears. It handles all microphone input in one process: Op
 # Enable ambient transcription
 rostopic pub /stt/ambient_listener/enable std_msgs/Bool "data: true"
 
-# Enable hotword detection
-rostopic pub /stt/hotword_listener/enable std_msgs/Bool "data: true"
+# Enable passive hotword detection for selected model directories
+rostopic pub /stt/hotword_listener/enable std_msgs/String "data: '[\"jarvis\", \"computer\"]'"
 
 # Enable audio classifier (MediaPipe YAMNet)
 rostopic pub /stt/audio_classifier/enable std_msgs/Bool "data: true"
@@ -25,7 +25,7 @@ rostopic echo /stt/ambient_listener/transcription
 rostopic echo /stt/audio_classifier/events
 ```
 
-Wake phrase (`ok computer`) is **always on** - it does not need to be enabled. The initial `ok computer`, `terminator`, and `ok wire tap` models come from the vendored community model tree in `wakewords/home-assistant-wakewords-collection/en`. Drop Logos-trained replacements into matching subdirectories under `wakewords/custom`; that tree is searched first. Shared OpenWakeWord feature models live in `wakewords/openwakeword-feature-models` so startup does not fetch model resources at runtime.
+Wake phrase (`Hey Robot`) is **always on** - it does not need to be enabled. The initial `ok computer`, `terminator`, and `ok wire tap` models come from the vendored community model tree in `wakewords/home-assistant-wakewords-collection/en`. Drop Logos-trained replacements into matching subdirectories under `wakewords/custom`; that tree is searched first. Shared OpenWakeWord feature models live in `wakewords/openwakeword-feature-models` so startup does not fetch model resources at runtime.
 
 ---
 
@@ -37,7 +37,7 @@ Wake phrase (`ok computer`) is **always on** - it does not need to be enabled. T
 |---|---|---|
 | `/tts/is_speaking` | `Bool` | When `true`, mic input is muted ("ear plugs") for STT and audio classification |
 | `/stt/ambient_listener/enable` | `Bool` | Enable/disable ambient Whisper transcription |
-| `/stt/hotword_listener/enable` | `Bool` | Enable/disable allowlisted passive OpenWakeWord detections |
+| `/stt/hotword_listener/enable` | `String` (JSON) | Set the passive OpenWakeWord model directory list; `[]` disables and unloads passive models |
 | `/stt/audio_classifier/enable` | `Bool` | Enable/disable MediaPipe YAMNet audio classifier |
 
 ### Publishers (outputs)
@@ -56,11 +56,11 @@ Wake phrase (`ok computer`) is **always on** - it does not need to be enabled. T
 
 ## User Interaction Flow
 
-1. Say **"Ok Computer"** - OpenWakeWord detects the wake phrase
+1. Say **"Hey robot"** - OpenWakeWord detects the wake phrase
 2. Logos beeps and starts recording (LEDs: green VU meter)
-3. Say what you want, then say **"Terminator"** to finish
+3. Say what you want, then say **"end of line"** to finish
 4. Logos transcribes and publishes to `/cognition/input`
-5. Say **"Ok Wire Tap"** instead to get a terminal prompt to edit the transcript first
+5. Say **"Cancel that"** instead to get a terminal prompt to edit the transcript first
 
 `RECORDING_TIMEOUT` is 60 seconds — if you don't say a stop word, recording stops automatically.
 
@@ -118,17 +118,7 @@ rospy.Subscriber('/stt/ambient_listener/transcription', String, cb)
 ### `/stt/hotword_listener/detections`
 
 Plain string - the configured spoken label for the detected model. One message per detection (not latched, debounced by `HOTWORD_DEBOUNCE_SEC`).
-
-```
-ok computer
-terminator
-ok wire tap
-computer
-jarvis
-skynet
-```
-
-`ok computer`, `terminator`, and `ok wire tap` are always-loaded control roles. Passive detections are published only when hotword listening is enabled, and only for directories allowlisted in `PASSIVE_HOTWORDS`.
+Passive detections are published for the model directories requested by the latest `/stt/hotword_listener/enable` JSON list. Publish `[]` to disable passive hotwords and unload their models.
 
 ---
 
@@ -273,13 +263,13 @@ If recording timed out (no stop word spoken), an additional note is prepended:
 |---|---|---|
 | Idle | Nothing enabled | Off (or dim slow amber breath if audio classifier is on) |
 | Ambient transcribe | `/stt/ambient_listener/enable: true` | Dark blue slow breath |
-| Hotword listening | `/stt/hotword_listener/enable: true` | Dark green slow breath |
+| Hotword listening | `/stt/hotword_listener/enable: ["jarvis"]` | Dark green slow breath |
 | Both ambient + hotword | Both enabled | Blue ↔ green slow crossfade, always lit |
 | Recording | Wake word detected | Green→red VU meter, center-out |
 | Transcribing | After recording ends | Green chaser |
 | Ear plugs | `/tts/is_speaking: true` | Magenta shimmer |
 | Ambient publish blip | After ambient transcription completes | Cyan traveling pulse (3s) |
-| Classifier sample blip | After YAMNet sample completes | Amber traveling pulse (2s) |
+| Classifier sample blip | After YAMNet sample completes | Magenta traveling pulse (2s) |
 
 ---
 
@@ -291,8 +281,7 @@ Key values at the top of `stt_node.py` you might want to tune:
 |---|---|---|
 | `CORE_WAKEWORDS` | role map | Wake, finish, and edit directory names; directory names become published spoken labels |
 | `CORE_WAKEWORD_THRESHOLDS` | role map | Separate OpenWakeWord score thresholds for the three core roles |
-| `PASSIVE_HOTWORDS` | allowlist | Passive wakeword directory names available to `/stt/hotword_listener/enable` |
-| `PASSIVE_HOTWORD_THRESHOLD` | 0.5 | Shared OpenWakeWord score threshold for passive allowlisted words |
+| `PASSIVE_HOTWORD_THRESHOLD` | 0.5 | Shared OpenWakeWord score threshold for passive hotwords requested through `/stt/hotword_listener/enable` |
 | `WAKEWORD_MODEL_ROOTS` | asset paths | Model directories; `wakewords/custom` wins over the vendored community tree |
 | `OPENWAKEWORD_FEATURE_PATH` | asset path | Shared melspectrogram and embedding models for ONNX and TFLite inference |
 | `AMBIENT_VAD_THRESHOLD` | 0.5 | Silero threshold for ambient Whisper buffering |

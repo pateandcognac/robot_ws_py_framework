@@ -25,7 +25,9 @@ monitors.
 1. Make sure the ThinkPad and the external displays have power.
 2. Make sure the wireless HDMI receiver for the main desktop display is
    connected and powered.
-3. Make sure the HDMI face monitor is connected and powered.
+3. Make sure the HDMI face monitor is connected and powered. Its power button
+   is on the lower left of the face, on the green PCB next to the red/green
+   LED.
 4. Plug the Logitech K400 wireless keyboard USB receiver into the robot's USB
    hub if it is not already plugged in.
 5. Turn on the Kobuki base if Logos should be able to use the robot body.
@@ -201,6 +203,45 @@ Use the web UI to:
 
 If the page does not load, make sure the `logos_cog.sh Logos` terminal is still
 running.
+
+## Optional Robot Movement Modes
+
+These are extra ROS modes for making Logos map or navigate. They are not
+needed for basic conversation. Only start them after `logos_core.sh` is already
+running.
+
+Open a new terminal for each of these and leave it open while using that mode.
+
+### Navigation
+
+Navigation is for moving around with an existing map.
+
+Run:
+
+```
+roslaunch logos_bringup logos_navigation.launch
+```
+
+If a specific map file is needed, the command may need a map path added later.
+For example:
+
+```
+roslaunch logos_bringup logos_navigation.launch map_file:=/path/to/map.yaml
+```
+
+### SLAM / Mapping
+
+SLAM is for building a map of a room or area.
+
+Run:
+
+```
+roslaunch logos_bringup logos_slam.launch
+```
+
+Use either navigation or SLAM for normal operation, not both at the same time.
+Stop the one you are finished with by clicking its terminal and pressing
+`Ctrl+C`.
 
 ## Talk To Logos Out Loud
 
@@ -394,6 +435,8 @@ http://localhost:5000
 ### The face is blank
 
 - Make sure `logos_core.sh` is running first.
+- Check the face monitor power button. It is on the lower left of the face, on
+  the green PCB next to the red/green LED.
 - Make sure the face monitor terminal is open on the secondary monitor.
 - Make sure the top face pane is running `logos_face.sh`.
 - If the terminal text looks the wrong size or color, right-click and select
@@ -418,4 +461,4 @@ terminal.
 
 ### Username and Password
 
-The main username is `robot`. Password is `robot`. 
+The main username is `robot`. Password is `robot`.

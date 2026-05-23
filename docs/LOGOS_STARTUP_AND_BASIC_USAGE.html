@@ -28,7 +28,9 @@ monitors.</p>
 <li>Make sure the ThinkPad and the external displays have power.</li>
 <li>Make sure the wireless HDMI receiver for the main desktop display is
 connected and powered.</li>
-<li>Make sure the HDMI face monitor is connected and powered.</li>
+<li>Make sure the HDMI face monitor is connected and powered. Its power button
+is on the lower left of the face, on the green PCB next to the red/green
+LED.</li>
 <li>Plug the Logitech K400 wireless keyboard USB receiver into the robot's USB
 hub if it is not already plugged in.</li>
 <li>Turn on the Kobuki base if Logos should be able to use the robot body.</li>
@@ -213,6 +215,45 @@ unless the network setup is changed.</p>
 
 <p>If the page does not load, make sure the <code>logos_cog.sh Logos</code> terminal is still
 running.</p>
+
+<h2>Optional Robot Movement Modes</h2>
+
+<p>These are extra ROS modes for making Logos map or navigate. They are not
+needed for basic conversation. Only start them after <code>logos_core.sh</code> is already
+running.</p>
+
+<p>Open a new terminal for each of these and leave it open while using that mode.</p>
+
+<h3>Navigation</h3>
+
+<p>Navigation is for moving around with an existing map.</p>
+
+<p>Run:</p>
+
+<p><code>
+roslaunch logos_bringup logos_navigation.launch
+</code></p>
+
+<p>If a specific map file is needed, the command may need a map path added later.
+For example:</p>
+
+<p><code>
+roslaunch logos_bringup logos_navigation.launch map_file:=/path/to/map.yaml
+</code></p>
+
+<h3>SLAM / Mapping</h3>
+
+<p>SLAM is for building a map of a room or area.</p>
+
+<p>Run:</p>
+
+<p><code>
+roslaunch logos_bringup logos_slam.launch
+</code></p>
+
+<p>Use either navigation or SLAM for normal operation, not both at the same time.
+Stop the one you are finished with by clicking its terminal and pressing
+<code>Ctrl+C</code>.</p>
 
 <h2>Talk To Logos Out Loud</h2>
 
@@ -423,6 +464,8 @@ hub.</li>
 
 <ul>
 <li>Make sure <code>logos_core.sh</code> is running first.</li>
+<li>Check the face monitor power button. It is on the lower left of the face, on
+the green PCB next to the red/green LED.</li>
 <li>Make sure the face monitor terminal is open on the secondary monitor.</li>
 <li>Make sure the top face pane is running <code>logos_face.sh</code>.</li>
 <li>If the terminal text looks the wrong size or color, right-click and select
@@ -452,4 +495,4 @@ terminal.</p>
 
 <h3>Username and Password</h3>
 
-<p>The main username is <code>robot</code>. Password is <code>robot</code>. </p>
+<p>The main username is <code>robot</code>. Password is <code>robot</code>.</p>
