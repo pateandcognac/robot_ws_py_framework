@@ -84,6 +84,7 @@ Bridges ROS topics to the browser UI.
   - `full_update` events containing complete header/buffer/footer HTML fragments.
   - `append_io` events for incremental cell additions.
   - `stream_chunk` events for live token updates.
+- Exposes `/logs`, a three-panel JSONL viewer for `state/io_buffer.jsonl`, `state/io_history.jsonl`, and `state/summaries.jsonl`.
 
 ### `urwid_tui.py`
 Lightweight terminal interface using `urwid`.
@@ -94,7 +95,8 @@ Lightweight terminal interface using `urwid`.
 
 ## Browser UI (`web/`)
 
-- `index.html` lays out header / IO buffer / footer panes plus a control bar with message type selection, a compact runtime Gemini config popover, a "Simulate AI Output" toggle (hides loop-cognition controls when enabled), and Ctrl+Enter submission.
+- `index.html` lays out header / IO buffer / footer panes plus a control bar with message type selection, a compact runtime Gemini config popover, a JSONL state viewer button, a "Simulate AI Output" toggle (hides loop-cognition controls when enabled), and Ctrl+Enter submission.
+- `logs.html` lays out the friendlier three-panel JSONL state viewer with search and copy helpers.
 - `style.css` provides a dark theme, Split.js gutters, adaptive textarea sizing, and styles for `io-cell` components appended to the buffer.
 - `script.js` connects to the Socket.IO backend, renders streamed HTML + inline images, highlights code blocks via Highlight.js, auto-resizes the input textarea, and emits `human_input` events with the current mode (`input` vs `output`).
 

@@ -19,6 +19,7 @@
             <div id="input-container">
                  <div class="controls">
                     <button id="runtime-config-toggle" type="button" title="Runtime Gemini settings">Config</button>
+                    <button id="jsonl-viewer-button" type="button" title="Open JSONL state viewer">Logs</button>
                     <div id="runtime-config-popover" class="runtime-config-popover" hidden>
                         <div class="config-grid">
                             <label for="api-profile-select">API</label>
@@ -61,6 +62,14 @@
         </div>
 
         <div id="footer" class="panel"></div>
+    </div>
+
+    <div id="paid-key-alert" class="paid-key-alert" role="alertdialog" aria-modal="true" aria-labelledby="paid-key-alert-title" hidden>
+        <div class="paid-key-alert-card">
+            <div id="paid-key-alert-title" class="paid-key-alert-title">Paid API key active</div>
+            <div id="paid-key-alert-body" class="paid-key-alert-body"></div>
+            <button id="paid-key-alert-close" type="button">OK</button>
+        </div>
     </div>
 
     <!-- Libraries -->

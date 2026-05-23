@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logos JSONL State</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="logs.css">
+</head>
+<body class="logs-body">
+    <div class="logs-shell">
+        <header class="logs-toolbar">
+            <div>
+                <h1>Logos JSONL State</h1>
+                <div id="workspace-path" class="workspace-path"></div>
+            </div>
+            <div class="logs-actions">
+                <input id="search-input" type="search" placeholder="Search messages">
+                <button id="refresh-button" type="button">Refresh</button>
+            </div>
+        </header>
+
+        <main class="logs-triptych">
+            <section class="log-panel" data-log-panel="io_buffer">
+                <div class="log-panel-header">
+                    <h2>io_buffer.jsonl</h2>
+                    <button class="copy-visible-button" type="button">Copy visible</button>
+                </div>
+                <div class="log-panel-status"></div>
+                <div class="log-list"></div>
+            </section>
+
+            <section class="log-panel" data-log-panel="io_history">
+                <div class="log-panel-header">
+                    <h2>io_history.jsonl</h2>
+                    <button class="copy-visible-button" type="button">Copy visible</button>
+                </div>
+                <div class="log-panel-status"></div>
+                <div class="log-list"></div>
+            </section>
+
+            <section class="log-panel" data-log-panel="summaries">
+                <div class="log-panel-header">
+                    <h2>summaries.jsonl</h2>
+                    <button class="copy-visible-button" type="button">Copy visible</button>
+                </div>
+                <div class="log-panel-status"></div>
+                <div class="log-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="logs.js"></script>
+</body>
+</html>

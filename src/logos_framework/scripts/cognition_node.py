@@ -150,6 +150,7 @@ class CognitionNode:
             "last_error": "",
             "last_failover": "",
             "files_api_last_event": "",
+            "last_paid_key_notice": "",
         }
         self.incoming_queue = deque()
         self.queue_lock = threading.Lock()
@@ -304,7 +305,9 @@ class CognitionNode:
 
         if new_profile != current_profile:
             try:
-                self._configure_genai_client(new_profile)
+                self._configure_genai_client(new_profile, publish_state=(new_profile != "paid"))
+                if new_profile == "paid":
+                    self._announce_paid_key_switch(current_profile, "manual runtime switch")
             except Exception as e:
                 with self.runtime_lock:
                     self.runtime_config["api_profile"] = current_profile
@@ -317,7 +320,7 @@ class CognitionNode:
         else:
             self._publish_runtime_config_state()
 
-    def _configure_genai_client(self, api_profile):
+    def _configure_genai_client(self, api_profile, publish_state=True):
         profile = self._normalize_api_profile(api_profile)
         env_name = API_KEY_ENV_BY_PROFILE[profile]
         api_key = os.environ.get(env_name)
@@ -330,6 +333,18 @@ class CognitionNode:
             self.runtime_config["api_profile"] = profile
             self.runtime_status["last_error"] = ""
         rospy.loginfo(f"Gemini API client configured with '{profile}' profile ({env_name}).")
+        if publish_state:
+            self._publish_runtime_config_state()
+
+    def _announce_paid_key_switch(self, previous_profile, reason):
+        if previous_profile == "paid":
+            return
+
+        notice = f"Paid Gemini API key is now active ({reason})."
+        with self.runtime_lock:
+            self.runtime_status["last_paid_key_notice"] = notice
+        rospy.logwarn(notice)
+        self._send_feedback("api_paid_key", notice, "api_call", "bright_red", "mini")
         self._publish_runtime_config_state()
 
     def _runtime_snapshot(self):
@@ -353,6 +368,7 @@ class CognitionNode:
             "thinking": ("🤔", 3.0),
             "api_error": ("😵", 4.0),
             "api_retry": ("🔁", 3.0),
+            "api_paid_key": ("💳", 5.0),
         }
         return feedback_map.get(header)
 
@@ -616,7 +632,7 @@ class CognitionNode:
             return False
 
         try:
-            self._configure_genai_client(fallback_profile)
+            self._configure_genai_client(fallback_profile, publish_state=(fallback_profile != "paid"))
         except Exception as e:
             with self.runtime_lock:
                 self.runtime_status["last_error"] = f"key failover failed: {e}"
@@ -628,6 +644,8 @@ class CognitionNode:
         with self.runtime_lock:
             self.runtime_status["last_failover"] = failover_msg
         rospy.logwarn(failover_msg)
+        if fallback_profile == "paid":
+            self._announce_paid_key_switch(current_profile, "automatic quota failover")
         self._send_feedback("api_retry", failover_msg, "api_call", "bright_yellow", "mini")
         self._publish_runtime_config_state()
         return True

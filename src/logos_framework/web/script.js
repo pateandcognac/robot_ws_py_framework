@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const middlePane = document.getElementById('middle-pane');
     const statusBar = document.getElementById('status-bar'); // NEW
     const runtimeConfigToggle = document.getElementById('runtime-config-toggle');
+    const jsonlViewerButton = document.getElementById('jsonl-viewer-button');
     const runtimeConfigPopover = document.getElementById('runtime-config-popover');
     const apiProfileSelect = document.getElementById('api-profile-select');
     const modelPresetSelect = document.getElementById('model-preset-select');
@@ -19,6 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const filesApiToggle = document.getElementById('files-api-toggle');
     const keyFailoverToggle = document.getElementById('key-failover-toggle');
     const runtimeConfigStatus = document.getElementById('runtime-config-status');
+    const paidKeyAlert = document.getElementById('paid-key-alert');
+    const paidKeyAlertBody = document.getElementById('paid-key-alert-body');
+    const paidKeyAlertClose = document.getElementById('paid-key-alert-close');
+    let previousApiProfile = null;
 
     Split(['#header', '#middle-pane', '#footer'], {
         sizes: [25, 50, 25],
@@ -34,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     socket.on('runtime_config_state', (data) => {
+        maybeShowPaidKeyAlert(data);
         renderRuntimeConfig(data);
     });
 
@@ -120,6 +126,20 @@ document.addEventListener('DOMContentLoaded', () => {
     runtimeConfigToggle.addEventListener('click', (event) => {
         event.stopPropagation();
         runtimeConfigPopover.hidden = !runtimeConfigPopover.hidden;
+    });
+
+    jsonlViewerButton.addEventListener('click', () => {
+        window.open('/logs', '_blank', 'noopener');
+    });
+
+    paidKeyAlertClose.addEventListener('click', () => {
+        paidKeyAlert.hidden = true;
+    });
+
+    paidKeyAlert.addEventListener('click', (event) => {
+        if (event.target === paidKeyAlert) {
+            paidKeyAlert.hidden = true;
+        }
     });
 
     document.addEventListener('click', (event) => {
@@ -219,6 +239,16 @@ document.addEventListener('DOMContentLoaded', () => {
         filesApiToggle.checked = Boolean(config.use_files_api);
         keyFailoverToggle.checked = Boolean(config.key_failover);
         renderRuntimeStatus(config);
+    }
+
+    function maybeShowPaidKeyAlert(config) {
+        const currentProfile = config.api_profile || null;
+        if (previousApiProfile && previousApiProfile !== 'paid' && currentProfile === 'paid') {
+            const status = config.status || {};
+            paidKeyAlertBody.textContent = status.last_paid_key_notice || 'Logos switched to the paid Gemini API key.';
+            paidKeyAlert.hidden = false;
+        }
+        previousApiProfile = currentProfile;
     }
 
     function renderRuntimeStatus(config) {

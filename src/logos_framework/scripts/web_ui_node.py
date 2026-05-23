@@ -5,7 +5,7 @@ import rospy
 import threading
 import json
 import os
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, jsonify, render_template, send_from_directory
 from flask_socketio import SocketIO
 
 from std_msgs.msg import String as StringMsg
@@ -105,16 +105,60 @@ class WebUINode:
 def index():
     return render_template('index.html')
 
-@app.route('/<path:path>')
-def static_files(path):
-    return send_from_directory(web_dir, path)
+@app.route('/logs')
+def logs():
+    return render_template('logs.html')
 
-# NEW: Serve workspace files directly so we don't need Base64!
 @app.route('/workspace/<path:filename>')
 def serve_workspace_file(filename):
     if not WORKSPACE_PATH:
         return "Workspace path not configured", 404
     return send_from_directory(WORKSPACE_PATH, filename)
+
+def read_workspace_jsonl(filename):
+    if not WORKSPACE_PATH:
+        return {"name": filename, "available": False, "error": "Workspace path not configured.", "entries": []}
+
+    path = os.path.join(WORKSPACE_PATH, "state", filename)
+    if not os.path.exists(path):
+        return {"name": filename, "available": False, "error": "File does not exist yet.", "entries": []}
+
+    entries = []
+    try:
+        with open(path, "r", encoding="utf-8") as handle:
+            for line_number, line in enumerate(handle, start=1):
+                raw = line.rstrip("\n")
+                if not raw.strip():
+                    continue
+                try:
+                    parsed = json.loads(raw)
+                    entries.append({"line": line_number, "raw": raw, "data": parsed})
+                except json.JSONDecodeError as e:
+                    entries.append({
+                        "line": line_number,
+                        "raw": raw,
+                        "data": None,
+                        "parse_error": str(e),
+                    })
+    except Exception as e:
+        return {"name": filename, "available": False, "error": str(e), "entries": []}
+
+    return {"name": filename, "available": True, "error": "", "entries": entries}
+
+@app.route('/api/state-jsonl')
+def state_jsonl():
+    return jsonify({
+        "workspace_path": WORKSPACE_PATH,
+        "files": {
+            "io_buffer": read_workspace_jsonl("io_buffer.jsonl"),
+            "io_history": read_workspace_jsonl("io_history.jsonl"),
+            "summaries": read_workspace_jsonl("summaries.jsonl"),
+        },
+    })
+
+@app.route('/<path:path>')
+def static_files(path):
+    return send_from_directory(web_dir, path)
 
 # --- SocketIO Event Handlers ---
 @socketio.on('connect')
