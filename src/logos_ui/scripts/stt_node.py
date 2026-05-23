@@ -88,12 +88,20 @@ OPENWAKEWORD_MODEL_FORMATS = ('onnx', 'tflite')
 CORE_WAKEWORDS = {
     'wake': 'hey_robot',
     'end': 'end_of_line',
-    'edit': 'cancel_that',
+    'cancel': 'cancel_that',
 }
 CORE_WAKEWORD_THRESHOLDS = {
     'wake': 0.5,
     'end': 0.5,
-    'edit': 0.85,
+    'cancel': 0.5,
+}
+OPTIONAL_CORE_WAKEWORDS = {
+    'edit': {
+        'directory': 'edit_input',
+        'threshold': 0.85,
+        'enabled_param': '~enable_edit_wakeword',
+        'default_enabled': False,
+    },
 }
 
 # Passive hotwords are selected dynamically through
@@ -215,9 +223,10 @@ class LogosEarsNode:
     def _init_models(self):
         print(Fore.CYAN + "Loading Models...")
 
+        core_wakewords, core_thresholds = self._configured_core_wakewords()
         self.core_wakeword_models = self._discover_role_models(
-            CORE_WAKEWORDS,
-            CORE_WAKEWORD_THRESHOLDS,
+            core_wakewords,
+            core_thresholds,
         )
         frameworks = {
             model['framework']
@@ -259,6 +268,22 @@ class LogosEarsNode:
         self.whisper = WhisperModel(self.whisper_model_name, device="cpu", compute_type="int8")
         
         print(Fore.CYAN + "Models Loaded.")
+
+    def _configured_core_wakewords(self):
+        """Return active core wakewords, including optional ROS-param controls."""
+        wakewords = dict(CORE_WAKEWORDS)
+        thresholds = dict(CORE_WAKEWORD_THRESHOLDS)
+
+        for role, config in OPTIONAL_CORE_WAKEWORDS.items():
+            enabled = rospy.get_param(
+                config['enabled_param'],
+                config['default_enabled'],
+            )
+            if enabled:
+                wakewords[role] = config['directory']
+                thresholds[role] = config['threshold']
+
+        return wakewords, thresholds
 
     def _discover_role_models(self, role_labels, thresholds):
         """Resolve configured directory labels into OpenWakeWord assets."""
@@ -657,6 +682,15 @@ class LogosEarsNode:
                     self._play_sound(Sound.OFF)
                     self._finish_recording(reason="normal")
 
+                elif 'cancel' in core_detections:
+                    label = self.core_wakeword_models['cancel']['label']
+                    print(Fore.YELLOW + f"Cancel Word: {label}")
+                    self._play_sound(Sound.OFF)
+                    self.recording_buffer = []
+                    self.recording_start_time = 0
+                    self._reset_state()
+                    self._reset_wakeword_models()
+
                 elif 'edit' in core_detections:
                     label = self.core_wakeword_models['edit']['label']
                     print(Fore.YELLOW + f"Stop Word: {label}")
@@ -687,10 +721,7 @@ class LogosEarsNode:
                         self.classifier_sample_buffer = []
                         self._send_feedback(
                             header="Listening...",
-                            body=(
-                                f"    Say {self._prompt_phrase('end')} to finish.\n"
-                                f"    Say {self._prompt_phrase('edit')} to edit transcript."
-                            ),
+                            body=self._recording_prompt_text(),
                             header_color="bright_green",
                             body_color="bright_white",
                             font="slant",
@@ -1210,11 +1241,20 @@ class LogosEarsNode:
         label = self.core_wakeword_models[role]['label']
         return re.sub(r'[\s_]+', '-', label).upper()
 
+    def _recording_prompt_text(self):
+        """Render recording controls that are active in this process."""
+        prompts = [f"    Say {self._prompt_phrase('end')} to finish."]
+        if 'cancel' in self.core_wakeword_models:
+            prompts.append(f"    Say {self._prompt_phrase('cancel')} to cancel.")
+        if 'edit' in self.core_wakeword_models:
+            prompts.append(f"    Say {self._prompt_phrase('edit')} to edit transcript.")
+        return "\n".join(prompts)
+
     def _prompt_phrases_text(self):
         """Inline all configured core phrases in a Whisper-friendly form."""
         return "\n".join(
             self._prompt_phrase(role)
-            for role in CORE_WAKEWORDS
+            for role in self.core_wakeword_models
         )
 
     def _wakeword_phrase_pattern(self, label):

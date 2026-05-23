@@ -25,7 +25,7 @@ rostopic echo /stt/ambient_listener/transcription
 rostopic echo /stt/audio_classifier/events
 ```
 
-Wake phrase (`Hey Robot`) is **always on** - it does not need to be enabled. The initial `ok computer`, `terminator`, and `ok wire tap` models come from the vendored community model tree in `wakewords/home-assistant-wakewords-collection/en`. Drop Logos-trained replacements into matching subdirectories under `wakewords/custom`; that tree is searched first. Shared OpenWakeWord feature models live in `wakewords/openwakeword-feature-models` so startup does not fetch model resources at runtime.
+Wake phrase (`Hey Robot`) is **always on** - it does not need to be enabled. During a wake-recording window, `end of line` finishes and `cancel that` abandons the recording without transcribing or publishing anything. The optional edit stop word is disabled by default and can be enabled with the private ROS param `~enable_edit_wakeword` when an `edit_input` model is available. Drop Logos-trained replacements into matching subdirectories under `wakewords/custom`; that tree is searched first. Shared OpenWakeWord feature models live in `wakewords/openwakeword-feature-models` so startup does not fetch model resources at runtime.
 
 ---
 
@@ -60,7 +60,7 @@ Wake phrase (`Hey Robot`) is **always on** - it does not need to be enabled. The
 2. Logos beeps and starts recording (LEDs: green VU meter)
 3. Say what you want, then say **"end of line"** to finish
 4. Logos transcribes and publishes to `/cognition/input`
-5. Say **"Cancel that"** instead to get a terminal prompt to edit the transcript first
+5. Say **"Cancel that"** instead to abandon the recording and return to listening
 
 `RECORDING_TIMEOUT` is 60 seconds — if you don't say a stop word, recording stops automatically.
 
@@ -279,14 +279,15 @@ Key values at the top of `stt_node.py` you might want to tune:
 
 | Constant | Default | Description |
 |---|---|---|
-| `CORE_WAKEWORDS` | role map | Wake, finish, and edit directory names; directory names become published spoken labels |
-| `CORE_WAKEWORD_THRESHOLDS` | role map | Separate OpenWakeWord score thresholds for the three core roles |
+| `CORE_WAKEWORDS` | role map | Wake, finish, and cancel directory names; directory names become published spoken labels |
+| `CORE_WAKEWORD_THRESHOLDS` | role map | Separate OpenWakeWord score thresholds for the default core roles |
+| `OPTIONAL_CORE_WAKEWORDS` | role map | Optional core controls, currently `edit_input`, gated by ROS params and disabled by default |
 | `PASSIVE_HOTWORD_THRESHOLD` | 0.5 | Shared OpenWakeWord score threshold for passive hotwords requested through `/stt/hotword_listener/enable` |
 | `WAKEWORD_MODEL_ROOTS` | asset paths | Model directories; `wakewords/custom` wins over the vendored community tree |
 | `OPENWAKEWORD_FEATURE_PATH` | asset path | Shared melspectrogram and embedding models for ONNX and TFLite inference |
 | `AMBIENT_VAD_THRESHOLD` | 0.5 | Silero threshold for ambient Whisper buffering |
 | `WAKEWORD_VAD_THRESHOLD` | 0.15 | Loose Silero threshold for OpenWakeWord activation filtering |
-| `RECORDING_TIMEOUT` | 60s | Hard stop if user doesn't say `terminator` |
+| `RECORDING_TIMEOUT` | 60s | Hard stop if user doesn't say `end of line` |
 | `AMBIENT_CHECK_INTERVAL` | 600s | How often the ambient buffer is auto-flushed |
 | `AMBIENT_MAX_DURATION` | 120s | Hard cap on ambient buffer before force-flush |
 | `AMBIENT_HISTORY_MAX_AGE` | 7200s | How long to keep ambient history (2 hours) |
