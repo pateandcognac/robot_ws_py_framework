@@ -109,7 +109,7 @@ class PythonWorkerNode:
 
         # IO Publishers and Subscribers
         self.input_pub = rospy.Publisher('/cognition/input', CognitionInput, queue_size=10)
-        self.output_sub = rospy.Subscriber('/cognition/output', CognitionOutput, self._output_callback, queue_size=10)
+        self.output_sub = rospy.Subscriber('/cognition/output', CognitionOutput, self._output_callback, queue_size=20)
 
         # Async Output Polling Timer (e.g., every 0.5 seconds)
         self.async_timer = rospy.Timer(rospy.Duration(0.5), self._poll_async_output)
@@ -240,7 +240,13 @@ class PythonWorkerNode:
             timeout_sec = self.config.get("python", {}).get("default_timeout", 36000)
             rospy.logwarn(f"Invalid timeout value '{match.group('timeout')}', using default {timeout_sec}s.")
 
-        rospy.loginfo(f"Executing code from '{msg.type}' message with timeout={timeout_sec}s, reset={do_reset}")
+        if msg.type == 'context':
+            hook_name = msg.filename or "unnamed_hook"
+            rospy.loginfo(
+                f"Executing context hook '{hook_name}' with timeout={timeout_sec}s, reset={do_reset}"
+            )
+        else:
+            rospy.loginfo(f"Executing code from '{msg.type}' message with timeout={timeout_sec}s, reset={do_reset}")
         
         # Execute in a separate thread to handle timeouts
         execution_thread = threading.Thread(
@@ -251,7 +257,14 @@ class PythonWorkerNode:
         execution_thread.join(timeout=timeout_sec)
 
         if execution_thread.is_alive():
-            rospy.logerr(f"Code execution timed out after {timeout_sec} seconds! Requesting cooperative interrupt.")
+            if msg.type == 'context':
+                hook_name = msg.filename or "unnamed_hook"
+                rospy.logerr(
+                    f"Context hook '{hook_name}' timed out after {timeout_sec:.2f}s! "
+                    "Requesting cooperative interrupt."
+                )
+            else:
+                rospy.logerr(f"Code execution timed out after {timeout_sec} seconds! Requesting cooperative interrupt.")
             
             # If the thread is still alive, it means
             # it timed out. We now inject an interrupt request.
@@ -393,7 +406,11 @@ class PythonWorkerNode:
 
             # 5. Format and Publish Results
             duration = time.time() - start_time
-            rospy.loginfo(f"Execution finished in {duration:.2f}s. Request: {request_type}. Loop: {final_loop_cognition}")
+            if request_type == 'context':
+                hook_name = filename or "unnamed_hook"
+                rospy.loginfo(f"Context hook '{hook_name}' finished in {duration:.2f}s.")
+            else:
+                rospy.loginfo(f"Execution finished in {duration:.2f}s. Request: {request_type}. Loop: {final_loop_cognition}")
 
             # Clean up strings for formatting
             stdout_str = stdout_str.strip()

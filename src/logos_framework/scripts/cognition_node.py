@@ -695,11 +695,7 @@ class CognitionNode:
                 should_start_cycle = True
                 should_call_gemini = True
             
-            default_system_hint = "\n<!-- system: Logos, please prepare your response. Wrap your output in <me><py> tags for proper parsing. -->"
-            if msg.system_hint:
-                self.last_received_system_hint = msg.system_hint + "\n" + default_system_hint
-            else:
-                self.last_received_system_hint = default_system_hint
+            self.last_received_system_hint = msg.system_hint or ""
 
         with self.state_lock:
             if should_start_cycle and self.state == CognitionState.IDLE:
@@ -853,6 +849,26 @@ class CognitionNode:
             hint_text = escalation_messages[capped_level]
             return f"\n<!-- system: loops_since_last_human_input = {loops_since_last_human} | {hint_text} -->"
 
+    def _build_response_system_hint(self, last_msg_type: str, last_cell_num: int) -> str:
+            default_system_hint = (
+                "\n<!-- system: Logos, please prepare your response to last palimpsest entry: "
+                f"`<{last_msg_type} cell=\"{last_cell_num}\">`. Wrap your output in <me><py> tags "
+                "for proper parsing. -->"
+            )
+            if self.last_received_system_hint:
+                return self.last_received_system_hint + "\n" + default_system_hint
+            return default_system_hint
+
+    def _append_system_hints_to_footer(self, footer_str: str, system_hints: list) -> str:
+            visible_hints = [hint.strip() for hint in system_hints if hint and hint.strip()]
+            if not visible_hints:
+                return footer_str
+
+            hints_block = "<system_hints>\n" + "\n".join(visible_hints) + "\n</system_hints>"
+            if footer_str and footer_str.strip():
+                return footer_str.rstrip() + "\n\n" + hints_block
+            return hints_block
+
     def _construct_prompt_and_images(self, header_hooks_data, footer_hooks_data, runtime_cfg, include_api_parts=True):
             """
             Builds the final prompt for the LLM and the display strings for the UI.
@@ -863,6 +879,9 @@ class CognitionNode:
             # --- Build the initial text content using the new helper ---
             header_str = self._format_prompt_section('header', header_hooks_data)
             io_buffer_messages = self.io.read_buffer()
+            last_cell_num = max(len(io_buffer_messages) - 1, 0)
+            last_msg_type = io_buffer_messages[-1].get("type", "msg_type") if io_buffer_messages else "msg_type"
+            response_system_hint = self._build_response_system_hint(last_msg_type, last_cell_num)
             loop_guard_system_hint = self._build_loop_guard_system_hint(io_buffer_messages)
             io_buffer_str = self._format_prompt_section('io_buffer', io_buffer_messages)
             footer_str = self._format_prompt_section('footer', footer_hooks_data)
@@ -896,8 +915,12 @@ class CognitionNode:
             processed_io_buffer_str = file_tag_pattern.sub(selective_replacer, io_buffer_str)
             processed_header_str = file_tag_pattern.sub(unlimited_replacer, header_str)
             processed_footer_str = file_tag_pattern.sub(unlimited_replacer, footer_str)
+            ui_footer_str = self._append_system_hints_to_footer(
+                processed_footer_str,
+                [response_system_hint, loop_guard_system_hint],
+            )
             
-            self._publish_ui_state(processed_header_str, processed_io_buffer_str, processed_footer_str)
+            self._publish_ui_state(processed_header_str, processed_io_buffer_str, ui_footer_str)
 
             if not include_api_parts:
                 return []
@@ -924,7 +947,7 @@ class CognitionNode:
             parse_and_append_parts(processed_header_str)
             parse_and_append_parts(processed_io_buffer_str)
             parse_and_append_parts(processed_footer_str)
-            final_contents.append(self.last_received_system_hint)
+            final_contents.append(response_system_hint)
             if loop_guard_system_hint:
                 final_contents.append(loop_guard_system_hint)
 
