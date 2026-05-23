@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 from typing import Any, Optional
 
 ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyz"
+PY_ASYNC_MERGE_WINDOW_SEC = 10 * 60
 
 # Epoch for photo IDs: Feb 8, 1977
 EPOCH = datetime(1977, 2, 8, tzinfo=timezone.utc)
@@ -108,6 +109,68 @@ class IOManager:
 
 
 
+    def _truncate_for_buffer(self, msg_id: str, content: str) -> str:
+        if len(content) <= self.max_chars:
+            return content
+
+        chars_removed = len(content) - (self.keep_head + self.keep_tail)
+        rospy.logwarn(f"Message {msg_id} content is too long ({len(content)} chars). Truncating by {chars_removed} chars for io_buffer.")
+
+        head = content[:self.keep_head]
+        tail = content[-self.keep_tail:]
+        truncation_notice = f"\n\n... [content truncated - {chars_removed} chars removed. Full content of message {msg_id} can be found in io_history.jsonl] ...\n\n"
+
+        return head + truncation_notice + tail
+
+    def _try_merge_py_async_buffer_message(self, message_data: dict) -> Optional[str]:
+        if message_data.get("type") != "py_async" or not self.buffer_file.exists():
+            return None
+
+        with open(self.buffer_file, 'r') as f:
+            lines = f.readlines()
+
+        if not lines:
+            return None
+
+        last_index = None
+        last_message = None
+        for i in range(len(lines) - 1, -1, -1):
+            if not lines[i].strip():
+                continue
+            last_index = i
+            try:
+                last_message = json.loads(lines[i])
+            except json.JSONDecodeError:
+                return None
+            break
+
+        if last_message is None or last_message.get("type") != "py_async":
+            return None
+
+        last_timestamp = last_message.get("timestamp", 0)
+        current_timestamp = message_data["timestamp"]
+        if current_timestamp - last_timestamp > PY_ASYNC_MERGE_WINDOW_SEC:
+            return None
+
+        merged_content = "\n\n".join(
+            part for part in [
+                last_message.get("content", "").rstrip(),
+                message_data.get("content", "").lstrip(),
+            ]
+            if part
+        )
+        last_message["content"] = self._truncate_for_buffer(last_message.get("id", message_data["id"]), merged_content)
+        last_message["timestamp"] = current_timestamp
+        last_message["token_count"] = last_message.get("token_count", 0) + message_data.get("token_count", 0)
+        if message_data.get("filename"):
+            last_message["filename"] = message_data["filename"]
+
+        lines[last_index] = json.dumps(last_message) + '\n'
+        with open(self.buffer_file, 'w') as f:
+            f.writelines(lines)
+
+        return last_message.get("id")
+
     def append_message(self, msg_type: str, content: str, filename: str = None):
         with self._lock:
             msg_id = f"msg-{IOManager.make_time_id()}"
@@ -133,20 +196,14 @@ class IOManager:
                 with open(self.history_file, 'a') as f:
                     f.write(history_line)
 
+                merged_msg_id = self._try_merge_py_async_buffer_message(message_data)
+                if merged_msg_id:
+                    rospy.loginfo(f"IOManager: Merged py_async message {msg_id} into {merged_msg_id}.")
+                    return merged_msg_id
+
                 # --- BUFFER file gets potentially truncated content ---
-                buffer_content = content
-                if len(buffer_content) > self.max_chars:
-                    chars_removed = len(buffer_content) - (self.keep_head + self.keep_tail)
-                    rospy.logwarn(f"Message {msg_id} content is too long ({len(buffer_content)} chars). Truncating by {chars_removed} chars for io_buffer.")
-                    
-                    head = buffer_content[:self.keep_head]
-                    tail = buffer_content[-self.keep_tail:]
-                    truncation_notice = f"\n\n... [content truncated - {chars_removed} chars removed. Full content of message {msg_id} can be found in io_history.jsonl] ...\n\n"
-                    
-                    buffer_content = head + truncation_notice + tail
-                    
-                    # Update the message_data dictionary for the buffer file only
-                    message_data['content'] = buffer_content
+                buffer_content = self._truncate_for_buffer(msg_id, content)
+                message_data['content'] = buffer_content
 
                 buffer_line = json.dumps(message_data) + '\n'
                 with open(self.buffer_file, 'a') as f:

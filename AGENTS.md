@@ -3,6 +3,7 @@
 ## Project Structure & Module Organization
 
 This repository is a ROS catkin workspace for the Logos robot and, importantly, the shared framework/harness that gives a Vision LLM in the Gemini family control of the robot. Source packages live in `src/`: `logos_msgs` defines custom messages/actions, `logos_face` contains C++ face rendering nodes, `logos_framework` contains the cognition loop and Python worker nodes, `logos_hardware` and `logos_ui` contain ROS nodes and launch/UI code, and `logos_bringup` coordinates runtime launch/config. Convenience entrypoints are in `bin/`. Robot assets and generated motion/face sequences live in `animations/`, `sound_files/`, `models/`, `festival/`, and `porcupine/`. Documentation belongs in `docs/`; one-off generation and validation utilities belong in `tools/`. Treat `build/` and `devel/` as generated catkin output.
+There's docs scattered around the fs and in `docs/`.
 
 ## Logos Workspaces & Cognition Harness
 
@@ -40,3 +41,4 @@ Recent history uses short imperative or descriptive commits, for example `doc st
 ## Security & Configuration Tips
 
 Do not commit secrets, API keys, local audio captures, or machine-specific credentials. `GEMINI_API_KEY` and other provider credentials should stay in the runtime environment, not in repo or workspace files. Be careful when editing `.system/` files inside `~/robot_workspaces/<name>/`; they define the behavior and permissions perceived by that Logos instance. Keep hardware calibration, model paths, and wake-word assets documented when they are required for a node to run.
+
