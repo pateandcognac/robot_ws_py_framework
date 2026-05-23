@@ -957,7 +957,7 @@ class CognitionNode:
                         )
                         self.output_pub.publish(out_msg)
                     
-                    completed = self.context_gathering_complete.wait(timeout=120.0)
+                    completed = self.context_gathering_complete.wait(timeout=30.0)
                     if not completed:
                         rospy.logwarn("Timed out waiting for Cognitive Hooks. Proceeding with what was received.")
                         self._send_feedback(

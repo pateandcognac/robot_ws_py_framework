@@ -124,7 +124,7 @@ Passive detections are published for the model directories requested by the late
 
 ### `/stt/audio_classifier/events`
 
-Publishes a JSON object with two sections: a 10-minute rolling history of per-minute aggregated classifications, and a short list of the most recent raw samples. When `/tts/is_speaking` is true, the classifier pauses and clears any partial sample window so Logos's own voice and speech-driven servo noise are not classified. Direct `ok computer` speech input also takes priority: the wake phrase clears any partial sample window, and queued classifier samples are dropped while user input is recording or transcribing.
+Publishes a JSON object with two sections: a 10-minute rolling history of per-minute aggregated classifications, and a short list of the most recent raw samples. When `/tts/is_speaking` is true, the classifier pauses and clears any partial sample window so Logos's own voice and speech-driven servo noise are not classified. Direct `ok computer` speech input also takes priority: the wake phrase clears any partial sample window, and queued classifier samples are dropped while user input is recording or transcribing. Labels in `CLASSIFIER_LABEL_BLACKLIST` are filtered before they enter either raw samples or the rolling history.
 
 Publishes `{}` (empty object) when classifier is disabled or cleared.
 

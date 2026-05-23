@@ -48,6 +48,7 @@ class AudioClassifierSampler:
         boost_factor: float = 0.5,
         top_k: int = 10,
         score_threshold: float = 0.05,
+        label_blacklist: set[str] | None = None,
         recent_maxlen: int = 10,
         history_minutes: int = 10,
     ):
@@ -55,6 +56,10 @@ class AudioClassifierSampler:
         self._boost_factor = boost_factor
         self._top_k = top_k
         self._score_threshold = score_threshold
+        self._label_blacklist = {
+            self._normalize_label(name)
+            for name in (label_blacklist or set())
+        }
 
         self._recent_samples = collections.deque(maxlen=recent_maxlen)
         self._minute_buckets = collections.deque(maxlen=history_minutes)
@@ -105,6 +110,8 @@ class AudioClassifierSampler:
                 for cat in result.classifications[0].categories:
                     if cat.score >= self._score_threshold:
                         name = cat.category_name
+                        if self._is_blacklisted(name):
+                            continue
                         if name not in best or cat.score > best[name]:
                             best[name] = cat.score
             categories = [
@@ -161,6 +168,12 @@ class AudioClassifierSampler:
     # ------------------------------------------------------------------
     # Internal helpers
     # ------------------------------------------------------------------
+
+    def _normalize_label(self, name: str) -> str:
+        return ' '.join(name.casefold().split())
+
+    def _is_blacklisted(self, name: str) -> bool:
+        return self._normalize_label(name) in self._label_blacklist
 
     def _update_minute_buckets(self, epoch: float, categories: list):
         self._prune_old_buckets()

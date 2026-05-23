@@ -141,6 +141,10 @@ CLASSIFIER_BOOST_FACTOR    = 0.5   # temporal confidence boost per repeated dete
 CLASSIFIER_TOP_K           = 10    # max YAMNet labels per sample
 CLASSIFIER_SCORE_THRESHOLD = 0.05  # minimum score to include in output
 CLASSIFIER_BLIP_DURATION   = 2.0   # seconds for amber LED overlay after each sample
+CLASSIFIER_LABEL_BLACKLIST = {
+    'Chewing, mastication',
+    'Crunch',
+}
 
 class LedState:
     IDLE = 0
@@ -564,6 +568,7 @@ class LogosEarsNode:
                 boost_factor=CLASSIFIER_BOOST_FACTOR,
                 top_k=CLASSIFIER_TOP_K,
                 score_threshold=CLASSIFIER_SCORE_THRESHOLD,
+                label_blacklist=CLASSIFIER_LABEL_BLACKLIST,
             )
             print(Fore.YELLOW + "Audio Classifier: MediaPipe YAMNet loaded.")
         except Exception as e:
