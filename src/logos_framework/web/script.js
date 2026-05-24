@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const debugVisionPause = document.getElementById('debug-vision-pause');
     const debugVisionStatus = document.getElementById('debug-vision-status');
     const debugVisionGrid = document.getElementById('debug-vision-grid');
+    const debugVisionModal = document.getElementById('debug-vision-modal');
+    const debugVisionModalClose = document.getElementById('debug-vision-modal-close');
+    const debugVisionModalImage = document.getElementById('debug-vision-modal-image');
+    const debugVisionModalMeta = document.getElementById('debug-vision-modal-meta');
     const footerPanel = document.getElementById('footer');
     const humanInput = document.getElementById('human-input');
     const typeInput = document.getElementById('type-input');
@@ -151,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     debugVisionCount.addEventListener('change', renderDebugVision);
     debugVisionTopicFilter.addEventListener('change', renderDebugVision);
+    window.addEventListener('resize', renderDebugVision);
     debugVisionPause.addEventListener('change', () => {
         if (debugVisionPause.checked) {
             pausedDebugVision = JSON.parse(JSON.stringify(latestDebugVision));
@@ -159,6 +164,19 @@ document.addEventListener('DOMContentLoaded', () => {
             fetchDebugVisionSnapshot();
         }
         renderDebugVision();
+    });
+
+    debugVisionModalClose.addEventListener('click', closeDebugVisionModal);
+    debugVisionModal.addEventListener('click', (event) => {
+        if (event.target === debugVisionModal) {
+            closeDebugVisionModal();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !debugVisionModal.hidden) {
+            closeDebugVisionModal();
+        }
     });
 
     runtimeConfigToggle.addEventListener('click', (event) => {
@@ -383,6 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .filter((frame) => !topicFilter || frame.topic === topicFilter)
             .slice(-limit)
             .reverse();
+        setDebugVisionGridShape(frames.length || limit);
 
         debugVisionGrid.innerHTML = '';
         frames.forEach((frame) => {
@@ -405,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tile.type = 'button';
         tile.title = frame.topic;
         tile.addEventListener('click', () => {
-            window.open(frame.src, '_blank', 'noopener');
+            openDebugVisionModal(frame);
         });
 
         const img = document.createElement('img');
@@ -428,6 +447,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tile.appendChild(meta);
         return tile;
+    }
+
+    function setDebugVisionGridShape(count) {
+        const boundedCount = Math.max(1, Math.min(8, count));
+        let columns = 2;
+        if (boundedCount > 4 && debugVisionGrid.clientWidth >= 760) columns = 4;
+        const rows = Math.ceil(boundedCount / columns);
+        debugVisionGrid.style.setProperty('--debug-vision-columns', String(columns));
+        debugVisionGrid.style.setProperty('--debug-vision-rows', String(rows));
+    }
+
+    function openDebugVisionModal(frame) {
+        debugVisionModalImage.src = frame.src;
+        debugVisionModalImage.alt = frame.name || frame.topic;
+        const pieces = [frame.topic];
+        if (frame.width && frame.height) pieces.push(`${frame.width}x${frame.height}`);
+        if (frame.header_stamp) pieces.push(`stamp ${frame.header_stamp}`);
+        debugVisionModalMeta.textContent = pieces.join(' | ');
+        debugVisionModal.hidden = false;
+    }
+
+    function closeDebugVisionModal() {
+        debugVisionModal.hidden = true;
+        debugVisionModalImage.removeAttribute('src');
+        debugVisionModalMeta.textContent = '';
     }
 
     function formatFrameAge(receivedTime) {

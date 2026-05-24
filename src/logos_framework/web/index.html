@@ -24,8 +24,6 @@
                     <select id="debug-vision-count">
                         <option value="4" selected>4</option>
                         <option value="8">8</option>
-                        <option value="16">16</option>
-                        <option value="24">24</option>
                     </select>
 
                     <label for="debug-vision-topic-filter">Topic</label>
@@ -99,6 +97,14 @@
             <div id="paid-key-alert-title" class="paid-key-alert-title">Paid API key active</div>
             <div id="paid-key-alert-body" class="paid-key-alert-body"></div>
             <button id="paid-key-alert-close" type="button">OK</button>
+        </div>
+    </div>
+
+    <div id="debug-vision-modal" class="debug-vision-modal" role="dialog" aria-modal="true" hidden>
+        <button id="debug-vision-modal-close" class="debug-vision-modal-close" type="button" title="Close">Close</button>
+        <div class="debug-vision-modal-content">
+            <img id="debug-vision-modal-image" alt="">
+            <div id="debug-vision-modal-meta" class="debug-vision-modal-meta"></div>
         </div>
     </div>
 

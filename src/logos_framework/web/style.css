@@ -119,10 +119,14 @@ body, html {
 
 #debug-vision-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(var(--debug-vision-columns, 2), minmax(0, 1fr));
+    grid-template-rows: repeat(var(--debug-vision-rows, 2), minmax(0, 1fr));
     gap: 10px;
+    flex: 1;
+    min-height: 0;
     padding: 12px;
-    overflow-y: auto;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .debug-vision-tile {
@@ -137,6 +141,7 @@ body, html {
     cursor: pointer;
     overflow: hidden;
     text-align: left;
+    min-height: 0;
 }
 
 .debug-vision-tile:hover,
@@ -147,7 +152,8 @@ body, html {
 
 .debug-vision-tile img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    flex: 1;
+    min-height: 0;
     object-fit: contain;
     background: #111;
     margin: 0;
@@ -178,11 +184,74 @@ body, html {
 }
 
 .debug-vision-empty {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
     color: #a9a9a9;
     border: 1px dashed #555;
     border-radius: 5px;
     padding: 18px;
     text-align: center;
+}
+
+.debug-vision-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 44px 18px 18px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.84);
+}
+
+.debug-vision-modal[hidden] {
+    display: none;
+}
+
+.debug-vision-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: min(96vw, 1200px);
+    height: min(88vh, 900px);
+    min-height: 0;
+}
+
+.debug-vision-modal-content img {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    object-fit: contain;
+    background: #080808;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+
+.debug-vision-modal-meta {
+    flex-shrink: 0;
+    color: #d7eaff;
+    font-family: "Fira Code", "Courier New", monospace;
+    font-size: 0.86em;
+    overflow-wrap: anywhere;
+}
+
+.debug-vision-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: #252525;
+    color: #f0f0f0;
+    border: 1px solid #777;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.debug-vision-modal-close:hover,
+.debug-vision-modal-close:focus {
+    background: #383838;
+    outline: none;
 }
 
 
