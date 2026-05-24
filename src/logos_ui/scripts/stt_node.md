@@ -235,24 +235,23 @@ Published after each successful speech-to-text transcription. Fields set by this
 | Field | Type | Value |
 |---|---|---|
 | `type` | string | `"human_stt"` |
-| `content` | string | Whisper transcript, prefixed with a confidence header |
-| `system_hint` | string | Instructions for the LLM on handling low-confidence transcripts |
+| `content` | string | Whisper transcript, followed by minimal STT metadata such as `conf: 84%` and ` - timeout -` |
+| `system_hint` | string | Ephemeral instructions for the LLM on confidence, timeout, and low-confidence transcript handling |
 | `loop_cognition` | bool | `true` |
 
 Example `content`:
 ```
-# faster-whisper model 'small.en' confidence: 84%
-# Transcription:
 Hey Logos, what time is it?
+
+conf: 84%
 ```
 
-If recording timed out (no stop word spoken), an additional note is prepended:
+If recording timed out (no stop word spoken), `content` stays compact and the detailed timeout guidance is sent as `system_hint`:
 ```
-# Note: stt audio recording timed out after 60 seconds. This most likely indicates
-# the wake word was accidentally triggered...
-# faster-whisper model 'small.en' confidence: 61%
-# Transcription:
 ...
+
+conf: 61%
+ - timeout -
 ```
 
 ---

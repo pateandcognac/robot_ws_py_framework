@@ -122,7 +122,7 @@ HOTWORD_DEBOUNCE_SEC = 1.5
 # Timers (Seconds)
 AMBIENT_MAX_DURATION = 120    # 2 minutes hard cap for buffer
 AMBIENT_CHECK_INTERVAL = 600  # 10 minutes
-RECORDING_TIMEOUT = 60        # 60 second hard limit for user input
+RECORDING_TIMEOUT = 90        # 90 second hard limit for user input
 MIN_AMBIENT_LENGTH = 10       # Minimum seconds to bother transcribing ambient
 
 # LED Constants
@@ -1190,25 +1190,31 @@ class LogosEarsNode:
 
                 # calculate full text confidence_score as percentage
                 conf = round(np.exp(confidence_sum / count), 2) if count > 0 else 0.0
+                conf_pct = 100 * conf
 
-
-                stt_header = ""
+                content_meta = [f" - conf: {conf_pct:.0f}%"]
+                hint_parts = [
+                    f"<!-- system: Estimated STT confidence: {conf_pct:.0f}%.",
+                ]
+                if conf_pct < 65:
+                    hint_parts.append(
+                        "Low confidence: if the transcript is nonsensical and you cannot infer intent, tell the human you misheard them and ask them to speak more clearly."
+                    )
                 if job.get('stop_reason') == "timeout":
-                    stt_header = (
-                        f"# Note: stt audio recording timed out after {RECORDING_TIMEOUT} seconds. "
-                        "This most likely indicates the wake word was accidentally triggered and this transcript may be from background chatter not directed at Logos.\n"
-                    ) 
-
-                stt_header += f"# faster-whisper model '{self.whisper_model_name}' confidence: {100*conf:.0f}%"
-
-                final_text = stt_header + "\n# Transcription:\n" + final_text
+                    content_meta.append(" - timed out!")
+                    hint_parts.append(
+                        f"The stt audio recording timed out after {RECORDING_TIMEOUT} seconds; "
+                        "this may indicate an accidental wake word trigger or background chatter not directed at Logos."
+                    )
+                hint_parts.append("-->")
+                final_text = final_text + "\n\n" + "\n".join(content_meta)
 
                 
                 # Publish to Cognition
                 msg = CognitionInput()
                 msg.type = "human_stt"
                 msg.content = final_text
-                msg.system_hint = "<!-- system: If human_stt transcript is nonsensical and you are unable to infer intent, you can tell the human you misheard them and ask them to speak more clearly. Confidence scores above 70% are generally reliable. -->"
+                msg.system_hint = " ".join(hint_parts)
                 msg.loop_cognition = True
                 
                 self.pub_cognition.publish(msg)
