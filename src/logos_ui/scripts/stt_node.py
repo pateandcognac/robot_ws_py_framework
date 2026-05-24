@@ -401,6 +401,7 @@ class LogosEarsNode:
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
         self.pub_hotword_detections = rospy.Publisher('/stt/hotword_listener/detections', String, queue_size=10)
         self.pub_classifier = rospy.Publisher('/stt/audio_classifier/events', String, queue_size=1, latch=True)
+        self.pub_python_interrupt = rospy.Publisher('/python/interrupt', String, queue_size=1)
 
         # Subscribers
         rospy.Subscriber('/tts/is_speaking', Bool, self._cb_is_speaking)
@@ -712,6 +713,7 @@ class LogosEarsNode:
                     label = self.core_wakeword_models['wake']['label']
                     print(Fore.MAGENTA + f"Wake Word: {label} detected!")
                     self._publish_hotword(label)
+                    self._publish_python_interrupt()
                     self._play_sound(Sound.ON)
 
                     if self.ambient_buffer and ambient_enabled:
@@ -946,6 +948,20 @@ class LogosEarsNode:
             self.pub_hotword_detections.publish(String(data=word))
         except Exception as e:
             rospy.logwarn(f"Failed to publish hotword '{word}': {e}")
+
+    def _publish_python_interrupt(self) -> None:
+        payload = {
+            "source": "human_stt",
+            "message": (
+                "A human has politely interrupted your Python execution. "
+                "Standby for message."
+            ),
+            "loop_cognition": False,
+        }
+        try:
+            self.pub_python_interrupt.publish(String(data=json.dumps(payload)))
+        except Exception as e:
+            rospy.logwarn(f"Failed to publish Python interrupt: {e}")
 
     def _reset_state(self):
         with self.state_lock:

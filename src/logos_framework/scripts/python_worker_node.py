@@ -130,6 +130,11 @@ class PythonWorkerNode:
 
     def _interrupt_callback(self, msg: StringMsg):
         rospy.loginfo(f"Interrupt message received: {msg.data}")
+        with self.state_lock:
+            if self.state != WorkerState.EXECUTING:
+                rospy.logdebug("Ignoring interrupt because Python worker is idle.")
+                return
+
         with self.interrupt_lock:
             try:
                 # The JSON spec is good, let's add a default for loop_cognition
