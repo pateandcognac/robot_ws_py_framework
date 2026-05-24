@@ -11,7 +11,37 @@
         <div id="header" class="panel"></div>
         
         <div id="middle-pane" class="panel">
-            <div id="io-buffer"></div>
+            <div id="view-tabs" class="view-tabs" role="tablist">
+                <button id="chat-tab" class="view-tab active" type="button" role="tab" aria-selected="true">Chat</button>
+                <button id="debug-vision-tab" class="view-tab" type="button" role="tab" aria-selected="false">Debug Vision</button>
+            </div>
+
+            <div id="io-buffer" class="middle-view active"></div>
+
+            <div id="debug-vision-view" class="middle-view">
+                <div class="debug-vision-toolbar">
+                    <label for="debug-vision-count">Last</label>
+                    <select id="debug-vision-count">
+                        <option value="4" selected>4</option>
+                        <option value="8">8</option>
+                        <option value="16">16</option>
+                        <option value="24">24</option>
+                    </select>
+
+                    <label for="debug-vision-topic-filter">Topic</label>
+                    <select id="debug-vision-topic-filter">
+                        <option value="">All</option>
+                    </select>
+
+                    <label class="debug-vision-pause-label">
+                        <input type="checkbox" id="debug-vision-pause">
+                        Pause
+                    </label>
+
+                    <span id="debug-vision-status"></span>
+                </div>
+                <div id="debug-vision-grid"></div>
+            </div>
             
             <!-- NEW: Status bar for thoughts / feedback -->
             <div id="status-bar" style="display: none;"></div>

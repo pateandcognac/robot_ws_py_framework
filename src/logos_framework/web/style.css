@@ -35,10 +35,154 @@ body, html {
     padding: 0; /* Middle pane is just a container */
 }
 
-#io-buffer {
+.view-tabs {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+    padding: 8px 10px 0;
+    background: #242424;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.view-tab {
+    background: #252525;
+    color: #cfcfcf;
+    border: 1px solid #555;
+    border-bottom: 0;
+    border-radius: 5px 5px 0 0;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.view-tab.active {
+    background: #333;
+    color: #fff;
+}
+
+.middle-view {
+    display: none;
     flex-grow: 1; /* Takes up available space */
     overflow-y: auto;
+    min-height: 0;
+}
+
+.middle-view.active {
+    display: block;
+}
+
+#io-buffer {
     padding: 15px;
+}
+
+#debug-vision-view.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.debug-vision-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 10px;
+    background: #2d2d2d;
+    border-bottom: 1px solid #444;
+    font-size: 0.9em;
+}
+
+.debug-vision-toolbar select {
+    min-width: 70px;
+    background: #202020;
+    color: #f0f0f0;
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 4px 6px;
+}
+
+#debug-vision-topic-filter {
+    width: min(280px, 100%);
+}
+
+.debug-vision-pause-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+#debug-vision-status {
+    color: #a8d4ff;
+    font-family: "Fira Code", "Courier New", monospace;
+    font-size: 0.82em;
+    overflow-wrap: anywhere;
+}
+
+#debug-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+    padding: 12px;
+    overflow-y: auto;
+}
+
+.debug-vision-tile {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: #1f1f1f;
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 0;
+    color: #f0f0f0;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: left;
+}
+
+.debug-vision-tile:hover,
+.debug-vision-tile:focus {
+    border-color: #7aa7d9;
+    outline: none;
+}
+
+.debug-vision-tile img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background: #111;
+    margin: 0;
+    border-radius: 0;
+}
+
+.debug-vision-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 8px;
+    font-size: 0.82em;
+}
+
+.debug-vision-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+.debug-vision-age {
+    flex-shrink: 0;
+    color: #a8d4ff;
+    font-family: "Fira Code", "Courier New", monospace;
+}
+
+.debug-vision-empty {
+    color: #a9a9a9;
+    border: 1px dashed #555;
+    border-radius: 5px;
+    padding: 18px;
+    text-align: center;
 }
 
 

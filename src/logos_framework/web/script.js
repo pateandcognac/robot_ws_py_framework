@@ -1,6 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const headerPanel = document.getElementById('header');
     const ioBufferPanel = document.getElementById('io-buffer');
+    const chatTab = document.getElementById('chat-tab');
+    const debugVisionTab = document.getElementById('debug-vision-tab');
+    const debugVisionView = document.getElementById('debug-vision-view');
+    const debugVisionCount = document.getElementById('debug-vision-count');
+    const debugVisionTopicFilter = document.getElementById('debug-vision-topic-filter');
+    const debugVisionPause = document.getElementById('debug-vision-pause');
+    const debugVisionStatus = document.getElementById('debug-vision-status');
+    const debugVisionGrid = document.getElementById('debug-vision-grid');
     const footerPanel = document.getElementById('footer');
     const humanInput = document.getElementById('human-input');
     const typeInput = document.getElementById('type-input');
@@ -24,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const paidKeyAlertBody = document.getElementById('paid-key-alert-body');
     const paidKeyAlertClose = document.getElementById('paid-key-alert-close');
     let previousApiProfile = null;
+    let latestDebugVision = {frames: [], topics: [], prefix: '/logos/debug_vision/'};
+    let pausedDebugVision = null;
 
     Split(['#header', '#middle-pane', '#footer'], {
         sizes: [25, 50, 25],
@@ -52,6 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ioBufferPanel.appendChild(ioBufferBase);
         renderContentWithImages(footerPanel, data.footer);
         scrollToBottom(ioBufferPanel);
+    });
+
+    socket.on('debug_vision_update', (data) => {
+        if (!debugVisionPause.checked) {
+            latestDebugVision = data || {frames: [], topics: []};
+            renderDebugVision();
+        }
     });
 
     socket.on('append_io', (data) => {
@@ -123,6 +140,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     humanInput.addEventListener('input', autoResizeTextarea);
 
+    chatTab.addEventListener('click', () => {
+        setMiddleView('chat');
+    });
+
+    debugVisionTab.addEventListener('click', () => {
+        setMiddleView('debug-vision');
+        renderDebugVision();
+    });
+
+    debugVisionCount.addEventListener('change', renderDebugVision);
+    debugVisionTopicFilter.addEventListener('change', renderDebugVision);
+    debugVisionPause.addEventListener('change', () => {
+        if (debugVisionPause.checked) {
+            pausedDebugVision = JSON.parse(JSON.stringify(latestDebugVision));
+        } else if (pausedDebugVision) {
+            pausedDebugVision = null;
+            fetchDebugVisionSnapshot();
+        }
+        renderDebugVision();
+    });
+
     runtimeConfigToggle.addEventListener('click', (event) => {
         event.stopPropagation();
         runtimeConfigPopover.hidden = !runtimeConfigPopover.hidden;
@@ -192,6 +230,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function emitRuntimeConfig(update) {
         socket.emit('runtime_config_set', update);
+    }
+
+    function setMiddleView(viewName) {
+        const showDebugVision = viewName === 'debug-vision';
+        ioBufferPanel.classList.toggle('active', !showDebugVision);
+        debugVisionView.classList.toggle('active', showDebugVision);
+        chatTab.classList.toggle('active', !showDebugVision);
+        debugVisionTab.classList.toggle('active', showDebugVision);
+        chatTab.setAttribute('aria-selected', showDebugVision ? 'false' : 'true');
+        debugVisionTab.setAttribute('aria-selected', showDebugVision ? 'true' : 'false');
     }
 
     function setSelectOptions(select, values, labelsByValue = {}) {
@@ -299,6 +347,96 @@ document.addEventListener('DOMContentLoaded', () => {
     function scrollToBottom(element) {
         element.scrollTop = element.scrollHeight;
     }
+
+    async function fetchDebugVisionSnapshot() {
+        try {
+            const response = await fetch('/api/debug-vision', {cache: 'no-store'});
+            latestDebugVision = await response.json();
+            renderDebugVision();
+        } catch (error) {
+            debugVisionStatus.textContent = `debug vision unavailable: ${error}`;
+        }
+    }
+
+    function renderDebugVision() {
+        const data = debugVisionPause.checked && pausedDebugVision ? pausedDebugVision : latestDebugVision;
+        const topics = data.topics || [];
+        const previousTopic = debugVisionTopicFilter.value;
+        debugVisionTopicFilter.innerHTML = '';
+        const allOption = document.createElement('option');
+        allOption.value = '';
+        allOption.textContent = 'All';
+        debugVisionTopicFilter.appendChild(allOption);
+        topics.forEach((topic) => {
+            const option = document.createElement('option');
+            option.value = topic;
+            option.textContent = topic.replace(data.prefix || '/logos/debug_vision/', '');
+            debugVisionTopicFilter.appendChild(option);
+        });
+        if (topics.includes(previousTopic)) {
+            debugVisionTopicFilter.value = previousTopic;
+        }
+
+        const topicFilter = debugVisionTopicFilter.value;
+        const limit = parseInt(debugVisionCount.value, 10) || 4;
+        const frames = (data.frames || [])
+            .filter((frame) => !topicFilter || frame.topic === topicFilter)
+            .slice(-limit)
+            .reverse();
+
+        debugVisionGrid.innerHTML = '';
+        frames.forEach((frame) => {
+            debugVisionGrid.appendChild(createDebugVisionTile(frame));
+        });
+
+        const pauseText = debugVisionPause.checked ? 'paused | ' : '';
+        debugVisionStatus.textContent = `${pauseText}${frames.length}/${data.frames ? data.frames.length : 0} shown | ${topics.length} topics`;
+        if (!frames.length) {
+            const empty = document.createElement('div');
+            empty.className = 'debug-vision-empty';
+            empty.textContent = 'No debug vision frames yet.';
+            debugVisionGrid.appendChild(empty);
+        }
+    }
+
+    function createDebugVisionTile(frame) {
+        const tile = document.createElement('button');
+        tile.className = 'debug-vision-tile';
+        tile.type = 'button';
+        tile.title = frame.topic;
+        tile.addEventListener('click', () => {
+            window.open(frame.src, '_blank', 'noopener');
+        });
+
+        const img = document.createElement('img');
+        img.src = frame.src;
+        img.alt = frame.name || frame.topic;
+        tile.appendChild(img);
+
+        const meta = document.createElement('div');
+        meta.className = 'debug-vision-meta';
+
+        const name = document.createElement('span');
+        name.className = 'debug-vision-name';
+        name.textContent = frame.name || frame.topic;
+        meta.appendChild(name);
+
+        const age = document.createElement('span');
+        age.className = 'debug-vision-age';
+        age.textContent = formatFrameAge(frame.received_time);
+        meta.appendChild(age);
+
+        tile.appendChild(meta);
+        return tile;
+    }
+
+    function formatFrameAge(receivedTime) {
+        if (!receivedTime) return '';
+        const ageSeconds = Math.max(0, (Date.now() / 1000) - receivedTime);
+        if (ageSeconds < 60) return `${ageSeconds.toFixed(1)}s`;
+        if (ageSeconds < 3600) return `${Math.floor(ageSeconds / 60)}m`;
+        return `${Math.floor(ageSeconds / 3600)}h`;
+    }
     
     function renderContentWithImages(parentElement, contentString) {
         parentElement.innerHTML = '';
@@ -343,4 +481,6 @@ document.addEventListener('DOMContentLoaded', () => {
         cell.appendChild(contentDiv);
         return cell;
     }
+
+    fetchDebugVisionSnapshot();
 });
