@@ -13,6 +13,12 @@ Common workspace contents include `.system/system_prompt.txt`, `.system/framewor
 
 `logos_framework` is the core bridge: `cognition_node.py` assembles context and streams Gemini output, `python_worker_node.py` executes `<py>` blocks in the selected workspace with the workspace `src/` on `sys.path`, and `web_ui_node.py` exposes the browser UI. Prefer `docs/LOGOS_FRAMEWORK.md` for detailed node behavior before making framework changes.
 
+## Codex Bridge for Live Testing
+
+This workspace includes a small Codex-to-Logos testing bridge documented in `docs/LOGOS_CODEX_BRIDGE.md`. Use `/usr/bin/python3 tools/codex_logos_exec.py ...` to send a uniquely tagged `<py>` block through the existing `/cognition/output` -> `python_worker_node.py` -> `/cognition/input` path. The bridge defaults to request type `codex_tool` and suppresses `loop_cognition` unless `--allow-loop` is passed, so it is appropriate for live debugging without intentionally waking the Logos LLM. Results intentionally enter the normal IO buffer.
+
+Codex can also expose this through the local Logos MCP server. The MCP server itself runs under `/home/robot/robot_ws/.venv/bin/python3` because that venv has the MCP SDK, while its `logos_python` tool shells out to `/usr/bin/python3` for ROS imports (`rospy`, generated messages). If the active runtime is a checkpoint workspace such as `Logos_001`, pass `workspace` or `workspace_path_override` so `<file path="...">` results resolve to the correct workspace.
+
 ## Build, Test, and Development Commands
 
 - `catkin_make`: build all ROS packages from the workspace root.
@@ -41,4 +47,3 @@ Recent history uses short imperative or descriptive commits, for example `doc st
 ## Security & Configuration Tips
 
 Do not commit secrets, API keys, local audio captures, or machine-specific credentials. `GEMINI_API_KEY` and other provider credentials should stay in the runtime environment, not in repo or workspace files. Be careful when editing `.system/` files inside `~/robot_workspaces/<name>/`; they define the behavior and permissions perceived by that Logos instance. Keep hardware calibration, model paths, and wake-word assets documented when they are required for a node to run.
-
