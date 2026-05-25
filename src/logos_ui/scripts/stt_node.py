@@ -91,7 +91,7 @@ CORE_WAKEWORDS = {
     'cancel': 'cancel_that',
 }
 CORE_WAKEWORD_THRESHOLDS = {
-    'wake': 0.5,
+    'wake': 0.75,
     'end': 0.5,
     'cancel': 0.5,
 }
