@@ -119,6 +119,8 @@ WAKEWORD_VAD_WINDOW_FRAMES = max(1, int(WAKEWORD_VAD_WINDOW_SEC * SAMPLE_RATE / 
 # OpenWakeWord predictions can stay high across adjacent chunks.
 HOTWORD_DEBOUNCE_SEC = 1.5
 
+WAKE_TRIGGER_NOTE = "\n---\n# Wake word detected! Rerouting to <human_stt> channel..."
+
 # Timers (Seconds)
 AMBIENT_MAX_DURATION = 120    # 2 minutes hard cap for buffer
 AMBIENT_CHECK_INTERVAL = 600  # 10 minutes
@@ -188,6 +190,10 @@ class LogosEarsNode:
         
         #  Background Audio Transcription History Storage
         self.ambient_history = []
+        self.ambient_history_lock = threading.Lock()
+        self._wake_context_seq = 0
+        self._active_wake_context_id = None
+        self._canceled_wake_context_ids = set()
 
         # --- Audio Classifier (MediaPipe YAMNet) ---
         self.classifier_enabled          = False
@@ -441,9 +447,12 @@ class LogosEarsNode:
 
             if was_enabled and not self.ambient_enabled:
                 self.ambient_buffer = []
-                self.ambient_history = []
                 self.ambient_start_time = time.time()
                 should_clear_ambient = True
+                with self.ambient_history_lock:
+                    self.ambient_history = []
+                    self._active_wake_context_id = None
+                    self._canceled_wake_context_ids.clear()
 
             if (
                 not self.is_speaking
@@ -692,6 +701,7 @@ class LogosEarsNode:
                     label = self.core_wakeword_models['cancel']['label']
                     print(Fore.YELLOW + f"Cancel Word: {label}")
                     self._play_sound(Sound.OFF)
+                    self._cancel_active_wake_context_annotation()
                     self._send_feedback(
                         header="Canceled!",
                         body=" - Stopped listening - ",
@@ -723,9 +733,14 @@ class LogosEarsNode:
                     self._publish_python_interrupt()
                     self._play_sound(Sound.ON)
 
+                    wake_context_id = None
                     if self.ambient_buffer and ambient_enabled:
                         print(Fore.CYAN + "Flushing Ambient Context...")
-                        self._flush_ambient_buffer(wake_trigger=True)
+                        wake_context_id = self._next_wake_context_id()
+                        self._flush_ambient_buffer(
+                            wake_trigger=True,
+                            wake_context_id=wake_context_id,
+                        )
 
                     with self.state_lock:
                         self.current_state = LedState.RECORDING
@@ -740,6 +755,8 @@ class LogosEarsNode:
                             body_color="bright_white",
                             font="slant",
                         )
+                    with self.ambient_history_lock:
+                        self._active_wake_context_id = wake_context_id
                     self.recording_buffer = []
                     self.recording_start_time = time.time()
                     continue
@@ -898,7 +915,7 @@ class LogosEarsNode:
             for group in getattr(self, model_groups_name, {}).values():
                 group['predictor'].reset()
 
-    def _flush_ambient_buffer(self, wake_trigger=False):
+    def _flush_ambient_buffer(self, wake_trigger=False, wake_context_id=None):
         """Package ambient buffer and send to Scribe."""
         if not self.ambient_buffer:
             return
@@ -909,7 +926,8 @@ class LogosEarsNode:
             'audio': full_audio,
             'timestamp': datetime.now().strftime("%I:%M %p"),
             'epoch': time.time(), # Added epoch for easy age calculation
-            'wake_trigger': wake_trigger # Pass the flag to the job
+            'wake_trigger': wake_trigger, # Pass the flag to the job
+            'wake_context_id': wake_context_id,
         }
         self.job_queue.put(job)
         
@@ -943,6 +961,55 @@ class LogosEarsNode:
         # Actually, simpler: Reset logic state now, let LEDs chase until transcription event?
         # No, let's reset state in the Scribe to keep "Transcribing" LED active.
         pass 
+
+    def _next_wake_context_id(self):
+        with self.ambient_history_lock:
+            self._wake_context_seq += 1
+            return self._wake_context_seq
+
+    def _ambient_history_payload_locked(self):
+        return [
+            {
+                key: value
+                for key, value in entry.items()
+                if not key.startswith('_')
+            }
+            for entry in self.ambient_history
+        ]
+
+    def _without_wake_trigger_note(self, transcription):
+        if transcription.endswith(WAKE_TRIGGER_NOTE):
+            return transcription[:-len(WAKE_TRIGGER_NOTE)].rstrip()
+        return transcription
+
+    def _cancel_active_wake_context_annotation(self):
+        payload = None
+
+        with self.ambient_history_lock:
+            wake_context_id = self._active_wake_context_id
+            self._active_wake_context_id = None
+
+            if wake_context_id is None:
+                return
+
+            self._canceled_wake_context_ids.add(wake_context_id)
+
+            for entry in reversed(self.ambient_history):
+                if entry.get('_wake_context_id') != wake_context_id:
+                    continue
+
+                transcription = entry.get('transcription', '')
+                if transcription.endswith(WAKE_TRIGGER_NOTE):
+                    entry['transcription'] = self._without_wake_trigger_note(
+                        transcription
+                    )
+                    self._canceled_wake_context_ids.discard(wake_context_id)
+                    payload = self._ambient_history_payload_locked()
+                break
+
+        if payload is not None:
+            self.pub_ambient.publish(json.dumps(payload))
+            print(Fore.CYAN + "Ambient wake annotation removed after cancel.")
 
     def _publish_hotword(self, word: str) -> None:
         now = time.time()
@@ -1139,8 +1206,9 @@ class LogosEarsNode:
             if job['type'] == 'ambient':
                 
                 # 1. Handle Wake Word Annotation
+                wake_context_id = job.get('wake_context_id')
                 if job.get('wake_trigger'):
-                    full_text += "\n---\n# Wake word detected! Rerouting to <human_stt> channel..."
+                    full_text += WAKE_TRIGGER_NOTE
 
                 # 2. Prepare Payload
                 conf = round(np.exp(confidence_sum / count), 2) if count > 0 else 0.0
@@ -1149,36 +1217,47 @@ class LogosEarsNode:
                     "time": job['timestamp'],
                     "epoch": job['epoch'], # Kept for internal filtering, useful for debugging
                     "confidence": conf,
-                    "transcription": full_text
+                    "transcription": full_text,
                 }
+                if wake_context_id is not None:
+                    new_entry['_wake_context_id'] = wake_context_id
 
                 # 3. Update History & Prune
-                self.ambient_history.append(new_entry)
-                
-                current_time = time.time()
-                
-                # A. Age Pruning (Filter out items older than max age)
-                self.ambient_history = [
-                    entry for entry in self.ambient_history 
-                    if (current_time - entry['epoch']) < AMBIENT_HISTORY_MAX_AGE
-                ]
+                with self.ambient_history_lock:
+                    if wake_context_id in self._canceled_wake_context_ids:
+                        new_entry['transcription'] = self._without_wake_trigger_note(
+                            new_entry['transcription']
+                        )
+                        self._canceled_wake_context_ids.discard(wake_context_id)
 
-                # B. Size Pruning (FIFO based on character count)
-                # Calculate total chars
-                total_chars = sum(len(e['transcription']) for e in self.ambient_history)
-                
-                # Pop from front (oldest) until we fit
-                while total_chars > AMBIENT_HISTORY_MAX_CHARS and len(self.ambient_history) > 1:
-                    removed = self.ambient_history.pop(0)
-                    total_chars -= len(removed['transcription'])
+                    self.ambient_history.append(new_entry)
+
+                    current_time = time.time()
+
+                    # A. Age Pruning (Filter out items older than max age)
+                    self.ambient_history = [
+                        entry for entry in self.ambient_history
+                        if (current_time - entry['epoch']) < AMBIENT_HISTORY_MAX_AGE
+                    ]
+
+                    # B. Size Pruning (FIFO based on character count)
+                    # Calculate total chars
+                    total_chars = sum(len(e['transcription']) for e in self.ambient_history)
+
+                    # Pop from front (oldest) until we fit
+                    while total_chars > AMBIENT_HISTORY_MAX_CHARS and len(self.ambient_history) > 1:
+                        removed = self.ambient_history.pop(0)
+                        total_chars -= len(removed['transcription'])
+
+                    ambient_payload = self._ambient_history_payload_locked()
                 
                 # 4. Publish Full History
                 # We publish the list. Consumers can grab [-1] for latest, or iterate for context.
-                self.pub_ambient.publish(json.dumps(self.ambient_history))
+                self.pub_ambient.publish(json.dumps(ambient_payload))
                 
                 
                 self.last_ambient_publish_time = time.time()
-                print(Fore.CYAN + f"Ambient Published ({len(self.ambient_history)} items). Latest: {full_text[:40]}...")
+                print(Fore.CYAN + f"Ambient Published ({len(ambient_payload)} items). Latest: {new_entry['transcription'][:40]}...")
 
 
             elif job['type'] == 'human_stt':
