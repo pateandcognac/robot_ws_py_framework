@@ -692,6 +692,13 @@ class LogosEarsNode:
                     label = self.core_wakeword_models['cancel']['label']
                     print(Fore.YELLOW + f"Cancel Word: {label}")
                     self._play_sound(Sound.OFF)
+                    self._send_feedback(
+                        header="Canceled!",
+                        body=" - Stopped listening - ",
+                        body_color="white",
+                        header_color="bright_yellow",
+                        font="doom",
+                    )
                     self.recording_buffer = []
                     self.recording_start_time = 0
                     self._reset_state()

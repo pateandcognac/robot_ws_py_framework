@@ -50,7 +50,7 @@ COLOR_MAP = {
 
 # Supported sound file extensions
 SUPPORTED_EXTENSIONS = ['.mp3', '.wav', '.ogg', '.flac', '.aac']
-ROOT_SOUND_DIR = os.path.expanduser("~/logos_ws/sound_files")
+ROOT_SOUND_DIR = os.path.expanduser("~/robot_workspaces/shared//sound_files")
 
 class InterfaceHelperNode:
     def __init__(self):

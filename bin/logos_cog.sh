@@ -39,21 +39,9 @@ target_workspace="${robot_workspaces}/${workspace_name}"
 
 timestamp="$(date '+%Y-%m-%d %H:%M:%S %z')"
 
-copy_template() {
+clone_template() {
     [[ -d "$template_workspace" ]] || die "template workspace not found: $template_workspace"
-    mkdir -p "$target_workspace"
-
-    if command -v rsync >/dev/null 2>&1; then
-        rsync -a --exclude '.git/' "${template_workspace}/" "${target_workspace}/"
-    else
-        (
-            cd "$template_workspace"
-            tar --exclude='./.git' -cf - .
-        ) | (
-            cd "$target_workspace"
-            tar -xf -
-        )
-    fi
+    git clone "$template_workspace" "$target_workspace"
 }
 
 ensure_git_repo() {
@@ -90,14 +78,8 @@ if [[ -e "$target_workspace" && ! -d "$target_workspace" ]]; then
 fi
 
 if [[ ! -d "$target_workspace" ]]; then
-    printf 'logos_startup: creating %s from template %s\n' "$target_workspace" "$template_workspace"
-    copy_template
-    ensure_git_repo
-    ensure_git_identity
-    git -C "$target_workspace" add -A
-    if ! git -C "$target_workspace" diff --cached --quiet; then
-        git -C "$target_workspace" commit -m "Initial workspace from Logos template: ${timestamp}"
-    fi
+    printf 'logos_startup: cloning %s from %s\n' "$target_workspace" "$template_workspace"
+    clone_template
 else
     printf 'logos_startup: preparing existing workspace %s\n' "$target_workspace"
     ensure_git_repo
