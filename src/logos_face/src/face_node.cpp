@@ -95,6 +95,8 @@ public:
 
         render_px_per_char_x_ = nh_.param<double>("render_px_per_char_x", 1.0);
         render_px_per_char_y_ = nh_.param<double>("render_px_per_char_y", 1.0);
+        // CHANGE THIS! Higher values make the idle mouth sine wave thicker.
+        mouth_sine_thickness_ = std::max(1, nh_.param<int>("mouth_sine_thickness", 4));
 
         min_render_width_ = 16;
         min_render_height_ = 16;
@@ -214,6 +216,7 @@ private:
     int render_height_;
     int min_render_width_;
     int min_render_height_;
+    int mouth_sine_thickness_;
 
     caca_display_t* caca_display_ = nullptr;
     caca_canvas_t* caca_canvas_ = nullptr;
@@ -1268,7 +1271,7 @@ private:
                     cv::Point(x - 1, prev_y_sine),
                     cv::Point(x, y),
                     sine_color,
-                    std::max(1, img.rows / 70)
+                    mouth_sine_thickness_
                 );
             }
 
