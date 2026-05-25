@@ -32,21 +32,24 @@ include_directories(
   ${OpenCV_INCLUDE_DIRS}
 )
 
-add_executable(face_node src/face_node.cpp)
+function(add_logos_face_node target source)
+  add_executable(${target} ${source})
 
-target_link_libraries(face_node
-  ${catkin_LIBRARIES}
-  ${CACA_LIBRARIES}
-  ${OpenCV_LIBRARIES}
-  caca
-)
+  target_link_libraries(${target}
+    ${catkin_LIBRARIES}
+    ${CACA_LIBRARIES}
+    ${OpenCV_LIBRARIES}
+    caca
+  )
 
-# Make sure face_node waits for:
-# 1. Exported targets (msgs)
-# 2. Catkin targets
-# 3. The Dynamic Reconfigure Generation (_gencfg) <--- THE KEY
-add_dependencies(face_node 
-  ${${PROJECT_NAME}_EXPORTED_TARGETS} 
-  ${catkin_EXPORTED_TARGETS}
-  ${PROJECT_NAME}_gencfg
-)
+  # Wait for generated messages and dynamic reconfigure headers.
+  add_dependencies(${target}
+    ${${PROJECT_NAME}_EXPORTED_TARGETS}
+    ${catkin_EXPORTED_TARGETS}
+    ${PROJECT_NAME}_gencfg
+  )
+endfunction()
+
+add_logos_face_node(face_node src/face_node.cpp)
+add_logos_face_node(face_node_mouth_trails src/face_node_mouth_trails.cpp)
+add_logos_face_node(face_node_text_backdrop src/face_node_text_backdrop.cpp)

@@ -26,6 +26,16 @@ BRIDGE = REPO_ROOT / "tools" / "codex_logos_exec.py"
 DEFAULT_WORKSPACE = "Logos"
 DEFAULT_WEB_URL = "http://127.0.0.1:5000"
 ROS_PYTHON = os.environ.get("LOGOS_ROS_PYTHON", "/usr/bin/python3")
+DEFAULT_ROS_DIST_PACKAGES = [
+    REPO_ROOT / "devel" / "lib" / "python3" / "dist-packages",
+    Path.home() / "tb2_ws" / "devel" / "lib" / "python3" / "dist-packages",
+    Path("/opt/ros/noetic/lib/python3/dist-packages"),
+]
+DEFAULT_ROS_PACKAGE_PATHS = [
+    REPO_ROOT / "src",
+    Path.home() / "tb2_ws" / "src",
+    Path("/opt/ros/noetic/share"),
+]
 
 mcp = FastMCP(
     "logos",
@@ -58,6 +68,25 @@ def load_jsonl_tail(path: Path, count: int) -> List[Dict[str, Any]]:
             data = {"parse_error": str(exc), "raw": line}
         entries.append({"line": line_number, "data": data})
     return entries
+
+
+def prepend_env_paths(env: Dict[str, str], name: str, paths: List[Path]) -> None:
+    existing = env.get(name, "")
+    existing_parts = [part for part in existing.split(os.pathsep) if part]
+    new_parts = [str(path) for path in paths if path.exists()]
+    env[name] = os.pathsep.join(new_parts + existing_parts)
+
+
+def bridge_env() -> Dict[str, str]:
+    env = os.environ.copy()
+    prepend_env_paths(env, "PYTHONPATH", DEFAULT_ROS_DIST_PACKAGES)
+    prepend_env_paths(env, "ROS_PACKAGE_PATH", DEFAULT_ROS_PACKAGE_PATHS)
+    env.setdefault("ROS_MASTER_URI", "http://127.0.0.1:11311")
+    env.setdefault("ROS_IP", "127.0.0.1")
+    env.setdefault("ROS_VERSION", "1")
+    env.setdefault("ROS_PYTHON_VERSION", "3")
+    env.setdefault("ROS_DISTRO", "noetic")
+    return env
 
 
 @mcp.tool()
@@ -104,6 +133,7 @@ def logos_python(
         text=True,
         capture_output=True,
         cwd=str(REPO_ROOT),
+        env=bridge_env(),
         timeout=subprocess_timeout,
         check=False,
     )
