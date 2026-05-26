@@ -70,6 +70,10 @@ Examples:
 
 Supported panes are `status`, `caption`, and `all` for clear events.
 
+
+ALSO: subscribes to topic /logos_vision/debug/face Image msg type and displays the image *over* the face for a set duration
+
+
 ## Font Behavior
 
 Figlet output is generated in C++ with:
