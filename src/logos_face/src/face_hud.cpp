@@ -112,7 +112,6 @@ public:
         mouth_sine_thickness_ = std::max(1, nh_.param<int>("mouth_sine_thickness", 4));
 
         hud_event_topic_ = nh_.param<std::string>("hud_event_topic", "/face/hud/event");
-        legacy_backdrop_text_topic_ = nh_.param<std::string>("backdrop_text_topic", "/face/text_backdrop");
         double default_status_region_ratio = 0.33;
         nh_.getParam("caption_region_ratio", default_status_region_ratio);
         status_region_ratio_ = clampDouble(nh_.param<double>("status_region_ratio", default_status_region_ratio), 0.05, 0.95);
@@ -125,11 +124,12 @@ public:
         default_figlet_font_ = nh_.param<std::string>("default_figlet_font", "standard");
         caption_figlet_font_ = nh_.param<std::string>("caption_figlet_font", "thick");
 
-        debug_image_topic_ = nh_.param<std::string>("debug_image_topic", "/logos/debug_vision/face");
-        debug_image_fade_in_sec_ = std::max(0.0, nh_.param<double>("debug_image_fade_in_sec", 0.6));
-        debug_image_hold_sec_ = std::max(0.0, nh_.param<double>("debug_image_hold_sec", 4.0));
-        debug_image_fade_out_sec_ = std::max(0.0, nh_.param<double>("debug_image_fade_out_sec", 0.8));
-        debug_image_max_alpha_ = clampDouble(nh_.param<double>("debug_image_max_alpha", 1.0), 0.0, 1.0);
+        layer0_image_topic_ = nh_.param<std::string>("layer0_image_topic", "/face/layer0/image");
+        layer2_image_topic_ = nh_.param<std::string>("layer2_image_topic", "/face/layer2/image");
+        layer_image_fade_in_sec_ = std::max(0.0, nh_.param<double>("layer_image_fade_in_sec", nh_.param<double>("debug_image_fade_in_sec", 0.6)));
+        layer_image_hold_sec_ = std::max(0.0, nh_.param<double>("layer_image_hold_sec", nh_.param<double>("debug_image_hold_sec", 4.0)));
+        layer_image_fade_out_sec_ = std::max(0.0, nh_.param<double>("layer_image_fade_out_sec", nh_.param<double>("debug_image_fade_out_sec", 0.8)));
+        layer_image_max_alpha_ = clampDouble(nh_.param<double>("layer_image_max_alpha", nh_.param<double>("debug_image_max_alpha", 1.0)), 0.0, 1.0);
 
         min_render_width_ = 16;
         min_render_height_ = 16;
@@ -153,8 +153,8 @@ public:
         sub_mouth_sine_ = nh_.subscribe("/face/mouth/sine_wave", 10, &FaceNodeCpp::sineWaveCallback, this);
         sub_audio_wave_ = nh_.subscribe("/face/mouth/audio_wave", 10, &FaceNodeCpp::audioWaveCallback, this);
         sub_hud_event_ = nh_.subscribe(hud_event_topic_, 50, &FaceNodeCpp::hudEventCallback, this);
-        sub_backdrop_text_ = nh_.subscribe(legacy_backdrop_text_topic_, 10, &FaceNodeCpp::backdropTextCallback, this);
-        sub_debug_image_ = nh_.subscribe(debug_image_topic_, 1, &FaceNodeCpp::debugImageCallback, this);
+        sub_layer0_image_ = nh_.subscribe(layer0_image_topic_, 1, &FaceNodeCpp::layer0ImageCallback, this);
+        sub_layer2_image_ = nh_.subscribe(layer2_image_topic_, 1, &FaceNodeCpp::layer2ImageCallback, this);
 
         pub_live_state_json_ = nh_.advertise<std_msgs::String>("/face/live_state/json", 10);
 
@@ -216,6 +216,7 @@ private:
         std::string text;
         uint8_t fg;
         uint8_t bg;
+        ros::Time expires_at;
     };
 
     struct StatusPrintJob {
@@ -225,6 +226,38 @@ private:
         size_t next_line_index;
         bool caption;
         bool started;
+    };
+
+    struct FaceCrawlEffect {
+        std::vector<HudLine> lines;
+        ros::Time start_time;
+        double speed = 8.0;
+        double duration = 0.0;
+        bool active = false;
+    };
+
+    struct FaceRainEffect {
+        std::string chars;
+        ros::Time start_time;
+        double speed = 8.0;
+        double duration = 0.0;
+        double density = 0.18;
+        uint8_t fg = CACA_LIGHTGREEN;
+        uint8_t bg = CACA_BLACK;
+        bool active = false;
+    };
+
+    struct FaceLayerState {
+        std::deque<HudLine> terminal_lines;
+        FaceCrawlEffect crawl;
+        FaceRainEffect rain;
+    };
+
+    struct LayerImageState {
+        cv::Mat image_bgr;
+        cv::Mat resized_bgr;
+        ros::Time start_time;
+        bool active = false;
     };
 
     ros::NodeHandle nh_;
@@ -239,8 +272,8 @@ private:
     ros::Subscriber sub_mouth_sine_;
     ros::Subscriber sub_audio_wave_;
     ros::Subscriber sub_hud_event_;
-    ros::Subscriber sub_backdrop_text_;
-    ros::Subscriber sub_debug_image_;
+    ros::Subscriber sub_layer0_image_;
+    ros::Subscriber sub_layer2_image_;
 
     ros::Publisher pub_live_state_json_;
 
@@ -273,8 +306,9 @@ private:
     int mouth_sine_thickness_;
 
     std::string hud_event_topic_;
-    std::string legacy_backdrop_text_topic_;
-    std::deque<HudLine> face_lines_;
+    std::string layer0_image_topic_;
+    std::string layer2_image_topic_;
+    std::array<FaceLayerState, 2> face_layers_;
     std::deque<HudLine> status_lines_;
     std::deque<StatusPrintJob> status_print_jobs_;
     double status_region_ratio_;
@@ -287,15 +321,11 @@ private:
     std::string default_figlet_font_;
     std::string caption_figlet_font_;
 
-    std::string debug_image_topic_;
-    cv::Mat debug_image_bgr_;
-    cv::Mat debug_image_resized_bgr_;
-    ros::Time debug_image_start_time_;
-    bool debug_image_active_ = false;
-    double debug_image_fade_in_sec_;
-    double debug_image_hold_sec_;
-    double debug_image_fade_out_sec_;
-    double debug_image_max_alpha_;
+    std::array<LayerImageState, 2> layer_images_;
+    double layer_image_fade_in_sec_;
+    double layer_image_hold_sec_;
+    double layer_image_fade_out_sec_;
+    double layer_image_max_alpha_;
 
     caca_display_t* caca_display_ = nullptr;
     caca_canvas_t* caca_canvas_ = nullptr;
@@ -816,17 +846,20 @@ private:
         }
     }
 
-    void backdropTextCallback(const std_msgs::String::ConstPtr& msg) {
-        std::lock_guard<std::mutex> lock(param_mutex_);
-        applyLegacyBackdropCommandLocked(msg->data);
-    }
-
     void hudEventCallback(const std_msgs::String::ConstPtr& msg) {
         std::lock_guard<std::mutex> lock(param_mutex_);
         applyHudEventLocked(msg->data);
     }
 
-    void debugImageCallback(const sensor_msgs::Image::ConstPtr& msg) {
+    void layer0ImageCallback(const sensor_msgs::Image::ConstPtr& msg) {
+        layerImageCallback(msg, 0);
+    }
+
+    void layer2ImageCallback(const sensor_msgs::Image::ConstPtr& msg) {
+        layerImageCallback(msg, 2);
+    }
+
+    void layerImageCallback(const sensor_msgs::Image::ConstPtr& msg, int layer) {
         cv_bridge::CvImageConstPtr cv_ptr;
         try {
             cv_ptr = cv_bridge::toCvShare(msg, sensor_msgs::image_encodings::BGR8);
@@ -834,7 +867,7 @@ private:
             try {
                 cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
             } catch (const cv_bridge::Exception& e) {
-                ROS_WARN_STREAM("Failed to convert debug face image: " << e.what());
+                ROS_WARN_STREAM("Failed to convert face layer " << layer << " image: " << e.what());
                 return;
             }
         }
@@ -845,61 +878,17 @@ private:
 
         std::lock_guard<std::mutex> lock(param_mutex_);
         const ros::Time now = ros::Time::now();
-        const bool replace_active_image = debugImageActiveLocked(now);
+        LayerImageState& image = layerImageStateLocked(layer);
+        const bool replace_active_image = layerImageActiveLocked(image, now);
 
-        debug_image_bgr_ = cv_ptr->image.clone();
-        debug_image_resized_bgr_.release();
-        debug_image_active_ = true;
+        image.image_bgr = cv_ptr->image.clone();
+        image.resized_bgr.release();
+        image.active = true;
 
         if (replace_active_image) {
-            debug_image_start_time_ = now - ros::Duration(debug_image_fade_in_sec_);
+            image.start_time = now - ros::Duration(layer_image_fade_in_sec_);
         } else {
-            debug_image_start_time_ = now;
-        }
-    }
-
-    void applyLegacyBackdropCommandLocked(const std::string& payload) {
-        if (payload.empty()) {
-            face_lines_.clear();
-            return;
-        }
-
-        if (payload.front() != '{') {
-            appendHudTextLocked("face", payload, face_default_color_, hud_bg_color_);
-            return;
-        }
-
-        try {
-            std::stringstream ss(payload);
-            boost::property_tree::ptree root;
-            boost::property_tree::read_json(ss, root);
-
-            if (root.get<bool>("clear", false)) {
-                face_lines_.clear();
-            }
-
-            uint8_t fg = face_default_color_;
-            uint8_t bg = hud_bg_color_;
-            const boost::optional<std::string> color = root.get_optional<std::string>("color");
-            if (color) {
-                fg = colorNameToCaca(*color);
-            }
-
-            const boost::optional<std::string> bg_color = root.get_optional<std::string>("bg_color");
-            if (bg_color) {
-                bg = colorNameToCaca(*bg_color);
-            }
-
-            const boost::optional<std::string> text = root.get_optional<std::string>("text");
-            if (text) {
-                if (!root.get<bool>("append", true)) {
-                    face_lines_.clear();
-                }
-                appendHudTextLocked("face", *text, fg, bg);
-            }
-        } catch (const std::exception& e) {
-            ROS_WARN_STREAM("Failed to parse legacy backdrop JSON; using payload as text: " << e.what());
-            appendHudTextLocked("face", payload, face_default_color_, hud_bg_color_);
+            image.start_time = now;
         }
     }
 
@@ -926,8 +915,9 @@ private:
                 return;
             }
 
+            const boost::optional<int> clear_layer = root.get_optional<int>("layer");
             if (kind == "clear" || root.get<bool>("clear", false)) {
-                clearHudPaneLocked(pane);
+                clearHudPaneLocked(pane, clear_layer);
                 if (kind == "clear") {
                     return;
                 }
@@ -940,6 +930,11 @@ private:
 
             if (kind == "caption" && pane != "status") {
                 ROS_WARN_STREAM("Ignoring caption HUD event for pane '" << pane << "'. Captions target status.");
+                return;
+            }
+
+            if (pane == "face" && kind != "text" && kind != "figlet") {
+                ROS_WARN_STREAM("Ignoring unsupported face HUD kind '" << kind << "'.");
                 return;
             }
 
@@ -956,6 +951,30 @@ private:
             }
             const uint8_t bg = colorNameToCaca(root.get<std::string>("bg_color", "black"));
 
+            if (pane == "face") {
+                const int layer = root.get<int>("layer", 0);
+                if (!isFaceLayer(layer)) {
+                    ROS_WARN_STREAM("Ignoring face HUD event for invalid layer '" << layer << "'. Use 0 or 2.");
+                    return;
+                }
+
+                const std::string rendered = kind == "figlet"
+                    ? renderFigletLocked(text, root.get<std::string>("font", default_figlet_font_), pane)
+                    : text;
+                const std::string effect = toLower(root.get<std::string>("effect", "terminal"));
+                applyFaceTextEffectLocked(
+                    layer,
+                    effect,
+                    rendered,
+                    fg,
+                    bg,
+                    root.get<double>("duration", 0.0),
+                    root.get<double>("speed", 8.0),
+                    root.get<double>("density", 0.18)
+                );
+                return;
+            }
+
             if (kind == "figlet" || kind == "caption") {
                 const std::string font = root.get<std::string>(
                     "font",
@@ -966,16 +985,12 @@ private:
                     enqueueStatusPrintLocked(rendered, fg, bg, root.get<double>("duration", 0.0), true);
                 } else if (pane == "status") {
                     enqueueStatusPrintLocked(rendered, fg, bg, 0.0, false);
-                } else {
-                    appendHudTextLocked(pane, rendered, fg, bg);
                 }
                 return;
             }
 
             if (pane == "status") {
                 enqueueStatusPrintLocked(text, fg, bg, 0.0, false);
-            } else {
-                appendHudTextLocked(pane, text, fg, bg);
             }
         } catch (const std::exception& e) {
             ROS_WARN_STREAM("Failed to parse HUD event JSON: " << e.what());
@@ -986,38 +1001,124 @@ private:
         return pane == "face" || pane == "status" || pane == "all";
     }
 
-    void clearHudPaneLocked(const std::string& pane) {
+    static bool isFaceLayer(int layer) {
+        return layer == 0 || layer == 2;
+    }
+
+    static int faceLayerIndex(int layer) {
+        return layer == 2 ? 1 : 0;
+    }
+
+    void clearFaceLayerLocked(int layer) {
+        FaceLayerState& state = face_layers_[faceLayerIndex(layer)];
+        state.terminal_lines.clear();
+        state.crawl.active = false;
+        state.crawl.lines.clear();
+        state.rain.active = false;
+        state.rain.chars.clear();
+
+        LayerImageState& image = layer_images_[faceLayerIndex(layer)];
+        image.active = false;
+        image.image_bgr.release();
+        image.resized_bgr.release();
+    }
+
+    void clearFaceLayersLocked() {
+        clearFaceLayerLocked(0);
+        clearFaceLayerLocked(2);
+    }
+
+    void clearHudPaneLocked(const std::string& pane, const boost::optional<int>& layer) {
         if (pane == "status") {
             status_lines_.clear();
             status_print_jobs_.clear();
         } else if (pane == "all") {
-            face_lines_.clear();
+            clearFaceLayersLocked();
             status_lines_.clear();
             status_print_jobs_.clear();
+        } else if (layer) {
+            if (isFaceLayer(*layer)) {
+                clearFaceLayerLocked(*layer);
+            } else {
+                ROS_WARN_STREAM("Ignoring clear for invalid face HUD layer '" << *layer << "'.");
+            }
         } else {
-            face_lines_.clear();
+            clearFaceLayersLocked();
         }
     }
 
-    std::deque<HudLine>& hudLinesForPaneLocked(const std::string& pane) {
-        return pane == "status" ? status_lines_ : face_lines_;
-    }
+    void applyFaceTextEffectLocked(
+        int layer,
+        const std::string& effect,
+        const std::string& text,
+        uint8_t fg,
+        uint8_t bg,
+        double duration,
+        double speed,
+        double density
+    ) {
+        FaceLayerState& state = face_layers_[faceLayerIndex(layer)];
+        const ros::Time expires_at = duration > 0.0
+            ? ros::Time::now() + ros::Duration(duration)
+            : ros::Time(0);
 
-    int hudMaxLinesForPane(const std::string& pane) const {
-        return pane == "status" ? status_max_lines_ : face_max_lines_;
-    }
+        if (effect == "crawl" || effect == "scroll" || effect == "marquee") {
+            const std::vector<std::string> text_lines = splitLines(text);
+            state.crawl.lines.clear();
+            state.crawl.lines.reserve(text_lines.size());
+            for (const std::string& line : text_lines) {
+                state.crawl.lines.push_back({line, fg, bg, expires_at});
+            }
+            state.crawl.start_time = ros::Time::now();
+            state.crawl.speed = std::max(0.1, speed);
+            state.crawl.duration = std::max(0.0, duration);
+            state.crawl.active = !state.crawl.lines.empty();
+            return;
+        }
 
-    void appendHudTextLocked(const std::string& pane, const std::string& text, uint8_t fg, uint8_t bg) {
-        std::deque<HudLine>& target = hudLinesForPaneLocked(pane);
+        if (effect == "rain" || effect == "matrix") {
+            state.rain.chars.clear();
+            for (const char ch : text) {
+                const unsigned char uch = static_cast<unsigned char>(ch);
+                if (uch >= 0x21 && uch < 0x7f) {
+                    state.rain.chars.push_back(ch);
+                }
+            }
+            if (state.rain.chars.empty()) {
+                state.rain.chars = "LOGOS";
+            }
+            state.rain.start_time = ros::Time::now();
+            state.rain.speed = std::max(0.1, speed);
+            state.rain.duration = std::max(0.0, duration);
+            state.rain.density = clampDouble(density, 0.01, 1.0);
+            state.rain.fg = fg;
+            state.rain.bg = bg;
+            state.rain.active = true;
+            return;
+        }
+
+        if (effect != "terminal" && effect != "term" && effect != "print") {
+            ROS_WARN_STREAM("Unknown face HUD effect '" << effect << "'; using terminal.");
+        }
 
         const std::vector<std::string> lines = splitLines(text);
         for (const std::string& line : lines) {
-            target.push_back({line, fg, bg});
+            state.terminal_lines.push_back({line, fg, bg, expires_at});
         }
 
-        const int max_lines = hudMaxLinesForPane(pane);
-        while (static_cast<int>(target.size()) > max_lines) {
-            target.pop_front();
+        trimFaceTerminalLinesLocked(state);
+    }
+
+    void trimFaceTerminalLinesLocked(FaceLayerState& state) {
+        const ros::Time now = ros::Time::now();
+        while (!state.terminal_lines.empty() &&
+               state.terminal_lines.front().expires_at != ros::Time(0) &&
+               state.terminal_lines.front().expires_at <= now) {
+            state.terminal_lines.pop_front();
+        }
+
+        while (static_cast<int>(state.terminal_lines.size()) > face_max_lines_) {
+            state.terminal_lines.pop_front();
         }
     }
 
@@ -1033,7 +1134,7 @@ private:
         lines.reserve(text_lines.size());
 
         for (const std::string& line : text_lines) {
-            lines.push_back({line, fg, bg});
+            lines.push_back({line, fg, bg, ros::Time(0)});
         }
 
         if (lines.empty()) {
@@ -1060,11 +1161,9 @@ private:
         }
     }
 
-    void trimHudLinesLocked(const std::string& pane) {
-        std::deque<HudLine>& target = hudLinesForPaneLocked(pane);
-        const int max_lines = hudMaxLinesForPane(pane);
-        while (static_cast<int>(target.size()) > max_lines) {
-            target.pop_front();
+    void trimStatusLinesLocked() {
+        while (static_cast<int>(status_lines_.size()) > status_max_lines_) {
+            status_lines_.pop_front();
         }
     }
 
@@ -1091,7 +1190,7 @@ private:
             while (job.next_line_index < target_count) {
                 status_lines_.push_back(job.lines[job.next_line_index]);
                 ++job.next_line_index;
-                trimHudLinesLocked("status");
+                trimStatusLinesLocked();
             }
 
             if (job.next_line_index < job.lines.size()) {
@@ -1512,9 +1611,10 @@ private:
 
         frame_bgr_.setTo(cv::Scalar(0, 0, 0));
 
+        renderLayerImageOverlayLocked(frame_bgr_, 0);
         renderEyes(frame_bgr_);
         renderWaveform(frame_bgr_);
-        renderDebugImageOverlayLocked(frame_bgr_);
+        renderLayerImageOverlayLocked(frame_bgr_, 2);
         ditherToCanvasLocked(frame_bgr_);
 
         if (using_caca_display_) {
@@ -1606,55 +1706,63 @@ private:
             h = 1;
         }
 
+        const int status_h = statusPaneHeightForCanvas(h);
         const int face_h = facePaneHeightForCanvas(h);
 
-        drawHudBackdropLocked(w, h);
+        drawFaceLayerLocked(0, 0, 0, w, face_h);
         caca_dither_bitmap(caca_canvas_, 0, 0, w, face_h, caca_dither_, rgba_.data);
+        drawFaceLayerLocked(2, 0, 0, w, face_h);
+        drawHudLinesLocked(status_lines_, 0, std::max(0, h - status_h), w, status_h, false);
     }
 
-    bool debugImageActiveLocked(const ros::Time& now) const {
-        if (!debug_image_active_ || debug_image_bgr_.empty()) {
+    LayerImageState& layerImageStateLocked(int layer) {
+        return layer_images_[faceLayerIndex(layer)];
+    }
+
+    bool layerImageActiveLocked(const LayerImageState& image, const ros::Time& now) const {
+        if (!image.active || image.image_bgr.empty()) {
             return false;
         }
 
-        const double total = debug_image_fade_in_sec_ + debug_image_hold_sec_ + debug_image_fade_out_sec_;
-        return (now - debug_image_start_time_).toSec() <= total;
+        const double total = layer_image_fade_in_sec_ + layer_image_hold_sec_ + layer_image_fade_out_sec_;
+        return (now - image.start_time).toSec() <= total;
     }
 
-    double debugImageAlphaLocked(const ros::Time& now) {
-        if (!debugImageActiveLocked(now)) {
-            debug_image_active_ = false;
-            debug_image_bgr_.release();
-            debug_image_resized_bgr_.release();
+    double layerImageAlphaLocked(LayerImageState& image, const ros::Time& now) {
+        if (!layerImageActiveLocked(image, now)) {
+            image.active = false;
+            image.image_bgr.release();
+            image.resized_bgr.release();
             return 0.0;
         }
 
-        const double elapsed = std::max(0.0, (now - debug_image_start_time_).toSec());
+        const double elapsed = std::max(0.0, (now - image.start_time).toSec());
 
-        if (debug_image_fade_in_sec_ > 0.0 && elapsed < debug_image_fade_in_sec_) {
-            return debug_image_max_alpha_ * clampDouble(elapsed / debug_image_fade_in_sec_, 0.0, 1.0);
+        if (layer_image_fade_in_sec_ > 0.0 && elapsed < layer_image_fade_in_sec_) {
+            return layer_image_max_alpha_ * clampDouble(elapsed / layer_image_fade_in_sec_, 0.0, 1.0);
         }
 
-        const double fade_out_start = debug_image_fade_in_sec_ + debug_image_hold_sec_;
-        if (elapsed < fade_out_start || debug_image_fade_out_sec_ <= 0.0) {
-            return debug_image_max_alpha_;
+        const double fade_out_start = layer_image_fade_in_sec_ + layer_image_hold_sec_;
+        if (elapsed < fade_out_start || layer_image_fade_out_sec_ <= 0.0) {
+            return layer_image_max_alpha_;
         }
 
-        const double fade_out_t = (elapsed - fade_out_start) / debug_image_fade_out_sec_;
-        return debug_image_max_alpha_ * (1.0 - clampDouble(fade_out_t, 0.0, 1.0));
+        const double fade_out_t = (elapsed - fade_out_start) / layer_image_fade_out_sec_;
+        return layer_image_max_alpha_ * (1.0 - clampDouble(fade_out_t, 0.0, 1.0));
     }
 
-    void renderDebugImageOverlayLocked(cv::Mat& img) {
-        const double alpha = debugImageAlphaLocked(ros::Time::now());
-        if (alpha <= 0.0 || debug_image_bgr_.empty()) {
+    void renderLayerImageOverlayLocked(cv::Mat& img, int layer) {
+        LayerImageState& image = layerImageStateLocked(layer);
+        const double alpha = layerImageAlphaLocked(image, ros::Time::now());
+        if (alpha <= 0.0 || image.image_bgr.empty()) {
             return;
         }
 
-        if (debug_image_resized_bgr_.size() != img.size()) {
-            cv::resize(debug_image_bgr_, debug_image_resized_bgr_, img.size(), 0.0, 0.0, cv::INTER_AREA);
+        if (image.resized_bgr.size() != img.size()) {
+            cv::resize(image.image_bgr, image.resized_bgr, img.size(), 0.0, 0.0, cv::INTER_AREA);
         }
 
-        cv::Mat overlay = debug_image_resized_bgr_.clone();
+        cv::Mat overlay = image.resized_bgr.clone();
         cv::Mat black_pixels;
         cv::inRange(overlay, cv::Scalar(0, 0, 0), cv::Scalar(0, 0, 0), black_pixels);
         overlay.setTo(cv::Scalar(1, 1, 1), black_pixels);
@@ -1662,19 +1770,116 @@ private:
         cv::addWeighted(overlay, alpha, img, 1.0 - alpha, 0.0, img);
     }
 
-    void drawHudBackdropLocked(int w, int h) {
-        const int status_h = statusPaneHeightForCanvas(h);
-        const int face_h = facePaneHeightForCanvas(h);
+    void drawFaceLayerLocked(int layer, int x0, int y0, int w, int h) {
+        if (w <= 0 || h <= 0) {
+            return;
+        }
 
-        drawHudLinesLocked(face_lines_, 0, 0, w, face_h);
-        drawHudLinesLocked(status_lines_, 0, std::max(0, h - status_h), w, status_h);
+        FaceLayerState& state = face_layers_[faceLayerIndex(layer)];
+        trimFaceTerminalLinesLocked(state);
+        drawRainEffectLocked(state, x0, y0, w, h);
+        drawCrawlEffectLocked(state, x0, y0, w, h);
+        drawHudLinesLocked(state.terminal_lines, x0, y0, w, h, true);
     }
 
-    void drawHudLinesLocked(const std::deque<HudLine>& lines, int x0, int y0, int w, int h) {
+    void drawCrawlEffectLocked(FaceLayerState& state, int x0, int y0, int w, int h) {
+        if (!state.crawl.active || state.crawl.lines.empty() || w <= 0 || h <= 0) {
+            return;
+        }
+
+        const ros::Time now = ros::Time::now();
+        if (state.crawl.duration > 0.0 &&
+            (now - state.crawl.start_time).toSec() > state.crawl.duration) {
+            state.crawl.active = false;
+            state.crawl.lines.clear();
+            return;
+        }
+
+        const double elapsed = std::max(0.0, (now - state.crawl.start_time).toSec());
+        const int visible_count = std::min(h, static_cast<int>(state.crawl.lines.size()));
+        const int first_y = y0 + std::max(0, (h - visible_count) / 2);
+
+        for (int i = 0; i < visible_count; ++i) {
+            const HudLine& line = state.crawl.lines[i];
+            std::string tile = line.text.empty() ? " " : line.text;
+            tile += "   ";
+            if (tile.empty()) {
+                continue;
+            }
+
+            const int offset = static_cast<int>(std::floor(elapsed * state.crawl.speed)) %
+                std::max(1, static_cast<int>(tile.size()));
+            caca_set_color_ansi(caca_canvas_, line.fg, line.bg);
+
+            for (int x = 0; x < w; ++x) {
+                const unsigned char ch = static_cast<unsigned char>(
+                    tile[(x + offset) % tile.size()]
+                );
+                if (ch > 0x20 && ch < 0x7f) {
+                    caca_put_char(caca_canvas_, x0 + x, first_y + i, ch);
+                }
+            }
+        }
+    }
+
+    void drawRainEffectLocked(FaceLayerState& state, int x0, int y0, int w, int h) {
+        if (!state.rain.active || state.rain.chars.empty() || w <= 0 || h <= 0) {
+            return;
+        }
+
+        const ros::Time now = ros::Time::now();
+        if (state.rain.duration > 0.0 &&
+            (now - state.rain.start_time).toSec() > state.rain.duration) {
+            state.rain.active = false;
+            state.rain.chars.clear();
+            return;
+        }
+
+        const double elapsed = std::max(0.0, (now - state.rain.start_time).toSec());
+        const int column_count = clampInt(
+            static_cast<int>(std::lround(static_cast<double>(w) * state.rain.density)),
+            1,
+            std::max(1, w)
+        );
+        const int phase = static_cast<int>(std::floor(elapsed * state.rain.speed));
+
+        caca_set_color_ansi(caca_canvas_, state.rain.fg, state.rain.bg);
+        for (int i = 0; i < column_count; ++i) {
+            const int x = (i * 37 + phase / 3) % w;
+            const int trail = 3 + (i % 8);
+            const int cycle = h + trail + 1;
+            const int head = (phase + i * 11) % cycle;
+
+            for (int j = 0; j < trail; ++j) {
+                const int y = head - j;
+                if (y < 0 || y >= h) {
+                    continue;
+                }
+
+                const size_t char_index = static_cast<size_t>(
+                    i * 13 + j * 7 + phase
+                ) % state.rain.chars.size();
+                const unsigned char ch = static_cast<unsigned char>(state.rain.chars[char_index]);
+                if (ch > 0x20 && ch < 0x7f) {
+                    caca_put_char(caca_canvas_, x0 + x, y0 + y, ch);
+                }
+            }
+        }
+    }
+
+    void drawHudLinesLocked(
+        const std::deque<HudLine>& lines,
+        int x0,
+        int y0,
+        int w,
+        int h,
+        bool transparent_spaces
+    ) {
         if (lines.empty() || w <= 0 || h <= 0) {
             return;
         }
 
+        const ros::Time now = ros::Time::now();
         const int visible_count = std::min(h, static_cast<int>(lines.size()));
         const int first_line = static_cast<int>(lines.size()) - visible_count;
         const int first_y = y0 + h - visible_count;
@@ -1682,10 +1887,16 @@ private:
         for (int i = 0; i < visible_count; ++i) {
             const int y = first_y + i;
             const HudLine& line = lines[first_line + i];
+            if (line.expires_at != ros::Time(0) && line.expires_at <= now) {
+                continue;
+            }
             caca_set_color_ansi(caca_canvas_, line.fg, line.bg);
 
             for (int x = 0; x < w && x < static_cast<int>(line.text.size()); ++x) {
                 const unsigned char ch = static_cast<unsigned char>(line.text[x]);
+                if (transparent_spaces && ch == 0x20) {
+                    continue;
+                }
                 if (ch >= 0x20 && ch < 0x7f) {
                     caca_put_char(caca_canvas_, x0 + x, y, ch);
                 }
