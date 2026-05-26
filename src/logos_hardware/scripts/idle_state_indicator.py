@@ -64,6 +64,10 @@ class FaceAmbienceNode:
         self.def_fps = rospy.get_param('~default_fps', 16)
         self.post_activity_duration = rospy.get_param('~post_activity_duration', 4.0) # Delay before going idle
         self.fps_step_interval = rospy.get_param('~fps_reduction_step_interval', 30.0)
+        self.dyn_reconnect_interval = rospy.get_param('~dyn_reconnect_interval', 10.0)
+        self.dyn_reconnect_timeout = rospy.get_param('~dyn_reconnect_timeout', 0.25)
+        self.dyn_connect_timeout = rospy.get_param('~dyn_connect_timeout', 2.0)
+        self.dyn_server_names = self._get_dyn_server_names()
 
         # --- Publishers ---
         self.sine_wave_pub = rospy.Publisher('/face/mouth/sine_wave', MouthSine, queue_size=10)
@@ -86,14 +90,10 @@ class FaceAmbienceNode:
 
         # --- Dynamic Reconfigure Setup ---
         self.dyn_client = None
+        self.dyn_server_name = None
+        self.last_dyn_connect_attempt = 0.0
         self.current_fps = self.def_fps
-        try:
-            self.dyn_client = Client("logos_face", timeout=5)
-            config = self.dyn_client.get_configuration()
-            self.current_fps = config.get('fps', self.def_fps)
-            rospy.loginfo(f"Connected to logos_face. Current FPS: {self.current_fps}")
-        except Exception as e:
-            rospy.logwarn(f"Could not connect to logos_face: {e}. Running in open-loop mode.")
+        self._connect_dynamic_reconfigure(timeout=self.dyn_connect_timeout, log_warning=True)
 
         # --- State Management ---
         self.is_speaking = False
@@ -107,6 +107,67 @@ class FaceAmbienceNode:
         rospy.loginfo("Face Ambience Node initialized.")
 
     # --- Callbacks ---
+
+    def _get_dyn_server_names(self):
+        server_names = rospy.get_param('~dynamic_reconfigure_servers', None)
+        if server_names is None:
+            server_name = rospy.get_param('~dynamic_reconfigure_server', None)
+            if server_name:
+                server_names = [server_name]
+            else:
+                # The split-pane HUD node is named logos_face_hud. Keep the
+                # legacy logos_face fallback for the older face_node variants.
+                server_names = ['logos_face_hud', 'logos_face']
+        elif isinstance(server_names, str):
+            server_names = [server_names]
+
+        return [str(name).strip() for name in server_names if str(name).strip()]
+
+    def _connect_dynamic_reconfigure(self, timeout=None, log_warning=False):
+        timeout = self.dyn_reconnect_timeout if timeout is None else timeout
+        self.last_dyn_connect_attempt = time.time()
+        errors = []
+
+        for server_name in self.dyn_server_names:
+            try:
+                client = Client(server_name, timeout=timeout)
+                config = client.get_configuration()
+                self.dyn_client = client
+                self.dyn_server_name = server_name
+                self.current_fps = config.get('fps', self.def_fps)
+                rospy.loginfo(
+                    f"Connected to dynamic reconfigure server {server_name}. "
+                    f"Current FPS: {self.current_fps}"
+                )
+                return True
+            except Exception as e:
+                errors.append(f"{server_name}: {e}")
+
+        self.dyn_client = None
+        self.dyn_server_name = None
+        if log_warning:
+            rospy.logwarn(
+                "Could not connect to face dynamic reconfigure server(s): "
+                f"{'; '.join(errors)}. Running in open-loop mode."
+            )
+        return False
+
+    def _ensure_dynamic_reconfigure(self):
+        if self.dyn_client is not None:
+            return True
+        if time.time() - self.last_dyn_connect_attempt < self.dyn_reconnect_interval:
+            return False
+        return self._connect_dynamic_reconfigure(log_warning=False)
+
+    def _restore_face_config_after_reconnect(self):
+        had_client = self.dyn_client is not None
+        if had_client or not self._ensure_dynamic_reconfigure():
+            return
+
+        if self.current_render_mode == "active":
+            self.set_face_config(active_mode=True)
+        elif self.current_render_mode == "idle":
+            self.set_face_config(active_mode=False, specific_fps=self.current_fps, force_style=True)
 
     def handle_is_speaking(self, msg: Bool):
         self.is_speaking = msg.data
@@ -150,13 +211,11 @@ class FaceAmbienceNode:
         if self.current_render_mode != "active":
             self.set_face_config(active_mode=True)
 
-    def set_face_config(self, active_mode=True, specific_fps=None):
+    def set_face_config(self, active_mode=True, specific_fps=None, force_style=False):
         """
         active_mode=True: High FPS, Shades, Ordered8
         active_mode=False: ASCII, Random (FPS handled separately)
         """
-        if self.dyn_client is None: return
-
         params = {}
         
         if active_mode:
@@ -170,18 +229,24 @@ class FaceAmbienceNode:
         else:
             # Entering idle mode rendering style
             # We do NOT set FPS here, because FPS drops gradually in the loop
-            if self.current_render_mode != "idle":
+            entering_idle = self.current_render_mode != "idle"
+            if entering_idle:
                 self._clear_status_hud()
+                time.sleep(0.15)
                 self._clear_status_hud()
-                time.sleep(0.05)
+                time.sleep(0.15)
+            if entering_idle or force_style:
                 params = {
                     "dither_charset": "ascii",
                     "dither_algorithm": "random"
                 }
+            if entering_idle:
                 self.current_render_mode = "idle"
                 self._publish_arm_emoji_command("🧍", duration=2.0)
                 # Clear the status HUD before sending idle feedback.
                 # Send feedback one time when switching to idle
+                time.sleep(0.15)
+
                 self._clear_status_hud()
 
                 self._send_feedback("IDLE")
@@ -192,10 +257,15 @@ class FaceAmbienceNode:
             self.current_fps = specific_fps
 
         if params:
+            if not self._ensure_dynamic_reconfigure():
+                return
+
             try:
                 self.dyn_client.update_configuration(params)
             except Exception as e:
-                rospy.logdebug(f"Failed to update config: {e}")
+                rospy.logdebug(f"Failed to update {self.dyn_server_name} config: {e}")
+                self.dyn_client = None
+                self.dyn_server_name = None
 
     def manage_idle_state(self):
         """
@@ -286,6 +356,7 @@ class FaceAmbienceNode:
         idle_anim_max = rospy.get_param('~idle_animation_interval_max', 6.0)
 
         while not rospy.is_shutdown():
+            self._restore_face_config_after_reconnect()
             current_time = time.time()
             
             # Determine if we are in the "Active" window or "Idle" window
