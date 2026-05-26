@@ -282,6 +282,11 @@ class FaceAmbienceNode:
             rospy.loginfo(f"Reducing FPS to {target_fps} (Idle for {elapsed_idle:.1f}s)")
             self.set_face_config(active_mode=False, specific_fps=target_fps)
 
+            if target_fps == self.min_fps:
+                # clear hud 
+                self._clear_status_hud()
+                self._clear_face_hud()
+
     # --- Animation Generators (Preserved) ---
 
     def random_hex_color(self):
@@ -321,6 +326,13 @@ class FaceAmbienceNode:
             self.hud_event_pub.publish(RosString(data=payload))
         except Exception as e:
             rospy.logwarn(f"Failed to publish status HUD clear: {e}")
+
+    def _clear_face_hud(self):
+        payload = json.dumps({"pane": "face", "kind": "clear"})
+        try:
+            self.hud_event_pub.publish(RosString(data=payload))
+        except Exception as e:
+            rospy.logwarn(f"Failed to publish face HUD clear: {e}")
 
     def _send_feedback(self, header):
         # Lightweight feedback helper

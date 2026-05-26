@@ -784,7 +784,7 @@ private:
 
     void adjustFacePaneRatioLocked(double face_delta) {
         const double current_face_ratio = 1.0 - status_region_ratio_;
-        const double next_face_ratio = clampDouble(current_face_ratio + face_delta, 0.2, 0.95);
+        const double next_face_ratio = clampDouble(current_face_ratio + face_delta, 0.01, 0.95);
         status_region_ratio_ = 1.0 - next_face_ratio;
         ensureRenderGeometryLocked();
     }
@@ -1797,7 +1797,7 @@ private:
 
         const double elapsed = std::max(0.0, (now - state.crawl.start_time).toSec());
         const int visible_count = std::min(h, static_cast<int>(state.crawl.lines.size()));
-        const int first_y = y0 + std::max(0, (h - visible_count) / 2);
+        const int first_y = y0 + std::max(0, static_cast<int>((h - visible_count) / 1.5));
 
         for (int i = 0; i < visible_count; ++i) {
             const HudLine& line = state.crawl.lines[i];
