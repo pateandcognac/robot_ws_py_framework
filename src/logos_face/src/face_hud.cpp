@@ -106,12 +106,32 @@ public:
         dither_charset_ = nh_.param<std::string>("dither_charset", "ascii");
         dither_algorithm_ = nh_.param<std::string>("dither_algorithm", "ordered4");
 
-        render_px_per_char_x_ = nh_.param<double>("render_px_per_char_x", 1.0);
-        render_px_per_char_y_ = nh_.param<double>("render_px_per_char_y", 1.0);
-        // TWEAKABLE PARAM! Higher values make the idle mouth sine wave thicker.
+        // TWEAKABLE RENDER PARAMS: terminal raster density before libcaca dithering.
+        render_px_per_char_x_ = std::max(0.1, nh_.param<double>("render_px_per_char_x", 1.0));
+        render_px_per_char_y_ = std::max(0.1, nh_.param<double>("render_px_per_char_y", 1.0));
+
+        // TWEAKABLE RENDER PARAMS: eye placement and scale ratios.
+        eye_center_y_ratio_ = clampDouble(nh_.param<double>("eye_center_y_ratio", 0.375), 0.0, 1.0);
+        eye_gaze_x_ratio_ = std::max(0.0, nh_.param<double>("eye_gaze_x_ratio", 0.25));
+        eye_gaze_y_ratio_ = std::max(0.0, nh_.param<double>("eye_gaze_y_ratio", 0.125));
+        eye_radius_x_ratio_ = std::max(0.001, nh_.param<double>("eye_radius_x_ratio", 0.20));
+        eye_radius_y_ratio_ = std::max(0.001, nh_.param<double>("eye_radius_y_ratio", 0.20));
+        eye_outline_thickness_px_ = std::max(1, nh_.param<int>("eye_outline_thickness_px", 2));
+
+        // TWEAKABLE RENDER PARAMS: lid/brow line and the restored area above it.
+        eye_lid_height_ratio_ = std::max(0.0, nh_.param<double>("eye_lid_height_ratio", 0.25));
+        eye_lid_thickness_ratio_ = std::max(0.0, nh_.param<double>("eye_lid_thickness_ratio", 0.02));
+        eye_lid_min_thickness_px_ = std::max(1, nh_.param<int>("eye_lid_min_thickness_px", 1));
+        eye_lid_erase_padding_x_ratio_ = std::max(0.0, nh_.param<double>("eye_lid_erase_padding_x_ratio", 0.025));
+
+        // TWEAKABLE RENDER PARAMS: mouth/audio waveform placement and thickness.
+        waveform_baseline_y_ratio_ = clampDouble(nh_.param<double>("waveform_baseline_y_ratio", 0.875), 0.0, 1.0);
+        waveform_amplitude_y_ratio_ = std::max(0.0, nh_.param<double>("waveform_amplitude_y_ratio", 0.125));
+        audio_wave_thickness_ratio_ = std::max(0.0, nh_.param<double>("audio_wave_thickness_ratio", 1.0 / 70.0));
         mouth_sine_thickness_ = std::max(1, nh_.param<int>("mouth_sine_thickness", 4));
 
         hud_event_topic_ = nh_.param<std::string>("hud_event_topic", "/face/hud/event");
+        // TWEAKABLE HUD PARAMS: pane split, default colors, retained line counts, and figlet fonts.
         double default_status_region_ratio = 0.33;
         nh_.getParam("caption_region_ratio", default_status_region_ratio);
         status_region_ratio_ = clampDouble(nh_.param<double>("status_region_ratio", default_status_region_ratio), 0.05, 0.95);
@@ -126,6 +146,7 @@ public:
 
         layer0_image_topic_ = nh_.param<std::string>("layer0_image_topic", "/face/layer0/image");
         layer2_image_topic_ = nh_.param<std::string>("layer2_image_topic", "/face/layer2/image");
+        // TWEAKABLE IMAGE PARAMS: fade envelope for /face/layer0/image and /face/layer2/image.
         layer_image_fade_in_sec_ = std::max(0.0, nh_.param<double>("layer_image_fade_in_sec", nh_.param<double>("debug_image_fade_in_sec", 0.6)));
         layer_image_hold_sec_ = std::max(0.0, nh_.param<double>("layer_image_hold_sec", nh_.param<double>("debug_image_hold_sec", 4.0)));
         layer_image_fade_out_sec_ = std::max(0.0, nh_.param<double>("layer_image_fade_out_sec", nh_.param<double>("debug_image_fade_out_sec", 0.8)));
@@ -303,6 +324,19 @@ private:
     int render_height_;
     int min_render_width_;
     int min_render_height_;
+    double eye_center_y_ratio_;
+    double eye_gaze_x_ratio_;
+    double eye_gaze_y_ratio_;
+    double eye_radius_x_ratio_;
+    double eye_radius_y_ratio_;
+    int eye_outline_thickness_px_;
+    double eye_lid_height_ratio_;
+    double eye_lid_thickness_ratio_;
+    int eye_lid_min_thickness_px_;
+    double eye_lid_erase_padding_x_ratio_;
+    double waveform_baseline_y_ratio_;
+    double waveform_amplitude_y_ratio_;
+    double audio_wave_thickness_ratio_;
     int mouth_sine_thickness_;
 
     std::string hud_event_topic_;
@@ -1930,14 +1964,14 @@ private:
     void renderEye(cv::Mat& img, int x_start, int x_end, const EyeParams& eye) {
         const double region_width = static_cast<double>(x_end - x_start);
         const double center_x_base = x_start + (region_width * 0.5);
-        const double center_y_base = img.rows * 0.375;
+        const double center_y_base = img.rows * eye_center_y_ratio_;
 
-        const double gaze_x = eye.gaze_x * (region_width * 0.25);
-        const double gaze_y = -eye.gaze_y * (img.rows * 0.125);
+        const double gaze_x = eye.gaze_x * (region_width * eye_gaze_x_ratio_);
+        const double gaze_y = -eye.gaze_y * (img.rows * eye_gaze_y_ratio_);
 
-        const double sx = std::max(0.01, eye.scale_x) * (region_width * 0.20);
-        const double sy = std::max(0.01, eye.scale_y) * (img.rows * 0.20);
-        const double lid_height = eye.lid_height * (img.rows * 0.25);
+        const double sx = std::max(0.01, eye.scale_x) * (region_width * eye_radius_x_ratio_);
+        const double sy = std::max(0.01, eye.scale_y) * (img.rows * eye_radius_y_ratio_);
+        const double lid_height = eye.lid_height * (img.rows * eye_lid_height_ratio_);
 
         const double center_x = center_x_base + gaze_x;
         const double center_y = center_y_base + gaze_y;
@@ -1947,6 +1981,9 @@ private:
 
         const cv::Vec3b waveform_rgb = hexToRGB(effect_params_.color);
         const cv::Scalar waveform_color(waveform_rgb[0], waveform_rgb[1], waveform_rgb[2]);
+
+        cv::Rect eye_roi_rect(x_start, 0, std::max(1, x_end - x_start), img.rows);
+        cv::Mat eye_background = img(eye_roi_rect).clone();
 
         cv::ellipse(
             img,
@@ -1967,7 +2004,7 @@ private:
             0.0,
             360.0,
             waveform_color,
-            2
+            eye_outline_thickness_px_
         );
 
         const double lid_angle_rad = eye.lid_angle * M_PI / 180.0;
@@ -1988,15 +2025,10 @@ private:
             (waveform_color[2] + eye_color[2]) * 0.5
         );
 
-        cv::line(
-            img,
-            cv::Point(static_cast<int>(lid_x1), static_cast<int>(lid_y1)),
-            cv::Point(static_cast<int>(lid_x2), static_cast<int>(lid_y2)),
-            lid_color,
-            std::max(1, img.rows / 20)
+        const int erase_padding = std::max(
+            2,
+            static_cast<int>(std::lround(img.cols * eye_lid_erase_padding_x_ratio_))
         );
-
-        const int erase_padding = std::max(2, img.cols / 40);
         int erase_lid_x1 = static_cast<int>(lid_x1) - erase_padding;
         int erase_lid_x2 = static_cast<int>(lid_x2) + erase_padding;
 
@@ -2004,13 +2036,26 @@ private:
         erase_lid_x2 = std::min(erase_lid_x2, x_end - 1);
 
         std::vector<cv::Point> poly = {
-            cv::Point(erase_lid_x1, static_cast<int>(lid_y1)),
-            cv::Point(erase_lid_x2, static_cast<int>(lid_y2)),
-            cv::Point(erase_lid_x2, 0),
-            cv::Point(erase_lid_x1, 0)
+            cv::Point(erase_lid_x1 - x_start, static_cast<int>(lid_y1)),
+            cv::Point(erase_lid_x2 - x_start, static_cast<int>(lid_y2)),
+            cv::Point(erase_lid_x2 - x_start, 0),
+            cv::Point(erase_lid_x1 - x_start, 0)
         };
 
-        cv::fillConvexPoly(img, poly, cv::Scalar(0, 0, 0));
+        cv::Mat lid_restore_mask(eye_roi_rect.height, eye_roi_rect.width, CV_8UC1, cv::Scalar(0));
+        cv::fillConvexPoly(lid_restore_mask, poly, cv::Scalar(255));
+        eye_background.copyTo(img(eye_roi_rect), lid_restore_mask);
+
+        cv::line(
+            img,
+            cv::Point(static_cast<int>(lid_x1), static_cast<int>(lid_y1)),
+            cv::Point(static_cast<int>(lid_x2), static_cast<int>(lid_y2)),
+            lid_color,
+            std::max(
+                eye_lid_min_thickness_px_,
+                static_cast<int>(std::lround(img.rows * eye_lid_thickness_ratio_))
+            )
+        );
     }
 
     void ensureWaveBuffers(int length) {
@@ -2027,7 +2072,7 @@ private:
 
     void renderWaveform(cv::Mat& img) {
         const int length = img.cols;
-        const int baseline = static_cast<int>(img.rows * 0.875);
+        const int baseline = static_cast<int>(img.rows * waveform_baseline_y_ratio_);
 
         ensureWaveBuffers(length);
         generateSineWaveInPlace(sine_wave_buffer_);
@@ -2062,11 +2107,13 @@ private:
             for (int i = 0; i < length; ++i) {
                 const int x = i;
                 const int y = static_cast<int>(
-                    baseline + (combined_wave_[i] * static_cast<float>(img.rows) * 0.125f)
+                    baseline + (combined_wave_[i] * static_cast<float>(img.rows) *
+                        static_cast<float>(waveform_amplitude_y_ratio_))
                 );
 
                 if (!first_combined_point) {
-                    const double max_wave_height = static_cast<double>(img.rows) * 0.125;
+                    const double max_wave_height = static_cast<double>(img.rows) *
+                        waveform_amplitude_y_ratio_;
                     const int color_y = (std::abs(y - baseline) > std::abs(prev_y_combined - baseline))
                         ? y
                         : prev_y_combined;
@@ -2082,7 +2129,10 @@ private:
                         cv::Point(x - 1, prev_y_combined),
                         cv::Point(x, y),
                         color,
-                        std::max(1, img.rows / 70)
+                        std::max(
+                            1,
+                            static_cast<int>(std::lround(img.rows * audio_wave_thickness_ratio_))
+                        )
                     );
                 }
 
@@ -2100,7 +2150,8 @@ private:
         for (int i = 0; i < length; ++i) {
             const int x = i;
             const int y = static_cast<int>(
-                baseline + (sine_wave_buffer_[i] * static_cast<float>(img.rows) * 0.125f)
+                baseline + (sine_wave_buffer_[i] * static_cast<float>(img.rows) *
+                    static_cast<float>(waveform_amplitude_y_ratio_))
             );
 
             if (!first_sine_point) {

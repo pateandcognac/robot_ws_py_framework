@@ -38,6 +38,30 @@ The split can be tuned at startup with the private ROS param:
 rosrun logos_face face_hud_node _status_region_ratio:=0.33
 ```
 
+## Rendering Tweak Params
+
+Useful private ROS params for visual tuning:
+
+- `_eye_lid_thickness_ratio:=0.05`: lid/brow stroke thickness as a fraction of
+  face-pane render height. Try `0.035` for a lighter stroke.
+- `_eye_lid_min_thickness_px:=1`: minimum lid/brow stroke thickness.
+- `_eye_outline_thickness_px:=2`: eye ellipse outline thickness.
+- `_eye_center_y_ratio:=0.375`: eye center height within the face pane.
+- `_eye_gaze_x_ratio:=0.25` and `_eye_gaze_y_ratio:=0.125`: gaze travel range.
+- `_eye_radius_x_ratio:=0.20` and `_eye_radius_y_ratio:=0.20`: base eye size.
+- `_eye_lid_height_ratio:=0.25`: lid height travel range.
+- `_eye_lid_erase_padding_x_ratio:=0.025`: horizontal padding for the restored
+  area above the lid line.
+- `_waveform_baseline_y_ratio:=0.875`: mouth waveform baseline height.
+- `_waveform_amplitude_y_ratio:=0.125`: mouth/audio waveform travel range.
+- `_audio_wave_thickness_ratio:=0.0142857`: audio waveform stroke thickness.
+- `_mouth_sine_thickness:=4`: idle sine mouth stroke thickness in pixels.
+- `_render_px_per_char_x:=1.0` and `_render_px_per_char_y:=1.0`: OpenCV render
+  resolution per terminal cell before libcaca dithering.
+- `_layer_image_fade_in_sec:=0.6`, `_layer_image_hold_sec:=4.0`,
+  `_layer_image_fade_out_sec:=0.8`, and `_layer_image_max_alpha:=1.0`: image
+  layer fade envelope.
+
 ## Keyboard Controls
 
 These controls work while the HUD has keyboard focus:
