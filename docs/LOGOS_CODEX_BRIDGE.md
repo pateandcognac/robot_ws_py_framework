@@ -88,3 +88,50 @@ which is useful for debugging and matches the existing framework design.
 If the active Logos runtime is launched against a workspace other than `Logos`
 (for example `Logos_001`), pass `workspace` or `workspace_path_override` to the
 MCP tools so file-tag paths resolve to the correct workspace.
+
+## Operational Notes
+
+Prefer the MCP tools over ad hoc shell `rostopic` checks from Codex. The MCP
+server builds a ROS-capable environment for the bridge process:
+
+- `PYTHONPATH` includes the workspace `devel` message packages and ROS Noetic.
+- `ROS_PACKAGE_PATH` includes the catkin workspace and ROS packages.
+- `ROS_MASTER_URI` defaults to `http://127.0.0.1:11311`.
+- `ROS_IP` defaults to `127.0.0.1`.
+
+The normal Codex shell runs in a tighter sandbox and may not have that exact ROS
+environment or network access. A shell command such as `rostopic list` failing
+with “unable to communicate with master” does not prove the Logos MCP bridge or
+the live robot runtime is down. Check from inside the worker instead:
+
+```python
+import os
+print(os.environ.get("ROS_MASTER_URI"))
+```
+
+For short-lived visual events, remember that ROS publishers need a subscriber
+handshake. The CLI bridge already waits for a `/cognition/output` subscriber
+before sending a worker request. Inside worker code, newly-created publishers can
+still drop their first message if they publish immediately. The `logos.emote`
+HUD helpers now wait briefly for the `/face/hud/event` subscriber on first use;
+for raw or custom publishers, use the same pattern:
+
+```python
+import time
+from std_msgs.msg import String
+
+pub = rospy.Publisher("/some/topic", String, queue_size=5)
+deadline = time.time() + 1.0
+while time.time() < deadline and pub.get_num_connections() == 0:
+    time.sleep(0.05)
+pub.publish(String(data="hello"))
+```
+
+When a request succeeds but nothing visible changes, distinguish the layers:
+
+- MCP result `ok: true` means Codex reached `python_worker_node.py` and got a
+  result back through `/cognition/input`.
+- The emitted Python may still have published to a topic with no subscribers, to
+  a different ROS master, or before a subscriber handshake completed.
+- For HUD tests, `logos.emote._hud_event_pub.get_num_connections()` should be
+  greater than zero before `/face/hud/event` output is expected to appear.
