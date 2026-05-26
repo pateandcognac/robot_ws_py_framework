@@ -108,7 +108,7 @@ public:
 
         render_px_per_char_x_ = nh_.param<double>("render_px_per_char_x", 1.0);
         render_px_per_char_y_ = nh_.param<double>("render_px_per_char_y", 1.0);
-        // CHANGE THIS! Higher values make the idle mouth sine wave thicker.
+        // TWEAKABLE PARAM! Higher values make the idle mouth sine wave thicker.
         mouth_sine_thickness_ = std::max(1, nh_.param<int>("mouth_sine_thickness", 4));
 
         hud_event_topic_ = nh_.param<std::string>("hud_event_topic", "/face/hud/event");
@@ -123,9 +123,9 @@ public:
         caption_figlet_font_ = nh_.param<std::string>("caption_figlet_font", "thick");
 
         debug_image_topic_ = nh_.param<std::string>("debug_image_topic", "/logos/debug_vision/face");
-        debug_image_fade_in_sec_ = std::max(0.0, nh_.param<double>("debug_image_fade_in_sec", 1.0));
-        debug_image_hold_sec_ = std::max(0.0, nh_.param<double>("debug_image_hold_sec", 5.0));
-        debug_image_fade_out_sec_ = std::max(0.0, nh_.param<double>("debug_image_fade_out_sec", 1.0));
+        debug_image_fade_in_sec_ = std::max(0.0, nh_.param<double>("debug_image_fade_in_sec", 0.6));
+        debug_image_hold_sec_ = std::max(0.0, nh_.param<double>("debug_image_hold_sec", 4.0));
+        debug_image_fade_out_sec_ = std::max(0.0, nh_.param<double>("debug_image_fade_out_sec", 0.8));
         debug_image_max_alpha_ = clampDouble(nh_.param<double>("debug_image_max_alpha", 1.0), 0.0, 1.0);
 
         min_render_width_ = 16;

@@ -45,6 +45,9 @@
   <!-- State Monitor (Battery/Charging/Idle anims)   -->
   <node name="idle_state_monitor" pkg="logos_hardware" type="idle_state_indicator.py" output="screen"/>
 
+  <node name="face_hud_bridge_node" pkg="logos_ui" type="face_hud_bridge_node.py" output="screen"/>
+
+
 
 
 
