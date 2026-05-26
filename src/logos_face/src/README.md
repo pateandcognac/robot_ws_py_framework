@@ -29,6 +29,8 @@ This README describes the C++ face node implementation in `FaceNodeCpp`.
 
 The node subscribes to face-control topics, renders the current state into an OpenCV image, converts it to a terminal-friendly representation using `libcaca`, and continuously refreshes the display at the configured FPS.
 
+For the newer split-pane HUD variant, see [`face_hud_README.md`](face_hud_README.md).
+
 ---
 
 ## Dependencies
