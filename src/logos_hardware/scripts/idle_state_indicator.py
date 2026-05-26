@@ -230,11 +230,6 @@ class FaceAmbienceNode:
             # Entering idle mode rendering style
             # We do NOT set FPS here, because FPS drops gradually in the loop
             entering_idle = self.current_render_mode != "idle"
-            if entering_idle:
-                self._clear_status_hud()
-                #time.sleep(0.15)
-                self._clear_status_hud()
-                # time.sleep(0.15)
             if entering_idle or force_style:
                 params = {
                     "dither_charset": "ascii",
@@ -243,12 +238,6 @@ class FaceAmbienceNode:
             if entering_idle:
                 self.current_render_mode = "idle"
                 self._publish_arm_emoji_command("🧍", duration=2.0)
-                # Clear the status HUD before sending idle feedback.
-                # Send feedback one time when switching to idle
-                time.sleep(0.15)
-
-                self._clear_status_hud()
-
                 self._send_feedback("[IDLE]")
 
         # If a specific FPS is requested (during gradual reduction), override it

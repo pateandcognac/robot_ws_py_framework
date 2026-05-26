@@ -85,7 +85,7 @@ class FaceHudBridgeNode:
             return
 
         self.publish_event(
-            "caption",
+            "status",
             "caption",
             text=text,
             color="bright_magenta",

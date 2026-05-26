@@ -1,8 +1,8 @@
 # Logos Face HUD
 
-`face_hud_node` is the split-pane terminal face for Logos. It keeps the animated
-face in the upper pane, prints status text behind the face as a stable-color
-terminal backdrop, and reserves the lower pane for TTS figlet captions.
+`face_hud_node` is the split-pane terminal face for Logos. The upper pane is the
+animated face plus a playful `face` canvas drawn underneath it. The lower pane is
+the functional `status` area for TTS captions and human-facing feedback.
 
 ## Launch
 
@@ -21,16 +21,18 @@ generation.
 
 ## Layout
 
-- Upper pane: eyes, mouth waveform, debug image overlay, and status backdrop.
-- Lower pane: TTS captions only.
-- Default split: about 2/3 face and 1/3 captions.
+- Upper pane: eyes, mouth waveform, debug image overlay, and the `face` canvas.
+- Lower pane: `status` stream with TTS captions, figlet feedback, and plain text.
+- Default split: about 2/3 face and 1/3 status.
 - Caption figlet lines are printed gradually over the TTS chunk duration, so
   they scroll upward like terminal output.
+- Other status events are queued behind any currently scrolling caption block so
+  they do not split figlet glyphs.
 
 The split can be tuned at startup with the private ROS param:
 
 ```bash
-rosrun logos_face face_hud_node _caption_region_ratio:=0.33
+rosrun logos_face face_hud_node _status_region_ratio:=0.33
 ```
 
 ## Keyboard Controls
@@ -39,8 +41,8 @@ These controls work while the HUD has keyboard focus:
 
 - `q`: quit
 - `[` / `]`: decrease / increase FPS
-- `-`: give more height to the TTS caption pane
-- `+` or `=`: give more height to the face/status pane
+- `-`: give more height to the status pane
+- `+` or `=`: give more height to the face pane
 - `\`: clear the current display
 - `r`: re-detect terminal size in ANSI mode
 - `a` / `d`: decrease / increase ANSI canvas columns
@@ -53,7 +55,15 @@ The C++ HUD subscribes to `/face/hud/event` as `std_msgs/String` JSON.
 Examples:
 
 ```json
-{"pane":"status","kind":"text","text":"<human>\nhello\n</human>","color":"bright_white"}
+{"pane":"face","kind":"text","text":"ambient face canvas text","color":"bright_white"}
+```
+
+```json
+{"pane":"face","kind":"figlet","text":"spark","font":"small","color":"bright_blue"}
+```
+
+```json
+{"pane":"status","kind":"caption","text":"spoken words","font":"thick","color":"bright_magenta","duration":1.2}
 ```
 
 ```json
@@ -61,14 +71,11 @@ Examples:
 ```
 
 ```json
-{"pane":"caption","kind":"caption","text":"spoken words","font":"thick","color":"bright_magenta","duration":1.2}
+{"pane":"status","kind":"clear"}
 ```
 
-```json
-{"pane":"caption","kind":"clear"}
-```
-
-Supported panes are `status`, `caption`, and `all` for clear events.
+Supported panes are `face`, `status`, and `all` for clear events. Captions are
+status events; the old public `caption` pane has been removed.
 
 
 ALSO: subscribes to topic /logos_vision/debug/face Image msg type and displays the image *over* the face for a set duration
@@ -97,6 +104,6 @@ tracebacks do not print into Logos's face.
 ## Compatibility
 
 The HUD still listens to the legacy `/face/text_backdrop` topic and maps that
-content into the status backdrop. Existing eye, mouth, audio waveform, debug
+content into the `face` canvas. Existing eye, mouth, audio waveform, debug
 image, and `/face/live_state/json` topics are preserved from the older face
 renderer.

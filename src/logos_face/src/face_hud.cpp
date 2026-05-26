@@ -113,12 +113,15 @@ public:
 
         hud_event_topic_ = nh_.param<std::string>("hud_event_topic", "/face/hud/event");
         legacy_backdrop_text_topic_ = nh_.param<std::string>("backdrop_text_topic", "/face/text_backdrop");
-        caption_region_ratio_ = clampDouble(nh_.param<double>("caption_region_ratio", 0.33), 0.05, 0.95);
-        status_default_color_ = colorNameToCaca(nh_.param<std::string>("status_color", "bright_green"));
+        double default_status_region_ratio = 0.33;
+        nh_.getParam("caption_region_ratio", default_status_region_ratio);
+        status_region_ratio_ = clampDouble(nh_.param<double>("status_region_ratio", default_status_region_ratio), 0.05, 0.95);
+        face_default_color_ = colorNameToCaca(nh_.param<std::string>("face_canvas_color", "bright_green"));
+        status_default_color_ = colorNameToCaca(nh_.param<std::string>("status_color", "bright_white"));
         caption_default_color_ = colorNameToCaca(nh_.param<std::string>("caption_color", "bright_magenta"));
         hud_bg_color_ = colorNameToCaca(nh_.param<std::string>("hud_bg_color", "black"));
-        status_max_lines_ = std::max(1, nh_.param<int>("status_max_lines", 240));
-        caption_max_lines_ = std::max(1, nh_.param<int>("caption_max_lines", 120));
+        face_max_lines_ = std::max(1, nh_.param<int>("face_max_lines", 240));
+        status_max_lines_ = std::max(1, nh_.param<int>("status_max_lines", 120));
         default_figlet_font_ = nh_.param<std::string>("default_figlet_font", "standard");
         caption_figlet_font_ = nh_.param<std::string>("caption_figlet_font", "thick");
 
@@ -215,11 +218,13 @@ private:
         uint8_t bg;
     };
 
-    struct CaptionPrintJob {
+    struct StatusPrintJob {
         std::vector<HudLine> lines;
         ros::Time start_time;
         double duration;
         size_t next_line_index;
+        bool caption;
+        bool started;
     };
 
     ros::NodeHandle nh_;
@@ -269,15 +274,16 @@ private:
 
     std::string hud_event_topic_;
     std::string legacy_backdrop_text_topic_;
+    std::deque<HudLine> face_lines_;
     std::deque<HudLine> status_lines_;
-    std::deque<HudLine> caption_lines_;
-    std::deque<CaptionPrintJob> caption_print_jobs_;
-    double caption_region_ratio_;
+    std::deque<StatusPrintJob> status_print_jobs_;
+    double status_region_ratio_;
+    uint8_t face_default_color_;
     uint8_t status_default_color_;
     uint8_t caption_default_color_;
     uint8_t hud_bg_color_;
+    int face_max_lines_;
     int status_max_lines_;
-    int caption_max_lines_;
     std::string default_figlet_font_;
     std::string caption_figlet_font_;
 
@@ -724,18 +730,18 @@ private:
         caca_set_dither_algorithm(caca_dither_, dither_algorithm_.c_str());
     }
 
-    int captionPaneHeightForCanvas(int canvas_h) const {
+    int statusPaneHeightForCanvas(int canvas_h) const {
         if (canvas_h <= 1) {
             return 0;
         }
 
-        const int caption_h = clampInt(
-            static_cast<int>(std::lround(static_cast<double>(canvas_h) * caption_region_ratio_)),
+        const int status_h = clampInt(
+            static_cast<int>(std::lround(static_cast<double>(canvas_h) * status_region_ratio_)),
             1,
             canvas_h - 1
         );
 
-        return caption_h;
+        return status_h;
     }
 
     int facePaneHeightForCanvas(int canvas_h) const {
@@ -743,13 +749,13 @@ private:
             return 1;
         }
 
-        return clampInt(canvas_h - captionPaneHeightForCanvas(canvas_h), 1, canvas_h - 1);
+        return clampInt(canvas_h - statusPaneHeightForCanvas(canvas_h), 1, canvas_h - 1);
     }
 
     void adjustFacePaneRatioLocked(double face_delta) {
-        const double current_face_ratio = 1.0 - caption_region_ratio_;
+        const double current_face_ratio = 1.0 - status_region_ratio_;
         const double next_face_ratio = clampDouble(current_face_ratio + face_delta, 0.2, 0.95);
-        caption_region_ratio_ = 1.0 - next_face_ratio;
+        status_region_ratio_ = 1.0 - next_face_ratio;
         ensureRenderGeometryLocked();
     }
 
@@ -854,12 +860,12 @@ private:
 
     void applyLegacyBackdropCommandLocked(const std::string& payload) {
         if (payload.empty()) {
-            status_lines_.clear();
+            face_lines_.clear();
             return;
         }
 
         if (payload.front() != '{') {
-            appendHudTextLocked("status", payload, status_default_color_, hud_bg_color_);
+            appendHudTextLocked("face", payload, face_default_color_, hud_bg_color_);
             return;
         }
 
@@ -869,10 +875,10 @@ private:
             boost::property_tree::read_json(ss, root);
 
             if (root.get<bool>("clear", false)) {
-                status_lines_.clear();
+                face_lines_.clear();
             }
 
-            uint8_t fg = status_default_color_;
+            uint8_t fg = face_default_color_;
             uint8_t bg = hud_bg_color_;
             const boost::optional<std::string> color = root.get_optional<std::string>("color");
             if (color) {
@@ -887,13 +893,13 @@ private:
             const boost::optional<std::string> text = root.get_optional<std::string>("text");
             if (text) {
                 if (!root.get<bool>("append", true)) {
-                    status_lines_.clear();
+                    face_lines_.clear();
                 }
-                appendHudTextLocked("status", *text, fg, bg);
+                appendHudTextLocked("face", *text, fg, bg);
             }
         } catch (const std::exception& e) {
             ROS_WARN_STREAM("Failed to parse legacy backdrop JSON; using payload as text: " << e.what());
-            appendHudTextLocked("status", payload, status_default_color_, hud_bg_color_);
+            appendHudTextLocked("face", payload, face_default_color_, hud_bg_color_);
         }
     }
 
@@ -907,8 +913,18 @@ private:
             boost::property_tree::ptree root;
             boost::property_tree::read_json(ss, root);
 
-            const std::string pane = toLower(root.get<std::string>("pane", "status"));
+            const std::string pane = toLower(root.get<std::string>("pane", "face"));
             const std::string kind = toLower(root.get<std::string>("kind", "text"));
+
+            if (!isHudPane(pane)) {
+                ROS_WARN_STREAM("Ignoring HUD event for unknown pane '" << pane << "'.");
+                return;
+            }
+
+            if (pane == "all" && kind != "clear" && !root.get<bool>("clear", false)) {
+                ROS_WARN_STREAM("Ignoring non-clear HUD event for pane 'all'.");
+                return;
+            }
 
             if (kind == "clear" || root.get<bool>("clear", false)) {
                 clearHudPaneLocked(pane);
@@ -922,10 +938,22 @@ private:
                 return;
             }
 
-            const uint8_t fg = colorNameToCaca(root.get<std::string>(
-                "color",
-                pane == "caption" ? "bright_magenta" : "bright_green"
-            ));
+            if (kind == "caption" && pane != "status") {
+                ROS_WARN_STREAM("Ignoring caption HUD event for pane '" << pane << "'. Captions target status.");
+                return;
+            }
+
+            uint8_t fg = status_default_color_;
+            if (kind == "caption") {
+                fg = caption_default_color_;
+            } else if (pane == "face") {
+                fg = face_default_color_;
+            }
+
+            const boost::optional<std::string> color = root.get_optional<std::string>("color");
+            if (color) {
+                fg = colorNameToCaca(*color);
+            }
             const uint8_t bg = colorNameToCaca(root.get<std::string>("bg_color", "black"));
 
             if (kind == "figlet" || kind == "caption") {
@@ -935,38 +963,48 @@ private:
                 );
                 const std::string rendered = renderFigletLocked(text, font, pane);
                 if (kind == "caption") {
-                    scheduleCaptionPrintLocked(rendered, fg, bg, root.get<double>("duration", 0.0));
+                    enqueueStatusPrintLocked(rendered, fg, bg, root.get<double>("duration", 0.0), true);
+                } else if (pane == "status") {
+                    enqueueStatusPrintLocked(rendered, fg, bg, 0.0, false);
                 } else {
                     appendHudTextLocked(pane, rendered, fg, bg);
                 }
                 return;
             }
 
-            appendHudTextLocked(pane, text, fg, bg);
+            if (pane == "status") {
+                enqueueStatusPrintLocked(text, fg, bg, 0.0, false);
+            } else {
+                appendHudTextLocked(pane, text, fg, bg);
+            }
         } catch (const std::exception& e) {
             ROS_WARN_STREAM("Failed to parse HUD event JSON: " << e.what());
         }
     }
 
+    static bool isHudPane(const std::string& pane) {
+        return pane == "face" || pane == "status" || pane == "all";
+    }
+
     void clearHudPaneLocked(const std::string& pane) {
-        if (pane == "caption") {
-            caption_lines_.clear();
-            caption_print_jobs_.clear();
+        if (pane == "status") {
+            status_lines_.clear();
+            status_print_jobs_.clear();
         } else if (pane == "all") {
+            face_lines_.clear();
             status_lines_.clear();
-            caption_lines_.clear();
-            caption_print_jobs_.clear();
+            status_print_jobs_.clear();
         } else {
-            status_lines_.clear();
+            face_lines_.clear();
         }
     }
 
     std::deque<HudLine>& hudLinesForPaneLocked(const std::string& pane) {
-        return pane == "caption" ? caption_lines_ : status_lines_;
+        return pane == "status" ? status_lines_ : face_lines_;
     }
 
     int hudMaxLinesForPane(const std::string& pane) const {
-        return pane == "caption" ? caption_max_lines_ : status_max_lines_;
+        return pane == "status" ? status_max_lines_ : face_max_lines_;
     }
 
     void appendHudTextLocked(const std::string& pane, const std::string& text, uint8_t fg, uint8_t bg) {
@@ -983,11 +1021,12 @@ private:
         }
     }
 
-    void scheduleCaptionPrintLocked(
+    void enqueueStatusPrintLocked(
         const std::string& rendered,
         uint8_t fg,
         uint8_t bg,
-        double duration
+        double duration,
+        bool caption
     ) {
         const std::vector<std::string> text_lines = splitLines(rendered);
         std::vector<HudLine> lines;
@@ -1001,30 +1040,24 @@ private:
             return;
         }
 
-        if (duration <= 0.0 || lines.size() == 1) {
-            for (const HudLine& line : lines) {
-                caption_lines_.push_back(line);
-            }
-            trimHudLinesLocked("caption");
-            return;
-        }
-
-        const ros::Time now = ros::Time::now();
-        ros::Time start_time = now;
-        if (!caption_print_jobs_.empty()) {
-            const CaptionPrintJob& tail = caption_print_jobs_.back();
-            const ros::Time tail_end = tail.start_time + ros::Duration(tail.duration);
-            if (tail_end > start_time) {
-                start_time = tail_end;
-            }
-        }
-
-        CaptionPrintJob job;
+        StatusPrintJob job;
         job.lines = lines;
-        job.start_time = start_time;
-        job.duration = duration;
+        job.start_time = ros::Time(0);
+        job.duration = caption ? std::max(0.0, duration) : 0.0;
         job.next_line_index = 0;
-        caption_print_jobs_.push_back(job);
+        job.caption = caption && duration > 0.0 && lines.size() > 1;
+        job.started = false;
+
+        if (!job.caption && !status_print_jobs_.empty() && status_print_jobs_.front().caption) {
+            std::deque<StatusPrintJob>::iterator insert_at = status_print_jobs_.begin();
+            ++insert_at;
+            while (insert_at != status_print_jobs_.end() && !insert_at->caption) {
+                ++insert_at;
+            }
+            status_print_jobs_.insert(insert_at, job);
+        } else {
+            status_print_jobs_.push_back(job);
+        }
     }
 
     void trimHudLinesLocked(const std::string& pane) {
@@ -1035,33 +1068,37 @@ private:
         }
     }
 
-    void updateCaptionPrintJobsLocked(const ros::Time& now) {
-        while (!caption_print_jobs_.empty()) {
-            CaptionPrintJob& job = caption_print_jobs_.front();
-            const double elapsed = std::max(0.0, (now - job.start_time).toSec());
-            const double line_duration = job.duration / static_cast<double>(job.lines.size());
-            size_t target_count = 0;
+    void updateStatusPrintJobsLocked(const ros::Time& now) {
+        while (!status_print_jobs_.empty()) {
+            StatusPrintJob& job = status_print_jobs_.front();
+            if (!job.started) {
+                job.started = true;
+                job.start_time = now;
+            }
 
-            if (line_duration <= 0.0) {
-                target_count = job.lines.size();
-            } else {
+            size_t target_count = job.lines.size();
+            if (job.caption) {
+                const double elapsed = std::max(0.0, (now - job.start_time).toSec());
+                const double line_duration = job.duration / static_cast<double>(job.lines.size());
                 target_count = std::min(
                     job.lines.size(),
-                    static_cast<size_t>(std::floor(elapsed / line_duration)) + 1
+                    line_duration <= 0.0
+                        ? job.lines.size()
+                        : static_cast<size_t>(std::floor(elapsed / line_duration)) + 1
                 );
             }
 
             while (job.next_line_index < target_count) {
-                caption_lines_.push_back(job.lines[job.next_line_index]);
+                status_lines_.push_back(job.lines[job.next_line_index]);
                 ++job.next_line_index;
-                trimHudLinesLocked("caption");
+                trimHudLinesLocked("status");
             }
 
             if (job.next_line_index < job.lines.size()) {
                 break;
             }
 
-            caption_print_jobs_.pop_front();
+            status_print_jobs_.pop_front();
         }
     }
 
@@ -1542,7 +1579,7 @@ private:
             return;
         }
 
-        updateCaptionPrintJobsLocked(ros::Time::now());
+        updateStatusPrintJobsLocked(ros::Time::now());
 
         cv::cvtColor(img, rgba_, cv::COLOR_BGR2RGBA);
 
@@ -1626,11 +1663,11 @@ private:
     }
 
     void drawHudBackdropLocked(int w, int h) {
-        const int caption_h = captionPaneHeightForCanvas(h);
+        const int status_h = statusPaneHeightForCanvas(h);
         const int face_h = facePaneHeightForCanvas(h);
 
-        drawHudLinesLocked(status_lines_, 0, 0, w, face_h);
-        drawHudLinesLocked(caption_lines_, 0, std::max(0, h - caption_h), w, caption_h);
+        drawHudLinesLocked(face_lines_, 0, 0, w, face_h);
+        drawHudLinesLocked(status_lines_, 0, std::max(0, h - status_h), w, status_h);
     }
 
     void drawHudLinesLocked(const std::deque<HudLine>& lines, int x0, int y0, int w, int h) {
