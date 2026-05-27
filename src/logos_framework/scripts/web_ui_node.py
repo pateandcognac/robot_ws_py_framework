@@ -383,6 +383,19 @@ def handle_runtime_config_set(json_data):
     except Exception as e:
         rospy.logerr(f"Error processing runtime config update from web: {e}")
 
+@socketio.on('hook_refresh')
+def handle_hook_refresh():
+    try:
+        msg = CognitionInput()
+        msg.type = 'hook_refresh'
+        msg.content = "Manual hook refresh requested from web UI."
+        msg.system_hint = ''
+        msg.loop_cognition = False
+        msg.filename = "webui"
+        ros_node.cognition_input_pub.publish(msg)
+    except Exception as e:
+        rospy.logerr(f"Error processing hook refresh from web: {e}")
+
 if __name__ == '__main__':
     try:
         ros_node = WebUINode()

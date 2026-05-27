@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusBar = document.getElementById('status-bar'); // NEW
     const runtimeConfigToggle = document.getElementById('runtime-config-toggle');
     const jsonlViewerButton = document.getElementById('jsonl-viewer-button');
+    const hookRefreshButton = document.getElementById('hook-refresh-button');
     const runtimeConfigPopover = document.getElementById('runtime-config-popover');
     const apiProfileSelect = document.getElementById('api-profile-select');
     const modelPresetSelect = document.getElementById('model-preset-select');
@@ -186,6 +187,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     jsonlViewerButton.addEventListener('click', () => {
         window.open('/logs', '_blank', 'noopener');
+    });
+
+    hookRefreshButton.addEventListener('click', () => {
+        hookRefreshButton.disabled = true;
+        hookRefreshButton.textContent = 'Running';
+        socket.emit('hook_refresh');
+        window.setTimeout(() => {
+            hookRefreshButton.disabled = false;
+            hookRefreshButton.textContent = 'Run Hooks';
+        }, 1500);
     });
 
     paidKeyAlertClose.addEventListener('click', () => {

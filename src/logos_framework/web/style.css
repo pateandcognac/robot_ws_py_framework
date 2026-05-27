@@ -283,7 +283,9 @@ body, html {
     margin-left: 5px;
 }
 
-#runtime-config-toggle {
+#runtime-config-toggle,
+#jsonl-viewer-button,
+#hook-refresh-button {
     background: #252525;
     color: #e8e8e8;
     border: 1px solid #666;
@@ -293,24 +295,18 @@ body, html {
 }
 
 #runtime-config-toggle:hover,
-#runtime-config-toggle:focus {
-    background: #383838;
-    outline: none;
-}
-
-#jsonl-viewer-button {
-    background: #252525;
-    color: #e8e8e8;
-    border: 1px solid #666;
-    border-radius: 4px;
-    padding: 4px 8px;
-    cursor: pointer;
-}
-
 #jsonl-viewer-button:hover,
-#jsonl-viewer-button:focus {
+#hook-refresh-button:hover,
+#runtime-config-toggle:focus,
+#jsonl-viewer-button:focus,
+#hook-refresh-button:focus {
     background: #383838;
     outline: none;
+}
+
+#hook-refresh-button:disabled {
+    color: #aaa;
+    cursor: wait;
 }
 
 .runtime-config-popover {

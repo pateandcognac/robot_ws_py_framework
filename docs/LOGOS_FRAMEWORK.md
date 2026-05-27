@@ -59,7 +59,7 @@ Successful cognition cycles:
 3. Wait for `context` replies (cached when TTL < 0), assemble the full Gemini prompt, respect throttling, and call the API with retry logic.
 4. Stream `chunk` updates, then publish the final `me` response and return to `IDLE`.
 
-Debug cycles from simulated web output still run hooks and publish refreshed UI state, but skip Gemini API calls even when debug code sets `loop_cognition = True`.
+Incoming non-context messages, including `debug` and `codex_tool`, are persisted to `io_history.jsonl` and `io_buffer.jsonl`. `debug` and `codex_tool` inputs never call Gemini; with `loop_cognition=False` they are only recorded, and with `loop_cognition=True` they run a hook/UI refresh cycle. The web UI also has a "Run Hooks" control that publishes a one-off `hook_refresh` input to run hooks, refresh `/cognition/ui_state`, and skip Gemini.
 
 ### `python_worker_node.py`
 Executes `<py>` blocks emitted by the cognition node.
@@ -95,7 +95,7 @@ Lightweight terminal interface using `urwid`.
 
 ## Browser UI (`web/`)
 
-- `index.html` lays out header / IO buffer / footer panes plus a control bar with message type selection, a compact runtime Gemini config popover, a JSONL state viewer button, a "Simulate AI Output" toggle (hides loop-cognition controls when enabled), and Ctrl+Enter submission.
+- `index.html` lays out header / IO buffer / footer panes plus a control bar with message type selection, a compact runtime Gemini config popover, a JSONL state viewer button, a one-off hook refresh button, a "Simulate AI Output" toggle (hides loop-cognition controls when enabled), and Ctrl+Enter submission.
 - `logs.html` lays out the friendlier three-panel JSONL state viewer with search and copy helpers.
 - `style.css` provides a dark theme, Split.js gutters, adaptive textarea sizing, and styles for `io-cell` components appended to the buffer.
 - `script.js` connects to the Socket.IO backend, renders streamed HTML + inline images, highlights code blocks via Highlight.js, auto-resizes the input textarea, and emits `human_input` events with the current mode (`input` vs `output`).

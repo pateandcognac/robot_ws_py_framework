@@ -222,7 +222,7 @@ class FaceAmbienceNode:
             params = {
                 "fps": self.def_fps,
                 "dither_charset": "ascii",
-                "dither_algorithm": "ordered8"
+                "dither_algorithm": "random"
             }
             self.current_render_mode = "active"
             self.current_fps = self.def_fps
@@ -232,7 +232,7 @@ class FaceAmbienceNode:
             entering_idle = self.current_render_mode != "idle"
             if entering_idle or force_style:
                 params = {
-                    "dither_charset": "ascii",
+                    "dither_charset": "shades",
                     "dither_algorithm": "random"
                 }
             if entering_idle:

@@ -687,14 +687,20 @@ class CognitionNode:
         rospy.loginfo(f"Processing batch of {len(batch)} messages in state {self.state.name}.")
         should_start_cycle = False
         should_call_gemini = False
+        should_run_hooks = False
+        skip_gemini_types = {'debug', 'codex_tool'}
         for msg in batch:
             filename = getattr(msg, 'filename', None)
             self.io.append_message(msg_type=msg.type, content=msg.content, filename=filename)
-            if msg.type == 'debug':
+
+            if msg.type == 'hook_refresh':
                 should_start_cycle = True
+                should_run_hooks = True
             elif msg.loop_cognition:
                 should_start_cycle = True
-                should_call_gemini = True
+                should_run_hooks = True
+                if msg.type not in skip_gemini_types:
+                    should_call_gemini = True
             
             self.last_received_system_hint = msg.system_hint or ""
 
@@ -703,7 +709,10 @@ class CognitionNode:
                 self.state = CognitionState.GATHERING_CONTEXT
                 debug_only = not should_call_gemini
                 rospy.loginfo("State transition to GATHERING_CONTEXT. Starting cognition cycle.")
-                threading.Thread(target=self._initiate_cognition_cycle, args=(debug_only,)).start()
+                threading.Thread(
+                    target=self._initiate_cognition_cycle,
+                    args=(debug_only, should_run_hooks),
+                ).start()
 
     def _publish_ui_state(self, header_str, io_buffer_str, footer_str):
             def embed_image_url(match):
@@ -954,16 +963,24 @@ class CognitionNode:
 
             return final_contents
 
-    def _initiate_cognition_cycle(self, debug_only=False):
+    def _initiate_cognition_cycle(self, debug_only=False, run_hooks=True):
             try:
-                cycle_kind = "Debug Cognition Cycle" if debug_only else "Cognition Cycle"
+                if debug_only and run_hooks:
+                    cycle_kind = "Hook Refresh Cycle"
+                elif debug_only:
+                    cycle_kind = "UI Refresh Cycle"
+                else:
+                    cycle_kind = "Cognition Cycle"
                 rospy.loginfo(f"--- Starting {cycle_kind} ---")
                 # Reset flags
                 self.has_thought_started = False
                 self.context_results.clear()
                 self.context_gathering_complete.clear()
 
-                header_to_run, footer_to_run = self.context.get_hooks_to_execute()
+                if run_hooks:
+                    header_to_run, footer_to_run = self.context.get_hooks_to_execute()
+                else:
+                    header_to_run, footer_to_run = [], []
                 hooks_to_run = header_to_run + footer_to_run
                 self.context_requests_pending = len(hooks_to_run)
 
@@ -1018,7 +1035,7 @@ class CognitionNode:
                 )
 
                 if debug_only:
-                    rospy.loginfo("Debug cognition cycle refreshed context/UI and skipped Gemini API call.")
+                    rospy.loginfo(f"{cycle_kind} refreshed UI state and skipped Gemini API call.")
                     return
             
                 # --- API Throttling Logic ---
