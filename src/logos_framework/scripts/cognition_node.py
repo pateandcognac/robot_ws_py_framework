@@ -874,7 +874,7 @@ class CognitionNode:
             if not visible_hints:
                 return footer_str
 
-            hints_block = "<system_hints>\n" + "\n".join(visible_hints) + "\n</system_hints>"
+            hints_block = "\n".join(visible_hints)
             if footer_str and footer_str.strip():
                 return footer_str.rstrip() + "\n\n" + hints_block
             return hints_block
