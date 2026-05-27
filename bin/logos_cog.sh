@@ -11,6 +11,11 @@ Create or checkpoint ~/robot_workspaces/WORKSPACE_NAME, then launch:
 Environment:
   LOGOS_TEMPLATE_WORKSPACE  Template directory to copy for new workspaces.
                             Default: ~/robot_workspaces/Logos
+
+To push back to `Logos/`, run:
+$ git checkout -b <branch>
+$ git push origin <branch>
+
 USAGE
 }
 
