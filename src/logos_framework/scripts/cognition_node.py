@@ -667,9 +667,10 @@ class CognitionNode:
         if msg.type != 'context':
             if msg.loop_cognition == True:
                 color="bright_green"
+                self._send_feedback("Looping input", "", "got_input", color, "slant")
             else:
                 color="bright_red"
-            self._send_feedback("got_input", "", "got_input", color, "slant")
+            self._send_feedback("Queued input", "", "got_input", color, "slant")
 
         with self.queue_lock:
             self.incoming_queue.append(msg)
@@ -970,7 +971,7 @@ class CognitionNode:
                 if self.context_requests_pending > 0:
                     hook_names = ", ".join([h['name'] for h in hooks_to_run])
                     rospy.loginfo(f"Requesting {self.context_requests_pending} Cognitive Hooks...")
-                    self._send_feedback("calling_hooks", hook_names, "calling_hooks", "bright_yellow", "digital")
+                    self._send_feedback("Calling hooks", hook_names, "calling_hooks", "bright_yellow", "digital")
 
                     for hook in hooks_to_run:
                         out_msg = CognitionOutput(
@@ -994,7 +995,7 @@ class CognitionNode:
                 with self.state_lock:
                     self.state = CognitionState.AWAITING_RESPONSE
                     rospy.loginfo("State transition to AWAITING_RESPONSE. Assembling prompt.")
-                # self._send_feedback("assembling_prompt", "Preparing context for Gemini.", "api_call", "bright_cyan", "mini")
+                self._send_feedback("Prompting", "", "", "bright_cyan", "mini")
                 
                 header_hooks_data = []
                 for s in header_to_run:
@@ -1033,7 +1034,7 @@ class CognitionNode:
 
                     if self.api_delay_budget > 0.01: # Avoid sleeping for tiny fractions
                         rospy.loginfo(f"Throttling API call by {self.api_delay_budget:.2f}s.")
-                        # self._send_feedback("api_throttle", f"Waiting {self.api_delay_budget:.1f}s before calling Gemini.", "api_call", "bright_yellow", "mini")
+                        self._send_feedback("API throttle", f"Waiting {self.api_delay_budget:.1f}s.", "api_call", "bright_yellow", "mini")
                         time.sleep(self.api_delay_budget)
                 
                 self.last_api_call_time = time.time()
