@@ -25,6 +25,7 @@
 #include <array>
 #include <atomic>
 #include <cmath>
+#include <condition_variable>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -188,6 +189,7 @@ public:
         dyn_srv_.setCallback(boost::bind(&FaceNodeCpp::configCallback, this, _1, _2));
 
         updateRenderTimer();
+        hud_event_thread_ = std::thread(&FaceNodeCpp::hudEventWorker, this);
 
         if (!using_caca_display_) {
             setupTerminal();
@@ -197,6 +199,15 @@ public:
 
     ~FaceNodeCpp() {
         quit_requested_ = true;
+
+        {
+            std::lock_guard<std::mutex> lock(hud_event_mutex_);
+            hud_event_stop_ = true;
+        }
+        hud_event_cv_.notify_all();
+        if (hud_event_thread_.joinable()) {
+            hud_event_thread_.join();
+        }
 
         if (keypress_thread_.joinable()) {
             keypress_thread_.join();
@@ -302,6 +313,10 @@ private:
     ros::Timer render_timer_;
 
     std::mutex param_mutex_;
+    std::mutex hud_event_mutex_;
+    std::condition_variable hud_event_cv_;
+    std::deque<std::string> hud_event_queue_;
+    bool hud_event_stop_ = false;
     std::atomic<bool> quit_requested_;
 
     int terminal_cols_;
@@ -420,6 +435,7 @@ private:
 
     termios orig_settings_;
     std::thread keypress_thread_;
+    std::thread hud_event_thread_;
 
     static double clampDouble(double value, double lo, double hi) {
         return std::max(lo, std::min(hi, value));
@@ -881,8 +897,92 @@ private:
     }
 
     void hudEventCallback(const std_msgs::String::ConstPtr& msg) {
-        std::lock_guard<std::mutex> lock(param_mutex_);
-        applyHudEventLocked(msg->data);
+        {
+            std::lock_guard<std::mutex> lock(hud_event_mutex_);
+            hud_event_queue_.push_back(msg->data);
+        }
+        hud_event_cv_.notify_one();
+    }
+
+    void hudEventWorker() {
+        while (ros::ok() && !quit_requested_) {
+            std::string payload;
+            {
+                std::unique_lock<std::mutex> lock(hud_event_mutex_);
+                hud_event_cv_.wait(lock, [this]() {
+                    return hud_event_stop_ || !hud_event_queue_.empty();
+                });
+
+                if (hud_event_stop_ && hud_event_queue_.empty()) {
+                    return;
+                }
+
+                payload = hud_event_queue_.front();
+                hud_event_queue_.pop_front();
+            }
+
+            payload = prepareHudEventPayload(payload);
+
+            std::lock_guard<std::mutex> lock(param_mutex_);
+            applyHudEventLocked(payload);
+        }
+    }
+
+    int currentFigletWidthLocked() const {
+        int width = terminal_cols_;
+        if (caca_canvas_) {
+            width = std::max(1, caca_get_canvas_width(caca_canvas_));
+        }
+        return std::max(8, width);
+    }
+
+    std::string prepareHudEventPayload(const std::string& payload) {
+        if (payload.empty()) {
+            return payload;
+        }
+
+        try {
+            std::stringstream ss(payload);
+            boost::property_tree::ptree root;
+            boost::property_tree::read_json(ss, root);
+
+            if (root.get<bool>("figlet_rendered", false)) {
+                return payload;
+            }
+
+            const std::string pane = toLower(root.get<std::string>("pane", "face"));
+            const std::string kind = toLower(root.get<std::string>("kind", "text"));
+            const bool needs_figlet =
+                (pane == "face" && kind == "figlet") ||
+                (pane != "face" && (kind == "figlet" || kind == "caption"));
+
+            if (!needs_figlet) {
+                return payload;
+            }
+
+            const std::string text = root.get<std::string>("text", "");
+            if (text.empty()) {
+                return payload;
+            }
+
+            int width = 80;
+            std::string default_font;
+            {
+                std::lock_guard<std::mutex> lock(param_mutex_);
+                width = currentFigletWidthLocked();
+                default_font = (kind == "caption") ? caption_figlet_font_ : default_figlet_font_;
+            }
+
+            const std::string font = root.get<std::string>("font", default_font);
+            root.put("text", renderFiglet(text, font, pane, width));
+            root.put("figlet_rendered", true);
+
+            std::ostringstream out;
+            boost::property_tree::write_json(out, root, false);
+            return out.str();
+        } catch (const std::exception&) {
+            return payload;
+        }
     }
 
     void layer0ImageCallback(const sensor_msgs::Image::ConstPtr& msg) {
@@ -938,6 +1038,7 @@ private:
 
             const std::string pane = toLower(root.get<std::string>("pane", "face"));
             const std::string kind = toLower(root.get<std::string>("kind", "text"));
+            const bool figlet_rendered = root.get<bool>("figlet_rendered", false);
 
             if (!isHudPane(pane)) {
                 ROS_WARN_STREAM("Ignoring HUD event for unknown pane '" << pane << "'.");
@@ -993,7 +1094,9 @@ private:
                 }
 
                 const std::string rendered = kind == "figlet"
-                    ? renderFigletLocked(text, root.get<std::string>("font", default_figlet_font_), pane)
+                    ? (figlet_rendered
+                        ? text
+                        : renderFigletLocked(text, root.get<std::string>("font", default_figlet_font_), pane))
                     : text;
                 const std::string effect = toLower(root.get<std::string>("effect", "terminal"));
                 applyFaceTextEffectLocked(
@@ -1014,7 +1117,9 @@ private:
                     "font",
                     kind == "caption" ? caption_figlet_font_ : default_figlet_font_
                 );
-                const std::string rendered = renderFigletLocked(text, font, pane);
+                const std::string rendered = figlet_rendered
+                    ? text
+                    : renderFigletLocked(text, font, pane);
                 if (kind == "caption") {
                     enqueueStatusPrintLocked(rendered, fg, bg, root.get<double>("duration", 0.0), true);
                 } else if (pane == "status") {
@@ -1271,14 +1376,19 @@ private:
     }
 
     std::string renderFigletLocked(const std::string& text, const std::string& font, const std::string& pane) {
+        return renderFiglet(text, font, pane, currentFigletWidthLocked());
+    }
+
+    std::string renderFiglet(
+        const std::string& text,
+        const std::string& font,
+        const std::string& pane,
+        int width
+    ) {
         if (isPlainTextFigletFont(font)) {
             return text;
         }
 
-        int width = terminal_cols_;
-        if (caca_canvas_) {
-            width = std::max(1, caca_get_canvas_width(caca_canvas_));
-        }
         width = std::max(8, width);
 
         const std::string safe_font = sanitizeFigletFont(font);
