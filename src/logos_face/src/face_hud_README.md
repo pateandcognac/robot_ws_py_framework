@@ -86,7 +86,7 @@ Examples:
 ```
 
 ```json
-{"pane":"face","layer":0,"kind":"figlet","text":"spark","font":"small","effect":"crawl","color":"bright_blue","speed":8.0}
+{"pane":"face","layer":0,"kind":"figlet","text":"spark","font":"small","effect":"crawl","color":"bright_blue","speed":8.0,"location_x":0,"location_y":600,"direction_x":-1000,"direction_y":0,"tile_x":true,"tile_y":false,"density":1000}
 ```
 
 ```json
@@ -108,7 +108,12 @@ Examples:
 Supported panes are `face`, `status`, and `all` for clear events. Captions are
 status events; the old public `caption` pane has been removed. Face events
 accept `layer:0` or `layer:2`, defaulting to layer 0. Supported face text
-effects are `terminal`, `crawl`, and `rain`.
+effects are `terminal`, `crawl`, `scroll`, `marquee`, `move`, and `motion`.
+`terminal` preserves append-style history behavior. The moving effects share
+the same normalized controls: `location_x`/`location_y` are top-left placement
+in the 0-1000 face coordinate space, `direction_x`/`direction_y` are a motion
+vector in -1000..1000 space, `tile_x`/`tile_y` enable repeated tiling, and
+`density` is 0-1000 tile density.
 
 ## Face Images
 

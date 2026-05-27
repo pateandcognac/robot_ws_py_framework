@@ -265,24 +265,19 @@ private:
         ros::Time start_time;
         double speed = 8.0;
         double duration = 0.0;
-        bool active = false;
-    };
-
-    struct FaceRainEffect {
-        std::string chars;
-        ros::Time start_time;
-        double speed = 8.0;
-        double duration = 0.0;
-        double density = 0.18;
-        uint8_t fg = CACA_LIGHTGREEN;
-        uint8_t bg = CACA_BLACK;
+        double location_x = 0.0;
+        double location_y = 600.0;
+        double direction_x = -1000.0;
+        double direction_y = 0.0;
+        double density = 1000.0;
+        bool tile_x = true;
+        bool tile_y = false;
         bool active = false;
     };
 
     struct FaceLayerState {
         std::deque<HudLine> terminal_lines;
         FaceCrawlEffect crawl;
-        FaceRainEffect rain;
     };
 
     struct LayerImageState {
@@ -549,6 +544,40 @@ private:
         }
 
         return lines;
+    }
+
+    static double normalizedHudValue(double value, double default_value, double min_value = -1000.0) {
+        if (!std::isfinite(value)) {
+            return default_value;
+        }
+        return clampDouble(value, min_value, 1000.0);
+    }
+
+    static double positiveModulo(double value, double period) {
+        if (period <= 0.0) {
+            return value;
+        }
+        double result = std::fmod(value, period);
+        if (result < 0.0) {
+            result += period;
+        }
+        return result;
+    }
+
+    static bool getHudBool(const boost::property_tree::ptree& root, const std::string& key, bool default_value) {
+        const boost::optional<std::string> raw = root.get_optional<std::string>(key);
+        if (!raw) {
+            return default_value;
+        }
+
+        const std::string value = toLower(*raw);
+        if (value == "true" || value == "1" || value == "yes" || value == "on") {
+            return true;
+        }
+        if (value == "false" || value == "0" || value == "no" || value == "off") {
+            return false;
+        }
+        return default_value;
     }
 
     void initEyeParams() {
@@ -1107,7 +1136,13 @@ private:
                     bg,
                     root.get<double>("duration", 0.0),
                     root.get<double>("speed", 8.0),
-                    root.get<double>("density", 0.18)
+                    root.get<double>("location_x", 0.0),
+                    root.get<double>("location_y", 600.0),
+                    root.get<double>("direction_x", -1000.0),
+                    root.get<double>("direction_y", 0.0),
+                    root.get<double>("density", 1000.0),
+                    getHudBool(root, "tile_x", true),
+                    getHudBool(root, "tile_y", false)
                 );
                 return;
             }
@@ -1153,8 +1188,6 @@ private:
         state.terminal_lines.clear();
         state.crawl.active = false;
         state.crawl.lines.clear();
-        state.rain.active = false;
-        state.rain.chars.clear();
 
         LayerImageState& image = layer_images_[faceLayerIndex(layer)];
         image.active = false;
@@ -1194,14 +1227,21 @@ private:
         uint8_t bg,
         double duration,
         double speed,
-        double density
+        double location_x,
+        double location_y,
+        double direction_x,
+        double direction_y,
+        double density,
+        bool tile_x,
+        bool tile_y
     ) {
         FaceLayerState& state = face_layers_[faceLayerIndex(layer)];
         const ros::Time expires_at = duration > 0.0
             ? ros::Time::now() + ros::Duration(duration)
             : ros::Time(0);
 
-        if (effect == "crawl" || effect == "scroll" || effect == "marquee") {
+        if (effect == "crawl" || effect == "scroll" || effect == "marquee" ||
+            effect == "move" || effect == "motion") {
             const std::vector<std::string> text_lines = splitLines(text);
             state.crawl.lines.clear();
             state.crawl.lines.reserve(text_lines.size());
@@ -1211,28 +1251,14 @@ private:
             state.crawl.start_time = ros::Time::now();
             state.crawl.speed = std::max(0.1, speed);
             state.crawl.duration = std::max(0.0, duration);
+            state.crawl.location_x = normalizedHudValue(location_x, 0.0, 0.0);
+            state.crawl.location_y = normalizedHudValue(location_y, 600.0, 0.0);
+            state.crawl.direction_x = normalizedHudValue(direction_x, -1000.0);
+            state.crawl.direction_y = normalizedHudValue(direction_y, 0.0);
+            state.crawl.density = normalizedHudValue(density, 1000.0, 0.0);
+            state.crawl.tile_x = tile_x;
+            state.crawl.tile_y = tile_y;
             state.crawl.active = !state.crawl.lines.empty();
-            return;
-        }
-
-        if (effect == "rain" || effect == "matrix") {
-            state.rain.chars.clear();
-            for (const char ch : text) {
-                const unsigned char uch = static_cast<unsigned char>(ch);
-                if (uch >= 0x21 && uch < 0x7f) {
-                    state.rain.chars.push_back(ch);
-                }
-            }
-            if (state.rain.chars.empty()) {
-                state.rain.chars = "LOGOS";
-            }
-            state.rain.start_time = ros::Time::now();
-            state.rain.speed = std::max(0.1, speed);
-            state.rain.duration = std::max(0.0, duration);
-            state.rain.density = clampDouble(density, 0.01, 1.0);
-            state.rain.fg = fg;
-            state.rain.bg = bg;
-            state.rain.active = true;
             return;
         }
 
@@ -1921,7 +1947,6 @@ private:
 
         FaceLayerState& state = face_layers_[faceLayerIndex(layer)];
         trimFaceTerminalLinesLocked(state);
-        drawRainEffectLocked(state, x0, y0, w, h);
         drawCrawlEffectLocked(state, x0, y0, w, h);
         drawHudLinesLocked(state.terminal_lines, x0, y0, w, h, true);
     }
@@ -1940,72 +1965,58 @@ private:
         }
 
         const double elapsed = std::max(0.0, (now - state.crawl.start_time).toSec());
-        const int visible_count = std::min(h, static_cast<int>(state.crawl.lines.size()));
-        const int first_y = y0 + std::max(0, static_cast<int>((h - visible_count) / 1.5));
-
-        for (int i = 0; i < visible_count; ++i) {
-            const HudLine& line = state.crawl.lines[i];
-            std::string tile = line.text.empty() ? " " : line.text;
-            tile += "   ";
-            if (tile.empty()) {
-                continue;
-            }
-
-            const int offset = static_cast<int>(std::floor(elapsed * state.crawl.speed)) %
-                std::max(1, static_cast<int>(tile.size()));
-            caca_set_color_ansi(caca_canvas_, line.fg, line.bg);
-
-            for (int x = 0; x < w; ++x) {
-                const unsigned char ch = static_cast<unsigned char>(
-                    tile[(x + offset) % tile.size()]
-                );
-                if (ch > 0x20 && ch < 0x7f) {
-                    caca_put_char(caca_canvas_, x0 + x, first_y + i, ch);
-                }
-            }
+        int text_w = 1;
+        for (const HudLine& line : state.crawl.lines) {
+            text_w = std::max(text_w, static_cast<int>(line.text.size()));
         }
-    }
-
-    void drawRainEffectLocked(FaceLayerState& state, int x0, int y0, int w, int h) {
-        if (!state.rain.active || state.rain.chars.empty() || w <= 0 || h <= 0) {
-            return;
-        }
-
-        const ros::Time now = ros::Time::now();
-        if (state.rain.duration > 0.0 &&
-            (now - state.rain.start_time).toSec() > state.rain.duration) {
-            state.rain.active = false;
-            state.rain.chars.clear();
-            return;
-        }
-
-        const double elapsed = std::max(0.0, (now - state.rain.start_time).toSec());
-        const int column_count = clampInt(
-            static_cast<int>(std::lround(static_cast<double>(w) * state.rain.density)),
-            1,
-            std::max(1, w)
+        const int text_h = std::max(1, static_cast<int>(state.crawl.lines.size()));
+        const double dir_mag = std::sqrt(
+            state.crawl.direction_x * state.crawl.direction_x +
+            state.crawl.direction_y * state.crawl.direction_y
         );
-        const int phase = static_cast<int>(std::floor(elapsed * state.rain.speed));
+        const double dir_x = dir_mag > 1e-6 ? state.crawl.direction_x / dir_mag : 0.0;
+        const double dir_y = dir_mag > 1e-6 ? state.crawl.direction_y / dir_mag : 0.0;
+        const double base_x = ((w - 1) * state.crawl.location_x / 1000.0) +
+            elapsed * state.crawl.speed * dir_x;
+        const double base_y = ((h - 1) * state.crawl.location_y / 1000.0) +
+            elapsed * state.crawl.speed * dir_y;
+        const double density = clampDouble(state.crawl.density / 1000.0, 0.0, 1.0);
+        const int gap = std::max(
+            1,
+            static_cast<int>(std::lround(1.0 + (1.0 - density) * std::max(4, std::min(w, h))))
+        );
+        const int period_x = std::max(1, text_w + gap);
+        const int period_y = std::max(1, text_h + gap);
+        const int first_x = state.crawl.tile_x
+            ? static_cast<int>(std::lround(positiveModulo(base_x, period_x))) - period_x
+            : static_cast<int>(std::lround(base_x));
+        const int last_x = state.crawl.tile_x ? w + period_x : first_x;
+        const int first_y = state.crawl.tile_y
+            ? static_cast<int>(std::lround(positiveModulo(base_y, period_y))) - period_y
+            : static_cast<int>(std::lround(base_y));
+        const int last_y = state.crawl.tile_y ? h + period_y : first_y;
 
-        caca_set_color_ansi(caca_canvas_, state.rain.fg, state.rain.bg);
-        for (int i = 0; i < column_count; ++i) {
-            const int x = (i * 37 + phase / 3) % w;
-            const int trail = 3 + (i % 8);
-            const int cycle = h + trail + 1;
-            const int head = (phase + i * 11) % cycle;
+        for (int tile_y = first_y; tile_y <= last_y; tile_y += period_y) {
+            for (int tile_x = first_x; tile_x <= last_x; tile_x += period_x) {
+                for (int line_index = 0; line_index < text_h; ++line_index) {
+                    const int y = tile_y + line_index;
+                    if (y < 0 || y >= h) {
+                        continue;
+                    }
 
-            for (int j = 0; j < trail; ++j) {
-                const int y = head - j;
-                if (y < 0 || y >= h) {
-                    continue;
-                }
+                    const HudLine& line = state.crawl.lines[line_index];
+                    caca_set_color_ansi(caca_canvas_, line.fg, line.bg);
+                    for (int x = 0; x < static_cast<int>(line.text.size()); ++x) {
+                        const int draw_x = tile_x + x;
+                        if (draw_x < 0 || draw_x >= w) {
+                            continue;
+                        }
 
-                const size_t char_index = static_cast<size_t>(
-                    i * 13 + j * 7 + phase
-                ) % state.rain.chars.size();
-                const unsigned char ch = static_cast<unsigned char>(state.rain.chars[char_index]);
-                if (ch > 0x20 && ch < 0x7f) {
-                    caca_put_char(caca_canvas_, x0 + x, y0 + y, ch);
+                        const unsigned char ch = static_cast<unsigned char>(line.text[x]);
+                        if (ch > 0x20 && ch < 0x7f) {
+                            caca_put_char(caca_canvas_, x0 + draw_x, y0 + y, ch);
+                        }
+                    }
                 }
             }
         }
