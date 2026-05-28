@@ -3,7 +3,7 @@
 ## Project Structure & Module Organization
 
 This repository is a ROS catkin workspace for the Logos robot and, importantly, the shared framework/harness that gives a Vision LLM in the Gemini family control of the robot. Source packages live in `src/`: `logos_msgs` defines custom messages/actions, `logos_face` contains C++ face rendering nodes, `logos_framework` contains the cognition loop and Python worker nodes, `logos_hardware` and `logos_ui` contain ROS nodes and launch/UI code, and `logos_bringup` coordinates runtime launch/config. Convenience entrypoints are in `bin/`. Robot assets and generated motion/face sequences live in `animations/`, `sound_files/`, `models/`, `festival/`, and `porcupine/`. Documentation belongs in `docs/`; one-off generation and validation utilities belong in `tools/`. Treat `build/` and `devel/` as generated catkin output.
-There's docs scattered around the fs and in `docs/`.
+There's docs scattered around the fs and in `docs/`. The robot is an augmented and reconfigured Turtlebot2 with Kobuki base and RGBD Orbecc Astra camera. Turtlebot2-level stuff lives in `~/tb2_ws/`.
 
 ## Logos Workspaces & Cognition Harness
 

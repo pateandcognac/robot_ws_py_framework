@@ -239,6 +239,13 @@ Run:
 roslaunch logos_bringup logos_slam.launch
 ```
 
+For RGB-D mapping with RTAB-Map instead of GMapping, see
+`docs/LOGOS_RTABMAP.md`. The quick-start command is:
+
+```
+roslaunch logos_bringup logos_rtabmap.launch
+```
+
 Use either navigation or SLAM for normal operation, not both at the same time.
 Stop the one you are finished with by clicking its terminal and pressing
 `Ctrl+C`.

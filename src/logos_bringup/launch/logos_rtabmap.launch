@@ -1,0 +1,80 @@
+<launch>
+  <!--
+    Logos RTAB-Map skill.
+
+    Assumes logos_core.launch is already running the Kobuki base, TF tree,
+    Astra camera, depthimage_to_laserscan, and velocity mux/smoother.
+  -->
+
+  <arg name="localization" default="false"/>
+  <arg name="with_move_base" default="false"/>
+  <arg name="rtabmap_viz" default="true"/>
+  <arg name="rviz" default="false"/>
+
+  <arg name="database_path" default="$(env HOME)/.ros/logos_rtabmap.db"/>
+  <arg name="delete_db_on_start" default="false"/>
+
+  <arg name="base_frame_id" default="base_footprint"/>
+  <arg name="odom_frame_id" default="odom"/>
+  <arg name="map_frame_id" default="map"/>
+  <arg name="odom_topic" default="/odom"/>
+  <arg name="scan_topic" default="/scan"/>
+  <arg name="map_topic" default="/map"/>
+
+  <arg name="rgb_topic" default="/camera/rgb/image_rect_color"/>
+  <arg name="depth_topic" default="/camera/depth_registered/image_raw"/>
+  <arg name="camera_info_topic" default="/camera/rgb/camera_info"/>
+
+  <arg name="rtabmap_args" default="$(eval '--delete_db_on_start' if delete_db_on_start else ' ')"/>
+
+  <!-- Publish RTAB-Map's occupancy grid where classic ROS nav tools expect it. -->
+  <remap from="/rtabmap/grid_map" to="$(arg map_topic)"/>
+
+  <include file="$(find rtabmap_launch)/launch/rtabmap.launch">
+    <arg name="localization" value="$(arg localization)"/>
+    <arg name="database_path" value="$(arg database_path)"/>
+
+    <!-- Use Kobuki wheel odometry from logos_core.launch instead of RTAB-Map VO. -->
+    <arg name="visual_odometry" value="false"/>
+    <arg name="icp_odometry" value="false"/>
+    <arg name="publish_tf_odom" value="false"/>
+    <arg name="odom_topic" value="$(arg odom_topic)"/>
+
+    <!-- RTAB-Map publishes map -> odom. Kobuki/robot_state_publisher provide odom -> base/camera. -->
+    <arg name="frame_id" value="$(arg base_frame_id)"/>
+    <arg name="odom_frame_id" value="$(arg odom_frame_id)"/>
+    <arg name="map_frame_id" value="$(arg map_frame_id)"/>
+    <arg name="publish_tf_map" value="true"/>
+
+    <!-- Astra RGB-D plus the TB2 depth-derived laser scan. -->
+    <arg name="depth" value="true"/>
+    <arg name="subscribe_rgb" value="true"/>
+    <arg name="subscribe_scan" value="true"/>
+    <arg name="rgb_topic" value="$(arg rgb_topic)"/>
+    <arg name="depth_topic" value="$(arg depth_topic)"/>
+    <arg name="camera_info_topic" value="$(arg camera_info_topic)"/>
+    <arg name="scan_topic" value="$(arg scan_topic)"/>
+
+    <!-- Build the 2D occupancy grid from the depth-derived laser scan. -->
+    <arg name="args" value="$(arg rtabmap_args) --Grid/Sensor 0 --Mem/DepthCompressionFormat .png"/>
+
+    <arg name="approx_sync" value="true"/>
+    <arg name="queue_size" value="30"/>
+    <arg name="topic_queue_size" value="10"/>
+    <arg name="sync_queue_size" value="30"/>
+    <arg name="wait_for_transform" value="0.5"/>
+
+    <arg name="rtabmap_viz" value="$(arg rtabmap_viz)"/>
+    <arg name="rviz" value="$(arg rviz)"/>
+  </include>
+
+  <group if="$(arg with_move_base)">
+    <include file="$(find logos_bringup)/launch/includes/logos_move_base.launch.xml">
+      <arg name="odom_frame_id" value="$(arg odom_frame_id)"/>
+      <arg name="base_frame_id" value="$(arg base_frame_id)"/>
+      <arg name="global_frame_id" value="$(arg map_frame_id)"/>
+      <arg name="odom_topic" value="$(arg odom_topic)"/>
+      <arg name="laser_topic" value="$(arg scan_topic)"/>
+    </include>
+  </group>
+</launch>
