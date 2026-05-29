@@ -32,7 +32,7 @@ print(sys.version_info)
 
 # ROS Imports
 import rospy
-from std_msgs.msg import String, Bool, Int32MultiArray
+from std_msgs.msg import Empty, String, Bool, Int32MultiArray
 from kobuki_msgs.msg import Sound
 from logos_framework.msg import CognitionInput, CognitionOutput
 
@@ -408,6 +408,7 @@ class LogosEarsNode:
         self.pub_hotword_detections = rospy.Publisher('/stt/hotword_listener/detections', String, queue_size=10)
         self.pub_classifier = rospy.Publisher('/stt/audio_classifier/events', String, queue_size=1, latch=True)
         self.pub_python_interrupt = rospy.Publisher('/python/interrupt', String, queue_size=1)
+        self.pub_cognition_prefetch = rospy.Publisher('/cognition/prefetch', Empty, queue_size=1)
 
         # Subscribers
         rospy.Subscriber('/tts/is_speaking', Bool, self._cb_is_speaking)
@@ -740,7 +741,10 @@ class LogosEarsNode:
                         self._flush_ambient_buffer(
                             wake_trigger=True,
                             wake_context_id=wake_context_id,
+                            prefetch_after=True,
                         )
+                    else:
+                        self._publish_cognition_prefetch()
 
                     with self.state_lock:
                         self.current_state = LedState.RECORDING
@@ -915,7 +919,7 @@ class LogosEarsNode:
             for group in getattr(self, model_groups_name, {}).values():
                 group['predictor'].reset()
 
-    def _flush_ambient_buffer(self, wake_trigger=False, wake_context_id=None):
+    def _flush_ambient_buffer(self, wake_trigger=False, wake_context_id=None, prefetch_after=False):
         """Package ambient buffer and send to Scribe."""
         if not self.ambient_buffer:
             return
@@ -928,6 +932,7 @@ class LogosEarsNode:
             'epoch': time.time(), # Added epoch for easy age calculation
             'wake_trigger': wake_trigger, # Pass the flag to the job
             'wake_context_id': wake_context_id,
+            'prefetch_after': prefetch_after,
         }
         self.job_queue.put(job)
         
@@ -1036,6 +1041,12 @@ class LogosEarsNode:
             self.pub_python_interrupt.publish(String(data=json.dumps(payload)))
         except Exception as e:
             rospy.logwarn(f"Failed to publish Python interrupt: {e}")
+
+    def _publish_cognition_prefetch(self) -> None:
+        try:
+            self.pub_cognition_prefetch.publish(Empty())
+        except Exception as e:
+            rospy.logwarn(f"Failed to publish cognition prefetch trigger: {e}")
 
     def _reset_state(self):
         with self.state_lock:
@@ -1196,6 +1207,8 @@ class LogosEarsNode:
 
             if not full_text:
                 print(Fore.YELLOW + "Transcript empty after stripping control phrases.")
+                if job['type'] == 'ambient' and job.get('prefetch_after'):
+                    self._publish_cognition_prefetch()
                 if job['type'] == 'human_stt':
                     self._reset_state()
                 continue
@@ -1258,6 +1271,8 @@ class LogosEarsNode:
                 
                 self.last_ambient_publish_time = time.time()
                 print(Fore.CYAN + f"Ambient Published ({len(ambient_payload)} items). Latest: {new_entry['transcription'][:40]}...")
+                if job.get('prefetch_after'):
+                    self._publish_cognition_prefetch()
 
 
             elif job['type'] == 'human_stt':
@@ -1544,6 +1559,7 @@ ROS Topics Summary:
     /stt/ambient_listener/transcription  (String, latched)  - Ambient transcription history
     /stt/hotword_listener/detections     (String)           - All hotword detections
     /stt/audio_classifier/events         (String, latched)  - YAMNet audio classification history
+    /cognition/prefetch                  (Empty)            - Signal cognition to prefetch prompt context
     /face/rgbled                         (Int32MultiArray)  - LED control
     /mobile_base/commands/sound          (Sound)            - Kobuki sounds
     /cognition/output                    (CognitionOutput)  - Feedback messages

@@ -30,7 +30,7 @@ from google.genai import errors as genai_errors
 from google.genai import types
 
 # ROS Messages
-from std_msgs.msg import String as StringMsg
+from std_msgs.msg import Empty, String as StringMsg
 from logos_framework.msg import CognitionInput, CognitionOutput
 
 # Library Imports
@@ -165,7 +165,7 @@ class CognitionNode:
         # State tracking for feedback
         self.has_thought_started = False
 
-        # Interrupt prefetch state
+        # Prompt-context prefetch state
         self._prefetch_lock = threading.Lock()
         self._prefetch_in_progress = False
         self._prefetch_context_results = {}
@@ -185,7 +185,7 @@ class CognitionNode:
             self._runtime_config_callback,
             queue_size=5,
         )
-        self.interrupt_sub = rospy.Subscriber('/python/interrupt', StringMsg, self._interrupt_callback, queue_size=5)
+        self.prefetch_sub = rospy.Subscriber('/cognition/prefetch', Empty, self._prefetch_callback, queue_size=5)
         self.ui_state_pub = rospy.Publisher('/cognition/ui_state', StringMsg, queue_size=2, latch=True)
         self.face_cmd_pub = rospy.Publisher('/face/emoji_command', StringMsg, queue_size=5)
 
@@ -1032,22 +1032,17 @@ class CognitionNode:
             rospy.loginfo(f"[Timing] Prompt build total: {time.time() - _build_t0:.3f}s")
             return final_contents
 
-    def _interrupt_callback(self, msg: StringMsg):
-        try:
-            data = json.loads(msg.data) if msg.data.strip() else {}
-        except Exception:
-            data = {}
-        reason = data.get("reason", "unspecified")
+    def _prefetch_callback(self, msg: Empty):
         with self.state_lock:
             current_state = self.state
         if current_state != CognitionState.IDLE:
-            rospy.loginfo(f"[Prefetch] /python/interrupt received (reason: {reason}) but state is {current_state.name}; ignoring.")
+            rospy.loginfo(f"[Prefetch] /cognition/prefetch received but state is {current_state.name}; ignoring.")
             return
         with self._prefetch_lock:
             if self._prefetch_in_progress:
-                rospy.loginfo(f"[Prefetch] /python/interrupt received but prefetch already in progress; ignoring.")
+                rospy.loginfo("[Prefetch] /cognition/prefetch received but prefetch already in progress; ignoring.")
                 return
-        rospy.loginfo(f"[Prefetch] /python/interrupt received (reason: {reason}). Spawning prefetch thread.")
+        rospy.loginfo("[Prefetch] /cognition/prefetch received. Spawning prefetch thread.")
         threading.Thread(target=self._run_prefetch, daemon=True).start()
 
     def _run_prefetch(self):
@@ -1132,7 +1127,7 @@ class CognitionNode:
                 hooks_to_run = header_to_run + footer_to_run
                 self.context_requests_pending = len(hooks_to_run)
 
-                # --- Check for valid interrupt prefetch ---
+                # --- Check for valid prompt-context prefetch ---
                 hook_phase_used_prefetch = False
                 if run_hooks and hooks_to_run:
                     with self._prefetch_lock:
