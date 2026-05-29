@@ -1,6 +1,6 @@
 # Logos Startup and Basic Usage
 
-This guide is for a person who has not used Linux or ROS before. It is meant
+This guide is for a third-party who has not used Linux or ROS before. It is meant
 to get Logos from "powered off" to "ready to talk" without needing to know how
 the robot software works internally.
 
