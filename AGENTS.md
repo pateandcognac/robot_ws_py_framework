@@ -7,17 +7,17 @@ There's docs scattered around the fs and in `docs/`. The robot is an augmented a
 
 ## Logos Workspaces & Cognition Harness
 
-Logos runtime instances are launched against per-agent workspaces under `~/robot_workspaces/<workspace_name>/`. This repo supplies the ROS nodes and harness; each workspace supplies the distinct LLM configuration, system prompt, persistent state, and Python API code used by that particular Logos instance. This is analogous to launching Codex in different repos: the same agent framework runs in different working directories, except Logos has a single persistent Python tool/API for robot actions instead of shell tools and MCP.
+Logos runtime instances are launched against per-agent workspaces under `~/robot_workspaces/<workspace_name>/`. This repo supplies the ROS nodes and harness; each workspace supplies the distinct LLM configuration, system prompt, persistent state, and Python API code used by that particular Logos instance. This is analogous to launching Claude Code or Codex agents in different repos: the same agent framework runs in different working directories, except Logos has a single persistent Python tool/API for robot actions instead of shell tools and MCP.
 
 Common workspace contents include `.system/system_prompt.txt`, `.system/framework_config.json`, `config/`, `src/logos/`, `src/skills/`, `src/hook_routines/`, `state/`, `ipc/`, and `hypomnemata/`. A standard reference prompt lives at `/home/robot/robot_workspaces/Logos/.system/system_prompt.txt`; read it when changing cognition, prompt assembly, hooks, Python execution, or Logos-facing APIs. These workspaces are useful sandboxes for testing different LLM/robot configurations and API experiments, but they are not security sandboxes.
 
 `logos_framework` is the core bridge: `cognition_node.py` assembles context and streams Gemini output, `python_worker_node.py` executes `<py>` blocks in the selected workspace with the workspace `src/` on `sys.path`, and `web_ui_node.py` exposes the browser UI. Prefer `docs/LOGOS_FRAMEWORK.md` for detailed node behavior before making framework changes.
 
-## Codex Bridge for Live Testing
+## Claude or Codex Bridge for Live Testing
 
-This workspace includes a small Codex-to-Logos testing bridge documented in `docs/LOGOS_CODEX_BRIDGE.md`. Use `/usr/bin/python3 tools/codex_logos_exec.py ...` to send a uniquely tagged `<py>` block through the existing `/cognition/output` -> `python_worker_node.py` -> `/cognition/input` path. The bridge defaults to request type `codex_tool` and suppresses `loop_cognition` unless `--allow-loop` is passed, so it is appropriate for live debugging without intentionally waking the Logos LLM. Results intentionally enter the normal IO buffer.
+This workspace includes a small third party agent-to-Logos testing bridge documented in `docs/LOGOS_CODEX_BRIDGE.md`. Use `/usr/bin/python3 tools/codex_logos_exec.py ...` to send a uniquely tagged `<py>` block through the existing `/cognition/output` -> `python_worker_node.py` -> `/cognition/input` path. The bridge defaults to request type `codex_tool` and suppresses `loop_cognition` unless `--allow-loop` is passed, so it is appropriate for live debugging without intentionally waking the Logos LLM. Results intentionally enter the normal IO buffer.
 
-Codex can also expose this through the local Logos MCP server. The MCP server itself runs under `/home/robot/robot_ws/.venv/bin/python3` because that venv has the MCP SDK, while its `logos_python` tool shells out to `/usr/bin/python3` for ROS imports (`rospy`, generated messages). If the active runtime is a checkpoint workspace such as `Logos_001`, pass `workspace` or `workspace_path_override` so `<file path="...">` results resolve to the correct workspace.
+Claude / Codex can also expose this through the local Logos MCP server. The MCP server itself runs under `/home/robot/robot_ws/.venv/bin/python3` because that venv has the MCP SDK, while its `logos_python` tool shells out to `/usr/bin/python3` for ROS imports (`rospy`, generated messages). If the active runtime is a checkpoint workspace such as `Logos_001`, pass `workspace` or `workspace_path_override` so `<file path="...">` results resolve to the correct workspace.
 
 ## Build, Test, and Development Commands
 
