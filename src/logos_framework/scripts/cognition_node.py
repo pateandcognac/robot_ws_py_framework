@@ -9,6 +9,7 @@ import json
 import time
 import random
 import threading
+import concurrent.futures
 import base64
 import io
 import mimetypes
@@ -164,6 +165,17 @@ class CognitionNode:
         # State tracking for feedback
         self.has_thought_started = False
 
+        # Interrupt prefetch state
+        self._prefetch_lock = threading.Lock()
+        self._prefetch_in_progress = False
+        self._prefetch_context_results = {}
+        self._prefetch_context_pending = 0
+        self._prefetch_context_event = threading.Event()
+        self._prefetch_results = None        # dict hook_name->content once complete, or None
+        self._prefetch_timestamp = 0.0
+        PREFETCH_VALID_SECS = 60.0
+        self._prefetch_valid_secs = PREFETCH_VALID_SECS
+
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
         self.runtime_config_pub = rospy.Publisher('/cognition/runtime_config/state', StringMsg, queue_size=2, latch=True)
         self.input_sub = rospy.Subscriber('/cognition/input', CognitionInput, self._input_callback, queue_size=10)
@@ -173,6 +185,7 @@ class CognitionNode:
             self._runtime_config_callback,
             queue_size=5,
         )
+        self.interrupt_sub = rospy.Subscriber('/python/interrupt', StringMsg, self._interrupt_callback, queue_size=5)
         self.ui_state_pub = rospy.Publisher('/cognition/ui_state', StringMsg, queue_size=2, latch=True)
         self.face_cmd_pub = rospy.Publisher('/face/emoji_command', StringMsg, queue_size=5)
 
@@ -185,7 +198,7 @@ class CognitionNode:
             return
         self._publish_runtime_config_state()
 
-        self.processing_timer = rospy.Timer(rospy.Duration(0.25), self._process_queue)
+        self.processing_timer = rospy.Timer(rospy.Duration(0.10), self._process_queue)
         rospy.loginfo("Cognition Node: Ready and waiting for input.")
 
     def _parse_bool(self, value, default=False):
@@ -590,7 +603,9 @@ class CognitionNode:
         try:
             with self.runtime_lock:
                 client = self.genai_client
+            _upload_t0 = time.time()
             uploaded = client.files.upload(file=str(image_path))
+            _upload_dur = time.time() - _upload_t0
             file_uri = getattr(uploaded, "uri", None)
             uploaded_mime_type = getattr(uploaded, "mime_type", None) or mime_type
             if not file_uri:
@@ -599,7 +614,7 @@ class CognitionNode:
             part = types.Part.from_uri(file_uri=file_uri, mime_type=uploaded_mime_type)
             self.files_cache[cache_key] = part
             self.runtime_status["files_api_last_event"] = f"uploaded {image_path.name}"
-            rospy.loginfo(f"Uploaded image for Gemini Files API reuse: {image_path}")
+            rospy.loginfo(f"[Timing] Files API upload {image_path.name}: {_upload_dur:.3f}s")
             self._publish_runtime_config_state()
             return part
         except Exception as e:
@@ -660,6 +675,15 @@ class CognitionNode:
                     self.context_gathering_complete.set()
             else:
                 rospy.logwarn(f"Received context message without a filename. Cannot process.")
+            return
+
+        if msg.type == 'context' and self._prefetch_in_progress:
+            hook_name = msg.filename
+            if hook_name:
+                self._prefetch_context_results[hook_name] = msg.content
+                self._prefetch_context_pending -= 1
+                if self._prefetch_context_pending <= 0:
+                    self._prefetch_context_event.set()
             return
         
         # Feedback: Got Input (ignore context inputs)
@@ -879,11 +903,48 @@ class CognitionNode:
                 return footer_str.rstrip() + "\n\n" + hints_block
             return hints_block
 
+    def _parallel_prefetch_images(self, text_parts: list, runtime_cfg: dict):
+        """Upload all uncached images referenced in text_parts in parallel, warming files_cache."""
+        if not runtime_cfg.get("use_files_api", True):
+            return
+        placeholder_pattern = re.compile(r'{--IMAGE_PATH:([^}]+)--}')
+        paths_to_upload = []
+        seen = set()
+        for text in text_parts:
+            for m in placeholder_pattern.finditer(text):
+                p = self.workspace_path / m.group(1)
+                if p not in seen:
+                    seen.add(p)
+                    api_profile = runtime_cfg.get("api_profile", "free")
+                    try:
+                        cache_key = self._files_cache_key(p, api_profile)
+                    except Exception:
+                        continue
+                    if cache_key not in self.files_cache:
+                        paths_to_upload.append(p)
+
+        if not paths_to_upload:
+            return
+
+        _par_t0 = time.time()
+        rospy.loginfo(f"[Timing] Uploading {len(paths_to_upload)} image(s) in parallel...")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+            futures = {pool.submit(self._upload_or_reuse_file_part, p, runtime_cfg): p
+                       for p in paths_to_upload}
+            for fut in concurrent.futures.as_completed(futures):
+                p = futures[fut]
+                try:
+                    fut.result()
+                except Exception as e:
+                    rospy.logwarn(f"Parallel upload failed for {p}: {e}")
+        rospy.loginfo(f"[Timing] Parallel image upload batch complete: {time.time() - _par_t0:.3f}s for {len(paths_to_upload)} file(s)")
+
     def _construct_prompt_and_images(self, header_hooks_data, footer_hooks_data, runtime_cfg, include_api_parts=True):
             """
             Builds the final prompt for the LLM and the display strings for the UI.
             This refactored method correctly INLINES image content and omission notes.
             """
+            _build_t0 = time.time()
             file_tag_pattern = re.compile(r'(<file\s+path="([^"]+)"[^>]*>)(.*?)(</file>)', re.DOTALL)
 
             # --- Build the initial text content using the new helper ---
@@ -933,9 +994,16 @@ class CognitionNode:
             self._publish_ui_state(processed_header_str, processed_io_buffer_str, ui_footer_str)
 
             if not include_api_parts:
+                rospy.loginfo(f"[Timing] Prompt build (UI only): {time.time() - _build_t0:.3f}s")
                 return []
 
             # --- PASS 2: Assemble final prompt list for the LLM API ---
+            # Pre-upload all referenced images in parallel before sequential assembly.
+            self._parallel_prefetch_images(
+                [processed_header_str, processed_io_buffer_str, processed_footer_str],
+                runtime_cfg,
+            )
+
             final_contents = []
             placeholder_pattern = re.compile(r'{--IMAGE_PATH:([^}]+)--}')
 
@@ -961,10 +1029,90 @@ class CognitionNode:
             if loop_guard_system_hint:
                 final_contents.append(loop_guard_system_hint)
 
+            rospy.loginfo(f"[Timing] Prompt build total: {time.time() - _build_t0:.3f}s")
             return final_contents
+
+    def _interrupt_callback(self, msg: StringMsg):
+        try:
+            data = json.loads(msg.data) if msg.data.strip() else {}
+        except Exception:
+            data = {}
+        reason = data.get("reason", "unspecified")
+        with self.state_lock:
+            current_state = self.state
+        if current_state != CognitionState.IDLE:
+            rospy.loginfo(f"[Prefetch] /python/interrupt received (reason: {reason}) but state is {current_state.name}; ignoring.")
+            return
+        with self._prefetch_lock:
+            if self._prefetch_in_progress:
+                rospy.loginfo(f"[Prefetch] /python/interrupt received but prefetch already in progress; ignoring.")
+                return
+        rospy.loginfo(f"[Prefetch] /python/interrupt received (reason: {reason}). Spawning prefetch thread.")
+        threading.Thread(target=self._run_prefetch, daemon=True).start()
+
+    def _run_prefetch(self):
+        time.sleep(0.1)
+        with self.state_lock:
+            if self.state != CognitionState.IDLE:
+                rospy.loginfo("[Prefetch] State changed before prefetch could start; aborting.")
+                return
+        with self._prefetch_lock:
+            if self._prefetch_in_progress:
+                return
+            self._prefetch_in_progress = True
+            self._prefetch_context_results.clear()
+            self._prefetch_context_event.clear()
+
+        prefetch_t0 = time.time()
+        rospy.loginfo("[Prefetch] Starting hook prefetch...")
+        try:
+            header_to_run, footer_to_run = self.context.get_hooks_to_execute()
+            hooks_to_run = header_to_run + footer_to_run
+            self._prefetch_context_pending = len(hooks_to_run)
+
+            if not hooks_to_run:
+                rospy.loginfo("[Prefetch] No hooks configured; nothing to prefetch.")
+                return
+
+            for hook in hooks_to_run:
+                out_msg = CognitionOutput(
+                    type='context',
+                    content=f"<py>{hook['code']}</py>",
+                    filename=hook['name']
+                )
+                self.output_pub.publish(out_msg)
+
+            completed = self._prefetch_context_event.wait(timeout=30.0)
+            if not completed:
+                rospy.logwarn("[Prefetch] Timed out waiting for hook results; storing partial results.")
+
+            hook_results = dict(self._prefetch_context_results)
+            rospy.loginfo(f"[Prefetch] Hooks done in {time.time() - prefetch_t0:.3f}s ({len(hook_results)}/{len(hooks_to_run)} results).")
+
+            # Build hook data structures to pre-upload referenced images via Files API.
+            runtime_cfg = self._runtime_snapshot()
+            if runtime_cfg.get("use_files_api", True):
+                header_data = [{'config': s, 'content': hook_results[s['name']]}
+                                for s in header_to_run if s['name'] in hook_results]
+                footer_data = [{'config': s, 'content': hook_results[s['name']]}
+                                for s in footer_to_run if s['name'] in hook_results]
+                # include_api_parts=False triggers parallel image upload without a Gemini call.
+                self._construct_prompt_and_images(header_data, footer_data, runtime_cfg, include_api_parts=False)
+
+            with self._prefetch_lock:
+                self._prefetch_results = hook_results
+                self._prefetch_timestamp = time.time()
+
+            rospy.loginfo(f"[Prefetch] Complete in {time.time() - prefetch_t0:.3f}s. Context valid for {self._prefetch_valid_secs:.0f}s.")
+        except Exception as e:
+            rospy.logwarn(f"[Prefetch] Error during prefetch: {e}")
+        finally:
+            with self._prefetch_lock:
+                self._prefetch_in_progress = False
 
     def _initiate_cognition_cycle(self, debug_only=False, run_hooks=True):
             try:
+                cycle_start_t = time.time()
                 if debug_only and run_hooks:
                     cycle_kind = "Hook Refresh Cycle"
                 elif debug_only:
@@ -984,8 +1132,24 @@ class CognitionNode:
                 hooks_to_run = header_to_run + footer_to_run
                 self.context_requests_pending = len(hooks_to_run)
 
+                # --- Check for valid interrupt prefetch ---
+                hook_phase_used_prefetch = False
+                if run_hooks and hooks_to_run:
+                    with self._prefetch_lock:
+                        prefetch_age = time.time() - self._prefetch_timestamp
+                        if self._prefetch_results is not None and prefetch_age < self._prefetch_valid_secs:
+                            rospy.loginfo(f"[Prefetch] Using prefetched hook context ({prefetch_age:.1f}s old). Skipping hook dispatch.")
+                            self.context_results = dict(self._prefetch_results)
+                            self._prefetch_results = None
+                            hook_phase_used_prefetch = True
+                        else:
+                            if self._prefetch_results is not None:
+                                rospy.loginfo(f"[Prefetch] Prefetched context expired ({prefetch_age:.1f}s old). Re-running hooks.")
+                            self._prefetch_results = None
+
                 # Feedback: Calling Hooks
-                if self.context_requests_pending > 0:
+                hook_phase_t0 = time.time()
+                if self.context_requests_pending > 0 and not hook_phase_used_prefetch:
                     hook_names = ", ".join([h['name'] for h in hooks_to_run])
                     rospy.loginfo(f"Requesting {self.context_requests_pending} Cognitive Hooks...")
                     self._send_feedback("Calling hooks", hook_names, "calling_hooks", "bright_yellow", "digital")
@@ -997,7 +1161,7 @@ class CognitionNode:
                             filename=hook['name']
                         )
                         self.output_pub.publish(out_msg)
-                    
+
                     completed = self.context_gathering_complete.wait(timeout=30.0)
                     if not completed:
                         rospy.logwarn("Timed out waiting for Cognitive Hooks. Proceeding with what was received.")
@@ -1008,12 +1172,17 @@ class CognitionNode:
                             "bright_yellow",
                             "mini"
                         )
+
+                hook_phase_dur = time.time() - hook_phase_t0
+                if hooks_to_run:
+                    src = "prefetch" if hook_phase_used_prefetch else "live"
+                    rospy.loginfo(f"[Timing] Hook phase ({src}): {hook_phase_dur:.3f}s")
                 
                 with self.state_lock:
                     self.state = CognitionState.AWAITING_RESPONSE
                     rospy.loginfo("State transition to AWAITING_RESPONSE. Assembling prompt.")
                 self._send_feedback("Prompting", "", "", "bright_cyan", "mini")
-                
+
                 header_hooks_data = []
                 for s in header_to_run:
                     content = self.context_results.get(s['name'])
@@ -1033,6 +1202,8 @@ class CognitionNode:
                     runtime_cfg,
                     include_api_parts=not debug_only,
                 )
+                pre_api_t = time.time()
+                rospy.loginfo(f"[Timing] Hook→API-call gap (hook done to prompt built): {pre_api_t - hook_phase_t0 - hook_phase_dur:.3f}s (prompt build included above)")
 
                 if debug_only:
                     rospy.loginfo(f"{cycle_kind} refreshed UI state and skipped Gemini API call.")
@@ -1082,11 +1253,13 @@ class CognitionNode:
                             "mini"
                         )
 
+                        api_call_t0 = time.time()
                         stream = self.genai_client.models.generate_content_stream(
                             model=model_name, contents=final_contents, config=gen_config
                         )
                         rospy.loginfo("Gemini stream opened. Beginning stream processing.")
                         # self._send_feedback("api_streaming", "Gemini is streaming a response.", "api_call", "bright_cyan", "mini")
+                        first_token_logged = False
 
                         for chunk in stream:
                             last_chunk = chunk
@@ -1110,6 +1283,9 @@ class CognitionNode:
                                     self.output_pub.publish(CognitionOutput(type='thoughts', content=text))
                                     print(text, end="", flush=True)
                                 else:
+                                    if not first_token_logged:
+                                        rospy.loginfo(f"[Timing] API→first token: {time.time() - api_call_t0:.3f}s")
+                                        first_token_logged = True
                                     if complete_response_text == "":
                                         print("\n\n=== FINAL RESPONSE ===\n\n")
                                     print(text, end="", flush=True)
@@ -1170,7 +1346,7 @@ class CognitionNode:
             finally:
                 with self.state_lock:
                     self.state = CognitionState.IDLE
-                rospy.loginfo("--- Cognition Cycle Finished. State reset to IDLE. ---")
+                rospy.loginfo(f"--- Cognition Cycle Finished. Total: {time.time() - cycle_start_t:.3f}s. State reset to IDLE. ---")
                 self.last_received_system_hint = ""
                 
     def run(self):
