@@ -1,8 +1,8 @@
 <!-- 
     Logos Move Base Include
     - Pure path planning.
-    - No hardware, no smoothing (handled by Layer 0).
-    - Outputs to cmd_vel_mux/input/navi
+    - No hardware nodes (handled by Layer 0).
+    - Outputs to the shared velocity smoother before the final cmd_vel mux.
 -->
 <launch>
   <arg name="odom_frame_id"   default="odom"/>
@@ -30,8 +30,8 @@
     <param name="DWAPlannerROS/global_frame_id" value="$(arg odom_frame_id)"/>
 
     <!-- REMAPPINGS -->
-    <!-- Crucial: Output to the Mux input we defined in Layer 0 -->
-    <remap from="cmd_vel" to="cmd_vel_mux/input/navi"/>
+    <!-- Route planner output through Layer 0's shared smoother. -->
+    <remap from="cmd_vel" to="velocity_smoother/raw_cmd_vel"/>
     
     <!-- Inputs from Layer 0 -->
     <remap from="odom" to="$(arg odom_topic)"/>

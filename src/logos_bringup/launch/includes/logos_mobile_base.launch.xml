@@ -1,7 +1,8 @@
 <!--
   Logos Mobile Base Launcher
   Based on standard TurtleBot2 mobile_base.launch.xml
-  Added: Global Velocity Smoothing & Logos Mux Config
+  Added: Logos mux slots, one shared velocity smoother, Kobuki safety controller,
+         bumper pointclouds, and turtlebot_move action server.
 -->
 <launch>
   <arg name="base"       default="$(optenv TURTLEBOT_BASE kobuki)"/>
@@ -19,38 +20,38 @@
     <remap from="mobile_base/joint_states" to="joint_states"/>
   </node>
 
-  <!-- 3. Velocity Multiplexer (The Traffic Cop) -->
-  <node pkg="nodelet" type="nodelet" name="cmd_vel_mux" args="load yocs_cmd_vel_mux/CmdVelMuxNodelet $(arg manager)">
-    <param name="yaml_cfg_file" value="$(find logos_bringup)/param/mux.yaml"/>
-    <!-- INPUTS -->
-    <remap from="cmd_vel_mux/input/teleop" to="cmd_vel_mux/input/teleop"/>
-    <remap from="cmd_vel_mux/input/safety_controller" to="cmd_vel_mux/input/safety_controller"/>
-    <remap from="cmd_vel_mux/input/navi"   to="cmd_vel_mux/input/navi"/>
-    <remap from="cmd_vel_mux/input/logos"  to="cmd_vel_mux/input/logos"/>
-    <!-- OUTPUT: Redirected to the smoother instead of the base -->
-    <remap from="cmd_vel_mux/output" to="raw_cmd_vel"/>
-  </node>
-
-  <!-- 4. Velocity Smoother (The Safety Buffer) -->
+  <!-- 3. Velocity Smoother (shared by navigation and normal Logos base commands) -->
   <node pkg="nodelet" type="nodelet" name="velocity_smoother" args="load yocs_velocity_smoother/VelocitySmootherNodelet $(arg manager)">
     <rosparam file="$(find yocs_velocity_smoother)/param/standalone.yaml" command="load"/>
-    <remap from="velocity_smoother/raw_cmd_vel" to="raw_cmd_vel"/>
-    <!-- OUTPUT: Finally goes to the hardware -->
-    <remap from="velocity_smoother/smooth_cmd_vel" to="mobile_base/commands/velocity"/>
+    <remap from="velocity_smoother/smooth_cmd_vel" to="cmd_vel_mux/input/smooth"/>
     <remap from="velocity_smoother/odometry" to="odom"/>
     <remap from="velocity_smoother/robot_cmd_vel" to="mobile_base/commands/velocity"/>
   </node>
 
-  <!-- 5. Bumper to PointCloud (For obstacle avoidance) -->
+  <!-- 4. Velocity Multiplexer (the final arbiter before the base) -->
+  <node pkg="nodelet" type="nodelet" name="cmd_vel_mux" args="load yocs_cmd_vel_mux/CmdVelMuxNodelet $(arg manager)">
+    <param name="yaml_cfg_file" value="$(find logos_bringup)/param/mux.yaml"/>
+    <remap from="cmd_vel_mux/output" to="mobile_base/commands/velocity"/>
+  </node>
+
+  <!-- 5. Kobuki Safety Controller (backs up/stops on bumper, cliff, wheel-drop events) -->
+  <node pkg="nodelet" type="nodelet" name="kobuki_safety_controller" args="load kobuki_safety_controller/SafetyControllerNodelet $(arg manager)">
+    <remap from="kobuki_safety_controller/cmd_vel" to="cmd_vel_mux/input/safety_controller"/>
+    <remap from="kobuki_safety_controller/events/bumper" to="mobile_base/events/bumper"/>
+    <remap from="kobuki_safety_controller/events/cliff" to="mobile_base/events/cliff"/>
+    <remap from="kobuki_safety_controller/events/wheel_drop" to="mobile_base/events/wheel_drop"/>
+  </node>
+
+  <!-- 6. Bumper to PointCloud (for obstacle avoidance costmaps) -->
   <node pkg="nodelet" type="nodelet" name="bumper2pointcloud" args="load kobuki_bumper2pc/Bumper2PcNodelet $(arg manager)">
     <remap from="bumper2pointcloud/pointcloud" to="mobile_base/sensors/bumper_pointcloud"/>
     <remap from="bumper2pointcloud/core_sensors" to="mobile_base/sensors/core"/>
   </node>
 
 
-  <!-- 6. move action server for simple movements. -->  
+  <!-- 7. move action server for simple movements. -->  
   <node pkg="turtlebot_actions" type="turtlebot_move_action_server" name="move_action_server">
-      <remap from="move_action_server/cmd_vel" to="cmd_vel_mux/input/navi"/>
+      <remap from="move_action_server/cmd_vel" to="velocity_smoother/raw_cmd_vel"/>
       <remap from="move_action_server/turtlebot_move" to="turtlebot_move"/>
   </node>
  

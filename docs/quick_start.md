@@ -161,11 +161,11 @@ def logos.map3d.remove(name: str): ...
 def logos.nav.turn_then_drive(turn_deg: float, forward_m: float, wait: bool=False) -> NavTask:
     # Uses odom. Turn in place, stop, then drive straight. Good for tight spots.
     ...
-def logos.base.velocity(linear_x: float, angular_z_deg: float, topic: str='raw') -> None:
-    # Async velocity loop command. Times out after ~0.6s. Must be spammed in a loop to keep moving.
+def logos.base.velocity(linear_x: float, angular_z_deg: float, topic: str='muxed') -> None:
+    # Async velocity loop command. topic: muxed/smooth (smoothed), raw (low priority), safety (high priority).
     ...
-def logos.base.move_timed(linear_x: float, angular_z_deg: float, duration: float) -> None:
-    # Blocking blind drive (like backing up).
+def logos.base.move_timed(linear_x: float, angular_z_deg: float, duration: float, topic: str='raw') -> None:
+    # Blocking blind drive (like backing up). Re-publishes until duration ends.
     ...
 
 # --- ABSOLUTE NAVIGATION (Map-based, obstacle avoiding) ---
@@ -204,10 +204,10 @@ logos.bumper.show()                         # print chain in execution order
 
 # --- ATOMIC BEHAVIORS ---
 logos.bumper.do_print(bumpers)              # logs which sides fired, no side effects
-logos.bumper.do_stop(bumpers)              # emergency halt via safety mux
+logos.bumper.do_stop(bumpers)              # emergency halt via Logos safety mux slot
 logos.bumper.do_backup(bumpers, distance=0.15, speed=0.1)
 # Per-bumper steering: left→rotates right, right→rotates left, center→straight back.
-# Publishes to safety mux slot so it works even during paused navigation.
+# Publishes to the Logos safety slot so it works during paused navigation while yielding to Kobuki safety.
 
 # --- COMPOSED BEHAVIORS ---
 logos.bumper.look_and_identify(bumpers)

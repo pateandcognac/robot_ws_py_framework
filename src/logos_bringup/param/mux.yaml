@@ -1,19 +1,23 @@
 # Logos Priority Configuration
 # Priorities: 0 (lowest) to MAX_INT
 subscribers:
-  - name:        "Safe reactive controller"
+  - name:        "Kobuki safety controller"
     topic:       "input/safety_controller"
     timeout:     0.2
     priority:    10
+  - name:        "Logos safety override"
+    topic:       "input/logos_safety"
+    timeout:     0.2
+    priority:    8
   - name:        "Teleoperation"
     topic:       "input/teleop"
     timeout:     1.0
     priority:    7
-  - name:        "Logos AI"
-    topic:       "input/logos"
-    timeout:     1.0
-    priority:    5
-  - name:        "Navigation"
-    topic:       "input/navi"
+  - name:        "Smoothed navigation and Logos"
+    topic:       "input/smooth"
     timeout:     1.0
     priority:    6
+  - name:        "Logos raw"
+    topic:       "input/logos_raw"
+    timeout:     1.0
+    priority:    4
