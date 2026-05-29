@@ -147,16 +147,31 @@ This starts Logos's cognition loop, Python worker, and browser web UI using the
 
 ### 4. Start the face
 
-Use the separate face monitor for this step. (Face monitor power button is adjacent to the red/green LED on the green circuit board on Logos's face.)
-Open a terminal. Right-click inside the terminal. Select the terminal profile named `robot_face_03`. (Sets expected font and colors.)
-Adjust to a small but readable text size using Control + (plus and minus keys) to adjust size.
-Maximize the window or enter fullscreen (with F11 key).
+`logos_core.sh` automatically opens the face HUD in a fullscreen
+`gnome-terminal` on the secondary face monitor, using the `robot_face_03`
+terminal profile. The helper skips launching a duplicate terminal if
+`face_hud_node` is already running.
 
 The `robot_face_03` profile sets the colors and font sizing expected for the
 face.
 
+To launch only the face terminal helper manually, run:
 
-Run:
+```
+logos_face_term.sh
+```
+
+To run core bringup without opening the face terminal, run:
+
+```
+LOGOS_FACE_TERM=0 logos_core.sh
+```
+
+If the automatic helper cannot place the terminal correctly, use the separate
+face monitor manually. (Face monitor power button is adjacent to the red/green
+LED on the green circuit board on Logos's face.) Open a terminal, right-click
+inside the terminal, select the `robot_face_03` profile, then maximize the
+window or enter fullscreen with F11. In that manual terminal, run:
 
 ```
 logos_face.sh
@@ -164,13 +179,9 @@ logos_face.sh
 
 ### 5. Start the idle state indicator
 
-After the face is running, open another terminal on the main monitor and run:
-
-```
-logos_idle.sh
-```
-
-Leave that terminal open.
+`logos_core.sh` starts the idle state indicator through
+`logos_bringup/logos_core.launch`. For isolated debugging, it can still be run
+manually with `logos_idle.sh`.
 
 ### 6. Mapping / Localization
 These are ROS modes for making Logos map or navigate. Run one or the other, not both.
@@ -349,7 +360,8 @@ http://localhost:5000
 - Make sure `logos_core.sh` is running first.
 - Check the face monitor power button. It is on the lower left of the face, on
   the green PCB next to the red/green LED.
-- Make sure the face monitor terminal is open on the secondary monitor.
+- Make sure the face monitor terminal is open on the secondary monitor. You can
+  reopen it with `logos_face_term.sh`.
 - Make sure the top face pane is running `logos_face.sh`.
 - If the terminal text looks the wrong size or color, right-click and select
   the `robot_face_03` terminal profile.

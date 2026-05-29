@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MCP server exposing a few Codex-friendly Logos debugging tools.
+MCP server exposing a few third-party-friendly Logos debugging tools.
 
 Run with:
     /home/robot/robot_ws/.venv/bin/python3 tools/logos_mcp_server.py
