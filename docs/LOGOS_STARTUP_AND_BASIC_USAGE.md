@@ -118,34 +118,7 @@ logos_chroma.sh
 
 Leave that terminal open.
 
-### 2. Start Logos's body and core robot services
-
-Open another terminal on the main monitor and run:
-
-```
-logos_core.sh
-```
-
-Leave that terminal open.
-
-This starts the core ROS robot stack, including the mobile base and other
-hardware-facing services. If it complains that the Kobuki/base is not
-available, check that the Kobuki power is on.
-
-### 3. Start Logos's cognition and web dashboard
-
-Open another terminal on the main monitor and run:
-
-```
-logos_cog.sh Logos
-```
-
-Leave that terminal open.
-
-This starts Logos's cognition loop, Python worker, and browser web UI using the
-`Logos` agent workspace.
-
-### 4. Start speech input
+### 3. Start speech input
 
 Open another terminal on the main monitor and run:
 
@@ -157,24 +130,39 @@ Leave that terminal open.
 
 This starts Logos's microphone speech-to-text process.
 
-### 5. Start the face and caption terminal
+### 3. Start Logos's cognition and web dashboard
 
-Use the separate face monitor for this step. The detailed setup is in
-[Face Monitor Setup](#face-monitor-setup).
+Open another terminal on the main monitor and run:
 
-The face pane runs:
+```
+logos_cog.sh Logos_workspace
+```
+Where `Logos_workspace` is the name of an existing workspace, or a new workspace to `git clone` from the core Logos workspace.
+
+Leave that terminal open.
+
+This starts Logos's cognition loop, Python worker, and browser web UI using the
+`Logos` agent workspace.
+
+
+### 4. Start the face
+
+Use the separate face monitor for this step. (Face monitor power button is adjacent to the red/green LED on the green circuit board on Logos's face.)
+Open a terminal. Right-click inside the terminal. Select the terminal profile named `robot_face_03`. (Sets expected font and colors.)
+Adjust to a small but readable text size using Control + (plus and minus keys) to adjust size.
+Maximize the window or enter fullscreen (with F11 key).
+
+The `robot_face_03` profile sets the colors and font sizing expected for the
+face.
+
+
+Run:
 
 ```
 logos_face.sh
 ```
 
-The caption pane runs:
-
-```
-logos_tts_caption.sh
-```
-
-### 6. Start the idle state indicator
+### 5. Start the idle state indicator
 
 After the face is running, open another terminal on the main monitor and run:
 
@@ -184,37 +172,13 @@ logos_idle.sh
 
 Leave that terminal open.
 
-## Use The Browser Dashboard
-
-On the main desktop monitor, open a web browser and go to:
-
-```
-http://localhost:5000
-```
-
-`localhost` means "this same ThinkPad." It only works on the robot computer
-unless the network setup is changed.
-
-Use the web UI to:
-
-- Type text input to Logos.
-- Read Logos's inputs and outputs.
-- See the cognition dashboard state.
-
-If the page does not load, make sure the `logos_cog.sh Logos` terminal is still
-running.
-
-## Optional Robot Movement Modes
-
-These are extra ROS modes for making Logos map or navigate. They are not
-needed for basic conversation. Only start them after `logos_core.sh` is already
-running.
-
+### 6. Mapping / Localization
+These are ROS modes for making Logos map or navigate. Run one or the other, not both.
 Open a new terminal for each of these and leave it open while using that mode.
 
 ### Navigation
 
-Navigation is for moving around with an existing map.
+Navigation is for moving around with an existing map. This is usually what you want to run, once a stable map of an environment has been built.
 
 Run:
 
@@ -246,9 +210,47 @@ For RGB-D mapping with RTAB-Map instead of GMapping, see
 roslaunch logos_bringup logos_rtabmap.launch
 ```
 
+(RTAB-Map database can also be used to created assets for Logos's `map3d` aka Chora.)
+
 Use either navigation or SLAM for normal operation, not both at the same time.
 Stop the one you are finished with by clicking its terminal and pressing
 `Ctrl+C`.
+
+### 7. Start Logos's body and core robot services
+
+Open another terminal on the main monitor and run:
+
+```
+logos_core.sh
+```
+
+Leave that terminal open.
+
+This starts the core ROS robot stack, including the mobile base and other
+hardware-facing services. If it complains that the Kobuki/base is not
+available, check that the Kobuki power is on.
+
+
+## Use The Browser Dashboard
+
+On the main desktop monitor, open a web browser and go to:
+
+```
+http://localhost:5000
+```
+
+`localhost` means "this same ThinkPad." It only works on the robot computer
+unless the network setup is changed.
+
+Use the web UI to:
+
+- Type text input to Logos.
+- Read Logos's inputs and outputs.
+- See the cognition dashboard state.
+
+If the page does not load, make sure the `logos_cog.sh Logos_workspace` terminal is still
+running.
+
 
 ## Talk To Logos Out Loud
 
@@ -257,102 +259,13 @@ Speech input works like this:
 1. Say "Hey Robot".
 2. Wait for Logos to begin listening.
 3. Say the message you want Logos to hear.
-4. Say "End of Line" when the message is finished.
+4. Say "End of Line" when the message is finished. Or "Cancel That" to discard the message.
 
 Logos will transcribe the message and send it into cognition.
 
-There is a second stop phrase:
+## Start Codex or Claude Code For Help
 
-```
-Edit Input
-```
-
-That asks for a chance to edit the transcript before it is sent. Use it only
-when you are ready to interact with the speech terminal prompt. For everyday
-conversation, "End of Line" is simpler.
-
-## Face Monitor Setup
-
-The face monitor is a secondary HDMI screen. The face is intentionally drawn as
-ASCII terminal art, so set up a terminal there and keep it visible.
-
-### Make the face terminal
-
-1. Move the mouse pointer to the face monitor.
-2. Open a terminal there with `Ctrl+Alt+T`.
-3. Make that terminal full screen. On many Linux desktops, `F11` toggles full
-   screen for a terminal window.
-4. Right-click inside the terminal.
-5. Select the terminal profile named `robot_face_03`.
-
-The `robot_face_03` profile sets the colors and font sizing expected for the
-face.
-
-### Split the terminal into two panes with tmux
-
-In the full-screen face terminal, run:
-
-```
-tmux
-```
-
-Then run:
-
-```
-tmux split-window -v -p 33
-```
-
-That creates:
-
-- A larger top pane for Logos's face.
-- A smaller bottom pane for text-to-speech captions and text output.
-
-The split is approximately two-thirds top and one-third bottom.
-
-### Start captions in the bottom pane
-
-After the split command, tmux usually puts the cursor in the new bottom pane.
-Run:
-
-```
-logos_tts_caption.sh
-```
-
-Leave it running.
-
-### Start the face in the top pane
-
-Move to the top tmux pane:
-
-1. Hold `Ctrl` and press `B`.
-2. Release both keys.
-3. Press the `Up Arrow` key.
-
-Then run:
-
-```
-logos_face.sh
-```
-
-The face should fill the top terminal pane.
-
-### Useful tmux controls
-
-tmux uses a two-part keyboard shortcut. First press `Ctrl+B`, release it, then
-press the second key.
-
-| What you want | Keys |
-| --- | --- |
-| Move to the top pane | `Ctrl+B`, then `Up Arrow` |
-| Move to the bottom pane | `Ctrl+B`, then `Down Arrow` |
-| Close tmux after its programs are stopped | type `exit` in each pane |
-
-Do not worry about tmux if the face is already running. It is only the tool
-that lets the face and captions share one full-screen terminal.
-
-## Start Codex For Help
-
-Codex can answer questions from the robot workspace, inspect files, and help
+Codex or Claude can answer questions from the robot harness or API workspace, inspect files, and help
 diagnose errors.
 
 Open a new terminal on the main monitor and run:
@@ -363,13 +276,6 @@ codex
 ```
 
 Then ask questions in plain language, for example:
-
-```
-Logos did not hear "Hey Robot". What should I check?
-```
-
-or:
-
 ```
 Explain the startup guide and help me restart the face.
 ```
@@ -401,15 +307,14 @@ Open one terminal per command and leave it open:
 ```
 logos_chroma.sh
 logos_core.sh
-logos_cog.sh Logos
 logos_stt.sh
+logos_cog.sh Logos
 ```
 
 On the face monitor, in the face tmux layout:
 
 ```
 logos_face.sh
-logos_tts_caption.sh
 ```
 
 After the face is running, start the idle state indicator in its own terminal:
