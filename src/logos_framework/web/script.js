@@ -32,7 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const mediaResolutionSelect = document.getElementById('media-resolution-select');
     const filesApiToggle = document.getElementById('files-api-toggle');
     const keyFailoverToggle = document.getElementById('key-failover-toggle');
+    const throttlingToggle = document.getElementById('throttling-toggle');
     const runtimeConfigStatus = document.getElementById('runtime-config-status');
+    const chromaUiButton = document.getElementById('chroma-ui-button');
     const paidKeyAlert = document.getElementById('paid-key-alert');
     const paidKeyAlertBody = document.getElementById('paid-key-alert-body');
     const paidKeyAlertClose = document.getElementById('paid-key-alert-close');
@@ -257,6 +259,14 @@ document.addEventListener('DOMContentLoaded', () => {
         emitRuntimeConfig({key_failover: keyFailoverToggle.checked});
     });
 
+    throttlingToggle.addEventListener('change', () => {
+        emitRuntimeConfig({api_throttling_enabled: throttlingToggle.checked});
+    });
+
+    chromaUiButton.addEventListener('click', () => {
+        window.open('http://127.0.0.1:8123/static/ui.html', '_blank', 'noopener');
+    });
+
     function emitRuntimeConfig(update) {
         socket.emit('runtime_config_set', update);
     }
@@ -315,6 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filesApiToggle.checked = Boolean(config.use_files_api);
         keyFailoverToggle.checked = Boolean(config.key_failover);
+        throttlingToggle.checked = Boolean(config.api_throttling_enabled);
         renderRuntimeStatus(config);
     }
 

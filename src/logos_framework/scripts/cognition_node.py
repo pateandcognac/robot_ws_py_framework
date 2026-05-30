@@ -256,6 +256,7 @@ class CognitionNode:
             "thinking_level": thinking_level,
             "media_resolution": media_resolution,
             "use_files_api": self._parse_bool(rospy.get_param('~use_files_api', True), default=True),
+            "api_throttling_enabled": self._parse_bool(rospy.get_param('~api_throttling_enabled', False), default=False),
         }
 
     def _safe_runtime_config(self):
@@ -313,6 +314,8 @@ class CognitionNode:
                 self.runtime_config["media_resolution"] = self._normalize_media_resolution(requested["media_resolution"])
             if "use_files_api" in requested:
                 self.runtime_config["use_files_api"] = self._parse_bool(requested["use_files_api"], default=True)
+            if "api_throttling_enabled" in requested:
+                self.runtime_config["api_throttling_enabled"] = self._parse_bool(requested["api_throttling_enabled"], default=False)
 
             new_profile = self.runtime_config["api_profile"]
 
@@ -1207,7 +1210,7 @@ class CognitionNode:
                 # --- API Throttling Logic ---
                 model_cfg = self.config.framework['main_model']
                 throttle_cfg = model_cfg.get('api_throttling', {})
-                if throttle_cfg.get('enabled', False):
+                if runtime_cfg.get('api_throttling_enabled', throttle_cfg.get('enabled', False)):
                     time_since_last_call = time.time() - self.last_api_call_time
                     self.api_delay_budget = max(0, self.api_delay_budget - time_since_last_call)
                     
