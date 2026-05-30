@@ -122,10 +122,10 @@ HOTWORD_DEBOUNCE_SEC = 1.5
 WAKE_TRIGGER_NOTE = "\n---\n# Wake word detected! Rerouting to <human_stt> channel..."
 
 # Timers (Seconds)
-AMBIENT_MAX_DURATION = 120    # 2 minutes hard cap for buffer
-AMBIENT_SILENCE_TRIGGER = 30  # seconds of VAD silence before flushing ambient
-RECORDING_TIMEOUT = 90        # 90 second hard limit for user input
-MIN_AMBIENT_LENGTH = 30       # Minimum seconds to bother transcribing ambient
+AMBIENT_MAX_DURATION = 90    # seconds hard cap for buffer
+AMBIENT_SILENCE_TRIGGER = 8  # seconds of VAD silence before flushing ambient
+RECORDING_TIMEOUT = 120        # second hard limit for user input
+MIN_AMBIENT_LENGTH = 16       # Minimum seconds to bother transcribing ambient
 
 # LED Constants
 FACE_LED_COUNT = 12
@@ -145,7 +145,7 @@ CLASSIFIER_SCORE_THRESHOLD = 0.05  # minimum score to include in output
 CLASSIFIER_BLIP_DURATION   = 2.0   # seconds for amber LED overlay after each sample
 CLASSIFIER_LABEL_BLACKLIST = {
     'Chewing, mastication',
-    'Crunch',
+    'Crunching',
 }
 
 class LedState:
@@ -656,6 +656,8 @@ class LogosEarsNode:
 
             if reset_wakewords_pending:
                 self._reset_wakeword_models()
+
+            now = time.time()
 
             # --- Pre-processing ---
             pcm_float32 = pcm_int16.astype(np.float32) / 32768.0
