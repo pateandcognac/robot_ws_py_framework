@@ -123,9 +123,9 @@ WAKE_TRIGGER_NOTE = "\n---\n# Wake word detected! Rerouting to <human_stt> chann
 
 # Timers (Seconds)
 AMBIENT_MAX_DURATION = 120    # 2 minutes hard cap for buffer
-AMBIENT_CHECK_INTERVAL = 600  # 10 minutes
+AMBIENT_SILENCE_TRIGGER = 30  # seconds of VAD silence before flushing ambient
 RECORDING_TIMEOUT = 90        # 90 second hard limit for user input
-MIN_AMBIENT_LENGTH = 10       # Minimum seconds to bother transcribing ambient
+MIN_AMBIENT_LENGTH = 30       # Minimum seconds to bother transcribing ambient
 
 # LED Constants
 FACE_LED_COUNT = 12
@@ -640,7 +640,7 @@ class LogosEarsNode:
         Consumes audio from queue. Checks wakewords. Checks VAD. Manages buffers.
         """
         # Timers
-        last_ambient_check = time.time()
+        last_ambient_speech_time = 0.0   # 0 = no speech heard yet this session
         last_classifier_sample = time.time()
 
         while self.running and not rospy.is_shutdown():
@@ -776,32 +776,29 @@ class LogosEarsNode:
                 if ambient_enabled:
                     if is_ambient_speech:
                         self.ambient_buffer.append(pcm_float32)
+                        last_ambient_speech_time = now
 
                     # Manage Ambient Buffer Lifecycle
-                    now = time.time()
-                    
-                    # Soft Cut Logic:
-                    # Check if we hit time limits
                     buffer_duration_approx = (len(self.ambient_buffer) * FRAME_LENGTH) / SAMPLE_RATE
-                    
-                    hit_max_length = buffer_duration_approx >= AMBIENT_MAX_DURATION
-                    hit_interval = (now - last_ambient_check) > AMBIENT_CHECK_INTERVAL
 
-                    if hit_max_length or hit_interval:
-                        # Only flush if we are currently PAUSED (not speech)
-                        # OR if we are way over time (force flush)
+                    silence_secs = (now - last_ambient_speech_time) if last_ambient_speech_time > 0 else 0.0
+                    hit_max_length = buffer_duration_approx >= AMBIENT_MAX_DURATION
+                    hit_silence = silence_secs >= AMBIENT_SILENCE_TRIGGER and not is_ambient_speech
+
+                    if hit_max_length or hit_silence:
+                        # Only flush if paused (not mid-speech), or hard cap is blown
                         if not is_ambient_speech or buffer_duration_approx > (AMBIENT_MAX_DURATION + 15):
                             if buffer_duration_approx > MIN_AMBIENT_LENGTH:
-                                print(Fore.LIGHTBLUE_EX + f"Auto-transcribing Ambient Buffer ({buffer_duration_approx:.1f}s)")
+                                print(Fore.LIGHTBLUE_EX + f"Auto-transcribing Ambient Buffer ({buffer_duration_approx:.1f}s, silence {silence_secs:.0f}s)")
                                 self._play_sound(Sound.RECHARGE)
-                                self._send_feedback(header="Transcribing...", body=f"Ambient Buffer: {buffer_duration_approx:.1f}s", header_color="bright_blue", body_color="blue",font="script")
+                                self._send_feedback(header="Transcribing...", body=f"Ambient Buffer: {buffer_duration_approx:.1f}s", header_color="bright_blue", body_color="blue", font="script")
                                 self._flush_ambient_buffer()
                             else:
                                 # Buffer too small, just discard to prevent drift
                                 self.ambient_buffer = []
                                 self.ambient_start_time = time.time()
 
-                            last_ambient_check = now
+                            last_ambient_speech_time = now  # re-arm: need fresh silence after next speech
 
                 # --- Audio Classifier Rolling Buffer ---
                 # Independent of ambient mode and VAD. Buffers all non-robot
