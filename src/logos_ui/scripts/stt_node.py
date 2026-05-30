@@ -136,16 +136,20 @@ AMBIENT_HISTORY_MAX_CHARS = 32767 # Max characters before oldest is dropped
 
 # Audio Classifier Settings (MediaPipe YAMNet)
 CLASSIFIER_MODEL_PATH      = os.path.expanduser('~/robot_ws/models/yamnet.tflite')
-CLASSIFIER_SAMPLE_INTERVAL = 10.0  # seconds between classifier dispatches
-CLASSIFIER_SAMPLE_DURATION = 2.5   # seconds of audio per sample
+CLASSIFIER_SAMPLE_INTERVAL = 2.5  # seconds between classifier dispatches
+CLASSIFIER_SAMPLE_DURATION = 1.5   # seconds of audio per sample
 CLASSIFIER_SAMPLE_FRAMES   = int(CLASSIFIER_SAMPLE_DURATION * SAMPLE_RATE / FRAME_LENGTH)  # ~78 frames
-CLASSIFIER_BOOST_FACTOR    = 0.5   # temporal confidence boost per repeated detection
+CLASSIFIER_BOOST_FACTOR    = 0.0   # temporal confidence boost per repeated detection
 CLASSIFIER_TOP_K           = 10    # max YAMNet labels per sample
 CLASSIFIER_SCORE_THRESHOLD = 0.05  # minimum score to include in output
-CLASSIFIER_BLIP_DURATION   = 2.0   # seconds for amber LED overlay after each sample
+CLASSIFIER_BLIP_DURATION   = 1.0   # seconds for amber LED overlay after each sample
 CLASSIFIER_LABEL_BLACKLIST = {
     'Chewing, mastication',
     'Crunching',
+    'Insect',
+    'Fly',
+    'Mosquito',
+    'housefly'
 }
 
 class LedState:
