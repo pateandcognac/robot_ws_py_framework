@@ -27,6 +27,12 @@ rostopic echo /stt/audio_classifier/events
 
 Wake phrase (`Hey Robot`) is **always on** - it does not need to be enabled. During a wake-recording window, `end of line` finishes and `cancel that` abandons the recording without transcribing or publishing anything. The optional edit stop word is disabled by default and can be enabled with the private ROS param `~enable_edit_wakeword` when an `edit_input` model is available. Drop Logos-trained replacements into matching subdirectories under `wakewords/custom`; that tree is searched first. Shared OpenWakeWord feature models live in `wakewords/openwakeword-feature-models` so startup does not fetch model resources at runtime.
 
+The audio capture device defaults to `logos_mic,pan_tilt_mic`: a dedicated
+Logos mic ALSA alias first, with the old webcam mic alias as fallback. Override
+the ordered list with private ROS param `~audio_devices` or the
+`LOGOS_STT_AUDIO_DEVICES` environment variable. See
+`docs/LOGOS_MICROPHONE_SETUP.md` for host setup.
+
 ---
 
 ## Topics

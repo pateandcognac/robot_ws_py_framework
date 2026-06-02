@@ -102,6 +102,22 @@ Plain `Ctrl+C` is reserved for stopping a command.
 
 ## Normal Startup Order
 
+For the full tmux-based bringup dashboard, run:
+
+```
+logos_launch.sh
+```
+
+This opens a main-monitor `gnome-terminal`, creates a `tmux` session named
+`logos`, starts the usual stack in separate panes, and leaves the final pane
+waiting for the cognition workspace name. Press Enter there to use `Logos`, or
+edit the workspace name first. For boot/autostart use, the same helper can be
+called with explicit display and automatic cognition startup:
+
+```
+logos_launch.sh --display :0 --auto-cog --workspace Logos
+```
+
 The commands below use helper scripts already in the robot workspace. Start
 them in this order.
 
@@ -273,6 +289,7 @@ Speech input works like this:
 4. Say "End of Line" when the message is finished. Or "Cancel That" to discard the message.
 
 Logos will transcribe the message and send it into cognition.
+(Note: The microphone has a hardware mute. The metal spring on the robot's head is capacitive touch switch. Tap it to change LED red to green to unmute.)
 
 ## Start Codex or Claude Code For Help
 

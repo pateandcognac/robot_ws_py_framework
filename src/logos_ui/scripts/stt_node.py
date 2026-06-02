@@ -59,7 +59,8 @@ colorama_init(autoreset=True)
 SAMPLE_RATE = 16000
 FRAME_LENGTH = 512  # Silero VAD already runs on these 32 ms frames
 CHANNELS = 1
-DEVICE_NAME = 'pan_tilt_mic' 
+AUDIO_DEVICE_CANDIDATES = ('logos_mic', 'pan_tilt_mic')
+AUDIO_DEVICE_ENV = 'LOGOS_STT_AUDIO_DEVICES'
 
 # OpenWakeWord assets. `wakewords/custom` is searched first so a Logos-trained
 # model can replace a community model by reusing its directory name.
@@ -136,12 +137,12 @@ AMBIENT_HISTORY_MAX_CHARS = 32767 # Max characters before oldest is dropped
 
 # Audio Classifier Settings (MediaPipe YAMNet)
 CLASSIFIER_MODEL_PATH      = os.path.expanduser('~/robot_ws/models/yamnet.tflite')
-CLASSIFIER_SAMPLE_INTERVAL = 2.5  # seconds between classifier dispatches
+CLASSIFIER_SAMPLE_INTERVAL = 3.0  # seconds between classifier dispatches
 CLASSIFIER_SAMPLE_DURATION = 1.5   # seconds of audio per sample
 CLASSIFIER_SAMPLE_FRAMES   = int(CLASSIFIER_SAMPLE_DURATION * SAMPLE_RATE / FRAME_LENGTH)  # ~78 frames
 CLASSIFIER_BOOST_FACTOR    = 0.0   # temporal confidence boost per repeated detection
 CLASSIFIER_TOP_K           = 10    # max YAMNet labels per sample
-CLASSIFIER_SCORE_THRESHOLD = 0.05  # minimum score to include in output
+CLASSIFIER_SCORE_THRESHOLD = 0.10  # minimum score to include in output
 CLASSIFIER_BLIP_DURATION   = 1.0   # seconds for amber LED overlay after each sample
 CLASSIFIER_LABEL_BLACKLIST = {
     'Chewing, mastication',
@@ -169,6 +170,8 @@ class LedState:
 class LogosEarsNode:
     def __init__(self):
         rospy.init_node('logos_ears_node', anonymous=False)
+        self.audio_device_candidates = self._load_audio_device_candidates()
+        self.active_audio_device = None
         
         # --- State Variables ---
         self.state_lock = threading.Lock()
@@ -594,47 +597,109 @@ class LogosEarsNode:
     # -------------------------------------------------------------------------
     # 1. The Ear (Audio Capture Thread)
     # -------------------------------------------------------------------------
+    def _load_audio_device_candidates(self):
+        """
+        Return ordered ALSA/PortAudio device names for capture.
+
+        Defaults prefer the new dedicated Logos mic and fall back to the old
+        webcam alias. Override with the private ROS param `~audio_devices` or
+        the LOGOS_STT_AUDIO_DEVICES env var, using a comma-separated string or
+        a ROS list.
+        """
+        configured = rospy.get_param('~audio_devices', None)
+        if configured is None:
+            configured = os.environ.get(AUDIO_DEVICE_ENV)
+
+        candidates = self._parse_audio_device_candidates(configured)
+        if not candidates:
+            candidates = list(AUDIO_DEVICE_CANDIDATES)
+
+        rospy.loginfo(f"STT audio device preference: {', '.join(candidates)}")
+        return candidates
+
+    @staticmethod
+    def _parse_audio_device_candidates(configured):
+        if configured is None:
+            return []
+
+        if isinstance(configured, str):
+            raw_candidates = configured.split(',')
+        elif isinstance(configured, (list, tuple)):
+            raw_candidates = configured
+        else:
+            rospy.logwarn(
+                f"Ignoring unsupported ~audio_devices value {configured!r}; "
+                "expected comma-separated string or list"
+            )
+            return []
+
+        candidates = []
+        for candidate in raw_candidates:
+            candidate = str(candidate).strip()
+            if candidate:
+                candidates.append(candidate)
+        return candidates
+
     def _audio_capture_loop(self):
         """
         Reads audio from device, calculates RMS (for LEDs), puts in queue.
         Blocking reads to ensure no data loss.
         """
-        try:
-            with sd.InputStream(
-                samplerate=SAMPLE_RATE,
-                blocksize=FRAME_LENGTH,
-                channels=CHANNELS,
-                dtype='int16',
-                device=DEVICE_NAME
-            ) as stream:
-                while self.running and not rospy.is_shutdown():
-                    # Read audio
-                    pcm, overflow = stream.read(FRAME_LENGTH)
-                    if overflow:
-                        print(Fore.YELLOW + "Audio Overflow")
+        while self.running and not rospy.is_shutdown():
+            for device_name in self.audio_device_candidates:
+                opened_stream = False
+                if not self.running or rospy.is_shutdown():
+                    return
+                try:
+                    with sd.InputStream(
+                        samplerate=SAMPLE_RATE,
+                        blocksize=FRAME_LENGTH,
+                        channels=CHANNELS,
+                        dtype='int16',
+                        device=device_name
+                    ) as stream:
+                        opened_stream = True
+                        self.active_audio_device = device_name
+                        rospy.loginfo(f"STT audio capture using device: {device_name}")
 
-                    # Convert to standard format for processing.
-                    # OpenWakeWord needs 16-bit integers.
-                    # Whisper/VAD usually like float32 between -1 and 1.
-                    pcm_int16 = pcm.flatten()
-                    
-                    # Calculate Volume for VU Meter (LEDs)
-                    # We store this in a thread-safe way for the LED thread
-                    rms = np.sqrt(np.mean(pcm_int16.astype(float)**2))
-                    self.current_volume = rms
+                        while self.running and not rospy.is_shutdown():
+                            # Read audio
+                            pcm, overflow = stream.read(FRAME_LENGTH)
+                            if overflow:
+                                print(Fore.YELLOW + "Audio Overflow")
 
-                    # EAR PLUGS LOGIC:
-                    # If TTS is speaking, we DROP the audio here.
-                    # We do not put it in the queue.
-                    with self.state_lock:
-                        if self.is_speaking:
-                            continue
+                            # Convert to standard format for processing.
+                            # OpenWakeWord needs 16-bit integers.
+                            # Whisper/VAD usually like float32 between -1 and 1.
+                            pcm_int16 = pcm.flatten()
 
-                    self.audio_queue.put(pcm_int16)
-                    
-        except Exception as e:
-            rospy.logerr(f"Audio Capture Error: {e}")
-            self.running = False
+                            # Calculate Volume for VU Meter (LEDs)
+                            # We store this in a thread-safe way for the LED thread
+                            rms = np.sqrt(np.mean(pcm_int16.astype(float)**2))
+                            self.current_volume = rms
+
+                            # EAR PLUGS LOGIC:
+                            # If TTS is speaking, we DROP the audio here.
+                            # We do not put it in the queue.
+                            with self.state_lock:
+                                if self.is_speaking:
+                                    continue
+
+                            self.audio_queue.put(pcm_int16)
+
+                except Exception as e:
+                    if opened_stream:
+                        rospy.logerr(f"Audio Capture Error on {device_name}: {e}")
+                    else:
+                        rospy.logwarn(f"STT audio device unavailable ({device_name}): {e}")
+                    self.active_audio_device = None
+
+            if self.running and not rospy.is_shutdown():
+                rospy.logerr(
+                    "No configured STT audio capture devices are available; "
+                    f"retrying in 2 seconds: {', '.join(self.audio_device_candidates)}"
+                )
+                time.sleep(2.0)
 
     # -------------------------------------------------------------------------
     # 2. The Brain (Logic & State Machine Loop)
