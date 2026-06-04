@@ -8,14 +8,14 @@
 
   <!-- 1. ARDUINO BRIDGES -->
   <!-- Pan-Tilt Control (Arduino Mega) -->
-  <node name="pantilt_serial_node" pkg="rosserial_python" type="serial_node.py" output="screen">
+  <node name="pantilt_serial_node" pkg="rosserial_server" type="serial_node" output="screen">
     <param name="port" value="/dev/mega_duino"/> 
     <param name="baud" value="57600"/>
   </node>
 
   <!-- Arm Control (Arduino Uno) -->
-    <node name="arm_serial_node" pkg="rosserial_python" type="serial_node.py" output="screen">
-    <param name="port" value="/dev/uno_duino"/> 
+  <node name="arm_serial_node" pkg="rosserial_server" type="serial_node" output="screen">
+    <param name="port" value="/dev/uno_duino"/>
     <param name="baud" value="57600"/>
   </node>
 
