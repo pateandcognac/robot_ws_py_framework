@@ -111,18 +111,18 @@ def test_client():
     # Construct the goal
     goal = SpeakGoal()
     goal.utterance_text = story_text
-    goal.engine = "festival"  # Options: "espeak", "kokoro", "piper", festival
+    goal.engine = "kokoro"  # Options: "espeak", "kokoro", "piper", festival
 
 
     # params = {"voice": "us2_mbrola", "speed": 1.00, "volume": 1.2} 
     # params = {"voice": "default+croak", "speed": 1.0, "volume": 1.0} # espeak
     # params = {"voice": "en-us+m7", "speed": 1.1, "volume": 1.0} # espeak
     # params = {"voice": "en-wm", "speed": 0.85, "volume": 1.0} # espeak
-    # params = {"voice": "0.3*am_onyx + 0.2*im_nicola + 0.05*bf_isabella + 0.05*hf_alpha + 0.05*em_santa + 0.05*ff_siwis + 0.05*zm_yunjian + 0.05*jf_nezumi + 0.5*pm_alex + 0.05*hm_omega + 0.05*jf_alpha + 0.05*zf_xiaoni", "speed": 1.275, "volume": 1.0} # kokoro
-    params = {"voice": "cmu_us_slt_arctic_hts", "speed": 1.0, "volume": 1.0} # festival
-    params = {"voice": "en1_mbrola", "speed": 1.0, "volume": 1.0} # festival
+    params = {"voice": "0.20*am_onyx + 0.05*im_nicola + 0.05*bf_alice + 0.05*bf_isabella + 0.05*hf_alpha + 0.05*em_santa + 0.05*ff_siwis + 0.05*zm_yunjian + 0.05*jf_nezumi + 0.05*pm_alex + 0.05*hm_omega + 0.05*jf_alpha + 0.05*zf_xiaoni + 0.05*hm_omega + 0.05*bm_george + 0.05*zm_yunyang + 0.05*jm_kumo", "speed": 1.275, "volume": 1.0} # kokoro
+    # params = {"voice": "cmu_us_slt_arctic_hts", "speed": 1.0, "volume": 1.0} # festival
+    # params = {"voice": "en1_mbrola", "speed": 1.0, "volume": 1.0} # festival
     # params = {"voice": "0.3*am_onyx + 0.1*im_nicola + 0.05*bf_isabella + 0.1*hf_alpha + 0.05*em_santa + 0.05*ff_siwis + 0.1*zm_yunjian + 0.05*jf_nezumi + 0.05*pm_alex + 0.05*hm_omega + 0.05*jf_alpha + 0.05*zf_xiaoni", "speed": 1.275, "volume": 1.0} # kokoro
-    # params = {"voice": "0.85*am_onyx + 0.15*bf_alice", "speed": 1.25, "volume": 1.0} # kokoro
+    # params = {"voice": "1.0*am_onyx", "speed": 1.25, "volume": 1.0} # kokoro
     # params = {"voice": "0.25*am_michael + 0.25*am_echo + 0.5*am_onyx", "speed": 1.3, "volume": 1.0} # kokoro
     # params = {"voice": "en_US-joe-medium", "speed": 1.0, "volume": 0.9} # piper
     # params = {"voice": "en_US-bryce-medium", "speed": 1.2, "volume": 0.7} # piper

@@ -4,8 +4,6 @@
     - Pan/Tilt (Arduino Mega)
     - Arms (Arduino Uno)
     - Arm Controllers
-    - Idle State Monitor
-    - Face (ASCII)
   -->
 
   <!-- 1. ARDUINO BRIDGES -->
@@ -28,14 +26,7 @@
   <node name="arm_controller" pkg="logos_hardware" type="arm_controller_node.py" output="screen"/>
   
 
-  <!-- 3. THE FACE (C++) -->
-  <!-- Note: This outputs to the terminal where you launch it! -->
-  <!-- We do not usually put this in a launch file if we want to see it, 
-       but if you run this launch file in a dedicated terminal, it works. -->
-  <!-- Run it with: rosrun logos_face face_node -->
-  <!-- <node name="face_node" pkg="logos_face" type="face_node" output="screen"/> -->
-
-  <!-- 4. TTS -->
+  <!-- 3. TTS -->
   <!-- rosrun logos_hardware tts_action_server.py  -->
   <!-- rosrun logos_hardware face_playback.py -->
 
