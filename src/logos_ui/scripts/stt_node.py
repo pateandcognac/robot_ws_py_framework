@@ -162,6 +162,7 @@ class LedState:
     TRANSCRIBING = 5
     EDIT_INPUT = 6
     EAR_PLUGS = 7
+    WAKEWORD_ONLY = 8        # Core hey-robot wakeword only (single green blinker)
 
 # -----------------------------------------------------------------------------
 # The Node Class
@@ -1136,7 +1137,7 @@ class LogosEarsNode:
         elif self.hotword_enabled:
             return LedState.AMBIENT_HOTWORD
         else:
-            return LedState.IDLE
+            return LedState.WAKEWORD_ONLY
 
     def _publish_face_feedback(self, emoji, duration=3.0):
         """Publish emoji-driven face feedback for STT state changes."""
@@ -1491,6 +1492,12 @@ class LogosEarsNode:
                     for i in range(FACE_LED_COUNT):
                         color = (r << 16) | (g << 8 ) | b
                         data_list[i] = (i << 24) | color
+
+            elif state == LedState.WAKEWORD_ONLY:
+                blink_on = int(time.time() * 1) % 2 == 0
+                if blink_on:
+                    color = 0x004000
+                    data_list[0] = (0 << 24) | color
                 
             elif state in (LedState.AMBIENT_TRANSCRIBE, LedState.AMBIENT_HOTWORD, LedState.AMBIENT_BOTH):
                 now = time.time()
@@ -1565,7 +1572,7 @@ class LogosEarsNode:
                 
                 for i in range(level):
                     # Green to Red gradient
-                    r = int((i / (FACE_LED_COUNT//2)) * 255)
+                    r = int((i / (FACE_LED_COUNT//3)) * 255)
                     g = 255 - r
                     color = (r << 16) | (g << 8)
                     
@@ -1603,7 +1610,7 @@ class LogosEarsNode:
             if any(data_list):
                  led_msg.data = [x for x in data_list if x != 0]
                  self.pub_led.publish(led_msg)
-            elif state == LedState.IDLE:
+            elif state in (LedState.IDLE, LedState.WAKEWORD_ONLY):
                  # Ensure off
                  clear_data = [((i << 24) | 0) for i in range(FACE_LED_COUNT)]
                  led_msg.data = clear_data
