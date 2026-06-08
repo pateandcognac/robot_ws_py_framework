@@ -25,6 +25,9 @@ Options:
 Environment:
   LOGOS_MAIN_TERMINAL_PROFILE   gnome-terminal profile for the main dashboard
   LOGOS_MAIN_TERMINAL_GEOMETRY  gnome-terminal geometry, default: 160x48+0+0
+  LOGOS_TMUX_WIDTH              detached tmux window width, default: 160
+  LOGOS_TMUX_HEIGHT             detached tmux window height, default: 48
+  LOGOS_COG_PANE_WIDTH          main cognition pane width, default: 72
 USAGE
 }
 
@@ -40,6 +43,7 @@ shell_quote() {
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 workspace_root="$(cd "$script_dir/.." && pwd)"
 setup_file="$workspace_root/devel/setup.bash"
+workspace_parent="$HOME/robot_workspaces"
 
 session="logos"
 workspace_name="Logos"
@@ -157,7 +161,13 @@ else
     tmux_command="bash -lc $(shell_quote "$shell_command")"
 
     if [ "$pane_count" -eq 0 ]; then
-      tmux new-session -d -s "$session" -n bringup "$tmux_command"
+      tmux new-session \
+        -d \
+        -x "${LOGOS_TMUX_WIDTH:-160}" \
+        -y "${LOGOS_TMUX_HEIGHT:-48}" \
+        -s "$session" \
+        -n bringup \
+        "$tmux_command"
     else
       tmux split-window -t "${session}:0" "$tmux_command"
       tmux select-layout -t "${session}:0" tiled >/dev/null
@@ -171,6 +181,10 @@ else
     local title="$1"
     new_pane "$title" "echo 'Ready.'" "echo 'Ready.'"
   }
+
+  # Keep one simple shell alive for the lifetime of the dashboard. This also
+  # anchors the tmux server before any ROS workload has a chance to exit.
+  new_hold_pane "spare shell"
 
   new_pane "roscore" "roscore" "roscore"
   new_pane "chroma" "'$script_dir/logos_chroma.sh'" "$script_dir/logos_chroma.sh"
@@ -196,23 +210,32 @@ else
     new_hold_pane "idle skipped"
   fi
 
-  new_pane "ros nodes" "until rosnode list >/dev/null 2>&1; do echo 'Waiting for ROS master...'; sleep 2; done; watch -n 2 rosnode list" "watch -n 2 rosnode list"
-  new_hold_pane "spare shell"
+  cog_ready_channel="logos-cog-ready-$$"
+  cog_intro_command="tmux wait-for '$cog_ready_channel'; clear; "
+  cog_intro_command+="if command -v figlet >/dev/null 2>&1; then figlet 'LOOK HERE!'; else printf '\n==== LOOK HERE! ====\n\n'; fi; "
+  cog_intro_command+="printf '%s\n' 'This pane launches Logos cognition.' 'Logos/ is the master API directory: ~/robot_workspaces/Logos/' 'Cloned workspaces conventionally use names matching Logos_*.' ''; "
+  cog_intro_command+="printf '%s\n' 'Available cloned workspaces (Logos_*):'; "
+  cog_intro_command+="if [ -d '$workspace_parent' ]; then matches=\$(find '$workspace_parent' -mindepth 1 -maxdepth 1 -type d -name 'Logos_*' -printf '  %f\n' | sort); if [ -n \"\$matches\" ]; then printf '%s\n' \"\$matches\"; else printf '  (none yet)\n'; fi; else printf '  (no ~/robot_workspaces directory found)\n'; fi; "
+  cog_intro_command+="printf '\n%s\n%s\n\n' 'Enter an existing workspace to launch it, or type a new name to create a clone.' 'Leave blank to use the default shown below.'; "
 
-  cog_command="read -e -i '$workspace_name' -p 'Logos cognition workspace [${workspace_name}]: ' ws; ws=\${ws:-'$workspace_name'}; "
+  cog_command=""
   if [ "$open_browser" -eq 1 ]; then
     cog_command+="(sleep 4; xdg-open http://localhost:5000 >/dev/null 2>&1 || true) & "
   fi
-  cog_command+="'$script_dir/logos_cog.sh' \"\$ws\""
 
   if [ "$auto_cog" -eq 1 ]; then
-    new_pane "cognition" "$cog_command" "$script_dir/logos_cog.sh $workspace_name"
+    new_pane "cognition" "$cog_intro_command$cog_command'$script_dir/logos_cog.sh' '$workspace_name'" "$script_dir/logos_cog.sh $workspace_name"
   else
-    new_pane "cognition ready" "echo \"Logos cognition ready to launch.\"; echo 'Press Enter for the default workspace, or edit the name first.'; $cog_command" "$script_dir/logos_cog.sh $workspace_name"
+    cog_prompt_command="printf 'Default workspace: %s\n' '$workspace_name'; read -r -p 'Workspace name: ' ws; ws=\${ws:-'$workspace_name'}; "
+    new_pane "cognition ready" "$cog_intro_command$cog_prompt_command$cog_command'$script_dir/logos_cog.sh' \"\$ws\"" "$script_dir/logos_cog.sh $workspace_name"
   fi
 
-  tmux select-layout -t "${session}:0" tiled >/dev/null
-  tmux select-pane -t "${session}:0.9"
+  cognition_pane_index=$((pane_count - 1))
+  tmux swap-pane -s "${session}:0.${cognition_pane_index}" -t "${session}:0.0"
+  tmux select-pane -t "${session}:0.0"
+  tmux select-layout -t "${session}:0" main-vertical >/dev/null
+  tmux resize-pane -t "${session}:0.0" -x "${LOGOS_COG_PANE_WIDTH:-72}" >/dev/null 2>&1 || true
+  tmux wait-for -S "$cog_ready_channel"
 fi
 
 if [ "$attach_current" -eq 1 ]; then
