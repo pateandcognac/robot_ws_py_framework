@@ -110,13 +110,24 @@ logos_launch.sh
 
 This opens a main-monitor `gnome-terminal`, creates a `tmux` session named
 `logos`, starts the usual stack in separate panes, and leaves the final pane
-waiting for the cognition workspace name. Press Enter there to use `Logos`, or
-edit the workspace name first. For boot/autostart use, the same helper can be
-called with explicit display and automatic cognition startup:
+waiting for the cognition workspace name. Press Enter there to use the displayed
+default, or type an existing/new `Logos_*` workspace name. For boot/autostart
+use, the same helper can be called with explicit display and automatic
+cognition startup:
 
 ```
-logos_launch.sh --display :0 --auto-cog --workspace Logos
+/home/robot/robot_ws/bin/logos_launch.sh --display :0 --auto-cog --workspace Logos_001
 ```
+
+The launcher loads the exported environment from `~/.bashrc` before creating
+the tmux session. This gives Startup Applications the same Gemini keys,
+TurtleBot sensor settings, ROS overlays, paths, and library settings available
+in a normal terminal. Set `LOGOS_LOAD_BASHRC=0` only when intentionally testing
+without that environment.
+
+At startup, the launcher also shows a desktop notification with the robot's
+Ubuntu login reminder. Use `--no-login-notification` or set
+`LOGOS_LOGIN_NOTIFICATION=0` to suppress it.
 
 The commands below use helper scripts already in the robot workspace. Start
 them in this order.

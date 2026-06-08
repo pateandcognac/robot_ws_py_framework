@@ -20,9 +20,15 @@ Options:
   --no-face             skip the face terminal helper
   --no-nav              skip navigation launch
   --no-idle             skip idle state indicator
+  --no-login-notification
+                        do not show the Ubuntu login reminder
   -h, --help            show this help
 
 Environment:
+  LOGOS_LOAD_BASHRC             load ~/.bashrc through interactive Bash, default: 1
+  LOGOS_LOGIN_NOTIFICATION      show Ubuntu login reminder, default: 1
+  LOGOS_LOGIN_USER              login reminder username, default: current user
+  LOGOS_LOGIN_PASSWORD          login reminder password, default: username
   LOGOS_MAIN_TERMINAL_PROFILE   gnome-terminal profile for the main dashboard
   LOGOS_MAIN_TERMINAL_GEOMETRY  gnome-terminal geometry, default: 160x48+0+0
   LOGOS_TMUX_WIDTH              detached tmux window width, default: 160
@@ -40,6 +46,26 @@ shell_quote() {
   printf "'%s'" "$(printf '%s' "$1" | sed "s/'/'\\\\''/g")"
 }
 
+load_interactive_environment() {
+  local script_path
+  local reexec_command
+  local arg
+
+  [ "${LOGOS_LOAD_BASHRC:-1}" != "0" ] || return 0
+  [ "${LOGOS_BASHRC_LOADED:-0}" != "1" ] || return 0
+  [ -f "$HOME/.bashrc" ] || return 0
+
+  script_path="$(readlink -f "${BASH_SOURCE[0]}")"
+  reexec_command="export LOGOS_BASHRC_LOADED=1; exec $(shell_quote "$script_path")"
+  for arg in "$@"; do
+    reexec_command+=" $(shell_quote "$arg")"
+  done
+
+  exec bash -ic "$reexec_command"
+}
+
+load_interactive_environment "$@"
+
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 workspace_root="$(cd "$script_dir/.." && pwd)"
 setup_file="$workspace_root/devel/setup.bash"
@@ -56,6 +82,9 @@ open_browser=1
 launch_face=1
 launch_nav=1
 launch_idle=1
+show_login_notification="${LOGOS_LOGIN_NOTIFICATION:-1}"
+login_user="${LOGOS_LOGIN_USER:-${USER:-robot}}"
+login_password="${LOGOS_LOGIN_PASSWORD:-$login_user}"
 display_value="${DISPLAY:-:0}"
 
 while [ "$#" -gt 0 ]; do
@@ -105,6 +134,9 @@ while [ "$#" -gt 0 ]; do
     --no-idle)
       launch_idle=0
       ;;
+    --no-login-notification)
+      show_login_notification=0
+      ;;
     -h|--help)
       usage
       exit 0
@@ -127,6 +159,17 @@ command -v tmux >/dev/null 2>&1 || die "tmux was not found"
 export DISPLAY="$display_value"
 if [ -z "${XAUTHORITY:-}" ] && [ -f "$HOME/.Xauthority" ]; then
   export XAUTHORITY="$HOME/.Xauthority"
+fi
+
+if [ "$show_login_notification" -eq 1 ] && command -v notify-send >/dev/null 2>&1; then
+  notify-send \
+    --urgency=critical \
+    --expire-time=30000 \
+    --icon=dialog-password \
+    "Logos robot Ubuntu login" \
+    "Username: $login_user
+Password: $login_password" \
+    >/dev/null 2>&1 || true
 fi
 
 if [ "$open_terminal" -eq 1 ]; then
