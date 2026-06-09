@@ -129,6 +129,45 @@ At startup, the launcher also shows a desktop notification with the robot's
 Ubuntu login reminder. Use `--no-login-notification` or set
 `LOGOS_LOGIN_NOTIFICATION=0` to suppress it.
 
+For an optional narrated startup sequence, add `--boot-voice`:
+
+```
+/home/robot/robot_ws/bin/logos_launch.sh --display :0 --auto-cog \
+  --workspace Logos_001 --boot-voice
+```
+
+Ubuntu Startup Applications does not evaluate shell expansions such as
+`$EPOCHSECONDS`, process substitution, or multiline shell commands. To create
+a fresh time-derived clone at every boot, use the launcher's built-in
+`--time-workspace` option instead:
+
+```
+/home/robot/robot_ws/bin/logos_launch.sh --display :0 --auto-cog --time-workspace --boot-voice
+```
+
+This computes the CRC32 of the current Unix epoch seconds and launches a
+workspace named `Logos_<eight-hex-digit-crc>`, for example
+`Logos_2e8f5c38`. It overrides any value passed through `--workspace`.
+
+The narration sets the system output volume to 100%, begins with the `espeak`
+binary for Linux and ROS startup, uses Festival around core hardware bringup,
+then switches to Logos text-to-performance with Piper and finally Kokoro. Before
+core bringup it briefly checks `/dev/kobuki` for incoming serial data. If the
+base is missing or silent, it speaks and displays a reminder to use the power
+switch next to the charging cord.
+
+After STT becomes ready, narrated startup runs:
+
+```
+bin/logos_ambient.sh 1 1 '[]'
+```
+
+It then explains the `hey robot` wake phrase, the explicit `end of line`
+terminator, and the spring-shaped capacitive microphone mute switch on the
+right side of Logos's head. If `docs/SPEAKME.txt` exists and is nonempty, its
+emoji-punctuated contents are performed last using the final Kokoro voice.
+Set `LOGOS_BOOT_VOICE=1` instead of using the command-line flag when preferred.
+
 The commands below use helper scripts already in the robot workspace. Start
 them in this order.
 
@@ -310,8 +349,8 @@ diagnose errors.
 Open a new terminal on the main monitor and run:
 
 ```
-cd ~/robot_ws
-codex
+cd ~/robot_ws         # or other directory, like ~/robot_workspaces/Logos
+codex                 # or other AI agent, like claude
 ```
 
 Then ask questions in plain language, for example:

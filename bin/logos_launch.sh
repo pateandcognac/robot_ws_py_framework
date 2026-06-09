@@ -10,6 +10,7 @@ Start a tmux dashboard for the full Logos stack.
 Options:
   --session NAME        tmux session name, default: logos
   --workspace NAME      default cognition workspace, default: Logos
+  --time-workspace      use Logos_<crc32(epoch seconds)>; overrides --workspace
   --auto-cog            start cognition without waiting for Enter
   --delay SECONDS       pause between pane launches, default: 3
   --display DISPLAY     X display for gnome-terminal/browser, default: $DISPLAY or :0
@@ -22,10 +23,12 @@ Options:
   --no-idle             skip idle state indicator
   --no-login-notification
                         do not show the Ubuntu login reminder
+  --boot-voice          narrate startup through progressively richer TTS
   -h, --help            show this help
 
 Environment:
   LOGOS_LOAD_BASHRC             load ~/.bashrc through interactive Bash, default: 1
+  LOGOS_BOOT_VOICE              enable narrated startup, default: 0
   LOGOS_LOGIN_NOTIFICATION      show Ubuntu login reminder, default: 1
   LOGOS_LOGIN_USER              login reminder username, default: current user
   LOGOS_LOGIN_PASSWORD          login reminder password, default: username
@@ -73,6 +76,7 @@ workspace_parent="$HOME/robot_workspaces"
 
 session="logos"
 workspace_name="Logos"
+time_workspace=0
 auto_cog=0
 delay_seconds=3
 open_terminal=1
@@ -82,6 +86,7 @@ open_browser=1
 launch_face=1
 launch_nav=1
 launch_idle=1
+boot_voice="${LOGOS_BOOT_VOICE:-0}"
 show_login_notification="${LOGOS_LOGIN_NOTIFICATION:-1}"
 login_user="${LOGOS_LOGIN_USER:-${USER:-robot}}"
 login_password="${LOGOS_LOGIN_PASSWORD:-$login_user}"
@@ -98,6 +103,9 @@ while [ "$#" -gt 0 ]; do
       [ "$#" -ge 2 ] || die "--workspace requires a name"
       workspace_name="$2"
       shift
+      ;;
+    --time-workspace)
+      time_workspace=1
       ;;
     --auto-cog)
       auto_cog=1
@@ -137,6 +145,9 @@ while [ "$#" -gt 0 ]; do
     --no-login-notification)
       show_login_notification=0
       ;;
+    --boot-voice)
+      boot_voice=1
+      ;;
     -h|--help)
       usage
       exit 0
@@ -147,6 +158,21 @@ while [ "$#" -gt 0 ]; do
   esac
   shift
 done
+
+if [ "$time_workspace" -eq 1 ]; then
+  command -v crc32 >/dev/null 2>&1 || die "crc32 was not found"
+  epoch_seconds="$(date +%s)"
+  workspace_crc="$(printf '%s' "$epoch_seconds" | crc32 /dev/stdin)"
+  case "$workspace_crc" in
+    [[:xdigit:]][[:xdigit:]][[:xdigit:]][[:xdigit:]][[:xdigit:]][[:xdigit:]][[:xdigit:]][[:xdigit:]])
+      workspace_name="Logos_${workspace_crc}"
+      ;;
+    *)
+      die "crc32 returned an unexpected value: $workspace_crc"
+      ;;
+  esac
+  printf 'Generated time-based workspace: %s\n' "$workspace_name"
+fi
 
 case "$workspace_name" in
   */*|.*|*..*)
@@ -225,12 +251,23 @@ else
     new_pane "$title" "echo 'Ready.'" "echo 'Ready.'"
   }
 
+  boot_voice_stage() {
+    [ "$boot_voice" -eq 1 ] || return 0
+    "$script_dir/logos_boot_voice.sh" "$1" || true
+  }
+
+  boot_voice_stage volume
+  boot_voice_stage linux
+
   # Keep one simple shell alive for the lifetime of the dashboard. This also
   # anchors the tmux server before any ROS workload has a chance to exit.
   new_hold_pane "spare shell"
 
+  boot_voice_stage roscore
   new_pane "roscore" "roscore" "roscore"
   new_pane "chroma" "'$script_dir/logos_chroma.sh'" "$script_dir/logos_chroma.sh"
+
+  boot_voice_stage core
   new_pane "core" "LOGOS_FACE_TERM=0 '$script_dir/logos_core.sh'" "LOGOS_FACE_TERM=0 $script_dir/logos_core.sh"
 
   if [ "$launch_face" -eq 1 ]; then
@@ -239,6 +276,7 @@ else
     new_hold_pane "face skipped"
   fi
 
+  boot_voice_stage piper
   new_pane "speech to text" "'$script_dir/logos_stt.sh'" "$script_dir/logos_stt.sh"
 
   if [ "$launch_nav" -eq 1 ]; then
@@ -252,6 +290,10 @@ else
   else
     new_hold_pane "idle skipped"
   fi
+
+  boot_voice_stage ambient
+  boot_voice_stage kokoro
+  boot_voice_stage speakme
 
   cog_ready_channel="logos-cog-ready-$$"
   cog_intro_command="tmux wait-for '$cog_ready_channel'; clear; "
