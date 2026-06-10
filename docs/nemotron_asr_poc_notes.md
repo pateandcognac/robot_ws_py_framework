@@ -2,8 +2,10 @@
 
 ## Scope
 
-`tools/nemotron_mic_benchmark.py` is an experimental terminal benchmark. It
-does not replace `stt_node.py`, OpenWakeWord, or any ROS publisher.
+`tools/nemotron_mic_benchmark.py` remains the standalone terminal benchmark.
+Production ROS integration now lives in
+`src/logos_ui/scripts/nemotron_stt_node.py` and can replace `stt_node.py` while
+preserving the same OpenWakeWord, classifier, LED, and ROS topic contract.
 
 It matches the production STT capture path where practical:
 
@@ -237,11 +239,10 @@ ever-growing queued-audio value. A practical interaction target is preferably
 well below 1.0, because wake-word handling, VAD, ROS nodes, and the rest of
 Logos also need CPU time.
 
-Recommendation: continue with the 128 ms capture block and repeat a longer
-fixed-script live test while the normal Logos stack is running. Do not change
-production STT yet. Raw throughput, memory use, and standalone capture
-reliability are promising, but quality and CPU coexistence versus
-Faster-Whisper are not established.
+The optional production node uses the proven 128 ms capture block, splits it
+back into 32 ms VAD/OpenWakeWord frames, and defaults ONNX Runtime GenAI to one
+intra-op thread. Whisper remains the default launcher backend while Nemotron
+quality and CPU coexistence are evaluated with the full Logos stack.
 
 ## References
 

@@ -190,6 +190,8 @@ Open another terminal on the main monitor and run:
 
 ```
 logos_stt.sh
+# Optional streaming Nemotron backend:
+logos_stt.sh nemotron
 ```
 
 Leave that terminal open.

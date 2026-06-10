@@ -1,6 +1,13 @@
-# stt_node — Logos Ears
+# Logos Ears: Whisper and Nemotron
 
-The STT node is Logos's ears. It handles all microphone input in one process: OpenWakeWord wake phrase detection, passive hotword listening, speech-to-text transcription, ambient audio transcription, and background audio classification. Everything stays in one node to avoid ROS serialization overhead on the audio stream.
+Logos has two interchangeable ear nodes:
+
+- `stt_node.py` uses Faster-Whisper and retains prompt hints and confidence metadata.
+- `nemotron_stt_node.py` uses the Nemotron 3.5 INT4 ONNX streaming model for less-than-real-time CPU recognition. It has no decoder confidence or phrase boosting.
+
+Both handle OpenWakeWord wake/control phrases, passive hotwords, Silero VAD,
+ambient transcription, and MediaPipe YAMNet classification under the same ROS
+topic contract. Run only one ear node at a time.
 
 ---
 
@@ -9,6 +16,14 @@ The STT node is Logos's ears. It handles all microphone input in one process: Op
 ```bash
 # One-time dependency setup for the Python 3.11 robot_ws venv
 /home/robot/robot_ws/.venv/bin/python3 -m pip install openwakeword
+
+# Start the default Faster-Whisper ear
+logos_stt.sh
+
+# Or start the streaming Nemotron ear
+logos_stt.sh nemotron
+# Equivalent for boot/launcher use:
+LOGOS_STT_BACKEND=nemotron logos_stt.sh
 
 # Enable ambient transcription
 rostopic pub /stt/ambient_listener/enable std_msgs/Bool "data: true"
@@ -42,7 +57,7 @@ the ordered list with private ROS param `~audio_devices` or the
 | Topic | Type | Description |
 |---|---|---|
 | `/tts/is_speaking` | `Bool` | When `true`, mic input is muted ("ear plugs") for STT and audio classification |
-| `/stt/ambient_listener/enable` | `Bool` | Enable/disable ambient Whisper transcription |
+| `/stt/ambient_listener/enable` | `Bool` | Enable/disable ambient transcription |
 | `/stt/hotword_listener/enable` | `String` (JSON) | Set the passive OpenWakeWord model directory list; `[]` disables and unloads passive models |
 | `/stt/audio_classifier/enable` | `Bool` | Enable/disable MediaPipe YAMNet audio classifier |
 
@@ -68,7 +83,13 @@ the ordered list with private ROS param `~audio_devices` or the
 4. Logos transcribes and publishes to `/cognition/input`
 5. Say **"Cancel that"** instead to abandon the recording and return to listening
 
-`RECORDING_TIMEOUT` is 60 seconds — if you don't say a stop word, recording stops automatically.
+`RECORDING_TIMEOUT` is 120 seconds — if you don't say a stop word, recording stops automatically.
+
+With Nemotron, active listening first sends the normal `Listening...` feedback.
+Each streaming ASR chunk is then sent as a green feedback header using the
+`helvi` figlet font. Ambient speech is VAD-gated, continuously recognized, and
+rolled into a publication every 60 seconds. Its feedback uses `Transcribed:`
+as the header and the minute's text as the body.
 
 ---
 
@@ -85,13 +106,11 @@ Publishes `{}` (empty object) when ambient is disabled or cleared.
   {
     "time": "02:34 PM",
     "epoch": 1747500000.0,
-    "confidence": 0.81,
     "transcription": "Hey Tom, did you see the game last night? Yeah, it was pretty good..."
   },
   {
     "time": "02:41 PM",
     "epoch": 1747500420.0,
-    "confidence": 0.76,
     "transcription": "---\n# Wake word detected! Rerouting to <human_stt> channel..."
   }
 ]
@@ -101,8 +120,8 @@ Publishes `{}` (empty object) when ambient is disabled or cleared.
 |---|---|---|
 | `time` | string | Human-readable wall clock time of the transcription |
 | `epoch` | float | Unix timestamp — use for age calculations |
-| `confidence` | float | Whisper avg logprob converted to a 0–1 probability; above ~0.7 is reliable |
-| `transcription` | string | Raw Whisper output, stripped of wake/control phrases. May include a wake-word annotation line. |
+| `confidence` | float | Faster-Whisper only: avg logprob converted to a 0–1 probability. Nemotron omits this field because ONNX Runtime GenAI does not expose confidence. |
+| `transcription` | string | ASR output, stripped of wake/control phrases. May include a wake-word annotation line. |
 
 **Typical consumer pattern:**
 ```python
@@ -241,8 +260,8 @@ Published after each successful speech-to-text transcription. Fields set by this
 | Field | Type | Value |
 |---|---|---|
 | `type` | string | `"human_stt"` |
-| `content` | string | Whisper transcript, followed by minimal STT metadata such as `conf: 84%` and ` - timeout -` |
-| `system_hint` | string | Ephemeral instructions for the LLM on confidence, timeout, and low-confidence transcript handling |
+| `content` | string | Transcript plus backend-available metadata. Nemotron omits confidence and retains timeout metadata. |
+| `system_hint` | string | Ephemeral instructions for the LLM on backend confidence availability and timeout handling |
 | `loop_cognition` | bool | `true` |
 
 Example `content`:
@@ -280,7 +299,7 @@ conf: 61%
 
 ## Configuration Constants
 
-Key values at the top of `stt_node.py` you might want to tune:
+Key shared and backend-specific values:
 
 | Constant | Default | Description |
 |---|---|---|
@@ -290,11 +309,12 @@ Key values at the top of `stt_node.py` you might want to tune:
 | `PASSIVE_HOTWORD_THRESHOLD` | 0.5 | Shared OpenWakeWord score threshold for passive hotwords requested through `/stt/hotword_listener/enable` |
 | `WAKEWORD_MODEL_ROOTS` | asset paths | Model directories; `wakewords/custom` wins over the vendored community tree |
 | `OPENWAKEWORD_FEATURE_PATH` | asset path | Shared melspectrogram and embedding models for ONNX and TFLite inference |
-| `AMBIENT_VAD_THRESHOLD` | 0.5 | Silero threshold for ambient Whisper buffering |
+| `AMBIENT_VAD_THRESHOLD` | 0.5 | Silero threshold for ambient ASR gating |
 | `WAKEWORD_VAD_THRESHOLD` | 0.15 | Loose Silero threshold for OpenWakeWord activation filtering |
-| `RECORDING_TIMEOUT` | 60s | Hard stop if user doesn't say `end of line` |
-| `AMBIENT_CHECK_INTERVAL` | 600s | How often the ambient buffer is auto-flushed |
-| `AMBIENT_MAX_DURATION` | 120s | Hard cap on ambient buffer before force-flush |
+| `RECORDING_TIMEOUT` | 120s | Hard stop if user doesn't say `end of line` |
+| `AMBIENT_PUBLISH_INTERVAL` | 60s | Nemotron ambient transcript publication interval |
+| `CAPTURE_BLOCK_SAMPLES` | 2048 | Nemotron PortAudio read size (128 ms), split into 32 ms analysis frames |
+| model `chunk_samples` | 8960 | Nemotron streaming chunk read from the selected ONNX export (560 ms for the default model) |
 | `AMBIENT_HISTORY_MAX_AGE` | 7200s | How long to keep ambient history (2 hours) |
 | `CLASSIFIER_SAMPLE_INTERVAL` | 10s | How often YAMNet samples are taken |
 | `CLASSIFIER_SAMPLE_DURATION` | 2.5s | Length of each YAMNet sample |
@@ -310,4 +330,5 @@ discovered too, but their predictor still depends on a working local
 lexicographically last filename is selected so common `v2` names win over `v1`
 without pinning the collection's filenames in code. Whisper prompt hints and
 transcript cleanup phrases are built from the loaded core directory labels
-automatically.
+automatically. Nemotron uses `config/nemotron_custom_vocabulary.json` only for
+post-recognition spelling aliases; it is not decoder-time word boosting.

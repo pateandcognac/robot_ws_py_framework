@@ -112,6 +112,7 @@ Lightweight terminal interface using `urwid`.
 4. Optional interfaces:
    - Terminal UI: `rosrun logos_ui urwid_tui.py`
    - Browser UI: http://localhost:5000 (served by `web_ui_node.py`)
-   - Speech-to-Text: `rosrun logos_ui stt_node.py`
+   - Faster-Whisper STT: `logos_stt.sh`
+   - Streaming Nemotron STT: `logos_stt.sh nemotron`
 
 The cognition loop uses ROS topics for decoupling, so you can inject additional tools by publishing to `/cognition/input` (following `CognitionInput.msg`) or by subscribing to `/cognition/output` for streaming updates.

@@ -45,8 +45,6 @@ except ImportError as exc:
         "virtualenv with: /home/robot/robot_ws/.venv/bin/python3 -m pip "
         "install openwakeword"
     ) from exc
-from faster_whisper import WhisperModel
-
 # Colorama for terminal output
 from colorama import Fore, Style, init as colorama_init
 colorama_init(autoreset=True)
@@ -284,7 +282,18 @@ class LogosEarsNode:
         # options: tiny.en, tiny, base.en, base, small.en, small, medium.en, medium, large-v1, large-v2, large-v3, large, distil-large-v2, distil-medium.en, distil-small.en, distil-large-v3, distil-large-v3.5, large-v3-turbo, turbo
         # self.whisper_model_name = "small.en"
         self.whisper_model_name = "distil-medium.en"
-        self.whisper = WhisperModel(self.whisper_model_name, device="cpu", compute_type="int8")
+        try:
+            from faster_whisper import WhisperModel
+        except ImportError as exc:
+            raise ImportError(
+                "faster-whisper is required by stt_node.py. Use "
+                "nemotron_stt_node.py for the ONNX Nemotron backend."
+            ) from exc
+        self.whisper = WhisperModel(
+            self.whisper_model_name,
+            device="cpu",
+            compute_type="int8",
+        )
         
         print(Fore.CYAN + "Models Loaded.")
 
