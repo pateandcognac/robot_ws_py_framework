@@ -5,6 +5,7 @@ import argparse
 import json
 import os
 import queue
+import re
 import sys
 import threading
 import time
@@ -17,46 +18,12 @@ import soundfile as sf
 DEFAULT_MODEL = Path(
     "models/nemotron-3.5-asr-streaming-0.6b-onnx-int4"
 )
+DEFAULT_VOCAB = Path("config/nemotron_custom_vocabulary.json")
 DEFAULT_DEVICES = ("logos_mic", "pan_tilt_mic")
 DEVICE_ENV = "LOGOS_STT_AUDIO_DEVICES"
-CAPTURE_BLOCK_SAMPLES = 512
-LANGUAGE_IDS = {
-    "en": 0,
-    "en-US": 0,
-    "en-GB": 1,
-    "es-ES": 2,
-    "es": 3,
-    "es-US": 3,
-    "zh-CN": 4,
-    "hi": 6,
-    "hi-IN": 6,
-    "ar": 7,
-    "ar-AR": 7,
-    "fr": 8,
-    "fr-FR": 8,
-    "de": 9,
-    "de-DE": 9,
-    "ja": 10,
-    "ja-JP": 10,
-    "ru": 11,
-    "ru-RU": 11,
-    "pt-BR": 12,
-    "pt": 13,
-    "pt-PT": 13,
-    "ko": 14,
-    "ko-KR": 14,
-    "it": 15,
-    "it-IT": 15,
-    "nl": 16,
-    "nl-NL": 16,
-    "pl": 17,
-    "pl-PL": 17,
-    "tr": 18,
-    "tr-TR": 18,
-    "uk": 19,
-    "uk-UA": 19,
-    "auto": 101,
-}
+DEFAULT_CAPTURE_BLOCK_MS = 128
+LANGUAGE = "en-US"
+LANGUAGE_ID = 0
 
 
 def parse_args():
@@ -104,15 +71,41 @@ inference format at 16 kHz mono and 560 ms chunks.
         help="streaming chunk duration (must match the model; default: 560)",
     )
     parser.add_argument(
+        "--capture-block-ms",
+        type=int,
+        default=DEFAULT_CAPTURE_BLOCK_MS,
+        help=(
+            "microphone read size in milliseconds (default: 128); larger "
+            "values reduce PortAudio wakeups without changing ASR chunking"
+        ),
+    )
+    parser.add_argument(
+        "--audio-latency",
+        default="high",
+        help=(
+            "PortAudio latency setting: low, high, or seconds "
+            "(default: high)"
+        ),
+    )
+    parser.add_argument(
         "--model",
         type=Path,
         default=DEFAULT_MODEL,
         help=f"local ONNX Runtime GenAI model directory (default: {DEFAULT_MODEL})",
     )
     parser.add_argument(
-        "--language",
-        default="en-US",
-        help="Nemotron 3.5 language/locale or 'auto' (default: en-US)",
+        "--vocab-file",
+        type=Path,
+        default=DEFAULT_VOCAB,
+        help=(
+            "JSON aliases for canonical final-transcript spellings "
+            f"(default: {DEFAULT_VOCAB})"
+        ),
+    )
+    parser.add_argument(
+        "--no-vocab-normalization",
+        action="store_true",
+        help="do not apply custom vocabulary aliases to the final transcript",
     )
     parser.add_argument(
         "--use-vad",
@@ -172,7 +165,97 @@ def read_model_config(model_path):
     with config_path.open(encoding="utf-8") as config_file:
         config = json.load(config_file)
     model = config["model"]
-    return int(model["sample_rate"]), int(model["chunk_samples"])
+    return {
+        "sample_rate": int(model["sample_rate"]),
+        "chunk_samples": int(model["chunk_samples"]),
+        # These cache dimensions describe the exported encoder graph. Changing
+        # them in JSON does not resize ONNX inputs and is therefore unsafe.
+        "left_context": int(model["left_context"]),
+        "conv_context": int(model["conv_context"]),
+        "pre_encode_cache_size": int(model["pre_encode_cache_size"]),
+        "subsampling_factor": int(model["subsampling_factor"]),
+        "hop_length": int(model["hop_length"]),
+    }
+
+
+def load_vocabulary(path):
+    if path is None:
+        return []
+    path = path.expanduser()
+    if not path.is_file():
+        raise FileNotFoundError(f"Custom vocabulary file not found: {path}")
+    with path.open(encoding="utf-8") as vocab_file:
+        data = json.load(vocab_file)
+
+    entries = data.get("entries", data)
+    if not isinstance(entries, list):
+        raise ValueError("Custom vocabulary JSON must contain an 'entries' list")
+
+    vocabulary = []
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            raise ValueError(f"Vocabulary entry {index} must be an object")
+        canonical = entry.get("canonical")
+        aliases = entry.get("aliases", [])
+        if not isinstance(canonical, str):
+            raise ValueError(
+                f"Vocabulary entry {index} needs a 'canonical' string"
+            )
+        if not isinstance(aliases, list) or not all(
+            isinstance(alias, str) and alias for alias in aliases
+        ):
+            raise ValueError(
+                f"Vocabulary entry {index} needs a list of non-empty aliases"
+            )
+        vocabulary.append((canonical, aliases))
+    return vocabulary
+
+
+def strip_language_tags(text):
+    """Remove emitted tags such as <en-US>; this benchmark is pinned to English."""
+    return re.sub(r"<[a-z]{2}(?:-[A-Z]{2})?>", "", text)
+
+
+class LanguageTagStripper:
+    """Strip language tags even when a tokenizer splits them across pieces."""
+
+    def __init__(self):
+        self.pending = ""
+
+    def feed(self, text):
+        output = []
+        for character in text:
+            if self.pending:
+                self.pending += character
+                if character == ">":
+                    if not re.fullmatch(
+                        r"<[a-z]{2}(?:-[A-Z]{2})?>", self.pending
+                    ):
+                        output.append(self.pending)
+                    self.pending = ""
+                elif len(self.pending) > 8:
+                    output.append(self.pending)
+                    self.pending = ""
+            elif character == "<":
+                self.pending = character
+            else:
+                output.append(character)
+        return "".join(output)
+
+
+def normalize_vocabulary(text, vocabulary):
+    """Apply spelling aliases after ASR; this is not decoder score boosting."""
+    normalized = strip_language_tags(text)
+    for canonical, aliases in vocabulary:
+        for alias in sorted(aliases, key=len, reverse=True):
+            pattern = rf"(?<![\w-]){re.escape(alias)}(?![\w-])"
+            normalized = re.sub(
+                pattern,
+                lambda match, replacement=canonical: replacement,
+                normalized,
+                flags=re.IGNORECASE,
+            )
+    return re.sub(r"\s+", " ", normalized).strip()
 
 
 class ResourceMonitor:
@@ -216,7 +299,7 @@ class ResourceMonitor:
 
 
 class NemotronStream:
-    def __init__(self, model_path, language, use_vad, threads):
+    def __init__(self, model_path, use_vad, threads):
         try:
             import onnxruntime_genai as og
         except ImportError as exc:
@@ -247,18 +330,10 @@ class NemotronStream:
         self.processor.set_option("use_vad", "true" if use_vad else "false")
         self.tokenizer = og.Tokenizer(self.model)
         self.tokenizer_stream = self.tokenizer.create_stream()
+        self.language_tag_stripper = LanguageTagStripper()
         self.params = og.GeneratorParams(self.model)
         self.generator = og.Generator(self.model, self.params)
-        try:
-            language_id = int(language)
-        except ValueError:
-            if language not in LANGUAGE_IDS:
-                raise ValueError(
-                    f"Unsupported --language {language!r}. Use a known locale, "
-                    "'auto', or a numeric Nemotron language prompt ID."
-                )
-            language_id = LANGUAGE_IDS[language]
-        self.generator.set_runtime_option("lang_id", str(language_id))
+        self.generator.set_runtime_option("lang_id", str(LANGUAGE_ID))
         self.transcript = ""
 
     def _decode_available(self):
@@ -267,7 +342,9 @@ class NemotronStream:
             self.generator.generate_next_token()
             tokens = self.generator.get_next_tokens()
             if len(tokens) > 0:
-                piece = self.tokenizer_stream.decode(tokens[0])
+                piece = self.language_tag_stripper.feed(
+                    self.tokenizer_stream.decode(tokens[0])
+                )
                 if piece:
                     print(piece, end="", flush=True)
                     text += piece
@@ -310,10 +387,11 @@ def load_audio_file(path, sample_rate):
 
 
 class MicrophoneCapture:
-    def __init__(self, stream, audio_queue, capture_stats):
+    def __init__(self, stream, audio_queue, capture_stats, block_samples):
         self.stream = stream
         self.audio_queue = audio_queue
         self.capture_stats = capture_stats
+        self.block_samples = block_samples
         self._stop = threading.Event()
         self._thread = threading.Thread(target=self._read_loop, daemon=True)
 
@@ -324,7 +402,7 @@ class MicrophoneCapture:
     def _read_loop(self):
         while not self._stop.is_set():
             try:
-                audio, overflowed = self.stream.read(CAPTURE_BLOCK_SAMPLES)
+                audio, overflowed = self.stream.read(self.block_samples)
             except Exception:
                 if self._stop.is_set():
                     return
@@ -351,7 +429,9 @@ class MicrophoneCapture:
         self.stream.close()
 
 
-def open_input_stream(candidates, sample_rate, audio_queue):
+def open_input_stream(
+    candidates, sample_rate, audio_queue, block_samples, latency
+):
     import sounddevice as sd
 
     errors = []
@@ -361,14 +441,17 @@ def open_input_stream(candidates, sample_rate, audio_queue):
         try:
             stream = sd.InputStream(
                 samplerate=sample_rate,
-                blocksize=CAPTURE_BLOCK_SAMPLES,
+                blocksize=block_samples,
                 channels=1,
                 dtype="float32",
                 device=device,
+                latency=latency,
             )
-            capture = MicrophoneCapture(stream, audio_queue, capture_stats)
+            capture = MicrophoneCapture(
+                stream, audio_queue, capture_stats, block_samples
+            )
             capture.start()
-            return capture, device, capture_stats
+            return capture, device, capture_stats, stream.latency
         except Exception as exc:
             errors.append(f"{device!r}: {exc}")
     raise RuntimeError(
@@ -376,21 +459,56 @@ def open_input_stream(candidates, sample_rate, audio_queue):
     )
 
 
-def print_header(args, sample_rate, chunk_samples, device):
+def print_header(
+    args, model_config, device, capture_block_samples=None, actual_latency=None,
+):
+    sample_rate = model_config["sample_rate"]
+    chunk_samples = model_config["chunk_samples"]
+    encoder_frame_samples = (
+        model_config["hop_length"] * model_config["subsampling_factor"]
+    )
+    chunk_frames = chunk_samples // encoder_frame_samples
+    right_context = chunk_frames - 1
     print("Nemotron mic benchmark")
     print(f"Device: {device}")
     print(f"Sample rate: {sample_rate} Hz mono")
     print(f"Chunk size: {chunk_samples} samples ({args.chunk_ms} ms)")
     print(f"Model: {args.model}")
     print("Backend: ONNX Runtime GenAI CPU, INT4")
-    print(f"Language: {args.language}")
+    print(f"Language: {LANGUAGE} (fixed prompt ID {LANGUAGE_ID})")
+    print("Strip language tags: on")
+    print(
+        "Attention context: "
+        f"[{model_config['left_context']}, {right_context}] "
+        f"({1000 * encoder_frame_samples / sample_rate:.0f} ms frames; "
+        "fixed by ONNX export)"
+    )
+    print(
+        "Other encoder cache: "
+        f"conv={model_config['conv_context']}, "
+        f"pre-encode={model_config['pre_encode_cache_size']}, "
+        f"subsampling={model_config['subsampling_factor']}"
+    )
+    print(
+        "Confidence: unavailable in ONNX Runtime GenAI 0.14 "
+        "(RNNT joiner scores are not exposed)"
+    )
     print(f"VAD: {'on' if args.use_vad else 'off'}")
     print(f"ONNX threads: {args.threads or 'runtime default'}")
+    if capture_block_samples is not None:
+        print(
+            "Capture block: "
+            f"{capture_block_samples} samples "
+            f"({1000 * capture_block_samples / sample_rate:.0f} ms)"
+        )
+        print(f"PortAudio input latency: {actual_latency:.3f} s")
 
 
 def run(args):
     model_path = args.model.expanduser().resolve()
-    model_rate, chunk_samples = read_model_config(model_path)
+    model_config = read_model_config(model_path)
+    model_rate = model_config["sample_rate"]
+    chunk_samples = model_config["chunk_samples"]
     model_chunk_ms = round(1000 * chunk_samples / model_rate)
     if args.sample_rate != model_rate:
         raise ValueError(
@@ -406,9 +524,7 @@ def run(args):
     monitor = ResourceMonitor()
     monitor.start()
     load_started = time.perf_counter()
-    recognizer = NemotronStream(
-        model_path, args.language, args.use_vad, args.threads
-    )
+    recognizer = NemotronStream(model_path, args.use_vad, args.threads)
     load_seconds = time.perf_counter() - load_started
 
     captured_parts = []
@@ -417,20 +533,33 @@ def run(args):
     last_audio_time = None
     stream = None
     capture_stats = {"overflows": 0}
+    capture_block_samples = round(
+        args.capture_block_ms * model_rate / 1000
+    )
 
     if args.audio_file:
         audio = load_audio_file(args.audio_file.expanduser(), model_rate)
-        print_header(args, model_rate, chunk_samples, f"WAV: {args.audio_file}")
+        print_header(args, model_config, f"WAV: {args.audio_file}")
         chunks = [
             (time.monotonic(), audio[start:start + chunk_samples])
             for start in range(0, len(audio), chunk_samples)
         ]
     else:
         audio_queue = queue.Queue()
-        stream, active_device, capture_stats = open_input_stream(
-            device_candidates(args.device), model_rate, audio_queue
+        stream, active_device, capture_stats, actual_latency = open_input_stream(
+            device_candidates(args.device),
+            model_rate,
+            audio_queue,
+            capture_block_samples,
+            args.audio_latency,
         )
-        print_header(args, model_rate, chunk_samples, active_device)
+        print_header(
+            args,
+            model_config,
+            active_device,
+            capture_block_samples,
+            actual_latency,
+        )
         print(
             f"Capturing for {'Ctrl-C' if args.duration == 0 else f'{args.duration:g} s'}..."
         )
@@ -478,7 +607,11 @@ def run(args):
                 recognizer.process(chunk)
                 inference_times.append(time.perf_counter() - infer_started)
                 if chunks is None:
-                    backlog = audio_queue.qsize() * CAPTURE_BLOCK_SAMPLES / model_rate
+                    backlog = (
+                        audio_queue.qsize()
+                        * capture_block_samples
+                        / model_rate
+                    )
                     max_backlog_seconds = max(max_backlog_seconds, backlog)
     except KeyboardInterrupt:
         print("\nStopping capture...", file=sys.stderr)
@@ -500,7 +633,14 @@ def run(args):
     completed_at = time.monotonic()
     total_wall = time.perf_counter() - process_started
     monitor.stop()
-    print(f"\n[final] {recognizer.transcript.strip()}")
+    raw_transcript = strip_language_tags(recognizer.transcript).strip()
+    vocabulary = []
+    if not args.no_vocab_normalization:
+        vocabulary = load_vocabulary(args.vocab_file)
+    final_transcript = normalize_vocabulary(raw_transcript, vocabulary)
+    print(f"\n[final] {final_transcript}")
+    if final_transcript != raw_transcript:
+        print(f"[raw] {raw_transcript}")
 
     audio_seconds = captured_samples / model_rate
     total_inference = sum(inference_times) + flush_seconds
@@ -565,6 +705,17 @@ def main():
         raise ValueError("--duration must be zero or positive")
     if args.threads < 0:
         raise ValueError("--threads must be zero or positive")
+    if args.capture_block_ms < 1:
+        raise ValueError("--capture-block-ms must be positive")
+    try:
+        if args.audio_latency not in ("low", "high"):
+            args.audio_latency = float(args.audio_latency)
+            if args.audio_latency <= 0:
+                raise ValueError
+    except ValueError:
+        raise ValueError(
+            "--audio-latency must be low, high, or a positive number"
+        )
     run(args)
 
 

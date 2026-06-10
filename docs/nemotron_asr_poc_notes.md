@@ -10,7 +10,13 @@ It matches the production STT capture path where practical:
 - `sounddevice` / PortAudio input
 - `logos_mic`, then `pan_tilt_mic`
 - 16 kHz mono audio
-- 512-sample capture blocks
+- blocking microphone reads on a dedicated thread
+
+The benchmark defaults to 2,048-sample capture blocks (128 ms) and PortAudio's
+`high` latency setting. Production STT currently reads 512 samples (32 ms) at
+a time. The larger benchmark block was necessary on this CPU to prevent the
+ONNX workload from starving PortAudio; it does not change the model's ASR
+chunk size.
 
 The ASR backend is true cache-aware streaming, not sliding-window
 pseudo-streaming. The selected ONNX export consumes non-overlapping 8,960
@@ -21,11 +27,112 @@ sample chunks (560 ms).
 - Model: `onnx-community/nemotron-3.5-asr-streaming-0.6b-onnx-int4`
 - Backend: ONNX Runtime GenAI 0.14.0, CPU
 - Model size on disk: about 793 MB
-- Default language: `en-US`
+- Language prompt: fixed to `en-US` (`lang_id=0`)
+- Language-tag stripping: enabled
 
 The older English-only INT4 artifact is intended for `parakeet-rs`. The
 multilingual 3.5 artifact was selected because Microsoft publishes a matching
 Python `StreamingProcessor` implementation in ONNX Runtime GenAI.
+
+## Custom Vocabulary And Word Boosting
+
+NVIDIA NeMo supports real decoder-time phrase boosting for RNN-T models. That
+feature rescales token scores during decoding. The ONNX Runtime GenAI 0.14
+`StreamingProcessor` used by this PoC does not expose phrase lists, boost
+scores, negative scores, beam decoding, or RNNT logits. Its runtime options are
+limited to VAD controls. A Whisper-style prompt would therefore be misleading
+here: this ONNX path cannot currently perform true word boosting.
+
+The model card's phrase "prompt-conditioned" refers specifically to its
+language-ID prompt, not a Whisper-style free-text vocabulary prompt.
+
+The PoC instead includes an editable final-transcript normalization file:
+
+```text
+config/nemotron_custom_vocabulary.json
+```
+
+It contains aliases and the canonical spelling to emit:
+
+```json
+{
+  "canonical": "HEY-ROBOT",
+  "aliases": ["hey robot", "hey, robot"]
+}
+```
+
+This is useful for deterministic wake-word formatting, names, acronyms, and
+robotics jargon. It runs after recognition and does not improve acoustic
+detection probability. Set `"canonical": ""` to remove an exact alias as a
+post-transcription suppression rule; this is not negative decoder boosting.
+
+Use another file or disable normalization:
+
+```bash
+.venv/bin/python3 tools/nemotron_mic_benchmark.py \
+  --vocab-file /path/to/vocabulary.json
+
+.venv/bin/python3 tools/nemotron_mic_benchmark.py \
+  --no-vocab-normalization
+```
+
+When normalization changes the transcript, the tool prints both `[final]`
+and `[raw]` so the effect remains visible during evaluation.
+
+The model is explicitly prompted with `en-US`; it does not use automatic
+language detection. Emitted tags such as `<en-US>` are stripped from both
+partial and final text. This is the local equivalent of
+`strip_lang_tags=True`; ONNX Runtime GenAI does not expose that NeMo flag.
+
+## Cache Context
+
+The tool prints the exported cache parameters at startup:
+
+```text
+attention_context=[56, 6]
+conv_context=8
+pre_encode_cache_size=9
+subsampling_factor=8
+```
+
+NeMo supports attention contexts `[56, 0]`, `[56, 1]`, `[56, 3]`, `[56, 6]`,
+and `[56, 13]`, corresponding to 80, 160, 320, 560, and 1,120 ms chunks. The
+current artifact is exported for `[56, 6]`. These values describe fixed ONNX
+graph input and cache dimensions. Editing `genai_config.json` alone does not
+resize the graph and is unsafe. To test another context/latency operating
+point, export or download another ONNX graph and point `--model` at it.
+
+## Confidence Scores
+
+Full NeMo supports frame-, token-, word-, and utterance-level confidence.
+Depending on configuration, it derives confidence from maximum token
+probability or normalized entropy, then aggregates token confidence into words
+and utterances.
+
+The INT4 ONNX graphs also compute the required RNNT joiner logits internally.
+However, ONNX Runtime GenAI 0.14 takes argmax inside
+`NemotronSpeechState::StepToken()` and immediately releases the logits tensor.
+It does not expose token, word, or utterance confidence through Python.
+
+The generic Python `Generator.get_logits()` and `get_output("joint_output")`
+methods are not valid escape hatches for this transducer model. Local probes
+against 0.14 caused a segmentation fault, so the benchmark deliberately does
+not call them or manufacture a substitute score.
+
+A proper implementation requires a small ONNX Runtime GenAI C++ change:
+
+1. Compute log-softmax, maximum probability, or normalized entropy while the
+   joiner logits are alive in `StepToken()`.
+2. Preserve the confidence alongside each emitted non-blank token.
+3. Expose those token scores through the C/Python generator API.
+4. Aggregate emitted tokens into word and utterance scores.
+
+For an initial streaming display, use a token-weighted mean over every ten
+audio chunks rather than averaging ten per-chunk means. Chunks containing only
+RNNT blanks or silence should not count as zero-confidence speech. With VAD
+enabled, reset and print an utterance aggregate at end-of-speech. These values
+would still be model confidence estimates, not calibrated probabilities of
+transcription correctness.
 
 ## Install
 
@@ -74,6 +181,14 @@ Override the microphone or test an existing 16 kHz mono WAV:
   --audio-file /tmp/test-16khz.wav
 ```
 
+Capture buffering can be tuned independently of model chunking:
+
+```bash
+.venv/bin/python3 tools/nemotron_mic_benchmark.py \
+  --capture-block-ms 128 \
+  --audio-latency high
+```
+
 The report includes model load time, chunk inference times, inference/audio
 real-time factor, queued audio, end-to-final latency, process CPU, peak RSS,
 PortAudio overflows, and a simple fell-behind verdict. `--threads N` can limit
@@ -94,11 +209,15 @@ As of June 10, 2026:
 - Mean chunk inference was about 300 ms for each 560 ms chunk.
 - Approximate end-to-final latency was about 0.4 seconds.
 - Peak RSS was 0.93 GiB.
-- The live run reported PortAudio input overflows and delivered only 3.62
-  seconds of audio during a nominal 5-second capture. This is a real failure
-  condition even though model inference itself stayed faster than realtime.
-- Matching the production node's blocking 512-sample read pattern reproduced
-  the overflows. Limiting ONNX to four threads also did not eliminate them.
+- Production-sized 32 ms capture reads reported repeated PortAudio overflows
+  under inference load. Limiting ONNX to four threads did not eliminate them.
+- A 64 ms capture block still reported seven overflows in an 8-second run.
+- A 128 ms capture block with PortAudio `high` latency completed an 8-second
+  live run with zero overflows, 0.608 RTF, 0.93 GiB peak RSS, and a maximum
+  queued-audio value of 0.384 seconds.
+- The reliable 128 ms setting adds about 96 ms of capture buffering relative
+  to the production 32 ms read size. Nemotron still emits work in fixed 560 ms
+  chunks, so this is a modest part of the overall streaming latency.
 
 A 9.97-second synthesized speech test ran at 0.556 RTF with 0.93 GiB peak
 RSS. It produced:
@@ -118,11 +237,11 @@ ever-growing queued-audio value. A practical interaction target is preferably
 well below 1.0, because wake-word handling, VAD, ROS nodes, and the rest of
 Logos also need CPU time.
 
-Recommendation: continue, but first investigate the PortAudio overflows and
-repeat a longer fixed-script live test while the normal Logos stack is
-running. Do not change production STT yet. Raw model throughput and memory are
-promising on the T580, but reliable capture and quality versus Faster-Whisper
-are not established.
+Recommendation: continue with the 128 ms capture block and repeat a longer
+fixed-script live test while the normal Logos stack is running. Do not change
+production STT yet. Raw throughput, memory use, and standalone capture
+reliability are promising, but quality and CPU coexistence versus
+Faster-Whisper are not established.
 
 ## References
 
