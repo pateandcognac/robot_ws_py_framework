@@ -218,6 +218,10 @@ venv.bak/
 # mkdocs documentation
 /site
 
+# Local ASR proof-of-concept artifacts
+/models/nemotron-3.5-asr-streaming-0.6b-onnx-int4/
+/logs/nemotron_asr/
+
 # mypy
 .mypy_cache/
 .dmypy.json
