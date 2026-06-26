@@ -159,13 +159,51 @@ case "${1:-}" in
       "My ears are online. 🎙️ Say hey robot to wake me, then say end of line when your request is complete. That explicit ending works better than waiting for a voice timeout. 🗣️ The small metal spring on the right side of my head is my microphone mute switch. Its red and green light shows whether I can hear you. 💡" \
       || true
     ;;
+  keyring)
+    perform_ttp \
+      kokoro \
+      "$kokoro_voice" \
+      "If Ubuntu asks for login keyring authentication, enter the robot password. The password is robot." \
+      || true
+    ;;
+  browser)
+    perform_ttp \
+      kokoro \
+      "$kokoro_voice" \
+      "Launching the Logos browser interface at localhost port five thousand." \
+      || true
+    ;;
+  workspace)
+    workspace_name="${2:-Logos}"
+    last_workspace="${3:-0}"
+    auto_cog="${4:-0}"
+    if [ "$auto_cog" = "1" ]; then
+      perform_ttp \
+        kokoro \
+        "$kokoro_voice" \
+        "Launching Logos cognition now with workspace ${workspace_name}." \
+        || true
+    elif [ "$last_workspace" = "1" ]; then
+      perform_ttp \
+        kokoro \
+        "$kokoro_voice" \
+        "Look here. In the main terminal, enter a workspace now, or wait one minute to use the most recent workspace by default: ${workspace_name}." \
+        || true
+    else
+      perform_ttp \
+        kokoro \
+        "$kokoro_voice" \
+        "Look here. In the main terminal, enter a Logos workspace, or press enter to use the displayed default: ${workspace_name}." \
+        || true
+    fi
+    ;;
   speakme)
     if [ -s "$speakme_file" ]; then
       perform_ttp kokoro "$kokoro_voice" "$(cat "$speakme_file")" || true
     fi
     ;;
   *)
-    printf 'Usage: %s {volume|linux|roscore|core|piper|ambient|kokoro|speakme}\n' "$0" >&2
+    printf 'Usage: %s {volume|linux|roscore|core|piper|ambient|kokoro|keyring|browser|workspace|speakme}\n' "$0" >&2
     exit 2
     ;;
 esac

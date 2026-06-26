@@ -119,6 +119,16 @@ cognition startup:
 /home/robot/robot_ws/bin/logos_launch.sh --display :0 --auto-cog --workspace Logos_001
 ```
 
+To resume the most recently touched cloned workspace at boot, use
+`--last-workspace`. It selects the newest existing
+`~/robot_workspaces/Logos_*` directory as the default. Without `--auto-cog`, the
+cognition pane shows a 60 second countdown so an operator can type a different
+workspace before it launches the default:
+
+```
+/home/robot/robot_ws/bin/logos_launch.sh --display :0 --last-workspace --boot-voice
+```
+
 The launcher loads the exported environment from `~/.bashrc` before creating
 the tmux session. This gives Startup Applications the same Gemini keys,
 TurtleBot sensor settings, ROS overlays, paths, and library settings available
@@ -126,8 +136,9 @@ in a normal terminal. Set `LOGOS_LOAD_BASHRC=0` only when intentionally testing
 without that environment.
 
 At startup, the launcher also shows a desktop notification with the robot's
-Ubuntu login reminder. Use `--no-login-notification` or set
-`LOGOS_LOGIN_NOTIFICATION=0` to suppress it.
+Ubuntu login keyring reminder. The default reminder tells the operator to enter
+password `robot` when Ubuntu asks for login keyring authentication. Use
+`--no-login-notification` or set `LOGOS_LOGIN_NOTIFICATION=0` to suppress it.
 
 For an optional narrated startup sequence, add `--boot-voice`:
 
@@ -164,7 +175,9 @@ bin/logos_ambient.sh 1 1 '[]'
 
 It then explains the `hey robot` wake phrase, the explicit `end of line`
 terminator, and the spring-shaped capacitive microphone mute switch on the
-right side of Logos's head. If `docs/SPEAKME.txt` exists and is nonempty, its
+right side of Logos's head. Later Kokoro reminders call attention to login
+keyring authentication, browser interface launch, and the LOOK HERE workspace
+prompt in the main terminal. If `docs/SPEAKME.txt` exists and is nonempty, its
 emoji-punctuated contents are performed last using the final Kokoro voice.
 Set `LOGOS_BOOT_VOICE=1` instead of using the command-line flag when preferred.
 

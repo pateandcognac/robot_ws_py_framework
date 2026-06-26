@@ -11,6 +11,8 @@ Options:
   --session NAME        tmux session name, default: logos
   --workspace NAME      default cognition workspace, default: Logos
   --time-workspace      use Logos_<crc32(epoch seconds)>; overrides --workspace
+  --last-workspace      default to newest existing Logos_* workspace; with
+                        interactive cognition, launch after 60 second countdown
   --auto-cog            start cognition without waiting for Enter
   --delay SECONDS       pause between pane launches, default: 3
   --display DISPLAY     X display for gnome-terminal/browser, default: $DISPLAY or :0
@@ -30,8 +32,7 @@ Environment:
   LOGOS_LOAD_BASHRC             load ~/.bashrc through interactive Bash, default: 1
   LOGOS_BOOT_VOICE              enable narrated startup, default: 0
   LOGOS_LOGIN_NOTIFICATION      show Ubuntu login reminder, default: 1
-  LOGOS_LOGIN_USER              login reminder username, default: current user
-  LOGOS_LOGIN_PASSWORD          login reminder password, default: username
+  LOGOS_LOGIN_PASSWORD          login reminder password, default: robot
   LOGOS_MAIN_TERMINAL_PROFILE   gnome-terminal profile for the main dashboard
   LOGOS_MAIN_TERMINAL_GEOMETRY  gnome-terminal geometry, default: 160x48+0+0
   LOGOS_TMUX_WIDTH              detached tmux window width, default: 160
@@ -77,6 +78,7 @@ workspace_parent="$HOME/robot_workspaces"
 session="logos"
 workspace_name="Logos"
 time_workspace=0
+last_workspace=0
 auto_cog=0
 delay_seconds=3
 open_terminal=1
@@ -88,8 +90,7 @@ launch_nav=1
 launch_idle=1
 boot_voice="${LOGOS_BOOT_VOICE:-0}"
 show_login_notification="${LOGOS_LOGIN_NOTIFICATION:-1}"
-login_user="${LOGOS_LOGIN_USER:-${USER:-robot}}"
-login_password="${LOGOS_LOGIN_PASSWORD:-$login_user}"
+login_password="${LOGOS_LOGIN_PASSWORD:-robot}"
 display_value="${DISPLAY:-:0}"
 
 while [ "$#" -gt 0 ]; do
@@ -106,6 +107,9 @@ while [ "$#" -gt 0 ]; do
       ;;
     --time-workspace)
       time_workspace=1
+      ;;
+    --last-workspace)
+      last_workspace=1
       ;;
     --auto-cog)
       auto_cog=1
@@ -159,6 +163,25 @@ while [ "$#" -gt 0 ]; do
   shift
 done
 
+find_latest_workspace() {
+  local latest_workspace
+
+  [ -d "$workspace_parent" ] || return 1
+  latest_workspace="$(
+    find "$workspace_parent" \
+      -mindepth 1 \
+      -maxdepth 1 \
+      -type d \
+      -name 'Logos_*' \
+      -printf '%T@ %f\n' 2>/dev/null \
+      | sort -nr \
+      | head -n 1 \
+      | sed 's/^[^ ]* //'
+  )"
+  [ -n "$latest_workspace" ] || return 1
+  printf '%s\n' "$latest_workspace"
+}
+
 if [ "$time_workspace" -eq 1 ]; then
   command -v crc32 >/dev/null 2>&1 || die "crc32 was not found"
   epoch_seconds="$(date +%s)"
@@ -172,6 +195,13 @@ if [ "$time_workspace" -eq 1 ]; then
       ;;
   esac
   printf 'Generated time-based workspace: %s\n' "$workspace_name"
+elif [ "$last_workspace" -eq 1 ]; then
+  if latest_workspace="$(find_latest_workspace)"; then
+    workspace_name="$latest_workspace"
+    printf 'Selected latest existing workspace: %s\n' "$workspace_name"
+  else
+    printf 'No existing Logos_* workspace found under %s; using %s\n' "$workspace_parent" "$workspace_name"
+  fi
 fi
 
 case "$workspace_name" in
@@ -192,10 +222,10 @@ if [ "$show_login_notification" -eq 1 ] && command -v notify-send >/dev/null 2>&
     --urgency=critical \
     --expire-time=30000 \
     --icon=dialog-password \
-    "Login Keyring" \
-    "Enter password when prompted for authentication"
-    "Username: $login_user
-Password: $login_password" \
+    "Ubuntu login keyring authentication" \
+    "Ubuntu may prompt you to unlock the login keyring during startup.
+
+When it asks for a password, enter: $login_password" \
     >/dev/null 2>&1 || true
 fi
 
@@ -254,7 +284,7 @@ else
 
   boot_voice_stage() {
     [ "$boot_voice" -eq 1 ] || return 0
-    "$script_dir/logos_boot_voice.sh" "$1" || true
+    "$script_dir/logos_boot_voice.sh" "$@" || true
   }
 
   boot_voice_stage volume
@@ -278,7 +308,7 @@ else
   fi
 
   boot_voice_stage piper
-  new_pane "speech to text" "'$script_dir/logos_stt.sh'" "$script_dir/logos_stt.sh"
+  new_pane "speech to text" "'$script_dir/logos_stt.sh' nemotron" "$script_dir/logos_stt.sh nemotron"
 
   if [ "$launch_nav" -eq 1 ]; then
     new_pane "navigation" "'$script_dir/logos_nav.sh'" "$script_dir/logos_nav.sh"
@@ -294,6 +324,13 @@ else
 
   boot_voice_stage ambient
   boot_voice_stage kokoro
+  if [ "$show_login_notification" -eq 1 ]; then
+    boot_voice_stage keyring
+  fi
+  if [ "$open_browser" -eq 1 ]; then
+    boot_voice_stage browser
+  fi
+  boot_voice_stage workspace "$workspace_name" "$last_workspace" "$auto_cog"
   boot_voice_stage speakme
 
   cog_ready_channel="logos-cog-ready-$$"
@@ -312,7 +349,20 @@ else
   if [ "$auto_cog" -eq 1 ]; then
     new_pane "cognition" "$cog_intro_command$cog_command'$script_dir/logos_cog.sh' '$workspace_name'" "$script_dir/logos_cog.sh $workspace_name"
   else
-    cog_prompt_command="printf 'Default workspace: %s\n' '$workspace_name'; read -r -p 'Workspace name: ' ws; ws=\${ws:-'$workspace_name'}; "
+    cog_prompt_command="printf 'Default workspace: %s\n' '$workspace_name'; "
+    if [ "$last_workspace" -eq 1 ]; then
+      cog_prompt_command+="ws=''; timeout_limit=60; "
+      cog_prompt_command+="for ((i=timeout_limit; i>0; i--)); do "
+      cog_prompt_command+="printf '\\r[Default in %2ds: %s] Workspace name: \\e[K%s' \"\$i\" '$workspace_name' \"\$ws\"; "
+      cog_prompt_command+="if IFS= read -r -s -n 1 -t 1 char; then "
+      cog_prompt_command+="if [[ -z \"\$char\" ]]; then break; fi; "
+      cog_prompt_command+="case \"\$char\" in \$'\\177'|\$'\\b') ws=\"\${ws%?}\" ;; *) ws+=\"\$char\" ;; esac; "
+      cog_prompt_command+="((i++)); "
+      cog_prompt_command+="fi; "
+      cog_prompt_command+="done; printf '\\n'; ws=\${ws:-'$workspace_name'}; "
+    else
+      cog_prompt_command+="read -r -p 'Workspace name: ' ws; ws=\${ws:-'$workspace_name'}; "
+    fi
     new_pane "cognition ready" "$cog_intro_command$cog_prompt_command$cog_command'$script_dir/logos_cog.sh' \"\$ws\"" "$script_dir/logos_cog.sh $workspace_name"
   fi
 
