@@ -526,9 +526,9 @@ class LogosNemotronEarsNode(LogosEarsNode):
             content_meta.append("\n[Timed out!]")
             hint_parts.append(
                 f"<!-- system: The latest human_stt input recording timed out after {RECORDING_TIMEOUT} seconds; "
-                "this may indicate an accidental wake trigger."
+                "this might indicate an accidental wake trigger."
             )
-        hint_parts.append(" -->")
+            hint_parts.append(" -->")
         if content_meta:
             final_text += "\n\n" + "\n".join(content_meta)
 

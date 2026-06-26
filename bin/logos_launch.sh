@@ -192,7 +192,8 @@ if [ "$show_login_notification" -eq 1 ] && command -v notify-send >/dev/null 2>&
     --urgency=critical \
     --expire-time=30000 \
     --icon=dialog-password \
-    "Logos robot Ubuntu login" \
+    "Login Keyring" \
+    "Enter password when prompted for authentication"
     "Username: $login_user
 Password: $login_password" \
     >/dev/null 2>&1 || true

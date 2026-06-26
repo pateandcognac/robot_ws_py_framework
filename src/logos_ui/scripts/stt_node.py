@@ -141,7 +141,7 @@ CLASSIFIER_SAMPLE_FRAMES   = int(CLASSIFIER_SAMPLE_DURATION * SAMPLE_RATE / FRAM
 CLASSIFIER_BOOST_FACTOR    = 0.0   # temporal confidence boost per repeated detection
 CLASSIFIER_TOP_K           = 10    # max YAMNet labels per sample
 CLASSIFIER_SCORE_THRESHOLD = 0.10  # minimum score to include in output
-CLASSIFIER_BLIP_DURATION   = 1.0   # seconds for amber LED overlay after each sample
+CLASSIFIER_BLIP_DURATION   = 1.0   # seconds for LED overlay after each sample
 CLASSIFIER_LABEL_BLACKLIST = {
     'Chewing, mastication',
     'Crunching',
