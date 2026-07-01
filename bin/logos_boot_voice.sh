@@ -78,7 +78,7 @@ check_kobuki() {
   fi
 
   printf 'logos_boot_voice.sh: %s\n' "$warning" >&2
-  desktop_notify "Logos base needs attention" "$warning"
+  desktop_notify "My mobile Kobuki base needs attention" "$warning"
   speak_festival "$warning"
   return 1
 }
@@ -132,7 +132,7 @@ case "${1:-}" in
     set_max_volume
     ;;
   linux)
-    speak_espeak "Linux user session online. Beginning Logos startup."
+    speak_espeak "Linux boot successful. Beginning Logos startup."
     ;;
   roscore)
     speak_espeak "Launching R O S core."
@@ -140,13 +140,13 @@ case "${1:-}" in
   core)
     wait_for_ros_master || true
     check_kobuki || true
-    speak_festival "R O S core is online. Starting Logos core hardware and voice systems."
+    speak_festival "R O S core is online. Bringing up my core hardware and voice systems."
     ;;
   piper)
     perform_ttp \
       piper \
       en_US-joe-medium \
-      "My core systems are online. I am bringing my remaining senses online now. 🔆" \
+      "My core systems are online. 💡 I am bringing my remaining senses online now. 🔆" \
       || true
     ;;
   ambient)
@@ -156,21 +156,21 @@ case "${1:-}" in
     perform_ttp \
       kokoro \
       "$kokoro_voice" \
-      "My ears are online. 🎙️ Say hey robot to wake me, then say end of line when your request is complete. That explicit ending works better than waiting for a voice timeout. 🗣️ The small metal spring on the right side of my head is my microphone mute switch. Its red and green light shows whether I can hear you. 💡" \
+      "My audio processing is online. 🎙️ To speak to me once I've fully booted, you can say 'Hey Robot' to get my attention, and then say 'End Of Line' when you're done talking. 🗣️" \
       || true
     ;;
   keyring)
     perform_ttp \
       kokoro \
       "$kokoro_voice" \
-      "If Ubuntu asks for login keyring authentication, enter the robot password. The password is robot." \
+      "If you are prompted for login keyring authentication, enter the password: 'robot' 🤖" \
       || true
     ;;
   browser)
     perform_ttp \
       kokoro \
       "$kokoro_voice" \
-      "Launching the Logos browser interface at localhost port five thousand." \
+      "Launching the web browser interface at localhost port five thousand. 🕸️" \
       || true
     ;;
   workspace)
@@ -187,13 +187,13 @@ case "${1:-}" in
       perform_ttp \
         kokoro \
         "$kokoro_voice" \
-        "Look here. In the main terminal, enter a workspace now, or wait one minute to use the most recent workspace by default: ${workspace_name}." \
+        "Look at my main terminal. It is prompting you for a workspace name. Enter a new or existing workspace name now, or wait one minute to use the most recent workspace by default: ${workspace_name}." \
         || true
     else
       perform_ttp \
         kokoro \
         "$kokoro_voice" \
-        "Look here. In the main terminal, enter a Logos workspace, or press enter to use the displayed default: ${workspace_name}." \
+        "My main terminal is prompting for a workspace. Enter a new or existing workspace, or press enter to use the displayed default: ${workspace_name}." \
         || true
     fi
     ;;

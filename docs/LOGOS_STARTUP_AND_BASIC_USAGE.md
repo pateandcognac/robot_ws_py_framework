@@ -110,10 +110,11 @@ logos_launch.sh
 
 This opens a main-monitor `gnome-terminal`, creates a `tmux` session named
 `logos`, starts the usual stack in separate panes, and leaves the final pane
-waiting for the cognition workspace name. Press Enter there to use the displayed
-default, or type an existing/new `Logos_*` workspace name. For boot/autostart
-use, the same helper can be called with explicit display and automatic
-cognition startup:
+waiting for the cognition workspace name. The main terminal opens maximized by
+default, and the cognition pane uses 50% of the tmux window width. Press Enter
+there to use the displayed default, or type an existing/new `Logos_*` workspace
+name. For boot/autostart use, the same helper can be called with explicit
+display and automatic cognition startup:
 
 ```
 /home/robot/robot_ws/bin/logos_launch.sh --display :0 --auto-cog --workspace Logos_001
@@ -128,6 +129,11 @@ workspace before it launches the default:
 ```
 /home/robot/robot_ws/bin/logos_launch.sh --display :0 --last-workspace --boot-voice
 ```
+
+Set `LOGOS_MAIN_TERMINAL_MAXIMIZE=0` to use the geometry hint instead of a
+maximized window. Set `LOGOS_COG_PANE_PERCENT=60` or another value from 1 to 99
+to change the cognition pane width. The older `LOGOS_COG_PANE_WIDTH` fixed
+column setting still works and overrides the percentage setting when present.
 
 The launcher loads the exported environment from `~/.bashrc` before creating
 the tmux session. This gives Startup Applications the same Gemini keys,

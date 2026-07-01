@@ -34,10 +34,12 @@ Environment:
   LOGOS_LOGIN_NOTIFICATION      show Ubuntu login reminder, default: 1
   LOGOS_LOGIN_PASSWORD          login reminder password, default: robot
   LOGOS_MAIN_TERMINAL_PROFILE   gnome-terminal profile for the main dashboard
-  LOGOS_MAIN_TERMINAL_GEOMETRY  gnome-terminal geometry, default: 160x48+0+0
-  LOGOS_TMUX_WIDTH              detached tmux window width, default: 160
-  LOGOS_TMUX_HEIGHT             detached tmux window height, default: 48
-  LOGOS_COG_PANE_WIDTH          main cognition pane width, default: 72
+  LOGOS_MAIN_TERMINAL_GEOMETRY  gnome-terminal geometry hint, default: 200x55+0+0
+  LOGOS_MAIN_TERMINAL_MAXIMIZE  maximize main gnome-terminal, default: 1
+  LOGOS_TMUX_WIDTH              detached tmux window width, default: 200
+  LOGOS_TMUX_HEIGHT             detached tmux window height, default: 55
+  LOGOS_COG_PANE_PERCENT        main cognition pane width percent, default: 50
+  LOGOS_COG_PANE_WIDTH          legacy fixed cognition pane width override
 USAGE
 }
 
@@ -48,6 +50,15 @@ die() {
 
 shell_quote() {
   printf "'%s'" "$(printf '%s' "$1" | sed "s/'/'\\\\''/g")"
+}
+
+is_positive_int() {
+  case "$1" in
+    ''|*[!0-9]*)
+      return 1
+      ;;
+  esac
+  [ "$1" -gt 0 ]
 }
 
 load_interactive_environment() {
@@ -212,6 +223,45 @@ esac
 
 command -v tmux >/dev/null 2>&1 || die "tmux was not found"
 
+cog_pane_percent="${LOGOS_COG_PANE_PERCENT:-50}"
+if [ -n "${LOGOS_COG_PANE_WIDTH:-}" ]; then
+  is_positive_int "$LOGOS_COG_PANE_WIDTH" || die "LOGOS_COG_PANE_WIDTH must be a positive integer"
+else
+  is_positive_int "$cog_pane_percent" || die "LOGOS_COG_PANE_PERCENT must be an integer from 1 to 99"
+  [ "$cog_pane_percent" -ge 1 ] && [ "$cog_pane_percent" -le 99 ] || die "LOGOS_COG_PANE_PERCENT must be an integer from 1 to 99"
+fi
+
+build_cognition_layout_shell_command() {
+  local target_window="${session}:0"
+  local target_pane="${session}:0.0"
+
+  if [ -n "${LOGOS_COG_PANE_WIDTH:-}" ]; then
+    printf "tmux select-layout -t %s main-vertical >/dev/null 2>&1 || true; tmux resize-pane -t %s -x %s >/dev/null 2>&1 || true" \
+      "$(shell_quote "$target_window")" \
+      "$(shell_quote "$target_pane")" \
+      "$LOGOS_COG_PANE_WIDTH"
+    return 0
+  fi
+
+  printf "tmux select-layout -t %s main-vertical >/dev/null 2>&1 || true; window_width=\$(tmux display-message -p -t %s '#{window_width}' 2>/dev/null || true); case \"\$window_width\" in ''|*[!0-9]*) exit 0 ;; esac; columns=\$((window_width * %s / 100)); min_columns=20; max_columns=\$((window_width - 20)); if [ \"\$max_columns\" -lt \"\$min_columns\" ]; then max_columns=\"\$window_width\"; fi; if [ \"\$columns\" -lt \"\$min_columns\" ]; then columns=\"\$min_columns\"; fi; if [ \"\$columns\" -gt \"\$max_columns\" ]; then columns=\"\$max_columns\"; fi; tmux resize-pane -t %s -x \"\$columns\" >/dev/null 2>&1 || true" \
+    "$(shell_quote "$target_window")" \
+    "$(shell_quote "$target_window")" \
+    "$cog_pane_percent" \
+    "$(shell_quote "$target_pane")"
+}
+
+apply_cognition_layout() {
+  bash -lc "$(build_cognition_layout_shell_command)"
+}
+
+install_cognition_layout_hooks() {
+  local layout_command
+
+  layout_command="$(build_cognition_layout_shell_command)"
+  tmux set-hook -t "$session" client-attached "run-shell $(shell_quote "$layout_command")" >/dev/null 2>&1 || true
+  tmux set-hook -t "$session" client-resized "run-shell $(shell_quote "$layout_command")" >/dev/null 2>&1 || true
+}
+
 export DISPLAY="$display_value"
 if [ -z "${XAUTHORITY:-}" ] && [ -f "$HOME/.Xauthority" ]; then
   export XAUTHORITY="$HOME/.Xauthority"
@@ -263,8 +313,8 @@ else
     if [ "$pane_count" -eq 0 ]; then
       tmux new-session \
         -d \
-        -x "${LOGOS_TMUX_WIDTH:-160}" \
-        -y "${LOGOS_TMUX_HEIGHT:-48}" \
+        -x "${LOGOS_TMUX_WIDTH:-200}" \
+        -y "${LOGOS_TMUX_HEIGHT:-55}" \
         -s "$session" \
         -n bringup \
         "$tmux_command"
@@ -369,24 +419,30 @@ else
   cognition_pane_index=$((pane_count - 1))
   tmux swap-pane -s "${session}:0.${cognition_pane_index}" -t "${session}:0.0"
   tmux select-pane -t "${session}:0.0"
-  tmux select-layout -t "${session}:0" main-vertical >/dev/null
-  tmux resize-pane -t "${session}:0.0" -x "${LOGOS_COG_PANE_WIDTH:-72}" >/dev/null 2>&1 || true
   tmux wait-for -S "$cog_ready_channel"
 fi
+
+install_cognition_layout_hooks
+apply_cognition_layout
 
 if [ "$attach_current" -eq 1 ]; then
   exec tmux attach-session -t "$session"
 fi
 
 if [ "$open_terminal" -eq 1 ]; then
-  geometry="${LOGOS_MAIN_TERMINAL_GEOMETRY:-160x48+0+0}"
+  geometry="${LOGOS_MAIN_TERMINAL_GEOMETRY:-200x55+0+0}"
+  terminal_args=(--geometry="$geometry")
+  if [ "${LOGOS_MAIN_TERMINAL_MAXIMIZE:-1}" != "0" ]; then
+    terminal_args+=(--maximize)
+  fi
+
   profile_args=()
   if [ -n "${LOGOS_MAIN_TERMINAL_PROFILE:-}" ]; then
     profile_args=(--profile="$LOGOS_MAIN_TERMINAL_PROFILE")
   fi
 
   gnome-terminal \
-    --geometry="$geometry" \
+    "${terminal_args[@]}" \
     "${profile_args[@]}" \
     --title="Logos Launch" \
     -- bash -lc "tmux attach-session -t '$session'"
