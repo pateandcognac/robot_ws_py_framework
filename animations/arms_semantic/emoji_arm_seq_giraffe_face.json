@@ -1,0 +1,46 @@
+{
+ "emoji": "🦒",
+ "ideation": "This sequence will show the robot mimicking a giraffe's long neck and legs by extending its arms upward and slightly outward.  The movement should be slow and deliberate, emphasizing the height and elegance of the animal.  The arms will start slightly below shoulder height, rise gracefully, and then settle into a final pose that suggests a calm observation.  The wrists will remain mostly neutral, as there's no need for any hand gestures to express the essence of a giraffe.  We will use a 4-frame animation to capture the essence of this.",
+ "frames": [
+  {
+   "beat": "arms rise slightly, a gentle stretch upward",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend higher, reaching for the sky",
+   "arms": {
+    "both": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms stretch further, a graceful ascent",
+   "arms": {
+    "both": {
+     "joint1": -40.0,
+     "joint2": 70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach their peak, observing calmly",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

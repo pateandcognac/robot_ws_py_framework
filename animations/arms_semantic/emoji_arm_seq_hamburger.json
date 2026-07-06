@@ -1,0 +1,56 @@
+{
+ "emoji": "🍔",
+ "ideation": "This sequence mimics the act of someone holding a hamburger and taking a bite. It starts with both arms extended forward, palms upward, as if presenting the hamburger. Then, one arm moves up to take a bite, and finally, both arms return to a relaxed position.  The movement is designed to be smooth and natural, but with distinct keyframes.",
+ "frames": [
+  {
+   "beat": "arms present burger forward, palms up",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lifts to take a big bite",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "chewing thoughtfully, burger held steady",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms relax, satisfied",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

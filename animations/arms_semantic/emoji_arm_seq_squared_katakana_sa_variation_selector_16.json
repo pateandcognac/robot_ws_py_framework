@@ -1,0 +1,66 @@
+{
+ "emoji": "🈂️",
+ "ideation": "This animation sequence mimics the action of pressing a service charge button.  The robot will use its right arm to perform the gesture, while the left arm remains at rest. Frame 1 shows the arm extended, ready to press the button. Frame 2 shows the arm moving down to press the button. Frame 3 shows the arm slightly raised, as if the button is depressed. Frame 4 shows the arm returning to the rest position.",
+ "frames": [
+  {
+   "beat": "right arm rests at side, ready to act",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, poised to press",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm presses down, engaging the button",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to the side, action complete",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

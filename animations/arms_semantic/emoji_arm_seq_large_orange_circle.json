@@ -1,0 +1,36 @@
+{
+ "emoji": "🟠",
+ "ideation": "This animation sequence will portray a gentle, curious exploration of the orange circle emoji. The robot will initially hold its arms close to its body, then extend them outward in a gesture of inspection, and finally return to a relaxed position.  The movement aims to capture a sense of playful curiosity, mirroring the soft and inviting appearance of the orange circle.  The use of both arms in a symmetrical way helps maintain a balanced and focused expression.",
+ "frames": [
+  {
+   "beat": "arms hug the body, curious about the orange circle",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend outward, gently inspecting the circle",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, thoughtful pose",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

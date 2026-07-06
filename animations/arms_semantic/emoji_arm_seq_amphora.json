@@ -1,0 +1,46 @@
+{
+ "emoji": "🏺",
+ "ideation": "This sequence mimics carefully holding a valuable amphora.  The robot will hold it out in front of them to showcase the object, then carefully lower it to a resting position. Frame 1 shows both arms in a neutral position. Frame 2 shows both arms extended forward and slightly upward to cradle the amphora. Frame 3 shows the amphora lowering to rest in front of the robot. Frame 4 shows both arms returning to a neutral position.",
+ "frames": [
+  {
+   "beat": "arms hang loosely at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward, presenting the amphora",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms carefully lower the precious object",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, neutral pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

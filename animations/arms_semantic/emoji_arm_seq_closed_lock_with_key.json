@@ -1,0 +1,66 @@
+{
+ "emoji": "🔐",
+ "ideation": "This animation sequence will show the robot carefully turning a key in a lock. The robot's movements should be deliberate and precise, reflecting the careful nature of locking something securely.  The left arm will hold the object being locked, while the right arm manipulates the key. I will use the existing examples as a guide for creating natural-looking arm movements for this detailed animation. Frame 1 will position the left arm holding the object being locked.  Frame 2 will show the right arm moving into position to insert the key. Frame 3 will depict the key being turned in the lock, and Frame 4 will show the key being removed and the arms returning to a resting position. I'll make sure the movement is neither too fast nor too slow, and I'll use slight variations in the positions of the arms and wrists to avoid rigidity.",
+ "frames": [
+  {
+   "beat": "left arm holds steady, right arm prepares to insert key",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm inserts key, wrist twists to engage lock",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the key turns firmly in the lock mechanism",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -10.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "key removed, both arms return to a resting state",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

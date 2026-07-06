@@ -1,0 +1,66 @@
+{
+ "emoji": "⛺",
+ "ideation": "This animation sequence depicts the act of setting up a tent.  The robot will mimic the actions of placing poles into the ground and securing the tent fabric. Since the robot has no hands, the animation will focus on the overall arm movements that suggest these actions. The sequence will use a combination of both arms to create a sense of collaborative effort.",
+ "frames": [
+  {
+   "beat": "arms reach down, preparing the ground",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift poles upward, setting the structure",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms adjust the frame, steadying the poles",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower to the sides, tent is pitched",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "🎢",
+ "ideation": "This sequence simulates the excitement and thrill of a roller coaster ride. The arms will move dynamically, reflecting the ups and downs of the coaster.  Frame 1 starts with arms up, anticipating the ride. Frame 2 shows arms out to the sides, as if experiencing the initial drop. Frame 3 depicts arms raised in a celebratory pose, representing the peak of the ride. Frame 4 shows arms down and slightly forward, mirroring the descent. Frame 5 ends with arms at rest, suggesting the ride's conclusion.",
+ "frames": [
+  {
+   "beat": "arms shoot up, ready for the coaster thrill",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms spread wide for the first big drop",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands wave triumphantly at the ride's peak",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull in for the stomach-churning descent",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms relax as the roller coaster slows",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

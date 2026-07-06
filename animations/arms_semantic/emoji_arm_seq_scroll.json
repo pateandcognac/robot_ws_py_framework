@@ -1,0 +1,66 @@
+{
+ "emoji": "📜",
+ "ideation": "This animation sequence simulates the action of scrolling through a document. The robot will use both arms to mimic the motion of turning pages or scrolling a digital document. The movement will be fluid and natural, with a focus on expressing the act of reading and interacting with the document. The sequence will start with both arms at rest, then move into the scrolling motion, and end with the arms returning to a resting position. The left arm will primarily be used to hold the document, while the right arm will perform the scrolling motion. I will refer to existing examples to ensure the movements are smooth, and I will ensure that the robot's arm movements are physically realistic, given its lack of elbows.",
+ "frames": [
+  {
+   "beat": "arms rest, holding a scroll unseen",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pulls down, scrolling the document",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm nudges up slightly, adjusting view",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, scroll complete",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

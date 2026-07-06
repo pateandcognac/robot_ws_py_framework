@@ -1,0 +1,66 @@
+{
+ "emoji": "🕵️",
+ "ideation": "This animation sequence depicts a detective looking for clues. It starts with arms at the sides, then one arm extends forward, as if reaching for something.  The other arm remains slightly bent, as if holding a magnifying glass or notebook. Finally, the arms return to a neutral position.  The movement should be slow and deliberate, reflecting the careful nature of detective work. I'll use the two joints of the robot arms to achieve this. The wrist will help to further emphasize the reaching and observing actions.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to investigate",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm extends forward, right arm begins to scan",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm retracts, right arm holds steady, observing",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a neutral, observant stance",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

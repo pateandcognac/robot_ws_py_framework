@@ -1,0 +1,61 @@
+{
+ "emoji": "📆",
+ "ideation": "This animation sequence simulates the action of tearing off a page from a calendar.  The robot will use both arms to mimic this action.  The movement will be deliberate and somewhat forceful to emphasize the tearing motion.  We'll use a combination of arm rotations and pitches to create the illusion of gripping and pulling.  I will refer to the existing examples to ensure the movements are within the robot's capabilities and appear natural. Frame 1 will show the robot's arms positioned to grasp the calendar page. Frame 2 will show the arms pulling apart, simulating the tear. Frame 3 will show the arms separating with the page removed. Frame 4 will show the arms returning to a neutral position.",
+ "frames": [
+  {
+   "beat": "arms reach out to grip the calendar page",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull apart, tearing the page with force",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -60.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "page is ripped free, arms swing wide",
+   "arms": {
+    "left": {
+     "joint1": 75.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -75.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the deed is done",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

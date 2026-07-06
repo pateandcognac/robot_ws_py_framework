@@ -1,0 +1,81 @@
+{
+ "emoji": "🔫",
+ "ideation": "This animation sequence simulates the action of aiming and firing a water pistol.  The dominant arm will be the right arm for this animation. The left arm will remain largely static to provide a counterpoint and a sense of balance.  The animation will focus on the right arm's movement, with subtle shifts in the left arm's position to add realism.  I'll ensure smooth transitions between frames by following the principles illustrated in the examples. In frame 1, the right arm starts in a relaxed position, slightly angled downward. The left arm hangs loosely at the side. Frame 2 shows the right arm lifting, aiming the water pistol. The wrist turns slightly to simulate aiming. Frame 3 shows the right arm extending forward, the hand fully extended in a firing motion. Frame 4 shows the arm returning to a relaxed position. Frame 5 shows a slight recoil, indicating the water pistol has been fired. The left arm will remain mostly static, offering a contrast against the right arm’s motion, keeping the robot's posture balanced and natural.",
+ "frames": [
+  {
+   "beat": "arms rest, ready to draw",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts, aiming the pistol low",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "the pistol aims higher, ready to fire",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 40.0,
+     "wrist": 40.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends, firing the shot",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms recoil and settle, the shot is taken",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "emoji": "🎙️",
+ "ideation": "This animation sequence simulates holding a studio microphone.  The robot will hold the microphone in front of its body, slightly below chin level. The animation will emphasize a slight adjustment in the arm position to suggest a careful and professional handling of the microphone.  The sequence will focus on the robot's left arm, with the right arm remaining relaxed at the side.  The robot's 'hands' will not actually grasp the microphone, but will be positioned as if holding it.  The primary movement will be a slight shift in the left arm to suggest a subtle adjustment in microphone position.",
+ "frames": [
+  {
+   "beat": "left arm lifts, holding a microphone steady",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a small adjustment to the microphone's position",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -25.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the microphone is settled, ready for broadcast",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -35.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

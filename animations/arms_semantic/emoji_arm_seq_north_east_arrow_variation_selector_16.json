@@ -1,0 +1,61 @@
+{
+ "emoji": "↗️",
+ "ideation": "This sequence aims to represent the ↗️ emoji, symbolizing an upward and rightward direction, by having the right arm extend diagonally upwards and to the right. The left arm will provide balance and support the gesture.  The distinct frames illustrate the arm's movement from a neutral position to the final diagonal pose. In the first frame, both arms are at the sides in a relaxed, neutral posture. joint1 is at 0.0 for both, aligning them with the body, and joint2 is at -90.0, letting them hang naturally. Wrists are at 0.0, palms facing inwards. This sets the stage for the subsequent movement. In the second frame, the right arm begins to lift and extend outwards. joint1 rotates the arm to the right to about 45.0, while joint2 pitches it upwards to 45.0. The wrist is adjusted to 45.0 to point the hand diagonally. The left arm remains at the side for balance, although joint1 might rotate slightly inward for counterbalance.  The third frame sees the right arm fully extended in the diagonal direction represented by the ↗️ emoji. joint1 is rotated further to the right, around 90.0, and joint2 pitches the arm higher, nearing 90.0. The wrist stays at approximately 45.0, ensuring the hand maintains the correct diagonal angle. The left arm remains steady, providing a grounding counterpoint to the right arm's gesture. This pose clearly embodies the upward and rightward movement implied by the emoji. In the fourth and final frame, the right arm retracts slightly to a more relaxed, yet still elevated, position, and the left arm returns to rest. This subtle withdrawal suggests a completion of the gestural movement, offering a natural conclusion to the sequence.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins to lift and angle upwards",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm extends fully up and to the right",
+   "arms": {
+    "left": {
+     "joint1": -15.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 90.0,
+     "joint2": 90.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm settles slightly, completing the upward gesture",
+   "arms": {
+    "left": {
+     "joint1": -5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": 60.0,
+     "wrist": 45.0
+    }
+   }
+  }
+ ]
+}

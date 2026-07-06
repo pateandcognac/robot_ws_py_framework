@@ -1,0 +1,66 @@
+{
+ "emoji": "🚣‍♀️",
+ "ideation": "This sequence simulates the rowing motion. The arms move in a coordinated, rhythmic pattern, mimicking the pulling and releasing of oars. I'll focus on creating a realistic representation of the rowing motion, considering the robot's arm structure. The left arm will lead the motion. In the first frame, both arms are extended forward, palms facing inward, ready to start the stroke. Then, the left arm pulls back, while the right arm extends further forward. After this, the left arm pushes through the water, completing the stroke, while the right arm starts to pull back. Then, the right arm pushes through the water, completing its stroke, while the left arm extends forward again. The whole sequence then ends in a return to the starting position.",
+ "frames": [
+  {
+   "beat": "arms extend forward, ready to row",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm pulls back, right arm pushes forward",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm finishes stroke, right arm pulls back",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm finishes stroke, left arm extends forward",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

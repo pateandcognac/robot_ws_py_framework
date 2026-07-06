@@ -1,0 +1,51 @@
+{
+ "emoji": "🅰️",
+ "ideation": "This animation sequence aims to visually represent the 'A' in the blood type symbol using the robot's arms.  The overall shape resembles a capital 'A', formed by the robot's arms. The sequence starts with the arms extended to the sides, then moves to a position resembling the top of the 'A', and ends with the arms forming the bottom of the 'A'.  Slight variations in wrist angles add to the visual appeal.",
+ "frames": [
+  {
+   "beat": "arms extend wide, forming the base of the A",
+   "arms": {
+    "left": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise and angle inward, creating the A's crossbar",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms drop and angle out, completing the A shape",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

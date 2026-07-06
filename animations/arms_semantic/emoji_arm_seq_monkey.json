@@ -1,0 +1,66 @@
+{
+ "emoji": "🐒",
+ "ideation": "This sequence aims to capture the playful and mischievous nature of a monkey.  The animation will involve both arms in a dynamic, yet somewhat clumsy, motion, reflecting the characteristic movements of monkeys swinging and climbing. The sequence will consist of four frames, focusing on key arm positions to convey a sense of movement and energy. Frame 1 will show both arms in a neutral position, ready for action. Frame 2 will show the left arm reaching upward, as if grasping a branch, while the right arm swings downward, as if propelling itself forward. Frame 3 will reverse the arm positions, emphasizing the chaotic yet coordinated nature of a monkey's movements. Frame 4 will show both arms returning to a relaxed position, ready for the next swing.  The slight irregularities in joint angles will add to the natural feel of the movements. The wrists will be adjusted to enhance the illusion of grasping and swinging.",
+ "frames": [
+  {
+   "beat": "both arms hang loose, ready to play",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches up, right arm swings down",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -90.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms switch roles, a playful tumble",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -90.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle, a moment of rest",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

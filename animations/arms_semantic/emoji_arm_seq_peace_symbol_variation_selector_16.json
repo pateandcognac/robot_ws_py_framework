@@ -1,0 +1,36 @@
+{
+ "emoji": "☮️",
+ "ideation": "This sequence aims to depict the peace symbol using the robot's arms.  The robot lacks hands, so we will create an approximation of the symbol using the arms' positions. The animation will start with the arms extended outward, creating a wide, open gesture. Then the arms will move into a slightly more upward and inward position, resembling the top half of the peace symbol. Finally, the arms will settle into a relaxed, yet still open, position, suggesting a peaceful and welcoming stance. ",
+ "frames": [
+  {
+   "beat": "arms open wide in a welcoming gesture",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms angle upward and inward, forming the top of the symbol",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle into a relaxed, open peace",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

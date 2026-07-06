@@ -1,0 +1,61 @@
+{
+ "emoji": "😐",
+ "ideation": "This sequence aims to capture the neutral, almost indifferent expression of the 😐 emoji. The arms will remain relatively still, with subtle shifts in position to avoid appearing completely frozen or lifeless.  I'll draw on the \"arms_at_sides_at_rest\" example as a starting point, and incorporate minor variations to convey a sense of calmness without absolute stillness. In the first frame, both arms hang loosely at the sides, similar to the resting position, but with a slight outward rotation at joint1 to suggest a relaxed, open posture. joint2 pitches the arms downward, allowing them to hang naturally. The wrists remain neutral. This sets a baseline of stillness. In the second frame, the arms shift slightly inward, with joint1 rotating inward.  joint2 remains the same, keeping the arms hanging downward. This subtle inward movement suggests a slight closing off, reflecting the neutral, somewhat unexpressive nature of the emoji. The wrists turn slightly inward as well. For the third frame, the arms return to the slightly outward rotated position from the first frame. This small outward movement adds a touch of variation, preventing the pose from looking completely static. The wrists also return to neutral. In the fourth frame, one arm shifts slightly outward while the other shifts slightly inward, as if settling into a comfortable, neutral stance. This asymmetry adds a touch of realism, as perfect symmetry can sometimes feel unnatural. The wrists remain neutral. Finally, in the fifth frame, the arms return to the position from the third frame, completing the cycle of subtle movement. This reinforces the sense of calmness and neutrality central to the 😐 emoji.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides, neutral stance",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms subtly shift inward, a slight closing off",
+   "arms": {
+    "both": {
+     "joint1": -5.0,
+     "joint2": -90.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to relaxed outward position, calm",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "one arm shifts out, the other in, settling comfortably",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back into relaxed stillness",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

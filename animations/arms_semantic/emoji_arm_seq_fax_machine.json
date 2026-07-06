@@ -1,0 +1,81 @@
+{
+ "emoji": "📠",
+ "ideation": "This animation sequence mimics the action of sending a fax, emphasizing the process of feeding paper into a machine and then receiving a document. The robot's arm movements will simulate this process. The sequence will focus on the left arm mainly, with the right arm remaining largely still for balance. Frame 1: The left arm is extended forward, with the wrist slightly angled down, as if feeding a document into the fax machine. Frame 2: The left arm retracts slightly, as if the document is being processed. Frame 3: The left arm extends again, but this time slightly upward, as if receiving a fax. Frame 4: The left arm returns to a neutral position, indicating the completion of the process. Frame 5: The left arm pauses, and then drops to the side, signifying the fax is complete. The right arm remains mostly still throughout the sequence, maintaining balance and avoiding distraction from the main action.",
+ "frames": [
+  {
+   "beat": "left arm extends forward, feeding paper into the fax",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arm retracts slightly as the document is processed",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arm extends upward, receiving the incoming fax",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 40.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arm pauses, the fax transmission is complete",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arm drops to the side, the fax is sent",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

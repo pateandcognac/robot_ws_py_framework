@@ -1,0 +1,56 @@
+{
+ "emoji": "🕯‍",
+ "ideation": "This sequence portrays a gentle, reverent interaction with a candle.  The robot will initially hold its hands together in a prayer-like position, then carefully reach out to cradle the candle before returning to the original pose.  This uses the robot's arm constraints to create a sense of carefulness and respect, appropriate for the emoji's meaning. Frame 1: Hands are held together in a prayer-like position in front of the body. Frame 2: Robot's arms extend carefully toward the candle, palms facing each other. Frame 3: Robot's arms gently cradle the candle, palms cupping it from below. Frame 4: Robot's arms start to move back to the prayer position. Frame 5: Robot's hands return to the original prayer-like position.",
+ "frames": [
+  {
+   "beat": "hands meet in a gentle, reverent clasp",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 25.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend carefully, palms open to receive",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "fingers softly cradle the unseen flame",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw back, preserving the moment",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "hands return to a quiet, folded pose",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 25.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

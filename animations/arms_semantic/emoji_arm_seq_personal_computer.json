@@ -1,0 +1,46 @@
+{
+ "emoji": "💻",
+ "ideation": "This animation sequence depicts the robot interacting with a laptop.  The robot will place its hands on the laptop as if typing or using it. The sequence starts with the arms at the sides, then moves to a typing pose, holds the pose, and then returns to a resting pose.  The focus is on a smooth, deliberate motion. ",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready for work",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands move forward to the laptop keyboard",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "typing intently on the keys",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, work complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

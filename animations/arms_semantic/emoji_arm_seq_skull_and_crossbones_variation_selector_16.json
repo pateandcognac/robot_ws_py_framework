@@ -1,0 +1,56 @@
+{
+ "emoji": "☠️",
+ "ideation": "This animation sequence will depict a robot mimicking the ominous nature of the skull and crossbones emoji. It will involve a slow, deliberate raising of both arms, ending with a pose that suggests a warning or threat. The movement will emphasize the robot's mechanical nature, but with an unnatural stiffness to heighten the unsettling effect. Frame 1 starts with both arms hanging down, palms facing inward. The robot is initially at rest. Then, in frame 2, both arms begin to rise slowly but stiffly, palms still facing inward. The unnatural stiffness of the movement will contribute to the overall unsettling effect. Frame 3 shows the arms almost fully raised, palms still inward. The robot is maintaining the unnatural stiffness of the movement. In frame 4, the arms are fully raised, creating a stark, almost menacing pose. The palms remain inward, emphasizing the robot's mechanical nature. Frame 5 is a slight variation of frame 4, with a subtle wrist rotation to -10 degrees, suggesting a final, pointed warning before the robot's action. The overall effect is a slow, deliberate, and unsettling animation that effectively captures the ominous nature of the skull and crossbones.",
+ "frames": [
+  {
+   "beat": "arms hang limp, a silent, empty threat",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms begin a stiff, unnatural ascent",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "rising higher, palms inward, a grim warning",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms fully raised in a stark, menacing pose",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a final, subtle twist, a chilling gesture",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 90.0,
+     "wrist": -10.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "😴",
+ "ideation": "This sequence aims to portray the peaceful stillness of sleeping, with both arms resting comfortably at the sides. The focus is on maintaining a relaxed posture throughout, with minimal movements to suggest deep sleep. In the first frame, both arms hang loosely at the sides, with joint1 slightly inward and joint2 pitching the arms slightly downward. The wrists remain neutral, keeping the palms facing inward. This creates a natural, restful pose, as if the robot is lying down. In the second frame, both arms shift slightly inward, with joint1 rotating inward and joint2 pitching slightly more downward, as if the robot has settled deeper into sleep. The wrists remain neutral to maintain the relaxed posture. By the third frame, the arms return to the initial position of frame one, with joint1 and joint2 resetting to their original values. This subtle shift and return adds a touch of realism, suggesting the small, unconscious movements that occur during sleep. In the fourth frame, both arms shift slightly outward, with joint1 rotating outward and joint2 pitching slightly upward, as if the robot is adjusting in its sleep. This movement is kept minimal to maintain the overall sense of stillness. Finally, in the fifth frame, both arms return to their initial position, completing the cycle of subtle movements. These small changes in arm position throughout the sequence help avoid a rigid, statue-like pose, giving the impression of peaceful, natural sleep.",
+ "frames": [
+  {
+   "beat": "arms hang loosely at the sides, settling into sleep",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms shift inward, sinking deeper into rest",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a slight unconscious adjustment, returning to stillness",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms shift outward, a subtle turn in slumber",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back, deep in peaceful sleep",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

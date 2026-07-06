@@ -1,0 +1,56 @@
+{
+ "emoji": "🀄",
+ "ideation": "This animation sequence depicts a robot carefully holding a mahjong red dragon tile.  The robot's movements will be slow and deliberate, reflecting the careful handling required for such a tile.  The sequence focuses on the precision of the movements, conveying a sense of respect for the game and the tile itself. The final frame emphasizes the robot's focus and reverence for the tile. Frame 1 begins with the arms slightly extended outward and slightly upward, palms facing each other as if preparing to receive the tile. Frames 2 and 3 show the tile being carefully received. The arms move inward, and the wrists tilt downward to cradle the tile. Frame 4 shows the robot holding the tile securely, with the arms slightly more inward and the wrists at a precise angle to keep the tile safe and at a proper position for viewing. Frame 5 shows the arms remaining in a position of careful holding. The robot remains in this position to show the importance of the tile.",
+ "frames": [
+  {
+   "beat": "arms extend slightly, palms ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move inward, wrists tilt to cradle the tile",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 10.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "arms continue inward, cradling the tile gently",
+   "arms": {
+    "both": {
+     "joint1": 50.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold the tile securely, wrists angled precisely",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -10.0,
+     "wrist": -60.0
+    }
+   }
+  },
+  {
+   "beat": "arms remain still, reverently holding the red dragon",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -10.0,
+     "wrist": -60.0
+    }
+   }
+  }
+ ]
+}

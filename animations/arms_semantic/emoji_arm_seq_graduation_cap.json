@@ -1,0 +1,61 @@
+{
+ "emoji": "🎓",
+ "ideation": "This sequence depicts a celebratory arm pose often associated with graduation. It starts with arms raised in a 'V' shape, symbolizing victory, then transitions to a pose where the arms are slightly lowered, mimicking the act of receiving a diploma or cap, and finally settles into a more relaxed, yet still celebratory pose.  The right arm will be the primary focus, with the left arm providing support and balance.  I will check examples for range of motion. Frame 1: Arms in a 'V' shape above the head, palms facing each other. Frame 2: Right arm lowers slightly, while the left arm remains high, as if receiving something. Frame 3: Both arms lower, but still slightly raised, palms open in a gesture of accomplishment. Frame 4: Arms relax to a more natural position, palms facing inward.",
+ "frames": [
+  {
+   "beat": "arms shoot up in a triumphant 'V' for graduation",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers slightly, accepting the diploma",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lower in a gesture of accomplishment",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax, the celebration settles",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

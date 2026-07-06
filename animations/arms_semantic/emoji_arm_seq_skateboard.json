@@ -1,0 +1,81 @@
+{
+ "emoji": "🛹",
+ "ideation": "This sequence simulates the motion of a person skateboarding, focusing on the arm movements that maintain balance and propel the board forward. The arms will move in a coordinated, rhythmic pattern, simulating the subtle shifts in weight and momentum involved in skateboarding. I'll ensure that the movements are fluid and natural, avoiding jerky or unrealistic motions. In the first frame, both arms are slightly bent at the elbows and extended outward, mimicking the stance of a skater maintaining balance. The left arm is slightly more forward than the right, suggesting a subtle shift in weight. In the second frame, the left arm moves slightly backward, while the right arm moves slightly forward, creating a counterbalance motion, similar to the motion of shifting weight to turn the skateboard. In the third frame, the arms return to the initial position, with the left arm slightly forward and the right arm slightly back, continuing the rhythmic motion. In the fourth frame, the arms move in the opposite direction of the second frame, the left arm moves forward and the right arm moves backward, preparing for the next push. Finally, in the fifth frame, the arms return to the initial position. The subtle shifts in arm position create a dynamic and realistic simulation of skateboarding.",
+ "frames": [
+  {
+   "beat": "arms out, balanced on the board",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "shifting weight, left arm back, right arm forward",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "returning to center, steadying the ride",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "shifting weight the other way, preparing to push",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms out, balanced and ready to roll",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

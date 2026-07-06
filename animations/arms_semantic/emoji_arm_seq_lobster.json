@@ -1,0 +1,36 @@
+{
+ "emoji": "🦞",
+ "ideation": "This animation sequence will mimic the way a lobster moves its claws.  The robot will not have claws, but I can approximate the movement with the arms. The sequence will start with the arms at rest, then move into a claw-like position, then back to rest. Frame 1 will show the robot with both arms at rest, parallel to the body. Frame 2 will show both arms moving outward and upward, with wrists slightly angled inward, mimicking the lobster's claw posture. Frame 3 will show the arms returning to the rest position. ",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to move",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open wide like a lobster's claws",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a resting position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

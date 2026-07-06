@@ -1,0 +1,51 @@
+{
+ "emoji": "🧑‍🔬",
+ "ideation": "This animation sequence depicts a scientist carefully examining something, perhaps through a microscope.  The sequence starts with the arms slightly raised, as if holding an object or adjusting equipment. Then, one arm moves to rest on a surface, while the other arm extends outward as if pointing or gesturing. Finally, both arms return to a neutral position. This sequence emphasizes precision and focused attention, fitting the image of a scientist at work.",
+ "frames": [
+  {
+   "beat": "arms held forward, ready for work",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lowers, right arm reaches out and spins",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 30.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the experiment complete",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "☀️",
+ "ideation": "This sequence will depict the robot \"reaching for the sun\", a gesture expressing aspiration, hope, or joy.  The animation will focus on a single arm reaching upward, with the other remaining in a relaxed pose.  The movement will be smooth, suggesting a gentle, hopeful feeling, rather than a forceful one.  The robot's lack of elbows will be addressed by using a combination of joint1 and joint2 to create an upward arc, rather than a straight line.  The wrist will be used to enhance the gesture's expressiveness.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed, waiting for the day",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm begins to rise, a hopeful reach",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the arm extends further, stretching towards the light",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 70.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm fully embraces the sun's warmth",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

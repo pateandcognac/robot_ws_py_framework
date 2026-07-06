@@ -1,0 +1,36 @@
+{
+ "emoji": "🎅",
+ "ideation": "This animation sequence depicts Santa Claus in a jovial, gift-giving pose.  The sequence starts with Santa's arms relaxed at his sides, then moves to him lifting his arms in a welcoming gesture, and finally presents a gift-offering pose. The movement is designed to be smooth and expressive, reflecting Santa's warm and generous personality. The robot arm's limitations are taken into account by using a combination of joint movements to simulate the natural motions of human arms.  The lack of elbows is compensated for by carefully adjusting the shoulder joints to create the illusion of a full range of motion.",
+ "frames": [
+  {
+   "beat": "santa's arms hang at his sides, ready to give",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift in a jolly, welcoming embrace",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms present gifts with a cheerful flourish",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

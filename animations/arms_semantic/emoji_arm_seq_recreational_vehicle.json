@@ -1,0 +1,46 @@
+{
+ "emoji": "🚙",
+ "ideation": "This animation sequence will show the robot interacting with a virtual SUV, starting with arms at the sides, then moving to open the door, and finally sitting inside.  The robot will use both arms, and the movements will be smooth and deliberate. Frame 1 will show the robot in a neutral position. Frame 2 will show the robot's arms extending outward as if to open a car door. Frame 3 will show the robot's arms moving down as if to sit in the car. Frame 4 will show the robot's arms inside the car, ready to drive.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for the drive",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend outward, reaching for the door",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower, preparing to enter the vehicle",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle inside, ready to begin the journey",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

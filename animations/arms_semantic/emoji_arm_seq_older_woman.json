@@ -1,0 +1,56 @@
+{
+ "emoji": "👵",
+ "ideation": "This animation sequence aims to depict an elderly woman's gentle, perhaps slightly weary, demeanor.  The arms will move slowly and deliberately, conveying a sense of age and wisdom. The sequence will focus on a slight forward lean of the body, shown by positioning the arms and hands. We will use the robot's two-joint system to achieve a natural appearance without elbows. The overall feel should be calming and reflective. In the first frame, the arms are at the sides, slightly lower than a neutral position, suggesting a gentle forward bend in the posture. In the second frame, the hands move slightly forward, as if supporting the body weight while maintaining a relaxed posture. The third frame will show hands slightly raised to about chest height with palms inward, suggesting a thoughtful or reflective posture. The fourth frame will show the return of the hands to the original near-side position. The fifth frame will return to the relaxed, neutral state of the arms.  This creates a gentle rocking-like motion, consistent with the image of an older person's movements.",
+ "frames": [
+  {
+   "beat": "arms hang low, a gentle forward lean",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -95.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands move slightly forward, supporting weight",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands rise to chest, palms inward, reflecting",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands return forward, the thought subsides",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back, a calm, aged stillness",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -95.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

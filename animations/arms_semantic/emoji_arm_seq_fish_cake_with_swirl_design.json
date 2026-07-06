@@ -1,0 +1,76 @@
+{
+ "emoji": "🍥",
+ "ideation": "This animation sequence portrays a playful, almost whimsical interaction with the fish cake emoji.  The robot will mimic the swirling motion of the fish cake using its arms.  The overall feel should be lighthearted and slightly quirky. Frame 1 starts with the arms slightly raised and angled outward, palms facing each other, as if the robot is about to 'catch' the fish cake.  In Frame 2, the arms move in a circular motion, mimicking the swirl.  One arm moves slightly more than the other to add a sense of playful asymmetry.  Frame 3 shows the arms completing a portion of the swirl, implying a continuation of the movement. Frame 4 brings the arms back to a more neutral position, suggesting the robot is playfully admiring the fish cake.  The final frame shows the arms returning to a relaxed state.",
+ "frames": [
+  {
+   "beat": "arms lift and open, ready to catch the swirl",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin a playful, swirling dance",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the swirl continues with a gentle, asymmetric motion",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pause, admiring the imaginary fish cake",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax, the playful moment concludes",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

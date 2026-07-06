@@ -1,0 +1,71 @@
+{
+ "emoji": "⭐",
+ "ideation": "This sequence mimics the act of reaching up to grasp a star. It starts with both arms at rest, transitions to a reaching motion, then culminates in a pose suggestive of holding the star. The final frame shows a moment of contemplation or wonder at the star, before returning to a relaxed position.  The sequence uses the two shoulder joints to create fluid movements, and slight wrist adjustments for additional expressiveness. Frame 1: Both arms start at the sides, neutral. Frame 2: The right arm reaches up and slightly outward, wrist angled upward to \"catch\" the star. The left arm moves slightly to balance. Frame 3: The right arm is higher, palm slightly cupped upward as if holding the star. Left arm provides counterbalance. Frame 4: Both arms relax slightly, maintaining the 'holding' pose but with a more contemplative feel. Frame 5: Both arms return to a neutral, relaxed position.",
+ "frames": [
+  {
+   "beat": "arms hang down, ready to reach",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm stretches up, hand reaching for a star",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 70.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the star is grasped, held aloft with wonder",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 80.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "holding the star, a moment of quiet awe",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -35.0,
+     "joint2": 75.0,
+     "wrist": 30.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the star safely held",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "emoji": "😎",
+ "ideation": "This sequence aims to capture the cool, confident vibe of the 😎 emoji by having the robot mimic the act of putting on sunglasses. Since the robot doesn't actually have sunglasses, the focus will be on creating a natural, fluid motion that implies the intent, using the dual shoulder-like joints to their best advantage. The left arm remains relaxed throughout, while the right arm performs the primary actions, drawing inspiration from existing examples for range and smoothness. In the first frame, both arms are relaxed at the sides, creating a casual, ready posture. joint1 rolls the arms slightly inward, and joint2 pitches them downward, keeping the wrists neutral. The second frame initiates the motion: the right arm rises towards the face, as if reaching for imaginary sunglasses. joint1 rotates the right arm outward, while joint2 pitches it upward. The wrist angles slightly inward to mimic a grasping motion. The left arm remains relaxed, maintaining balance and focus. The third frame captures the moment where the 'sunglasses' would be placed on the face. The right arm positions itself near the eyes, with joint1 rotating inward and joint2 adjusting the pitch to align the 'hand' with the face. The wrist turns further inward, as if holding the sunglasses in place. The left arm subtly shifts to match the change in balance. In the fourth frame, the right arm moves slightly away from the face, mimicking the adjustment of sunglasses after they've been put on. joint1 rotates the arm slightly outward, while joint2 keeps the arm at face level. The wrist relaxes to a more neutral position. In the final frame, both arms return to their relaxed positions at the sides, with the right arm settling into a casual, confident stance, as if basking in the coolness of the now-worn 'sunglasses.'",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides, cool and ready",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm rises, reaching for imaginary shades",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 60.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "hand hovers near the eyes, adjusting the fit",
+   "arms": {
+    "left": {
+     "joint1": -5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 65.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers slightly, shades perfectly in place",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 65.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle, exuding effortless cool",
+   "arms": {
+    "both": {
+     "joint1": -5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

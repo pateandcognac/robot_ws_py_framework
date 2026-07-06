@@ -1,0 +1,71 @@
+{
+ "emoji": "🎃",
+ "ideation": "This animation sequence will depict a robot playfully interacting with a jack-o'-lantern.  The robot will initially have its arms at its sides, then reach out to the pumpkin, perhaps to touch it, and finally return to its resting position. The movement will be gentle and curious rather than aggressive. Frame 1 will show both arms in a resting position. Frame 2 will show the robot reaching out with one arm toward the jack-o'-lantern, and Frame 3 will show both arms returning to their resting position. Frame 4 will show the robot's arms holding the jack-o-lantern as if hugging it. Frame 5 will show the robot's arms gently placing the jack-o-lantern back down. The sequence will conclude with the robot's arms back at their sides. ",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready for the pumpkin",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches out curiously",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the pumpkin is safe",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms embrace the pumpkin gently",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms carefully place the pumpkin down",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

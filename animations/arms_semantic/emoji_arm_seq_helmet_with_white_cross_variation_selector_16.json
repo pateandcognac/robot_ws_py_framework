@@ -1,0 +1,56 @@
+{
+ "emoji": "⛑️",
+ "ideation": "This sequence simulates a rescue worker carefully placing a helmet on their head.  The animation will focus on the deliberate and precise movements involved in this action.  Frame 1 will show both arms at the sides. Frame 2 will have the right arm reaching up towards the helmet. Frame 3 will show the helmet being placed on the head. Frame 4 will have the arms returning to their sides.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready for action",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches up, preparing to place the helmet",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "gently placing the helmet on the head with care",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, mission accomplished",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

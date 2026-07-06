@@ -1,0 +1,66 @@
+{
+ "emoji": "⚒️",
+ "ideation": "This animation sequence depicts the robot using a hammer and pick.  The sequence will focus on the alternating use of each tool, emphasizing the distinct motions involved in hammering and picking.  The robot's movements will be exaggerated to highlight the actions, but still maintain a sense of naturalism.  The left arm will primarily wield the hammer, while the right arm will use the pick. The frames will highlight the distinct actions of lifting, striking, and digging.",
+ "frames": [
+  {
+   "beat": "arms ready, left holding hammer, right poised to pick",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm swings hammer down with force",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pulls pickaxe up from the ground",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms reset for the next action",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

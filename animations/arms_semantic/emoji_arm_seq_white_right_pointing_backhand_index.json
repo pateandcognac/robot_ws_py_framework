@@ -1,0 +1,66 @@
+{
+ "emoji": "👉",
+ "ideation": "This sequence aims to create a pointing gesture with the right arm, ending with the familiar 'index finger pointing' pose of the 👉 emoji. The left arm will remain relaxed at the side, providing balance and directing attention to the primary movement. Given the robot's lack of fingers, the pointing will be represented by the arm and wrist orientation. In the first frame, both arms are at rest at the sides, establishing a neutral starting position. The left arm hangs loosely, with joint1 slightly inward and joint2 pitched downward, creating a natural resting pose. The right arm mirrors this posture, preparing for the pointing gesture. Moving to the second frame, the right arm begins to rise and extend forward, with joint1 rotating outward and joint2 pitching upward to bring the arm up to shoulder height. The wrist remains neutral, preparing for the directional shift. The left arm remains at rest. In the third frame, the right arm extends further forward, with joint2 pitching forward to its maximum extent, simulating the pointing action. The wrist rotates to 90 degrees, solidifying the direction of the point. Again, the left arm remains at rest, emphasizing the right arm's movement. Finally, in the fourth frame, the right arm angles slightly upward, with joint2 adjusting the pitch to create the final pointing pose, mimicking the upward tilt often seen in the 👉 emoji. The wrist maintains its 90-degree rotation, ensuring the point remains clear and direct. The left arm remains relaxed and at rest, balancing the overall pose.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to lift and extend forward",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm points directly forward, wrist turned",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -5.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm angles up, firmly pointing the way",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 30.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

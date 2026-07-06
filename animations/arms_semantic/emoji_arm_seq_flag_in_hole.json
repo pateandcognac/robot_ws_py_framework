@@ -1,0 +1,76 @@
+{
+ "emoji": "⛳",
+ "ideation": "This sequence simulates the act of putting a flag into a hole, mimicking the action of a golfer. The animation will focus on the right arm, emphasizing the downward motion of inserting the flag. The left arm will remain largely static for balance and visual clarity.  The sequence will use a combination of joint1 (roll) and joint2 (pitch) to create a smooth, controlled movement.  The wrist will be used to emphasize the precise insertion action. I will make use of the examples to ensure the sequence is both realistic and fluid. In the first frame, the right arm is extended downwards, held slightly forward, with the wrist angled to appear as if the robot is holding the flag. The left arm remains at its side, neutral. The second frame shows the right arm moving downwards, with the wrist rotating slightly as if inserting the flag. The third frame shows the right arm at a slightly more angled position, with the wrist now pointing more directly downwards, indicating the flag is fully inserted. The fourth frame then shows the arm lifting, and finally returning to a neutral position in the fifth.",
+ "frames": [
+  {
+   "beat": "right arm holds flag out, left arm rests",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pushes flag down into the earth",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "flag is firmly planted, wrist turns",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts away, flag stands tall",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle, the job is done",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

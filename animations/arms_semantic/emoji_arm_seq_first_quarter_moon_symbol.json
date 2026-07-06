@@ -1,0 +1,46 @@
+{
+ "emoji": "🌓",
+ "ideation": "This animation sequence will depict a robot gently cupping its hands to represent the gentle crescent shape of the first quarter moon.  The movement will be slow and deliberate, emphasizing the calmness and serenity often associated with the moon. The robot will start with its arms at its sides, then bring its hands up in a slow, graceful arc, finally resting in a cupped position. The sequence will use both arms symmetrically.  The final pose will resemble the shape of the first quarter moon.",
+ "frames": [
+  {
+   "beat": "arms hang down, still and waiting",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lift slowly upwards",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands curve inward, forming a crescent",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 15.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the crescent shape is held, serene and the moon appears",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

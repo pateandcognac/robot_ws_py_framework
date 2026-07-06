@@ -1,0 +1,66 @@
+{
+ "emoji": "🤤",
+ "ideation": "This sequence aims to capture the anticipation and satisfaction of seeing delicious food, represented by the drooling face emoji. The animation starts with both arms reaching forward eagerly, then transitions to the left arm wiping the mouth to simulate catching drool, while the right arm remains extended, as if still reaching for the food. In the first frame, both arms extend forward, palms facing upward, as if reaching for something desirable. joint1 rotates both arms slightly inward, and joint2 pitches them forward. The wrists are neutral, maintaining a natural reaching posture. This conveys eagerness and anticipation. In the second frame, the left arm moves upward towards the mouth, as if to wipe drool, while the right arm remains extended, still reaching for the food. joint1 rotates the left arm inward, and joint2 pitches it upward. The wrist rotates inward to simulate wiping the mouth. This adds a touch of humor and emphasizes the 'drooling' aspect. In the third frame, the left arm returns to the extended position, and the right arm pulls back slightly, as if preparing for another reach. The wrists remain neutral, maintaining the anticipation of delicious food. In the fourth frame, both arms extend forward again, palms facing upward, similar to the first frame, but with a slight increase in joint2, emphasizing the eagerness. This reinforces the desire for the food. Finally, in the fifth frame, the left arm repeats the mouth-wiping motion, while the right arm stays extended, further emphasizing the drooling and anticipation. This creates a cyclical motion that can be repeated to express continued desire and anticipation.",
+ "frames": [
+  {
+   "beat": "both arms reach forward, eager for a treat",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm sweeps up to wipe a dribble, right still reaching",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 70.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to reaching, anticipation builds",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms extend further, craving the deliciousness",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm wipes again, right arm waits patiently",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 70.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

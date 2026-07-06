@@ -1,0 +1,81 @@
+{
+ "emoji": "🤸‍♀️",
+ "ideation": "This sequence simulates a cartwheel, focusing on the dynamic arm movements involved in this acrobatic feat. The arms will move in a coordinated manner, mirroring the body's motion during a cartwheel. I will ensure the arm movements are fluid and natural, with smooth transitions between frames. The robot's arm structure (two joints, no elbow) will be considered throughout.  Frame 1 starts with both arms extended to the sides, preparing for the cartwheel. In Frame 2, the left arm swings up and over, mimicking the body's rotation. In Frame 3, the right arm swings up and over, following the left arm's motion, creating a mirrored effect. Frame 4 positions both arms back down to the sides as the cartwheel is completed. Finally, Frame 5 shows a slight pause with both arms extended, suggesting the cartwheel's completion.  The sequence will use slight perturbations to avoid rigid motion and will consider the robot's physical limitations.",
+ "frames": [
+  {
+   "beat": "arms extend wide, preparing to flip",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm sweeps up and over, initiating the turn",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm follows, mirroring the left through the rotation",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms come down as the cartwheel lands",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold wide, the acrobatic move complete",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "📔",
+ "ideation": "This animation sequence portrays the robot gently holding a notebook, conveying a sense of care and attentiveness.  The movement starts with arms at the sides, transitioning to a gentle lift, then a settling of the hands around the imaginary notebook, and finally a slight adjustment for a comfortable hold. The focus is on creating a calm, deliberate movement. Frame 1: The arms begin at the sides in a neutral position. Frame 2: The robot brings both arms forward and slightly upward, palms facing inward, as if reaching for the notebook. Frame 3: The hands gently cup around an imaginary notebook, held against the chest. Frame 4: A slight adjustment is made to the grip, with the hands slightly repositioned for better support and to suggest a comfortable hold. Frame 5: The hands remain cupped around the notebook, held steady against the chest. The overall motion is smooth and gentle, reflecting the careful handling of a valued object.",
+ "frames": [
+  {
+   "beat": "arms hang loosely at the sides, ready",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift gently forward, palms inward",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands cup an imaginary notebook at chest",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "adjusting grip for a comfortable hold",
+   "arms": {
+    "both": {
+     "joint1": 35.0,
+     "joint2": 15.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "holding the notebook steady with care",
+   "arms": {
+    "both": {
+     "joint1": 35.0,
+     "joint2": 15.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

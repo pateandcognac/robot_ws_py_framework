@@ -1,0 +1,46 @@
+{
+ "emoji": "🧳",
+ "ideation": "This animation sequence shows a robot carefully lifting a piece of luggage.  The robot will use both arms to lift the luggage from the ground, and then hold it for a moment before putting it down, simulating a person carefully handling luggage. The movement will be slow and deliberate to emphasize the care taken in handling the item. Frame 1 shows both arms extended slightly forward in preparation for lifting, Frame 2 shows the luggage being lifted with both arms. Frame 3 shows the robot holding the luggage steady for a moment before putting it down, and Frame 4 shows the robot carefully putting the luggage down. ",
+ "frames": [
+  {
+   "beat": "arms extend forward, ready to grasp luggage",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift the luggage smoothly upwards",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "holding the luggage steady, a moment of pause",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "carefully lowering the luggage back to the ground",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

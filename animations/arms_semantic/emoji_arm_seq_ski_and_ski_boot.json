@@ -1,0 +1,56 @@
+{
+ "emoji": "🎿",
+ "ideation": "This animation sequence depicts the robot preparing for skiing, emphasizing the motion of getting into a skiing stance.  The sequence starts with the arms at the sides, then moves to a position mimicking holding ski poles, and finally settles into a balanced skiing stance.  The robot does not have hands, so the 'holding' is implied. Frame 1: Arms are at rest. Frame 2: Arms are raised slightly forward and outward, imitating the position of holding ski poles. Frame 3: The robot bends slightly forward, arms moving to a more stable position, as if balanced for skiing. Frame 4: The arms are slightly more spread apart, and the robot is more forward, as if ready for the slope. Frame 5: The arms are further spread apart, and the robot is in a full skiing stance, ready to go.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready for the snow",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, mimicking ski poles held loosely",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "bending into a stable skiing posture",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms spread wider, leaning forward for the descent",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "fully balanced in a skiing stance, poised to move",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

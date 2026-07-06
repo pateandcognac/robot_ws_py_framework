@@ -1,0 +1,66 @@
+{
+ "emoji": "🏳️",
+ "ideation": "This sequence depicts the act of surrendering or signaling peace using a white flag.  The animation will focus on a single arm extending outward with a slight downward tilt to present the flag (which will be rendered separately).  The other arm will remain in a neutral position.  The movement should be deliberate and slow, reflecting the seriousness of the gesture. The robot's 'hand' will be visually replaced by the white flag graphic. The animation system will handle the smooth transitions between keyframes. ",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed, ready to signal",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm begins to extend outward, a gentle offering",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the arm continues its slow outward sweep, presenting the flag",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the flag is held out, a clear gesture of surrender or peace",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

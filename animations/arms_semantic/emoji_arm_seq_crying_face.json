@@ -1,0 +1,56 @@
+{
+ "emoji": "😢",
+ "ideation": "This sequence aims to depict the emotion of crying or sadness using arm and hand gestures. Given that robots don't have tear ducts, the focus will be on conveying the feeling of distress or despair through body language. I'll achieve this by having the robot cover its face with its hands, as if wiping away tears or expressing grief. The movements will be slow and deliberate, reflecting the weight of the emotion. In the first frame, both arms are raised towards the face, with joint1 rotating outward and joint2 pitching upward. The wrists are angled inward at -90 degrees, so the palms face inward, ready to cover the face. This initial pose sets the stage for the expression of sadness. In the second frame, the hands move closer to the face, as if wiping tears. joint2 adjusts slightly to bring the hands closer, while joint1 maintains the outward rotation. The wrists remain inward, keeping the palms facing the face. In the third frame, the hands cover the face completely, expressing the peak of sadness or despair. joint2 pitches forward further, bringing the hands fully over the face, while joint1 keeps the arms angled outward. The wrists remain inward. In the fourth frame, the hands begin to lower slightly, as if the robot is composing itself. joint2 pitches back slightly, moving the hands away from the face, while joint1 maintains the outward rotation. The wrists remain inward. In the final frame, the arms lower completely, resting at the sides, as if exhausted from crying. joint1 rotates back to neutral, and joint2 pitches downward to -90 degrees, letting the arms hang loosely. The wrists also return to neutral, palms facing inward. This final pose conveys a sense of resignation or quiet sadness.",
+ "frames": [
+  {
+   "beat": "arms rise, palms inward, to cradle the face",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 85.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "hands move closer, wiping away unseen tears",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 75.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both hands cover the face in deep sorrow",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 65.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "hands lower slightly, a moment of quiet despair",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 75.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms fall to the sides, exhausted and resigned",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

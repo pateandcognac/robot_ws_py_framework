@@ -1,0 +1,56 @@
+{
+ "emoji": "🦕",
+ "ideation": "This animation sequence will depict a sauropod's gentle, lumbering movement.  The arms (forelegs in this case) will move in a slow, coordinated manner, reflecting the weight and size of the creature.  The movement will not be overly dramatic, instead focusing on a calm, deliberate pace.  Since the robot does not have elbows, the arm movement will simulate the sauropod's leg movement by focusing on the shoulder joint. Both arms will move in unison, emphasizing their coordinated gait.",
+ "frames": [
+  {
+   "beat": "arms hang low, like a sauropod's forelegs at rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing forward slowly, a ponderous step",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to the sides, settling the weight",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing backward, completing the stride",
+   "arms": {
+    "both": {
+     "joint1": -15.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest again, the creature stands still",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

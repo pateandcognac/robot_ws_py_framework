@@ -1,0 +1,66 @@
+{
+ "emoji": "⏩",
+ "ideation": "This animation sequence simulates the fast-forward action using both arms. The arms move in a circular motion, speeding up as they progress through the frames. The left arm starts in a neutral position and then moves forward and upward in a circular path, while the right arm mimics this motion but slightly offset to create a sense of forward movement. The wrists remain neutral throughout to focus on the larger arm movements. This sequence uses a combination of joint1 and joint2 rotations to create a smooth and expressive fast-forward motion.",
+ "frames": [
+  {
+   "beat": "arms shoot forward and up, fast forward begins",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep wider in a quickening circle",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the motion peaks, a blur of speed",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms slow slightly, still pushing onward",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

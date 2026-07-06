@@ -1,0 +1,81 @@
+{
+ "emoji": "⤵️",
+ "ideation": "This sequence aims to represent the ⤵️ emoji, signifying a downward and rightward direction, as if pointing or guiding towards something below and to the right. The right arm takes the lead, mimicking the curve of the arrow, while the left arm provides balance and reinforces the directional cue.  In the first frame, both arms start in a neutral, resting position at the sides. This provides a clear starting point before the motion begins. The right arm is positioned slightly forward with joint1 rotated slightly inward and joint2 pitched downward. The left arm hangs loosely with joint1 slightly outward and joint2 pitched downward. In the second frame, the right arm begins its downward and rightward trajectory by rotating joint1 outward and pitching joint2 downward. The wrist also rotates to -90 degrees, as if subtly pointing. The left arm remains relaxed at the side, providing counterbalance.  The third frame emphasizes the downward curve of the arrow. The right arm continues its descent, with joint1 rotating further outward and joint2 pitching downward. The wrist maintains its angled position, reinforcing the directional flow. The left arm remains at rest, maintaining balance.  In the fourth frame, the right arm reaches the lowest point of the curve, fully extended downwards and to the right, with joint1 rotated fully outward and joint2 pitched downward. The wrist remains angled to emphasize the endpoint of the arrow's trajectory. The left arm remains at rest, ensuring the focus stays on the right arm’s movement.  The final frame shows the right arm returning to a neutral position, lifted slightly with joint1 rotated slightly inward and joint2 pitched slightly upward. The wrist returns to 0 degrees. The left arm also returns to its initial neutral, resting position. This completes the motion, leaving the robot ready for the next instruction.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready to point",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm sweeps down and right, wrist angling",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "the curve deepens, guiding the eye downward",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -70.0,
+     "joint2": -20.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm fully extended, pointing the way",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -90.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a neutral, resting pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

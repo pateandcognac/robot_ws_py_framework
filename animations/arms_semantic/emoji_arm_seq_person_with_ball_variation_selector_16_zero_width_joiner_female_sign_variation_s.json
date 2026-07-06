@@ -1,0 +1,66 @@
+{
+ "emoji": "⛹️‍♀️",
+ "ideation": "This animation sequence depicts a woman bouncing a ball.  The key is to show a rhythmic up-and-down motion of one arm, coordinating with a slight bounce in the body (simulated by the overall arm positions). The other arm can remain in a more neutral position.  The sequence will emphasize the arc of the ball's motion, highlighting the peak and the return to the starting position.  I'll use the robot's arm mechanics to create a convincing simulation of the bouncing action. The sequence will show the ball going up, the arm reaching its peak, the ball coming down, the arm extending downward, and finally, returning to a resting position. The right arm will bounce the ball, while the left will remain mostly neutral to create a balance. The wrist will be used to create a sense of the hand guiding the ball's path. Frame 1 will be the starting position, frame 2 the peak of the arc, frame 3 the ball's lowest point, and frame 4 the return to the starting position.",
+ "frames": [
+  {
+   "beat": "arms rest, ready to bounce",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm swings up, ball reaches peak height",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends down, ball hits the ground",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to relaxed resting pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

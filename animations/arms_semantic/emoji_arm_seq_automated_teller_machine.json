@@ -1,0 +1,56 @@
+{
+ "emoji": "🏧",
+ "ideation": "This animation sequence simulates the action of inserting a card into an ATM.  The robot will mimic this action using its arms. Frame 1 shows the arms at rest. Frame 2 shows the right arm extending forward, slightly downward, as if holding a card. Frame 3 shows the right arm moving inward, simulating the card insertion into the ATM. Frame 4 shows the arm returning to its resting position. The left arm remains largely still throughout to provide visual contrast and balance.",
+ "frames": [
+  {
+   "beat": "both arms hang at the sides, ready",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, holding a card",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pushes the card into the slot",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm retracts, task complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

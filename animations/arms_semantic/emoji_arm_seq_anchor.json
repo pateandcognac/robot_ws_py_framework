@@ -1,0 +1,46 @@
+{
+ "emoji": "⚓",
+ "ideation": "This animation sequence simulates the action of dropping anchor. The robot will extend both arms downward, mimicking the process of lowering an anchor into the water. The movement will be slow and deliberate. In the first frame, both arms are extended straight out from the robot’s sides, palms facing down. Joint1 is at 0 for both arms, and joint2 is at 0, creating a horizontal arm position.  The wrists are at 0. In frame two, both arms start to move downward, simulating the anchor dropping. Joint2 will move to -45 degrees, pulling the arms down, palms still facing down. In the third frame, the arms are halfway down, continuing the downward motion. Joint2 moves to -75 degrees. The palms remain facing downward. In frame four, the arms reach their final position, fully extended downward. Joint2 is now at -90 degrees. The palms remain facing downward. This completes the anchor drop animation.",
+ "frames": [
+  {
+   "beat": "arms extend horizontally, ready to drop",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lower slowly, like an anchor descending",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the arms continue their steady downward plunge",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hang straight down, the anchor is set",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

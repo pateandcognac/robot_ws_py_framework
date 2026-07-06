@@ -1,0 +1,51 @@
+{
+ "emoji": "👨‍🚀",
+ "ideation": "This animation sequence depicts an astronaut preparing for a spacewalk. It starts with the arms at the sides, then moves to a position mimicking the donning of a helmet, followed by arms raised in readiness for a spacewalk, and finally a celebratory pose upon successful spacewalk completion. The overall animation should convey the excitement and preparation involved in such a task. Frame 1: Arms start at the sides in a relaxed position. Frame 2: Left arm moves to the side of the head, simulating helmet adjustment, while the right arm begins to lift slightly. Frame 3: Both arms are now raised above the head, mirroring the astronaut's readiness. Frame 4: The arms are moved into a celebratory 'V' shape.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm nears helmet, right arm lifts slightly",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms raised high, ready for the void",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "celebratory arms spread wide in zero-g",
+   "arms": {
+    "both": {
+     "joint1": -60.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

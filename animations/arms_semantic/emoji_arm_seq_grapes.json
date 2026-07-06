@@ -1,0 +1,66 @@
+{
+ "emoji": "🍇",
+ "ideation": "This sequence mimics the act of picking and examining grapes. It starts with both arms relaxed, then one arm reaches out, picks a grape, and brings it up for examination. The other arm remains relaxed. Finally, both arms return to their neutral positions.  The use of the robot arm's mechanics is key here. The arm needs to be able to reach out, grasp (implied), and bring the grape up to the face. The movements are slow and deliberate, reflecting a careful, appreciative interaction with the fruit.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed, waiting for the vine",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches out, plucking a single grape",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the grape is brought up for a closer look",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the fruit savored",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

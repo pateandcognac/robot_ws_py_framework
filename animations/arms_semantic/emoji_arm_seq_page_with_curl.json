@@ -1,0 +1,66 @@
+{
+ "emoji": "📃",
+ "ideation": "This animation sequence simulates the action of picking up a document. The robot will use its right arm to perform this action. The left arm will remain mostly stationary to maintain balance. The sequence will begin with the arm at rest, then move to the grasping position, and finally return to the resting position.  The sequence will consist of four frames. Frame 1: Both arms are at rest. Frame 2: The right arm reaches out towards the document. Frame 3: The right arm grasps the document. Frame 4: The robot returns to the resting position. ",
+ "frames": [
+  {
+   "beat": "both arms rest at the sides, ready",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, reaching for the paper",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand grasps the document, fingers curling",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to the resting pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

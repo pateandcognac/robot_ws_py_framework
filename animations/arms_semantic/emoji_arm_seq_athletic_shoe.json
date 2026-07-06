@@ -1,0 +1,81 @@
+{
+ "emoji": "👟",
+ "ideation": "This sequence simulates the action of putting on a running shoe, focusing on the arms' movements to convey the act of bending and reaching. The animation will emphasize a smooth, natural flow, starting with a relaxed posture and ending with the shoe placed on the foot. The robot's arm movements will be carefully orchestrated using its two-joint system, ensuring that each frame represents a significant change in position.  The robot will use its arms to reach down and pick up the shoe, then carefully place it onto its foot.  The left arm will remain neutral for balance. In the first frame, both arms are at rest. In the second frame, the right arm bends downward, reaching toward the shoe. In the third frame, the right arm lifts the shoe, bringing it toward the foot. In the fourth frame, the right arm places the shoe on the foot. In the fifth frame, the arms return to a relaxed position. The sequence will use a combination of joint1 (roll) and joint2 (pitch) movements to create a realistic representation of putting on a shoe.",
+ "frames": [
+  {
+   "beat": "arms rest, ready to put on a shoe",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm bends down to reach the shoe",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts the shoe up, bringing it closer",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm carefully places the shoe onto the foot",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, neutral pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

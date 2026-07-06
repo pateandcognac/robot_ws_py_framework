@@ -1,0 +1,66 @@
+{
+ "emoji": "🏃‍♂️",
+ "ideation": "This animation sequence simulates the arm movements of a person running.  The arms swing opposite each other in a rhythmic pattern to maintain balance and propel forward motion.  The robot's lack of elbows will be compensated for by exaggerated arm swings and slight wrist rotations.  The key is to create a sense of forward momentum through the alternating arm movements.  Each frame represents a distinct point in the running cycle, focusing on significant changes in arm position rather than intermediate steps.  The left arm will be designated as arm 1, and the right arm will be arm 2.",
+ "frames": [
+  {
+   "beat": "arms swing back and forth, starting the run",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms pump forward, driving the runner",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing back, pushing off for momentum",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach forward, accelerating the pace",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 10.0
+    }
+   }
+  }
+ ]
+}

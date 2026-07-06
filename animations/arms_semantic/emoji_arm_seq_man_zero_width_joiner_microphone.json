@@ -1,0 +1,81 @@
+{
+ "emoji": "👨‍🎤",
+ "ideation": "This sequence aims to capture the dynamic performance of a male singer, using fluid arm movements to evoke a sense of rhythm and musicality.  I'll focus on creating a sequence that suggests the singer is holding a microphone and engaging with an audience, referencing examples like the wave and the celebratory gesture to inspire the motion.  In the first frame, the left arm is slightly bent and held across the body, as if holding a microphone, while the right arm is extended slightly outward, gesturing towards the audience.  joint1 rotates the left arm inward and joint2 pitches it slightly upward. The right arm's joint1 rotates outward, and joint2 pitches the arm slightly downward.  Moving to the second frame, both arms move slightly upward, suggesting an increase in energy as the singer hits a high note or emphasizes a lyric. The left arm remains bent, maintaining the microphone hold, while the right arm lifts higher, engaging the audience.  In the third frame, the left arm pulls back slightly, as if drawing power for a big note, while the right arm sweeps outward in a grand gesture.  joint1 rotates the right arm further outward, and joint2 pitches it slightly downward, creating a sweeping arc. The left arm remains close, adding a sense of grounded power.  In the fourth frame, both arms return to a more neutral position, preparing for the next beat or phrase.  Finally, in the fifth frame, the motion mirrors the second frame, with both arms lifting slightly, creating a sense of rhythmic pulse and dynamic performance.  Throughout the sequence, the micro-movements and variations in wrist positions prevent the robot from looking stiff, giving a sense of life and energy to the performance.",
+ "frames": [
+  {
+   "beat": "left arm holds mic, right arm gestures to crowd",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift, energy rising with the song",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": 0.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "left arm pulls back, right arm sweeps out wide",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": -10.0,
+     "wrist": -40.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": -40.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a steady, rhythmic pose",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift again, pulsing with the music",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": 0.0,
+     "wrist": 10.0
+    }
+   }
+  }
+ ]
+}

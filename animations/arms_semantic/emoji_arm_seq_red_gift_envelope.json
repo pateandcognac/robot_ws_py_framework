@@ -1,0 +1,76 @@
+{
+ "emoji": "🧧",
+ "ideation": "This animation sequence will depict the robot offering a red envelope, symbolizing gifting or celebration. The movement will be primarily focused on the right arm, extending forward to present the envelope, while the left arm remains in a more passive, resting position. The robot's posture will be polite and slightly formal to reflect the significance of the gift. Frame 1 will show both arms at rest, with the right arm slightly angled outward and downward in anticipation. Frame 2 will have the right arm extending forward and slightly downward, with the wrist slightly tilted so that the hand is open as if presenting the red envelope. Frame 3 will have the right arm maintaining the extended position, but with a slight pause, holding the offering. Frame 4 will have the right arm returning to the rest position. Frame 5 will have the robot resuming the initial relaxed neutral position, completing the gesture.",
+ "frames": [
+  {
+   "beat": "both arms rest, right arm angled slightly out",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward to offer the gift",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": -45.0,
+     "wrist": -15.0
+    }
+   }
+  },
+  {
+   "beat": "holding the offering steady for a moment",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": -45.0,
+     "wrist": -15.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to return to the side",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed neutral pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

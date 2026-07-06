@@ -1,0 +1,81 @@
+{
+ "emoji": "4️⃣",
+ "ideation": "This sequence will represent the number 4 using the robot's arms.  Since the robot has no elbows, we'll use a combination of arm positioning to suggest the number. The left arm will form the vertical line of the 4, and the right arm will form the diagonal line. The animation will show the arms moving into position, then holding the pose, and finally relaxing. Frame 1: Both arms are at rest. Frame 2: Left arm moves upward into a vertical position, right arm slightly forward. Frame 3: Right arm moves into a diagonal position to complete the 4. Frame 4: The robot holds the position. Frame 5: Arms return to the rest position.",
+ "frames": [
+  {
+   "beat": "arms hang at rest, ready to form",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm rises to stand tall, right arm prepares",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm angles across, forming the four",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the number four is held steady and clear",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, neutral state",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

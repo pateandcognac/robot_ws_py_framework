@@ -1,0 +1,36 @@
+{
+ "emoji": "🍯",
+ "ideation": "This sequence will depict a robot gently cradling an unseen honey pot, emphasizing care and sweetness.  The movement will be slow and deliberate. We'll use a three-frame sequence to highlight the key moments: the initial approach, the gentle hold, and a slight pull back.  The robot's arms will move in a coordinated manner. Frame 1 will show the arms extending forward, mimicking the act of reaching for the honey pot. Frame 2 will show the arms cupping around the imaginary pot, suggesting a gentle embrace. Frame 3 will show the robot slightly pulling back, as if savoring the moment, before potentially taking a taste. The left arm will mirror the right, maintaining symmetry and balance.  The wrists will be angled slightly to enhance the cradling motion.",
+ "frames": [
+  {
+   "beat": "arms extend forward, reaching for honey",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently cup the sweet, unseen prize",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull back slightly, savoring the moment",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -15.0,
+     "wrist": -30.0
+    }
+   }
+  }
+ ]
+}

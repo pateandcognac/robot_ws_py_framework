@@ -1,0 +1,66 @@
+{
+ "emoji": "🙆‍♀️",
+ "ideation": "This sequence depicts a woman gesturing OK.  The animation will focus on a smooth, confident movement of both arms to frame the face, conveying reassurance and agreement.  The slight variation in arm positions between frames will create a natural, non-robotic feel.  The left arm will remain slightly more active than the right, creating a gentle asymmetry.  I'll refer to the examples for guidance on arm positioning and transitions.",
+ "frames": [
+  {
+   "beat": "both arms sweep up framing the face, a gentle start",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 80.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 80.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms adjust slightly, a subtle shift in agreement",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 75.0,
+     "wrist": -40.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 85.0,
+     "wrist": -50.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm leads, forming a perfect 'OK' gesture",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 70.0,
+     "wrist": -35.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 90.0,
+     "wrist": -55.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back, confirming the positive response",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 75.0,
+     "wrist": -40.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 85.0,
+     "wrist": -50.0
+    }
+   }
+  }
+ ]
+}

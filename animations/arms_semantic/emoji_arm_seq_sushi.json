@@ -1,0 +1,66 @@
+{
+ "emoji": "🍣",
+ "ideation": "This sequence mimics the action of carefully picking up a piece of sushi. It starts with both arms relaxed, then the right arm extends and gently lowers to pick up the sushi, before returning to a relaxed position. The left arm remains mostly still, providing balance and contrast.  The movement should be slow and deliberate, suggesting care and precision.  In the first frame, both arms are at rest.  The second frame shows the right arm extending forward and downward, with the wrist angled slightly to mimic a grasping motion. The third frame shows the right arm lifting the sushi slightly, the wrist now angled slightly upward, and the fourth frame shows the right arm returning to the relaxed position. The left arm remains relatively still throughout the sequence.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready for sushi",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends, wrist angling to grasp",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": -20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "gently lifting the sushi with a careful wrist turn",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 10.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "sushi secured, both arms return to rest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

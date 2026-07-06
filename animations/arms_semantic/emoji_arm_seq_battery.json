@@ -1,0 +1,66 @@
+{
+ "emoji": "🔋",
+ "ideation": "This animation sequence will portray the robot checking its own battery level, mimicking the action of someone looking at a battery indicator. The animation will use a single arm to point towards an unseen battery indicator. The other arm will remain still. The movement should be smooth and deliberate, emphasizing the robot's attentiveness to its power status. Frame 1 will show both arms in a neutral position. Frame 2 will begin the pointing gesture. Frame 3 will show the robot pointing directly to the battery level, and frame 4 will show the arm returning to the neutral position.",
+ "frames": [
+  {
+   "beat": "both arms hang at the sides, neutral stance",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins to lift and point outward",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm points directly at the unseen battery",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 40.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm smoothly returns to the side",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

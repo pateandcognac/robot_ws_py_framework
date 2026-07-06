@@ -1,0 +1,71 @@
+{
+ "emoji": "🔯",
+ "ideation": "This sequence depicts the creation of a six-pointed star using both arms. The movement starts with arms outstretched, then moves to a position where the arms form the star's points, and finally ends with the arms returning to a relaxed position. The sequence uses the robot's dual shoulder joints to create a dynamic display of arm movements. The robot's lack of elbows means the arm movements are more angular, but this adds to the geometric feel of the animation. The sequence begins with the arms extended outward in a wide arc, palms facing forward. The arms then move to form the points of a six-pointed star, with the wrists rotated to align with the star's points. Finally, the arms return to their original position, suggesting the completion of the star-making gesture. This sequence uses a total of 5 frames to show the dynamic creation and completion of the six-pointed star shape using the robot's arms.",
+ "frames": [
+  {
+   "beat": "arms sweep out wide, ready to draw",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms form the top two points of a star",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": 30.0,
+     "wrist": 30.0
+    },
+    "right": {
+     "joint1": -60.0,
+     "joint2": 30.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "arms cross to form the bottom two points",
+   "arms": {
+    "left": {
+     "joint1": -60.0,
+     "joint2": 30.0,
+     "wrist": -30.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": 30.0,
+     "wrist": 30.0
+    }
+   }
+  },
+  {
+   "beat": "arms form the final two points, completing the star",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": 30.0,
+     "wrist": 30.0
+    },
+    "right": {
+     "joint1": -60.0,
+     "joint2": 30.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the star is made",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

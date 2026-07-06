@@ -1,0 +1,46 @@
+{
+ "emoji": "🔄",
+ "ideation": "This animation sequence simulates the circular motion of the counterclockwise arrow button.  The animation will focus on a smooth, continuous rotation of both arms, mimicking the turning of a dial or the spinning of a wheel.  The arms will move in a coordinated fashion, creating a visually clear representation of counterclockwise rotation.  The robot's lack of elbows will be addressed by using the shoulder joints to create the illusion of a circular motion, with slight variations in wrist angles to enhance the visual effect.  I'll aim for 4 frames to capture the key phases of the rotation.",
+ "frames": [
+  {
+   "beat": "both arms are still, ready to spin",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins a slow counterclockwise turn",
+   "arms": {
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm continues its circular sweep upwards",
+   "arms": {
+    "right": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm completes its rotation, reset",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "👴",
+ "ideation": "This animation sequence portrays an elderly person's gentle, deliberate movements.  The overall effect is one of calm wisdom and slow, thoughtful actions. Frame 1 starts with a neutral pose, hands slightly forward.  Frame 2 shows one arm slightly raised, as if gesturing in a thoughtful way or perhaps offering a piece of advice. Frame 3 returns to a neutral pose. Frame 4 shows the other arm raised in a similar gesture. Finally, Frame 5 returns to the neutral pose, ending the animation loop.",
+ "frames": [
+  {
+   "beat": "arms rest forward, a gentle start",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm lifts slightly, a thoughtful gesture",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm returns to rest",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm lifts in a similar thoughtful gesture",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle back into a calm, resting pose",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

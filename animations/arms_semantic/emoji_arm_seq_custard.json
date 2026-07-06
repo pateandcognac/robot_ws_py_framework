@@ -1,0 +1,46 @@
+{
+ "emoji": "🍮",
+ "ideation": "This sequence depicts a robot gently holding a bowl of custard, emphasizing carefulness and appreciation.  The movement starts with arms slightly raised and then carefully lowers to cradle the imaginary bowl. The sequence ends with the arms returning to a neutral position.  The robot shows care and attention in handling the delicacy of the custard. The lack of elbows in the robot's arms is compensated by the careful positioning of the hands and the overall posture.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "elbows bend, bringing hands forward gently",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower, cradling the imaginary bowl",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest at sides, custard held with care",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

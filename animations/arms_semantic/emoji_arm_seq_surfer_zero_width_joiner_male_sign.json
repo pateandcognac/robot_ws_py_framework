@@ -1,0 +1,81 @@
+{
+ "emoji": "🏄‍♂",
+ "ideation": "This sequence simulates a surfer's arm movements, focusing on the balance and paddling motion. The left arm mimics the paddling action, while the right arm balances the body.  I'll use smooth transitions between frames, leveraging the robot's two-joint system. Frame 1: The robot starts with the left arm extended forward and slightly downward, mimicking the initial paddling position. The right arm is slightly extended outward for balance. Frame 2: The left arm pulls back, as if completing a paddling stroke. The right arm extends further to maintain balance. Frame 3: The left arm extends forward again, beginning the next stroke, while the right arm maintains its balance position. Frame 4: The left arm pulls back again, and the right arm adjusts slightly, reflecting the dynamic balance needed in surfing. Frame 5: Both arms return to a more neutral position, suggesting the surfer is momentarily resting between waves.",
+ "frames": [
+  {
+   "beat": "left arm paddles forward, right arm balances out",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm pulls back through the water, right arm adjusts",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches forward for another stroke, right arm steadies",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm pulls back, right arm shifts for dynamic balance",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -50.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle, resting between waves",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

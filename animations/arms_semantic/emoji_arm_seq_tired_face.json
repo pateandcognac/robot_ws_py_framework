@@ -1,0 +1,56 @@
+{
+ "emoji": "😫",
+ "ideation": "This sequence aims to express exhaustion or frustration, using arm movements that suggest wiping sweat from the brow or rubbing tired eyes, followed by a slump of the shoulders to emphasize fatigue. I'll focus on creating fluid motions that convey a sense of weariness. In the first frame, both arms are raised to the forehead, palms facing inward, as if wiping away sweat. joint1 rotates the arms inward, and joint2 pitches them upward. The wrists are angled slightly inward to position the hands correctly. Moving to the second frame, the hands move slightly outward and downward, mimicking the motion of wiping. joint1 rotates the arms slightly outward, and joint2 pitches them slightly downward. By the third frame, the arms lower further, as if rubbing tired eyes. joint1 rotates the arms further outward, and joint2 pitches them downward, bringing the hands closer to the eyes. In the fourth frame, the arms drop to the sides, with a slight outward rotation at joint1 and a downward pitch at joint2, emphasizing the slump of the shoulders and overall exhaustion. Finally, in the fifth frame, the arms remain at the sides, with joint1 and joint2 in a neutral, relaxed position, conveying a sense of complete fatigue.",
+ "frames": [
+  {
+   "beat": "arms rise to forehead, wiping away sweat",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 70.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "hands sweep down and outward, weary effort",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 60.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower to rub tired eyes, heavy fatigue",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 40.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "shoulders slump as arms drop to sides",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hang limp, completely exhausted",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

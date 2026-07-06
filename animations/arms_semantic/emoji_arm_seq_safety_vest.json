@@ -1,0 +1,36 @@
+{
+ "emoji": "🦺",
+ "ideation": "This animation sequence depicts a robot carefully putting on a safety vest.  The movement should be deliberate and precise, reflecting the importance of safety.  We'll use a three-frame sequence to highlight the key moments of the action. Frame 1 shows both arms starting at the sides, ready to engage. Frame 2 shows the arms reaching out to grab the vest. Frame 3 shows the vest being pulled over the robot's torso. ",
+ "frames": [
+  {
+   "beat": "arms start at the sides, ready for safety",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach out to grasp the safety vest",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull the vest over the torso",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

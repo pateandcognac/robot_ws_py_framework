@@ -1,0 +1,71 @@
+{
+ "emoji": "☸️",
+ "ideation": "This animation sequence depicts the turning of the Wheel of Dharma, representing the cyclical nature of life, teachings, and the path to enlightenment. The movement should be graceful, continuous, and evoke a sense of turning. I'll use both arms to create the sense of rotation. In the first frame, both arms are extended horizontally, palms facing downward in a T-pose.  This represents a starting point of stability.  In the second frame, the left arm begins to move upward and slightly forward, while the right arm moves downward and slightly backward, suggesting a turning motion. In the third frame, the left arm continues its upward and forward movement, and the right arm completes its downward and backward swing. The arms are now in a mirrored position from the previous frame, with the left arm high and the right arm low. In the fourth frame, the arms start to reverse the motion, beginning the cycle again. In the final frame, the arms return to their initial horizontal position, completing one full cycle of the Wheel of Dharma. This cyclical motion will be repeated, conveying the continuous nature of the Dharma's teachings.",
+ "frames": [
+  {
+   "beat": "arms extend horizontally, a stable base",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to turn, left up, right down",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the wheel turns fully, left high, right low",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the wheel reverses direction, starting the cycle anew",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to horizontal, the dharma wheel completes a turn",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

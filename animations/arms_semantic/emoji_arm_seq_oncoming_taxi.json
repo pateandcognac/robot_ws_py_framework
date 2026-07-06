@@ -1,0 +1,46 @@
+{
+ "emoji": "🚖",
+ "ideation": "This animation sequence simulates the anticipation and excitement of an oncoming taxi. The arms will mimic the feeling of reaching out or signaling for a ride.  The sequence will start with arms relaxed, then move to a reaching motion, followed by a slight pause before returning to a relaxed state. This uses the two joints in the shoulder, creating a smooth yet expressive movement.  The final pose will be one of relaxed anticipation, after the taxi has arrived. ",
+ "frames": [
+  {
+   "beat": "arms hang down, waiting for the cab",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms reach out, signaling for a ride",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the arms extend further, eager to get in",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax, the taxi has arrived",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

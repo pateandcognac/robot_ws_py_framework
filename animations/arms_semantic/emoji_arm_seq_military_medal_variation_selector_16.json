@@ -1,0 +1,66 @@
+{
+ "emoji": "🎖️",
+ "ideation": "This sequence simulates the act of proudly displaying or presenting a medal.  The animation will focus on a single arm, the right arm, extending to present the imaginary medal. The left arm will remain at the side for balance and contrast.  The sequence will consist of four frames to show the arm's movement clearly and avoid overly rapid transitions. In the first frame, the right arm will be at rest at the side. The second frame will show the right arm beginning to move forward and upward, as if reaching for an unseen medal. The third frame will show the arm fully extended, slightly angled, and the wrist positioned to present the imaginary medal as if on a chest. The fourth frame will show the arm returning to its resting position. The left arm will remain relatively still throughout the sequence.",
+ "frames": [
+  {
+   "beat": "both arms hang at the sides, still",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins to lift and extend forward",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm proudly presents the medal forward",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm returns to the side, medal displayed",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

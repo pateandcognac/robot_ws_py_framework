@@ -1,0 +1,46 @@
+{
+ "emoji": "🕛",
+ "ideation": "This animation sequence depicts a robot patiently waiting for noon. The robot's arms will initially be at its sides, then raise slightly as if checking a watch, and finally return to a relaxed position. The movement should be slow and deliberate to convey patience and anticipation. Frame 1: Both arms are hanging at the sides. Frame 2: Both arms raise slightly to shoulder height. Frame 3: Both arms return to their original position, conveying a sense of calm waiting. Frame 4: Both arms gently move outward, as if relaxing.",
+ "frames": [
+  {
+   "beat": "arms hang loosely at the sides, waiting patiently",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, checking the time for noon",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, still waiting calmly",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax outward, anticipation builds",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

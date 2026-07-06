@@ -1,0 +1,66 @@
+{
+ "emoji": "🔌",
+ "ideation": "This animation sequence will show the robot plugging something in.  The robot will use its right arm to mimic the action of inserting a plug into an outlet. The left arm will remain at rest. The sequence will emphasize the deliberate, controlled movement of inserting the plug, and the final frame will show the plug securely in place. Frame 1 shows the robot's arm in a neutral position, ready to move. Frame 2 shows the arm moving towards the outlet, mimicking the insertion of a plug. Frame 3 shows the plug fully inserted, with a slight pause to emphasize the completion of the action. Frame 4 shows the arm returning to a neutral position after the successful insertion of the plug.",
+ "frames": [
+  {
+   "beat": "both arms hang still, ready to plug in",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches out, plug angled for insertion",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "plug slides smoothly into the unseen outlet",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm retracts, plug now firmly in place",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

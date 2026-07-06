@@ -1,0 +1,66 @@
+{
+ "emoji": "🧴",
+ "ideation": "This sequence simulates the act of squeezing a lotion bottle. The robot will mimic this action using both arms. The animation starts with both arms extended forward and slightly outward at shoulder height. The left arm will then move slightly backward as if preparing to grip the bottle, while the right arm simultaneously moves forward, mimicking the act of supporting or squeezing the bottle. In the next frame, both arms move closer together, with the left arm now gripping the bottle and the right arm gently squeezing. The final frame shows both arms moving back to the original position, implying the end of the squeezing action. The subtle changes in joint angles between frames will give the impression of a natural, fluid movement. Each frame will have the palms facing inward, creating the impression of a secure grip.",
+ "frames": [
+  {
+   "beat": "arms extend forward, ready to grasp",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm prepares to grip, right arm pushes forward",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms squeeze the lotion bottle together",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms release and return to neutral",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

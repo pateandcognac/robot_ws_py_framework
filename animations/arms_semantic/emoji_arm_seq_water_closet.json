@@ -1,0 +1,46 @@
+{
+ "emoji": "🚾",
+ "ideation": "This animation sequence depicts a robot using a water closet.  Since the robot doesn't have legs, we'll focus on arm movements that suggest the action. The sequence starts with arms at the sides, moves to arms raised as if pulling down pants, then to a slight crouch (simulated by lowering the arms), and finally back to arms at the sides. Frame 1: Arms at sides; Frame 2: Arms raised; Frame 3: Arms lowered slightly; Frame 4: Arms at sides.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to go",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift as if pulling down pants",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, a simulated squat",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

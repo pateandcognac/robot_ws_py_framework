@@ -1,0 +1,71 @@
+{
+ "emoji": "🩳",
+ "ideation": "This animation sequence will show the robot checking out a pair of shorts, perhaps considering buying them or admiring their style.  The sequence will involve a combination of looking, pointing, and a slight adjustment to the posture. The robot doesn't have legs, so the focus is on the arm movements. Frame 1 will show the robot's arms relaxed at its sides. Frame 2 will show the right arm pointing towards the shorts. Frame 3 will show the robot tilting its head slightly, as if inspecting the shorts more closely. Frame 4 will have the robot adjusting its posture slightly, perhaps moving a hand towards the waist area. Frame 5 will return the robot to a relaxed state, leaving the viewer to imagine the robot's decision about the shorts.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm points, examining the shorts",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "tilting head, inspecting the shorts closely",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "adjusting posture, a thoughtful pose",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -75.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, decision made",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

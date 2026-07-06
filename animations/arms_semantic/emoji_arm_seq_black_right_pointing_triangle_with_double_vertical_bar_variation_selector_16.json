@@ -1,0 +1,71 @@
+{
+ "emoji": "⏯️",
+ "ideation": "This animation sequence simulates the action of pressing a play/pause button.  It will use a combination of both arms to represent the pushing and releasing of a hypothetical button. The sequence starts with both arms raised to shoulder height in a neutral position. Then, the right arm moves forward to simulate pressing a button. After a slight pause, the right arm returns to the neutral position, completing the animation. The left arm provides contrast and balance. Frame 1 shows both arms in a neutral position. Frame 2 shows the right arm moving forward and the left arm slightly shifting. Frame 3 depicts the right arm pressing the button, while frame 4 shows the right arm returning to neutral and frame 5 shows both arms resuming their neutral positions. ",
+ "frames": [
+  {
+   "beat": "both arms rest, ready for action",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm prepares to press, left arm balances",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm pushes forward, pressing the button",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm retracts slightly, releasing pressure",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a neutral, resting state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "emoji": "⚡",
+ "ideation": "This animation sequence will portray the high-voltage emoji by simulating an electrical surge using dynamic arm movements. The arms will start in a neutral position and then rapidly extend outward and upward, mimicking the erratic energy of electricity.  The sequence will conclude with the arms returning to a relaxed state.  We will use the robot's shoulder joints (joint1 and joint2) to create the effect of an electrical jolt. The wrists will remain neutral, as the focus is on the overall arm movement.",
+ "frames": [
+  {
+   "beat": "arms shoot out wide and up, a sudden jolt",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms snap outward and up, crackling with energy",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms retract inward and up, a quick discharge",
+   "arms": {
+    "both": {
+     "joint1": -90.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms fall back to rest, the surge is over",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "emoji": "🔣",
+ "ideation": "This animation sequence will depict the robot interacting with symbols, mimicking the action of someone selecting or pointing at different symbols on a screen. The robot will use both arms, alternating between pointing and selecting. The sequence starts with both arms at rest, then transitions to one arm pointing, followed by the other arm 'selecting'. It ends with both arms returning to a neutral position. This sequence will be 5 frames long.",
+ "frames": [
+  {
+   "beat": "both arms hang at the sides, ready for symbols",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches out, pointing at a distant symbol",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm moves to 'select' the symbol",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "left arm retracts, right arm holds the selection",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, symbols processed",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

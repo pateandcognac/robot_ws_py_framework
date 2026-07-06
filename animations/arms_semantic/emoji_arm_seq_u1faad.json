@@ -1,0 +1,81 @@
+{
+ "emoji": "🪭",
+ "ideation": "This sequence animates the action of a person delicately folding a hand fan. The robot, lacking fingers, will simulate the folding action through arm and wrist movements.  The left arm will hold the fan, while the right arm will perform the folding action.  The animation will focus on the right arm's subtle movements to convey the folding motion.  We'll use a 5-frame animation for a smoother effect. Frame 1: The left arm holds the fan at a comfortable position in front of the body. The right arm is relaxed at the side. Frame 2: The right arm moves to the left arm, positioning itself to begin the folding action. Frame 3: The right arm moves slightly downward, simulating the first fold of the fan. Frame 4: The right arm moves further downward, implying the fan is almost completely folded. Frame 5: Both arms return to their original positions, suggesting that the fan folding is complete.",
+ "frames": [
+  {
+   "beat": "left arm holds fan, right arm relaxed at side",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm moves to meet the left, ready to fold",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm dips down, beginning the fan fold",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm continues folding, fan nearly closed",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, fan is folded",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

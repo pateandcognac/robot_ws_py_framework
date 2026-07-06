@@ -1,0 +1,66 @@
+{
+ "emoji": "🖋️",
+ "ideation": "This animation sequence depicts the robot carefully holding and using a fountain pen.  It will focus on the right arm, with the left arm remaining mostly still for contrast and balance. The sequence will emphasize the delicate nature of handling a pen.  The robot will gently grasp the pen, then write or sign, and finally put the pen down. I will make use of the robot's two shoulder joints and wrist to create a natural-looking gesture. The movements will be refined and controlled, reflecting the precision required for writing.  The neutral positions will be used as the starting point for the sequence, and the final position will return to a neutral position. ",
+ "frames": [
+  {
+   "beat": "arms rest, ready to write",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts, hand grasps the pen delicately",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 30.0
+    }
+   }
+  },
+  {
+   "beat": "the pen moves to the paper, poised to write",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -10.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the pen is set down, the writing is done",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

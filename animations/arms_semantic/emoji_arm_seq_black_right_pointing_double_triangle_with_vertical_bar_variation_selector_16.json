@@ -1,0 +1,76 @@
+{
+ "emoji": "⏭️",
+ "ideation": "This animation sequence simulates the action of pressing a next track button. The robot will use its right arm to perform a quick, decisive swipe from left to right, mimicking the forward progression implied by the emoji. The left arm will remain mostly still, providing a stable counterpoint to the right arm's movement.  The animation will focus on creating a sense of smooth but confident motion. Frame 1: The right arm starts in a neutral, slightly forward position, poised to begin the swipe. Frame 2: The right arm moves across the body, with a slight upward angle. The wrist is rotated to point in the direction of the swipe. Frame 3: The right arm reaches its furthest point on the right, the wrist now angled back slightly. Frame 4: The right arm returns to its original position. Frame 5: Both arms return to a neutral position.",
+ "frames": [
+  {
+   "beat": "right arm poised for action, left arm still",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm sweeps forward and across the body",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 20.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the swipe completes, reaching the end point",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "right arm retracts, completing the button press",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a neutral resting state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

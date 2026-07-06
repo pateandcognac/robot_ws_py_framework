@@ -1,0 +1,81 @@
+{
+ "emoji": "🫦",
+ "ideation": "This sequence simulates the action of biting one's lip, focusing on a subtle, almost shy or flirtatious movement of the hands. The animation will primarily use the left arm, with the right arm remaining mostly still. Small adjustments in the wrist positions will help convey the nuance of the gesture. In the first frame, both arms are in a neutral position, with the left arm slightly angled forward and the wrist turned slightly inward. This sets a calm baseline for the action to follow. The right arm is relaxed at the side, maintaining balance. In the second frame, the left arm starts to lift, the wrist rotating inward. The slight upward movement begins to convey a sense of anticipation. In the third frame, the left hand moves toward the mouth, the wrist rotating more inward to simulate the lip-biting action. The fingers curl slightly to add realism. In the fourth frame, the left hand is near the mouth, and the wrist is fully rotated inward. The gesture is now fully realized. In the fifth frame, the left arm returns to its neutral position. This creates a gentle, fluid movement that conveys the subtle nature of the emoji. The right arm remains relatively still throughout the sequence, providing a contrast to the left arm's movement and making the lip-biting action the clear focus.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, a subtle anticipation",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm begins to lift, wrist turning inward",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hand approaches mouth, biting the lip gently",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 10.0,
+     "wrist": -60.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the lip is held, a shy, flirtatious gesture",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 20.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the moment passes",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "emoji": "➿",
+ "ideation": "This animation sequence simulates the continuous looping motion represented by the ➿ emoji.  It uses a combination of both arms to create a sense of cyclical movement. The arms will move in a mirrored, alternating pattern, emphasizing the endless loop. I will use the two shoulder joints to create the fluid motion.  The wrists will remain neutral throughout. For the first frame, both arms start in a neutral position at the sides.  In the second frame, the right arm starts to move upward in a circular motion, while the left arm moves downward. In the third frame, the right arm continues its upward motion, and the left arm completes its downward motion. In the fourth frame, the right arm begins to move downward, while the left arm begins to move upward. In the fifth frame, both arms return to their neutral position, completing the loop and setting up for a repeat of the sequence. Let's start!",
+ "frames": [
+  {
+   "beat": "both arms hang down, ready to loop",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins to rise in a circular path",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm continues its upward arc, left arm stays down",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm starts to descend as the left arm rises",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the loop is complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

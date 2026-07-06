@@ -1,0 +1,81 @@
+{
+ "emoji": "🗯️",
+ "ideation": "This sequence aims to capture the feeling of frustration or anger, using the right arm to make a striking motion towards something unseen, as if hitting a button or slamming a table, reflecting the aggressive energy of an outburst. The left arm remains passive, providing a counterbalance. In the first frame, both arms are held slightly up and out from the body in a neutral, anticipatory pose, preparing for action. By the second frame, the right arm rises higher, drawing back in preparation for the strike. joint1 rotates inward, bringing the arm closer to the body, while joint2 pitches upward. The wrist turns inward, angling as if preparing to hit something with the edge of the hand. Meanwhile, the left arm remains largely passive, shifting only slightly to maintain balance. In the third frame, the right arm swings forward forcefully, extending towards the unseen target of the robot's anger. joint1 rotates outward, and joint2 pitches downward, creating a striking motion. The wrist straightens, adding to the force of the movement. Again, the left arm provides a counterbalance, shifting slightly to accommodate the change in momentum. By the fourth frame, the right arm retracts slightly, bouncing back from the force of the strike. joint1 rotates inward again, while joint2 begins to pitch upward, simulating the recoil after impact. The wrist angles slightly, as if absorbing the impact. The left arm remains relatively still. Finally, in the fifth frame, the right arm returns to a neutral position, though slightly higher than its starting point, as if still agitated. The left arm also returns to its initial neutral position, completing the sequence.",
+ "frames": [
+  {
+   "beat": "both arms held slightly out, ready to strike",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm draws back, preparing for impact",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -25.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm slams forward with force",
+   "arms": {
+    "left": {
+     "joint1": -15.0,
+     "joint2": -25.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm recoils slightly from the strike",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a neutral, agitated pose",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

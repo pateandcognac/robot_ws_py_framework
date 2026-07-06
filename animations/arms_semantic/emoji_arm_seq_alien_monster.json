@@ -1,0 +1,56 @@
+{
+ "emoji": "👾",
+ "ideation": "This sequence aims to capture the mischievous and slightly menacing nature of the alien monster emoji. The animation will involve both arms in a dynamic, yet controlled movement, suggesting the alien is playfully plotting or preparing for some action.  The movement will be a combination of reaching out, then pulling back, emphasizing the unpredictable nature of the character.  I'll use a combination of joint rotations and wrist adjustments to create a sense of playful menace. Frame 1 will show both arms extended forward and slightly upward, palms open.  In frame 2, one arm will retract to the side, while the other extends further, creating a sense of imbalance.  Frame 3 will reverse the arm positions, creating a sense of playful toying. Frame 4 will show both arms raised and slightly angled back, as if the monster is preparing to strike or cast a spell. This will emphasize the menacing aspect of the emoji.",
+ "frames": [
+  {
+   "beat": "both arms reach out playfully, palms open",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "one arm retracts as the other extends, a curious imbalance",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swap positions, a mischievous toying motion",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rise, preparing for a playful strike",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 75.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

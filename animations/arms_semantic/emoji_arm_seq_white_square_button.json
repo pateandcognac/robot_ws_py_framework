@@ -1,0 +1,56 @@
+{
+ "emoji": "🔳",
+ "ideation": "This animation sequence will portray the robot interacting with a button, mimicking the pressing of a square button.  The sequence starts with the robot's arms at its sides, then moves to a position where both arms are extended towards the button, then presses the button, then moves the arms back to its sides.  The movement will be smooth but deliberate. The robot will not have any fingers, so the pressing action will be implied through the robot's palm positioning. ",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready for action",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward, reaching for the button",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms press the square button with intent",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms retract slightly after the press",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

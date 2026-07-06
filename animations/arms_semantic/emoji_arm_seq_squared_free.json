@@ -1,0 +1,36 @@
+{
+ "emoji": "🆓",
+ "ideation": "This animation sequence will visually represent the concept of 'freedom' and 'release' associated with the FREE button emoji.  The animation will start with both arms held tightly together, symbolizing restriction, then transition to a state of release and openness. The movement will be fluid, yet purposeful, using the robot's two-joint arm system to create a natural and expressive gesture.  I'll use the existing examples as a guide for creating a smooth and natural-looking animation.",
+ "frames": [
+  {
+   "beat": "arms held tight, a feeling of being bound",
+   "arms": {
+    "both": {
+     "joint1": 50.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms open wide, a sudden release",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms spread out, embracing newfound freedom",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

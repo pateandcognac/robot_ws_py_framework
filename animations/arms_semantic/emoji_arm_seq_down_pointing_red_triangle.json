@@ -1,0 +1,46 @@
+{
+ "emoji": "🔻",
+ "ideation": "This animation sequence will show the robot expressing caution or warning with the downward-pointing triangle.  The movement will involve bringing both arms up in a gesture that mimics pointing downward, then slowly returning to a neutral position. This conveys a sense of controlled warning or focused attention, rather than a sudden, abrupt movement. The sequence will use a total of 4 frames. Frame 1: Both arms start slightly out to the sides at shoulder height, palms facing down. Frame 2: Both arms lower slightly, pivoting at the shoulder inward and bending at the wrist, mimicking a downward-pointing gesture. Frame 3: The arms return to the shoulder height, but now they are angled more toward the body and wrists are more flat. Frame 4: The arms return to the neutral position at the sides.",
+ "frames": [
+  {
+   "beat": "arms lift to shoulder height, palms down",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms angle inward and down, forming a triangle",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms adjust, pointing lower with flat wrists",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a neutral, resting position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "😙",
+ "ideation": "This sequence simulates a blowing kiss gesture. It starts with both hands raised to the mouth, then extends the right arm forward as if blowing the kiss. The left arm returns to the side. In the final frame, both arms return to rest. The wrists rotate to add a touch of elegance to the gesture.",
+ "frames": [
+  {
+   "beat": "both hands come to the mouth, ready to blow",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 85.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "left arm drops, right arm extends with a flick",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the kiss is blown, a flourish of the wrist",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 15.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

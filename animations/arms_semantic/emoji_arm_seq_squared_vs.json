@@ -1,0 +1,36 @@
+{
+ "emoji": "🆚",
+ "ideation": "This animation sequence simulates a robot presenting two options, mimicking the 'versus' concept. The robot will extend both arms outward, palms up, then bring them together in the middle. The arms will then extend back out to their original positions. This represents a choice, decision, or comparison. The movement will be fluid but distinct, with each frame representing a key pose in the gesture. I will leverage the two-joint system to create a natural, expressive movement, referencing previous examples for guidance on joint angles and wrist positions to ensure a visually appealing and balanced movement.",
+ "frames": [
+  {
+   "beat": "arms extend wide, palms open to present",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep inward, bringing choices together",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return outward, the decision is made",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

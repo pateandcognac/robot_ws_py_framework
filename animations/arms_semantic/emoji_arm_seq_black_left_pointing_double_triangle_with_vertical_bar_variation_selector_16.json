@@ -1,0 +1,66 @@
+{
+ "emoji": "⏮️",
+ "ideation": "This animation sequence simulates the action of rewinding, focusing on the left arm to mimic the backward motion of the rewind button. The right arm remains in a neutral position for balance. The sequence uses 4 frames to illustrate the movement's progression. Frame 1 starts with both arms relaxed at the robot's sides. In frame 2, the left arm moves backward, mimicking the rewind motion. The wrist slightly rotates inward to maintain the backward motion. Frame 3 shows the left arm further back in a more pronounced rewind gesture. The wrist rotation is more exaggerated. Finally, frame 4 returns the left arm to its resting position, completing the rewind action. The right arm remains still throughout the sequence to ensure the focus remains on the left arm's rewind gesture.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to rewind",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm sweeps back with a slight inward wrist twist",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the rewind gesture becomes more pronounced",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": -30.0,
+     "wrist": -60.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the rewind action completes, arms return to rest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

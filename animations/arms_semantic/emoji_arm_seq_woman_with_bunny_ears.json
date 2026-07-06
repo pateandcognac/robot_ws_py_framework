@@ -1,0 +1,46 @@
+{
+ "emoji": "👯",
+ "ideation": "This animation sequence depicts two individuals playfully interacting, mirroring the lighthearted nature of the 👯 emoji.  The sequence will focus on a synchronized arm movement, emphasizing the playful connection between the two figures.  The robot's lack of elbows will be addressed by creating a fluid, expressive movement using the two available shoulder joints.  The animation begins with arms slightly raised and slightly outward, as if in anticipation of movement.  Then the arms will move in a circular motion, mimicking a playful dance or a shared moment of joyful movement.  The final frame will have the arms return to a relaxed, playful position. The key is to convey a sense of synchronized, lighthearted movement.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, ready for playful connection",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep outward and up in a shared gesture",
+   "arms": {
+    "both": {
+     "joint1": -30.0,
+     "joint2": 45.0,
+     "wrist": 15.0
+    }
+   }
+  },
+  {
+   "beat": "arms circle inward and down, a moment of synchronized joy",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 15.0,
+     "wrist": -15.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest, a playful moment concluded",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

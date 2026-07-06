@@ -1,0 +1,36 @@
+{
+ "emoji": "⚠️",
+ "ideation": "This sequence will depict a robot raising both arms in a warning gesture. The arms will start slightly below shoulder height, palms facing forward, then rise to shoulder height, and finally settle slightly below shoulder height with palms facing forward. This avoids a rigid, mechanical look, using slight perturbations to enhance naturalness. The slight change in each frame will allow for a smooth animation. ",
+ "frames": [
+  {
+   "beat": "arms rise slightly, palms forward, a gentle caution",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach shoulder height, a clear warning signal",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back, still holding the warning",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

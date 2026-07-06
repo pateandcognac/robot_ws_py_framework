@@ -1,0 +1,46 @@
+{
+ "emoji": "🐏",
+ "ideation": "This animation sequence will depict a ram butting its head, using the robot arms to simulate the horns.  Since the robot lacks elbows and thumbs, the animation will focus on the overall head-butting motion.  The animation will utilize both arms in a mirrored fashion to create the effect of horns. Frame 1 will show the arms starting in a neutral position. Frame 2 will show the arms moving forward, slightly downward, and inward, to simulate the beginning of a headbutt. Frame 3 will depict the impact, where the arms are extended forward, and slightly downward. Frame 4 will depict the retraction of the arms to a more neutral position. The wrists will remain neutral throughout the sequence, and the overall movement will emphasize the forward momentum of the headbutt.",
+ "frames": [
+  {
+   "beat": "arms pull back, ready to charge",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "horns lower and thrust forward, gathering momentum",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a solid headbutt impact, horns meet target",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "horns retract, shaking off the blow",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

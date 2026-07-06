@@ -1,0 +1,61 @@
+{
+ "emoji": "👷",
+ "ideation": "This sequence depicts a construction worker's movements, focusing on the arms and their interaction with tools. The animation begins with the arms slightly raised, holding an imaginary tool, transitioning through a hammering motion, and ending with the arms lowered in a neutral pose. The right arm will be primarily active, while the left arm will provide balance and support. Frame 1 shows both arms slightly elevated and angled outward, wrists slightly flexed to hold a tool. Frame 2 shows the right arm moving downwards in a hammering motion, while the left arm provides counterbalance. Frame 3 shows the right arm raised to its initial position, completing the hammering motion. Frame 4 shows both arms returning to a neutral, relaxed position, with wrists neutral and palms facing inward. This sequence uses a combination of joint1 and joint2 rotations to create realistic arm movements, emulating the actions of a construction worker using a tool.",
+ "frames": [
+  {
+   "beat": "arms held slightly out, ready to work",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": 10.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 10.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "right arm swings down hard, left arm braces",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm swings up, completing the strike",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "both arms relax, the work is done",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "emoji": "📡",
+ "ideation": "This animation sequence simulates the action of adjusting a satellite dish, focusing on the precise movements needed for alignment. The robot will use its arms to mimic the careful adjustments required to point the dish accurately.  Frame 1 will show both arms in a neutral resting position. Frame 2 will show the robot's left arm reaching out and slightly upward, as if grasping or guiding the dish's position. Frame 3 will depict a slight adjustment in the left arm's position, indicating a fine-tuning of the dish's angle. Frame 4 will show the left arm returning to a neutral position, implying the alignment is complete. Frame 5 will show both arms returning to a neutral resting position, signaling the end of the adjustment process.  The right arm will remain largely stationary throughout to emphasize the left arm's focused action.",
+ "frames": [
+  {
+   "beat": "arms rest, ready to adjust the dish",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches out to guide the dish",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "fine-tuning the angle with a small adjustment",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm returns, alignment complete",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle back to rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

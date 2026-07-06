@@ -1,0 +1,61 @@
+{
+ "emoji": "🚞",
+ "ideation": "This animation sequence will depict the robot mimicking the movement of a mountain railway, emphasizing the uphill climb and the winding path.  The robot will use both arms to illustrate the ascent and turns.  We will use a 4-frame sequence to capture the dynamic movement. Frame 1: Both arms start at the sides, representing the beginning of the journey. Frame 2: The right arm moves upward and slightly outward, suggesting the start of the uphill climb. The left arm remains relatively still for contrast. Frame 3: The left arm now joins the right in an upward movement, but with a slight inward turn, showing the railway winding. Frame 4: Both arms reach their peak, angled upward and slightly away from each other, representing the summit of the mountain.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready for the climb",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins the steady uphill ascent",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm joins, winding the path upward",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms reach the peak, a triumphant ascent",
+   "arms": {
+    "right": {
+     "joint1": 30.0,
+     "joint2": 75.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

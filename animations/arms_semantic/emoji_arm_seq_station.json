@@ -1,0 +1,36 @@
+{
+ "emoji": "🚉",
+ "ideation": "This animation sequence depicts a robot patiently waiting at a train station, perhaps checking a schedule or gazing down the tracks. The animation will feature a slight, repetitive swaying motion to convey the feeling of waiting and anticipation.  The arms will remain largely still, emphasizing the stillness of the robot's posture.  This will contrast with the implied movement of the trains.  The small movements will be subtle to avoid distracting from the overall sense of calm attentiveness.",
+ "frames": [
+  {
+   "beat": "logos waits patiently, arms hanging relaxed",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a slight sway to the left, checking the time",
+   "arms": {
+    "both": {
+     "joint1": -5.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "logos sways back to the right, eyes on the tracks",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

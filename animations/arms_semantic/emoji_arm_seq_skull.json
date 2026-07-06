@@ -1,0 +1,56 @@
+{
+ "emoji": "💀",
+ "ideation": "This sequence aims to capture the dramatic essence of the skull emoji, symbolizing death, fear, or morbid humor. The robot's arms will move in a chilling, theatrical way, mimicking the stiffness and finality associated with death. The movements will be deliberate and somewhat exaggerated, with each frame representing a distinct shift in posture.  In the first frame, both arms are raised stiffly outward using joint1, palms facing downward using wrist set to 0. joint2 pitches the arms downward to -45.0 degrees. This creates a stark, almost ghastly pose, reminiscent of rigor mortis or a zombie-like stance. In the second frame, the right arm slowly lowers as if losing its last bit of life, joint2 pitching downward to -90 degrees while joint1 rotates inward to 0 and the wrist remains at 0. The left arm remains stiffly positioned outward, palm down. This adds a touch of asymmetry and creates a more dynamic feel. The third frame sees the left arm mirroring the right, lowering slowly as if succumbing to the same fate. joint2 pitches downward to -90 degrees while joint1 rotates inward to 0 and the wrist remains at 0.  The right arm remains still in the lowered position.  In the final frame, both arms hang lifelessly at the sides, palms facing inward as joint1 rotates to 0, joint2 pitches to -90, and wrists rotate to 0. This completes the sequence, emphasizing the stillness and finality of death.  Throughout the sequence, the robot's movements are slow and deliberate, enhancing the chilling effect and capturing the essence of the skull emoji.",
+ "frames": [
+  {
+   "beat": "arms raised stiffly outward, palms down, a ghastly pose",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers slowly, succumbing to death",
+   "arms": {
+    "left": {
+     "joint1": 90.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm mirrors the right, both arms falling lifelessly",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms hang still at the sides, finality reached",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+{
+ "emoji": "💞",
+ "ideation": "This animation sequence aims to capture the swirling, interconnected nature of two hearts.  The robot will use both arms in a synchronized, yet slightly offset movement to create a sense of gentle rotation and connection. Each arm will mimic the motion of a heart gently revolving around a central point. I will focus on creating smooth, curved motions, using the two shoulder joints to their full extent to create the illusion of a three-dimensional rotation. The wrist movements will be subtle, adding a touch of realism to the gesture. In the first frame, both arms start in a position mimicking an embrace. The arms are slightly raised, angled inwards, and the wrists subtly rotated to suggest the interconnectedness of two hearts. In the second frame, the arms begin their swirling motion. The right arm moves slightly upward and outward, while the left arm moves downward and inward, creating a sense of counter-rotation. The wrists subtly adjust to maintain the smooth curves of the hearts. In the third frame, the arms continue their rotation, with the right arm now moving downward and inward, and the left arm upward and outward. This mirrored motion emphasizes the interconnectedness of the hearts. In the fourth frame, the arms move towards a position similar to the first frame, completing one full cycle of their swirling motion. This cyclical movement reinforces the idea of continuous, gentle rotation. Finally, the fifth frame shows a slight adjustment to return the arms to a resting position. This creates a natural and graceful ending to the sequence.",
+ "frames": [
+  {
+   "beat": "arms embrace, hearts gently touching",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to swirl, a gentle counter-rotation",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 60.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "the hearts continue their connected spin",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 60.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms complete the gentle, swirling embrace",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 40.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": 40.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle into a soft, resting pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

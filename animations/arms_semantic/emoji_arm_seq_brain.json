@@ -1,0 +1,71 @@
+{
+ "emoji": "🧠",
+ "ideation": "This sequence aims to represent thinking or brainstorming by tapping a finger against the temple, a common gesture associated with deep thought or concentration. Since the robot lacks individual fingers, the entire hand will mimic the tapping motion.  The left arm remains at rest, providing balance and a natural counterpoint to the right arm’s movement. In the first frame, both arms are relaxed at the sides, with joint1 slightly inward and joint2 pitching the arms downward. The wrists are neutral, palms facing inward. This sets a neutral starting pose. In the second frame, the right arm begins to rise towards the temple. joint1 rotates the arm outward, and joint2 pitches it upward, positioning the hand near the head. The wrist turns inward at -90 degrees to angle the 'finger' towards the temple.  The left arm remains at rest. By the third frame, the right hand lightly 'taps' the temple by slightly adjusting joint2 to create a small downward movement. The wrist is held steady to maintain the tapping position. The left arm remains still, providing counterbalance. In the fourth frame, the right arm lifts slightly away from the temple, completing the tap. joint2 increases the upward pitch, preparing for another tap or a return to the resting position.  The left arm is unmoved. In the final frame, the right arm returns to its initial relaxed position at the side, mirroring the starting pose. joint1 rotates inward, and joint2 pitches the arm downward, while the wrist returns to a neutral position. The left arm remains at rest throughout, providing balance and a natural contrast to the right arm’s movement.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides, ready to think",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm rises, hand turning to tap the temple",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 60.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right hand taps the temple with a slight dip",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 50.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right hand lifts from the temple, preparing another tap",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 60.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest, thought complete",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

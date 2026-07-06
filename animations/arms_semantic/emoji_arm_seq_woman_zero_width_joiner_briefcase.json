@@ -1,0 +1,46 @@
+{
+ "emoji": "👩‍💼",
+ "ideation": "This animation sequence portrays a woman office worker in a confident and composed manner.  The animation will start with her arms relaxed at her sides, then transition to a gesture where she holds a pen or stylus, and finally return to a neutral pose. The sequence will emphasize controlled, professional movements.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at sides, ready for work",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand lifts to hold an imaginary pen, poised",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a composed, neutral stance",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

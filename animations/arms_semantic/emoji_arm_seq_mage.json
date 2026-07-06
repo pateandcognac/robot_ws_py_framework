@@ -1,0 +1,81 @@
+{
+ "emoji": "🧙",
+ "ideation": "This animation sequence depicts a mage performing a spell. The sequence will focus on expressive arm movements that suggest magical energy. The arms will move in a dynamic fashion, suggesting the casting of a spell. The left arm will move in a wider arc, while the right arm will have more precise movements, as if manipulating magical energy. Each frame will show a distinct position, not an intermediary step, allowing for a smooth transition between frames handled by a separate system. Frame 1 will show both arms in a neutral position, suggesting preparation. Frame 2 will show the left arm raised and extended, as if gathering energy. Frame 3 will show the right arm moving forward, as if directing the energy. Frame 4 will show both arms returning to a neutral position. Frame 5 will show the arms resting in a relaxed pose.",
+ "frames": [
+  {
+   "beat": "arms ready, a moment of quiet focus",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm sweeps up, gathering arcane power",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm thrusts forward, directing the spell's energy",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "energy released, arms return to neutral stance",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest, the magic fades",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

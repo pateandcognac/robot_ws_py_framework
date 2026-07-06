@@ -1,0 +1,81 @@
+{
+ "emoji": "🥎",
+ "ideation": "This sequence simulates the act of throwing a softball.  The animation will focus on the right arm, with the left arm providing balance.  The movement will be smooth but decisive, reflecting the controlled power needed for a good throw.  I will reference existing examples to ensure the arm movements are within the robot's capabilities. Frame 1 will show the robot holding the softball (represented by the hand position) at shoulder height, ready to throw. Frame 2 will show the arm beginning its backswing, with the hand moving slightly behind the robot's body. Frame 3 will be the peak of the backswing, the arm extended and angled backward. Frame 4 shows the arm starting its forward motion, and Frame 5 shows the ball released (represented by hand position).",
+ "frames": [
+  {
+   "beat": "arms rest, right hand holds ball at shoulder",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins backswing, preparing to throw",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches back, coiled for power",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 70.0,
+     "joint2": -90.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "the throw begins, arm swings forward with force",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "ball released, right arm follows through",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

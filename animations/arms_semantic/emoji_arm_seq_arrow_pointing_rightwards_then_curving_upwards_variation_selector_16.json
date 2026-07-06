@@ -1,0 +1,76 @@
+{
+ "emoji": "⤴️",
+ "ideation": "This sequence visualizes the ⤴️ emoji by having the right arm trace the upward curve. The left arm provides balance and visual context.  In frame one, both arms are at rest at the sides. The right arm will initiate the upward curve in the subsequent frames. The left arm remains passive for balance. In frame two, the right arm bends at the \"shoulder\" (joint2) and lifts slightly, beginning its upward and rightward trajectory, mimicking the start of the arrow's curve.  The wrist rotates to point the hand in the direction of the curve, which enhances the visual flow.  In frame three, the right arm continues its upward curve, reaching a midpoint in its motion. joint1 and joint2 adjust to create the rightward and upward motion. The wrist further rotates to follow the direction of the curve.  In frame four, the right arm extends further, nearly completing the curve.  joint2 pitches upward while joint1 adjusts for the final rightward push. The wrist rotation completes, now fully expressing the upward motion.  In the final frame, the right arm reaches the apex of the curve, completing the motion. The arm is now fully extended upwards, and the wrist is neutral. The left arm remains at rest throughout the sequence, maintaining balance and directing focus to the right arm’s movement.",
+ "frames": [
+  {
+   "beat": "both arms hang at rest, ready to move",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins to lift and curve upwards",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm continues its arc, rising higher",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the curve tightens, reaching towards the apex",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -60.0,
+     "joint2": 45.0,
+     "wrist": 70.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm completes the upward flourish",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -70.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

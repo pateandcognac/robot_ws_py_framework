@@ -1,0 +1,66 @@
+{
+ "emoji": "🦑",
+ "ideation": "This sequence will animate the robot mimicking the movement of a squid, focusing on the tentacles' motion.  The arms will move in a fluid, almost wave-like manner, suggesting the squid's undulating tentacles.  The animation will not be a literal depiction of a squid, but rather an interpretation of its movement using the robot's arm capabilities.  We'll use a combination of joint1 (roll) and joint2 (pitch) to achieve a sense of flow and undulation. The wrists will remain relatively neutral, focusing the expressiveness on the larger arm movements.",
+ "frames": [
+  {
+   "beat": "arms sway gently outwards, like tentacles unfurling",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep inwards and upwards, a fluid undulation",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sway gently outwards again, a rhythmic pulse",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle slightly, a subtle tentacle drift",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

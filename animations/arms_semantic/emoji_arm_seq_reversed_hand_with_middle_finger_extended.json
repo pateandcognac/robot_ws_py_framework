@@ -1,0 +1,66 @@
+{
+ "emoji": "🖕",
+ "ideation": "This sequence animates a \"middle finger\" gesture using the right arm, while the left arm remains relatively neutral. The animation will focus on a clear, deliberate extension of the middle finger, conveying the emotion of defiance or displeasure. The sequence will consist of four frames to capture the buildup and release of the gesture.  Frame 1 starts with both arms relaxed at the sides. Frame 2 begins the gesture, with the right arm extending forward and slightly upward. Frame 3 emphasizes the gesture by slightly further extending the arm. Frame 4 shows the gesture fully extended before returning to a neutral state.  The left arm will provide contrast to the right arm's movement. This sequence will use the robot's two-joint shoulder system to create a smooth, expressive animation that avoids jerky motions.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, a moment of calm",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins to lift, a subtle shift",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm extends, a clear defiant gesture",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the gesture is held, then both arms return to rest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

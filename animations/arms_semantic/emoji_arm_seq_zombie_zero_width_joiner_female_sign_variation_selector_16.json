@@ -1,0 +1,66 @@
+{
+ "emoji": "🧟‍♀️",
+ "ideation": "This sequence depicts a zombie woman's signature shambling walk.  The arms will hang loosely, swinging slightly out of sync.  The movement should be jerky and unnatural, reflecting the undead nature of the character.  I will use small, uneven changes in joint angles to create this effect, avoiding any smooth or fluid transitions.",
+ "frames": [
+  {
+   "beat": "arms hang loose, starting the shambling gait",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm swings out, right arm pulls back slightly",
+   "arms": {
+    "left": {
+     "joint1": -5.0,
+     "joint2": -90.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -70.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "a slight sway, arms twitching unnaturally",
+   "arms": {
+    "left": {
+     "joint1": 12.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -8.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the zombie lurches forward, arms swinging unevenly unevenly awkwardly",
+   "arms": {
+    "left": {
+     "joint1": 8.0,
+     "joint2": -65.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": -12.0,
+     "joint2": -75.0,
+     "wrist": 10.0
+    }
+   }
+  }
+ ]
+}

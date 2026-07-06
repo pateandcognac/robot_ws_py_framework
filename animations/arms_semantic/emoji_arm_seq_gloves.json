@@ -1,0 +1,46 @@
+{
+ "emoji": "🧤",
+ "ideation": "This animation sequence depicts the act of putting on a pair of gloves.  The robot will start with arms at its sides, then bring both arms up to shoulder height, palms facing inward. Next, the robot will move its arms slightly forward as if putting the gloves on, palms still facing inward. Finally, the robot will bring its arms down to its sides, and the wrists will rotate outward to show the palms facing forward, indicating that the gloves are on. The movement should be smooth and deliberate, conveying a sense of careful action.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for gloves",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift to shoulder height, palms inward",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move forward, slipping on the gloves",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower, palms now facing forward",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

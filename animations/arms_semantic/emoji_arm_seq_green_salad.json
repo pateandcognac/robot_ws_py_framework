@@ -1,0 +1,46 @@
+{
+ "emoji": "🥗",
+ "ideation": "This sequence mimics the action of tending to a salad, perhaps tossing it or gently arranging the ingredients.  It starts with both arms extended outward, palms up, as if receiving the salad. Then, one arm moves to gently stir or toss, while the other remains in a supportive position. Finally, both arms return to a relaxed position, suggesting the salad is ready. The movement should be fluid and gentle, reflecting the delicate nature of salad ingredients.",
+ "frames": [
+  {
+   "beat": "arms open wide, palms up, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "left arm gently tosses the salad, right arm steadies",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, salad is ready",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "🐭",
+ "ideation": "This sequence will animate the robot to mimic a mouse's whisker twitching and exploration.  The animation will focus on small, quick movements of the arms to simulate the mouse's inquisitive nature. The robot will start with its arms at its sides, then extend one arm forward as if sniffing, then briefly return to the neutral position before repeating with the other arm. This will create a sense of playful curiosity.  The wrists will remain relatively neutral, focusing on the upper arm's movement. This will be a 4-frame animation.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to explore",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm extends forward, sniffing the air",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to neutral, a moment of stillness",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, exploring the other side explored",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

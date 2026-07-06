@@ -1,0 +1,46 @@
+{
+ "emoji": "💛",
+ "ideation": "This animation sequence expresses warmth and affection using a gentle embrace. The arms will move in a slow, deliberate manner, emphasizing the care and tenderness associated with the yellow heart emoji.  The sequence starts with the arms at the sides, then moves to a hugging position, and finally returns to the neutral position. I will use the dual shoulder joints to create a natural, flowing movement, avoiding sudden or jerky motions.  The wrists will be slightly angled to enhance the feeling of a soft embrace. I will check existing examples to ensure the range of motion is appropriate and the gesture feels natural for the robot. ",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, a gentle beginning",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly rise to begin a soft embrace",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "the embrace tightens, a warm gesture",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -30.0,
+     "wrist": -60.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, affection conveyed",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

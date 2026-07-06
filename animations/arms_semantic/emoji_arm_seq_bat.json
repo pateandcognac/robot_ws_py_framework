@@ -1,0 +1,66 @@
+{
+ "emoji": "🦇",
+ "ideation": "This animation sequence simulates a bat in flight, using the robot arms to create the impression of wings.  The movement will be fluid and somewhat erratic to capture the unpredictable nature of bat flight.  The arms will move in a coordinated but asymmetrical way, emphasizing the natural, uneven flapping of wings. We'll leverage the two joints to create a sense of depth and motion.  The lack of elbows means we'll focus on shoulder movement to achieve the desired effect. Let's get started! ",
+ "frames": [
+  {
+   "beat": "arms spread wide like nascent wings, ready to fly",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "wings flap upwards and outwards, a sudden surge",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "wings beat downwards, a gentle, gliding motion",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 30.0,
+     "wrist": 30.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "wings recover, preparing for the next powerful stroke",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": -30.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 30.0,
+     "wrist": 30.0
+    }
+   }
+  }
+ ]
+}

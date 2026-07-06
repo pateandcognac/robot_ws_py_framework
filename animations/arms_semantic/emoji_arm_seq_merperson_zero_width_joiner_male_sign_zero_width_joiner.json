@@ -1,0 +1,66 @@
+{
+ "emoji": "🧜‍♂‍",
+ "ideation": "This sequence simulates a merman gracefully swimming.  The arms move in a fluid, undulating motion, mimicking the movement of fins or flippers. The animation focuses on creating a sense of underwater elegance and fluidity. Frame 1 shows the arms extended to the sides, palms facing forward, as if beginning a stroke. Frame 2 shows one arm reaching forward, the other back, imitating a swimming motion. Frame 3 reverses this, creating the illusion of continuous motion. Frame 4 brings the arms back to the original position, completing the cycle. The subtle variations in wrist positions add to the natural fluidity of the movement.",
+ "frames": [
+  {
+   "beat": "arms extend sideways, palms forward, ready to glide",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches forward, right arm pulls back, swimming",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "motion reverses, right arm leads, left arm follows",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -90.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep back to sides, completing the graceful underwater turn",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

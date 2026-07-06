@@ -1,0 +1,51 @@
+{
+ "emoji": "↙️",
+ "ideation": "This sequence mimics the direction of the arrow using both arms. The left arm points directly downward while the right arm points to the right, creating a combined downward-left diagonal gesture.  The sequence will start with the arms at rest, transition to a pointing pose, and then return to rest, creating a clear indication of the arrow's direction. Frame 1 will start with both arms at rest. Frame 2 will show the right arm pointing to the right and the left arm pointing downward. Frame 3 will return to the arms at rest.",
+ "frames": [
+  {
+   "beat": "both arms hang down, ready to indicate",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm points down, right arm points right",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, gesture complete",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

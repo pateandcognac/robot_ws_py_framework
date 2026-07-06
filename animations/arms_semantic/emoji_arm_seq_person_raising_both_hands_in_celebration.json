@@ -1,0 +1,46 @@
+{
+ "emoji": "🙌",
+ "ideation": "This sequence aims to capture the uplifting feeling of the 🙌 emoji, representing praise, celebration, or excitement.  The arms will rise dynamically, mimicking the energy of the emoji.  I'll use varying joint angles and wrist positions to avoid rigidity and create a natural, expressive motion.  In the first frame, both arms start low and slightly outward, preparing for the upward movement. joint1 is slightly rotated outward, and joint2 pitches the arms downward. The wrists are neutral, palms facing inward. This starting position sets a foundation for the subsequent upward motion.  In the second frame, the arms begin their ascent, with joint2 pitching upward while joint1 rotates slightly inward to bring the arms closer to the body. The wrists begin rotating outward to eventually face forward. This conveys the initial burst of energy in the gesture. In the third frame, the arms continue rising, with joint2 pitching further upward.  The wrists rotate further outward, now almost facing completely forward.  This adds to the momentum of the motion. In the fourth frame, the arms reach their peak, fully extended upwards with joint2 at its maximum upward rotation. The wrists now face forward, completing the open and expressive pose of the 🙌 emoji.  This final position captures the full enthusiasm and joy of the gesture.",
+ "frames": [
+  {
+   "beat": "arms start low and outward, ready to lift",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to rise, palms turning outward",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms continue upward, momentum building",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": 60.0,
+     "wrist": 75.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach peak celebration, fully raised",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

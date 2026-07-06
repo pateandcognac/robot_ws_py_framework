@@ -1,0 +1,81 @@
+{
+ "emoji": "🎐",
+ "ideation": "This sequence simulates a gentle, curious interaction with a wind chime.  The robot will reach out with one arm, then gently touch the chime before pulling the arm back.  The other arm remains relaxed at the side, providing contrast and balance. The movements will be slow and deliberate, reflecting a sense of wonder and careful observation.  I will use the two joints of the robot's arm to create a fluid, natural motion.  There will be a slight pause before withdrawing the hand to emphasize the delicate interaction. The sequence will be 5 frames.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, a moment of quiet anticipation",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm gently reaches out towards the chime",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "fingers delicately brush the chime, a soft touch",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the arm begins to slowly withdraw, the sound lingers",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the moment passes",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

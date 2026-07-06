@@ -1,0 +1,56 @@
+{
+ "emoji": "🦚",
+ "ideation": "This sequence mimics a peacock showing off its plumage, using fluid arm movements to suggest the bird's proud display. The animation will focus on a graceful, upward arc of the arms, emphasizing elegance and a sense of self-importance.  The robot's arm limitations will be overcome by using the two joints to their full expressive potential. Frame 1 begins with the arms slightly raised and angled out, setting a stage of subtle anticipation. In frame 2, the arms move in a smooth arc upwards, palms facing each other to enhance the elegance of the motion. Frame 3 sees the arms reach their peak, slightly curved, as if mirroring the shape of a peacock's crest. Frame 4 brings the arms back down in a controlled, mirroring the graceful return to a resting position.  The final frame shows the arms returning to a more neutral position, while still retaining a sense of poise and confidence.  The slight variations and pauses between each frame will contribute to the graceful, flowing motion overall.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, a subtle preening gesture",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep gracefully upwards, feathers unfurling",
+   "arms": {
+    "both": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach peak elegance, a proud crest displayed",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms descend with measured poise, the display softens",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle, a quiet confidence remains",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

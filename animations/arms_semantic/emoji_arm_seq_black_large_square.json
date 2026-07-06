@@ -1,0 +1,41 @@
+{
+ "emoji": "⬛",
+ "ideation": "This animation sequence aims to convey a sense of mystery or concealment, fitting the enigmatic nature of the black square emoji.  The animation will start with both arms at rest, then move to cover the face, and finally transition to a defensive posture.  The use of both arms will enhance the feeling of mystery and protection. The lack of expressive features in the emoji allows for creative interpretation of the concealed emotion.",
+ "frames": [
+  {
+   "beat": "arms hang down, empty and still",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise to obscure the face, hiding something",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms brace defensively, a hidden threat",
+   "arms": {
+    "left": {
+     "joint1": 65.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 50.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

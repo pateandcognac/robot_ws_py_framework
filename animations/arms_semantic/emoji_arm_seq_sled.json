@@ -1,0 +1,66 @@
+{
+ "emoji": "🛷",
+ "ideation": "This animation sequence depicts the act of steering a sled, focusing on the dynamic arm movements involved.  The sequence will emphasize the pulling and guiding motion of the arms, reflecting the effort and control needed to navigate a sled.  We'll primarily use the right arm for the pulling action and the left arm for balance and subtle adjustments.  The robot's lack of elbows will be compensated for by using the shoulder joints to create a sense of pulling and guiding.  Each frame will represent a distinct phase of the sledding motion.",
+ "frames": [
+  {
+   "beat": "arms start in a relaxed sledding pose",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pulls forward, left arm guides the turn",
+   "arms": {
+    "right": {
+     "joint1": -40.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 30.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms adjust, steadying the sled's path",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle, the sled glides smoothly",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

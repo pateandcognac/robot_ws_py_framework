@@ -1,0 +1,61 @@
+{
+ "emoji": "⚫",
+ "ideation": "This animation sequence will depict a robot reacting to a mysterious black circle, starting with curiosity, moving to contemplation, and finally ending in a shrug of uncertainty.  The robot's arm movements will mirror these emotional shifts.  The lack of inherent meaning in the emoji itself allows for creative interpretation of the robot's response.",
+ "frames": [
+  {
+   "beat": "arms rest, observing the void",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm tentatively reaches out, right arm pulls back",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the void is examined, nothing found",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms shrug, accepting the unknown",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

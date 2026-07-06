@@ -1,0 +1,66 @@
+{
+ "emoji": "🧑‍🧑‍🧒",
+ "ideation": "This animation sequence depicts a family (two adults and a child) embracing.  The adults' arms will be positioned to envelop the child, while the child's arms will be raised in a gesture of affection.  The animation will focus on the natural movements of embracing, starting with arms outstretched, then gradually closing in, and finally settling into a warm embrace.  I will use the robot's two-joint arm structure to create a realistic and expressive embrace.",
+ "frames": [
+  {
+   "beat": "adults' arms open wide, ready to hug",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to close around the child",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -30.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -30.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "the embrace tightens, a gentle squeeze",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -15.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -15.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "the family is held close in a warm hug",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

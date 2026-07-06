@@ -1,0 +1,56 @@
+{
+ "emoji": "🕉️",
+ "ideation": "This sequence will depict a meditative pose, reflecting the serenity and spirituality associated with the Om symbol. The animation will focus on slow, deliberate movements of the arms, emphasizing calm and inner peace. In the first frame, both arms will start at the sides in a relaxed position, palms facing inward. Then, in the second frame, the arms will slowly raise, bending at the 'shoulders,' palms facing each other, as if in prayer.  The arms will not raise fully overhead but will stop at roughly chest height. In the third frame, the hands will slowly move together, palms touching, as if holding a small, precious object, reflecting the preciousness of peace and inner calm. The arms will remain at roughly chest height.  In the fourth frame, the hands will remain together, but the arms will slowly begin to lower, maintaining the sense of reverence.  In the fifth frame, both arms will return to the starting position, relaxed at the sides, palms facing inward.  The entire sequence will be slow and deliberate, mirroring the peacefulness of meditation.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, palms inward",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly rise to chest height, palms facing",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands meet in prayer, holding peace gently",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slowly, maintaining reverence",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, serene and still",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

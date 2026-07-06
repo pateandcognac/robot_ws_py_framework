@@ -1,0 +1,81 @@
+{
+ "emoji": "🪠",
+ "ideation": "This sequence simulates the action of using a plunger, focusing on the downward push and upward pull.  The right arm will do the work, while the left remains in a balanced position.  We'll make sure the transitions feel smooth and realistic, given our robot's lack of elbows. In frame one, both arms are at rest. In frame two, the right arm begins its downward motion, mimicking the plunge.  The wrist will be slightly angled to simulate gripping the plunger. In frame three, the right arm reaches its lowest point, as if the plunger is fully depressed. Frame four shows the upward motion, pulling back.  Frame five brings both arms to rest.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready for action",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to push down, wrist angled",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "plunger pushed down with force",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pulls back up, the seal broken",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

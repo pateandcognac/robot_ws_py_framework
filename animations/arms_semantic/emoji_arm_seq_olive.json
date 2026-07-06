@@ -1,0 +1,66 @@
+{
+ "emoji": "🫒",
+ "ideation": "This animation sequence depicts a robot delicately holding an olive, emphasizing careful handling and appreciation for the food.  The sequence will focus on the left arm, as the right arm will remain at the side for balance. The left arm will move in a smooth arc, starting from a neutral position, reaching for the olive, then gently lifting it before returning to rest.  The overall gesture will imply respect for the food, making use of the limited movement capabilities of the robot arm. Frame 1 will show the arm in a resting position. Frame 2 will show the arm extending toward the olive, and then Frame 3 will show the arm carefully lifting the olive. Frame 4 will show the arm returning to the rest position.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready to receive",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm extends, reaching for the olive",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm carefully lifts the olive with a slight twist",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, appreciative pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

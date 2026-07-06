@@ -1,0 +1,56 @@
+{
+ "emoji": "🫎",
+ "ideation": "This sequence will show the robot mimicking a moose's head with its arms.  The arms will extend outward to represent antlers. Because the robot has no elbows, the arms will create a simplified antler shape. The movement will be slow and deliberate, reflecting the moose's generally calm demeanor. Frame 1 shows the arms at rest. Frame 2 begins the extension of the arms outward. Frame 3 shows the arms fully extended. Frame 4 brings the arms slightly down and inward. Frame 5 returns the arms to rest. ",
+ "frames": [
+  {
+   "beat": "arms hang at rest, a moose's calm stance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to extend outward like antlers",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach fully out, forming wide antlers",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "antlers dip slightly inward, considering",
+   "arms": {
+    "both": {
+     "joint1": 70.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "antlers retract, returning to a resting state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🚝",
+ "ideation": "This animation sequence will depict the robot mimicking the movement of a monorail, emphasizing the smooth, gliding motion.  The arms will move in a coordinated manner, suggesting the forward momentum and rhythmic movement of the train.  The animation will focus on the robot's arms, creating a visual metaphor for the monorail's movement. The robot's lack of elbows means that the arm's movements will be more sweeping and less articulated than a human's. We will use a combination of joint1 and joint2 to create a fluid, wave-like arm motion.",
+ "frames": [
+  {
+   "beat": "arms hang low, a monorail at rest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep forward and up, gaining momentum",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms dip slightly, a rhythmic sway",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward, the monorail glides smoothly",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

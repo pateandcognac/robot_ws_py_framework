@@ -1,0 +1,46 @@
+{
+ "emoji": "🎍",
+ "ideation": "This sequence will show the robot carefully placing a decorative item (represented by the emoji) with reverence. The movement will be slow and deliberate, emphasizing care and precision.  Frame 1 will start with the arms down and slightly apart. Frame 2 will show the arms moving upwards toward the item. Frame 3 will depict the arms carefully placing the item. Frame 4 will have the arms returning to a resting position.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift gently, approaching the sacred object",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "carefully placing the new year's decoration",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, a moment of quiet reverence",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

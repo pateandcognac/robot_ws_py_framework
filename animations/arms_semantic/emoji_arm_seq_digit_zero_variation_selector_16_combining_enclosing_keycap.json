@@ -1,0 +1,56 @@
+{
+ "emoji": "0️⃣",
+ "ideation": "This animation sequence depicts a robot forming a zero with its arms.  The robot will use both arms to create a circle shape. The animation will be slow and deliberate, emphasizing the precision of the robot. Frame 1 starts with both arms outstretched to the sides, preparing to form the zero. Frame 2 shows the arms moving slightly inward, beginning the circular shape. Frame 3 completes the circle, with the arms meeting in front of the robot. Frame 4 briefly pauses with the circle complete, and in Frame 5, the arms slowly return to their starting position. ",
+ "frames": [
+  {
+   "beat": "arms sweep out wide, ready to form a zero",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to curve inward, shaping the circle",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms meet in front, completing the zero shape",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "holding the zero steady, a moment of perfect form",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly return to resting position",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

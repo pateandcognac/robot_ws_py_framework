@@ -1,0 +1,51 @@
+{
+ "emoji": "📀",
+ "ideation": "This animation sequence mimics the spinning motion of a DVD.  The arms will move in a circular pattern, alternating between frames to simulate the spinning disc.  The movement will be exaggerated to emphasize the spinning effect, and the wrists will be slightly angled to enhance the visual appeal. This sequence will capture the dynamic nature of the DVD emoji.",
+ "frames": [
+  {
+   "beat": "arms extend out, wrists angled for spin",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms reverse direction, spinning the other way",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to the initial spin direction",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

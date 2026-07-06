@@ -1,0 +1,66 @@
+{
+ "emoji": "🦟",
+ "ideation": "This animation sequence simulates swatting a mosquito. It starts with both arms relaxed at the sides, then one arm swings forward to swat, followed by a return to the neutral position. The other arm remains relatively still to maintain balance. The sequence uses the robot's two shoulder joints to create a realistic swatting motion, with slight variations in wrist position to improve the gesture's naturalism. Frame 1 shows a neutral starting position, Frame 2 shows the right arm moving to swat, Frame 3 shows the right arm returning to neutral, and Frame 4 shows both arms returning to a neutral position. ",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, waiting for the pest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm swings forward in a sharp swat",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -60.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm snaps back to the side",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a neutral, still pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

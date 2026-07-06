@@ -1,0 +1,36 @@
+{
+ "emoji": "🫂",
+ "ideation": "This animation sequence depicts two robots embracing.  The robots lack elbows and have limited wrist motion; therefore, I'll focus on creating a natural-looking hug using only shoulder movements. The hug will be symmetrical for simplicity. I will use a three-frame sequence to show the start, middle, and end of the embrace. In frame 1, both arms start in a neutral position. In frame 2, the arms move to the embrace position. In frame 3, the arms return to the neutral position. This avoids over-complication and keeps the sequence concise and easily understandable.",
+ "frames": [
+  {
+   "beat": "arms start at sides, ready to embrace",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "robots pull each other in for a gentle hug",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms release, returning to a neutral stance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

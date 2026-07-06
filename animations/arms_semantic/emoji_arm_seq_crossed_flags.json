@@ -1,0 +1,66 @@
+{
+ "emoji": "🎌",
+ "ideation": "This sequence simulates the action of holding two flags, one in each hand, crossing them in front of the body.  The animation will focus on a smooth, symmetrical crossing of the arms, emphasizing the crossing of the imaginary flags.  The robot will start with arms slightly outward, palms up and then bring the arms together in a crossing motion, ending with the arms slightly angled downward.  I will ensure smooth transitions between frames and reference the existing examples to ensure the movements feel natural and appropriate for the robot's mechanics. ",
+ "frames": [
+  {
+   "beat": "arms lift slightly, palms up, ready to cross",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to cross in front, a gentle sweep",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "flags meet and cross at the center, held high",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms continue crossing, dipping downward",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

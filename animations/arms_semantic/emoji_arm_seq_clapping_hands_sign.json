@@ -1,0 +1,36 @@
+{
+ "emoji": "👏",
+ "ideation": "This sequence simulates a simple yet expressive clapping motion.  It focuses on the key positions of the hands during a clap, avoiding overly detailed intermediate frames.  The robot's lack of elbows is taken into account, focusing on the shoulder joint movements to create the illusion of clapping.",
+ "frames": [
+  {
+   "beat": "arms raise slightly, palms facing inward",
+   "arms": {
+    "both": {
+     "joint1": 50.0,
+     "joint2": 30.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "hands meet in a quick, sharp clap",
+   "arms": {
+    "both": {
+     "joint1": 70.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, ready position",
+   "arms": {
+    "both": {
+     "joint1": 50.0,
+     "joint2": 30.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

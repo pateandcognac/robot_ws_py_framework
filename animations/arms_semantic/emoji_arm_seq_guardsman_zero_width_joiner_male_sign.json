@@ -1,0 +1,81 @@
+{
+ "emoji": "💂‍♂",
+ "ideation": "This animation sequence depicts a guard standing at attention, then looking around, and finally returning to attention. The primary focus is on the subtle yet expressive movements of the arms and hands, reflecting the guard's alertness and responsibility.  The right arm will hold a mock rifle, and the left will be at the side. The robot will not have a rifle, so this is implied.  Frame 1 shows the guard at attention, arms straight down, palms facing inward. Frame 2 shows the guard's head slightly turning, the right arm slightly raising, and the left arm slightly moving forward. Frame 3 shows the guard's head turning to the other side, the right arm raising further, and the left arm moving back. Frame 4 shows the guard's head returning to center, the right arm lowering, and the left arm returning to the side. Frame 5 shows the guard back at attention.",
+ "frames": [
+  {
+   "beat": "guard stands at attention, arms at sides",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "guard shifts weight, looking left, right arm lifts slightly",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "guard looks right, right arm raises further, left arm forward",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "guard returns gaze forward, arms lowering back",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "guard stands at attention, still and alert",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

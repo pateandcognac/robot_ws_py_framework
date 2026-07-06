@@ -1,0 +1,81 @@
+{
+ "emoji": "👠",
+ "ideation": "This animation sequence simulates the act of trying on a high-heeled shoe, showcasing a careful and slightly dramatic movement. The sequence will involve both arms, with the left arm holding the shoe and the right arm assisting or reacting. The movement should convey a sense of anticipation and perhaps even slight excitement or vanity. Frame 1 will show the left arm holding the shoe at waist height, while the right arm rests by the side. Frame 2 will show the left arm carefully raising the shoe to the foot, while the right arm moves slightly forward in anticipation. Frame 3 depicts the shoe being placed on the foot and the arms assuming a pose of satisfaction or contemplation. Frame 4 shows the robot admiring the shoe on its foot. Frame 5 shows the robot striking a pose to show off the shoe.",
+ "frames": [
+  {
+   "beat": "arms rest, left holding shoe at waist",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lifts shoe, right arm moves forward",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "shoe placed on foot, arms pose with satisfaction",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "robot admires the shoe on its foot",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "striking a pose to show off the shoe",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

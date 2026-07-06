@@ -1,0 +1,61 @@
+{
+ "emoji": "✌️",
+ "ideation": "This sequence aims to mimic the 'victory hand' gesture, commonly associated with peace or victory. Since the robot doesn't have fingers, I'll focus on creating a raised arm position with a tilted wrist to approximate the two-fingered 'V' shape. I’ll start with a natural, relaxed posture and transition into the 'V' by rotating the right arm upward and adjusting the wrist. The left arm will remain at the side throughout the sequence. In the first frame, both arms are at the sides in a relaxed position. The right arm is slightly raised, preparing for the gesture, while the left arm remains neutral, hanging loosely. In the second frame, the right arm rises with the wrist turning inward at 90 degrees. joint1 rotates outward, positioning the arm, while joint2 pitches it upward. This creates the beginning of the 'V' shape. The left arm remains at the side to maintain balance and focus attention on the gesture. In the third frame, the right arm rises further, and the wrist rotates to emphasize the 'V' shape. joint1 rotates further outward, and joint2 pitches the arm slightly higher. This movement finalizes the 'victory hand' pose. The left arm remains still throughout to maintain symmetry and clarity of the gesture. Finally, in the fourth frame, the right arm returns to a relaxed, lowered position, completing the gesture. The left arm remains at rest, providing a neutral counterpoint.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, a moment of calm",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to rise, wrist turning for the V",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -25.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm fully raised, forming the victory sign",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 80.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, resting pose",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

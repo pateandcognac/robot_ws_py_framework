@@ -1,0 +1,66 @@
+{
+ "emoji": "📇",
+ "ideation": "This animation sequence simulates the action of flipping through index cards.  The robot will use both arms to perform the action, creating a realistic and engaging animation. Each frame will represent a significant change in the arm positions to create a dynamic and expressive movement.  The left arm will primarily act as a support and manipulator, and the right arm will perform the actual card-flipping action. We will pay close attention to the range of motion of the joints and wrists to avoid any unnatural or impossible movements. The animation will be designed to be easily understood and will convey the meaning of the emoji clearly.",
+ "frames": [
+  {
+   "beat": "arms rest, ready to sort",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand quickly flips a card up and away",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the card settles back down, ready for the next",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "another card flips, a quick flick of the wrist",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

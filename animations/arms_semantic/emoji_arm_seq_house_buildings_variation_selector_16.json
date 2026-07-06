@@ -1,0 +1,46 @@
+{
+ "emoji": "🏘️",
+ "ideation": "This animation sequence will depict the robot carefully cradling two small houses in its hands, conveying care and protection.  The movement will start with the arms extended slightly forward, then gently curving inward to bring the houses close to the robot's body. The sequence will conclude with the arms returning to a slightly more open position, suggesting the robot is ready to safeguard the houses.  The robot will not have actual hands, but the arm positions will strongly imply the protective gesture.",
+ "frames": [
+  {
+   "beat": "arms extend forward, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms curve inward, cradling unseen houses",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -30.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "hands gently lift the houses closer to the chest",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -20.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold the houses protectively, ready to guard",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -10.0,
+     "wrist": 45.0
+    }
+   }
+  }
+ ]
+}

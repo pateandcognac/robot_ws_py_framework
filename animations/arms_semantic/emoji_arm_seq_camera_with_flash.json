@@ -1,0 +1,56 @@
+{
+ "emoji": "📸",
+ "ideation": "This sequence simulates the action of taking a photo with a camera. The robot will raise both arms to shoulder height, mimicking the holding of a camera, then slightly lower and extend the arms to capture the image, and finally return to a relaxed position. The sequence will emphasize the smooth transition between these poses, creating a natural-looking gesture. In the first frame, both arms start at the sides in a neutral position.  In the second frame, both arms raise to shoulder height, palms facing inward, as if holding a camera. In the third frame, the arms move slightly forward and downward, simulating the act of taking the picture. In the fourth frame, the arms return to the shoulder-height position. In the final frame, both arms return to their original relaxed position at the sides. ",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to frame",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms raise to shoulder height, holding the camera",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend slightly, capturing the moment",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull back to framing position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "emoji": "🛃",
+ "ideation": "This animation sequence depicts a robot carefully inspecting items, mimicking the customs inspection process.  The sequence will focus on the robot's arms performing a deliberate, methodical check of a hypothetical package.  The left arm will remain mostly still, providing a stable base of support and contrast to the right arm's movements. The right arm will actively engage in the inspection process.  We'll leverage the two-joint system, ensuring smooth transitions between frames. Frame 1: Both arms start in a neutral, relaxed position.  Frame 2: The right arm extends forward and slightly upward, as if reaching for a package or container. The wrist rotates slightly to simulate careful handling. Frame 3: The right arm moves down and a little back, as if inspecting the package's sides or bottom.  Frame 4: The right arm returns to a neutral position, indicating the inspection is complete. Frame 5: The right arm moves slightly outward and upward as if placing the item aside. The left arm will remain largely still throughout the animation, providing a grounded and stable counterpoint to the active right arm.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for inspection",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches out, ready to examine",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm carefully probes the item",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "inspection complete, right arm returns to neutral",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm sets the item aside, motion finished",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+{
+ "emoji": "🏊‍♀️",
+ "ideation": "This sequence simulates a freestyle swimming motion. Frame 1 starts with the right arm extended forward and the left arm back, as if about to begin the stroke.  The right wrist is rotated inward, while the left wrist is rotated outward. In Frame 2, the right arm pulls down through the water, with the wrist now neutral. The left arm moves forward, preparing to enter the water. In Frame 3, the right arm exits the water and recovers forward, while the left arm begins its pull-through, its wrist now neutral. Frame 4 mirrors Frame 1, but with the left arm forward and right arm back, completing one full stroke cycle. Frame 5 shows both arms out to the sides, wrists rotated inwards, as if floating or treading water.",
+ "frames": [
+  {
+   "beat": "arms extended, ready to dive in",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pulls through water, left arm reaches forward",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm recovers, left arm pulls through",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "left arm pulls through water, right arm reaches forward",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms float, treading water gently",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -90.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

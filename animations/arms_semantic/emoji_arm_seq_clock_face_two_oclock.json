@@ -1,0 +1,81 @@
+{
+ "emoji": "🕑",
+ "ideation": "This animation sequence will show the robot indicating the time 2 o'clock using its arms.  The robot will use both arms, extending them to the sides to form a rough approximation of the hands on a clock face. The sequence will emphasize the '2' position, with slight movements to enhance the visual representation. Frame 1 will show both arms extended to the sides at shoulder height to create the base clock face. Frame 2 will show the left arm slightly lower, and the right arm slightly higher, starting the '2' shape. Frame 3 will show the left arm more clearly at the '10' position and the right arm at the '2' position. Frame 4 will slightly adjust the angles to refine the '2' shape, making it more pronounced. The final frame will show a brief pause before returning to a neutral position.",
+ "frames": [
+  {
+   "beat": "both arms extend outwards, forming a clock face",
+   "arms": {
+    "left": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to shape the number two",
+   "arms": {
+    "left": {
+     "joint1": 80.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 100.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm points to ten, right arm to two",
+   "arms": {
+    "left": {
+     "joint1": 70.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 110.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "refined pose for the two o'clock marker",
+   "arms": {
+    "left": {
+     "joint1": 65.0,
+     "joint2": -25.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 105.0,
+     "joint2": 25.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "holding the two o'clock position briefly",
+   "arms": {
+    "left": {
+     "joint1": 70.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 110.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

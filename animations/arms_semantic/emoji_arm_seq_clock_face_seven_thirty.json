@@ -1,0 +1,66 @@
+{
+ "emoji": "🕢",
+ "ideation": "This animation sequence will represent the time 7:30, using the robot's arms to mimic the hands on a clock.  The left arm will represent the hour hand (7), and the right arm will represent the minute hand (30).  The movement will be a smooth transition from the starting position to the final pose representing the time. The robot's arms do not have elbows, so the positions will be approximations of a clock hand.  I'll use joint1 to position the arms and joint2 to set the angle. The wrists will remain neutral to keep the focus on the arm positions. ",
+ "frames": [
+  {
+   "beat": "arms start at rest, ready to tell time",
+   "arms": {
+    "left": {
+     "joint1": 150.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the hour hand sweeps down, minute hand moves forward",
+   "arms": {
+    "left": {
+     "joint1": 140.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hour hand continues its slow arc, minute hand nears the half",
+   "arms": {
+    "left": {
+     "joint1": 130.0,
+     "joint2": -50.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle into the 7:30 position",
+   "arms": {
+    "left": {
+     "joint1": 120.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

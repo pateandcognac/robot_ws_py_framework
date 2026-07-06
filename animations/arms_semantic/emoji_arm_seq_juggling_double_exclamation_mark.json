@@ -1,0 +1,81 @@
+{
+ "emoji": "🤹‼",
+ "ideation": "This sequence simulates the act of juggling, focusing on the dynamic arm movements needed to toss and catch imaginary objects.  The animation will emphasize the alternating, rhythmic motion of the arms, with slight variations to mimic the natural irregularities of juggling.  The robot doesn't have hands, but we can imply the juggling action through arm movements and wrist rotations.  In the first frame, both arms are raised to shoulder height, palms facing each other, as if preparing to throw.  The arms are slightly bent outward at the shoulders and the wrists are slightly tilted forward. In the second frame, the right arm is in the process of throwing, moving outward and slightly upward, while the left arm is moving toward the center, as if preparing to catch. In the third frame, the left arm is now throwing, moving outward and upward, while the right arm is moving toward the center, preparing to catch.  In the fourth frame, both arms return to the original starting position, ready for the next toss. The slight variations in arm height and wrist position between frames will help create a more natural, less robotic juggling animation. The fifth frame mirrors the first, completing the cycle.",
+ "frames": [
+  {
+   "beat": "arms rise, ready to juggle imaginary balls",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 45.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 45.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "right arm throws, left arm prepares to catch",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "left arm throws, right arm prepares to catch",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reset, a brief pause in the rhythm",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise again, continuing the juggle",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 45.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 45.0,
+     "wrist": 10.0
+    }
+   }
+  }
+ ]
+}

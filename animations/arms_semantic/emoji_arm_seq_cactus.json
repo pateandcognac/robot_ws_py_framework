@@ -1,0 +1,66 @@
+{
+ "emoji": "🌵",
+ "ideation": "This sequence portrays a robot playfully mimicking a cactus's spiky form. The animation will involve the robot extending its arms outward, then slightly upward, and finally returning to a neutral position. The movements will be slow and deliberate to emphasize the cactus's static nature.  Each arm will move independently to simulate the individual spikes of a cactus, and the wrists will be manipulated to provide the effect of the cactus's pointed ends.  The robot's arms have no elbows, but the two joints will allow for the necessary expression.",
+ "frames": [
+  {
+   "beat": "arms extend outward, like cactus arms reaching",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wrists twist, forming sharp points upward",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": 30.0,
+     "wrist": 15.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": 30.0,
+     "wrist": -15.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, spines retracting inward",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms fall to sides, the cactus wilts",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

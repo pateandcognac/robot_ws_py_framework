@@ -1,0 +1,81 @@
+{
+ "emoji": "🪄",
+ "ideation": "This sequence animates a magic wand gesture, starting with a neutral pose and culminating in a flourish.  The right arm will perform the main action, while the left arm remains mostly still for contrast.  The movement will be fluid, suggesting mystical energy. In the first frame, both arms are at the sides. The second frame initiates the movement, raising the right arm with a slight outward twist, as if holding a wand. The third frame continues the upward motion, with a flourish of the wrist. The fourth frame shows the arm at the peak of the motion, the wrist pointed. The final frame brings the arm back down to the side.  Slight movements in the left arm will add to the naturalness of the sequence.  I will ensure the frames highlight key moments of the gesture, leaving smooth transitions to the animation system. ",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready for magic",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to lift, holding the wand",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -25.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the wand arm sweeps up with a wrist flourish",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the wand arm reaches its peak, pointed and ready",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": 75.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the magic is done, arms return to rest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

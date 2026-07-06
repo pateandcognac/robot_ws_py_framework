@@ -1,0 +1,66 @@
+{
+ "emoji": "☘️",
+ "ideation": "This animation sequence will depict a gentle, swaying motion, evocative of a shamrock gently moving in a breeze. The arms will mimic this movement, creating a sense of calm and natural rhythm.  The left arm will move slightly more prominently than the right, creating a subtle asymmetry that adds to the natural feel. I'll use the robot's two-joint system to create expressive movements, referencing existing examples for guidance on joint angles and fluidity. Frame 1: Both arms start in a relaxed position at the side. Frame 2: The left arm gently moves outward and upward, while the right arm remains mostly still. Frame 3: The left arm begins to return to its starting position, while the right arm now moves slightly outward and upward. Frame 4: Both arms return to their starting position. This cyclical motion will create a gentle swaying effect, emphasizing the soft and peaceful nature of the shamrock.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, like a gentle breeze",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm sways outward and up, a soft unfurling",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm answers, a subtle mirroring sway",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle back to rest, calm and still",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

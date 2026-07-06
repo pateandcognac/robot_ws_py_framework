@@ -1,0 +1,36 @@
+{
+ "emoji": "🌥️",
+ "ideation": "This animation sequence will depict a robot reacting to a partly sunny day, represented by the 🌥️ emoji.  The robot will initially have its arms down, then raise them slightly in a gesture of mild contentment or observation, before returning to a neutral position.  The movement will be slow and deliberate, reflecting the calm feeling associated with a partly cloudy sky. The robot will not be overtly expressive, mirroring the subtle nature of the emoji. The movements will not be overly dramatic, but rather subtle, reflecting the peaceful nature of the emoji.  Each frame represents a distinct and significant change in the arm position.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, a calm day",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, observing the sky",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, clouds drift by",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "emoji": "🧎‍♂️‍➡️",
+ "ideation": "This sequence depicts a person kneeling and facing right.  The animation will focus on the arms' natural posture during kneeling.  The right arm will be slightly more forward than the left, reflecting the direction the person is facing.  The arms will remain relatively still to emphasize the kneeling posture.  I will ensure the arm positions are relaxed and natural, complementing the overall pose.  This also avoids overly dynamic movements that would clash with the stillness of the kneeling posture.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to kneel",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "settling into a kneeling pose, right arm forward",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -5.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "kneeling still, balanced and facing right",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

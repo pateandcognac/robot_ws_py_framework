@@ -1,0 +1,46 @@
+{
+ "emoji": "🛄",
+ "ideation": "This animation sequence depicts a robot interacting with a baggage claim, emphasizing the retrieval of luggage. The robot will use both arms, extending them downward to simulate the action of picking up a suitcase. The movements are designed to be deliberate and efficient, reflecting the practical nature of baggage claim. In the first frame, both arms are in a neutral position at the sides, ready to begin the action. Then, the arms move downward, mimicking the act of reaching for the luggage and slightly bending to pick it up. The wrists rotate slightly to simulate gripping the handle. In the third frame, the arms are shown holding the suitcase, with the arms bending slightly more as the robot lifts the luggage. Finally, the arms return to a neutral position. This simple sequence conveys the essence of retrieving luggage without being overly complex.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready for luggage",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach down, wrists twist to grip",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift the heavy suitcase, bending slightly",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to sides with the retrieved baggage",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

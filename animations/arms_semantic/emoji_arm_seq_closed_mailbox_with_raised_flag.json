@@ -1,0 +1,51 @@
+{
+ "emoji": "📫",
+ "ideation": "This animation sequence depicts a robot reacting to a closed mailbox with a raised flag, suggesting the arrival of something important. The robot will express curiosity and anticipation. The animation will focus on the robot's right arm, extending towards the mailbox, while the left arm remains in a relaxed position.  The sequence will use three frames to convey the action.",
+ "frames": [
+  {
+   "beat": "arms rest, a closed mailbox waits",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm reaches out, curious",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the flag is noticed, anticipation builds",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

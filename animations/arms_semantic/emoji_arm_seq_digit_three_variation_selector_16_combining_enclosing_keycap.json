@@ -1,0 +1,81 @@
+{
+ "emoji": "3️⃣",
+ "ideation": "This sequence will show the robot holding up three fingers, mimicking the number 3.  Since the robot has no fingers, it will instead raise its right arm and use a combination of joint and wrist movements to approximate the shape of the number 3. The left arm will remain at rest. The movement will be smooth and deliberate, emphasizing the final pose. Frame 1 will start with the right arm down and the left arm at rest. Frame 2 will show the right arm starting to lift, the wrist rotating slightly. Frame 3 will position the arm to approximate the shape of a 3, with the wrist adjusted to enhance the illusion. Frame 4 will be a slight adjustment to the pose for emphasis. Frame 5 will return the arm to the resting position. ",
+ "frames": [
+  {
+   "beat": "both arms rest at sides, still",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to lift and curve upward",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the arm forms the first curve of a three",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 30.0
+    }
+   }
+  },
+  {
+   "beat": "the three shape is refined with a slight wrist turn",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -35.0,
+     "joint2": 60.0,
+     "wrist": 25.0
+    }
+   }
+  },
+  {
+   "beat": "the arm returns to the resting pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

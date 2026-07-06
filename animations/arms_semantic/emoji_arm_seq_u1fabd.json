@@ -1,0 +1,46 @@
+{
+ "emoji": "🪽",
+ "ideation": "This sequence animates the robot gently flapping its arms like wings.  The movement should be smooth and somewhat slow, evoking a sense of flight or lightness. I will use a combination of joint1 and joint2 to create a natural up-and-down motion, and will keep the wrist movements minimal to focus on the arm's 'flapping'.  The sequence will start with the arms slightly raised and end with them slightly lowered, creating a cyclical motion. Frame 1 will be a starting position with arms slightly raised and angled outward. Frame 2 will have the arms raised higher and angled slightly more forward. Frame 3 will mirror frame 2, but with arms lowered and angled slightly more forward. Frame 4 will mirror frame 1, and complete the cycle. This will give the impression of a gentle flapping motion.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, poised for flight",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wings rise upward and forward, catching air",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wings push down and slightly back, a gentle beat",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower, completing the soft wing stroke",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

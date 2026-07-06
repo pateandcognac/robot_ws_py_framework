@@ -1,0 +1,56 @@
+{
+ "emoji": "🐕‍🦺",
+ "ideation": "This animation sequence depicts a service dog attentively waiting or assisting its handler.  The dog's calm and helpful nature is represented through subtle, controlled movements. Frame 1 shows a neutral, alert posture. Frame 2 shows the left arm slightly raised, as if offering assistance or guiding. Frame 3 shows the right arm moving forward slightly, as if reaching for something to help with. Frame 4 reverts to a neutral posture. ",
+ "frames": [
+  {
+   "beat": "both arms rest, alert and ready",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm lifts slightly, offering gentle guidance",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm extends forward, ready to assist",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a calm, attentive rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

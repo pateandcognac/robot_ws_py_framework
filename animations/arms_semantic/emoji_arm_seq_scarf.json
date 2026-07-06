@@ -1,0 +1,46 @@
+{
+ "emoji": "🧣",
+ "ideation": "This animation sequence depicts the robot gently pulling a scarf around its neck.  It starts with the arms at rest, then moves to pulling the scarf up, adjusting it, and finally settling into a comfortable position. The movement should be slow and deliberate, reflecting the care involved in putting on a scarf. The robot does not actually *have* a scarf; this is a mimetic representation of putting on a scarf. Frame 1 shows the robot's arms in a neutral, resting position. Frame 2 begins the upward movement, with the arms extending upward and slightly inward. Frame 3 shows the arms adjusting the scarf, with a slight downward movement and inward rotation. Frame 4 shows the robot settling into a comfortable position, with the arms returning to a relaxed posture near the neck. The overall effect should be graceful and natural, conveying a sense of warmth and comfort.  ",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready for a scarf",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift and pull the scarf gently upward",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms adjust the scarf, settling it in place",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax, scarf comfortably around the neck",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

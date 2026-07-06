@@ -1,0 +1,71 @@
+{
+ "emoji": "🐛",
+ "ideation": "This animation sequence portrays a robot carefully examining a bug, mimicking curiosity and gentle observation. The movement starts with both arms relaxed, then the right arm extends towards the bug, and finally, both arms return to a resting position. The robot's movements should be slow, deliberate, and precise, reflecting its careful attention to the small creature. Frame 1: The robot starts with both arms hanging at its sides. Frame 2: The robot's right arm extends forward, the hand carefully approaching the bug as if to observe it closely. The left arm remains relaxed. Frame 3: The robot's right arm slightly lowers, maintaining a close distance to the bug, as if it is examining it more closely. Frame 4: The robot's right arm slowly retracts, and the left arm remains relaxed. Frame 5: The robot returns to its initial state with both arms hanging at its sides. ",
+ "frames": [
+  {
+   "beat": "both arms hang, ready to observe",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends, curious about the bug",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers, examining the bug closely",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm retracts slowly, thought complete",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, task finished",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

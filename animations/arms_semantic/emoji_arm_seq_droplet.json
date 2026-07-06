@@ -1,0 +1,46 @@
+{
+ "emoji": "💧",
+ "ideation": "This sequence mimics the gentle falling motion of a droplet.  The animation will begin with both arms raised, palms facing each other as if cradling the droplet. Then, the arms will slowly lower, the palms opening slightly to release the droplet.  Finally, both arms will return to a resting position.  The movement is slow and deliberate, reflecting the gentle nature of a falling droplet.",
+ "frames": [
+  {
+   "beat": "arms lift, palms cradle an unseen droplet",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 80.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower gently, beginning to release",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "palms open, the droplet falls away",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hang relaxed, the drop is complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

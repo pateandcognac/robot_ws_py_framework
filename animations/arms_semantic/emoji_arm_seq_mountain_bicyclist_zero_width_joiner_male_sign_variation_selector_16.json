@@ -1,0 +1,66 @@
+{
+ "emoji": "🚵‍♂️",
+ "ideation": "This sequence depicts a person mountain biking. The left arm is gripping the handlebars, while the right arm is extended for balance and to help steer.  The animation shows a dynamic motion, suggesting the effort and balance involved in mountain biking. The frames progress through a cycle of pedaling and maintaining balance.  Joint1 and Joint2 will be used to simulate arm movement and adjust for balance. The wrist positions will subtly change to reflect the grip and steering actions. ",
+ "frames": [
+  {
+   "beat": "gripping handlebars, right arm out for balance",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "leaning into a turn, right arm adjusting",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 15.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "straightening out, ready for the next push",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "slight dip and recovery, maintaining control",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -15.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 35.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

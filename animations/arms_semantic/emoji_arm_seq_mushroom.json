@@ -1,0 +1,66 @@
+{
+ "emoji": "🍄",
+ "ideation": "This sequence mimics the act of gently picking a mushroom. It starts with both arms relaxed, then the right arm reaches down and slightly forward to pick the mushroom. The left arm remains as a counterbalance. Then the right arm returns to its starting position, bringing the mushroom with it. Finally, both arms return to the rest position. The movement is slow and deliberate.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, waiting patiently",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches down, gently grasping",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the mushroom is lifted carefully upward",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed state",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

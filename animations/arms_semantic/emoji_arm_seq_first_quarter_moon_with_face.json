@@ -1,0 +1,56 @@
+{
+ "emoji": "🌛",
+ "ideation": "This sequence will depict a robot gently cupping its face in a contemplative or shy manner, reflecting the soft, quiet nature of the first quarter moon. The movement will be slow and deliberate, focusing on the subtle nuances of the gesture. The animation will start with the arms at rest, then smoothly move towards the face, and finally, settle into a gentle cupping motion, before retreating to the rest position.  The focus will be on creating a smooth and natural transition between frames. I will use a combination of joint1 and joint2 movements, as well as wrist adjustments to create the illusion of soft, gentle movements. The left arm will mirror the right arm's movement, creating a sense of symmetry and balance. I will avoid any abrupt movements, instead opting for subtle changes to create a fluid, almost dream-like quality to the sequence. The sequence will be 5 frames long to fully capture the smooth movement.",
+ "frames": [
+  {
+   "beat": "arms hang down, a quiet stillness",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lift gently towards the face",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands cup the sides of the face softly",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 15.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "fingers trace the jawline, a shy gesture",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -15.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the moon fades",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🫐",
+ "ideation": "This sequence mimics picking blueberries. It starts with arms out, palms up, as if ready to receive. Then, the hands move to the sides as if cupping and plucking. The arms then move together, bringing the imaginary blueberries to the face. Finally, the arms move back to the sides, in a relaxed, satisfied pose. The left arm is the primary actor; the right arm provides balance and support.",
+ "frames": [
+  {
+   "beat": "arms open, palms up, ready to gather",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "hands cup and pluck the berries from the side",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the bounty up to the face together",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax, satisfied with the harvest",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

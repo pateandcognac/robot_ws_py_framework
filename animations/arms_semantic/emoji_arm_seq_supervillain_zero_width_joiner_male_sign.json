@@ -1,0 +1,61 @@
+{
+ "emoji": "🦹‍♂",
+ "ideation": "This animation sequence depicts a supervillain's menacing pose. It starts with arms crossed, transitioning to a hand-on-hip stance, then to a dramatic arm-raised gesture, and finally returning to a relaxed pose. The left arm remains mostly static for balance, while the right arm performs the dynamic movements. Frame 1: Arms crossed, conveying a sense of confidence and control. Frame 2: Right hand on hip, left arm slightly away. Frame 3: Right arm raised, left arm relaxed. Frame 4: Both arms return to a relaxed position.",
+ "frames": [
+  {
+   "beat": "villain arms cross, a confident sneer",
+   "arms": {
+    "left": {
+     "joint1": 65.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 50.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right hand on hip, left arm relaxes slightly",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -75.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm dramatically raises, left arm hangs low",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -50.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms fall to sides, menace recedes",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "🧉",
+ "ideation": "This animation sequence depicts a robot gently holding a mate gourd, emphasizing the calm and social nature of the drink.  The sequence starts with both arms slightly raised, palms facing each other, as if in anticipation. Then, the right arm gently moves to cradle the gourd, while the left arm offers support. Finally, both arms gently lower, holding the mate gourd in a comfortable position. This creates a smooth, inviting sequence that mirrors the social and comforting aspects of sharing mate. ",
+ "frames": [
+  {
+   "beat": "arms rise slightly, palms ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches and turns to cradle the gourd",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "left arm adjusts for support, right hand holds steady",
+   "arms": {
+    "left": {
+     "joint1": -15.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": -10.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lower, gently holding the mate gourd",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

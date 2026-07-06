@@ -1,0 +1,56 @@
+{
+ "emoji": "🚳",
+ "ideation": "This animation sequence will depict a robot reacting to the \"no bicycles\" sign, conveying a sense of understanding and compliance.  The animation will focus on a head shake and a slight lowering of the arms. The robot understands that it cannot ride a bicycle and is indicating this understanding. Frame 1 shows the robot in a neutral position, slightly attentive. Frame 2 showcases the beginning of a head shake, with a subtle lowering of both arms. Frame 3 shows the peak of the head shake, and arms are fully lowered, indicating compliance. Frame 4 returns to the neutral position, showing the robot's acceptance of the rule. Frame 5 shows the robot's return to a neutral, relaxed position, indicating the end of the reaction.",
+ "frames": [
+  {
+   "beat": "robot stands alert, ready to receive information",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, a subtle head shake begins",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms fully lowered, head shakes in firm denial",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, acknowledging the rule",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "robot returns to a relaxed, compliant stance",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

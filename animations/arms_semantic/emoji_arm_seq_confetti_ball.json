@@ -1,0 +1,56 @@
+{
+ "emoji": "🎊",
+ "ideation": "This sequence aims to capture the celebratory spirit of a confetti ball emoji by simulating the act of throwing confetti upwards. Both arms will mimic the motion of tossing confetti in the air, with upward and outward movements. The wrists will rotate to suggest scattering the confetti.  In the first frame, both arms are held up and slightly bent, as if holding a handful of confetti.  joint2 pitches the arms upward and joint1 rotates them slightly inward. The wrists are neutral.  The second frame shows the arms moving upwards in an outward arc. joint2 increases the upward pitch and joint1 rotates the arms outward. The wrists also rotate outward to mimic the scattering motion. In the third frame, the arms reach their highest point, fully extended with a celebratory flourish. joint2 reaches its maximum upward pitch of 90 degrees, while joint1 rotates the arms further outward, creating a wide, open pose. The wrists rotate further outward. The fourth frame shows the arms beginning to lower, having released the imaginary confetti. joint2 reduces the upward pitch, and joint1 rotates the arms slightly inward. The wrists rotate back towards neutral.  Finally, in the fifth frame, the arms return to a relaxed position at the sides, with joint2 pitching the arms downwards and joint1 neutral. The wrists also return to neutral. This sequence creates a dynamic and joyful animation that effectively represents the confetti ball emoji.",
+ "frames": [
+  {
+   "beat": "arms raised, holding confetti ready to throw",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "tossing confetti upwards and outwards with a flourish",
+   "arms": {
+    "both": {
+     "joint1": -40.0,
+     "joint2": 85.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms fully extended, scattering confetti to the sky",
+   "arms": {
+    "both": {
+     "joint1": -60.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "confetti released, arms begin to lower gracefully",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 60.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle down, the celebration concludes",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

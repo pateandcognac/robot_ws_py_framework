@@ -1,0 +1,81 @@
+{
+ "emoji": "🍭",
+ "ideation": "This animation sequence shows the robot playfully holding and then playfully eating a lollipop.  The movement is designed to be light and cheerful, reflecting the fun nature of the emoji. In the first frame, both arms are at the robot's sides, relaxed and neutral. In the second frame, the right arm moves forward and slightly upward, with the wrist angled inward. The left arm remains at the side, relaxed. In the third frame, the right arm moves closer to the mouth, the wrist is angled upward, and the robot mimics the action of licking a lollipop. In the fourth frame, the robot's right arm moves slightly back from the mouth, and the wrist angles downward. The left arm remains at the side. In the fifth frame, both arms return to their initial relaxed position. The entire sequence emphasizes the playful and sweet nature of the lollipop, using fluid movements to make the action as natural as possible.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, anticipating a treat",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches forward, lollipop in hand",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "right arm brings the lollipop up for a lick",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the lollipop is savored, then lowered slightly",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the treat enjoyed",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

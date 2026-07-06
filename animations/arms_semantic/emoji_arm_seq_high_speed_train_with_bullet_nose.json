@@ -1,0 +1,66 @@
+{
+ "emoji": "🚅",
+ "ideation": "This animation sequence will simulate the motion of a speeding bullet train.  The arms will move in a way that suggests forward momentum and speed, possibly mimicking the motion of someone pushing something forward with great effort. The animation will focus on a forward-reaching motion, with the arms moving in a coordinated but not perfectly symmetrical way to give the effect of a powerful, slightly uneven thrust. The sequence will start with the arms slightly back, then move forward powerfully, and finally end with the arms returning to a neutral position. I will leverage the existing examples to ensure a natural range of motion for the robot's arms.",
+ "frames": [
+  {
+   "beat": "arms push forward with great force",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend powerfully, gaining speed",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach their peak forward thrust",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms recoil back to a resting state",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

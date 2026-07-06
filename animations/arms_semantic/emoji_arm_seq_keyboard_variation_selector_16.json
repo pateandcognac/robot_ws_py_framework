@@ -1,0 +1,66 @@
+{
+ "emoji": "⌨️",
+ "ideation": "This animation sequence simulates the act of typing on a keyboard. The movement will focus on the hands moving rhythmically across the keyboard, expressing focus and engagement. Each frame will be distinct, showing a clear change in position. I will use the examples to guide the joint angles and ensure smooth transitions.  The left arm will remain relatively still to provide contrast and a sense of grounding. Frame 1 will show both arms resting on a desk, as if ready to type. Frame 2 will show the right hand moving downward and slightly to the left, as if striking a key. Frame 3 will show the right hand returning to its resting position, while the left hand moves to strike a key. Frame 4 will show both hands returning to their resting positions. This rhythmic motion will convey the act of typing.",
+ "frames": [
+  {
+   "beat": "arms rest, ready to type",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand strikes a key, left arm steady",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -65.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left hand strikes a key, right arm rests",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -65.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to resting position",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

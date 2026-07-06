@@ -1,0 +1,66 @@
+{
+ "emoji": "🧻",
+ "ideation": "This animation sequence simulates the action of carefully unrolling a roll of paper.  The robot will use both arms to mimic this action. Frame 1 will show the robot grasping the roll of paper. Frame 2 will show the robot starting to unroll the paper. Frame 3 will show the robot continuing to unroll the paper. Frame 4 will show the robot with the paper fully unrolled. I will use the existing examples to ensure smooth and natural movements.",
+ "frames": [
+  {
+   "beat": "arms reach out, ready to grasp the roll",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "fingers curl around the paper roll gently",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to unroll the paper slowly",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the paper is fully unrolled, hanging loose",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

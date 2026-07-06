@@ -1,0 +1,81 @@
+{
+ "emoji": "🎥",
+ "ideation": "This sequence simulates the action of holding and operating a movie camera.  The left arm will support the camera, while the right arm will subtly adjust the focus or zoom. The sequence will emphasize smooth, controlled movements. Frame 1 shows a neutral starting position. Frame 2 shows the left arm positioned to cradle the camera. Frame 3 shows the right arm adjusting the focus. Frame 4 will show the left arm slightly shifting to support the camera's weight. Frame 5 returns to a neutral position.",
+ "frames": [
+  {
+   "beat": "arms hang loosely, ready to film",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm extends to hold the camera steady",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand reaches to adjust the lens",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm shifts, settling the camera's weight",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, neutral pose",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

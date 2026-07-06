@@ -1,0 +1,36 @@
+{
+ "emoji": "🚎",
+ "ideation": "This animation sequence will depict the robot mimicking the action of holding trolleybus handles, emphasizing the movement of both arms. The robot will not have hands, so the animation will focus on the overall arm movement to convey a sense of gripping and holding. Frame 1 will show both arms extended forward at shoulder height, palms facing each other, to convey the robot's readiness to hold onto the handles. Frame 2 will show the arms slightly lowered and angled inward, as if the robot is pulling the handles slightly towards itself. Frame 3 will show the arms pulling back to a more neutral position before returning to the initial pose.",
+ "frames": [
+  {
+   "beat": "arms extend forward, ready to grab trolley handles",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull back slightly, gripping the handles firmly",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to neutral, the trolley ride begins",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

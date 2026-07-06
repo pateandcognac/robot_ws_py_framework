@@ -1,0 +1,81 @@
+{
+ "emoji": "🙂‍↕️",
+ "ideation": "This sequence aims to capture the gentle back-and-forth motion of shaking one's head vertically, expressing agreement or understanding. Since the robot has no head, I'll use arm movements to convey this. The arms will sway slightly from side to side, mimicking the rhythm of a head nod. The left arm will lead the motion, with the right arm following in a subtle, natural way. In the first frame, both arms are relaxed at the sides, establishing a neutral starting position. The left arm is positioned slightly outward with joint1 rotated slightly inward, and joint2 pitched downward, while the right arm mirrors this position. In the second frame, the left arm moves slightly to the left by rotating joint1 inward, while joint2 maintains its downward pitch. The right arm remains relatively still, providing a subtle counterbalance. The third frame sees the left arm returning to the center, with joint1 rotating back to its neutral position. The right arm again remains mostly stationary. In the fourth frame, the left arm moves slightly to the right by rotating joint1 outward, mirroring the movement in frame two but in the opposite direction. The right arm provides a counterbalance by shifting slightly to the left. Finally, in the fifth frame, both arms return to the neutral starting position, completing the gentle swaying motion.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides, a gentle start",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm sways left, a subtle nod begins",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm returns to center, steady and calm",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm sways right, the nod continues smoothly",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle back to the resting pose",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

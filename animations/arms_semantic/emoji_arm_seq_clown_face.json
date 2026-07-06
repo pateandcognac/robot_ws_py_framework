@@ -1,0 +1,56 @@
+{
+ "emoji": "🤡",
+ "ideation": "This sequence aims to capture the playful and mischievous essence of a clown by incorporating exaggerated arm movements. The animation starts with both arms extended outwards as if inviting the audience to join in the fun. Then, one arm bends at the 'elbow' (simulated using joint2) in a playful, exaggerated manner, followed by the other arm mirroring the action. Finally, both arms return to the starting position, ready for another round of clowning around. Throughout the sequence, I'll ensure that the movements are large and dynamic, reflecting the energetic and expressive nature of a clown.  I'll also vary the wrist positions to add a touch of whimsy and unpredictability. By carefully orchestrating these movements, the animation will effectively convey the clown's playful spirit and create a visually engaging experience.",
+ "frames": [
+  {
+   "beat": "arms spread wide, a playful invitation",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm bends in a silly, exaggerated gesture",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm mirrors the playful bend, a clownish pose",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -60.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to the welcoming spread",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    }
+   }
+  }
+ ]
+}

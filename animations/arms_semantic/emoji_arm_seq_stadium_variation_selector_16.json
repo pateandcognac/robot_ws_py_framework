@@ -1,0 +1,51 @@
+{
+ "emoji": "🏟️",
+ "ideation": "This animation sequence simulates the act of cupping one's hands to one's mouth to amplify a cheer or shout at a stadium event.  The sequence starts with arms at the sides, then moves to cupping the mouth, and finally returns to the resting position. The movement should be energetic and expressive to reflect the excitement of a stadium atmosphere.  The left arm will remain relatively static to provide contrast and grounding to the movement. The right arm will perform the main action. I will use the examples to ensure the movement is smooth and within the robot's mechanical capabilities. ",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready for the roar",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm cups mouth to shout, left arm steady",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the cheer fades",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

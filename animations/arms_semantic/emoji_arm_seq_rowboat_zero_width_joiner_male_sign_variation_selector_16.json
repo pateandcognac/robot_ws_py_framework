@@ -1,0 +1,66 @@
+{
+ "emoji": "🚣‍♂️",
+ "ideation": "This sequence simulates the rowing motion. The left arm pulls back while the right arm pushes forward, then they switch.  The robot's lack of elbows will be compensated for with a slightly exaggerated motion to convey the action. The wrists will be slightly angled to mimic the grip on oars.  I'll check examples for range of motion and ensure smooth transitions between frames.",
+ "frames": [
+  {
+   "beat": "arms pull back and push forward like rowing oars",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm pulls hard, right arm extends forward",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 80.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm pulls, left arm extends forward",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "both arms finish the rowing stroke, ready to repeat",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 80.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

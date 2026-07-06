@@ -1,0 +1,46 @@
+{
+ "emoji": "🐊",
+ "ideation": "This animation sequence will depict a robot mimicking a crocodile's predatory stalking. The movement will be slow and deliberate, focusing on the arms' position to suggest a low, creeping stance. The robot's arms will start in a neutral position and then gradually transition to a low, wide stance, simulating the reptile's body posture. The animation will then show a sudden strike, followed by a return to the neutral position. This combines the slow, creeping motion of a crocodile with a sudden, powerful attack. The use of subtle micro-movements will enhance the realism of the motion, creating a more dynamic and expressive sequence. Frame 1: Neutral. Frame 2: Low, wide stance. Frame 3: Strike pose. Frame 4: Return to neutral.",
+ "frames": [
+  {
+   "beat": "arms hang low, ready to creep",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms spread wide, crouching low",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm lunges forward with a snap",
+   "arms": {
+    "right": {
+     "joint1": 90.0,
+     "joint2": 10.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a resting, neutral pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

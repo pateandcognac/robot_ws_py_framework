@@ -1,0 +1,56 @@
+{
+ "emoji": "🕚",
+ "ideation": "This animation sequence will depict the robot indicating the time of 11 o'clock using its arms.  The robot will use both arms to create the illusion of pointing to the numbers on a clock face.  Since the robot has no elbows, it will have to make do with creating the illusion of pointing with its arms. The arms will move in a coordinated way, creating a dynamic display of the time. Frame 1 will show both arms outstretched in a neutral position, setting the stage. Frame 2 will show the left arm pointing upwards, towards the imagined 11 o'clock position. The right arm will be slightly raised, creating balance. Frame 3 will show the right arm pointing slightly to the lower left, creating a sense of the time as if the robot is pointing to the 11 and then the 12 o'clock position on a clock face. Frame 4 (optional) will show the robot returning to the neutral position.  If a 5th frame is created, the robot could return to the first position or strike a final pose.",
+ "frames": [
+  {
+   "beat": "arms held neutral, ready to tell time",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm points up to eleven, right arm balances",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm sweeps to frame the twelve, completing the time",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 80.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a resting position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

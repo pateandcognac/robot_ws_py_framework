@@ -1,0 +1,56 @@
+{
+ "emoji": "🐥",
+ "ideation": "This sequence aims to capture the fluffy, cute nature of a baby chick.  The animation will focus on small, quick movements of the arms, suggesting the chick's playful energy.  The arms will move in a way that mimics the chick's tiny wings flapping gently.  I'll keep the movements small and controlled to avoid making it look too jerky.  I will use existing examples to guide the range of motion, and I'll ensure the movements are smooth and believable. In the first frame, both arms are at rest, slightly down and angled outward, mimicking a relaxed posture. In the second frame, both arms lift slightly, with the wrists rotating slightly outward, suggesting the beginning of a wing-flapping motion. In the third frame, the arms move outward more dramatically, with the wrists more rotated, and the arms raised higher, mimicking the chick's wings in a more active state. The fourth frame has the arms slightly lowered, moving back towards the resting position. This creates the sense of the wings coming down.  The final frame shows the arms back at rest, completing the cycle. The small movements and subtle changes from one frame to the next will give the animation the playful and slightly unsteady quality of a baby chick.",
+ "frames": [
+  {
+   "beat": "tiny arms rest at the sides, like a chick's fluff",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, a gentle wing flutter begins",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "wings flap outward and up, full of playful energy",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -40.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "wings gently fold back down, a soft landing",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back, a contented chick rests",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "™️",
+ "ideation": "This animation sequence will represent the trademark symbol's circular motion and emphasis on ownership.  The animation will focus on a circular motion of both arms, starting with them extended outward, then bringing them together in a 'holding' motion before returning to the sides.  This will emphasize the encompassing nature of a trademark.  The movements should be smooth and deliberate, conveying a sense of importance and ownership. The robot arms, lacking elbows, will simulate this circular motion using the shoulder joints, creating a sense of controlled power and precision.",
+ "frames": [
+  {
+   "beat": "arms sweep wide, claiming the space",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move inward, a circular embrace begins",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the circle continues, enclosing the idea",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach out again, completing the sweep",
+   "arms": {
+    "both": {
+     "joint1": -90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle down, the mark is made",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

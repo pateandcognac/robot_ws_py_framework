@@ -1,0 +1,56 @@
+{
+ "emoji": "🚨",
+ "ideation": "This sequence simulates the arm movements of a police officer directing traffic with the arms held out to the sides. The arms move rhythmically up and down in a controlled, sweeping motion to capture the urgent, commanding nature of the emoji. The robot's lack of elbows will be accounted for by using the shoulder joints to create a fluid, sweeping motion. The wrists will remain neutral, focusing the attention on the arms' movement. In the first frame, both arms are extended to the sides at shoulder height, palms facing forward, simulating the starting position of directing traffic. joint1 rotates the arms to extend them outward, while joint2 keeps them level. The wrists are neutral. In the second frame, both arms move upward in a smooth motion, mimicking the upward sweep of a traffic director's hand. joint2 pitches the arms upward while joint1 remains nearly constant. The wrists remain neutral. In the third frame, the arms return to shoulder height, with the palms still facing forward. This transition is a mirror of the movement from frame 1 to frame 2. In the fourth frame, both arms move downward, simulating the downward sweep of a traffic director's hand. joint2 pitches the arms downward. joint1 remains nearly constant. In the fifth frame, the arms return to the starting position: extended to the sides at shoulder height, palms facing forward. This is a mirror of the movement from frame 3 to frame 4. This back-and-forth motion creates a realistic representation of the emoji's urgency and commands.",
+ "frames": [
+  {
+   "beat": "arms sweep out wide, commanding attention",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise up, a clear upward signal",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to the sides, steady and firm",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep down, a decisive downward motion",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back to the sides, ready for the next command",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

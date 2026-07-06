@@ -1,0 +1,71 @@
+{
+ "emoji": "🦊",
+ "ideation": "This animation depicts a playful fox with sly, inquisitive movements.  The sequence starts neutral, then transitions to a 'peek-a-boo' like pose with one arm covering its face, followed by a quick, alternating arm raise suggesting alertness and curiosity, and ending back in a neutral pose. The left arm will do most of the expression here.",
+ "frames": [
+  {
+   "beat": "both arms hang low, neutral fox stance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm rises to playfully cover the face",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 85.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm quickly drops, peeking out slyly",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm mirrors the left, a quick curious peek",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, watchful pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

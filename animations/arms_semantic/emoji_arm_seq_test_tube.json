@@ -1,0 +1,56 @@
+{
+ "emoji": "🧪",
+ "ideation": "This animation sequence shows the robot carefully holding a test tube.  The robot will hold the test tube with both arms, using a gentle, precise movement.  Frame 1 starts with arms slightly raised and angled, ready to receive the test tube. Frame 2 shows the arms gently curving inward to cradle the test tube. Frame 3 shows the test tube held securely, with the arms slightly adjusted for better support. Frame 4 shows the robot holding the test tube steadily, ready for observation or experimentation. Frame 5 shows the robot slowly lowering the test tube to a safe location. The sequence emphasizes careful handling and scientific precision.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms curve inward, gently taking the tube",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 10.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "holding the tube steady, supporting with care",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "test tube held securely, ready for science",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "slowly lowering the precious experiment",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

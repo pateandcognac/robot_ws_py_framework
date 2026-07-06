@@ -1,0 +1,56 @@
+{
+ "emoji": "💜",
+ "ideation": "This animation sequence expresses affection and warmth, mirroring the feeling evoked by the purple heart emoji. The arms will move in a gentle, embracing motion, showcasing the caring nature of the emoji.  The sequence will start with arms slightly raised, palms facing each other, and then slowly bring them together in a gesture of embrace. The movement should be soft, avoiding any abrupt changes. It should end with both arms embracing in front of the chest. I will use slow, subtle changes between frames to emphasize the gentle nature of the gesture. The robot's two-joint arm system will be used to create a natural, flowing movement. Frame 1 will start with the arms slightly raised, palms facing each other. Frame 2 will show the arms moving closer, increasing the sense of embrace. Frame 3 will present the arms fully embracing, palms together. Frame 4 will show the arms in a slight relaxation, with the palms still together, and Frame 5 will be a slight widening of the embrace, palms still together.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, palms facing inwards",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to draw closer, a gentle approach",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms meet and embrace softly in the center",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the embrace holds steady, a warm gesture",
+   "arms": {
+    "both": {
+     "joint1": 35.0,
+     "joint2": 25.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the arms widen slightly, a loving embrace",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

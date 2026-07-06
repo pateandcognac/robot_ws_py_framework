@@ -1,0 +1,56 @@
+{
+ "emoji": "💰",
+ "ideation": "This sequence simulates the act of carefully holding a money bag, emphasizing the value and importance of the object. The robot will hold the bag gently, with both hands, suggesting care and protection. The animation will start with the arms out to the sides, then move to gently cradle the bag, and finally, return to a relaxed pose.  The movement will be slow and deliberate, reflecting the value of the money bag.  The robot's 'hands' will be positioned inward to create a sense of security around the bag. We will make use of the robot's two joints to create this effect. In the first frame, both arms are at rest, suggesting a relaxed state before the movement begins. In the second frame, the arms start to move towards the center, preparing to cradle the bag. In the third frame, both arms are positioned to gently support the imaginary money bag, with hands clasped inward. In the fourth frame, the arms maintain their position for a moment, emphasizing the care and protection of the bag, before beginning the return to rest. In the final frame, the arms return to the initial relaxed position.",
+ "frames": [
+  {
+   "beat": "arms hang down, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lift and move inward",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both hands cradle the precious money bag",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "holding the valuable bag securely in place",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the treasure is safe",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

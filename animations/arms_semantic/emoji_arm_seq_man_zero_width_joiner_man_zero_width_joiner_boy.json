@@ -1,0 +1,51 @@
+{
+ "emoji": "👨‍👨‍👦",
+ "ideation": "This animation sequence depicts a family (man, man, boy) in a heartwarming embrace. The movement should be gentle, conveying affection and unity.  The two adult figures will use their arms to gently enfold the child. Because the robot arms lack elbows, the embrace will be suggested through arm positioning and slight torso lean (simulated through arm positioning).  I will aim for a fluid, yet deliberate sequence of movements, contrasting with the static nature of the emoji. ",
+ "frames": [
+  {
+   "beat": "two arms reach out, forming a welcoming circle",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw closer, a gentle, loving enclosure",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": -60.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": -60.0
+    }
+   }
+  },
+  {
+   "beat": "the embrace tightens, a warm family hug",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -15.0,
+     "wrist": -30.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -15.0,
+     "wrist": -30.0
+    }
+   }
+  }
+ ]
+}

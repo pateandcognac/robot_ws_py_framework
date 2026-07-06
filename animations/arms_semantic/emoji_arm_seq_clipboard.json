@@ -1,0 +1,56 @@
+{
+ "emoji": "📋",
+ "ideation": "This animation sequence will show the robot carefully holding a clipboard.  The robot will hold the clipboard with both arms, keeping it steady and level. The sequence will emphasize a careful and controlled movement of the arms, reflecting the importance and delicate nature of the clipboard's contents. The arms will not move too dramatically, but will show a clear intention of holding the item securely.  The first frame will show the robot's arms extending forward, preparing to receive the clipboard. The second frame will show the arms gently grasping the clipboard, holding it securely at shoulder height. The third frame will show the robot adjusting its grip slightly to ensure a firm and stable hold. The fourth frame will show the robot holding the clipboard stably, ready to work with its contents. The fifth frame will show the robot holding the clipboard steadily at shoulder height, demonstrating the security of the hold and readiness to use it.",
+ "frames": [
+  {
+   "beat": "arms extend forward, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently grasp clipboard, holding it level",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "adjusting grip for a firm, stable hold",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 15.0,
+     "wrist": -25.0
+    }
+   }
+  },
+  {
+   "beat": "holding clipboard steady, ready to work",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 15.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "clipboard held securely at shoulder height",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 15.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

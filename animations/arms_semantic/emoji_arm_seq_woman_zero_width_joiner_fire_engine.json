@@ -1,0 +1,56 @@
+{
+ "emoji": "👩‍🚒",
+ "ideation": "This animation sequence depicts a firefighter in action, emphasizing readiness and strength. Frame 1 shows both arms in a neutral position, suggesting alertness. Frame 2 raises the left arm slightly and extends it forward, as if checking a hose or equipment. Frame 3 shows the left arm lowered, and the right arm raised, as if signaling or giving directions. Frame 4 returns to a neutral position, implying a moment of pause before further action. This sequence demonstrates a combination of readiness, action, and controlled movement, relevant for a firefighter's role.",
+ "frames": [
+  {
+   "beat": "both arms hang ready at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm extends forward, checking equipment",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lowers, right arm raises to signal",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a ready, neutral stance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

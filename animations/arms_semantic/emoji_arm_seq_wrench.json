@@ -1,0 +1,71 @@
+{
+ "emoji": "🔧",
+ "ideation": "This animation sequence simulates the action of carefully using a wrench.  The robot will mimic the precision and controlled movements needed for such a task. Frame 1 will show both arms at the sides in a neutral position. In Frame 2, the right arm will move forward, with the wrist slightly angled, as if holding the wrench. Frame 3 will show the right arm turning the wrench, with a slight adjustment in joint angles to simulate the twisting motion. Frame 4 will show the right arm returning to a more neutral position, but still holding the wrench. Frame 5 will show both arms returning to their neutral resting position.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, holding the tool",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "turning the wrench with controlled effort",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 10.0,
+     "wrist": 40.0
+    }
+   }
+  },
+  {
+   "beat": "right arm holds steady, wrench in place",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

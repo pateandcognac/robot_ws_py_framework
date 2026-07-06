@@ -1,0 +1,81 @@
+{
+ "emoji": "👩‍👧",
+ "ideation": "This animation sequence depicts a woman and a girl embracing. The woman will have her arms around the girl, and the girl will have her arms around the woman's waist. This conveys a sense of warmth, protection, and love. The sequence will begin with the arms in a neutral position, then transition to the embrace, and finally return to a neutral position. Frame 1 will show both arms in a neutral position. Frame 2 will show the woman's arms embracing the girl, and the girl's arms embracing the woman's waist. Frame 3 will show the woman's arms slightly tightening the embrace. Frame 4 will show the woman's arms returning to a neutral position. Frame 5 will show both arms back in a neutral position. To achieve this, I will carefully adjust joint angles and wrist positions for each arm to create dynamic, alternating movements that mimic the rhythm of a gentle embrace.",
+ "frames": [
+  {
+   "beat": "arms hang loosely at sides, ready to embrace",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open wide, reaching out for the embrace",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the embrace tightens, a warm hug",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -15.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -35.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to release from the hug",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -25.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, neutral pose",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

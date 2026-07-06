@@ -1,0 +1,56 @@
+{
+ "emoji": "🙇‍♂️",
+ "ideation": "This animation sequence depicts a person bowing.  The bow is a gesture of respect, humility, or apology.  The animation will focus on the natural arc of the bow, starting with the head slightly down and arms at the sides, progressing to a deeper bow with the arms extending forward, and finally returning to an upright position.  The animation will use both arms to enhance the feeling of respect and formality.  The robot's lack of elbows will be accounted for by using the shoulder joints to create a smooth, flowing motion.",
+ "frames": [
+  {
+   "beat": "arms hang down, preparing for a respectful bow",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, initiating the downward motion",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward, deepening the bow with humility",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach forward and down, a gesture of deep respect",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to the sides, the bow is complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

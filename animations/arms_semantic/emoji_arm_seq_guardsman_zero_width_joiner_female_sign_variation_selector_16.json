@@ -1,0 +1,71 @@
+{
+ "emoji": "💂‍♀️",
+ "ideation": "This animation sequence depicts a guard standing at attention, then looking around, and returning to attention. The guard's arms will remain mostly at their sides, but with slight movements to suggest alertness and vigilance. Frame 1 will show the guard standing at attention, arms straight down. Frame 2 will have the guard's left arm slightly raised, as if glancing to the left. Frame 3 will have the guard looking back to the front, with the left arm returning to its original position. Frame 4 will have the guard looking to the right (with the right arm raised). Frame 5 will show the guard returning to attention. This sequence uses subtle movements to convey the guard's attentiveness without overly dramatic gestures.",
+ "frames": [
+  {
+   "beat": "guard stands at attention, arms at sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lifts slightly, scanning left",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "head turns back, left arm returns to rest",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts slightly, scanning right",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "guard returns to attention, both arms still",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

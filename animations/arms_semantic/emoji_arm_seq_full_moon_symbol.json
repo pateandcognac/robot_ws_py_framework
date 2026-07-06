@@ -1,0 +1,56 @@
+{
+ "emoji": "🌕",
+ "ideation": "This animation sequence aims to express the serene and calming feeling associated with a full moon. The robot will gently raise both arms in a slow, graceful arc, mimicking the moon's gentle rise in the night sky. The movements will be deliberate and smooth, emphasizing the peaceful nature of the emoji.  The arms will start at the robot's sides and gradually rise to a position above the head, then slowly return to their original position. The palms will face inward for added elegance. In frame 1, the arms are at the sides.  In frame 2, they begin to rise, moving slightly outward. In frame 3, they reach a position above the head. In frame 4, the arms begin to lower back down. In frame 5, the arms are back at their resting position. Let's do this!",
+ "frames": [
+  {
+   "beat": "arms hang at sides, serene night",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin a slow, gentle rise upwards",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach zenith, like the full moon",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gracefully descend back down",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle, the moon's calm presence",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

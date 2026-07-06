@@ -1,0 +1,56 @@
+{
+ "emoji": "🥀",
+ "ideation": "This sequence portrays a wilting flower, expressing sadness or defeat. The animation will start with the arms hanging loosely, then move to a drooping posture, and finally settle in a posture of dejection. The movement should be slow and deliberate to emphasize the emotion. Frame 1: Arms start at the sides in a neutral position. Frame 2: Arms begin to droop, with the wrists turning slightly inward, mimicking wilting petals. Frame 3: Arms hang heavily, wrists further turned inward, showing a deeper level of dejection. Frame 4: Slight upward movement of the shoulders, suggesting a sigh or a moment of acceptance of the wilting. Frame 5: Arms return to a slightly less drooping position, still expressing sadness but with a hint of resignation.",
+ "frames": [
+  {
+   "beat": "arms hang loosely, a wilting flower starts to droop",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wrists turn inward, petals begin to curl down",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -110.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms hang heavy, the flower wilts further",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -120.0,
+     "wrist": -40.0
+    }
+   }
+  },
+  {
+   "beat": "shoulders lift slightly, a defeated sigh",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -110.0,
+     "wrist": -40.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle, resigned to the wilting state",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -115.0,
+     "wrist": -30.0
+    }
+   }
+  }
+ ]
+}

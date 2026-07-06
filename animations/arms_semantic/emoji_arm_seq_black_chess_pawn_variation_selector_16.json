@@ -1,0 +1,81 @@
+{
+ "emoji": "♟️",
+ "ideation": "This animation sequence portrays a robot carefully moving a chess pawn.  The movement will be slow and deliberate, reflecting the strategic nature of chess. We'll use the right arm to pick up the pawn, emphasizing precision. The left arm will provide counterbalance and stability. Frame 1 will show the robot's arms in a neutral position. In frame 2, the right arm will extend forward and slightly downward, reaching for the pawn. Frame 3 shows the right arm lifting the imaginary pawn. Frame 4 shows the right arm moving the pawn to a new square. Frame 5 shows the robot's arms returning to a resting position.",
+ "frames": [
+  {
+   "beat": "both arms rest, ready for the game",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, reaching for the pawn",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts the pawn with careful precision",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm moves the pawn to its new square",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a stable, resting pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

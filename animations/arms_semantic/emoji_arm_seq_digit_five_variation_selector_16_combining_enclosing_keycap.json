@@ -1,0 +1,76 @@
+{
+ "emoji": "5️⃣",
+ "ideation": "This sequence mimics the shape of the number 5 using the robot's arms.  The animation will emphasize the distinct parts of the number 5.  The movement will be deliberate and precise, reflecting the structured nature of the numeral. Frame 1 will start with the arms at the sides. Frame 2 will raise the left arm to represent the vertical part of the 5. Frame 3 will bring in the right arm to form the diagonal part of the 5. Frame 4 will adjust the angles slightly to refine the 5 shape. Frame 5 will show the final pose of a clear number 5.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to form",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm rises to create the vertical stroke",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends diagonally, forming the top bar",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms adjust to refine the numeral shape",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 50.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the number five is clearly formed by the arms",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 55.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "🔴",
+ "ideation": "This animation sequence depicts a robot reacting to a red circle, perhaps representing a warning or stop signal.  The sequence will start with arms at rest, then move to a defensive position with arms slightly raised and angled outward, followed by a pause, and finally a return to the resting position. The movement should convey a sense of caution and alertness, reflecting the visual impact of the red circle. The use of slight perturbations adds a natural feel, avoiding rigidity.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, neutral state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, a cautious outward angle",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms raise further, alert and ready",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms retract slightly, a moment of consideration",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to resting position, the signal fades",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

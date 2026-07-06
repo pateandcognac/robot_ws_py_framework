@@ -1,0 +1,66 @@
+{
+ "emoji": "🎶",
+ "ideation": "This sequence simulates conducting an orchestra. The right arm will perform the sweeping motions of a conductor, while the left arm remains mostly still, providing a counterpoint to the dynamic movement.  I'll use the two joints to create expressive, yet fluid, movements. The sequence will begin with a neutral position, transition to an upward sweep, then a downward sweep, before returning to the neutral position.  In the final frame, there will be a slight pause before the next conducting movement. I'll leverage the provided examples to ensure the movements are natural and the transitions are smooth.",
+ "frames": [
+  {
+   "beat": "arms rest, ready to lead the music",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm sweeps up, cueing the orchestra",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm drives down, marking the beat's rhythm",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to center, a moment of reflection",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

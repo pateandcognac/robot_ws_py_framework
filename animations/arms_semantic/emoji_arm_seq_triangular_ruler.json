@@ -1,0 +1,56 @@
+{
+ "emoji": "📐",
+ "ideation": "This sequence simulates carefully placing a triangular ruler onto a surface.  The robot will use both arms to support the ruler, mimicking a delicate yet precise action.  The movement will be slow and deliberate, emphasizing the precise nature of the task. In the first frame, both arms are extended slightly outward and upward, palms facing each other, as if preparing to receive the ruler.  In the second frame, the arms move closer together, gently cradling the imaginary ruler. The wrists will tilt slightly downward to simulate the act of supporting the ruler's weight. In the third frame, the arms lower slowly, bringing the ruler closer to the surface. In the fourth frame, the hands release the ruler onto the surface, with the arms moving slightly outward and downward. Finally, the arms return to a neutral position, expressing the completion of the task. This emphasizes the careful nature of handling a delicate object like a ruler.",
+ "frames": [
+  {
+   "beat": "arms lift and open, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move inward, gently holding the ruler",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 30.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower the ruler slowly towards the surface",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms release the ruler, moving slightly away",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the task is complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🤸‼️",
+ "ideation": "This sequence simulates a cartwheel, focusing on the arm movements to complement the body's rotation. Since our robot lacks legs and a body, we'll focus on the arm positions that would naturally accompany a cartwheel. The sequence will emphasize the dynamic transition from the initial setup to the mid-point and finally the recovery position. Frame 1 will begin with the arms extended out to the sides, creating a horizontal line parallel to the ground. This is the preparatory pose before the cartwheel. The arms should be straight with palms facing downward. Frame 2 represents the midpoint of the cartwheel. One arm will be positioned above the head, while the other arm is extended downward. The upward arm will be slightly bent to suggest the momentum of the cartwheel and will be rotated outward, while the downward arm will be rotated inward. Frame 3 shows the recovery phase. This pose should mirror the first frame, but in reverse. The arms will be extended outward, parallel to the ground, as if the cartwheel has been completed. The arms should be straight, with palms facing downward. Frame 4 (optional) can be added to illustrate the transition from the midpoint to the recovery position, with one arm starting to lower and the other starting to raise, preparing for the recovery pose. Frame 5 (optional) can be added to show both arms extended to the sides, parallel to the ground, with palms facing downward, showing the robot in its final resting position after the cartwheel.",
+ "frames": [
+  {
+   "beat": "arms shoot out wide, ready to flip",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms cross the body, one up, one down",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend out again, completing the rotation",
+   "arms": {
+    "both": {
+     "joint1": -90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep across, reversing the motion",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms land wide, the cartwheel is finished",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

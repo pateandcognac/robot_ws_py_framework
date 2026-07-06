@@ -1,0 +1,66 @@
+{
+ "emoji": "🏁",
+ "ideation": "This animation sequence simulates the act of waving a checkered flag to signal the end of a race. The right arm will hold the flag and perform the waving motion. The left arm will remain relatively still to maintain balance and contrast with the dynamic movement of the right arm. The sequence will emphasize the upward and downward motion of the flag to signal the finish.  I'll use the two joints and wrist to create a fluid wave, checking against the examples to ensure realistic motion and range. ",
+ "frames": [
+  {
+   "beat": "arms at rest, right arm poised with flag",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm snaps up, flag held high",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm sweeps down in a decisive wave",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers, the race is finished",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

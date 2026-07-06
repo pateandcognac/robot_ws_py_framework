@@ -1,0 +1,56 @@
+{
+ "emoji": "🏮",
+ "ideation": "This animation sequence will portray a gentle, welcoming gesture, similar to holding out a paper lantern. The sequence starts with both arms relaxed at the sides, then moves to a position of offering, and concludes with a slight upward gesture as if presenting a gift. The movement will be slow and deliberate, reflecting the peaceful nature of the lantern emoji. The use of slight perturbations will help to avoid rigid, mechanical motion.  The robot's arms will move in a fluid and expressive way, mimicking how a human would naturally present an object of beauty or significance.  The reasoning for each frame is as follows:\n\nFrame 1: Both arms begin in a neutral, relaxed position at the sides. This serves as the starting point of our animation. The neutral pose creates a sense of calm and anticipation before the gesture begins.\nFrame 2: Both arms move outward and slightly upward, opening towards the viewer as if gently presenting the lantern. The palms face upwards, as if cradling a delicate object. The motion is slow and deliberate, creating a welcoming aura.\nFrame 3: The arms move slightly higher, creating a presentation that is both inviting and respectful. This subtle upward movement adds a sense of offering and emphasizes the importance of the lantern.\nFrame 4: The arms maintain their position, holding the imaginary lantern with care. This slight pause creates emphasis on the presentation. This frame shows the lantern being held at its highest point before the presentation completes.\nFrame 5: The arms gently lower back to a relaxed position, maintaining the upward orientation of the palms, signaling the completion of the presentation.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready to present",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open outward and up, offering the lantern",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly higher, a respectful presentation",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "holding the lantern steady at its peak",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently lower, the offering complete",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

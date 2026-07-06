@@ -1,0 +1,36 @@
+{
+ "emoji": "⚰️",
+ "ideation": "This sequence portrays a somber, respectful gesture appropriate for the coffin emoji.  The animation will depict a slow, deliberate lowering of both arms, as if paying respects.  The arms will move in unison, maintaining symmetry and solemnity. The hands will remain slightly angled downward, conveying a sense of gravity and finality. I will use the examples to ensure the movements are smooth and natural, avoiding any jerky or abrupt transitions.  The initial frame will show arms at a neutral resting position. The second frame will have both arms lowering slightly, and the final frame will show the arms fully lowered in a respectful posture.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, in solemn rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms slowly lower in unison, a respectful bow",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -70.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle low, a final gesture of farewell",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -50.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

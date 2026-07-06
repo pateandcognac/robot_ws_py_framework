@@ -1,0 +1,56 @@
+{
+ "emoji": "🛵",
+ "ideation": "This animation sequence depicts the robot mimicking the act of riding a motor scooter.  The sequence will focus on the arm movements that would naturally accompany such an action. Frame 1 will show the robot with its arms slightly extended forward, as if gripping handlebars. Frame 2 will show a slight bend in the arms, as if the robot is leaning slightly forward. Frame 3 will show the arms straightening out again, as if the robot is maintaining balance. Frame 4 will mirror Frame 2, and Frame 5 will return to the starting position.  This cyclical movement will imitate the rhythmic motion of riding a scooter.",
+ "frames": [
+  {
+   "beat": "arms extend forward, gripping imaginary handlebars",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a slight lean forward, absorbing the road",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms straighten, maintaining balance on the ride",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "leaning forward again, the rhythm continues",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back, the scooter ride concludes",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

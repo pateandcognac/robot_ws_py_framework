@@ -1,0 +1,76 @@
+{
+ "emoji": "👯‍♂‍♂",
+ "ideation": "This animation sequence depicts two men playfully interacting, emphasizing the lightheartedness of the emoji. The movements should be fluid and expressive, reflecting the joyful nature of the interaction.  Each arm will have distinct movements, but the overall rhythm and timing will be coordinated to represent a playful dance or a shared moment of silliness. The robot's lack of elbows will be compensated for by expressive wrist movements and subtle changes in shoulder positions.  Frame 1 shows the men in a starting pose, arms slightly raised and palms facing each other, suggesting anticipation. Frame 2 shows the arms moving outward and upward, palms still facing each other, as if they're about to link arms. Frame 3 depicts the arms linked, palms still facing each other, suggesting a connection. Frame 4 shows the arms moving downward and slightly inward, as if they're playfully releasing the link, preparing for the next movement. Frame 5 shows the arms at a neutral position, suggesting the end of the playful interaction, but ready to continue.  ",
+ "frames": [
+  {
+   "beat": "arms lift slightly, palms ready to connect",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise outward, preparing to link up",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms linked, a playful connection is made",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms release and lower, breaking the playful link",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms drop to sides, the dance concludes",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

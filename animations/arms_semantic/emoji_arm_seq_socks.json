@@ -1,0 +1,61 @@
+{
+ "emoji": "🧦",
+ "ideation": "This animation sequence will show the robot delicately picking up a pair of socks.  The movement will be slow and careful, emphasizing the gentleness of the action. The robot will use both arms, mirroring the movements to maintain balance and precision.  I'll focus on creating a natural flow, avoiding jerky motions.  The final frame will show the socks held securely.",
+ "frames": [
+  {
+   "beat": "arms hang loosely, ready to grasp",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach down, hands rotating inward",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, fingers preparing to pinch",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold the socks, ready to move",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 45.0
+    }
+   }
+  }
+ ]
+}

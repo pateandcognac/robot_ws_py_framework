@@ -1,0 +1,56 @@
+{
+ "emoji": "🧑‍🚒",
+ "ideation": "This sequence depicts a firefighter in action, using both arms to simulate holding a fire hose. The arms move in a coordinated manner, showcasing the strength and determination required for this profession. The animation starts with both arms extended outward, simulating the stance of a firefighter preparing to use a hose.  Then, the arms move in a pumping motion, mimicking the action of controlling water flow from a fire hose. The sequence ends with the arms returning to a more relaxed position, but still alert. The use of slight perturbations in joint angles avoids a rigid, mechanical appearance, enhancing the natural flow of movement. This sequence uses the robot's dual-joint shoulder mechanism to create a believable, expressive motion. ",
+ "frames": [
+  {
+   "beat": "arms held ready, braced for the hose",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms pump forward, pushing water with force",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms recoil slightly, adjusting the spray",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hose control settles, ready for the next blast",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

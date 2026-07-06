@@ -1,0 +1,71 @@
+{
+ "emoji": "🐴",
+ "ideation": "This animation sequence will mimic a horse's head, focusing on the ears and the mouth.  Since our robot lacks the facial features to truly emulate a horse face, we'll use arm movements to suggest the horse's characteristic features. The left arm will represent the horse's ears, while the right arm will represent the horse's mouth.  The sequence will start with a neutral pose, then move to a 'pricked ears' position, followed by a 'mouth open' pose, and finally returning to neutral. Frame 1: Neutral pose.  Frame 2: Ears up, mouth neutral. Frame 3: Ears back, mouth open. Frame 4: Ears up, mouth neutral. Frame 5: Return to neutral. ",
+ "frames": [
+  {
+   "beat": "both arms hang still, a horse at rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm ears perk up, right arm mouth closed",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm ears flatten, right arm mouth opens wide",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm ears perk up again, right arm mouth closes",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the horse is still",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

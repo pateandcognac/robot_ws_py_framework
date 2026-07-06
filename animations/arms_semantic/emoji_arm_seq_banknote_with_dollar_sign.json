@@ -1,0 +1,56 @@
+{
+ "emoji": "💵",
+ "ideation": "This animation sequence depicts the robot carefully handling a dollar banknote. It begins with both arms extended forward, as if presenting the money. Then, one arm moves to gently grasp the banknote before both arms bring it closer to the robot's body. The sequence ends with both arms resting at the sides, as if the transaction is complete. The animation should be slow and deliberate, highlighting the careful handling of the money. Frame 1: Both arms extend towards the viewer, palms up, at shoulder height. Frame 2: One arm reaches down and gently grasps the banknote. Frame 3: Both arms draw the banknote closer to the robot. Frame 4: Both arms move to rest at the robot's sides.",
+ "frames": [
+  {
+   "beat": "both arms present the money forward, palms up",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches down to grasp the bill",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms draw the money closer to the chest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest at sides, transaction complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+{
+ "emoji": "🫖",
+ "ideation": "This animation sequence depicts a robot carefully pouring tea.  The movement starts with both arms at the sides, then the right arm moves to grasp the teapot, lifts it, and finally pours. The left arm remains largely still to maintain balance and focus on the pouring action.  The sequence will use smooth transitions between frames, with each frame representing a distinct pose. Frame 1: Both arms are relaxed at the robot's sides. Frame 2: The right arm moves outward and slightly upward to grasp the teapot. Frame 3: The right arm lifts the teapot to pouring height. Frame 4: The right arm pours the tea, tilting slightly forward. Frame 5: The right arm returns the teapot to its original position. The left arm remains mostly still throughout to provide balance and support.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches out to grasp the teapot",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts the teapot to pour",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the teapot tilts, pouring a steady stream",
+   "arms": {
+    "right": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": -20.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers the teapot, action complete",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

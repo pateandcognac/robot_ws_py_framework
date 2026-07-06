@@ -1,0 +1,41 @@
+{
+ "emoji": "🧑‍⚕️",
+ "ideation": "This sequence depicts a health worker using both arms in a caring and attentive manner. The animation will start with arms slightly open and welcoming, then transition to a gesture of checking a patient's pulse, and finally end with hands gently placed on the patient's shoulders.  The movements aim to convey empathy and professionalism. In the first frame, both arms are slightly open, welcoming the patient.  The second frame shows the right arm extended as if checking a patient's pulse, while the left arm is slightly raised and open. The third frame shows both hands gently placed on the patient's shoulders, providing comfort and assurance.  The left arm will remain slightly raised, while the right arm will be slightly lower. The movement is slow and deliberate, reflecting the attentive nature of a health worker. ",
+ "frames": [
+  {
+   "beat": "arms open wide, a welcoming gesture",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm checks pulse, left arm stays open",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both hands rest gently on shoulders, offering comfort",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

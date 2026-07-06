@@ -1,0 +1,46 @@
+{
+ "emoji": "🧗‍♂",
+ "ideation": "This sequence simulates the motion of a person climbing.  The left arm will pull upward, then the right will follow in a coordinated motion.  The final frame will show both arms reaching upwards. I'll use a 3-frame animation to keep it concise and impactful. Frame 1 will show the starting position, frame 2 the left arm pulling, and frame 3 both arms reaching. I'll ensure the movements are smooth and realistic, given the robot's joint limitations. ",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready to ascend",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm pulls up, reaching for the next hold",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms stretch high, conquering the climb",
+   "arms": {
+    "right": {
+     "joint1": -40.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

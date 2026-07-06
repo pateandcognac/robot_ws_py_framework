@@ -1,0 +1,46 @@
+{
+ "emoji": "🐪",
+ "ideation": "This sequence will portray a camel's gait, focusing on the rhythmic movement of its humps.  Since our robot doesn't have humps, we'll simulate the undulating motion using a swaying of the arms. The arms will move in a gentle, rolling pattern, mimicking the way a camel's body moves as it walks.  We'll use a three-frame sequence to capture the essence of this movement.  Frame 1 will show the arms in a neutral position; frame 2 will depict the arms swaying to one side; and frame 3 will show them swaying to the other side. This creates a smooth rocking motion that evokes the image of a camel's gait. The left and right arms will move in opposition to each other to emphasize the rhythmic quality of the movement. The wrists will remain neutral throughout to emphasize the gentle swaying motion.",
+ "frames": [
+  {
+   "beat": "arms hang low, ready for the desert trek",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm sways forward, right arm back, a rolling gait",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm sways forward, left arm back, continuing the walk",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

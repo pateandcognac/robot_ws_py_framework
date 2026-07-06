@@ -1,0 +1,81 @@
+{
+ "emoji": "🔽",
+ "ideation": "This animation sequence simulates a robot pressing a downwards button.  The robot will use its right arm to press the button, starting with its arm relaxed at its side and ending with the arm fully extended downwards. The left arm will remain still throughout the sequence. The sequence emphasizes a deliberate, controlled movement to convey precision and intentionality. Frame 1 shows the arm at rest. Frame 2 shows the arm beginning its downward movement. Frame 3 shows the arm pressing the button. Frame 4 shows the arm retracting slightly, and Frame 5 shows the arm returning to rest. ",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to press",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins its deliberate downward motion",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm presses the button firmly down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pulls back slightly from the button",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed resting pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

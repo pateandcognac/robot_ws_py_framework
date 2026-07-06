@@ -1,0 +1,81 @@
+{
+ "emoji": "⏰",
+ "ideation": "This animation sequence simulates the action of frantically reaching for an alarm clock, representing the urgency and sudden awakening associated with an alarm. The sequence will focus on the robot's left arm reaching for the alarm clock, while the right arm remains mostly still to emphasize the focused action. The animation will use slight perturbations to avoid a rigid, mechanical motion.  In the first frame, both arms will be in a relaxed position at the robot's sides. In the second frame, the left arm begins to move towards the alarm clock, angled slightly upward and outward. In the third frame, the left arm reaches out further, the hand angled slightly downward as if about to grasp the clock. In the fourth frame, the left arm extends fully, with the hand almost touching the alarm clock. In the fifth frame, the left arm returns to a relaxed position, implying the robot has successfully stopped the alarm. The right arm remains mostly still throughout the sequence, providing a contrast to the left arm's dynamic movement.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, waiting for the alarm",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm begins its urgent reach, angled upward",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the arm extends further, hand tilting to grasp",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm stretches out, almost touching the clock",
+   "arms": {
+    "left": {
+     "joint1": -60.0,
+     "joint2": 60.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "alarm silenced, both arms return to rest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

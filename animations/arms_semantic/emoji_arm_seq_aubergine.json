@@ -1,0 +1,56 @@
+{
+ "emoji": "🍆",
+ "ideation": "This sequence aims to represent the eggplant emoji 🍆 through a series of arm movements suggesting its shape and connotations. Given the robot's limitations (no elbows, only shoulder joints and wrists), the focus is on creating a visual flow that implies the emoji's form and innuendo. Frame 1 starts with both arms close to the body, angled slightly outward and downward, mimicking the emoji's stem.  joint1 rotates both arms outward, and joint2 pitches them downward. The wrists remain neutral. In Frame 2, both arms extend forward, joint2 pitching forward, suggesting the beginning of the eggplant's main body. The wrists rotate slightly inward to enhance the smooth, oblong shape. Frame 3 sees the arms lower further, joint2 pitching downward more, completing the eggplant's form. The wrists rotate back to neutral, maintaining a natural flow. Frame 4 brings the arms back up slightly, joint2 pitching upward, with a subtle wrist rotation outward to add a touch of playful bounce, emphasizing the emoji's suggestive meaning. Finally, Frame 5 returns the arms to the starting position, completing the gesture.",
+ "frames": [
+  {
+   "beat": "arms angle down, a playful stem forms",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward, the body begins to swell",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower, the eggplant shape is complete",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift with a suggestive wrist flick",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the joke lands",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

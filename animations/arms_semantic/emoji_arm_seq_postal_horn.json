@@ -1,0 +1,51 @@
+{
+ "emoji": "📯",
+ "ideation": "This sequence mimics the action of blowing a postal horn.  The animation will focus on the right arm, which will move from a resting position to an upward, outward motion, mimicking the act of blowing. The left arm will remain largely static for balance and contrast.  This will require careful adjustment of both joint1 (roll/rotation) and joint2 (pitch).  The key is to create a dynamic, yet believable movement that reflects the energy of blowing a horn. The final frame will show the arm returning to a relaxed position.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to sound",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm raises and extends outward, blowing the horn",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the horn blast fades, arm lowers gently",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

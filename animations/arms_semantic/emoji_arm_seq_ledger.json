@@ -1,0 +1,66 @@
+{
+ "emoji": "📒",
+ "ideation": "This animation sequence will show the robot carefully holding a ledger, emphasizing precision and attentiveness.  The movement will be slow and deliberate, reflecting careful handling of important documents. The sequence starts with the arms at rest, then moves to a position holding the ledger, and ends with a slight adjustment for stability.  The right arm will do most of the work, while the left arm provides support.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready for the ledger",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends to grasp the ledger carefully",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "adjusting grip, holding the ledger steady",
+   "arms": {
+    "left": {
+     "joint1": -15.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": 15.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "a final subtle shift, securing the important book",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

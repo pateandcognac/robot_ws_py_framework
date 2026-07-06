@@ -1,0 +1,51 @@
+{
+ "emoji": "🔟",
+ "ideation": "This animation sequence depicts the robot holding up both hands to represent the number 10, using a combination of joint rotations and wrist adjustments.  The hands will be positioned as if holding two separate '1's to form the '10'.  The movement will be deliberate and slightly exaggerated to emphasize the gesture.",
+ "frames": [
+  {
+   "beat": "arms rise slightly, ready to present",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift higher, forming the shape of ten",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms fully extended, proudly displaying the number ten",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 75.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

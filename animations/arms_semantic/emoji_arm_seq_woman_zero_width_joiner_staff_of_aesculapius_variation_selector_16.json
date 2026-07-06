@@ -1,0 +1,41 @@
+{
+ "emoji": "👩‍⚕️",
+ "ideation": "This animation sequence depicts a health worker in a caring and professional manner.  It starts with arms relaxed at the sides, then moves to a gesture of offering help, and finally returns to a neutral pose.  The movement should be smooth and deliberate, reflecting a calm, reassuring demeanor.  The lack of elbows in the robot arm design will be addressed by focusing on shoulder movements to convey the intended actions.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, a calm professional presence",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms extend forward, offering gentle assistance",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, a reassuring, helpful stance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

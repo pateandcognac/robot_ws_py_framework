@@ -1,0 +1,76 @@
+{
+ "emoji": "✉️",
+ "ideation": "This sequence simulates the action of holding and presenting an envelope.  The robot will extend its right arm forward, palm up, as if offering the envelope. The left arm will remain in a relaxed position. In the first frame, the right arm starts near the body, preparing to extend the envelope. In the second frame, the right arm extends forward, with the wrist slightly tilted up to present the envelope. The third frame shows a slight pause, the right arm held steady, as if waiting for the recipient to take the envelope. In the fourth frame, the right arm begins to gently return to a resting position. The fifth frame shows the robot's arms back to their neutral positions.  The left arm remains neutral throughout.",
+ "frames": [
+  {
+   "beat": "right arm prepares to offer an envelope",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm extends forward, presenting the letter",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 10.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "holding the envelope steady, waiting to be taken",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 10.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins to retract slowly",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a neutral, resting pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

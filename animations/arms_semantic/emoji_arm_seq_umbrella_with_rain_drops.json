@@ -1,0 +1,56 @@
+{
+ "emoji": "☔",
+ "ideation": "This animation sequence depicts a robot sheltering from the rain with an umbrella. It starts with arms at the sides, then raises an umbrella overhead, and ends with a slight adjustment for balance. The umbrella is implied; the robot's arm movements suggest its presence and use. Frame 1: Arms are down and the robot is getting wet. Frame 2: The robot is raising its arms to hold an umbrella overhead. Frame 3: The robot is holding the umbrella overhead, and adjusts for balance. Frame 4: The robot is holding the umbrella overhead, and adjusts for balance. Frame 5: The robot is holding the umbrella overhead, and adjusts for balance.",
+ "frames": [
+  {
+   "beat": "arms hang down, bracing for the rain",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lift, reaching for shelter",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms raise overhead, holding the umbrella",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "slight adjustment to the right, steadying the umbrella",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold steady overhead, sheltering from the rain",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

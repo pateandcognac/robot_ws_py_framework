@@ -1,0 +1,66 @@
+{
+ "emoji": "👩‍🦽",
+ "ideation": "This animation sequence depicts a person using a manual wheelchair, focusing on the natural arm movements involved in propelling the chair.  The sequence will emphasize the rhythmic pushing motion of the arms, with subtle variations to suggest effort and control.  The robot's lack of elbows will be addressed by exaggerating the arc of the arms to mimic the sweeping motion of wheelchair propulsion.  The left arm will act as a counterbalance, while the right arm will primarily be focused on the propulsion. Frame 1 establishes a starting position with arms slightly bent and ready to push.  Frame 2 shows the right arm extended and pushing backward. Frame 3 shows the left arm beginning to push, while the right arm is midway in its return. Frame 4 demonstrates the left arm extended in a push, and the right arm completing its return to the starting position.",
+ "frames": [
+  {
+   "beat": "arms poised, ready to push the chair forward",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pushes back, propelling the chair",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm begins its push as right arm recovers",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -50.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm extends, right arm rests, completing the cycle",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "🦼",
+ "ideation": "This sequence depicts the act of propelling a motorized wheelchair.  The animation focuses on the arms' actions while operating the controls.  The robot's arm movements will emphasize the control and propulsion of the wheelchair. In the first frame, both arms are positioned as if gripping the controls, slightly forward and angled downward. In the second frame, one arm is slightly higher than the other, suggesting a pushing motion. In the third frame, the arms return to the initial position, completing one cycle of propulsion. In the fourth frame, the arms move as if the robot is actively steering the wheelchair. Finally, in the fifth frame, the arms return to a neutral position, suggesting a pause in motion.",
+ "frames": [
+  {
+   "beat": "arms grip the wheelchair controls, ready to move",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm pushes forward, propelling the chair",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms reset, ready for the next push",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm steers slightly, guiding the path",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax, pausing the journey",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

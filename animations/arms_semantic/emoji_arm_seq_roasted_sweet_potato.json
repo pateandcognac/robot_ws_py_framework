@@ -1,0 +1,56 @@
+{
+ "emoji": "🍠",
+ "ideation": "This animation sequence depicts a robot interacting with a sweet potato, starting with anticipation, moving to grasping, then enjoying the sweet potato.  The robot's movements should be smooth, conveying a sense of enjoyment and satisfaction.  The robot does not have hands, but we can simulate actions using its arms and wrist movements. Frame 1 shows the robot's arms in a neutral position, anticipating the sweet potato. Frame 2 shows both arms moving towards the sweet potato, with the wrists slightly angled to simulate grasping. Frame 3 shows the arms holding the sweet potato close, and in frame 4, the robot brings the sweet potato up to its face, simulating a bite or a smell. Frame 5 shows the robot relaxing after the sweet potato, in a contented pose.",
+ "frames": [
+  {
+   "beat": "arms hang down, anticipating the treat",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach out, wrists angled to grasp",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms hug the sweet potato close to the chest",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the potato up, savoring the moment",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax, content after the sweet potato",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

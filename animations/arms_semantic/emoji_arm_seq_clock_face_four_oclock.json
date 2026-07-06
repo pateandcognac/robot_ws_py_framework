@@ -1,0 +1,71 @@
+{
+ "emoji": "🕓",
+ "ideation": "This animation sequence depicts a robot indicating the time of four o'clock using its arms.  The robot will use one arm to represent the hour (4) and the other to represent the minutes (00).  The hour hand will be more prominent, while the minute hand will be more subtle.  Since the robot has no hands or fingers, the poses will be stylized approximations of pointing. The movement will be smooth and deliberate, emphasizing the precision of telling time. Frame 1: The robot starts with both arms at its sides. Frame 2: The left arm points to the left, representing the hour hand pointing to the 4. Frame 3: The right arm moves slightly to the right, subtly suggesting the minutes hand at the 12. Frame 4: The left arm holds its pose, slightly adjusting to reinforce the hour. Frame 5: Both arms return to a neutral position at the sides.",
+ "frames": [
+  {
+   "beat": "both arms hang at the sides, neutral",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm points left, indicating the hour",
+   "arms": {
+    "left": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm subtly sweeps right, marking the minutes",
+   "arms": {
+    "left": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the hour arm holds steady, time is clear",
+   "arms": {
+    "left": {
+     "joint1": 80.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the time is told",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

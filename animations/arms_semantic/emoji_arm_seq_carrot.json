@@ -1,0 +1,81 @@
+{
+ "emoji": "🥕",
+ "ideation": "This animation sequence depicts a robot playfully mimicking the act of pulling a carrot from the ground.  The movement is gentle and slightly exaggerated for comedic effect. The animation will focus on the right arm, as the left will remain largely still to provide contrast and balance. Frame 1 will show both arms relaxed at the sides. Frame 2 will show the right arm extending downward and slightly forward, as if reaching for the carrot. Frame 3 will show the right arm pulling upward, as if extracting the carrot from the ground. The wrist will be slightly rotated to mimic holding something. Frame 4 will show the right arm returning to a more upright position, holding the imaginary carrot. Frame 5 will show both arms returning to their resting position.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches down, preparing to grab",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "pulling the carrot up from the earth",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "holding the prize aloft with a slight twist",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a resting state",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

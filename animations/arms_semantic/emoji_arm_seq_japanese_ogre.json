@@ -1,0 +1,66 @@
+{
+ "emoji": "👹",
+ "ideation": "This animation sequence aims to capture the aggressive and menacing nature of the ogre emoji.  The animation will involve a combination of forward-reaching, clawing movements, and a final pose that emphasizes the ogre's threatening demeanor.  The movements will be exaggerated to enhance the dramatic effect.  The robot will use both arms in a coordinated yet slightly asymmetrical manner to emphasize the chaotic energy of the ogre. The arms have no elbows, and only two joints at the shoulder.  The first frame will initiate the forward lunge, the second frame will accentuate the claw-like movement, the third frame will show the arms reaching outward and slightly upward, and the fourth frame will freeze in a final menacing pose. ",
+ "frames": [
+  {
+   "beat": "arms lunge forward, claws ready to strike",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend, palms outward, a menacing gesture",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach up and out, a threatening display",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 30.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 30.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms freeze, a fearsome ogre's stance",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": -60.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

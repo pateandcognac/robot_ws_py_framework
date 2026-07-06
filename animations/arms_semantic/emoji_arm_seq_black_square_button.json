@@ -1,0 +1,71 @@
+{
+ "emoji": "🔲",
+ "ideation": "This animation sequence will depict a robot interacting with a button, represented by the emoji 🔲.  The sequence will focus on the robot's arms, simulating the action of pressing the button.  The robot's arms, lacking elbows, will use their two shoulder joints to achieve a natural-looking press. The movement will be deliberate and controlled, emphasizing the precision of the interaction. Frame 1 shows both arms in a neutral position. Frame 2 shows the robot's right arm extending towards the button. Frame 3 shows the right arm pressing the button. Frame 4 shows the right arm retracting slightly. Frame 5 shows the right arm returning to the neutral position.",
+ "frames": [
+  {
+   "beat": "both arms hang at the sides, ready",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, reaching for the button",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm presses the button with deliberate force",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pulls back slightly from the button",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest at the side",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

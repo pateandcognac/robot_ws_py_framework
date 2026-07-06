@@ -1,0 +1,81 @@
+{
+ "emoji": "🎺",
+ "ideation": "This sequence simulates playing a trumpet. The right arm will hold the trumpet and move to the mouth, while the left arm provides balance and support. The movement will be fluid and expressive, with slight variations in the wrist positions to add realism. I will consult examples to ensure smooth transitions and natural-looking movements. Frame 1: The right arm is positioned to the side, holding the trumpet, and the left arm is slightly raised, providing balance. Frame 2: The right arm moves upward and inward, bringing the trumpet to the mouth. Frame 3: The right arm is stable near the mouth, as if blowing into the trumpet. Frame 4: The right arm begins to lower the trumpet slightly. Frame 5: The right arm returns to its initial position, with the left arm dropping to a neutral position. ",
+ "frames": [
+  {
+   "beat": "arms rest, trumpet held at the side",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm brings trumpet up towards the mouth",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "blowing a steady note, arm held firm",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "lowering the trumpet slightly after the sound",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the music fades",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🔖",
+ "ideation": "This animation sequence simulates the action of placing a bookmark into a book.  The robot will use its right arm to gently place an imaginary bookmark. The left arm will remain largely neutral. Frame 1 begins with both arms at rest.  In frame 2, the right arm moves forward and upward, slightly curving to mimic the act of inserting a bookmark. In frame 3, the right arm straightens slightly, and the wrist rotates to complete the act of inserting the bookmark. The final frame shows the right arm returning to a relaxed position, while the left arm remains largely unchanged throughout the sequence.  The overall animation should convey a sense of careful placement.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready for a book",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches forward, lifting the bookmark",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "gently placing the bookmark with a slight wrist turn",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 40.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest, task complete",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

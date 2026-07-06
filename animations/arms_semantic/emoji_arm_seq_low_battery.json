@@ -1,0 +1,46 @@
+{
+ "emoji": "🪫",
+ "ideation": "This animation sequence depicts a robot slowly lowering its arms as its battery drains.  The movement should be gradual and convey a sense of decreasing energy.  The robot starts with its arms raised slightly, then progressively lowers them until they hang limply.  The drooping of the arms reflects the dwindling battery power, creating a visual metaphor for the low-battery state. The final frame shows the arms completely still, mirroring the exhaustion of the robot.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, a little energy remains",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to droop, battery power fading",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower further, energy almost gone",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hang limp, battery completely drained",
+   "arms": {
+    "both": {
+     "joint1": -5.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "emoji": "🏜️",
+ "ideation": "This animation sequence will depict the robot exploring a desert landscape, using its arms to express curiosity and wonder. The sequence will involve a combination of reaching, scanning, and shading the eyes to represent the sun's glare. Frame 1 will show the arms at rest; frame 2 will show the robot reaching out as if to touch a mirage; frame 3 will show the robot shading its eyes from the sun; frame 4 will show the robot scanning the horizon; and frame 5 will show the robot returning to a resting pose. This sequence uses subtle arm movements to create a sense of exploration and discovery.",
+ "frames": [
+  {
+   "beat": "arms rest, still and quiet desert",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches out, perhaps to a mirage",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rise to shade eyes from the harsh sun",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": 75.0,
+     "wrist": -90.0
+    },
+    "left": {
+     "joint1": 20.0,
+     "joint2": 75.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep wide, scanning the vast empty horizon",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the desert is explored",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

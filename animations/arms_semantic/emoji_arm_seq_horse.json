@@ -1,0 +1,66 @@
+{
+ "emoji": "🐎",
+ "ideation": "This sequence simulates the motion of a horse's gallop, focusing on the rhythmic up-and-down motion of the arms to mimic the legs' movement.  The sequence will emphasize a fluid, energetic movement, with both arms moving in a coordinated fashion. The robot's lack of elbows will be compensated by emphasizing the shoulder joints' range of motion to create the illusion of leg movement.  The wrists will remain relatively neutral, focusing the expressiveness on the larger arm movements. Frame 1: Both arms are extended downward, with a slight outward rotation at the shoulder joints. This position represents the initial stance of the horse, just before the gallop begins. Frame 2: The left arm is lifted upward, while the right arm drops downward.  This mimics the diagonal movement of a horse's legs. Frame 3: Both arms are extended downward again, mirroring Frame 1 but with a slight shift in positioning. This represents the horse's legs briefly touching the ground. Frame 4: The right arm is lifted upward, while the left arm drops downward. This repeats the diagonal movement of Frame 2, but in the opposite direction. Frame 5: Both arms return to the downward position, completing the full cycle.  The slight variations in position between Frame 1 and Frame 3, and between the upward motions of Frame 2 and Frame 4, add to the natural flow of the animation.",
+ "frames": [
+  {
+   "beat": "arms drop down like hooves about to strike",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm rises, right arm plunges down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms hit the ground in a powerful stride",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm rises, left arm plunges down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms land again, completing the gallop cycle",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

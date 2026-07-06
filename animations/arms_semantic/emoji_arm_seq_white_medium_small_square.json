@@ -1,0 +1,46 @@
+{
+ "emoji": "◽",
+ "ideation": "This animation sequence will depict a robot gently placing a small object (represented by the white square) onto a surface. The movement should be slow, deliberate, and precise, reflecting careful handling.  The sequence will use both arms for stability and control.  We'll start with arms extended, then move to bringing the object close to the surface, followed by a lowering action and finally the arms returning to a neutral position. The animation will begin with both arms extended forward, palms facing upward, simulating the robot holding the square at shoulder height. In the second frame, both arms will move slightly lower, and the wrists will rotate slightly inward, as if carefully positioning the square. The third frame will show both arms lowering the object to a point just above the surface. In the fourth frame, the square is placed on the surface, and both arms will move back to their neutral positions. This sequence should convey a sense of careful handling and precision, fitting the nature of the emoji as a simple, solid shape.",
+ "frames": [
+  {
+   "beat": "arms extend forward, holding the square carefully",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, wrists turn inward for precise placement",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms descend, bringing the square just above the surface",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms release the square and return to rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

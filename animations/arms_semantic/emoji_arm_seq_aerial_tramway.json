@@ -1,0 +1,56 @@
+{
+ "emoji": "🚡",
+ "ideation": "This animation sequence simulates the motion of riding an aerial tramway. The robot's arms will mimic the feeling of holding onto a cable or bar while moving along.  The sequence will focus on a slight swaying motion, reflecting the gentle movement of the tramway. Frame 1 will show the robot's arms outstretched, palms down, gripping an imaginary cable. Frame 2 will show a slight upward sway, and Frame 3 a slight downward sway. Frame 4 will return to the initial position, and Frame 5 will show the robot's arms slightly lowered, as if the ride is coming to an end. ",
+ "frames": [
+  {
+   "beat": "arms reach out, gripping the tram cable",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a gentle sway upwards on the ride",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a slight dip downwards, continuing the journey",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "holding steady on the cable car",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly as the ride concludes",
+   "arms": {
+    "both": {
+     "joint1": 70.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

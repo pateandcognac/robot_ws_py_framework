@@ -1,0 +1,41 @@
+{
+ "emoji": "🤓",
+ "ideation": "This sequence aims to capture the essence of the 🤓 nerd face emoji, conveying a sense of studious focus and intellectual engagement.  The animation will involve the robot adjusting imaginary glasses. Since the robot lacks fingers, the gesture will be adapted to use the whole hand/arm to mimic the act of pushing glasses up the nose.  The motion will be precise and controlled, reflecting the meticulous nature often associated with the nerd persona. In the first frame, both arms are held slightly forward, palms facing inward, as if poised near the face. This sets the stage for the glasses adjustment.  In the second frame, the right arm moves slightly upward and inward, as if pushing the bridge of imaginary glasses upward.  The left arm remains relatively stationary, providing balance and maintaining the sense of focus. The third frame sees the right arm return to its initial position, completing the subtle adjustment.  The left arm continues to remain still, reinforcing the image of studious concentration.  The slight, controlled movements emphasize precision and attention to detail.",
+ "frames": [
+  {
+   "beat": "arms held forward, ready to adjust imaginary glasses",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "right hand sweeps up to push glasses, left arm steady",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 30.0,
+     "wrist": -40.0
+    }
+   }
+  },
+  {
+   "beat": "right hand returns, focus maintained on studies",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "🌱",
+ "ideation": "This sequence shows the robot gently cradling a seedling, representing care and nurturing.  The movement starts with arms at the sides, then moves to a gentle cradle, and finally returns to a relaxed state. The slow, deliberate movements emphasize the delicate nature of the seedling.  The use of both arms in a symmetrical pose enhances the sense of protection and care.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently lift and curve inward, holding something precious",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the seedling is cradled softly between the hands",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "the seedling is held with utmost care and tenderness",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the seedling is safe",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

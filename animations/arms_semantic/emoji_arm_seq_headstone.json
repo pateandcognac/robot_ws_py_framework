@@ -1,0 +1,36 @@
+{
+ "emoji": "🪦",
+ "ideation": "This animation sequence will portray a somber, reflective pose appropriate for a headstone. The robot will initially have its arms hanging loosely at its sides, then slowly raise them to cover its face, before finally returning to a neutral position.  The movement should be slow and deliberate, reflecting the gravity of the situation. The lack of elbows in the robot's arm design will be compensated for by using the shoulder joints to create a natural, albeit slightly limited, arm movement.",
+ "frames": [
+  {
+   "beat": "arms hang loosely, a moment of quiet reflection",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly rise to cover the face in sorrow",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, heavy with remembrance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

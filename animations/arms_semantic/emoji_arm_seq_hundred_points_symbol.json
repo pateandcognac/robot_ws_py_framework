@@ -1,0 +1,81 @@
+{
+ "emoji": "💯",
+ "ideation": "This animation sequence represents the perfect score, 100 points, using both arms to form the number 100. The movement should be deliberate and precise, highlighting the achievement. I will use both arms, with the right arm forming the '1' and the left arm forming the '00'. The arms will move in a synchronized yet distinct manner, creating a visually appealing display of accomplishment. In the first frame, both arms start in a neutral position at their sides. In the second frame, the right arm moves to the right, forming the '1', with the upper arm extended and the lower arm pointing forward. The left arm starts to move into position to form the '00'. In the third frame, the right arm remains in its '1' position, while the left arm completes its circular motion, forming the '00' by moving the left arm around and overlapping. In the fourth frame, both arms hold their positions, celebrating the perfect score. The slight movements between frames add a sense of accomplishment and joy. In the fifth frame, both arms return to their resting positions.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready for action",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends to form the '1', left arm begins the '0'",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm sweeps around, completing the '00' beside the '1'",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms hold the perfect '100' pose with pride",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the score achieved",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

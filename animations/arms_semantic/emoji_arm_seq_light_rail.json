@@ -1,0 +1,56 @@
+{
+ "emoji": "🚈",
+ "ideation": "This animation sequence will depict the robot mimicking the movement of a light rail vehicle.  The arms will move in a coordinated fashion, suggesting motion along a track. The animation will focus on smooth, repetitive movements to convey the rhythmic nature of a light rail system. Frame 1: The arms start in a neutral position, slightly angled outward to suggest readiness. Frame 2: Both arms move forward in a synchronized motion, as if pushing or propelling the robot forward. Frame 3: The arms pull back slightly, simulating the momentary pause between forward motion. Frame 4:  The arms repeat the forward motion from frame 2. Frame 5: The arms return to the neutral position of frame 1, setting up for the next cycle of movement. This cyclical motion will create the impression of continuous, rhythmic movement, representing the light rail's ongoing journey along its track.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready for motion",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms push forward in unison",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull back, a brief pause in the rhythm",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms push forward again, steady momentum",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the cycle repeats",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

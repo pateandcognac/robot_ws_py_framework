@@ -1,0 +1,81 @@
+{
+ "emoji": "🙋‍♂️",
+ "ideation": "This sequence aims to capture the action of raising one's hand, as if to ask a question or volunteer. The focus is on a clear upward motion of the right arm, while the left arm provides balance and reinforces the intent of the gesture.  I'll leverage the robot's joint mechanics to create a smooth, natural movement that conveys the meaning of the emoji. In the first frame, both arms are at the sides in a neutral, ready position. The right arm is positioned slightly away from the body, poised for the upward movement, using joint1 rotated slightly outward and joint2 pitched downward. The left arm hangs relaxed at the side, using joint1 slightly outward rotated and joint2 pitched downward. The wrists are kept neutral. In the second frame, the right arm begins its ascent. Joint2 raises to lift the arm, while joint1 rotates slightly inward to bring the arm closer to the head as it rises, mimicking a natural hand-raising motion. The wrist is angled so the palm faces forward, making the gesture clear. The left arm remains relaxed at the side, providing balance.  The third frame sees the right arm reaching its peak, fully extended upward with joint2 at its maximum upward rotation and joint1 neutral. The palm remains facing forward, completing the hand-raising gesture. Again, the left arm provides a relaxed counterbalance. In the fourth frame, the right arm begins to lower slightly from its peak, with joint2 adjusting downward. The left arm remains at rest. This slight lowering adds a touch of realism, as if the hand has been held up for a moment. Finally, in the fifth frame, the right arm returns to the starting position at the side, mirroring the first frame. The left arm also remains in its initial position, completing the sequence.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to signal",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins to lift, palm forward",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches high, a clear signal given",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the hand holds for a moment, then lowers slightly",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -5.0,
+     "joint2": 70.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm returns to rest at the side",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

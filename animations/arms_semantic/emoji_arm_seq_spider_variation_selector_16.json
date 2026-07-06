@@ -1,0 +1,46 @@
+{
+ "emoji": "🕷️",
+ "ideation": "This sequence simulates a spider cautiously creeping forward, using its eight legs.  Since our robot only has two arms, we'll represent the spider's forward movement by having the robot extend its arms forward, then slightly retract them, and then extend them again. This will mimic the subtle, measured movements of a spider. The arms will move almost symmetrically, with slight variations to give a more organic feel.  The wrists will remain neutral throughout to keep the focus on the arm movements. This sequence should convey the cautious, creeping nature of a spider.",
+ "frames": [
+  {
+   "beat": "arms extend forward, ready to creep",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a cautious step forward, arms reaching",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "slight retraction, testing the ground",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 5.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "reaching out again, a spider's steady advance",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": -5.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

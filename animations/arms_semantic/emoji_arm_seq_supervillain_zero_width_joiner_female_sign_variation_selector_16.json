@@ -1,0 +1,66 @@
+{
+ "emoji": "🦹‍♀️",
+ "ideation": "This animation sequence portrays a woman supervillain, emphasizing a menacing and controlling pose.  The animation will start with arms crossed, transition to a hand-on-hip pose, then to a dramatic arm-outstretched pose, and finally end with a hand-to-chin pose suggesting plotting. Each arm's movement will be deliberate and sharp, emphasizing the character's power and cunning. The robot's lack of elbows will be used to our advantage, creating a slightly unnatural, robotic feel which adds to the supervillain's menacing aura. ",
+ "frames": [
+  {
+   "beat": "arms cross defensively, a villain's stance",
+   "arms": {
+    "left": {
+     "joint1": 65.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 50.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms shift, one hand on hip, the other beckons",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -75.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms spread wide, commanding the scene",
+   "arms": {
+    "left": {
+     "joint1": -90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "one hand rises to chin, plotting the next move",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 90.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -90.0,
+     "wrist": -10.0
+    }
+   }
+  }
+ ]
+}

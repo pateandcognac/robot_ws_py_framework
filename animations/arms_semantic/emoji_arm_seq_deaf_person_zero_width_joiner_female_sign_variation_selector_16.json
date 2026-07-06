@@ -1,0 +1,51 @@
+{
+ "emoji": "🧏‍♀️",
+ "ideation": "This animation sequence will depict a woman gently touching her ears, a subtle yet expressive way to represent the deaf community. The animation will focus on the natural movement of the arms, emphasizing the delicate touch rather than exaggerated gestures.  The sequence will start with the arms at rest, then move to a position where the hands are near the ears, and finally, return to rest. The right arm will be predominantly used to enhance the expressiveness of the gesture. I will avoid jerky movements, keeping the transition fluid and natural. I will use the examples to help me maintain a natural range of motion for the robot's arms.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, a moment of quiet",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm gently lifts to cup the ear",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "the hand rests by the ear, a soft gesture",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

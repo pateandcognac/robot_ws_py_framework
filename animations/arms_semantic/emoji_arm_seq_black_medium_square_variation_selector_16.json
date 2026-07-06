@@ -1,0 +1,46 @@
+{
+ "emoji": "◼️",
+ "ideation": "This animation sequence will represent the emoji ◼️ as a robot showing a sense of mystery or concealment. The robot will begin with its arms crossed, then slowly raise them to cover its face, and finally drop them back down, leaving the viewer to wonder what it's hiding. This will be done using a combination of rotations and pitches to create a natural and expressive animation. I will use the examples from the single-frame and multi-frame examples to guide my animation frames, creating a sequence that is both realistic and evocative. The robot's lack of elbows will be taken into account to create smooth and natural movements.",
+ "frames": [
+  {
+   "beat": "arms crossed, a hidden secret held tight",
+   "arms": {
+    "both": {
+     "joint1": 65.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to lift, concealing something",
+   "arms": {
+    "right": {
+     "joint1": 25.0,
+     "joint2": 85.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rise to cover the face, hiding all",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": 70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms drop, leaving only mystery behind the mystery",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

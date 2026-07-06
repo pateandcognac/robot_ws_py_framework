@@ -1,0 +1,61 @@
+{
+ "emoji": "🌈",
+ "ideation": "This animation sequence will portray a sense of wonder and joy, reflecting the vibrant and uplifting nature of a rainbow.  The robot will use both arms to create a wide, embracing gesture, symbolizing the expansive feeling associated with rainbows. The arms will move in a fluid, upward motion, ending with a pose that suggests awe and appreciation. Each arm will be independently controlled with the two shoulder joints. The sequence will begin with the arms at rest and end with a joyous, embracing pose.  The initial frames will be used to bring the arms up, and the final frame will capture the full extent of the gesture. The wrists will be slightly rotated to add a subtle refinement to the final pose. ",
+ "frames": [
+  {
+   "beat": "arms start down, ready to embrace the sky",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep up and outward, a gentle arc begins",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 15.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -15.0
+    }
+   }
+  },
+  {
+   "beat": "arms continue upward, widening the joyful gesture",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": 60.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": -60.0,
+     "joint2": 60.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach up and out, a vibrant rainbow embrace",
+   "arms": {
+    "left": {
+     "joint1": 75.0,
+     "joint2": 75.0,
+     "wrist": 25.0
+    },
+    "right": {
+     "joint1": -75.0,
+     "joint2": 75.0,
+     "wrist": -25.0
+    }
+   }
+  }
+ ]
+}

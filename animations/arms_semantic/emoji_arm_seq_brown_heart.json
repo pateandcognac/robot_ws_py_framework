@@ -1,0 +1,46 @@
+{
+ "emoji": "🤎",
+ "ideation": "This animation sequence expresses warmth and affection using a gentle embrace gesture. The arms move in a synchronized, loving motion, emphasizing the heart's emotional connotation. The sequence starts with the arms slightly raised and angled outward, gradually moving to embrace the heart's position, and then returning to a relaxed posture. I will use smooth transitions while maintaining distinct keyframes, avoiding intermediary steps. In the first frame, both arms are raised to shoulder height, rotated outward, slightly forward. The wrists are neutral, palms facing inward. This setup creates a welcoming posture. In the second frame, the arms move inward, wrapping around the heart's position. Joint1 rotates inward, and joint2 pitches slightly downward, creating a gentle embrace. The wrists remain neutral. This frame represents the core of the embrace. The third frame shows the arms starting to pull back, still maintaining a gentle curve. Joint1 rotates outward slightly, and joint2 pitches upward, creating a graceful retreat from the embrace. The wrists remain neutral. The fourth frame returns the arms to a relaxed, neutral position at the sides. This concludes the animation sequence, creating a complete and fluid display of affection. ",
+ "frames": [
+  {
+   "beat": "arms open wide, offering a warm welcome",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently draw inward, embracing the heart",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to release the loving hold",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a soft, resting state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

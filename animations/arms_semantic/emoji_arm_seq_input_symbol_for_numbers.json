@@ -1,0 +1,56 @@
+{
+ "emoji": "🔢",
+ "ideation": "This animation sequence will depict the robot interacting with numbers, perhaps as if it is counting or reviewing data.  The movement will involve bringing both arms forward as if holding or presenting something.  The movement will be deliberate and precise, reflecting a careful and analytical process. The hands will be positioned as if holding small objects or numbers. Frame 1 will start with arms at rest. Frame 2 will show the arms moving forward and slightly upward, palms facing inwards. Frame 3 will show the arms moving slightly closer together, as if focusing on something in front of the robot. Frame 4 will show the robot holding the numbers closer, and Frame 5 will show the arms returning to rest. This sequence intends to communicate focus and precision.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to count",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift forward, presenting numbers",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move closer, focusing on the data",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "holding the numbers precisely in view",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, task completed",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

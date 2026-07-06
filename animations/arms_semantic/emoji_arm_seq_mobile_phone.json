@@ -1,0 +1,66 @@
+{
+ "emoji": "📱",
+ "ideation": "This animation sequence depicts the robot holding a phone to its ear as if making a call.  The sequence starts with the arms at the sides, then moves to bringing the phone (represented by the right hand) to the ear, holding it briefly, then returning the phone to a resting position. The left arm remains relatively static for balance. The lack of elbows in the robot design requires careful positioning to simulate the action realistically. The phone is held to the ear in a natural-looking pose, avoiding any awkward angles or unnatural positions. The return to the resting position is smooth and mirrors the initial movement, creating a sense of completion.  The subtle changes in the left arm's position enhance the overall expressiveness of the animation.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to grab phone",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand brings phone to ear, left arm balances",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": 10.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "holding the phone to the ear, listening intently",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": 10.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, call concluded",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

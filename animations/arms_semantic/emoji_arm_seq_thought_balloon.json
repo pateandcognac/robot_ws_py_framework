@@ -1,0 +1,66 @@
+{
+ "emoji": "💭",
+ "ideation": "This sequence depicts a robot deep in thought, using its arms to subtly express contemplation.  The animation starts with the robot's arms at its sides, then moves to a position of hands resting on the chin, followed by arms gently raised, and finally a return to a relaxed position. The subtle movements reflect the internal process of thinking.  The right arm will remain largely still to provide contrast and balance.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, quiet contemplation begins",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left hand rises to the chin, right arm stays put",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently lift and fall, lost in thought",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, resting state",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

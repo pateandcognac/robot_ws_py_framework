@@ -1,0 +1,81 @@
+{
+ "emoji": "⏺️",
+ "ideation": "This animation sequence simulates the action of pressing a record button.  The robot will extend its right arm forward, press an (implied) button, and then retract its arm. The left arm remains mostly stationary for balance.  The sequence will emphasize a clear, deliberate movement. In the first frame, the robot's arms are in a neutral position. The second frame shows the right arm extending forward with the hand angled to press the button. In the third frame, the hand is pressed slightly downward as if activating the button, the left arm stays still. In the fourth frame, the right arm retracts slightly, and the wrist rotates back to a neutral position, indicating the button press is complete. The fifth frame returns both arms to their resting position. ",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to begin",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, hand poised",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand presses down on the button",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm retracts slightly, action complete",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to resting position",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "emoji": "🚕",
+ "ideation": "This sequence simulates hailing a taxi by raising the right arm and moving it in a beckoning motion. The left arm remains at the side, providing balance and a natural stance.  In the first frame, both arms are in a neutral, relaxed position. The right arm is slightly raised, ready to begin the hailing motion.  In the second frame, the right arm bends at the \"elbow\" (simulated by joint2) and lifts upward, as if beginning to hail. The wrist rotates to ensure the palm faces outward, making the gesture clear. The left arm remains relaxed at the side.  In the third frame, the right arm extends further forward and upward, reaching out to hail the taxi. The wrist rotates slightly inward, as if beckoning. The left arm remains at the side. In the fourth frame, the right arm moves slightly downward and back, continuing the hailing motion. The wrist rotates outward again. The left arm remains still. Finally, the fifth frame returns the right arm to a slightly raised position, poised to repeat the hailing motion if necessary. The left arm remains relaxed throughout the sequence, maintaining balance and a natural posture.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready to hail",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm bends and lifts, palm out to flag",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "reaching further, beckoning the cab closer",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 75.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the arm sweeps down and back, a persistent hail",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -25.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to ready, waiting for a ride",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

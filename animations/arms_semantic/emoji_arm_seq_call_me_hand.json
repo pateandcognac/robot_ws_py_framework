@@ -1,0 +1,81 @@
+{
+ "emoji": "🤙",
+ "ideation": "This sequence aims to capture the \"call me\" hand gesture (🤙) commonly associated with a casual request for a phone call.  Since the robot lacks fingers, the gesture will be adapted to use wrist and arm movements to convey the general meaning. The right arm performs the primary gesture, while the left arm remains relaxed for balance and naturalness.  In frame one, both arms start at rest. The right arm then lifts (frame two) towards the ear, mimicking holding a phone, with the wrist rotated inward to suggest holding the receiver.  Frame three brings the right hand slightly away from the ear in a small outward 'pulse' to emphasize the call me motion. Frame four returns the hand towards the ear. Frame five returns the right arm to the resting position.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed at the sides",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts, hand near ear, ready to call",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "a slight outward pulse, 'call me'",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 35.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "hand returns to ear, continuing the call",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm drops, the call is finished",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

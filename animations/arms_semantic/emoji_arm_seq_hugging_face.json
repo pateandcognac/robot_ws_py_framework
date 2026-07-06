@@ -1,0 +1,56 @@
+{
+ "emoji": "🤗",
+ "ideation": "This sequence aims to capture the warm, inviting feeling of a hug, using open arms and gentle movements.  I'll start with a neutral pose and transition into a welcoming, open-armed gesture, keeping the motions smooth and inviting.  The final pose will mimic an embrace, conveying a sense of affection and warmth. In the first frame, both arms are held slightly away from the body, palms facing forward, as if preparing for a hug. joint1 is rotated slightly outward, and joint2 pitches the arms forward a bit. The wrists are angled slightly inward to create a welcoming posture.  This sets a relaxed and friendly tone. In the second frame, the arms extend further outward, widening the embrace. joint1 rotates outward more, increasing the open-armed gesture. joint2 adjusts to ensure the arms remain at a comfortable, inviting angle. The wrists also rotate slightly outward, maintaining the welcoming feel. By the third frame, the arms reach their fullest extension, palms open and facing forward, as if ready to receive a hug. joint1 reaches its maximum outward rotation, and joint2 pitches the arms to the perfect embrace angle.  The wrists maintain their outward angle, completing the gesture.  In the fourth frame, the arms begin to draw back slightly, as if completing the hug. joint1 rotates inward a bit, and joint2 pitches the arms forward slightly, creating a sense of gentle closure. The wrists rotate inward as well, enhancing the sense of warmth. Finally, in the fifth frame, the arms return to a position slightly closer to the body than the initial pose, as if lingering after a hug. This creates a warm, affectionate feeling, capturing the lingering sense of connection after an embrace.",
+ "frames": [
+  {
+   "beat": "arms open wide, a welcoming embrace begins",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -40.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend further, inviting a hug",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -45.0,
+     "wrist": -60.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach out fully, ready to embrace",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw back slightly, completing the hug",
+   "arms": {
+    "both": {
+     "joint1": 70.0,
+     "joint2": -30.0,
+     "wrist": -40.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle close, lingering warmth after the embrace",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -40.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

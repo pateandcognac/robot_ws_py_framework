@@ -1,0 +1,61 @@
+{
+ "emoji": "👷›",
+ "ideation": "This animation sequence portrays a construction worker's confident and focused posture.  It begins with arms at the sides, transitions to a hand-on-hip stance, and ends with arms crossed, conveying determination. The left arm will primarily be used to represent the tool-holding and work-related actions. The right arm will remain mostly passive, except for the crossing motion.  The movements should be deliberate and purposeful, reflecting the seriousness and skill of a construction worker. Frame 1: Arms relaxed at sides, ready for action. Frame 2: Left arm moves to hip, right arm remains neutral. Frame 3: Left arm adjusts slightly on hip, right arm begins to cross over. Frame 4: Arms firmly crossed over chest, showing confidence and focus.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready for work",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm moves to hip, right arm stays put",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -75.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left hand on hip, right arm begins to cross",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -70.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": 50.0,
+     "joint2": 70.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms crossed firmly, confident and focused",
+   "arms": {
+    "left": {
+     "joint1": 65.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 50.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

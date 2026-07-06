@@ -1,0 +1,66 @@
+{
+ "emoji": "☑️",
+ "ideation": "This animation sequence simulates the act of checking a box.  The robot will use its right arm to make a decisive downward check mark motion. The left arm will remain at rest. This will make the action clear and unambiguous. Frame 1 shows both arms relaxed at the sides, setting the stage. Frame 2 shows the right arm beginning its downward motion, creating anticipation. Frame 3 shows the right arm making the check mark, completing the action. Frame 4 shows the arm returning to a relaxed position. ",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to move down decisively",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm sweeps down, making the check",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle back into stillness",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

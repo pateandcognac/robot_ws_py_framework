@@ -1,0 +1,66 @@
+{
+ "emoji": "🛤️",
+ "ideation": "This animation sequence will depict the robot mimicking the act of laying down railway tracks.  The robot will use both arms to create a motion of placing and connecting sections of track.  The movement will be deliberate and methodical, reflecting the precision required in track laying.  We'll use a 4-frame sequence for clarity.",
+ "frames": [
+  {
+   "beat": "arms extend forward, ready to lay track",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, preparing to place a section",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move outwards, laying the track down firmly",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the track is set",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

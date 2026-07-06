@@ -1,0 +1,36 @@
+{
+ "emoji": "➖",
+ "ideation": "This animation sequence for the minus sign (-) emoji will depict a simple, yet expressive, gesture of negation or subtraction.  The robot will extend both arms horizontally to the sides, mimicking the horizontal line of the minus sign. Then, the arms will move slightly downward, symbolizing the action of taking away or reducing something. Finally, the arms will return to their resting position.  This sequence will use the robot's shoulder joints to create a clear, concise, and visually appealing animation. The use of simple movements will ensure that the gesture is easily understood and avoids unnecessary complexity. The arms' movement will be deliberate, enhancing the sense of subtraction or cancellation. ",
+ "frames": [
+  {
+   "beat": "arms extend straight out to the sides",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms dip slightly, a subtraction gesture",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the action complete",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

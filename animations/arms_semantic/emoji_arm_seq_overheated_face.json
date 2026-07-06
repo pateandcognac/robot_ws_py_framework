@@ -1,0 +1,71 @@
+{
+ "emoji": "🥵",
+ "ideation": "This sequence aims to express the feeling of being hot and overwhelmed by having the robot fan itself with its hands. The sequence starts with both arms slightly raised and palms facing forward, as if feeling the heat. Then, one arm moves to wipe the face, while the other arm remains raised, indicating discomfort. Finally, both arms move in a fanning motion, mimicking trying to cool down. In the first frame, both arms are slightly raised with palms forward, as if sensing the surrounding heat. joint1 rotates both arms slightly outward, while joint2 pitches them forward. The wrists are adjusted to ensure the palms face forward. In the second frame, the left arm moves up towards the face, as if wiping sweat, while the right arm remains raised, emphasizing the feeling of being hot. joint1 rotates the left arm inward, while joint2 pitches it upward. The left wrist rotates inward so the palm faces the face. In the third frame, the left arm returns to the starting position, while the right arm begins to move in a fanning motion. joint1 rotates the right arm outward, while joint2 pitches it downward. The right wrist rotates to keep the palm facing forward. In the fourth frame, the left arm joins the fanning motion, moving downward and slightly outward. joint1 rotates the left arm outward, while joint2 pitches it downward. The left wrist rotates to keep the palm facing forward. In the final frame, both arms continue the fanning motion, mimicking trying to cool down. joint1 for both arms rotates slightly inward, while joint2 pitches them upward, and the wrists rotate to keep the palms facing forward. The slight variations in arm and wrist positions between frames add a touch of realism to the gesture, making it feel less mechanical and more expressive of the feeling of being overwhelmed by heat.",
+ "frames": [
+  {
+   "beat": "arms slightly raised, palms out, feeling the heat",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "left arm moves to wipe sweat from the face",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "left arm returns, right arm begins to fan down",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": -20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms fan down, trying to cool off",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": -20.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms continue fanning, seeking relief from the heat",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

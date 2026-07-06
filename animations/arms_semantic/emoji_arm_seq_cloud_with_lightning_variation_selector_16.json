@@ -1,0 +1,46 @@
+{
+ "emoji": "🌩️",
+ "ideation": "This sequence will depict a robot reacting to a sudden thunderstorm, using exaggerated arm movements to convey surprise and perhaps a little fear. The animation will start with arms at the sides, then transition to arms raised in a defensive posture, and finally end with a slight shiver or tremor.  The use of both arms will amplify the emotional impact. I will use the existing examples as a guide for creating realistic and expressive movements for the robot.",
+ "frames": [
+  {
+   "beat": "arms hang low, anticipating the storm",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms shoot up defensively, startled by thunder",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 70.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm lowers slightly, bracing for impact",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms tremble, caught in the storm's fury",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 70.0,
+     "wrist": 45.0
+    }
+   }
+  }
+ ]
+}

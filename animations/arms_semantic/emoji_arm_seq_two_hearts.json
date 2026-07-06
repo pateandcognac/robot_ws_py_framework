@@ -1,0 +1,56 @@
+{
+ "emoji": "💕",
+ "ideation": "This sequence aims to express the affection and warmth symbolized by two hearts using gentle, flowing arm movements.  The robot will bring its arms together in front of its chest, then open them outward in a gesture of embrace, before returning to the initial position.  This mimics a hugging motion, conveying love and care. In the first frame, both arms are positioned slightly outward and angled upward, with palms facing inward, as if preparing for a hug.  joint1 is rotated slightly outward, and joint2 pitches the arms upward. The wrists are kept neutral. This creates a sense of anticipation and openness.  In the second frame, the arms come closer together in front of the chest, palms still facing inward. joint1 rotates inward, bringing the arms closer to the body, while joint2 adjusts to maintain the upward angle. The wrists remain neutral. This represents the embrace, the core of the affectionate gesture.  In the third frame, the arms open outward, as if extending the embrace to the world. joint1 rotates outward, and joint2 pitches the arms slightly downward. The wrists turn slightly outward, adding to the expansive feeling. This symbolizes sharing the love and warmth. In the fourth frame, the arms begin to return to the initial position. joint1 rotates inward, and joint2 pitches the arms upward. The wrists return to neutral. This creates a sense of closure while maintaining the warmth of the gesture.  Finally, in the fifth frame, the arms return to the starting position, completing the cycle. This allows for a seamless transition back to the beginning or into another gesture.",
+ "frames": [
+  {
+   "beat": "arms open wide, ready for a warm embrace",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw closer, a gentle hug begins",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open outward, sharing the love",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to close, returning the warmth",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 50.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest open, affection lingers",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

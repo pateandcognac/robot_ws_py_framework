@@ -1,0 +1,56 @@
+{
+ "emoji": "🪑",
+ "ideation": "This animation sequence depicts a robot interacting with a chair, starting from a neutral position and ending with the robot appearing to sit down.  The robot will use both arms to gently lower itself onto the chair, suggesting a careful and controlled movement. The lack of elbows in the robot's arm design will be considered in the sequence by using the shoulder joints to create a smooth, arc-like motion. The animation will focus on creating a realistic representation of the sitting action, while keeping the movement fluid and not stiff or mechanical.  The first frame will be the robot in a neutral position, arms at its sides. The next frame will show the robot's arms moving forward and downward, as if reaching for the chair. The third frame depicts the robot's arms lowering as if to support its weight. The fourth frame shows the arms continuing to lower and move slightly to the sides as the robot settles onto the chair. The final frame shows the robot in a seated position with its arms resting gently by its sides. ",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, a moment of stillness",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach forward and down, preparing to sit",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower further, supporting the descent",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms guide the body down onto the chair",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest gently at the sides, seated",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

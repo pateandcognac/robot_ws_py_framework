@@ -1,0 +1,51 @@
+{
+ "emoji": "🛣️",
+ "ideation": "This animation sequence will depict a robot enthusiastically pointing toward a motorway, perhaps giving directions or excitedly expressing a road trip plan.  The animation will primarily use the right arm, with the left arm remaining in a neutral position for contrast.  The sequence will emphasize the pointing gesture, combining arm extension and a clear wrist orientation. The first frame will start with the right arm slightly raised, getting ready to point. The second frame will show a clear pointing gesture, with the right arm fully extended and the wrist angled downward. The third frame will have the robot's arm slightly lowered to signify a completed action.",
+ "frames": [
+  {
+   "beat": "right arm lifts, ready to indicate the way",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the arm extends, pointing firmly forward",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the arm lowers slightly, the direction given",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 25.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

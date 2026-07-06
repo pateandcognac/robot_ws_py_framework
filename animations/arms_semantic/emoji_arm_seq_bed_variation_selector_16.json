@@ -1,0 +1,36 @@
+{
+ "emoji": "🛏️",
+ "ideation": "This sequence mimics someone getting ready for bed. It starts with arms raised in preparation to lie down, then transitions to a relaxed pose with arms at the sides, suggesting comfort and rest.  The final frame shows arms gently resting on the sides, conveying peaceful sleep.  The sequence uses slight variations in joint angles to avoid appearing stiff or robotic.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, ready to settle down",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower gently, preparing for rest",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rest softly at the sides, asleep",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "emoji": "🔮",
+ "ideation": "This sequence depicts a robot carefully examining a crystal ball, starting with arms at rest and culminating in a pose of focused observation.  The movement should be deliberate and precise, reflecting the mystical nature of the crystal ball.  I will use the examples to guide my joint movements, ensuring a smooth transition between frames while maintaining a sense of careful interaction with the object. Frame 1 shows the robot with arms at its side, in a neutral position.  In frame 2, the right arm moves forward, positioning the hand above the crystal ball as if to gently cradle it.  In frame 3, the left arm moves to support the right arm, adding to the carefulness of the action. Frame 4 maintains the support while slightly adjusting the angle of observation. Finally, in frame 5, the robot slowly returns to its resting position, ending the observation.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready to divine",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, hovering over the crystal",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm joins, supporting the careful observation",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms adjust slightly, peering into the future",
+   "arms": {
+    "right": {
+     "joint1": -30.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the vision fades",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

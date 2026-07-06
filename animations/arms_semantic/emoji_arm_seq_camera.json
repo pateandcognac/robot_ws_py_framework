@@ -1,0 +1,66 @@
+{
+ "emoji": "📷",
+ "ideation": "This sequence simulates the action of framing a shot with a camera.  The robot will mimic holding a camera to its eye and then smoothly moving it to take the picture. The left arm will act as a support for the camera, while the right arm will do the framing and shooting motion. I'll leverage the two-joint system to achieve natural-looking movements, referencing earlier examples to ensure realistic joint angles and transitions. The first frame shows the robot with its left arm slightly raised to simulate supporting a camera, with the right arm slightly raised and the wrist slightly rotated to mimic holding a camera. The second frame will show the right arm moving to the robot's eye, with the wrist rotated to simulate pointing the camera, and the left arm slightly adjusted to support the camera. In the third frame, the right arm will be fully extended to take the picture; the left arm will remain in a supporting position. In the fourth frame, the robot will slowly return to the initial pose. This sequence will capture the act of taking a photograph with realism and expressiveness.",
+ "frames": [
+  {
+   "beat": "arms hold an imaginary camera, ready to shoot",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "right arm brings the camera to the eye, framing the shot",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 75.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends to capture the moment, left arm supports",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, ready position",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": 50.0,
+     "wrist": 20.0
+    }
+   }
+  }
+ ]
+}

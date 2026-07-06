@@ -1,0 +1,71 @@
+{
+ "emoji": "🕸️",
+ "ideation": "This animation sequence depicts the robot carefully and cautiously creating a spiderweb.  The sequence emphasizes the precision and delicate nature of the task. Frame 1 shows both arms extended, palms facing each other as if holding an imaginary web-spinning tool, preparing to begin. Frame 2 shows the right arm moving slightly upward and forward, as if carefully placing the first strand of the web. Frame 3 shows both arms working together, moving in a circular motion, creating the web's structure. Frame 4 shows the arms returning to a more relaxed position, as if the web is almost complete. Frame 5 shows both arms at rest, the web is finished, and the robot admires its creation. The robot's movements are designed to be slow and deliberate, reflecting the care and attention required for web-spinning.",
+ "frames": [
+  {
+   "beat": "arms held out, ready to spin",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm carefully places the first thread",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms weave the web in a delicate circle",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to relax as the web nears completion",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the finished web is admired, arms at rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

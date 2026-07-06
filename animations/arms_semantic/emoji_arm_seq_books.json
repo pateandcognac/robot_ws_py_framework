@@ -1,0 +1,56 @@
+{
+ "emoji": "📚",
+ "ideation": "This animation sequence will show the robot gently lifting a book from a table, holding it, and then placing it back down.  The movement will be slow and deliberate to emphasize the careful handling of the book. Since the robot doesn't have hands, the 'holding' action will be implied by bringing both arms up to shoulder height and slightly inward as if cradling something. The arms will move in unison for a more natural look. Frame 1 will show the arms at rest. Frame 2 will show the arms beginning to lift. Frame 3 will show the arms holding the implied book. Frame 4 will show the arms lowering the implied book. Frame 5 will show the arms back at rest.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to pick up",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lift the book upwards",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms cradle the book at shoulder height",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower the book gently back down",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "💬",
+ "ideation": "This animation sequence will show the robot cupping its hands around its mouth as if speaking quietly or whispering.  The movement will be gentle and intimate, focusing on bringing the hands towards the mouth and then slightly pulling them away.  The sequence will use both arms symmetrically.  I will reference existing examples to ensure the arm movements are fluid and natural, given the robot's two-joint arm structure. Frame 1 will have the arms relaxed at the sides. Frame 2 will show the arms starting to raise and move towards the mouth. Frame 3 will show the hands cupping the mouth. Frame 4 will show the hands beginning to pull away. Frame 5 will return the arms to a relaxed position.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift and turn inward, approaching the mouth",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "hands cup gently around the mouth, ready to speak",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 15.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "hands pull back slightly, the whisper fades",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -15.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a resting, quiet state",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

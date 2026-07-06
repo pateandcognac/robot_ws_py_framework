@@ -1,0 +1,66 @@
+{
+ "emoji": "🤽‍♂️",
+ "ideation": "This sequence simulates the action of a water polo player, focusing on the arm movements involved in throwing the ball. The left arm will primarily act as a counterbalance, while the right arm will execute the throw.  I will strive for a natural, dynamic sequence that captures the energy of the sport.  The robot's lack of elbows will require creative use of the shoulder joints to approximate the throwing motion. I will reference the existing examples to ensure smooth transitions and to keep the arm movements within the robot's capabilities.",
+ "frames": [
+  {
+   "beat": "arms poised for action, right arm ready",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": -20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "right arm swings forward, launching the throw",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 40.0,
+     "wrist": 40.0
+    }
+   }
+  },
+  {
+   "beat": "right arm follows through, left arm balances",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -50.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a resting state",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

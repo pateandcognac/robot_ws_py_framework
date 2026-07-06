@@ -1,0 +1,56 @@
+{
+ "emoji": "🍻",
+ "ideation": "This animation sequence simulates the act of clinking beer mugs.  The robot will raise both arms, slightly angled outward, to bring the mugs (simulated by the robot's hands) together for a celebratory clink. The movement will be smooth yet expressive, focusing on the key moments of the action.  The arms will start in a relaxed position, rise to the clinking point, briefly hold the clink, and then return to a relaxed position. I will leverage the examples to ensure natural movement and avoid jerky motions. ",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for a toast",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift outward, mugs raised high",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the mugs meet with a satisfying clink",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, celebrating the moment",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the toast concluded",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

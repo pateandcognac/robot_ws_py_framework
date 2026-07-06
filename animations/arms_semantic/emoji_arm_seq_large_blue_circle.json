@@ -1,0 +1,56 @@
+{
+ "emoji": "🔵",
+ "ideation": "This animation sequence will depict a robot gently cradling a blue circle, representing care and protection.  The movement will be slow and deliberate, emphasizing the gentle nature of the interaction. The robot will use both arms to create a supportive cradle for the blue circle, which is implied.  The sequence will focus on the smooth transition between frames, highlighting the robot's careful handling of the circle. The robot will not actually hold a blue circle, but instead will show the pose that would be used to cradle such an object. Frame 1 will start with arms slightly open and tilted to the side. Frame 2 will show the arms coming together to make a cradle shape. Frame 3 shows the arms slightly lower in the cradle. Frame 4 shows the hands closing slightly more. Frame 5 will show the arms returning to the starting position. ",
+ "frames": [
+  {
+   "beat": "arms open slightly, tilted outward gently",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms move inward, beginning to form a cradle",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -30.0,
+     "wrist": -60.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower, deepening the protective hold",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -60.0,
+     "wrist": -75.0
+    }
+   }
+  },
+  {
+   "beat": "hands close slightly, securing the precious object",
+   "arms": {
+    "both": {
+     "joint1": 50.0,
+     "joint2": -70.0,
+     "wrist": -80.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a resting, protective pose",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

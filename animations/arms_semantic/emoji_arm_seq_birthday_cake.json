@@ -1,0 +1,56 @@
+{
+ "emoji": "🎂",
+ "ideation": "This sequence will animate a wish-making gesture.  The arms will start at the sides, rise to make a wish, and then return to a relaxed state.  We'll use slight variations in arm position and wrist angle to make the motion feel natural and expressive. The robot's lack of elbows will be accounted for by using the shoulder joints to create the upward arc of the wish-making movement.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready for the wish",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to rise together, gathering energy",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach up, hands turning to make the wish",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 70.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, the wish is made",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the wish is sent",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

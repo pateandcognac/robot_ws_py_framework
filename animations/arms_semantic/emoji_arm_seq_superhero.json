@@ -1,0 +1,66 @@
+{
+ "emoji": "🦸",
+ "ideation": "This sequence depicts a superhero pose, starting with arms at the sides and culminating in a confident, powerful stance.  The animation will emphasize a sense of strength and readiness.  The left arm will move into a 'power' pose, while the right arm will remain slightly more relaxed, implying a readiness to act.  The robot's lack of elbows will be compensated for by exaggerated shoulder movements and wrist positioning.  I will utilize both joint1 (roll) and joint2 (pitch) to create dynamic movements, and wrist adjustments will enhance the expressiveness of the pose. Frame 1 will show arms at rest, Frame 2 will initiate the movement of the left arm, Frame 3 will show the left arm in the 'power' pose, and Frame 4 will show the final pose with both arms.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready for action",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm begins to rise, a determined gesture",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm strikes a powerful heroic pose",
+   "arms": {
+    "left": {
+     "joint1": -60.0,
+     "joint2": 60.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm joins, a confident heroic stance",
+   "arms": {
+    "left": {
+     "joint1": -60.0,
+     "joint2": 60.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

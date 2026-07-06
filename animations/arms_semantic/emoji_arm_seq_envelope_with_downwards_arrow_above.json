@@ -1,0 +1,66 @@
+{
+ "emoji": "📩",
+ "ideation": "This animation sequence depicts the robot carefully holding and presenting an envelope, emphasizing the message's importance. The robot's left arm will provide a stable base while the right arm delicately holds the envelope. The sequence begins with the left arm resting on the hip to provide stability, while the right arm extends to receive the envelope. In the next frame, the right arm moves to grasp the envelope near the center, with the left arm holding it securely. The next frame shows the robot bringing the envelope toward its body, implying a careful handling of the message. Finally, the robot presents the envelope forward, emphasizing the delivery of important information.",
+ "frames": [
+  {
+   "beat": "left arm rests on hip, right arm opens to receive",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -75.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right hand grasps the envelope, left arm holds steady",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -75.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the envelope closer, a moment of consideration",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -75.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "presenting the envelope forward with care",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -75.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

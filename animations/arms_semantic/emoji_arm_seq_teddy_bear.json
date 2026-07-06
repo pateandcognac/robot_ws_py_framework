@@ -1,0 +1,46 @@
+{
+ "emoji": "🧸",
+ "ideation": "This animation sequence will depict a gentle, embracing gesture, suitable for a teddy bear. The robot will extend both arms outward and slightly downward, as if offering a hug or inviting a cuddle. The movement will be slow and deliberate, reflecting the calm and comforting nature of a teddy bear.  The palms will face upward to add to the welcoming nature of the pose. Frame 1 will start with arms at the sides, frame 2 will show arms extending outward, frame 3 will show arms slightly lowered, and frame 4 will show arms returning slightly inward, ending the sequence with a slight relaxation of the arms. This sequence should highlight the gentle, comforting nature of a teddy bear.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready for a hug",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend outward, palms up in welcome",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, a gentle embrace offered",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -60.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle inward, a comforting cuddle",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -75.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

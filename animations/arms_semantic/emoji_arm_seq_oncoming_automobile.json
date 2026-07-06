@@ -1,0 +1,46 @@
+{
+ "emoji": "🚘",
+ "ideation": "This animation sequence simulates the action of someone bracing themselves for an oncoming car, perhaps while crossing the street. The arms will move in a defensive, protective manner. The animation will use both arms to create a sense of urgency and caution.  The animation will start with the arms slightly raised and end with arms raised higher as if bracing for impact. The first frame should show a neutral starting position with both arms slightly raised. The second frame will show both arms raised higher and angled slightly forward in a protective posture. The third frame will show the arms reaching their peak height and angle as if bracing for impact. The fourth frame will show the arms slightly lowered but still in a protective position.",
+ "frames": [
+  {
+   "beat": "arms slightly raised, ready to cross",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift higher, a cautious forward brace",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach peak height, bracing for impact",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, still in defensive posture",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 50.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "emoji": "🎷",
+ "ideation": "This sequence simulates playing a saxophone. The left arm holds the saxophone while the right arm moves up and down as if playing keys. In the first frame, the left arm is positioned as if holding the saxophone, with joint1 rotated inward and joint2 pitched slightly upward. The wrist is rotated inward to mimic holding the instrument. The right arm is positioned slightly away from the body, with joint1 rotated outward and joint2 pitched downward, ready to 'play.' In the second frame, the right arm moves slightly upward, as if pressing a key. joint2 increases its pitch, while the left arm remains steady. By the third frame, the right arm moves back down, returning to its starting position. joint2 decreases its pitch, simulating the release of a key. In the fourth frame, the right arm moves even higher, as if reaching for a different note. joint2 pitches upward further, while the left arm remains in position. Finally, in the fifth frame, the right arm returns to its initial position, completing the 'playing' motion.",
+ "frames": [
+  {
+   "beat": "left arm holds the sax, right hand poised to play",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand moves up, pressing a key",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand returns down, releasing the key",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand reaches higher for a new note",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand settles back, finishing the phrase",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

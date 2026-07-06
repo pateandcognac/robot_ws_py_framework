@@ -1,0 +1,81 @@
+{
+ "emoji": "🖱️",
+ "ideation": "This sequence simulates the act of using a computer mouse.  The animation will focus on the right hand, as it's the dominant hand for most mouse users. The left arm will remain in a relaxed, neutral position to provide contrast and balance. The sequence will show the right hand moving the mouse in a smooth, controlled manner.  I will reference the existing examples to ensure the range of motion and fluidity of the movement are realistic for the robot's arm structure. Frame 1 will show a neutral starting position. Frame 2 will show the right arm moving the mouse slightly to the right. Frame 3 will show the right arm moving the mouse back to the center. Frame 4 will show a slight downward movement of the mouse. Frame 5 will show the arm returning to the neutral position.",
+ "frames": [
+  {
+   "beat": "both arms rest, ready to click",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm nudges the mouse to the right",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -70.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "right arm slides the mouse back to center",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm moves the mouse down slightly",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest, click complete",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "☃️",
+ "ideation": "This animation sequence depicts a snowman being built.  The robot starts with arms at its side, then scoops, then places, then pats the snowman. The final frame shows the robot admiring its work.  The movements are exaggerated for comedic effect.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to build",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm scoops up imaginary snow",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 90.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms raise and pat the new snow",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pats the snowman gently",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "robot admires its finished snowman",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

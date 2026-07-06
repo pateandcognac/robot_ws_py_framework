@@ -1,0 +1,81 @@
+{
+ "emoji": "🤪",
+ "ideation": "This sequence aims to capture the playful, silly energy of the 🤪 emoji.  The robot will make dynamic, exaggerated movements with its arms, incorporating asymmetry and quick shifts in direction to emphasize the zany expression. The focus is on creating a sense of uncontrolled, joyful movement. In the first frame, both arms are raised high above the head, with the left arm slightly bent and the right arm extended straight up. The left wrist is turned inward, while the right wrist is neutral, creating an unbalanced, energetic pose.  This sets the stage for the subsequent erratic movements. The second frame sees the left arm swinging down and across the body, as if the robot is about to throw something, while the right arm remains raised, but bends slightly at the 'elbow' (joint2). This creates a strong diagonal line across the body, adding to the sense of dynamic motion.  The third frame has the right arm swinging down and across the body, mirroring the previous movement of the left arm, while the left arm returns upward in a slightly different position than before. This alternation of arm positions contributes to the feeling of playful chaos.  In the fourth frame, the left arm extends straight out to the side, while the right arm bends at the 'elbow', with the 'hand' (wrist) near the face. This asymmetrical pose further enhances the impression of zany, uncontrolled movement. Finally, in the fifth frame, both arms return to a position similar to the first frame, but with slight variations in angle and wrist rotation, completing the cycle of energetic movement and preparing for a potential repeat of the sequence.",
+ "frames": [
+  {
+   "beat": "both arms shoot up, a wild, unbalanced start",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": 70.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm swings down, right arm stays high",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm sweeps down, left arm rises again",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 80.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 70.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms flail outwards in a crazy, asymmetrical pose",
+   "arms": {
+    "left": {
+     "joint1": -90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return high, ready for more silly energy",
+   "arms": {
+    "left": {
+     "joint1": -35.0,
+     "joint2": 75.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": 90.0,
+     "wrist": 45.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "emoji": "♦️",
+ "ideation": "This sequence will depict a robot holding a diamond shape, which is implied by the emoji. The animation will focus on the robot's arms carefully positioning themselves to hold this imaginary diamond.  The robot does not have hands, so we'll interpret this as cradling the diamond shape.  The movement will be slow and deliberate to emphasize the preciousness of the diamond. Frame 1 will show the arms starting in a neutral position.  Frame 2 will show the arms beginning to move towards each other, preparing to hold the diamond. Frame 3 will show the arms meeting in the center, with the wrists slightly angled to cradle the imaginary diamond. Frame 4 will show the arms adjusting their position to maintain the diamond shape. Frame 5 will show the arms gently returning to a neutral position, as if carefully setting the diamond down.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lift and open, cradling air",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms meet in the center, forming a diamond shape",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 30.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms adjust slightly, holding the precious gem",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 35.0,
+     "wrist": 25.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 35.0,
+     "wrist": -25.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently lower, setting the diamond down",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

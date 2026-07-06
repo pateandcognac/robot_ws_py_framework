@@ -1,0 +1,71 @@
+{
+ "emoji": "🫔",
+ "ideation": "This animation sequence depicts the robot carefully preparing a tamale.  The robot's movements should be deliberate and precise, reflecting the care involved in handling this delicate food item.  The sequence uses both arms, with the left arm supporting the tamale while the right arm performs actions like spreading masa or adding fillings.  The arms are positioned to maintain a safe distance from the tamale, avoiding any accidental damage. The sequence will start with both arms at the sides, then the left arm will pick up the tamale, and then the right arm will add fillings or spread masa. Finally, the robot will place the tamale down, ending with both arms at the sides again. ",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to prepare",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm gently lifts the tamale base",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm carefully adds the filling",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm tucks the tamale, right arm rests",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to sides, tamale prepared",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

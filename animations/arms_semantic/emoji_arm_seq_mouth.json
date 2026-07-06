@@ -1,0 +1,81 @@
+{
+ "emoji": "👄",
+ "ideation": "This sequence mimics the act of applying lipstick or gloss, emphasizing a sensual and playful expression. The animation will focus on the robot's arms, using expressive movements to convey the action. The left arm will hold a hypothetical lipstick tube, while the right arm will delicately maneuver near the mouth. I'll use the existing examples as a guide for creating smooth transitions between frames. In the first frame, the left arm extends slightly forward and downward, holding the lipstick tube. The right arm rests at the side. In the second frame, the right arm moves upward, approaching the mouth. The left arm remains mostly in place. In the third frame, the right arm gently touches the lips in a suggestive manner. The left arm remains in position. In the fourth frame, the right arm moves away from the mouth, and the left arm also retracts slightly. The final frame returns both arms to their initial positions.",
+ "frames": [
+  {
+   "beat": "left arm holds lipstick, right arm rests down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts, approaching the lips playfully",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right hand gently touches the mouth, a soft application",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 50.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms retract slightly as the gesture concludes",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, waiting pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

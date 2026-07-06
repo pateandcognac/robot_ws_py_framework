@@ -1,0 +1,81 @@
+{
+ "emoji": "🤽‍♀️",
+ "ideation": "This sequence simulates the action of a woman playing water polo, focusing on the arm movements involved in throwing or passing the ball. The animation will emphasize the dynamic motion of the arms, taking into account the robot's two-joint arm structure.  The left arm will primarily act as a counterbalance, providing stability while the right arm executes the throwing motion.  I'll be mindful to keep transitions smooth and expressive, referencing earlier examples for guidance. In frame one, both arms are positioned neutrally at the sides, ready for action. The right arm is slightly back, coiled like a spring, ready to launch the ball.  Joint1 is slightly inward, and joint2 is at about -45 degrees. The left arm hangs down straight. In frame two, the right arm starts its motion, extending outward. Joint1 rotates outward, while joint2 angles upward, creating a powerful arc. The left arm extends slightly outward for balance. In frame three, the right arm extends fully, mimicking the release of the ball. Joint1 is fully outward, joint2 is almost vertical. The left arm is now angled back slightly for more counterbalance. In frame four, the right arm starts to return to its neutral position, having completed the throw. Joint1 begins to swing back inward, and joint2 angles downward, mimicking the follow-through after the throw. The left arm moves to a neutral position. In frame five, the robot returns to the neutral position, arms at sides. This demonstrates a complete throwing motion.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready for the throw",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm coils back, left arm balances",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm snaps forward, releasing the ball",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -70.0,
+     "joint2": 75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm follows through, left arm stabilizes",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, neutral pose",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

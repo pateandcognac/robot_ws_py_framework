@@ -1,0 +1,66 @@
+{
+ "emoji": "👱‍♀️",
+ "ideation": "This animation sequence will depict a woman gently touching her hair, a common action associated with self-care and grooming.  The sequence will focus on the right arm, as it's the most natural arm to use for this action. The left arm will remain relaxed at the side for contrast. The movement will be slow and deliberate, reflecting a calm and peaceful demeanor.  The animation will use a combination of joint1 (shoulder roll) and joint2 (shoulder pitch) to create a natural arc of movement. The wrist will also be subtly adjusted to enhance the pose's realism and expressiveness.",
+ "frames": [
+  {
+   "beat": "right arm rests by the side, relaxed",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts, hand reaching towards the hair",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "fingers gently brush through the hair, a soft touch",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest, hair neatly in place",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "😆",
+ "ideation": "This sequence aims to capture the exuberant laughter conveyed by the 😆 emoji, using broad, dynamic arm movements. The robot will begin with arms raised high, then swing them downwards and slightly outwards in a gesture of unrestrained mirth.  In the first frame, both arms are raised high above the head in a 'Y' pose, expressing the initial burst of laughter. Joint1 is rotated slightly inward, and joint2 pitches the arms upward to 90 degrees. The wrists are neutral, keeping the palms facing slightly forward. In the second frame, the arms swing downwards and outwards, mimicking a hearty laugh. Joint1 rotates outwards, and joint2 pitches the arms downwards to -45 degrees. The wrists rotate slightly outwards to enhance the expressive movement. In the third frame, the arms swing back upwards but not as high as the initial position, simulating the continued laughter. Joint1 rotates slightly inwards, and joint2 pitches the arms upwards to 45 degrees. The wrists remain slightly outwards. In the fourth frame, the arms swing downwards and outwards again, mirroring the second frame but with a slightly reduced range of motion. Joint1 rotates outwards, and joint2 pitches the arms downwards to -20 degrees. The wrists rotate slightly inwards.  In the final frame, the arms settle into a relaxed position at the sides, suggesting the laughter is subsiding but the joyful feeling remains. Joint1 is at a neutral 0 degrees, and joint2 pitches the arms downwards to -70 degrees. The wrists are neutral. This sequence creates a dynamic and expressive representation of laughter, reflecting the energy of the 😆 emoji.",
+ "frames": [
+  {
+   "beat": "arms thrown high in explosive laughter",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing down and out with hearty mirth",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise again, laughter continues joyfully",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing down and out, a bit less intense",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -20.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle, the joyful echo remains",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

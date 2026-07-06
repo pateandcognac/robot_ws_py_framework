@@ -1,0 +1,56 @@
+{
+ "emoji": "🥫",
+ "ideation": "This animation sequence shows the robot carefully holding a can of food.  The movement will be slow and deliberate, emphasizing care.  The robot will use both arms to cradle the can, suggesting a gentle and protective action. Frame 1 shows the robot's arms slightly raised, preparing to receive the can. Frame 2 shows the can being gently placed in the robot's arms. Frame 3 shows the robot holding the can steadily. Frame 4 shows the robot slowly lowering the can.  Frame 5 shows the can resting on a surface. This sequence conveys careful handling and respect for the food.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open wider to cradle the can",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms carefully hold the can steady",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lower the can gently",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms release the can to rest on a surface",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "emoji": "🐩",
+ "ideation": "This animation sequence will depict a playful, almost dancing movement, reflecting the energetic nature of poodles. The robot will use both arms to create a sense of movement and joy.  The sequence will be short, capturing three distinct poses. Frame one shows a neutral pose to set the stage. Frame two begins the 'dance' with a distinct arm movement. Frame three finishes the motion.",
+ "frames": [
+  {
+   "beat": "arms hang loosely, ready for a poodle's prance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing out and up in a joyful, bouncy step",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms cross and dip in a playful, energetic flourish",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 45.0
+    }
+   }
+  }
+ ]
+}

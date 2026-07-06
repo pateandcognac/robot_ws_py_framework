@@ -1,0 +1,66 @@
+{
+ "emoji": "🏉",
+ "ideation": "This sequence simulates the action of a rugby player preparing to pass or receive the ball. It focuses on the dynamic movement of the arms, mirroring the energy and anticipation involved in the sport. The animation will use a combination of arm movements that suggest readiness and engagement, using the two-joint system to create a natural flow. In the first frame, both arms are slightly raised and angled outward, suggesting a defensive posture. The wrists are turned slightly inward, palms facing each other. This posture conveys anticipation and readiness to receive the ball. The second frame shows the left arm extending forward and slightly upward, while the right arm remains slightly raised and angled. The left wrist rotates outward, as if reaching for the ball. This movement mimics the action of a player reaching for a pass. In the third frame, both arms move toward the center of the body, as if the player is securing the ball. The wrists are turned inward, palms facing each other. This posture depicts the action of receiving the ball and bringing it close to the body. The fourth frame shows the arms moving to a position ready to pass the ball. This frame mimics the action of a player preparing to pass the ball. The right arm is raised slightly upward, while the left arm moves to the side. The wrists are turned slightly outward, palms facing outward. Finally, in the fifth frame, both arms are lowered to a neutral position, suggesting the completion of the pass. The wrists return to a neutral position, and the posture conveys relaxation. This sequence uses a combination of arm movements that mimic the dynamic action of a rugby player receiving and passing the ball.",
+ "frames": [
+  {
+   "beat": "arms held ready, poised for action",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches out, anticipating the pass",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 40.0,
+     "wrist": 40.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "both arms pull in, securing the ball",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": -40.0
+    }
+   }
+  },
+  {
+   "beat": "arms shift, preparing to launch the ball",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 30.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower, the play is complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

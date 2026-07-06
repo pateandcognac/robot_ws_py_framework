@@ -1,0 +1,36 @@
+{
+ "emoji": "🥞",
+ "ideation": "This sequence simulates the act of eagerly anticipating and then enjoying pancakes. It starts with both arms slightly raised, palms up, as if waiting for the pancakes to arrive. Then, the arms move downward in a scooping motion, as if the robot is taking a serving of pancakes. Finally, the arms bring the pancakes up to the mouth level with a slight upward tilt and a more relaxed position, showing the robot is enjoying the pancakes. The movement conveys a sense of happiness and anticipation, reflecting the deliciousness of pancakes.",
+ "frames": [
+  {
+   "beat": "arms lift, palms up, waiting for pancakes",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms scoop down, gathering a delicious stack",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "pancakes brought up, a happy bite is enjoyed",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

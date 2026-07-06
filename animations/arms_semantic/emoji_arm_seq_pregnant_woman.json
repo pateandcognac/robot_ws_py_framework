@@ -1,0 +1,56 @@
+{
+ "emoji": "🤰",
+ "ideation": "This sequence aims to capture the gentle, protective posture often associated with pregnancy.  The animation will focus on a slight cradling motion of the hands across the abdomen, emphasizing the nurturing aspect.  The movements will be slow and deliberate, avoiding any abrupt or jerky motions.  The robot's arm structure will be considered carefully to create a natural-looking gesture, even with the limitations of lacking elbows. In frame 1, both arms will start in a relaxed, neutral position, arms slightly away from the body, with palms facing inward, mirroring the restful nature of early pregnancy. Frame 2 will gently bring both arms up to the abdomen, the motion being slow and deliberate, mirroring a protective gesture.  In frame 3, the hands will rest gently on the abdomen, with a slight inward curve of the arms, emphasizing the gentle cradling motion. The wrists will be slightly angled downward to simulate the soft press of hands against the abdomen. Frame 4 will be a brief pause, the arms maintaining the gentle cradling gesture, this pause would allow the animation system to smoothly transition to the next frame. Frame 5 will reverse the motion of frame 2, gracefully returning both hands to the neutral position of frame 1. The slight sway of the hands and the consistent focus on a gentle, protective gesture convey the tenderness of this phase.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, relaxed and neutral",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently lift and move inward",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "hands cradle the abdomen softly",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "a gentle pause, holding the protective pose",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly return to a resting state",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "emoji": "🔔",
+ "ideation": "This animation sequence simulates the action of ringing a bell.  The robot will use both arms to mimic the motion of holding and ringing a bell.  The sequence will emphasize the upward motion of the bell-ringing action, followed by a return to a neutral position. The arms are straight and lack elbows, so the movements will be simpler than a human's.  The left arm will hold the bell steady, with the right arm performing the ringing action.  The animation is designed to be short, concise, and to the point, reflecting the quick action of ringing a bell.",
+ "frames": [
+  {
+   "beat": "arms held steady, ready to ring",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm swings the bell upward",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the bell settles back into place",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

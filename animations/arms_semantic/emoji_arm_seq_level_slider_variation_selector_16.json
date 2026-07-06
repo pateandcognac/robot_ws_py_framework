@@ -1,0 +1,56 @@
+{
+ "emoji": "🎚️",
+ "ideation": "This animation sequence simulates adjusting a level slider. The robot will use both arms to carefully and precisely interact with the slider.  The movement will be slow and deliberate, emphasizing the precise nature of the adjustment. Frame 1 will show both arms extended toward the slider, palms facing each other. Frames 2 and 3 will show one arm moving to adjust the slider while the other remains in place as a support or brace. Frame 4 will show the hands returning to a neutral position. This sequence will be composed of 4 frames to capture the movement of adjusting the slider and then returning to a neutral position.",
+ "frames": [
+  {
+   "beat": "arms extend forward, palms ready to adjust",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "right hand moves to precisely adjust the level",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm braces as the right fine-tunes the setting",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a neutral, resting position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

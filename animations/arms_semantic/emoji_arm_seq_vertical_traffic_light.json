@@ -1,0 +1,81 @@
+{
+ "emoji": "🚦",
+ "ideation": "This sequence aims to mimic a traffic light's signal using the robot's arms. The left arm represents the main pole of the traffic light, remaining stationary, while the right arm simulates the changing lights. Given the robot's lack of colored lights, the animation focuses on positioning the right arm at different heights to represent red, yellow, and green signals. Throughout the sequence, I'll maintain distinct positions for each 'light' change, ensuring clear transitions between frames. In the first frame, the right arm is raised high, representing the red light. The left arm remains low and steady, acting as the traffic light's pole. The right wrist is neutral, with the palm facing forward, as if signaling 'stop.' In the second frame, the right arm moves to a middle position, signifying the yellow light. The left arm remains stationary. The right wrist angles slightly, symbolizing caution. By the third frame, the right arm lowers, mimicking the green light. The right wrist returns to neutral, as if signaling 'go.' The left arm continues to provide a stable base. In the fourth frame, the right arm returns to the middle position, representing the yellow light again. The wrist angles slightly, consistent with the cautionary nature of a yellow light. Finally, in the fifth frame, the right arm moves back to the highest position, symbolizing the red light once more, completing the cycle. The left arm remains stationary throughout, ensuring the animation focuses on the 'light' changes.",
+ "frames": [
+  {
+   "beat": "left arm steady, right arm high for red light",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers to yellow, wrist angles with caution",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "right arm drops to green, signaling to go",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm rises to yellow again, a moment of pause",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to high red, cycle complete",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

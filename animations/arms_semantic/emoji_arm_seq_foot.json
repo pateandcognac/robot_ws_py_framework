@@ -1,0 +1,56 @@
+{
+ "emoji": "🦶",
+ "ideation": "This sequence will show the robot mimicking the act of carefully examining its own feet.  The movement will be slow and deliberate, focusing on the detail of the inspection.  I'll use a combination of joint movements to create a realistic portrayal of someone looking at their feet. Frame 1 will start with the robot's arms relaxed at its sides. Frame 2 will show the robot bending down slightly by moving both arms downward and inward. Frame 3 will have the robot's arms positioned as if it is gently touching its feet. Frame 4 will show the robot lifting its hands slightly, as if it's finished inspecting its feet. Frame 5 will show the robot returning to a relaxed position.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to inspect",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms bend inward and down, beginning the descent",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands reach down, gently touching the feet",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "hands lift slightly, the inspection is complete",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -10.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, neutral pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

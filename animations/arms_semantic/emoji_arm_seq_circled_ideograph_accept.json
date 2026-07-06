@@ -1,0 +1,46 @@
+{
+ "emoji": "🉑",
+ "ideation": "This animation sequence will depict a gesture of approval and acceptance, fitting the meaning of the 🉑 emoji.  The animation will involve bringing both hands together in front of the chest, a gesture that signifies agreement or approval in many cultures.  The movement will be slow and deliberate to emphasize the thoughtful nature of acceptance.  The final frame will show the hands briefly held together before returning to a neutral position. The robot's lack of fingers will be addressed by positioning the hands so they appear to gently press together, conveying a sense of careful consideration.",
+ "frames": [
+  {
+   "beat": "arms start relaxed at sides",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms sweep inward, hands meeting gently",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "hands press together in thoughtful approval",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, accepting pose",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

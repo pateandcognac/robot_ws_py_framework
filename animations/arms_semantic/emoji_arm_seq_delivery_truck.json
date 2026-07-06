@@ -1,0 +1,46 @@
+{
+ "emoji": "🚚",
+ "ideation": "This animation sequence simulates the action of carefully holding and delivering a package.  The robot will use both arms to cradle the imaginary package, then move it forward to simulate a delivery.  The movement should be deliberate and careful, reflecting the responsibility of handling a delivery.  The robot's arms, lacking elbows, will achieve this through a combination of shoulder rotations and slight wrist adjustments. I will check examples to ensure the movements are smooth and natural within the robot's capabilities. ",
+ "frames": [
+  {
+   "beat": "arms cradle a package close to the chest",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift the package slightly, preparing to move",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward, delivering the package carefully",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to sides, the delivery is complete",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

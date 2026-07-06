@@ -1,0 +1,81 @@
+{
+ "emoji": "👙",
+ "ideation": "This animation sequence will show the robot playfully adjusting a bikini top, conveying a lighthearted and slightly flirty mood.  The movement will be focused on the right arm, while the left arm remains mostly still for balance.  The sequence will use subtle movements to avoid appearing too mechanical. Frame 1 will show both arms relaxed at the sides. Frame 2 will have the right arm reaching up and slightly across the body towards the bikini top area. Frame 3 will show the right arm adjusting the bikini top with a slight inward wrist rotation. Frame 4 will show the right arm moving back to a relaxed position. Frame 5 will return both arms to their starting, relaxed position.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at sides",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches up and across playfully",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a gentle adjustment of the bikini top",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": 60.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to a relaxed pose",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle back down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

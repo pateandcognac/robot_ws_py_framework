@@ -1,0 +1,66 @@
+{
+ "emoji": "🚺",
+ "ideation": "This animation sequence aims to subtly convey the meaning of the women's restroom symbol (🚺) using a welcoming gesture.  The animation avoids overtly feminine poses to remain inclusive and broadly applicable to the symbol's function.  Instead, it focuses on a gentle, open, and inviting arm movement. The sequence will use both arms to create a balanced and approachable pose.  The movement will be slow and deliberate, not sharp or abrupt. The robot's lack of elbows will be worked around by slight rotations and pitches of the shoulders.  Each arm will move independently, but in a coordinated way, to create a sense of fluidity.  The overall goal is to create an animation that is both informative and welcoming, without relying on gender stereotypes.",
+ "frames": [
+  {
+   "beat": "arms open slightly, a gentle welcoming gesture",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift further, opening wider with grace",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach out fully, an open invitation",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a welcoming, slightly closed pose",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

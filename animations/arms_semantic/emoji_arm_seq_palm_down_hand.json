@@ -1,0 +1,46 @@
+{
+ "emoji": "🫳",
+ "ideation": "This sequence animates a hand gesture representing a palm-down hand.  The animation will focus on a smooth downward movement of both arms, starting from a relaxed position and ending with the palms facing downwards, as if presenting something or signaling a stop. The robot's lack of elbows requires careful joint manipulation to create a natural-looking gesture.  I will ensure each frame represents a distinct position and avoid creating intermediary steps.  The subtle wrist adjustments enhance the natural appearance of the gesture.",
+ "frames": [
+  {
+   "beat": "arms begin to lower, palms ready",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "shoulders lift slightly, arms descend further",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms continue downward, palms angled",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "palms face down, presenting or stopping",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

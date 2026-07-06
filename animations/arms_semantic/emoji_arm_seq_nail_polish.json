@@ -1,0 +1,81 @@
+{
+ "emoji": "💅",
+ "ideation": "This sequence aims to mimic the act of applying nail polish, using delicate and precise hand movements. The left hand acts as the canvas, held steady while the right hand simulates applying polish with small, back-and-forth motions. Throughout the sequence, I'll prioritize smooth transitions and lifelike wrist movements, keeping in mind the robot's two-joint arm structure. In the first frame, the left hand is presented as if holding a nail to be polished. The left arm is slightly raised with the wrist rotated inward, palm facing upward. The right arm is positioned near the left hand, ready to begin the polishing motion. joint1 rotates the right arm slightly outward, while joint2 brings it upward, mimicking the poised position of holding a nail polish brush. By the second frame, the right hand makes a small, downward stroke as if applying polish. joint2 pitches the right arm slightly downward, while the wrist remains steady to maintain control. In the third frame, the right hand moves back up slightly, completing a single polishing stroke. joint2 adjusts to lift the right arm, mimicking the back-and-forth motion of applying nail polish. In the fourth frame, the right hand makes another downward stroke, mirroring the second frame. Finally, in the fifth frame, the right hand returns to its initial poised position, hovering above the left hand as if ready to apply another coat. This sequence emphasizes the meticulous nature of applying nail polish, using small, controlled movements to create a realistic effect.",
+ "frames": [
+  {
+   "beat": "left hand held up, right arm poised to paint",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": -60.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm dips down, applying a stroke of color",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": -60.0
+    },
+    "right": {
+     "joint1": -25.0,
+     "joint2": 35.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts slightly, completing the stroke",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": -60.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm dips again, another careful polish",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": -60.0
+    },
+    "right": {
+     "joint1": -25.0,
+     "joint2": 35.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to hover, ready for more",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": -60.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "emoji": "🍾",
+ "ideation": "This animation sequence depicts the celebratory opening of a bottle, focusing on the dynamic arm movements that express excitement and release. The sequence will start with both arms held high in anticipation, then show a downward thrust as if uncorking the bottle, and finally end with both arms raised in celebration.  The robot's arm mechanics will be considered, focusing on smooth transitions between keyframes.  The sequence will use both joint1 (roll) and joint2 (pitch), along with wrist adjustments, for expressive movements.",
+ "frames": [
+  {
+   "beat": "arms thrust upwards in anticipation",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a quick downward stab to pop the cork",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms fly up in a toast of victory",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

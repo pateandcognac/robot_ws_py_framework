@@ -1,0 +1,61 @@
+{
+ "emoji": "🌮",
+ "ideation": "This sequence mimics the action of someone excitedly reaching for a taco. It starts with both arms relaxed, then one arm reaches out, and finally both arms bring the taco to the mouth. The sequence will use 4 frames, emphasizing the anticipation and enjoyment of eating the taco.  The animation will focus on smooth transitions between keyframes. Frame 1 shows both arms at rest. Frame 2 shows the left arm reaching out in anticipation. Frame 3 shows both arms moving together to grasp the taco. Frame 4 shows both arms bringing the taco to the mouth.  The movement will be expressive, conveying enthusiasm for the food.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for a treat",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches out, eager for the taco",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms move to grab the delicious taco",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "taco is brought to the mouth with joy",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

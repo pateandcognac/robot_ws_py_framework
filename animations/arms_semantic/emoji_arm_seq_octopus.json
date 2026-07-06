@@ -1,0 +1,81 @@
+{
+ "emoji": "🐙",
+ "ideation": "This animation sequence will depict the octopus's eight arms moving in a playful, almost dancing manner.  The robot, lacking eight arms, will simulate this with its two arms performing a series of expressive, fluid movements that evoke the octopus's tentacle-like appendages. We'll focus on creating a sense of flow and movement, mimicking the octopus's graceful underwater dance. The sequence will emphasize dynamic changes in arm positions between frames.  Each arm will move independently, creating a sense of fluidity and organic movement that contrasts with the robot's rigid structure. Frame 1 will set the stage with both arms in a relaxed pose. Frame 2 will have one arm moving upward and outward in a wide arc, while the other moves downward and inward, creating a sense of reaching and retracting. Frame 3 will reverse this motion, suggesting a fluid, almost hypnotic movement. Frame 4 will showcase both arms moving together in a circular motion, simulating a tentacle wrapping around something. Frame 5 will bring the arms back to rest. This sequence uses a combination of joint1 rotations and joint2 pitches to create the sweeping motions of the octopus arms. The wrists will rotate slightly to add expressiveness.",
+ "frames": [
+  {
+   "beat": "both arms rest, ready to unfurl",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach out and curl in opposite directions",
+   "arms": {
+    "left": {
+     "joint1": -60.0,
+     "joint2": 90.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": -90.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the arms sweep and retract in a fluid exchange",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": -90.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -60.0,
+     "joint2": 90.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms circle together, a playful tentacle dance",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a resting, relaxed state",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

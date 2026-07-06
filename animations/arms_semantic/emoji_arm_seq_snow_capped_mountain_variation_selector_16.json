@@ -1,0 +1,56 @@
+{
+ "emoji": "🏔️",
+ "ideation": "This sequence depicts the robot admiring a majestic snow-capped mountain. The animation will start with the robot's arms at its sides, then raise them in awe, and finally bring them back down to a relaxed position. The robot's posture should convey wonder and appreciation of the mountain's grandeur. I'll focus on creating a smooth, expressive arm movement that mimics the feeling of looking up at something tall and impressive. The arms will move slightly independently, adding a natural touch to the animation. I'll check the examples to ensure the arm movements are within the robot's capabilities and look natural.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to admire",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rise slowly, reaching for the sky",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, taking in the view",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the mountain's majesty remains",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "emoji": "🏚️",
+ "ideation": "This animation sequence will depict a robot expressing a sense of forlornness and slight apprehension when encountering a derelict house.  The robot will initially have its arms crossed protectively, then slowly raise one arm as if reaching out to investigate, before returning to a more guarded posture.  The movements are slow and deliberate, reflecting the cautious nature of exploring an abandoned place. The use of the dual shoulder joints allows for expressive, non-robotic arm movements.",
+ "frames": [
+  {
+   "beat": "arms crossed protectively, a cautious approach",
+   "arms": {
+    "both": {
+     "joint1": 65.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to reach out, hesitant exploration",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm probes further, a tentative investigation",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a guarded, crossed position",
+   "arms": {
+    "both": {
+     "joint1": 65.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

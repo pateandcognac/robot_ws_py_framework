@@ -1,0 +1,81 @@
+{
+ "emoji": "🚆",
+ "ideation": "This animation sequence will depict the robot mimicking the action of a train moving along tracks.  The arms will move in a coordinated, back-and-forth motion to suggest the wheels turning and the train chugging forward.  I will use a 5-frame sequence to capture the full motion cycle.  The robot will use both arms.  The motion will be fairly subtle to avoid appearing too exaggerated or cartoonish.  The focus will be on the rhythmic motion rather than large, sweeping arm movements.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to depart",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing forward slightly, beginning the journey",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to center, a steady rhythm",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing back, pushing the train along",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back to the starting position",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

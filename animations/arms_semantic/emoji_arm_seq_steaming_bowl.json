@@ -1,0 +1,56 @@
+{
+ "emoji": "🍜",
+ "ideation": "This sequence mimics the action of carefully and gently lifting a steaming bowl of noodles.  The movement should be slow and deliberate, emphasizing care and warmth.  The robot will use both arms to cradle the bowl, highlighting the preciousness of the food.  The arms will move in a coordinated manner, with slight variations to showcase a natural, non-robotic motion. Frame 1 starts with the arms extended slightly forward, palms up, preparing to receive the bowl. Frame 2 shows the arms beginning to lift the bowl, with a slight bend in the elbows (simulated by adjusting joint2), indicating the weight of the bowl. Frame 3 shows the bowl lifted to a comfortable height, arms slightly curved, conveying care. Frame 4 showcases a slight pause, maintaining the bowl at that height, before gently returning to the resting position in frame 5. The wrists remain neutral throughout, keeping the palms facing upward. ",
+ "frames": [
+  {
+   "beat": "arms extend forward, palms up, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift gently, cradling the warm noodles",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the bowl is carefully raised to a comfortable height",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "holding the precious meal steady with gentle care",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 25.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly lower the bowl back to the table",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

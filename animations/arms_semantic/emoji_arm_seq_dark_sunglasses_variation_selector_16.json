@@ -1,0 +1,56 @@
+{
+ "emoji": "🕶️",
+ "ideation": "This animation sequence will show the robot putting on a pair of sunglasses. The action will be performed with both arms, and it will focus on the smooth and deliberate movement of the arms. In the first frame, both arms will be at the sides, with the hands open. In the second frame, both arms will move upward to reach for the sunglasses. In the third frame, the arms will bring the sunglasses to the face, and in the fourth frame, the robot will put on the sunglasses by moving its arms down. In the fifth frame, the arms will return to their resting position. This sequence will use a combination of joint1 and joint2 movements to create a natural and expressive gesture.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at sides, ready for action",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift smoothly to reach for the shades",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands bring the sunglasses up towards the face",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower, settling the shades into place",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed resting pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

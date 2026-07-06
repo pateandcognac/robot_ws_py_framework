@@ -1,0 +1,51 @@
+{
+ "emoji": "📵",
+ "ideation": "This animation sequence aims to portray the meaning of the no mobile phones emoji (📵) by visually representing the act of putting away or silencing a phone.  The sequence will focus on a single arm, the right arm in this case, moving the phone away from the face and then to the side. The left arm will remain largely still to emphasize the action of the right arm.  Each frame will show a distinct change in the arm's position, capturing key moments in the gesture. I will use the available joints to create a natural, flowing movement.",
+ "frames": [
+  {
+   "beat": "right arm brings phone away from face",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": 85.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arm lowers the phone, mid-gesture",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "phone is put away, arm rests",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "📶",
+ "ideation": "This animation sequence simulates the action of adjusting antenna bars, implying a search for a signal. The robot will use both arms to mimic the upward and downward movement of antenna bars. For this, I'll focus on creating a fluid, rhythmic motion, alternating between upward and downward arm movements. In the first frame, both arms start in a neutral position at the sides. In the second frame, both arms rise to a position mimicking the antenna bars extending upwards. In the third frame, the arms return to the neutral position. This alternating upward and downward motion is repeated in the fourth and fifth frames, to illustrate the searching action of antenna bars. The wrists remain neutral to maintain focus on the arm movements.",
+ "frames": [
+  {
+   "beat": "arms start down, antennas retracted",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms extend upwards, searching for signal",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms retract, signal still weak",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend again, a persistent search",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms fall back, signal not found",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

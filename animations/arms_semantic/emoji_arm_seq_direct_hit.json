@@ -1,0 +1,81 @@
+{
+ "emoji": "🎯",
+ "ideation": "This sequence simulates aiming with a bow and arrow, using the right arm to draw the bow and the left arm to steady it. The sequence will highlight the precision and focus required for archery. Frame 1 starts with the robot in a relaxed stance, arms at the sides. Frame 2 shows the right arm drawing the bowstring back; joint1 rotates outward, joint2 pitches upward, and the wrist is angled to grip the bowstring. Frame 3 shows the robot aiming; the right arm is fully extended, and the left arm is used for stability. Frame 4 shows the release; the right arm relaxes, and the bow is lowered. Frame 5 shows the robot returning to a neutral stance.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready stance",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm draws the bowstring back with focus",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "holding steady, aiming carefully at the target",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -90.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "releasing the arrow with a smooth follow-through",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, neutral pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "emoji": "⬇️",
+ "ideation": "This animation sequence simulates the act of pointing downwards. It starts with both arms relaxed at the sides, then the right arm moves to point downward, and finally returns to a relaxed state.  The left arm remains largely still to contrast with the pointing gesture.  The movement should be deliberate and controlled, avoiding overly jerky motions.  The use of joint1 and joint2 will allow for a smooth transition from a relaxed to pointing position. The wrist rotation will ensure the index finger is pointed downwards, although the robot lacks fingers.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed at the sides",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm smoothly points straight down",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm returns to a relaxed side position",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+{
+ "emoji": "🍐",
+ "ideation": "This animation sequence will depict a robot gently cradling a pear, emphasizing the fruit's delicate nature. The sequence will highlight the robot's careful handling, suggesting care and appreciation for the pear.  The movement will be slow and deliberate, focusing on the robot's interaction with the pear.  We will use the robot's arm to cradle the pear, emphasizing the gentle movement. The sequence will begin with both arms at the sides, transitioning to one arm reaching out, then gently cradling the pear, and finally returning to a resting position. Frame 1: Both arms start at the sides in a relaxed posture. Frame 2: The robot's right arm extends outward, slightly curving downward as if reaching for the pear. Frame 3: The right arm gently cups the pear, bringing it close to the robot's body. Frame 4: The robot holds the pear close for a moment. Frame 5: The right arm returns to its original position, maintaining a calm posture.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready to hold",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm reaches out, gently preparing to grasp",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm cradles the pear, bringing it close",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": -45.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "holding the pear with tender care near the body",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the pear safely held",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

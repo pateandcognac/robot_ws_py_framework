@@ -1,0 +1,36 @@
+{
+ "emoji": "🌧️",
+ "ideation": "This sequence will show the robot seemingly \"making it rain.\"  The animation will start with the robot's arms at its sides, then it will lift both arms, and finally bring its arms down again. This will create a visual representation of clouds gathering and then releasing rain. The sequence will be short and sweet.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready for clouds",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift, gathering the rain clouds",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms drop, releasing the gentle rain",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "emoji": "⛈️",
+ "ideation": "This sequence depicts a robot reacting to a stormy weather alert, starting with arms at its side, raising them in alarm, then making a gesture of shielding itself, and finally returning to a neutral state. The animation will use subtle variations in joint angles to create a natural flow of motion and convey the robot's emotional response to the stormy weather. The left arm will mostly mirror the right, but with slight differences to make it more expressive. Frame 1: Both arms start in a neutral position at the robot's sides. Frame 2: Both arms rise outward and upward in a gesture of alarm, expressing the robot's reaction to the storm alert. Frame 3: Both arms move in to shield the robot's face, conveying a protective response to the harsh weather. Frame 4: Both arms drop back to a neutral position, suggesting the robot is passively awaiting the passing of the storm.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, alert to the storm",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms shoot up in alarm",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms quickly move to shield the face",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms fall back to sides, weathering the storm",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

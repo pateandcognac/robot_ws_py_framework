@@ -1,0 +1,56 @@
+{
+ "emoji": "🥒",
+ "ideation": "This sequence mimics the act of carefully holding a cucumber.  The animation will emphasize gentle handling, suggesting care and perhaps even a hint of surprise or delight at the cucumber's freshness. The movement will be slow and deliberate, focusing on precise positioning of the hands. Frame 1 shows both arms extended forward, hands open but slightly cupped. Frame 2 shows both arms moving slightly downward, hands adjusting to cradle the imaginary cucumber. Frame 3 shows the hands closing around the cucumber, the arms holding it close to the body. Frame 4 shows the arms lifting slightly, as if admiring the cucumber, before returning to the neutral position in frame 5.",
+ "frames": [
+  {
+   "beat": "arms extend forward, hands ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower, hands gently cradle the cucumber",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "fingers close around the prize, holding it near",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift, admiring the fresh, crisp cucumber",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -20.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the cucumber safely held",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

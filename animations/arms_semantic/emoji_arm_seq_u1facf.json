@@ -1,0 +1,56 @@
+{
+ "emoji": "🫏",
+ "ideation": "This animation sequence depicts a donkey's playful kicking of its legs.  Since our robot doesn't have legs, we'll simulate the action using its arms. The animation will focus on a dynamic, alternating movement of the arms, mimicking the up-and-down motion of a donkey's kicks.  The arms will move in a somewhat exaggerated manner to capture the playful energy of the emoji.  We'll ensure smooth transitions between frames, referencing the existing examples for guidance on arm movement and range of motion. Frame 1: Both arms are slightly raised, palms facing outward, preparing for the kick. Frame 2: The left arm kicks downward, while the right arm extends outward and upward. Frame 3: The left arm returns to its starting position, while the right arm kicks downward. Frame 4: Both arms return to the initial raised position, completing the kicking sequence.  The slight variations in joint angles and wrist positions add realism and dynamism to the action.",
+ "frames": [
+  {
+   "beat": "arms raised, ready to kick playfully",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "left arm kicks down, right arm kicks up",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -90.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm kicks down, left arm returns",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return, the playful kick ends",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

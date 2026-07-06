@@ -1,0 +1,66 @@
+{
+ "emoji": "*️⃣",
+ "ideation": "This animation sequence depicts a robot carefully placing a key on a table.  The movement is deliberate and precise, reflecting the importance of the key. It starts with both arms at rest, then the right arm moves forward and downward to pick up the key (which is implied, not shown). The arm then rises and moves to place the key on a surface. Finally, the arm returns to the rest position. The left arm remains mostly still, providing contrast and balance.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready to work",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches forward and down, grasping the key",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the key is lifted and placed carefully down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest, the task complete",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

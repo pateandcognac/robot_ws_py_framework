@@ -1,0 +1,66 @@
+{
+ "emoji": "🏓",
+ "ideation": "This animation sequence simulates the back-and-forth motion of a ping pong paddle.  The left arm will hold the paddle, moving it in a smooth arc, while the right arm remains mostly still, providing a counterbalance.  The sequence focuses on key positions, with the animation system handling the smooth transitions. Frame 1: The left arm is extended forward, holding the paddle at a point just before making contact with the ball, so the paddle is slightly above and to the left of the robot's center. Frame 2: The arm is now in a position just after hitting the ball, and is moving back slightly, with the paddle extended slightly more to the left and lowered slightly. Frame 3: The left arm is moving back to prepare for the next stroke, the paddle is back further to the left, and the arm is extended further from the center. Frame 4: The left arm is back in the position to begin the next stroke.  The paddle is slightly above and to the left of the robot's center. The right arm remains mostly still throughout the sequence, providing stability.",
+ "frames": [
+  {
+   "beat": "arms rest, ready for the serve",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm swings forward, paddle meets ball",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "paddle whips back after the hit, preparing for return",
+   "arms": {
+    "left": {
+     "joint1": -60.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm returns to ready position for next shot",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

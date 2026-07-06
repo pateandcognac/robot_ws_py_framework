@@ -1,0 +1,46 @@
+{
+ "emoji": "🥅",
+ "ideation": "This animation sequence simulates the action of a player celebrating a goal by raising both arms in a 'V' shape. The movement starts with arms at the sides, transitions to arms rising, then to a final 'V' pose. The sequence uses the robot's two joints to create a natural, expressive movement. In frame 1, the arms are at the sides, ready for the celebration. In frame 2, both arms start to lift, with a slight outward rotation. In frame 3, the arms reach shoulder height, palms facing each other. In frame 4, the arms are fully extended, forming the 'V'. This is a triumphant pose, expressing elation and success.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, anticipation builds",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lift from the sides",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise to shoulder height, ready to celebrate",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms thrust upwards in a triumphant 'V' pose",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

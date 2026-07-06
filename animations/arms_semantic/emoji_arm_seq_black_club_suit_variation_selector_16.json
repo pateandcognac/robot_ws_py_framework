@@ -1,0 +1,36 @@
+{
+ "emoji": "♣️",
+ "ideation": "This animation sequence will depict the robot holding a playing card, specifically the club suit.  Since the robot has no hands, the animation will focus on the arms positioning themselves as if holding something small and flat. We will use a combination of inward and outward rotation of the arms (joint1) and a slight downward pitch (joint2) to create a sense of holding and presenting the card. The wrists will be positioned to suggest a gentle grip.  The sequence will start with the arms slightly raised, move to a more stable holding position, then end with a slight presentation gesture.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, ready to grasp",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move inward, holding the card gently",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -20.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms present the club with a subtle flourish",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": -15.0,
+     "wrist": 10.0
+    }
+   }
+  }
+ ]
+}

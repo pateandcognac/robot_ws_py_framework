@@ -1,0 +1,66 @@
+{
+ "emoji": "🏃‍♀️‍➡️",
+ "ideation": "This animation sequence depicts a woman running to the right. The arms will move in opposition to the legs, mimicking the natural running motion.  The animation will focus on the dynamic interplay between the arms, emphasizing the forward momentum.  I will use smooth transitions between each frame, while maintaining a clear distinction between each key pose.  The robot's lack of elbows will be addressed by focusing on the shoulder movements to imply the arm's swinging motion. Frame 1: The arms are in a neutral position, slightly bent forward. Frame 2: The left arm swings back while the right arm swings forward. Frame 3: The left arm swings forward while the right arm swings back. Frame 4: The arms return to a slightly bent forward neutral position.",
+ "frames": [
+  {
+   "beat": "arms swing forward, ready to run",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm back, right arm forward, pumping",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm back, left arm forward, driving on",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing forward, maintaining running momentum",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "🗓️",
+ "ideation": "This animation sequence will show the robot interacting with a calendar, mimicking the action of checking or planning events. The robot will initially have its arms relaxed at its sides, then reach out to touch the calendar, and finally return to its resting position.  The movement will be slow and deliberate, emphasizing the careful consideration often associated with planning.  The use of both arms will add to the sense of careful engagement with the calendar.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for the day",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms reach out to the calendar gently",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "fingers brush the calendar, marking a date",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, planning complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

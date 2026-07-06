@@ -1,0 +1,46 @@
+{
+ "emoji": "🍑",
+ "ideation": "This animation sequence will playfully mimic the shape and feel of a peach. The robot will start with both arms resting at its sides, then mimic the roundness of the peach by bringing its arms up in a gentle, embracing motion. The arms will then move outward, suggesting the peach's soft flesh, before returning to a relaxed pose.  Each arm movement will be smooth and controlled, and the wrists will turn slightly to complement the shape. The overall effect should be lighthearted and fun.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides, ready to form",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently rise and curve inward, embracing the peach shape",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms open outward, revealing the soft flesh within",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle down, the peach is formed",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

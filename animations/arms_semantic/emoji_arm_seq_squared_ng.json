@@ -1,0 +1,46 @@
+{
+ "emoji": "🆖",
+ "ideation": "This sequence aims to visually represent the rejection or disapproval implied by the NG button.  The animation will involve a decisive, downward swipe of both arms, ending with the palms facing down.  I'll use this to communicate a sense of finality and dismissal.  I will leverage the two joints in each arm (joint1 and joint2) to create this movement. The wrists will also be used to enhance the expressiveness of the gesture.  The starting position will be a neutral pose, then a transition to arms raised slightly, followed by the downward swipe and a final resting pose. The slight variation in the movement of each arm will avoid rigidity and add a sense of naturalism.",
+ "frames": [
+  {
+   "beat": "arms start neutral, then lift slightly",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm stays up as the right arm drops sharply",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms swipe down decisively, palms facing out",
+   "arms": {
+    "right": {
+     "joint1": -45.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hang down, a firm rejection",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

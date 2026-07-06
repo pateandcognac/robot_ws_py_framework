@@ -1,0 +1,56 @@
+{
+ "emoji": "🫑",
+ "ideation": "This animation sequence will show the robot carefully holding a bell pepper, emphasizing gentle handling.  The sequence starts with both arms at the sides, then moves to holding the pepper, and finally ends with the pepper held up for display.  Since our robot has no hands, the \"holding\" will be represented by bringing both arms into a cradle position. The pepper is imagined to rest in the space between the arms. Frame 1: Both arms start at rest. Frame 2: Both arms begin to raise and move slightly inward, creating a cradle shape. Frame 3: Arms are fully raised, cradling the imaginary pepper. Frame 4: The robot presents the pepper by raising the cradle slightly higher. Frame 5: Arms return to resting position.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lift and curve inward, forming a cradle",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently cradle the bell pepper",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "presenting the pepper with a slight upward lift",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, resting state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

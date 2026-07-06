@@ -1,0 +1,51 @@
+{
+ "emoji": "🥘",
+ "ideation": "This animation sequence will show the robot gesturing towards a shallow pan of food, as if presenting or offering it.  The movement will be a smooth arc of the right arm, ending in a presentation pose. The left arm will remain mostly still for contrast and balance.  I'll use a three-frame sequence for simplicity and clarity. Frame 1: The robot's arms are at rest. Frame 2: The right arm starts to move forward and upward, palm open and facing downward. Frame 3: The right arm is fully extended, palm open and facing downward, hovering over the imaginary pan of food. ",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready to present",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to lift and extend forward",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm presents the food, palm down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 40.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

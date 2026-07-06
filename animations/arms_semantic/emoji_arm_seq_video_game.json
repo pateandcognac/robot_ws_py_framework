@@ -1,0 +1,66 @@
+{
+ "emoji": "🎮",
+ "ideation": "This animation sequence simulates the act of holding and playing a video game controller.  The robot will mimic the hand movements of a person engrossed in a game.  The sequence will emphasize the focused, engaged nature of playing.  I'll use slight variations in arm and wrist positions to create a dynamic yet controlled motion.  The left arm will be used as the 'supporting' arm, while the right arm will do most of the expressive work.",
+ "frames": [
+  {
+   "beat": "arms hold an invisible controller, ready to play",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand grips and moves, fingers dancing",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "a moment of pause, the controller held steady",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand shifts, buttons are pressed with a flick",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

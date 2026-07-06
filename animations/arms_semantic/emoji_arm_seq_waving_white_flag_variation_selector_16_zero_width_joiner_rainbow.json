@@ -1,0 +1,46 @@
+{
+ "emoji": "🏳️‍🌈",
+ "ideation": "This animation sequence will depict a robot expressing pride and inclusivity using a rainbow flag. The robot will hold the flag aloft for a moment, then gently lower it. This will be a slow, deliberate motion, emphasizing the care and respect the robot feels. The robot's arms don't have elbows, so the movements must be slightly stylized to convey the intent effectively. Frame 1 shows both arms raised, holding an (imaginary) rainbow flag high. Frame 2 shows a slight lowering of the flag, emphasizing the gesture's care. Frame 3 shows the robot holding the flag at chest level. Frame 4 shows the arms returning to the robot's sides in a relaxed position. ",
+ "frames": [
+  {
+   "beat": "arms raise an imaginary flag high in pride",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "gently lowering the banner with care and respect",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "holding the flag at chest level, a moment of reflection",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, pride expressed with dignity",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

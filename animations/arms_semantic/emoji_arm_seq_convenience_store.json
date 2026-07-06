@@ -1,0 +1,71 @@
+{
+ "emoji": "🏪",
+ "ideation": "This animation sequence will depict a robot interacting with a convenience store, mimicing the action of someone browsing items on the shelves. The robot will use both arms to simulate looking at items and perhaps selecting one.  The movement will be slow and deliberate to convey a sense of careful consideration. Frame 1: Both arms start at the sides in a neutral position. Frame 2: The left arm extends forward, slightly bent to mimic looking at something on a shelf. The right arm remains at the side. Frame 3: The right arm moves forward as if reaching or picking up an item. The left arm stays in a similar position. Frame 4: Both arms move back toward the body, as if the robot is satisfied with the selection. Frame 5: Both arms return to a resting position at the sides.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to browse",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm extends, examining shelf items",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches out, considering a selection",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms retract, decision made",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to resting pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

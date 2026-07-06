@@ -1,0 +1,46 @@
+{
+ "emoji": "🏆",
+ "ideation": "This animation sequence depicts a robot proudly holding a trophy aloft.  The robot will use both arms to lift the trophy, emphasizing the triumphant nature of winning. The sequence will start with the arms raised to shoulder height, then lift the trophy higher, pause for a moment of celebration, and finally lower the trophy slightly, maintaining a celebratory pose.  The arms will work in tandem, with slight variations in their movements to add a touch of realism. The wrists will be slightly angled to improve the grip on the trophy. ",
+ "frames": [
+  {
+   "beat": "arms lift the trophy to chest height",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms raise the trophy triumphantly overhead",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": 60.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "holding the trophy high in victory",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 60.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, still celebrating the win",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 40.0,
+     "wrist": -10.0
+    }
+   }
+  }
+ ]
+}

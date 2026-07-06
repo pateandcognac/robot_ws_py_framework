@@ -1,0 +1,56 @@
+{
+ "emoji": "🌟",
+ "ideation": "This sequence will depict the robot expressing wonder and awe at a glowing star, using slow, deliberate arm movements to emphasize the magical quality of the star. The animation will begin with the robot's arms at its sides, then slowly raise them upwards in a gesture of wonder and admiration, before returning them to a relaxed position. I'll use the existing examples to inform joint angles and transitions, prioritizing smooth, expressive movements over sharp, jerky ones. Frame 1 will show arms at rest. Frame 2 will show arms raising slowly. Frame 3 will show the arms paused in a gesture of wonder. Frame 4 will show the arms beginning to lower. Frame 5 will show the arms returning to the resting position.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready for wonder",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly lift, reaching for the light",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms outstretched in awe and admiration",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to gently descend, the vision fades",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the star's glow remains",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

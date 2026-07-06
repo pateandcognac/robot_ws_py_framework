@@ -1,0 +1,36 @@
+{
+ "emoji": "🥜",
+ "ideation": "This animation sequence will depict a robot playfully holding and then offering peanuts.  The robot will mimic the action of carefully holding the imaginary peanuts in its hands, and then extending its arms forward to offer them. I will use a combination of joint movements to create a natural and engaging animation. The sequence will start with the robot gently holding the peanuts, transitioning through a brief pause, before finally extending its arms to present the treat. Let's get started!",
+ "frames": [
+  {
+   "beat": "arms cradle imaginary peanuts gently",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "a slight adjustment, holding the prize carefully",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward, offering the peanuts",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

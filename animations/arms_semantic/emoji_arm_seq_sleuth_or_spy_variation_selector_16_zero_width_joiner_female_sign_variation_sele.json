@@ -1,0 +1,66 @@
+{
+ "emoji": "🕵️‍♀️",
+ "ideation": "This animation sequence portrays a woman detective observing her surroundings carefully.  The animation will focus on one arm, the right, moving to bring the hand to her face to simulate adjusting her glasses, then returning to a neutral position. The left arm remains relatively still throughout. Frame 1 will start with both arms at rest, creating a neutral baseline for the detective's pose. Frame 2 will depict the detective raising her right arm to her face, with her hand near her eye, simulating the gesture of adjusting glasses. Frame 3 will show her hand drawing back, returning to a resting position. Frame 4 will return the robot to a neutral resting position. This sequence will provide a sense of thoughtful observation and alertness, consistent with the emoji's connotation.",
+ "frames": [
+  {
+   "beat": "detective at rest, observing surroundings",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand rises to adjust imaginary glasses",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "hand lowers, thought continues",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a neutral, watchful pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

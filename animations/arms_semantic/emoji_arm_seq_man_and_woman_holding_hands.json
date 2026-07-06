@@ -1,0 +1,51 @@
+{
+ "emoji": "👫",
+ "ideation": "This animation sequence depicts a couple holding hands.  It starts with both arms extended slightly forward, palms up, as if inviting the other. The arms then move to meet in the center, hands clasped, before finally settling into a relaxed position.  The movement is designed to be gentle and fluid, mirroring the tender nature of the emoji.  The use of joint1 and joint2 will create the sense of arms drawing together, and the wrists will be oriented appropriately for the hand-holding.",
+ "frames": [
+  {
+   "beat": "arms extend forward, palms open invitingly",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw together, hands meet and clasp",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle gently, a tender connection made",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

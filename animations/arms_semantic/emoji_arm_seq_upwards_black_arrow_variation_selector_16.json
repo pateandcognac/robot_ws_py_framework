@@ -1,0 +1,46 @@
+{
+ "emoji": "⬆️",
+ "ideation": "This sequence aims to represent the ⬆️ emoji by having both arms mimic its upward pointing direction.  The robot will start with arms at its side, then move them upwards in a smooth motion, ending with both arms pointing straight up, palms facing forward. This signifies the 'up' direction clearly.  In frame one, both arms are at the robot's sides in a resting position, conveying a neutral starting point. joint1 is at 0.0, aligning the arms with the body, and joint2 is at -90.0, pitching the arms straight down. The wrists are at 0.0, keeping palms facing inward. In frame two, the arms begin their upward journey. joint1 remains at 0.0, ensuring the arms move straight up, while joint2 increases to 0.0, bringing the arms to shoulder height. The wrists begin to rotate to 45.0, angling the palms slightly forward in anticipation of the final upward point. Frame three sees the arms continuing their upward trajectory. joint2 increases further to 45.0, positioning the arms at a 45-degree angle. The wrists rotate further to 90.0, now facing fully forward. This gradual wrist rotation ensures a smooth, natural-looking motion.  In the final frame, both arms reach their peak, pointing straight up. joint2 is set to 90.0 for full upward extension, and the wrists remain at 90.0, with the palms facing forward, reinforcing the upward direction indicated by the emoji.",
+ "frames": [
+  {
+   "beat": "arms hang down at the sides, neutral start",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lift, palms turning forward",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise higher, pointing forward now",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms shoot straight up, reaching high",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

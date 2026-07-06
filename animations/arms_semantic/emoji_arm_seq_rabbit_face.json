@@ -1,0 +1,71 @@
+{
+ "emoji": "🐰",
+ "ideation": "This animation sequence will depict a rabbit's characteristic twitching nose and ears.  Since our robot lacks a nose, we'll simulate the twitching by subtly moving its arms, imagining the arms are the rabbit's ears. The arms will move in a gentle, almost imperceptible wave-like motion.  The overall effect should be cute and slightly whimsical, rather than realistic. Frame 1 will show the arms at rest, slightly angled outward and down.  Frames 2-4 will involve small, alternating movements of the arms, with one arm moving slightly upward and the other moving slightly downward, creating an illusion of twitching. Frame 5 will return to the rest position.  The wrist movements will be minimal, focusing on the subtle movements of the shoulders.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, a rabbit's stillness",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm twitches up, right arm dips down",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm twitches up, left arm dips down",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms alternate their subtle, twitching dance",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle back into gentle repose",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

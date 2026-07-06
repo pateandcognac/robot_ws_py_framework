@@ -1,0 +1,71 @@
+{
+ "emoji": "✡️",
+ "ideation": "This animation sequence represents the Star of David using arm poses.  The robot will create the six-pointed star shape with its arms.  Because the robot only has two joints per arm, we'll approximate the star's points by extending and angling the arms. The sequence focuses on creating a clear, symmetrical pattern to represent the geometric structure. Frame 1 starts with a neutral position, then the arms move in a sequence to form the points of the star. The final frame returns to the neutral position. ",
+ "frames": [
+  {
+   "beat": "arms hang down, ready to begin",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep up and outwards, forming the top points",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms cross and sweep down, forming the middle points",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms angle down and outwards, forming the bottom points",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a resting state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

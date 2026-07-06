@@ -1,0 +1,56 @@
+{
+ "emoji": "🌏",
+ "ideation": "This animation sequence will show the robot gently cradling a globe, emphasizing the care and attention given to the Earth, specifically focusing on the Asia-Australia region.  The movement will be slow and deliberate, reflecting a thoughtful and respectful approach. The robot’s lack of fingers will be addressed by using the overall arm position to suggest the globe is held carefully. Frame 1 will begin with both arms slightly raised and angled outward, as if preparing to receive the globe. Frame 2 shows both arms moving slightly inward and upward, creating a cradle-like shape to gently hold the globe. Frame 3 will show the arms holding the globe steady, with a slight inward tilt to focus on Asia-Australia. Frame 4 will show the robot gently returning the globe to a resting place.  Frame 5 will show the robot's arms returning to a resting position.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, ready to embrace the world",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move inward and upward, forming a gentle cradle",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "holding the world steady, a careful tilt to asia-australia",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 40.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "gently returning the globe to its resting place",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, resting position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🎰",
+ "ideation": "This animation sequence simulates the anticipation and excitement of a slot machine. The arms start in a neutral position, then move to mimic the pulling of a lever, followed by a brief pause before ending in a celebratory pose.  In the first frame, the arms are relaxed at the sides. In frame two, the right arm moves upward and forward, simulating the pulling of a lever. The left arm stays neutral. Frame three shows both arms slightly raised in anticipation, palms facing each other. Frame four shows both arms raised high in a celebratory gesture, palms facing upward.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, waiting for the spin",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm pulls the imaginary slot lever down",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rise slightly, anticipating the result",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "jackpot! both arms shoot up in celebration",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "emoji": "🏄‍♀️",
+ "ideation": "This sequence simulates a surfer riding a wave, focusing on the arm movements involved in balancing and paddling.  The robot will mimic the surfer's posture, using its two-joint arms to convey the dynamic balance required while surfing.  The animation will focus on the arms' movements, suggesting the surfer's body posture. Frame 1 shows the arms extended forward, ready to paddle. Frame 2 depicts the arms pulling back, indicating a paddling motion. Frame 3 positions the arms slightly wider, suggesting the surfer's balance on the board. Frame 4 shows the arms slightly bent, indicating a more relaxed posture as the wave is ridden. Frame 5 shows the arms returning to the position of Frame 1, ready for the next wave. ",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to paddle",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach forward, beginning the paddle",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull back in a strong paddling motion",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms adjust for balance on the board",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle, riding the wave smoothly",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

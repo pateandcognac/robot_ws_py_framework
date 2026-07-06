@@ -1,0 +1,81 @@
+{
+ "emoji": "🎻",
+ "ideation": "This sequence simulates playing a violin. In the first frame, the left arm is raised and curved as if holding the violin's neck. The right arm is positioned lower, mimicking a bowing motion. In the second frame, the right arm moves further across the body, continuing the bowing action. The left arm maintains its position. The third frame shows the right arm returning to its starting position for the next bow stroke, while the left arm remains steady. The fourth frame has the right arm moving across again, and the fifth frame returns it to the starting position, completing the bowing cycle.",
+ "frames": [
+  {
+   "beat": "left arm holds the violin, right arm readies the bow",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm sweeps across, drawing the bow",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": -30.0,
+     "wrist": 60.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns, preparing for the next stroke",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm sweeps across again, a continuous motion",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": -30.0,
+     "wrist": 60.0
+    }
+   }
+  },
+  {
+   "beat": "right arm rests, the musical phrase concludes",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 45.0
+    }
+   }
+  }
+ ]
+}

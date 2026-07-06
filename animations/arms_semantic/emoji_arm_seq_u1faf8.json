@@ -1,0 +1,76 @@
+{
+ "emoji": "🫸",
+ "ideation": "This sequence aims to mimic a rightwards pushing motion with the right arm, as if pushing a large object or telling someone to stop. The left arm provides balance and adds a subtle counter-motion to make the gesture feel more dynamic.  In the first frame, both arms are held back, preparing for the push. The right arm is angled slightly inward with joint1, while joint2 pitches it back. The wrist is neutral. The left arm mirrors this position but with a slightly smaller angle, creating a sense of anticipation. As the sequence progresses to the second frame, the right arm extends forward in a pushing motion. joint1 rotates outward, extending the arm, while joint2 pitches it forward to complete the push. The wrist remains neutral. The left arm pulls back slightly to counterbalance the right arm’s movement. In the third frame, the right arm pushes further forward, emphasizing the strength of the motion. joint1 rotates further outward, and joint2 adjusts the pitch to maintain the pushing angle. The wrist remains neutral to focus on the arm movement. The left arm continues to pull back, enhancing the dynamic contrast between the two arms. By the fourth frame, the right arm reaches full extension, completing the push. The left arm remains pulled back, maintaining balance and emphasizing the completed push. Finally, in the fifth frame, both arms return to a neutral, relaxed position, preparing for another push or a different gesture.",
+ "frames": [
+  {
+   "beat": "both arms pull back, coiled for a strong push",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins its powerful outward thrust",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the push intensifies, driving forward with force",
+   "arms": {
+    "left": {
+     "joint1": -60.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm extends fully, the push is complete",
+   "arms": {
+    "left": {
+     "joint1": -80.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, neutral stance",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

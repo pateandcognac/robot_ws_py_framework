@@ -1,0 +1,56 @@
+{
+ "emoji": "❇️",
+ "ideation": "This animation sequence will depict a sparkling effect using both arms. The arms will move in a wave-like motion, with the wrists slightly rotated to enhance the sparkling effect. The overall motion will be graceful and fluid, reflecting the light and airy nature of sparkles. Frame 1: Both arms start in a relaxed position at the sides. Frame 2: Both arms move upward and outward, wrists slightly rotated outward. Frame 3: Arms reach the peak of their upward motion, wrists rotated more outward, creating a sense of sparkle. Frame 4: Arms begin to return to their original position, wrists rotating inward. Frame 5: Arms return to their relaxed position at the sides.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, waiting to shimmer",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift and open, wrists twist outward",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach peak, wrists flare for a bright sparkle",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 40.0,
+     "wrist": 40.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to fall, wrists twist inward",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back to rest, the sparkle fades",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

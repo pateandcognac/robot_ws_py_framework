@@ -1,0 +1,56 @@
+{
+ "emoji": "💖",
+ "ideation": "This sequence aims to capture the joyful, lighthearted feeling of a sparkling heart. The animation will involve both arms moving in a gentle, embracing motion, suggesting the feeling of warmth and affection associated with the emoji. The movement will be fluid, with slight variations in wrist positions to add a touch of realism. I'll reference existing examples to ensure smooth transitions and keep the movements within the robot's capabilities. In the first frame, both arms start in a relaxed position at the sides, slightly angled outward. joint1 will be set to a small positive value, and joint2 will be slightly above -90 degrees, creating a gentle, open stance. The wrists will be neutral. In the second frame, the arms begin to move upward and inward, as if embracing something precious. joint1 will rotate inward, and joint2 will pitch upward, bringing the hands closer to the chest area. The wrists will maintain a neutral position. By the third frame, the arms form a gentle embrace around the heart area, with the hands slightly cupped inward. joint1 and joint2 will adjust further, creating a more complete embrace. The wrists will rotate slightly inward, adding a touch of tenderness to the gesture. In the fourth frame, the arms begin to gently return to their starting position. joint1 and joint2 will reverse their movements, slowly releasing the embrace. The wrists will also return to a neutral position. Finally, in the fifth frame, the arms reach their relaxed starting position. The arms will return to their initial position, with a slight sway to suggest the lingering warmth of the gesture. The wrists will stay neutral, completing the sequence.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready to form a heart",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep up and inward, beginning the embrace",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands meet in a gentle, tender heart shape",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly release the heart, softening the gesture",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the warmth lingers",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

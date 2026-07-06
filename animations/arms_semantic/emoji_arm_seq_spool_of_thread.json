@@ -1,0 +1,66 @@
+{
+ "emoji": "🧵",
+ "ideation": "This animation sequence will simulate the action of carefully threading a needle. The robot will mimic the delicate hand movements involved in this task.  The sequence focuses on the right arm, which will hold the thread, while the left arm will remain in a relaxed position to maintain balance.  We'll use small, precise movements to convey the careful nature of threading a needle. Frame 1 will show the robot's right arm extended slightly forward, as if holding the thread. Frame 2 will show the right arm moving slightly downward and inward, as if guiding the thread through the eye of the needle. Frame 3 will show the right arm moving slightly upward and backward, as if the thread has been successfully passed through the needle. Frame 4 will show the right arm returning to a neutral position, the task completed. The left arm will remain at the side during the entire sequence.",
+ "frames": [
+  {
+   "beat": "arms rest, right arm extends holding thread",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm guides thread down and in, carefully",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pulls thread up and back, success",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns, needle threaded",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

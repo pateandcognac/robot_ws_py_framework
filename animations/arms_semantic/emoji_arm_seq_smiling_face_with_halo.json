@@ -1,0 +1,56 @@
+{
+ "emoji": "😇",
+ "ideation": "This sequence aims to capture the serene and gentle nature of the 😇 emoji, with a subtle gesture of open palms facing slightly upwards, suggesting a peaceful offering or blessing. The movements are slow and deliberate, conveying a sense of calm and grace. In the first frame, both arms are held loosely at the sides, palms facing inward, in a relaxed, neutral posture.  Joint1 is set to 0.0 for a natural alignment with the body, and joint2 pitches the arms slightly downward to -70.0 degrees, allowing them to hang comfortably. The wrists are kept neutral at 0.0. In the second frame, the arms begin to rise outwards, palms rotating to face forward. Joint1 rotates slightly outward to 20.0 degrees, and joint2 increases the pitch to -40.0 degrees, initiating the upward movement. The wrists rotate to 45.0 degrees, turning the palms upwards in a gesture of offering. In the third frame, the arms reach their peak position, slightly elevated and palms open. Joint1 maintains its outward rotation at 20.0 degrees, and joint2 further increases the pitch to -20.0 degrees, completing the gentle upward lift. The wrists remain at 45.0 degrees, keeping the palms open and slightly upward.  In the fourth frame, the arms begin to lower back towards the resting position. Joint2 decreases the pitch to -50.0, while joint1 and the wrist angles remain the same, beginning the graceful descent. In the final frame, the arms return to their initial relaxed position at the sides. Joint1 returns to 0.0, joint2 pitches the arms back down to -70.0 degrees, and the wrists rotate back to 0.0, completing the serene and gentle gesture.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, palms inward, serene stillness",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise outward, palms turning to face the world",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "palms open gently upward in a peaceful offering",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin a slow, graceful descent",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -50.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, a gentle blessing complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

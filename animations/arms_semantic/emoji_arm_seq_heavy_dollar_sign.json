@@ -1,0 +1,56 @@
+{
+ "emoji": "💲",
+ "ideation": "This animation sequence will portray the robot interacting with an imaginary large dollar sign, perhaps representing greed, materialism, or the weight of financial matters. The robot will reach out with both arms to grasp this imaginary dollar sign, then pull it close to the body. The sequence will reflect these actions through the use of both arms and wrists.  The first frame will show both arms extended forward, palms facing each other, as if the robot is reaching for the dollar sign. The second frame will move the arms slightly closer and rotate the wrists inward to grasp the imaginary object. The third frame will draw both arms back towards the body, as if holding the dollar sign close. The fourth frame will show the arms slightly closer to the body, emphasizing the possession of the item. Finally, the fifth frame will show the arms moving back to a neutral, relaxed position.",
+ "frames": [
+  {
+   "beat": "arms reach forward, palms open to grasp",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wrists twist inward, grabbing the imaginary prize",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull the heavy symbol of wealth close",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "clutching the prize tightly to the chest",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -60.0,
+     "wrist": -60.0
+    }
+   }
+  },
+  {
+   "beat": "arms release, the money is gone or isn't there",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

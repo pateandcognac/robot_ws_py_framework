@@ -1,0 +1,56 @@
+{
+ "emoji": "🆗",
+ "ideation": "This animation sequence portrays a gesture of agreement and approval, mimicking the action of pressing an OK button. The sequence uses both arms to emphasize the gesture, ending in a relaxed pose. Frame 1 starts with both arms slightly raised, palms facing each other in anticipation. In Frame 2, the arms move forward, palms pressing together as if confirming the OK action. Frame 3 shows a slight pause, with the hands still pressed together before moving apart in Frame 4. Finally, in Frame 5, both arms return to a relaxed position at the sides.",
+ "frames": [
+  {
+   "beat": "arms start slightly raised, palms facing",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms press forward, confirming the ok",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 10.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "a brief pause, hands still pressed together",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 15.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull back, the ok is acknowledged",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

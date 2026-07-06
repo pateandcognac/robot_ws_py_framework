@@ -1,0 +1,56 @@
+{
+ "emoji": "📓",
+ "ideation": "This animation sequence depicts a robot interacting with a notebook.  The action will involve bringing both arms forward as if to open the notebook. Frame 1 will show the arms at rest, Frame 2 the arms moving forward and slightly upward, Frame 3 the arms hovering above a notebook, and Frame 4 the arms coming to rest on the notebook, with the palms facing down.  Frame 5 will show the arms slowly moving upward, pulling the notebook toward the face. The robot's arms lack elbows, so the movements will focus on shoulder rotations and wrist positioning to convey the intended actions.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready for the book",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move forward and slightly up, approaching",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hover, poised to open the notebook",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest on the notebook, palms down",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift, pulling the notebook closer",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

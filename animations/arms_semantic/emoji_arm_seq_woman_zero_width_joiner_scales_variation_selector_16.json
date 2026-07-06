@@ -1,0 +1,46 @@
+{
+ "emoji": "👩‍⚖️",
+ "ideation": "This sequence depicts a judge's thoughtful pose, emphasizing deliberation and fairness.  The animation starts with arms at the sides, transitioning to hands steepled, then to one hand resting on the opposite arm, before returning to a neutral position. This conveys a sense of gravity and considered judgment. The subtle movements aim to represent careful consideration rather than dramatic action.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, a moment of quiet contemplation",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise and hands steeple, considering the case",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand rests on left arm, weighing the evidence",
+   "arms": {
+    "right": {
+     "joint1": 60.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to sides, judgment delivered fairly",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

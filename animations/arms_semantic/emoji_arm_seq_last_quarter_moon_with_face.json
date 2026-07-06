@@ -1,0 +1,36 @@
+{
+ "emoji": "🌜",
+ "ideation": "This sequence will depict a robot expressing a serene, slightly wistful feeling, mirroring the gentle calmness of the last quarter moon.  The animation will focus on a slow, deliberate movement of the arms, emphasizing the peaceful nature of the emoji. The arms will start in a relaxed position, then move to a gentle embrace, before returning to a relaxed state.  This cyclical motion will reflect the moon's phases, suggesting a continuous flow of calm. I will incorporate a subtle inward roll of the arms to create a feeling of self-containment and gentle introspection. The robot will not be overtly expressive, but rather quietly reflective, much like the moon itself. I will use the arm movements to create a feeling of gentle embrace and introspection rather than active gestures. ",
+ "frames": [
+  {
+   "beat": "arms hang down, serene and still",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly rise and gently embrace the self",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, a quiet moonlit calm",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

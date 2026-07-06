@@ -1,0 +1,51 @@
+{
+ "emoji": "🦀",
+ "ideation": "This animation sequence will portray a crab scuttling sideways.  The robot will mimic this movement by using both arms in a coordinated, alternating pattern.  The arms will move with a slight bend at the 'shoulder' to suggest leg-like motion.  We'll avoid sharp angles to maintain a fluid, natural feel. The crab's sideways movement will be simulated by a lateral shift of the arms, with alternating leading arms for each frame. The wrist position will remain relatively neutral to allow the arms to focus on the scuttling motion.",
+ "frames": [
+  {
+   "beat": "arms reach out sideways, ready to scuttle",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm leads, pushing the body right",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm leads, pushing the body left",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "emoji": "🍖",
+ "ideation": "This animation sequence mimics the act of picking up and enjoying a delicious piece of meat on the bone.  The robot will use both arms to interact with the implied 'meat on the bone' object.  The movement will be deliberate and slightly exaggerated for expressiveness. Frame 1 shows both arms extended forward and slightly down, palms up, as if anticipating the food.  Frame 2 shows the right arm lifting the meat towards the mouth and the left arm supporting the object. Frame 3 depicts both hands around the meat, conveying the act of taking a bite. Frame 4 shows the right arm moving the meat back down to the table, and the left arm returning to its side. Frame 5 shows both arms back at rest. ",
+ "frames": [
+  {
+   "beat": "arms extend forward, palms up, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts the prize, left arm steadies it",
+   "arms": {
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    },
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both hands grasp the bone, preparing for a bite",
+   "arms": {
+    "right": {
+     "joint1": -45.0,
+     "joint2": 20.0,
+     "wrist": -90.0
+    },
+    "left": {
+     "joint1": 45.0,
+     "joint2": -20.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "the meat is lowered, the left arm retreats",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 90.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, satisfied state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

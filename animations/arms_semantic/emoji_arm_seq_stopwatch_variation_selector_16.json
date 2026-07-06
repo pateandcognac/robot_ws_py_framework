@@ -1,0 +1,66 @@
+{
+ "emoji": "⏱️",
+ "ideation": "This animation sequence simulates the action of checking a stopwatch, emphasizing the careful observation of time. The robot will bring both arms forward, as if holding a stopwatch, then bring its hands together in a gesture that mimics looking at the time. The sequence will end with a return to a neutral pose.  The robot's lack of hands will be addressed by implying a 'holding' and 'observing' action through arm positioning. We will use subtle variations in joint angles to create a natural flow and avoid rigid movements.  The left arm will primarily serve as a counterpoint to the right arm's more expressive movements.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready to start",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift forward, holding an imaginary stopwatch",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands come together, intently checking the time",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the measurement is complete",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

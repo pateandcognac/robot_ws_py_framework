@@ -1,0 +1,81 @@
+{
+ "emoji": "🦷",
+ "ideation": "This sequence will show the robot delicately holding a tooth, emphasizing care and precision.  The movement will be slow and deliberate, highlighting the fragility of the object. The left arm will hold the tooth, while the right arm provides support.  The robot's movements will be gentle and precise, reflecting the careful nature of handling a tooth. Frame 1 will show the robot's arms in a neutral position. Frame 2 will have the left arm extend and slightly rotate inwards to cradle the tooth. Frame 3 will show the right arm moving to gently support the left arm. Frame 4 will show the left arm slightly adjusting its grip. Frame 5 will show both arms returning to the neutral position.",
+ "frames": [
+  {
+   "beat": "arms hang loosely at the sides, ready to receive",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm extends, gently cradling the tooth",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm moves in to support the delicate object",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm adjusts grip with utmost care",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 5.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the tooth is secure",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

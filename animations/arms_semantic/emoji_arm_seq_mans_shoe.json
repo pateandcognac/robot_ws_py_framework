@@ -1,0 +1,66 @@
+{
+ "emoji": "👞",
+ "ideation": "This animation sequence simulates the action of picking up a shoe, emphasizing the careful and deliberate movement involved.  The robot will use both arms to carefully cradle and lift the shoe, reflecting the delicate nature of the object.  The sequence will focus on precise arm movements and wrist rotations to simulate the act of handling a shoe.  The left arm will act as a support, while the right arm will perform the primary lifting action.  The sequence will start with both arms in a neutral position, move to a preparatory pose, then to lifting, and finally to a holding pose.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to pick up",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach down, hands open to cradle",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -60.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift the shoe carefully upwards",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 15.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold the shoe steady, presenting it",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

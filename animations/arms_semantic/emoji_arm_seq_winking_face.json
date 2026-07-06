@@ -1,0 +1,76 @@
+{
+ "emoji": "😉",
+ "ideation": "This sequence aims to capture the playful and suggestive nature of a wink, using a subtle hand gesture near the eye. The right arm will move towards the right eye, mimicking the act of winking, while the left arm remains at rest to maintain balance and focus attention on the wink.  I'll prioritize smooth transitions and subtle movements to convey the lightheartedness of the expression. In the first frame, both arms are in a relaxed, neutral position at the sides. The right arm is slightly raised, preparing for the gesture. joint1 rotates the right arm slightly outward, while joint2 pitches it downward. The left arm remains still, with joint1 slightly inward and joint2 pitching the arm downward. In the second frame, the right arm moves closer to the right eye, with the palm facing inward as if covering a wink. joint1 rotates inward, bringing the arm towards the face, and joint2 pitches upward to position the hand near the eye. The left arm remains relaxed at the side, providing balance. By the third frame, the right arm moves slightly away from the face, as if completing the wink action. joint1 rotates slightly outward, and joint2 pitches downward, creating a subtle retraction of the hand. In the fourth frame, the right arm returns to its initial slightly raised position, ready for another wink or to return to rest. The left arm remains neutral throughout, ensuring the focus stays on the winking gesture. Finally, in the fifth frame, both arms return to their fully relaxed positions at the sides, completing the gesture.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, a playful glint begins",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches up, hand near the eye, a sly gesture",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 60.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the hand pulls back, the wink is delivered",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 40.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "right arm prepares for another playful move",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, knowing stillness",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

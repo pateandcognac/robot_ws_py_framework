@@ -1,0 +1,71 @@
+{
+ "emoji": "❌",
+ "ideation": "This sequence simulates the drawing of a cross-mark, using both arms in a coordinated movement. The arms start in a neutral position, then move to create the diagonal lines of the 'X'. Each arm moves independently but in sync to create a fluid, expressive gesture. By emphasizing the transition from neutral to the final crossed position, we can emphasize the decisive nature of the cross-mark. The final frame returns to a neutral pose. In the first frame, both arms start in a neutral position at the sides, with joint1 at 0.0 and joint2 at -90.0 for both. The wrists are neutral at 0.0. This establishes the starting point for the cross-mark gesture. In the second frame, the right arm begins to move, creating the first diagonal line. joint1 rotates to -45.0, and joint2 pitches upward to 45.0, positioning the arm diagonally. The wrist adjusts to -45.0, angling the hand to mimic drawing a line. The left arm remains in its neutral position for balance. In the third frame, the left arm begins its movement, creating the second diagonal line of the 'X'. joint1 rotates to 45.0, and joint2 pitches upward to 45.0. The wrist also adjusts to 45.0 to mimic the drawing motion. The right arm maintains its diagonal position from the previous frame. In the fourth frame, both arms reach their final positions, forming the complete cross-mark. The angles from the previous frame are refined slightly to ensure the 'X' is clear and well-defined. The wrists remain angled to suggest the completion of the drawing motion. In the fifth frame, both arms return to their initial neutral position, ending the gesture. This return to neutral reinforces the decisive nature of the cross-mark, as if the action is complete.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to draw",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm sweeps diagonally down and across",
+   "arms": {
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm sweeps diagonally up and across, forming an X",
+   "arms": {
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    },
+    "left": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms complete the cross-mark gesture",
+   "arms": {
+    "right": {
+     "joint1": -50.0,
+     "joint2": 50.0,
+     "wrist": -50.0
+    },
+    "left": {
+     "joint1": 50.0,
+     "joint2": 50.0,
+     "wrist": 50.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a neutral resting pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

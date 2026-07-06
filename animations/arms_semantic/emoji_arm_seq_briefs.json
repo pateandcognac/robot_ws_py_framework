@@ -1,0 +1,46 @@
+{
+ "emoji": "🩲",
+ "ideation": "This animation sequence will playfully mimic the action of pulling up underwear, focusing on the movement of the arms.  The robot will use both arms to simulate this action. To create a lighthearted feel, the movement will be slightly exaggerated, but still natural. The sequence will consist of 4 frames. In frame 1, both arms start in a relaxed position at the sides.  In frame 2, both arms move up and slightly forward, with the hands reaching towards the waistline. In frame 3, the arms are positioned as if firmly grasping the underwear. In frame 4, the arms move down and back to the sides as if the underwear is now secured.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift toward the waist",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands grasp the imaginary waistband firmly",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms drop down, underwear pulled up",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

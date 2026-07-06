@@ -1,0 +1,71 @@
+{
+ "emoji": "⚔️",
+ "ideation": "This sequence simulates a robot wielding two imaginary swords in a classic crossed swords pose.  The animation will emphasize the controlled movements needed for such a pose, highlighting the robot's precision.  The arms will start in a neutral position, then move to a preparatory stance, and finally to the crossed swords pose. The arms will remain in the crossed position to hold the pose, and then return to the neutral position. The swords are implied; the robot's arms will be positioned as if gripping hilts and crossing the blades. The focus is on the crossing motion, rather than any individual sword movements.  This is not a dynamic battle sequence, but rather a static pose, like a formal duel.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready for combat",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep outwards and up, preparing to cross",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to cross in front of the body",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 15.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 15.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "swords are crossed firmly in the center",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a neutral, ready stance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

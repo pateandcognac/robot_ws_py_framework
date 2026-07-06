@@ -1,0 +1,81 @@
+{
+ "emoji": "👩‍🎤",
+ "ideation": "This sequence simulates a singer holding a microphone. The left arm is up and out, as if holding the mic. The right arm is bent at the elbow (simulated by the robot's shoulder joints), as if gesturing expressively. The sequence begins with a relaxed pose (frame 1), transitions to the singer holding the mic (frame 2), then adds a slight upward movement of the right arm (frame 3), followed by a return to a more relaxed pose (frame 4), and finally, a subtle adjustment of the left arm (frame 5).",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed at the sides",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm holds the mic, right arm bent in anticipation",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm gestures upward with the song",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle slightly, the song continues",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm adjusts its grip on the microphone",
+   "arms": {
+    "left": {
+     "joint1": -25.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

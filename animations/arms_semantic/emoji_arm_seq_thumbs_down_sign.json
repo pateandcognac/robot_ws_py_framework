@@ -1,0 +1,81 @@
+{
+ "emoji": "👎",
+ "ideation": "This sequence simulates a thumbs-down gesture, using the right arm to express disapproval. The left arm remains relatively static for balance. The movement will be a controlled downward motion of the right arm, with the wrist slightly rotated to emphasize the gesture. In the first frame, both arms are relaxed at the sides. The right arm is slightly raised, with the wrist neutral, ready for the movement. In the second frame, the right arm moves downward, twisting the wrist outward to emphasize the gesture. In the third frame, the right arm continues its downward motion, with the wrist slightly more rotated. In the fourth frame, the right arm reaches its lowest point, with the wrist fully rotated to emphasize the thumbs-down gesture. In the fifth frame, the right arm returns to a neutral position, while the left arm remains still. ",
+ "frames": [
+  {
+   "beat": "both arms rest at the sides, neutral",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to lower, thumb turning down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the disapproval deepens, arm moving lower",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the final judgment, arm fully extended down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -60.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest, gesture complete",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

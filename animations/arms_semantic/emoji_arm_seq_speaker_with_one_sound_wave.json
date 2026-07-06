@@ -1,0 +1,36 @@
+{
+ "emoji": "🔉",
+ "ideation": "This sequence depicts a robot gently cupping its hands around its mouth to project its voice, symbolizing a moderate volume. The animation will begin with the robot's arms at its sides. Then, it will bring its hands to its mouth, and finally, it will return its arms to its sides. The hands will not directly touch the mouth, but will be positioned as if projecting sound. This will be done using a three-frame sequence.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to speak",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands cup around mouth, projecting a soft sound",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to sides, the gentle call fades",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

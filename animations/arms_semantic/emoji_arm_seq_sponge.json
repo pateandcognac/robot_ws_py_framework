@@ -1,0 +1,51 @@
+{
+ "emoji": "🧽",
+ "ideation": "This animation sequence shows the robot mimicking the action of cleaning with a sponge.  The movement will focus on a scrubbing motion, using both arms in a coordinated way. The sequence will start with the arms extended, then move into a scrubbing motion, and finally return to a neutral position.  The robot doesn't actually *hold* a sponge, but we'll simulate the action.",
+ "frames": [
+  {
+   "beat": "arms extend slightly, ready to scrub",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms scrub side to side with wrist twists",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 20.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a neutral, clean pose",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

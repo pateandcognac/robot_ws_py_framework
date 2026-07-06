@@ -1,0 +1,71 @@
+{
+ "emoji": "🌾",
+ "ideation": "This sequence depicts a gentle offering of the harvest, starting with both arms at the sides and culminating in a presentation of the sheaf of rice.  The movement should be slow, deliberate, and graceful, reflecting the reverence often associated with harvests.  The robot's lack of elbows will be addressed by using subtle wrist movements to add nuance. Frame 1 shows a neutral starting position. In Frame 2, the right arm begins to lift, showcasing the sheaf of rice.  Frame 3 shows the right arm fully extended, presenting the sheaf.  Frame 4 shows the right arm lowering gracefully. Frame 5 returns to a neutral pose.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready for harvest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to lift, holding the rice",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm presents the sheaf of rice with a gentle bow",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers the offering gracefully",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a resting, reverent pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

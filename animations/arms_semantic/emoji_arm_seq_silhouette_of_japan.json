@@ -1,0 +1,66 @@
+{
+ "emoji": "🗾",
+ "ideation": "This animation sequence will depict a robot gently holding a map of Japan, implying care and respect for the country and its geography.  The movement will be slow and deliberate, emphasizing the careful handling of the map. I will use both arms to simulate holding the map, keeping in mind the robot's limitations of only having two joints per arm.  The sequence is designed to be graceful and contemplative, reflecting the peaceful imagery associated with the map emoji. The robot's arms will move in a way that suggests it is carefully presenting or examining the map.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, preparing to hold the map",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms raise the map gently upwards",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms continue to lift, presenting the map",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold the map steady, showing the full shape",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

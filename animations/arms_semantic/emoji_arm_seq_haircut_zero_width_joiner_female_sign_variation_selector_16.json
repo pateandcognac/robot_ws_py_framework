@@ -1,0 +1,76 @@
+{
+ "emoji": "💇‍♀️",
+ "ideation": "This sequence simulates a woman getting a haircut. The left arm will rest on the armrest, while the right arm will mimic the motion of head tilting and hair washing.  The animation will focus on the right arm's movement to emphasize the hair-cutting action. The left arm will remain mostly static for balance and to avoid unnecessary complexity. I will check examples to ensure the movements are fluid and natural for the robot's design. Frame 1: The right arm is slightly raised, positioned as if gently holding the head. The left arm is positioned on an imaginary armrest, angled slightly downwards and inwards. The wrists are neutral. Frame 2: The right arm moves slightly forward and upward, mimicking the motion of guiding the head. The left arm remains in the same position. The wrists are slightly adjusted for more natural posture. Frame 3: The right arm moves further forward and downward, as if washing or rinsing hair. The left arm remains stable. The wrists are adjusted slightly for a more natural pose. Frame 4: The right arm returns to its original position, as if finishing the hair washing or cutting process. The left arm remains unchanged. The wrists are in a neutral, relaxed position. Frame 5: Both arms return to a neutral resting position.",
+ "frames": [
+  {
+   "beat": "left arm rests, right hand gently cradles the head",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm guides the head forward, a gentle tilt",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "right arm dips down as if rinsing the hair",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "right arm finishes the motion, head released",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle into a relaxed, neutral pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

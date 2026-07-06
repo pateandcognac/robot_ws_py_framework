@@ -1,0 +1,46 @@
+{
+ "emoji": "🦖",
+ "ideation": "This sequence animates a T-Rex, focusing on its powerful arms and the limited range of motion.  The animation will emphasize a short, powerful reach forward, followed by a return to a resting position. Frame 1 will show the arms at rest, slightly forward. Frames 2 and 3 will show the arms extending forward in a powerful grabbing motion. Frame 4 will return the arms to the resting position.  The limited range of motion of the T-Rex's arms will be reflected in the joint angles. ",
+ "frames": [
+  {
+   "beat": "tiny arms rest, ready to grab",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach forward with surprising strength",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a powerful lunge, grasping at air",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms retract to their short, primal pose",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

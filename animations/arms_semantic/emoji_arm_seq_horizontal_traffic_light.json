@@ -1,0 +1,46 @@
+{
+ "emoji": "🚥",
+ "ideation": "This animation sequence simulates a robot directing traffic using its arms, mimicking the horizontal signals of a traffic light.  The robot will use both arms to signal the 'stop' and 'go' directions. Frame 1 will show the robot’s arms extended horizontally, signaling 'stop'. Frame 2 will show the arms transitioning downwards and slightly inward, like preparing for a 'go' signal. Frame 3 will show the arms angled downward and slightly inward as if giving a 'go' signal. Frame 4 will show the arms returning to the horizontal 'stop' position.",
+ "frames": [
+  {
+   "beat": "arms extend wide, a firm stop signal",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lower, preparing for movement",
+   "arms": {
+    "both": {
+     "joint1": 70.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms point down and in, signaling go",
+   "arms": {
+    "both": {
+     "joint1": 50.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to the stop position",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

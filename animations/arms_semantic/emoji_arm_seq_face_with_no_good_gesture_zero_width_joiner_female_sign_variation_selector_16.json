@@ -1,0 +1,56 @@
+{
+ "emoji": "🙅‍♀️",
+ "ideation": "This sequence depicts a woman gesturing \"no\" using both hands, emphasizing a firm refusal or denial. The animation will focus on the hands clearly covering the eyes and moving in a smooth arc for expressive clarity.  I will be checking examples to make sure the arm transitions are fluid and that the range of motion is realistic for the robot. The first frame starts with both arms at the sides, neutral and relaxed. In the second frame, the arms start to rise, moving symmetrically towards the face.  The wrists begin to rotate, preparing to cover the eyes. In the third frame, the hands clearly cover the eyes. The arms are slightly forward, wrists fully rotated, creating a definitive \"no.\" The fourth frame shows the hands moving back slightly, maintaining the \"no\" gesture but starting the return movement. The fifth frame shows the arms returning to a relaxed position at the sides.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to deny",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rise and turn to block the view",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 60.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "hands cover eyes in a firm, clear 'no'",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull back slightly, the refusal lingers",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 60.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to sides, the denial complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

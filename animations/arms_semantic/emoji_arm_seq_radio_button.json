@@ -1,0 +1,51 @@
+{
+ "emoji": "🔘",
+ "ideation": "This animation sequence simulates the action of selecting a radio button.  The robot will use one arm to tap the button, simulating the clicking action. The other arm will remain fairly still, for contrast.  The sequence will start with both arms at rest, then one arm will move to tap the button, and end with both arms returning to rest. This is conceptually similar to the single frame examples for 'hands covering mouth', where the arms move inward and upward to bring the hands close together. The movement will be more subtle and controlled than the 'hands covering mouth' example, focusing on a precise tap rather than a covering motion. I will make use of the single joint examples for posture and reference the multi-frame examples for timing and fluidity.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready to select",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm reaches out and taps the button",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a resting position",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

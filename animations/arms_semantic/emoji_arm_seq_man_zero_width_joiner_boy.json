@@ -1,0 +1,51 @@
+{
+ "emoji": "👨‍👦",
+ "ideation": "This animation sequence depicts a protective and affectionate pose, reflecting the relationship between a man and a boy.  The man's arm will gently encircle the boy's shoulder, showing care and support. The boy's arm will be relaxed, perhaps hanging naturally at his side, indicating a sense of security and trust.  The movement will be subtle and smooth, avoiding abrupt changes in position.  The animation will start with both arms at rest, then transition to the protective embrace, and finally end with a slight relaxation of the man's arm, still maintaining the protective gesture.  This sequence will use the robot's joint capabilities to express the gentle nature of the pose.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed at the sides",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm gently embraces the shoulder, a father's protective gesture",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the embrace tightens slightly, a moment of quiet connection",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -50.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "🚐",
+ "ideation": "This animation sequence depicts the robot enthusiastically gesturing as if driving or describing a minibus.  The sequence starts with the arms at the sides, then moves to a driving-like motion, followed by an outward gesture to emphasize the size of the minibus, and finally returns to a relaxed pose.  The use of both arms adds to the expressiveness of the animation. The lack of elbows on the robot means that the positions rely on the two joints and wrist to convey the gesture.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to go",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms mime driving a small vehicle forward",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms spread wide, showing off the minibus size",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to sides, the tour is over",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "👯‍♀️",
+ "ideation": "This animation sequence depicts two figures playfully dancing or interacting.  The arms will move in a mirroring, yet slightly off-beat manner to create a sense of lightheartedness and synchronized movement.  Since the emoji implies a sense of fun and playfulness, I'll avoid perfectly symmetrical movements. The slight asymmetry will enhance the natural, less robotic feel. The lack of elbows in the robot arm design will be addressed through careful wrist positioning and shoulder joint coordination to create the illusion of fluid movement.",
+ "frames": [
+  {
+   "beat": "arms swing out and up, playful partners meet",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms drop down, a moment of playful pause",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep out and up again, a different pose",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 30.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle down, a final playful sway",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🎹",
+ "ideation": "This sequence simulates playing a keyboard, focusing on the rhythmic hand movements. The arms will move alternately, creating a fluid, expressive animation. Each frame represents a distinct position, not an intermediary step.  I'll use slight variations in joint angles and wrist positions to avoid rigidity. Frame 1: Both arms are positioned as if hovering over the keyboard. The wrists are angled slightly upward to simulate readiness. Frame 2: The right arm moves downward to strike a key, the wrist is angled slightly downwards and the left arm remains in its initial position. Frame 3: The right arm returns to its initial hovering position while the left arm moves downward to strike a key, mimicking the alternating hand movements of a pianist. Frame 4: Both arms return to the initial hovering position, completing the cycle.  This sequence should convey the natural flow of playing a keyboard instrument.",
+ "frames": [
+  {
+   "beat": "arms hover over the keys, ready to play",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "right hand strikes a key, left arm waits",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "left hand strikes a key, right arm rests",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to hover, the music flows",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 10.0
+    }
+   }
+  }
+ ]
+}

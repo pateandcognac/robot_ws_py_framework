@@ -1,0 +1,56 @@
+{
+ "emoji": "🚤",
+ "ideation": "This sequence simulates the action of driving a speedboat, focusing on the arm movements involved in gripping the wheel and controlling the throttle.  The animation will emphasize dynamic movement and a sense of speed and control. Frame 1: Both arms are extended forward, hands gripping an imaginary wheel.  The wrists will be slightly angled downward, suggesting a firm grip. Frame 2: The left arm pulls back slightly, mimicking the action of adjusting the throttle. The right arm remains firmly on the wheel. Frame 3: Both arms simultaneously push forward, conveying acceleration. Frame 4: The left arm returns to its initial position, maintaining balance. Frame 5: Both arms return to a neutral position, as if the boat is slowing down.  The overall motion should convey a sense of speed and control, suggestive of the excitement of operating a speedboat.",
+ "frames": [
+  {
+   "beat": "arms grip the wheel, ready to speed off",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "left arm pulls back, adjusting the throttle slightly",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "both arms push forward, accelerating the boat",
+   "arms": {
+    "both": {
+     "joint1": -40.0,
+     "joint2": 20.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "left arm returns, maintaining control and balance",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax as the boat slows to a stop",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

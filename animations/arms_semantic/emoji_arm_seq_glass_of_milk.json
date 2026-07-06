@@ -1,0 +1,71 @@
+{
+ "emoji": "🥛",
+ "ideation": "This sequence animates a robot gently lifting a glass of milk to its mouth.  The action is slow and deliberate, reflecting a calm and careful approach.  The robot's movements are smooth and controlled, showcasing a gentle nature. The sequence begins with both arms at rest; the left arm then moves to support the glass, which is lifted to the mouth with the right arm. Finally, the robot returns to a resting position. Frame 1: Both arms are at rest. Frame 2: Left arm supports the (imagined) glass of milk. Frame 3: Right arm brings the glass to the mouth. Frame 4: The robot drinks the milk. Frame 5: The glass is lowered, and the robot returns to a relaxed pose. ",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for a drink",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches down to grasp the milk",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm carefully lifts the glass to the mouth",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "sipping the cool milk with gentle motion",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the drink is finished",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

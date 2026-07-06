@@ -1,0 +1,56 @@
+{
+ "emoji": "🧿",
+ "ideation": "This animation sequence for the nazar amulet emoji (🧿) will focus on a protective gesture. The robot will gently raise its hands in a circular motion, mimicking the amulet's shape and suggesting a warding-off action. The movement will be slow and deliberate, emphasizing the protective aspect. The sequence will begin with the arms at rest and end with them returning to a relaxed position. The sequence will use both arms in a coordinated, symmetrical way, to reflect the amulet's balanced nature.  The arms will move in a circular motion, starting low and moving upward before returning to the starting position. This mirrors the shape of the nazar amulet itself and suggests a protective gesture.",
+ "frames": [
+  {
+   "beat": "arms hang low, ready to ward off evil",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands rise and begin to circle outward",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep up and around, forming a protective shield",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 30.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the protective circle completes its motion",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the ward is complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

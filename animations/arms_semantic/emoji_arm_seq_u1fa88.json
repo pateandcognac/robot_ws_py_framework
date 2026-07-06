@@ -1,0 +1,61 @@
+{
+ "emoji": "🪈",
+ "ideation": "This sequence animates the act of playing a flute. The right arm will hold the flute horizontally, while the left arm will subtly support the instrument.  The frames will show the start of a note, the note held, and then the note released.  Both arms will return to a resting position. Since the robot has no fingers, the flute will be held by a simple grasp, implied by the arm position. Frame 1 will show the right arm lifting to playing position, the left arm will be down. Frame 2 will show both arms in the playing position, the right arm holding the flute level, the left arm slightly below supporting the flute. Frame 3 will be a transition away from the playing position; the right arm will move slightly up and away from the flute, the left arm will move away to the side. Frame 4 both arms will return to rest. ",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to play",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts to hold the flute, left arm supports",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": -10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms hold the flute steady, a note is played",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms release the flute and return to rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

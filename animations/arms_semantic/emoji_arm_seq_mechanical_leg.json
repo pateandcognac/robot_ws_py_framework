@@ -1,0 +1,71 @@
+{
+ "emoji": "🦿",
+ "ideation": "This animation sequence will portray a robot's arms reacting to the presence of a mechanical leg, conveying a sense of curiosity or inspection. The sequence will feature both arms moving in a coordinated manner, starting from a neutral position and culminating in a gesture of careful examination. Frame 1: Both arms begin in a neutral, relaxed position at the side of the robot's body. Frame 2: The robot's left arm extends slightly outward and downward, as if reaching toward the mechanical leg. The right arm remains in a neutral position. Frame 3: The robot's right arm moves to join the left, both arms now positioned as if gently holding or inspecting the mechanical leg from both sides. Frame 4: Both arms move slightly upward, as if lifting the leg for closer inspection. Frame 5: Both arms return to their neutral positions.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, neutral stance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches down, curious about the leg",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms cradle the leg, ready to inspect",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently lift the leg for a closer look",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, inspection complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

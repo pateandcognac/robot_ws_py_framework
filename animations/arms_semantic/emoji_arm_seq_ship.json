@@ -1,0 +1,66 @@
+{
+ "emoji": "🚢",
+ "ideation": "This sequence simulates the act of holding a ship's wheel, conveying a sense of control and navigation.  The animation will focus on the right arm, mimicking the turning motion, while the left arm remains in a relaxed position.  I'll use the two-joint system to create a natural-looking turning motion. In the first frame, both arms are at rest.  The second frame shows the right arm moving to a position to grasp the wheel, with the joint1 slightly outward to position the arm, and joint2 angled slightly upward. The wrist will be adjusted to mimic gripping the wheel. The third frame shows the right arm turning the wheel, with joint1 rotating slightly inward and joint2 moving to a position that suggests turning. The fourth frame will show the right arm returning to a neutral position, finishing the turning action.",
+ "frames": [
+  {
+   "beat": "both arms rest, ready to steer",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches out to grasp the wheel",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "turning the wheel with a steady hand",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest, course is set",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

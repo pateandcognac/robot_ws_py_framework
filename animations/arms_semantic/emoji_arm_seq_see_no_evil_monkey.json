@@ -1,0 +1,51 @@
+{
+ "emoji": "🙈",
+ "ideation": "This sequence depicts the classic \"see-no-evil monkey\" pose, focusing on the hand-over-eyes gesture.  The animation will emphasize the covering of the eyes and the overall sense of playful mischief. The robot's lack of fingers requires us to create a convincing approximation of the gesture using the available joints and wrist rotation.  We'll use a three-frame sequence to capture the key moments of the action. Frame 1 shows the start of the gesture, with the arms moving upward. Frame 2 shows the hands covering the eyes. Frame 3 shows a slight relaxation of the pose. The right arm will remain relatively neutral to provide balance.",
+ "frames": [
+  {
+   "beat": "arms start to cover the eyes",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 85.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands are firmly over the eyes, playful mischief",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 85.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a slight peek, eyes still mostly covered",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

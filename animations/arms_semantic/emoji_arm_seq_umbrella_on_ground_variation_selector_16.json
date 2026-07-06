@@ -1,0 +1,46 @@
+{
+ "emoji": "⛱️",
+ "ideation": "This animation sequence depicts a robot gently placing an umbrella (represented by arm movements) onto the ground.  The action is slow and deliberate, emphasizing the careful placement.  The robot's arms are straight and end in a hand-like structure, so the 'placement' is an approximation. Frame 1 shows the arms raised, preparing to set down the umbrella. Frame 2 shows the arms beginning to descend. Frame 3 shows the arms almost touching the ground. Frame 4 shows the umbrella (arms) resting on the ground.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, holding the umbrella high",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin a slow, controlled descent",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower further, nearing the ground",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest gently on the ground, umbrella placed",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

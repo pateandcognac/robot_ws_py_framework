@@ -1,0 +1,51 @@
+{
+ "emoji": "🛎️",
+ "ideation": "This sequence simulates a bellhop presenting a hotel key or room key. The animation starts with both arms at the sides, then moves to presenting a tray (simulated by a slight forward position of the arms), and finally returns to a neutral position. The left arm will hold the tray, so it will be less expressive than the right. The right arm will be slightly more active, mimicking a gesture of presentation or invitation.  The robot does not have hands, so the 'holding' will be simulated by positioning.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to serve",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm presents the key, right arm gestures invitation",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the task complete",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

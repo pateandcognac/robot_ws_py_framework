@@ -1,0 +1,81 @@
+{
+ "emoji": "🍫",
+ "ideation": "This sequence depicts a robot playfully reaching for and then enjoying a chocolate bar.  The animation will focus on the right arm, with the left arm remaining largely still to provide visual contrast and emphasize the action of eating the chocolate. The movement should feel both deliberate and slightly clumsy, reflecting the robot's artificial nature and the childlike joy of indulging in a treat. In frame 1, both arms are relaxed at the sides; frame 2 shows the right arm reaching forward and slightly upward, as if grabbing the chocolate bar; frame 3 shows the right arm bringing the chocolate bar to the robot's mouth; frame 4 depicts the robot eating the chocolate bar, with the arm slightly lowered; and frame 5 shows the robot relaxing after enjoying the chocolate, with both arms returning to a resting position.",
+ "frames": [
+  {
+   "beat": "both arms rest, anticipation for a treat",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm reaches out, eager for chocolate",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the sweet prize closer to the mouth",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "enjoying the delicious chocolate bar with delight",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax, satisfied after the sweet indulgence",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

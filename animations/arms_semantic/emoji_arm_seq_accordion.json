@@ -1,0 +1,56 @@
+{
+ "emoji": "🪗",
+ "ideation": "This animation sequence will show the robot mimicking the action of playing an accordion.  The robot doesn't have fingers, so we'll simulate the hand movements by positioning the arms as if they're holding and operating the bellows.  The movement will be a rhythmic expansion and contraction of both arms. We'll keep the wrists mostly neutral, focusing on the main movement of the arms. This sequence should capture the essence of the accordion's bellows expanding and contracting in a steady, rhythmic motion. Frame 1 will show the arms positioned as if they are holding the accordion in a neutral position, ready to begin playing. In frames 2 and 4, the arms will be extended outward, mimicking the bellows expanding. Frames 3 and 5 will show the arms contracting, drawing the bellows together. This alternating expansion and contraction will create the visual representation of playing the instrument. The slight variations in joint angles add a natural rhythm to the animation.",
+ "frames": [
+  {
+   "beat": "arms hold the accordion, ready to play",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend outward, bellows expand",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms contract inward, bellows compress",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend outward again, bellows expand",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms contract inward, finishing the phrase",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🗝️",
+ "ideation": "This animation sequence will show the robot carefully picking up a key.  The robot will use both arms in a coordinated manner, mimicking a human's cautious approach to handling a delicate object. The left arm will provide support and balance, while the right arm performs the key-handling action.  The sequence will emphasize precision and care. Frame 1: Both arms are extended slightly forward. The left arm is slightly higher than the right, preparing for support. Frame 2: The left arm lowers slightly, providing a stable base. The right arm reaches toward the key with the wrist slightly angled downward. Frame 3: The right arm reaches to grasp the key and lifts it slightly. The left arm adjusts slightly to maintain balance. Frame 4: The robot holds the key, both arms are brought in closer to its body, indicating possession and careful handling. ",
+ "frames": [
+  {
+   "beat": "arms extend forward, ready to reach",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm supports, right arm reaches for the key",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "right hand grasps the key, left arm steadies",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "both arms bring the key closer, held with care",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

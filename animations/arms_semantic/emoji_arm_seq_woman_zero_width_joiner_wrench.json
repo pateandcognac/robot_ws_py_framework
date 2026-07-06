@@ -1,0 +1,66 @@
+{
+ "emoji": "👩‍🔧",
+ "ideation": "This animation sequence depicts a woman mechanic, confidently working on a project. The sequence will showcase her focused, yet relaxed, posture, reflecting competence and ease in her work environment. The left arm will simulate holding a wrench or tool, while the right arm might be used to steady a part or guide a process.  I'll use a combination of inward and outward rotations (joint1) and upward and downward pitches (joint2) to achieve realistic arm positions. I'll also incorporate slight wrist movements to enhance the realism of tool handling. Let's begin!\nFrame 1: Left arm is slightly bent, holding a tool (wrench) at waist level. Right arm is slightly bent, supporting a part or guiding the work at chest level. \nFrame 2: Left arm moves slightly upward, adjusting the tool's position. Right arm moves slightly forward, guiding the work with a more precise motion.\nFrame 3: Left arm returns to a more relaxed position, while maintaining tool grip. Right arm straightens slightly, indicating a completed step in the task.\nFrame 4: Left arm moves slightly downward as if positioning for the next step. Right arm moves back to a supporting position, preparing for the next tool operation.",
+ "frames": [
+  {
+   "beat": "mechanic holds tool at waist, supports part at chest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm adjusts tool, right arm guides work forward",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -30.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": -5.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm relaxes grip, right arm straightens slightly",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -50.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lowers for next step, right arm supports again supports",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

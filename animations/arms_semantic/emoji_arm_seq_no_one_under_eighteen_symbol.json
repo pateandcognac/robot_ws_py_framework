@@ -1,0 +1,51 @@
+{
+ "emoji": "🔞",
+ "ideation": "This animation sequence aims to express the restricted access implied by the \"no one under 18\" emoji.  The sequence will start with arms crossed defensively, then transition to a hand gesture that mimics a stop sign or barrier, before ending with arms folded tightly across the chest. This gradual shift from defensive to restrictive embodies the emoji's meaning. Frame 1: Arms are crossed tightly across the chest, suggesting a protective or defensive posture. Frame 2: The right arm extends outward, palm open and facing outward, mimicking a hand gesture that signals 'stop'. The left arm remains folded across the chest, creating a contrast. Frame 3: Both arms return to a more defensive posture with arms tightly crossed across the chest, but slightly lower than in frame 1. This final pose emphasizes the restriction implied by the emoji.  The sequence emphasizes a sense of restriction and warning. ",
+ "frames": [
+  {
+   "beat": "arms crossed tightly, a defensive barrier",
+   "arms": {
+    "left": {
+     "joint1": 65.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 50.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pushes out a stop, left arm guarded",
+   "arms": {
+    "left": {
+     "joint1": 65.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms fold in, a firm restriction",
+   "arms": {
+    "left": {
+     "joint1": 70.0,
+     "joint2": 70.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": 70.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

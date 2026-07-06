@@ -1,0 +1,81 @@
+{
+ "emoji": "🍷",
+ "ideation": "This animation sequence depicts a robot delicately holding a wine glass.  The movement will be slow and controlled to emphasize the careful handling of a fragile object. The robot will use its right arm, keeping the left arm at rest for balance. Frame 1 shows the arm extending toward the glass, preparing to lift it. Frame 2 shows the robot grasping the glass. Frame 3 shows the robot raising the glass slightly. Frame 4 shows the robot holding the glass steadily. Frame 5 shows the robot lowering the glass gently.",
+ "frames": [
+  {
+   "beat": "both arms rest, ready to hold",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends, reaching for the glass",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "fingers gently close around the stem",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the glass is lifted with careful grace",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the arm returns to a resting position",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

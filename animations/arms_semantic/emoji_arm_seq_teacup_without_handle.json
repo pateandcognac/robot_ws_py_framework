@@ -1,0 +1,51 @@
+{
+ "emoji": "🍵",
+ "ideation": "This sequence depicts the robot carefully holding an imaginary teacup without a handle.  The movement should be gentle and precise, reflecting the delicate nature of handling such a cup.  The robot's arms will move in a coordinated manner to cradle the cup, emphasizing the careful handling. The left arm will provide support from below, while the right arm will gently cradle the cup from the side.  Both arms will use a combination of joint1 and joint2 to achieve the desired position and will maintain a slight inward rotation to keep the cup centered.",
+ "frames": [
+  {
+   "beat": "arms gently lower to cradle an imaginary teacup",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "lifting the teacup with careful, supportive motions",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -50.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -35.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the teacup is held steady, ready for a sip",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

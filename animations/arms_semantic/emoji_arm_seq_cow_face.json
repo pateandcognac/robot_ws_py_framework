@@ -1,0 +1,46 @@
+{
+ "emoji": "🐮",
+ "ideation": "This sequence will animate a robot mimicking a cow's gentle, swaying motion.  The arms will move in a slow, rhythmic pattern, suggesting the calm nature of a cow. I will use slight variations in the joint angles to create a natural, non-robotic feel. The animation will consist of four frames to capture the full sway.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, a gentle bovine stillness",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm sways slightly outward and down",
+   "arms": {
+    "right": {
+     "joint1": 30.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm sways back inward, a slow chew",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle into a calm, contented rest",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "emoji": "😕",
+ "ideation": "This sequence aims to capture the perplexed expression of the 'confused face' emoji by using a combination of head-scratching and arm movements that suggest uncertainty. The left arm will mimic a head-scratching gesture, while the right arm remains relatively still, providing balance and reinforcing the contemplative nature of the pose. The sequence starts with both arms in a relaxed, neutral position. In the second frame, the left arm begins to rise towards the head, preparing for the scratch. joint1 rotates the arm inward, and joint2 pitches it upward, positioning the hand near the head. The right arm remains still, providing a visual anchor. In the third frame, the left arm moves slightly, as if scratching the head. The wrist rotates inward slightly to better mimic the scratching motion. The right arm shifts minimally to maintain balance. In the fourth frame, the left arm returns to its initial position, completing the scratch. The right arm also returns to its neutral position. In the final frame, both arms drop slightly, palms facing forward, in a gesture of mild exasperation or confusion. This final pose emphasizes the uncertain, questioning nature of the 'confused face' emoji.",
+ "frames": [
+  {
+   "beat": "arms hang loosely, a moment of calm",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm begins to rise, a question forming",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 70.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left hand scratches the head, right arm balances",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 80.0,
+     "wrist": -60.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the scratch finishes, returning to a neutral pose",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 70.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms drop slightly, confused",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 45.0
+    }
+   }
+  }
+ ]
+}

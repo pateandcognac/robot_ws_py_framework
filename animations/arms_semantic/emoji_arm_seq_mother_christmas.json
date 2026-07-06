@@ -1,0 +1,36 @@
+{
+ "emoji": "🤶",
+ "ideation": "This animation sequence portrays Mrs. Claus in a warm and welcoming manner, using gentle, flowing arm movements that suggest kindness and generosity. The sequence begins with her arms relaxed at her sides, then moves to a gesture of offering, and finally returns to a resting position. I will ensure the movements are smooth, flowing, and natural-looking, consistent with the overall impression of the emoji.  The robot's lack of elbows will be addressed by using a combination of joint1 and joint2 to create the illusion of a graceful arm movement.",
+ "frames": [
+  {
+   "beat": "mrs. claus rests her arms gently at her sides",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open wide in a warm, offering gesture",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a soft, welcoming rest",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

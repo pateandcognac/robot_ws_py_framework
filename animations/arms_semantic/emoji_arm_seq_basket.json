@@ -1,0 +1,56 @@
+{
+ "emoji": "🧺",
+ "ideation": "This animation sequence depicts a robot gently lifting an imaginary basket.  The movement should be slow, deliberate, and careful, suggesting the robot is handling something fragile or precious.  The robot will use both arms to lift, emphasizing the collaborative and careful nature of the action.  We'll begin with arms at rest, then move to a preparatory position, the lift itself, a slight pause, and finally a return to rest. The wrists will rotate slightly to better cradle the imaginary basket.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, preparing to cradle",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "both arms carefully lift the imaginary basket",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 15.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "holding the basket steady, a moment of care",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 10.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower the basket back to the ground",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🎗️",
+ "ideation": "This animation sequence will show the robot gently holding a reminder ribbon.  The robot's arms will move in a slow, deliberate manner to emphasize the importance of the reminder. The movement will be gentle and graceful. The left arm will support the ribbon from below, while the right arm will hold the ribbon from above, creating a sense of care and attention. The final frame will have both arms slightly raised, almost as if presenting the ribbon.",
+ "frames": [
+  {
+   "beat": "arms gently lower to hold an unseen ribbon",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the arms lift slightly, cradling the reminder",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms continue to rise, presenting the ribbon with care",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms are held high, a gentle, thoughtful display",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -25.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

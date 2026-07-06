@@ -1,0 +1,81 @@
+{
+ "emoji": "🎁",
+ "ideation": "This sequence shows the robot gently lifting a gift from a table or surface, emphasizing careful handling. The robot's movements will be slow and deliberate, reflecting the precious nature of the gift. In the first frame, both arms are at rest, slightly angled outward to mimic a relaxed posture. The left arm starts to move upward, as if to lift the gift. The right arm will remain in a relaxed position. In the second frame, the left arm lifts higher, and the wrist rotates slightly inward to cradle the imaginary gift. The right arm remains still, creating a balance. In the third frame, both arms move together to lift the gift slightly higher. The left arm bends slightly more, while the right arm raises to support the gift. In the fourth frame, the left arm moves slightly forward, presenting the gift to the viewer, while the right arm slightly lowers to keep the balance. In the fifth frame, the arms gently lower the gift back to the surface, mimicking a careful placement. The movements are slow and graceful, reflecting the careful handling of a wrapped gift.",
+ "frames": [
+  {
+   "beat": "arms rest, ready to receive the gift",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches out and up, gently grasping",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift the gift together, carefully",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms present the gift forward with delicate balance",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower the gift back down with care",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "emoji": "🩻",
+ "ideation": "This animation sequence simulates the action of peering through an x-ray, bringing both hands up to the eyes in a focused manner.  I'll use a three-frame sequence to emphasize the key moments of the action. The arms will move in a coordinated manner, emphasizing the intent to look through an imaginary x-ray image.  In the first frame, the arms will start from a neutral position. In the second frame, the arms will move to an intermediate position, partially raised, and angled to frame the face.  In the final frame, the arms will be fully raised to the eyes, forming a frame around the eyes as if looking through an x-ray.",
+ "frames": [
+  {
+   "beat": "arms hang down, ready to peer",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift and angle, beginning to frame the view",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands frame the eyes, looking intently through",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 75.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

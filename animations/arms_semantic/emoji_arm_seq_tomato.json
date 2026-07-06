@@ -1,0 +1,56 @@
+{
+ "emoji": "🍅",
+ "ideation": "This sequence aims to capture the round, plump essence of a tomato by using circular arm motions. The movements are symmetrical, with both arms mirroring each other to emphasize the tomato's shape. Each frame represents a distinct point in the circular motion, creating a smooth, flowing animation. In the first frame, both arms start low and slightly forward, with palms facing upward as if holding the tomato. joint1 rotates the arms slightly inward, and joint2 pitches them forward. This sets the stage for the circular motion. In the second frame, both arms move outward and upward, tracing the curve of the tomato. joint1 rotates outward, and joint2 pitches the arms upward. The wrists rotate slightly to maintain the upward-facing palm orientation. By the third frame, both arms reach the top of the circular motion, palms facing each other, as if cradling the tomato. joint1 reaches its maximum outward rotation, and joint2 pitches the arms to their highest point. In the fourth frame, both arms begin to descend, following the downward curve of the tomato. joint1 rotates inward, and joint2 pitches the arms downward. The wrists adjust to maintain the cupping motion. Finally, in the fifth frame, both arms return to the starting position, completing the circular motion. joint1 and joint2 return to their initial settings, ready to repeat the cycle. The symmetrical, circular motion of the arms evokes the shape and feel of a tomato, creating a playful and expressive animation.",
+ "frames": [
+  {
+   "beat": "arms cradle low, palms up, ready to form tomato",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep outward and up, tracing the tomato's curve",
+   "arms": {
+    "both": {
+     "joint1": -40.0,
+     "joint2": 40.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach apex, palms facing, cradling the round fruit",
+   "arms": {
+    "both": {
+     "joint1": -90.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms descend in a smooth arc, following the tomato's shape",
+   "arms": {
+    "both": {
+     "joint1": -40.0,
+     "joint2": 40.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to start, completing the full tomato shape",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

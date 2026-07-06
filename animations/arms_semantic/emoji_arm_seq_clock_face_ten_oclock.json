@@ -1,0 +1,51 @@
+{
+ "emoji": "🕙",
+ "ideation": "This animation sequence depicts a robot checking the time, using its arms to mimic the position of the hands on a ten-o'clock clock.  The robot's arms will simulate the hands of the clock, with the left arm representing the hour hand and the right arm representing the minute hand. The animation will focus on the movement of the arms to indicate the time, starting from a relaxed position and ending with the hands pointed at the correct time. The movement will be smooth and deliberate, emphasizing the precision of the time-telling gesture.  The left arm will move less dramatically than the right arm to reflect the slower movement of the hour hand. ",
+ "frames": [
+  {
+   "beat": "arms hang down, ready to tell time",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm points up, right arm sweeps to the side",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms hold the ten o'clock position",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

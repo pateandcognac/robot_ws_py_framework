@@ -1,0 +1,51 @@
+{
+ "emoji": "🪰",
+ "ideation": "This sequence simulates swatting a fly. It starts with both arms relaxed, then the right arm swings forward to swat, and finally, both arms return to their relaxed state. The left arm remains relatively still, providing a contrast to the dynamic movement of the right arm.  I'll use the two-joint system to create a natural-looking swing.  I'll ensure smooth transitions and check examples for similar motions. ",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, waiting for the pest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm snaps forward in a quick swat",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, ready pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "emoji": "☂️",
+ "ideation": "This sequence shows the robot holding an umbrella above its head to protect itself from rain or sun. The animation will focus on a smooth, controlled raising of both arms to a position above the head, keeping the hands in a position that suggests holding the umbrella handle. The arms will move symmetrically to maintain balance and visual appeal. In the first frame, the arms start at the sides, in a neutral position, with the palms facing each other. In the second frame, the arms begin to rise, with the elbows slightly bent to simulate the act of holding the umbrella. In the third frame, the arms reach a point above the head, with the palms facing downward to suggest holding the umbrella. The final frame shows the arms in a stable position, maintaining the umbrella above the head. The animation will reflect the gentle act of opening an umbrella and holding it securely.",
+ "frames": [
+  {
+   "beat": "arms hang down, ready to open umbrella",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lift, preparing to shield",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms raise overhead, holding umbrella steady",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 60.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold umbrella firmly above, protecting",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 60.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

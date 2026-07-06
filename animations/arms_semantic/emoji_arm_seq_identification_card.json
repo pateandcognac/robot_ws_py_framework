@@ -1,0 +1,51 @@
+{
+ "emoji": "🪪",
+ "ideation": "This sequence shows the robot presenting an ID card. It starts with both arms relaxed, then the right arm moves forward to present the card, and finally returns to a neutral position. The left arm remains mostly still to keep the focus on the card presentation. The movement should be slow and deliberate to emphasize the official nature of the action.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for inspection",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, presenting the ID",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to side, ID shown",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

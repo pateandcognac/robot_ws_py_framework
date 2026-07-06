@@ -1,0 +1,61 @@
+{
+ "emoji": "🍋‍🟩",
+ "ideation": "This sequence will depict a robot playfully interacting with a lime and a green square, perhaps representing a field or a box. The animation will be lighthearted and expressive, using smooth transitions between frames.  In the first frame, both arms will be at rest. In the second frame, the left arm will reach out to pick up the lime. In the third frame, the left arm will hold the lime, and the right arm will reach to place the lime in the green square. In the fourth frame, both arms will return to their resting position. This playful interaction captures the essence of the emoji combination and shows the robot's ability to handle objects.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches out, grabbing the lime",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm places lime in green square with right",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to relaxed rest",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

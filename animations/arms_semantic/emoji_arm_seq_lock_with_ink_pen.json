@@ -1,0 +1,81 @@
+{
+ "emoji": "🔏",
+ "ideation": "This animation sequence depicts a robot carefully securing a document or object with a pen, emphasizing precision and focus.  The sequence uses both arms, with the right arm holding an imaginary pen and the left arm steadying an imaginary document. I will use subtle movements to convey concentration and careful attention to detail. In the first frame, both arms are positioned at the sides for a neutral starting point. In the second frame, the right arm moves forward and slightly upward, the wrist rotating slightly to mimic holding a pen. The left arm simultaneously moves forward, the hand open as if holding a document. The third frame shows the right arm moving downward, as if the robot is signing or securing the document. The left arm maintains its position. In the fourth frame, the right arm returns to a more neutral position, and the left arm slowly lowers to the side.  The final frame shows both arms at rest.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to secure",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends with pen, left steadies document",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "right arm moves down to sign, left holds firm",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "right arm retracts, left arm lowers slowly",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the task complete",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

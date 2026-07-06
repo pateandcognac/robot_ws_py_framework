@@ -1,0 +1,81 @@
+{
+ "emoji": "🏏",
+ "ideation": "This sequence simulates the act of playing cricket, focusing on the swing of the bat.  The animation will emphasize the backswing, the downswing, and the follow-through. The left arm will act as a counterbalance. Frame 1 shows a preparatory pose, Frame 2 shows the backswing, Frame 3 the downswing and Frame 4 the follow-through. Frame 5 returns to a neutral position.  The robot will not have a realistic grip on the bat, but the arm movements will suggest the action.",
+ "frames": [
+  {
+   "beat": "arms rest, ready for the pitch",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm swings back, preparing to strike",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -60.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a powerful downswing with the imaginary bat",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the arms follow through the sweeping motion",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, neutral stance",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

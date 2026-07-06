@@ -1,0 +1,56 @@
+{
+ "emoji": "🤷‍♂️",
+ "ideation": "This sequence depicts a shrug, conveying uncertainty or indifference.  The arms will move in a synchronized, slightly exaggerated manner to emphasize the gesture.  The palms will face upward to enhance the feeling of helplessness or questioning. I will use slight variations in wrist and joint angles between frames to avoid rigidity.",
+ "frames": [
+  {
+   "beat": "arms hang down, palms up, ready to shrug",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, palms still up, questioning",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift higher, a clear gesture of not knowing",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lower, the shrug concludes",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": -70.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, a final shrug",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

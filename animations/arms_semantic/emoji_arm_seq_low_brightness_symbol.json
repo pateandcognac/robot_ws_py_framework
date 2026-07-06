@@ -1,0 +1,81 @@
+{
+ "emoji": "🔅",
+ "ideation": "This sequence shows the robot dimming the lights, starting with arms down, then raising the arms to simulate pressing a button, and finally returning to a neutral position. The movement should be slow and deliberate.  The right arm will perform the dimming action, while the left arm will remain mostly still for balance. I'll leverage the existing examples to ensure smooth transitions. Frame 1: Both arms are relaxed at the sides. Frame 2: The right arm raises slightly upward and forward as if approaching a button. Frame 3: The right arm presses down, simulating button activation. Frame 4: The right arm returns to a relaxed state, as if the action is complete. Frame 5: Both arms are back in a neutral, resting position.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts slowly, approaching the control",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm presses down, dimming the light",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest, action complete",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle back into stillness",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

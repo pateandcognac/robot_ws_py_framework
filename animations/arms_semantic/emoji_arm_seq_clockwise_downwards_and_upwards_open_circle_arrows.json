@@ -1,0 +1,56 @@
+{
+ "emoji": "🔃",
+ "ideation": "This animation sequence simulates the rotational movement implied by the clockwise vertical arrows emoji.  The arms will move in a circular motion, mimicking the turning of a wheel.  The sequence will focus on the key positions of the arms to create a clear sense of rotation, leaving smooth transitions between frames to the animation system. Frame 1 will begin with arms extended outward to the sides, palms facing down. Frame 2 will have the arms rotated slightly upward and inward, suggesting the start of a circular motion. Frame 3 will show the arms raised and angled slightly backward, continuing the circular movement. Frame 4 will bring the arms back down and outward to the sides, almost to the starting position.  Frame 5 will be a pause, slightly adjusting the arms to return to the initial position. This pause helps emphasize the completion of the rotation cycle. The sequence will use both joint1 for rotation and joint2 for the up and down motion. ",
+ "frames": [
+  {
+   "beat": "arms sweep out wide, palms down, ready to turn",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to rotate inward and upward, a gentle start",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift and angle back, continuing the circular motion",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep down and outward, completing the turn",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle, the rotation cycle is complete",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

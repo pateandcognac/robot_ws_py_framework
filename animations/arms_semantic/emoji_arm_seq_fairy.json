@@ -1,0 +1,56 @@
+{
+ "emoji": "🧚",
+ "ideation": "This sequence portrays a fairy's whimsical flight, using delicate arm movements to suggest fluttering wings and magical gestures. The arms will move in a synchronized, yet slightly offset manner to create a sense of ethereal grace.  The wrists will subtly adjust to enhance the effect.  I'll refer to prior examples to ensure smooth, natural transitions within the robot's physical limitations. Frame 1: Both arms start slightly raised and angled outward, palms facing upward.  This sets a light, airy mood. Frame 2: The left arm rises slightly, while the right arm lowers gracefully, creating a gentle, flowing motion. The wrists subtly tilt to add to the delicate movement. Frame 3: The left arm gently lowers, while the right arm begins to rise, mirroring the motion from Frame 2 but in reverse. This creates a continuous, flowing cycle. Frame 4: Both arms return to their starting position in Frame 1, completing the cycle and suggesting the continuous, effortless movement of a fairy's wings.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, palms up, ready for flight",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 15.0
+    }
+   }
+  },
+  {
+   "beat": "left arm rises, right arm dips, a gentle flutter",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 30.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "right arm rises, left arm dips, mirroring the grace",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 30.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to resting, wings softly beat",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 15.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "⛲",
+ "ideation": "This animation sequence depicts the robot expressing wonder and awe at a fountain, mimicking the gentle arc of water. The sequence starts with both arms relaxed at the sides. Then, both arms rise in a slow, graceful arc, mirroring the upward curve of water spraying from a fountain. The arms pause briefly at the peak of their arc, before slowly returning to their original position. This sequence uses smooth transitions between keyframes to capture the elegance of the fountain's water flow. The arms do not have elbows, therefore the movements are more like a smooth arc. The wrists will stay neutral throughout, allowing the focal point to remain on the graceful arm movement.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, anticipating the spray",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms begin to rise in a gentle arc",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach their peak, a moment of awe",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the water's arc begins to fall gently",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the fountain calms",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

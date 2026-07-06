@@ -1,0 +1,86 @@
+{
+ "emoji": "🙂‍↔️",
+ "ideation": "This sequence aims to mimic the side-to-side head shaking gesture, conveying disagreement or disapproval. Since the robot can't shake its head, the arms will perform the motion instead. The movement will be subtle and rhythmic, alternating between small outward rolls and pitches to simulate the head's back-and-forth sway. The wrists will remain neutral to maintain a smooth, controlled movement.  In the first frame, both arms are slightly raised, palms facing each other, as if preparing for the side-to-side motion. joint1 is slightly inward, and joint2 pitches the arms slightly forward. In the second frame, the left arm moves slightly outward, while the right arm moves slightly inward, mimicking the head's tilt. joint1 adjusts to roll the arms outward, while joint2 adjusts the pitch slightly. The third frame mirrors the second, with the right arm moving outward and the left arm inward, continuing the swaying motion.  The fourth frame returns both arms to the central position, preparing for the next sway.  The fifth frame is the same as the second, and the sixth frame is the same as the third, completing the rhythmic back-and-forth motion, creating a subtle but clear visual representation of head shaking.",
+ "frames": [
+  {
+   "beat": "arms held out, palms facing, ready to sway",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm rolls out, right arm rolls in, a slight shake",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm rolls out, left arm rolls in, continuing the sway",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to center, pausing the disagreement",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm rolls out again, right arm rolls in, shaking no",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm rolls out, left arm rolls in, final disapproval",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

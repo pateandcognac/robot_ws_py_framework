@@ -1,0 +1,46 @@
+{
+ "emoji": "▪️",
+ "ideation": "This animation sequence will represent the emoji as a small, contained, and somewhat mysterious object. The animation will involve a slight, almost hesitant, movement of the arms, as if the robot is carefully considering the small square. The sequence will start with the arms at rest, then subtly move toward the square as if to inspect it, before returning to rest. This will convey a sense of curiosity and careful consideration, rather than excitement or strong emotion. The arms will not move dramatically, maintaining a sense of quiet contemplation and mystery.  The small size of the square is emphasized by the robot's subdued movements, suggesting its unassuming nature. The overall feel is one of quiet observation and intrigue.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, still and quiet",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts slightly, a curious inspection",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm hovers, considering the small square",
+   "arms": {
+    "right": {
+     "joint1": -5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to their resting, mysterious pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

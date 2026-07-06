@@ -1,0 +1,56 @@
+{
+ "emoji": "🪵",
+ "ideation": "This animation sequence depicts a robot carefully examining a piece of wood, mimicking the actions of someone inspecting the quality or characteristics of the material. The sequence begins with both arms extended forward, as if the robot is reaching for the wood. Then, one arm gently touches the wood, while the other remains poised nearby. Finally, both arms return to a neutral position, implying the inspection is complete.  The movements are slow and deliberate to emphasize the careful examination.",
+ "frames": [
+  {
+   "beat": "both arms reach out, presenting the wood",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm gently probes the wood",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm nudges closer, examining",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms retreat, the wood is understood",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

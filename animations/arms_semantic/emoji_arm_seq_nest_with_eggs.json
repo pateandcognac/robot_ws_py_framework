@@ -1,0 +1,66 @@
+{
+ "emoji": "🪺",
+ "ideation": "This sequence shows the robot gently cradling a nest with eggs.  The movement should be slow and careful, emphasizing the protective nature of the action.  The robot's arms will curve inward to create a secure and nurturing pose.  I'll use a combination of joint1 and joint2 to create the gentle curve of the arms, and the wrists will be adjusted to provide a stable base for the nest.  The sequence will start with the arms slightly raised, then lower slightly to cradle the nest, hold the nest for a moment, and then slowly raise the arms again. The left arm will always be slightly lower than the right to suggest the robot is slightly more supportive of the nest on the left side.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, ready to hold",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently lower to cradle the nest",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -10.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "holding the precious nest with care",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -10.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly rise, protecting the nest",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 5.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": 5.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

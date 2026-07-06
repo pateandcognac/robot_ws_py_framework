@@ -1,0 +1,56 @@
+{
+ "emoji": "⚙️",
+ "ideation": "This animation sequence will depict the robot interacting with an imaginary gear, conveying a sense of careful manipulation and precision. The robot will appear to be examining or adjusting the gear, reflecting the meticulous nature of the emoji itself. Frame 1 shows the robot's arms outstretched, palms down, as if preparing to take hold of the gear. Frame 2 shows both arms moving inward, positioning the hands as if to grasp the gear. Frame 3 shows the robot holding the gear, with both arms slightly angled to keep a stable hold. Frame 4 shows one arm rotating the gear slightly, and the other arm holding steady. Frame 5 shows the robot releasing the gear, arms returning to their original position.",
+ "frames": [
+  {
+   "beat": "arms extend outward, palms down, ready to grasp",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw inward, hands preparing to grip",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "robot holds the imaginary gear steady",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "one arm turns the gear, the other maintains grip",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "robot releases the gear, arms return to rest",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

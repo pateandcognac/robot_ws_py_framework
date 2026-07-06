@@ -1,0 +1,71 @@
+{
+ "emoji": "Ⓜ️",
+ "ideation": "This sequence depicts the creation of the letter M using both arms.  The movement will be deliberate and precise, focusing on the distinct shapes needed to form the letter. The arms will move in a coordinated fashion, mimicking the drawing of the letter. In the first frame, both arms start at the sides, neutral.  In the second frame, the left arm moves upward and slightly to the left, forming the first diagonal stroke of the 'M'. The right arm moves upward and slightly to the right, mirroring the motion to create the second diagonal stroke. In the third frame, both arms extend downward to complete the middle stroke of the 'M' and form the lower two diagonal strokes. In the fourth frame, arms move slightly inward to give the impression of completing the letter. The final frame returns both arms to a neutral position at the sides, completing the 'drawing' gesture. ",
+ "frames": [
+  {
+   "beat": "arms start at the sides, ready to draw",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep up and outwards, forming the first two strokes",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move down and then up, completing the letter",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull slightly inward, finishing the 'M'",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

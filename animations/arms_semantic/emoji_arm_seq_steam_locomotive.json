@@ -1,0 +1,66 @@
+{
+ "emoji": "🚂",
+ "ideation": "This animation sequence will depict the robot mimicking the motion of a train, emphasizing the forward momentum and rhythmic chugging of the wheels.  The robot will use its arms to simulate the pistons or wheels of a locomotive. The sequence will focus on a cyclical motion, with slight variations in each frame to suggest the forward movement and the rhythmic nature of a train's motion.  The robot’s arms, without elbows, will be used expressively to convey the train’s movement, and the robot's body will remain relatively still to emphasize the arm movements.  I'll check the examples to ensure the range of motion is appropriate and realistic for the robot. ",
+ "frames": [
+  {
+   "beat": "arms push forward, like a train gaining steam",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pump rhythmically, chugging along the track",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull back, the train slows its pace",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms push forward again, the train continues its journey",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

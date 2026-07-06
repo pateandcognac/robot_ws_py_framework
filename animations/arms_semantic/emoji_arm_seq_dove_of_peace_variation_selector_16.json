@@ -1,0 +1,56 @@
+{
+ "emoji": "🕊️",
+ "ideation": "This animation sequence portrays a gentle, peaceful dove.  The arms will mimic the wings of a dove, starting in a relaxed position and then extending outward in a slow, graceful motion.  The sequence will finish with the arms returning to a relaxed state.  The movements will be smooth and deliberate, emphasizing the tranquility associated with doves.  I'll make use of both joint1 (roll) and joint2 (pitch) for a natural wing-like motion. The wrists will remain neutral to avoid unnecessary complexity. ",
+ "frames": [
+  {
+   "beat": "arms hang down, ready for flight",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wings begin to lift and spread outwards",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend fully, like a dove in flight",
+   "arms": {
+    "both": {
+     "joint1": 80.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wings gently fold back inwards",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, peace is found",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

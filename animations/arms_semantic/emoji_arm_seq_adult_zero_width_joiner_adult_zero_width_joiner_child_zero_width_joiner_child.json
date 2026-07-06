@@ -1,0 +1,51 @@
+{
+ "emoji": "🧑‍🧑‍🧒‍🧒",
+ "ideation": "This animation sequence portrays a family – two adults and two children – in a warm and embracing gesture.  The adults will use a slightly protective pose while the children are more playful and energetic. I will ensure that the movements are smooth and expressive, leveraging the robot's two-joint arm system to create natural-looking motions.  I will avoid jerky or mechanical movements by focusing on significant changes between each keyframe, leaving the interpolation to the animation system. The family is represented by the emoji 🧑‍🧑‍🧒‍🧒.",
+ "frames": [
+  {
+   "beat": "adults embrace, children nestled close",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open wide, a welcoming gesture",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a gentle hug, family togetherness",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 45.0
+    }
+   }
+  }
+ ]
+}

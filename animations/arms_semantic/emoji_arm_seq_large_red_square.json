@@ -1,0 +1,56 @@
+{
+ "emoji": "🟥",
+ "ideation": "This sequence uses both arms to create a feeling of emphasis or importance, as if the robot is presenting something significant. The arms move in a controlled, deliberate manner, highlighting the square's shape and bold color. In the first frame, both arms are extended outward and slightly upward, creating a broad, welcoming gesture. In the second frame, the arms move inward, as if the robot is drawing attention to something in front of it. In the third frame, the arms move straight downward, emphasizing the presence of something on the ground or a low surface. In the fourth frame, the robot brings the arms together in front, as if presenting or holding an object. Finally, in the fifth frame, the arms return to the first frame's position, emphasizing the full gesture.",
+ "frames": [
+  {
+   "beat": "arms open wide, presenting the square",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw inward, focusing attention",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms drop down, emphasizing the base",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms come together, holding something important",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms open wide again, a final bold statement",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

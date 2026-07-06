@@ -1,0 +1,61 @@
+{
+ "emoji": "👗",
+ "ideation": "This animation sequence shows the robot delicately adjusting a dress, emphasizing care and precision.  The movement starts with both arms at the sides, transitioning to one arm gently lifting the dress, then carefully adjusting it, and finally resting the hands as if admiring the dress. The sequence should feel elegant and deliberate, reflecting the care involved in handling clothing.  The lack of elbows in the robot's arms will necessitate creative use of shoulder joints to achieve a graceful effect. I will pay particular attention to subtle wrist movements to enhance the sense of delicacy.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at sides, ready to adjust",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm gently lifts to smooth the fabric",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand carefully adjusts the hem, left arm holds",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "both hands rest, admiring the perfectly adjusted dress",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

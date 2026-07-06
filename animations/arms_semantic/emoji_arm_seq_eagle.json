@@ -1,0 +1,46 @@
+{
+ "emoji": "🦅",
+ "ideation": "This sequence simulates an eagle soaring, with the arms outstretched in a wide, powerful pose. The sequence starts with the arms slightly lowered, then rises, and finally drops slightly to simulate the motion of wings gliding. In frame 1, both arms are angled outward and slightly downward, palms facing the ground. This mimics the eagle's wings partially lowered before a swoop. In frame 2, both arms rise upward, palms facing each other, to emulate the lift of wings during a soaring movement. Frame 3 shows the arms slightly lowered again, palms facing the ground, as if the eagle is gliding smoothly. Frame 4 lowers the arms further, palms facing downward, simulating the end of a glide and preparation for the next swoop.",
+ "frames": [
+  {
+   "beat": "arms extend outward and slightly down, ready to fly",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wings lift upward, soaring through the air",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a smooth glide, arms held steady and wide",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wings dip lower, preparing for the next swoop",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

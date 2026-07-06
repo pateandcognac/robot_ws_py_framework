@@ -1,0 +1,51 @@
+{
+ "emoji": "👨‍🦽‍➡️",
+ "ideation": "This animation sequence depicts a person in a manual wheelchair turning slightly to the right.  The arm movements will be subtle, reflecting the effort of maneuvering the chair.  The left arm will mostly remain still, providing balance and stability, while the right arm will have a slight movement to indicate the turning action. This will use a 3-frame sequence to keep it concise and avoid excessive motion.  Frame 1 will show the arms in a neutral position, Frame 2 will show the right arm slightly lifting to push the wheelchair, and Frame 3 will show the arms returning to a neutral resting position. The slight adjustments in joint angles will create the illusion of movement without being too dramatic.",
+ "frames": [
+  {
+   "beat": "arms rest, ready to move",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pushes slightly, turning the chair",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back, the turn is complete",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🦢",
+ "ideation": "This sequence mimics a swan's elegant neck and wing movements.  The arms will move in a coordinated, graceful manner, suggesting the fluidity of a swan's motion.  The left arm will extend forward, while the right arm will curve gently, creating a sense of balance and poise.  I will focus on smooth transitions between poses, ensuring the movements appear natural and expressive.  The robot's lack of elbows will be compensated for by subtle wrist movements and joint positioning.  The overall effect should evoke the serene elegance of a swan.",
+ "frames": [
+  {
+   "beat": "arms rest, poised like a swan's neck and wing",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -45.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm extends gracefully, right curves gently",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 20.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms flow in a smooth, balanced arc",
+   "arms": {
+    "left": {
+     "joint1": -25.0,
+     "joint2": 30.0,
+     "wrist": 30.0
+    },
+    "right": {
+     "joint1": 35.0,
+     "joint2": -15.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "the swan settles, elegant and serene",
+   "arms": {
+    "left": {
+     "joint1": -15.0,
+     "joint2": 15.0,
+     "wrist": 15.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": -5.0,
+     "wrist": 5.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "emoji": "🩴",
+ "ideation": "This animation sequence will show the robot picking up a thong sandal.  The robot will use a smooth, deliberate movement to avoid appearing clumsy. The sequence will focus on the right arm, while the left arm remains relatively still for balance. Frame 1 shows the right arm extending toward the sandal, slightly angled downward. Frame 2 shows the right arm bending slightly at the shoulder as it grasps the sandal. Frame 3 shows the arm lifting the sandal slightly. Frame 4 shows the arm moving the sandal closer to the body. Frame 5 shows the arm returning to a resting position.",
+ "frames": [
+  {
+   "beat": "right arm extends down to grasp the thong",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the arm bends, securing the sandal",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "lifting the thong sandal slightly",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the sandal closer to the body",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest, sandal held",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

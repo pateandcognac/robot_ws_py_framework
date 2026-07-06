@@ -1,0 +1,81 @@
+{
+ "emoji": "🔆",
+ "ideation": "This animation sequence will depict the robot playfully interacting with the bright button emoji, 🔆.  The overall feeling should be one of cheerful curiosity and gentle interaction. We will use the right arm primarily, as the left arm will remain in a neutral position to balance the animation.  The movement will be a gentle reach and touch, followed by a slight pull or tug, and finally, a return to the neutral position. This will express a lighthearted engagement with the bright button. Frame 1 shows the robot's arm resting neutrally. Frame 2 initiates a gentle upward reach towards the button. Frame 3 shows the robot's hand making contact with the button. Frame 4 shows the button being gently pulled or tugged. Frame 5 shows the robot's arm returning to its neutral position.",
+ "frames": [
+  {
+   "beat": "arms rest neutrally, ready to engage",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm gently reaches upward",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "fingers curl around the bright button",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "a playful tug on the button",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the arm returns to a relaxed neutral pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

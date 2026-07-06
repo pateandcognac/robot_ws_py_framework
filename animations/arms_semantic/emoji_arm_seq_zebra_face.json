@@ -1,0 +1,56 @@
+{
+ "emoji": "🦓",
+ "ideation": "This animation sequence will depict a robot playfully mimicking a zebra's movement.  The animation will focus on the robot's arms moving in a way that suggests the zebra's striped pattern and gait. We'll use a combination of joint rotations and wrist movements to create a dynamic, yet playful, sequence. The sequence will start with the arms at the sides, then move into a 'galloping' motion, and finally return to a relaxed pose.  The left and right arms will move in a coordinated, slightly offset manner to simulate the zebra's legs.",
+ "frames": [
+  {
+   "beat": "arms hang still, ready to gallop",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm swings forward, right arm back, a playful trot",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "right arm swings forward, left arm back, continuing the stride",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, resting pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

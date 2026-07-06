@@ -1,0 +1,51 @@
+{
+ "emoji": "🍏",
+ "ideation": "This sequence mimics the action of picking an apple from a tree.  The animation starts with both arms relaxed at the sides. The right arm then reaches up and slightly forward, as if grasping the apple. Finally, the right arm brings the apple down to the body.  The left arm remains relatively still to provide a contrast and maintain balance.  The subtle variations in joint angles and wrist positions create a more natural and expressive movement.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for the picking",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches up and out for the apple",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the apple down, a satisfying harvest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

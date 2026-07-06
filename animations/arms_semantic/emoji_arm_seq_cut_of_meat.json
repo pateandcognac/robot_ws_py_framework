@@ -1,0 +1,76 @@
+{
+ "emoji": "🥩",
+ "ideation": "This sequence simulates the act of cutting a piece of meat. The robot will use both arms to mimic the action of holding and cutting.  The left arm will hold the meat steady, while the right arm will perform the cutting motion. I will create a sequence that is both expressive and physically plausible, considering the robot's two-joint arm limitations. In the first frame, the left arm will hold the meat steady. I will do this by keeping the joint1 near 0.0, aligning the arm with the body, and pitching the arm slightly downward using joint2. The wrist will rotate inward to allow for a secure grip. The right arm will be in a neutral position, slightly away from the body. In the second frame, the right arm will begin to move towards the left arm, mimicking the approach of the knife. Joint1 will rotate slightly to position the arm towards the meat, and joint2 will pitch the arm forward. The wrist will remain neutral for now. In the third frame, the right arm will simulate the downward motion of the knife. Joint2 will pitch downward sharply, while joint1 maintains its position. The wrist will remain neutral. In the fourth frame, the right arm will pull away, completing the cutting motion. Joint2 will pitch upwards and joint1 will rotate slightly outward to pull the arm away. The wrist will remain neutral. In the fifth frame, both arms will move to a neutral relaxed position, indicating the completion of the action. ",
+ "frames": [
+  {
+   "beat": "left arm holds meat steady, right arm poised",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -60.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm moves in, knife approaches target",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -60.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm slices down with force",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -60.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pulls back, completing the cut",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -60.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the task finished",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

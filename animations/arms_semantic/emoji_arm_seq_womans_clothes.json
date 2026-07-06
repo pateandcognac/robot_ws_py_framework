@@ -1,0 +1,46 @@
+{
+ "emoji": "👚",
+ "ideation": "This sequence will show the robot delicately holding a garment, emphasizing care and precision.  The movement will be slow and deliberate, focusing on a smooth transition between frames. The robot will initially hold the garment away from its body before gently bringing it closer. In the first frame, both arms will be extended outward slightly, palms up, as if receiving or presenting the clothing. In the second frame, the robot will bring the arms slightly closer, starting to cradle the garment with a slight inward rotation of the arms and a downward pitch. In the third frame, the arms move closer to the body, palms facing inward, now fully cradling the garment.  The final frame will have the robot holding the garment close to its body, suggesting care and affection for the clothing.  The robot's neutral expression will maintain a sense of calm and careful handling throughout the sequence.",
+ "frames": [
+  {
+   "beat": "arms extend, palms up, presenting the garment",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw inward, starting to cradle the fabric",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move closer, fully embracing the clothing",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold the garment close, with gentle care",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

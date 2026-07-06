@@ -1,0 +1,81 @@
+{
+ "emoji": "🏷️",
+ "ideation": "This animation sequence simulates the action of carefully placing a label onto something.  It will involve extending one arm, placing the (imaginary) label, and then returning to a neutral position. The movement should be deliberate and precise, reflecting the careful nature of labeling. The left arm will remain neutral for balance. Frame 1 shows the robot's neutral position. Frame 2 shows the right arm extending forward, as if holding the label. Frame 3 shows the right arm moving slightly downward to place the label. Frame 4 shows the right arm retracting. Frame 5 returns to the neutral position. ",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to label",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, holding the label",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers to place the label carefully",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm retracts, the label is set",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a resting position",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

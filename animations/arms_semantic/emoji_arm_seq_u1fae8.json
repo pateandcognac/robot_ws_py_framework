@@ -1,0 +1,66 @@
+{
+ "emoji": "🫨",
+ "ideation": "This sequence aims to capture the feeling of shaking your head in disagreement or disbelief.  The animation will focus on a side-to-side head shake, which we will simulate with arm movements. Since our robot has no head, we'll use the arms to express the same sentiment. The movement will be exaggerated for clarity.  The left arm will remain relatively still, providing a counterpoint to the right arm's motion.  The right arm will lead the motion. We will use the two joints and wrist to create a natural-looking shake. The left arm will remain largely unchanged to provide a reference point for the viewer and increase the contrast. Let's get started!",
+ "frames": [
+  {
+   "beat": "arms rest, a moment of calm before the shake",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins a sharp side-to-side motion",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the motion continues, a firm denial",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the shake intensifies, emphatic disagreement",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

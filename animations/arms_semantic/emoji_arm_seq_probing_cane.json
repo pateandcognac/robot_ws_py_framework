@@ -1,0 +1,81 @@
+{
+ "emoji": "🦯",
+ "ideation": "This animation sequence depicts a robot carefully using a white cane to navigate its surroundings. The animation will focus on the left arm, with the right arm remaining relatively still. The sequence will highlight the deliberate movements involved in using a cane, representing the careful exploration and safety provided by the cane. In the first frame, the left arm is extended forward, holding the cane horizontally in front of the robot. The left wrist is slightly angled upward, providing a natural grip on the cane. The right arm remains relaxed at the robot's side. In the second frame, the left arm sweeps the cane to the left, the left joint1 rotates slightly inward, and the left joint2 pitches downward, while the left wrist rotates slightly outward. The robot is carefully checking its surroundings. In the third frame, the left arm brings the cane back to the center, moving it in a sweeping motion. The robot is maintaining a steady pace and continually scanning for obstacles. In the fourth frame, the left arm sweeps the cane to the right. The movement is similar to the second frame but mirrored. The right arm remains static for balance. In the fifth frame, the left arm returns to its initial position, holding the cane horizontally in front of the robot, completing the cycle of exploration. This sequence emphasizes the careful and deliberate movements involved in using a white cane for navigation.",
+ "frames": [
+  {
+   "beat": "left arm extends cane forward, right arm rests",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "sweeping the cane left to check the ground ahead",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -20.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the cane back to center, steady scanning",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "sweeping the cane right, exploring the path",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": -20.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "cane returns to center, ready for the next step",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

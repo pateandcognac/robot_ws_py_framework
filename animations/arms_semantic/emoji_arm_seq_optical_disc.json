@@ -1,0 +1,81 @@
+{
+ "emoji": "💿",
+ "ideation": "This sequence mimics the action of holding and spinning an optical disk.  The animation will focus on the right arm, with the left arm remaining relatively still for balance.  The movement will be a controlled rotation of the right arm, suggesting the disk's circular motion. We will check examples to ensure realistic arm motion. Frame 1 shows the right arm extending outward and slightly upward, holding the imaginary disk. Frame 2 shows the arm beginning its circular motion, slightly rotating inward and downward. Frame 3 is the opposite of frame 2, as the arm swings back outward and slightly upward, continuing the spin. Frame 4 shows the right arm returning almost to its starting position, completing one full rotation. Frame 5 returns the arm to a neutral position. ",
+ "frames": [
+  {
+   "beat": "arms rest, right hand prepares to grasp",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends, holding the disk steady",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the disk begins to spin, moving inward",
+   "arms": {
+    "right": {
+     "joint1": -30.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the disk spins outward, completing the rotation",
+   "arms": {
+    "right": {
+     "joint1": -15.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a neutral pose",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

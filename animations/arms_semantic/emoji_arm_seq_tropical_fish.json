@@ -1,0 +1,81 @@
+{
+ "emoji": "🐠",
+ "ideation": "This animation sequence will show the robot mimicking the swimming motion of a tropical fish. The arms will move in a fluid, wave-like pattern, suggesting the fish's graceful movements in water.  The sequence will focus on the fluidity of the arm movements, creating a sense of underwater grace.  The left and right arms will move in a coordinated but not perfectly mirrored fashion, simulating the natural asymmetry of a fish's swimming motion.  The wrists will remain relatively neutral, focusing on the larger movements of the upper arms. In the first frame, the arms are in a neutral position, slightly extended downwards to simulate a resting state before the motion begins. In the second frame, the left arm starts to move upwards and slightly outwards, while the right arm moves downwards and slightly inwards, creating the initial wave-like motion. In the third frame, the left arm continues its upward motion, reaching a peak, while the right arm completes its downward motion, creating a sense of flowing movement. In the fourth frame, the arms reverse their motion, with the left arm starting to move downwards and the right arm starting to move upwards. Finally, in the fifth frame, the arms return to their neutral position, completing a full cycle of the swimming motion. This sequence emphasizes the fluid and graceful nature of the fish's movement. ",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready to swim",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm rises, right arm dips, a gentle undulation",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach their peak outward motion, a graceful sweep",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reverse direction, flowing back inward",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle, the fish rests",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

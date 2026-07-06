@@ -1,0 +1,56 @@
+{
+ "emoji": "💨",
+ "ideation": "This animation sequence depicts a robot dashing away, emphasizing speed and urgency. The robot will use both arms to propel itself forward, suggesting an immediate departure. Each frame will capture a distinct phase of this dynamic movement. I will focus on creating a sense of motion and momentum through the arms’ movement, taking into account the robot’s physical limitations (two joints per arm). I'll refer to the existing examples to ensure smooth transitions and natural-looking arm movements, given the robot's lack of elbows. Frame 1 will show the robot's arms bent at the shoulder, positioned as if preparing for a burst of speed. Frame 2 will feature a significant backward swing of the arms, generating momentum. Frame 3 depicts the arms swinging forward, mirroring the robot's forward movement. Frame 4 shows the arms in a forward position, suggesting the robot is now in full motion. The final frame, Frame 5, will capture the arms trailing slightly backward, implying the continuation of movement and speed.  ",
+ "frames": [
+  {
+   "beat": "arms pull back, gathering energy for the dash",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing violently backward, building momentum",
+   "arms": {
+    "both": {
+     "joint1": -60.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms thrust forward, propelling the robot ahead",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms are now forward, the dash is in full swing",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms trail slightly back, continuing the rapid motion",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

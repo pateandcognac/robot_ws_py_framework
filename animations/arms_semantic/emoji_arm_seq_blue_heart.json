@@ -1,0 +1,46 @@
+{
+ "emoji": "💙",
+ "ideation": "This animation sequence expresses affection and warmth, reflecting the gentle nature of the blue heart emoji.  The movement will be slow and deliberate, focusing on a gentle embrace.  The robot will start with arms at its sides, then bring them forward in a hugging motion, before returning to a relaxed pose.  The slight inward rotation of the wrists adds to the feeling of a gentle caress. I will use a 4-frame sequence to adequately convey the gesture.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to embrace",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly come forward, beginning a gentle hug",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw closer, a warm embrace takes hold",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -30.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms release, a loving gesture completed",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

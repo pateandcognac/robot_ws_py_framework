@@ -1,0 +1,46 @@
+{
+ "emoji": "🎪",
+ "ideation": "This animation sequence depicts a robot enthusiastically pitching a tent, mimicking the action of setting up a circus tent. The sequence uses both arms in a coordinated manner to create a dynamic and expressive motion. Frame 1 shows the robot's arms raised, as if holding the tent poles. Frame 2 demonstrates the robot lowering the poles into place, simulating the tent's establishment. Frame 3 depicts the robot securing the tent, and Frame 4 shows the robot standing proudly next to its accomplishment. The robot's movements are exaggerated to reflect the playful nature of a circus tent and generate an engaging animation.",
+ "frames": [
+  {
+   "beat": "arms shoot up, holding tent poles high",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "poles are lowered and angled into place",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "securing the tent with a twist",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "robot stands proudly by the finished tent",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

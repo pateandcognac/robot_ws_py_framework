@@ -1,0 +1,66 @@
+{
+ "emoji": "🏕️",
+ "ideation": "This sequence depicts the robot setting up camp. It starts with both arms relaxed, then raises one arm to place a hypothetical tent pole, and finally both arms gesture towards the completed campsite. Frame 1: Both arms are down, indicating readiness. Frame 2: The left arm is raised, indicating the placement of a tent pole (or similar action). Frame 3: The right arm also rises, as the tent is erected (or a similar action is completed). Frame 4: Both arms gesture towards the successfully set up campsite, expressing satisfaction.  Frame 5: Both arms return to a relaxed resting position.",
+ "frames": [
+  {
+   "beat": "arms hang down, ready to begin",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm raises to place a tent pole",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm joins, raising the tent structure",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms gesture to the finished campsite",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax, camp is set up",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

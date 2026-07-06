@@ -1,0 +1,81 @@
+{
+ "emoji": "🤐",
+ "ideation": "This sequence aims to capture the gesture of zipping one's mouth shut, symbolizing secrecy or silence. The robot will mimic this by bringing its right hand up to its mouth, then moving it across as if closing a zipper. The left arm will remain at rest to maintain balance and focus on the primary gesture. In the first frame, both arms are in a neutral, relaxed position at the sides. The right arm is positioned slightly forward, preparing for the upward motion. The left arm remains still, providing a counterbalance. In the second frame, the right arm rises towards the mouth, with the palm facing inward as if about to cover the mouth. The left arm remains at rest, maintaining balance. By the third frame, the right hand reaches the mouth, briefly pausing as if holding the 'zipper'. The left arm remains still, ensuring the focus stays on the right arm's action. In the fourth frame, the right arm moves across the mouth, as if pulling a zipper closed. The wrist rotates slightly to mimic the zipping motion. The left arm remains stationary. Finally, in the fifth frame, the right arm moves slightly away from the face, as if having just completed the zipping action, while the left arm remains at rest, completing the gesture.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to seal",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm rises to cover the mouth",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "hand pauses at the lips, preparing to zip",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 75.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right hand zips across the mouth, sealing it shut",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": 70.0,
+     "wrist": -70.0
+    }
+   }
+  },
+  {
+   "beat": "the seal is complete, silence is kept",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 40.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

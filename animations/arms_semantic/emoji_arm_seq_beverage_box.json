@@ -1,0 +1,66 @@
+{
+ "emoji": "🧃",
+ "ideation": "This animation sequence depicts a robot delicately lifting a juice box to its mouth.  The movement is slow and deliberate, emphasizing the care taken with the beverage. The sequence starts with the robot's arms at its sides, then one arm reaches out to grasp the box. The box is lifted to the mouth, then gently lowered back down. Finally, the robot's arms return to their relaxed position. The right arm's movement is emphasized here, while the left arm provides a natural counterpoint, creating a balanced and expressive motion.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for a drink",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm reaches out to grasp the juice box",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "slowly lifting the box towards the mouth",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the box is lowered, the task complete",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

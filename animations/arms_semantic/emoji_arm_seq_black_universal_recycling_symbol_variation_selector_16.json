@@ -1,0 +1,56 @@
+{
+ "emoji": "♻️",
+ "ideation": "This animation sequence depicts the robot actively participating in recycling.  The sequence will show the robot picking up an item (perhaps an empty can or plastic bottle) and depositing it into a recycling bin.  Because the robot has no hands, it will use a \"scoop\" motion to represent picking up and depositing an item. The robot will use both arms in a coordinated motion to mimic the circular motion of the recycling symbol itself. Frame 1: Both arms start in a neutral position. Frame 2: The arms move upward and inward, creating a \"scoop\" to represent picking up the item. Frame 3: The arms move outward and slightly downward, as if depositing the item into a recycling bin. Frame 4: The robot circles both hands around to emphasize the circular motion of recycling. Frame 5: The arms return to their initial neutral position.",
+ "frames": [
+  {
+   "beat": "arms start neutral, ready to sort",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms scoop upwards, gathering recyclables",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms deposit the item with a gentle downward motion",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms circle outward, embodying the recycling loop",
+   "arms": {
+    "right": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the task is complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

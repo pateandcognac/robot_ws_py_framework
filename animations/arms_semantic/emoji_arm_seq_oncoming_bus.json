@@ -1,0 +1,66 @@
+{
+ "emoji": "🚍",
+ "ideation": "This animation sequence simulates the action of bracing oneself for an oncoming bus, focusing on the anticipation and slight flinch. The robot's left arm will be extended and the right arm will move in a protective gesture. I will use the examples to help ensure that the movements are realistic, smooth and avoid unnecessary complexity. The sequence will consist of 4 frames. In frame 1, both arms will be in a neutral position at the side. In frame 2, the left arm will extend forward as if bracing for impact, the right arm will begin to move up in a protective position. In frame 3, the left arm will be fully extended, the right arm will be raised and angled toward the face. In frame 4, both arms will return to the neutral position. ",
+ "frames": [
+  {
+   "beat": "arms hang at sides, neutral stance",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm braces forward, right arm begins to shield",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm fully extended, right arm guards the face",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 60.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms drop back to neutral, the danger passed",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

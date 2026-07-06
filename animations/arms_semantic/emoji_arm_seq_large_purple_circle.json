@@ -1,0 +1,56 @@
+{
+ "emoji": "🟣",
+ "ideation": "This animation sequence will express the calm and mysterious vibe often associated with the color purple. The robot will start with its arms relaxed at its sides, then slowly raise them in a graceful, almost meditative arc before returning to a resting position. This will create a sense of thoughtful contemplation. The lack of elbows in the robot's arms will be compensated by the smooth movement of the two joints, creating a flowing elegance.  Each arm movement will be mirrored for symmetry. In the first frame, both arms start at the sides, with a slight inward angle to indicate calmness. In the second frame, the arms begin to rise in a gentle arc, using a combination of joint1 and joint2. In the third frame, the arms reach their highest point, held slightly outward for emphasis. In the fourth frame, the arms start their descent. Finally, in the fifth frame, they return to the resting position.",
+ "frames": [
+  {
+   "beat": "arms rest calmly at the sides",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin a slow, meditative rise",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach their peak, held gently outward",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gracefully descend from their height",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a calm, resting state",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

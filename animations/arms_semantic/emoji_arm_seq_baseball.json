@@ -1,0 +1,76 @@
+{
+ "emoji": "⚾",
+ "ideation": "This sequence simulates the windup and throw of a baseball pitch.  The left arm will act as a counterbalance, while the right arm performs the main pitching motion.  The sequence will focus on expressing the power and controlled movement involved in a pitch.  I will leverage the existing examples to ensure smooth transitions and realistic arm movement given the robot's two-joint structure. Frame 1 shows a preparatory stance: the right arm is drawn back, slightly bent at the shoulder, and the left arm is extended outward for balance. Frame 2 emphasizes the power of the windup, with the right arm fully extended backward.  Frame 3 captures the release of the ball, with the right arm moving forward and downward in a fluid motion. Frame 4 shows a follow-through, with the right arm continuing its downward trajectory. Frame 5 returns both arms to a neutral resting position.",
+ "frames": [
+  {
+   "beat": "arms ready, right arm coils back for the pitch",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm swings forward powerfully",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the ball is released with a downward snap",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "follow through with the right arm's motion",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

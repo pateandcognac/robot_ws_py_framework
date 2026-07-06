@@ -1,0 +1,56 @@
+{
+ "emoji": "🦏",
+ "ideation": "This animation sequence will depict a rhinoceros charging, using powerful and determined movements to capture the essence of the emoji. The robot’s arms will mimic the powerful legs of a rhinoceros as it charges. I will focus on creating a sense of forward momentum and strength.  The sequence will be composed of five frames. The first frame shows the arms raised and positioned to the sides. In the second frame, the arms move forward and slightly downward. In the third frame, the arms swing forward in a powerful motion. The fourth frame shows the arms reaching their maximum forward extension, and the fifth frame shows the arms returning to their starting position, transitioning to the next stage of the charge. I will check the single and multi-frame examples for reference and guidance. ",
+ "frames": [
+  {
+   "beat": "arms pull back, coiled like a charging rhino",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms push forward, gaining momentum",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing low and forward, a powerful thrust",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend fully, impact is imminent",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms recoil, ready for the next charge",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

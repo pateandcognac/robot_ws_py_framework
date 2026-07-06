@@ -1,0 +1,71 @@
+{
+ "emoji": "🕕",
+ "ideation": "This animation sequence depicts a robot checking a clock, implying that the robot is aware of the time and is performing a task related to timekeeping. The sequence starts with the robot's arms at its sides, then moves to raise its arms to check a clock, and finally returns to its neutral position.  The movement is slow and deliberate, reflecting the seriousness of time. The right arm will point to the clock, while the left arm will act as a support or visual aid. This will help the robot look more human-like. Frame 1: Both arms are at rest. Frame 2: The right arm points to the clock. Frame 3: The left arm raises to support the right arm. Frame 4: The robot checks the clock. Frame 5: The robot returns to neutral position.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, still and waiting",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends, pointing towards the time",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm rises to join the right, a shared focus",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms hold steady, checking the time carefully",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    },
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the task is complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

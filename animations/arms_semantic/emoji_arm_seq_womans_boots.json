@@ -1,0 +1,71 @@
+{
+ "emoji": "👢",
+ "ideation": "This animation sequence will depict a robot playfully trying on a pair of boots, emphasizing the playful and slightly awkward interaction between a robotic body and a human-designed object. The animation will start with the robot's arms at its sides, then it will reach down to pick up the boots, and finally, it will hold them up to admire them. The robot's arms lack elbows, so movement will be limited to shoulder rotations and wrist movements. The boots are represented by the emoji. Frame 1: Both arms are relaxed at the sides, palms facing inward. Frame 2: Right arm reaches down, rotating at the shoulder to reach the boots; wrist rotates slightly to mimic grasping. Left arm remains mostly relaxed but moves slightly to the side for balance. Frame 3: Right arm lifts the boots slightly, palms facing forward, as if examining them. Left arm moves slightly inward to maintain balance. Frame 4: Both arms hold the boots up, palms facing forward; a final admiring pose. Frame 5: Arms return to their neutral position, perhaps slightly tilting the head or making a small movement to suggest further consideration of the boots.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for the boots",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches down, left arm balances",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "lifting the boot to inspect it carefully",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms hold the boots up in admiration",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to sides, contemplating the footwear",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "emoji": "💐",
+ "ideation": "This sequence depicts the robot gently offering a bouquet. The movement should be slow and deliberate, emphasizing the delicate nature of the gift.  The animation starts with both arms relaxed at the sides, then moves to raising both arms in a gentle arc, palms up, to present the bouquet. Then, the arms lower to a position where it would be easy for a person to take the bouquet. Finally, the arms return to a resting position. Frame 1 is the initial resting position. Frame 2 shows the arms gently rising to present the bouquet. Frame 3 shows the arms holding the bouquet at a comfortable height for receiving. Frame 4 shows the arms returning to the resting position.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides, holding nothing",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms gently rise, palms up, offering a gift",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, presenting the bouquet for taking",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back to a resting, empty state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

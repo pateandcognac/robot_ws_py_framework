@@ -1,0 +1,76 @@
+{
+ "emoji": "➡️",
+ "ideation": "This sequence aims to mimic the action of pointing to the right, using the right arm to create a clear directional gesture. The left arm remains at rest, providing balance and directing attention to the pointing arm. I’ll reference existing examples for range of motion and ensure the movements feel natural and intentional. In the first frame, both arms are in a neutral position at the sides, palms facing inward, creating a relaxed starting pose. joint1 rotates both arms to a neutral 0.0, with joint2 pitching both arms straight down to -90.0, and wrists remaining neutral at 0.0. Moving to the second frame, the right arm begins to rotate outward using joint1 and lift slightly with joint2. The wrist angles outward at -45°, as if preparing to point. In the third frame, the right arm extends further to the right, with joint1 reaching its maximum outward rotation and joint2 adjusted to keep the arm level. The wrist rotation increases to -90°, emphasizing the pointing gesture. For the fourth frame, joint2 pitches the right arm forward slightly, with the wrist turning to 90° to finalize the pointing gesture. In the final frame, the right arm lowers slightly, returning toward a neutral position but still suggesting the rightward direction. This final motion creates a subtle 'follow-through' effect, making the point feel more natural.",
+ "frames": [
+  {
+   "beat": "both arms hang straight down, neutral start",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to lift and angle outward",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends fully, pointing sharply right",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -90.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "the hand turns, completing the decisive gesture",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -90.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm settles, the direction still clear",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 45.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "emoji": "📂",
+ "ideation": "This sequence will show the robot opening a file folder.  The action will involve both arms moving in coordination. We'll use three frames to capture the key moments of this action. Frame 1 shows the robot's arms in a neutral 'at rest' position. Frame 2 shows the robot's arms beginning to extend outward. Frame 3 shows the robot's arms fully extended, as if holding open a folder. The arms will move in a natural, almost fluid motion, not jerky.  The wrists and joint angles will be adjusted to simulate a realistic opening action, taking cues from the example animations.  The overall pose should suggest a sense of readiness or anticipation. ",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to open",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend outward, beginning to open",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold the folder open wide",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

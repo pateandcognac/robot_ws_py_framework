@@ -1,0 +1,81 @@
+{
+ "emoji": "🎸",
+ "ideation": "This sequence simulates playing an air guitar. The left arm mimics the strumming motion while the right arm forms the shape of holding the guitar neck. The movements are exaggerated slightly for expressiveness. Frame 1 shows both arms in a neutral position. Frame 2 shows the left arm starting its strumming motion. Frame 3 shows the left arm completing the strum. Frame 4 shows the left arm returning to its neutral position. Frame 5 shows both arms returning to a neutral position. ",
+ "frames": [
+  {
+   "beat": "arms rest, ready to play",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm begins a powerful strumming motion",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the strum peaks, a rockstar pose",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm returns, the chord rings out",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms fall, the song ends",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

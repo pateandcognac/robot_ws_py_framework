@@ -1,0 +1,61 @@
+{
+ "emoji": "🏅",
+ "ideation": "This sequence aims to capture the pride and accomplishment of receiving a medal. It starts with the robot 'presenting' the medal and transitions into a double fist pump to show excitement. In the first frame, the robot extends its left arm slightly forward and angled upward, as if presenting the medal. The right arm remains at the side.  In the second frame, both arms bend at the 'elbows' (simulated by joint2 movement) and come up towards the chest, fists clenched in a gesture of victory. In the third frame, both arms pump downwards, and then back up in the fourth frame in a classic celebratory gesture. In the final frame, the arms return to a relaxed, slightly open position, conveying a sense of pride and satisfaction.",
+ "frames": [
+  {
+   "beat": "left arm presents medal, right arm rests low",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms bend up, fists clenched in victory",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms pump down in triumphant celebration",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms pump back up, pure elation",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle, proud and accomplished",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "emoji": "🤾‍♀️",
+ "ideation": "This sequence simulates a handball throw, focusing on the left arm's motion. The right arm remains mostly still to create balance. The animation will emphasize the power and precision of the throw, keeping in mind the limitations of two-joint arms. In the first frame, the left arm is drawn back, with joint1 rotated slightly outward and joint2 pitched downward, simulating the coiling action before a throw. The wrist is slightly angled to keep the hand in a natural throwing position. The right arm remains relaxed at the side. The second frame shows the arm beginning its forward motion. joint1 rotates inward as joint2 pitches upward, initiating the throwing motion, while the wrist rotates to align with the trajectory. The third frame is the peak of the throw, with the left arm extended fully forward, joint1 rotated inward, and joint2 pitched upward. The wrist is fully aligned with the throw's direction, showcasing the release of the ball. The fourth frame showcases the follow-through, with the left arm still extended but beginning to recoil, while the right arm remains static. This slight recoil adds realism to the gesture. Finally, in the fifth frame, the left arm returns to a relaxed position, and the right arm remains in place, completing the throwing action.",
+ "frames": [
+  {
+   "beat": "left arm coils back, ready to throw",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arm swings forward with power and rotation",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 40.0,
+     "wrist": 40.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "full extension, the ball is released!",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 80.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "follow through, arm begins to recoil",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 40.0,
+     "wrist": 40.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

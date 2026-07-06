@@ -1,0 +1,56 @@
+{
+ "emoji": "🔇",
+ "ideation": "This sequence depicts the robot covering its own ears to indicate muting or silencing. It uses a combination of arm movements to create a natural-looking gesture. The sequence will begin with the arms at rest, then transition to the hands covering the ears, and finally return to a relaxed state. This mimics the action of physically muting sound. Each frame represents a distinct position in the overall gesture and will emphasize the intention behind the emoji. The robot lacks fingers, so the effect will be suggestive rather than literal.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to silence",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep up to cover the ears firmly",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 75.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": 75.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "pressing in to block out all sound",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms release, the world is quiet now",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

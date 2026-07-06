@@ -1,0 +1,66 @@
+{
+ "emoji": "🧥",
+ "ideation": "This animation sequence portrays the act of putting on a coat. It starts with arms at the sides, then moves to lifting the coat, and finally settling into a pose with the coat on. The left arm will primarily handle the coat. The right arm will act as a counterbalance and assist.  The sequence uses the robot's two shoulder joints to create a natural, fluid motion. The wrists are used to position the coat for optimal placement and provide expressive detail. In the first frame, the arms are at the sides in a relaxed posture. In the second frame, the left arm moves upward and slightly forward, as if lifting the coat. The right arm remains at the side. In the third frame, the left arm moves around the body and downward, as if pulling on the coat. The right arm moves slightly upward and forward to assist in placing the coat. In the fourth frame, the coat is on, and the arms return to a relaxed position, but now with the coat on. Note that this interpretation of the emoji is based on human actions; the robot doesn't have the anatomy to perform this task in reality. ",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for the coat",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lifts the coat, right arm stays put",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull the coat on, right assists gently",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "coat is on, arms settle back down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "emoji": "💳",
+ "ideation": "This animation sequence simulates the action of presenting a credit card.  The robot will extend its right arm forward, palm up, as if offering the card. The left arm will remain relaxed at its side. The sequence will emphasize the smooth, controlled movement of the right arm, ending with the card (represented by the robot's hand) positioned for easy acceptance.  The robot's 'neutral' position will be both arms at its side. Frame 1 will start with the right arm slightly raised and angled slightly forward, as if preparing for the gesture. Frame 2 will show the right arm fully extended, palm upward, simulating the offering of the card. Frame 3 will show a slight pause, with the arm maintaining its position, presenting the 'card'. Frame 4 will show the right arm beginning to retract slightly, signaling the end of the presentation. Frame 5 will show a return to the neutral position.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, right arm begins to lift",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, palm up, ready to present",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "holding the card steady, a moment of offering",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm retracts slightly, the transaction complete",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, neutral pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

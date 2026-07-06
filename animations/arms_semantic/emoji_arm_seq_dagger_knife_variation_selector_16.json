@@ -1,0 +1,66 @@
+{
+ "emoji": "🗡️",
+ "ideation": "This animation sequence depicts a robot wielding a dagger, emphasizing both caution and precision.  The movement will be deliberate and controlled, reflecting the dangerous nature of the weapon. The left arm will primarily act as a support or brace, while the right arm will hold and subtly manipulate the dagger. Each frame represents a distinct shift in the robot's posture and the dagger's position. Frame 1 shows the robot in a neutral stance, with the left arm slightly raised and the right arm extended, preparing to hold the dagger. Frame 2 shows the robot gripping the dagger, with the right arm slightly bent to ensure a firm hold. The left arm provides additional stability. Frame 3 shows the robot bringing the dagger up in a defensive posture, emphasizing the weapon's potential danger. Frame 4 shows the robot lowering the dagger, returning to a more neutral but still cautious stance.",
+ "frames": [
+  {
+   "beat": "arms rest, ready for action",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm extends to grasp the dagger",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "dagger rises defensively, a sharp threat",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -50.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the weapon is lowered, still held with care",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

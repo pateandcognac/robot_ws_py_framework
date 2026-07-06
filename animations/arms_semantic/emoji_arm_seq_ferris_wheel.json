@@ -1,0 +1,71 @@
+{
+ "emoji": "🎡",
+ "ideation": "This animation sequence depicts the wonder and excitement of a Ferris wheel. The robot will mimic the circular motion of the Ferris wheel with its arms, creating a sense of upward movement and then a return to the ground.  The sequence will use both arms in a synchronized yet slightly offset manner to enhance the visual effect. The arms will not have elbows, and the animation system will handle the smooth transition between keyframes. In the first frame, both arms start in a relaxed position at the robot's sides. In the second frame, both arms begin to rise, mimicking the upward movement of a Ferris wheel car.  The arms rise slightly more in frame three, emphasizing the height of the ride. In frame four, the arms begin to descend, mirroring the downward movement of the Ferris wheel. In the fifth and final frame, the arms return to their initial relaxed position. This circular motion will convey the cyclical nature of the Ferris wheel ride and the associated feelings of excitement.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for the ride",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms begin to lift, ascending the wheel",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach higher, nearing the top of the circle",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms start their descent, coming back down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the ride is over",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

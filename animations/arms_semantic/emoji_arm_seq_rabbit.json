@@ -1,0 +1,56 @@
+{
+ "emoji": "🐇",
+ "ideation": "This animation sequence simulates a rabbit hopping, focusing on the rhythmic movement of the arms to mimic the legs' motion. The robot will use its arms to suggest the powerful leg thrust of a rabbit's hop, alternating between a crouched and extended position. I will keep the arms somewhat symmetrical for balance and use slight variations in joint angles to create a natural, bouncy movement. In the first frame, the arms are positioned close to the body, with a slight inward roll of joint1 and downward pitch of joint2, mimicking a crouched position. The wrists are angled slightly downward, adding to the sense of a tucked posture, ready to spring into action. The second frame shows the robot pushing off, with the arms extending outward and upward to simulate the powerful thrust of a rabbit's hind legs. joint1 rolls outward, and joint2 pitches upward, creating a dynamic lift. The wrists remain angled downward, emphasizing the forward motion. The third frame shows the robot at the peak of its hop, with the arms extended and slightly forward, suggesting the moment of suspension in midair. joint1 and joint2 are adjusted to maintain the forward momentum, while the wrists angle slightly upward, emphasizing the airborne posture. The fourth frame shows the robot beginning to land. The arms move slightly downward, with joint1 rolling inward and joint2 pitching downward, mirroring the motion of the rabbit's legs as they absorb the impact of landing. The wrists angle downward again, preparing for the crouched position. In the final frame, the robot is back in its crouched position, with the arms close to the body and wrists slightly angled downward, ready for the next hop. This repeated cycle of extension and contraction creates the fluid, energetic motion of a rabbit's hop.",
+ "frames": [
+  {
+   "beat": "arms crouch low, ready to spring",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms thrust powerfully outward and up",
+   "arms": {
+    "both": {
+     "joint1": -40.0,
+     "joint2": 60.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward at the peak of the hop",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 40.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to absorb the landing impact",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -60.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back into a crouch",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

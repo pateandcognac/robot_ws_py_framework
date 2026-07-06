@@ -1,0 +1,66 @@
+{
+ "emoji": "👨‍🍳",
+ "ideation": "This animation sequence depicts a chef enthusiastically stirring a pot. The animation will focus on the left arm, which will mimic the stirring motion, while the right arm will remain largely still, perhaps holding a spoon or spatula.  The sequence will emphasize the dynamic nature of cooking, using a smooth but expressive arm movement. In the first frame, the left arm is extended somewhat forward, with the wrist slightly tilted down to simulate holding a utensil. This posture suggests readiness and anticipation. The right arm is held slightly below shoulder height, possibly holding a cooking utensil. In the second frame, the left arm moves in a circular motion, simulating the stirring of a pot.  The arm will move slightly downward and inward, and the wrist will rotate. The right arm maintains its pose. In the third frame, the left arm completes the circular motion, moving upwards and outward to complete the stirring gesture. The right arm remains stationary. The fourth frame returns the left arm to a position similar to the first frame, ready for the next stir, while the right arm remains in place. This provides a natural rhythm to the animation. The final frame returns the left arm to the initial position, ready to continue stirring. The right arm remains largely unchanged.",
+ "frames": [
+  {
+   "beat": "chef readies to stir, utensil in hand",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm sweeps down and in, a vigorous stir",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arm arcs up and out, completing the motion",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "chef pauses, ready for the next stir",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

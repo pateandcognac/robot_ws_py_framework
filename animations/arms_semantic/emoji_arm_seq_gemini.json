@@ -1,0 +1,81 @@
+{
+ "emoji": "♊",
+ "ideation": "This animation sequence represents the duality of Gemini, using both arms to create a mirrored, yet slightly offset, movement that symbolizes the sign's two-sided nature. The arms will move in a wave-like motion, starting with a mirroring effect and then diverging to show the independent yet connected aspects of Gemini.  Each arm will have a slightly different timing and amplitude to visually represent this contrast. This sequence will use 5 frames to capture the flow of motion.",
+ "frames": [
+  {
+   "beat": "arms mirror each other, rising slightly",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise higher, beginning to diverge with a twist",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 15.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": -15.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm surges up, the right arm dips down",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms cross and twist, showing opposing forces",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": -15.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 75.0,
+     "wrist": 15.0
+    }
+   }
+  },
+  {
+   "beat": "both arms fall to rest, duality resolved",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

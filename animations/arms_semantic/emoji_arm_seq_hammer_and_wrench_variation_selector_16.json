@@ -1,0 +1,81 @@
+{
+ "emoji": "🛠️",
+ "ideation": "This animation sequence depicts the robot using a hammer and wrench.  The sequence will show the robot holding the tools, then using them in a simple, repetitive motion. The robot does not actually have hands, so the tools will be positioned near the end of the robot's arms, to simulate the use of the tools. Frame 1 shows the robot holding the tools. Frame 2 shows the robot lifting the hammer. Frame 3 shows the robot bringing the hammer down. Frame 4 shows the robot lifting the wrench. Frame 5 shows the robot turning the wrench.",
+ "frames": [
+  {
+   "beat": "arms hold tools loosely at sides",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lifts hammer into position",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hammer strikes down with a thud",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm brings wrench up to bolt",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wrench turns the bolt with a click",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

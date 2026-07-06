@@ -1,0 +1,46 @@
+{
+ "emoji": "🚭",
+ "ideation": "This animation sequence will show the robot making a firm 'no' gesture with both arms, emphasizing the prohibition implied by the no-smoking symbol. The movement will be decisive and clear, using the robot's arm mechanics to create a strong visual message. Frame 1: Both arms start at the sides, in a relaxed posture. Frame 2: Both arms move outward and upward, palms facing outward, forming a clear 'X' shape across the chest. Frame 3: The arms move slightly downward and inward, maintaining the 'X' shape but emphasizing the rejection. Frame 4: The arms return to a relaxed position at the sides, but with a slight lingering emphasis on the downward movement of the arms.",
+ "frames": [
+  {
+   "beat": "both arms rest at the sides, a moment of calm",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms push outward and up, palms out, a clear stop",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep down and in, reinforcing the prohibition",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the message delivered firmly delivered",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

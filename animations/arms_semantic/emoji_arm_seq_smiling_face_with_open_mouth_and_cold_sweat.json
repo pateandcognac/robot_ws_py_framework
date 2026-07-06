@@ -1,0 +1,61 @@
+{
+ "emoji": "😅",
+ "ideation": "This sequence aims to capture the feeling of nervous laughter or relief, where a character might wipe a bit of sweat from their brow while grinning. Given the robot's limitations (no actual sweat or ability to fully express facial expressions), I'll focus on creating arm movements that suggest wiping the forehead and then transitioning into a relaxed, slightly open posture.  The sequence begins with the right arm raised to the forehead, as if wiping away sweat.  Then, the arm lowers, and both arms move into a slightly open, relaxed position, conveying a sense of relief or slight embarrassment after a nervous moment.  The left arm remains mostly at rest to emphasize the right arm's action. The sequence will have four frames to emphasize the nervous sweat and then relaxed posture.  It starts with the right hand up at the head in a 'wiping sweat' pose. Then the hand moves down and both arms extend slightly outward.  In the third frame, both arms open a bit further into a relaxed position. In the final frame, the arms move to a rest position.",
+ "frames": [
+  {
+   "beat": "right arm wipes sweat from the brow",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 70.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "the hand lowers, relief begins to set in",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open slightly, a nervous grin spreads",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle into a relaxed, relieved pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

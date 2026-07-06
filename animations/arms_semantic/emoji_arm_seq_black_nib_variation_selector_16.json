@@ -1,0 +1,76 @@
+{
+ "emoji": "✒️",
+ "ideation": "This animation sequence simulates the act of writing with a pen. The right arm will hold the pen and move across an imaginary page, while the left arm rests on the surface.  The movement will be smooth but deliberate, mirroring the careful strokes of writing. I will use the examples to guide the range of motion and ensure the pose is natural for the robot. Frame 1: The right arm is positioned as if holding a pen, slightly above the imaginary page. The left arm rests on the page, providing stability. Frame 2: The right arm moves to the right, mimicking the act of writing a stroke. Frame 3: The right arm moves to the left, continuing the writing motion. Frame 4: The right arm returns to its original position, completing a full writing stroke. Frame 5: Both arms return to a neutral resting position. ",
+ "frames": [
+  {
+   "beat": "right arm poised to write, left arm rests",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm draws a line to the right",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm sweeps back to the left",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "completing the stroke, the right arm pauses",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a resting pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "emoji": "🔦",
+ "ideation": "This sequence simulates the action of shining a flashlight. The right arm extends forward, holding the flashlight (represented by the hand position), while the left arm remains mostly still for balance. The sequence focuses on the right arm's movement, keeping it smooth and natural, mimicking how one would use a flashlight. I will reference the examples provided to ensure the arm transitions are fluid and the pose is natural given the robot's two-joint arm system. In the first frame, both arms are relaxed at the sides. The right arm is slightly raised, preparing to extend. In the second frame, the right arm extends forward. joint1 rotates slightly outward to extend the arm, and joint2 pitches it forward. The wrist is slightly angled downward, mimicking the act of holding a flashlight. In the third frame, the right arm extends further forward and the wrist is slightly tilted upward, as if adjusting the flashlight's angle. The left arm stays relaxed. In the fourth frame, the right arm slightly retracts and the wrist is angled more neutral, simulating the end of the flashlight gesture. The left arm remains still. Finally, in the fifth frame, both arms return to their neutral position.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to grab",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, holding a light",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "adjusting the beam angle up and out",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 20.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the light back in, beam neutral",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, neutral pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

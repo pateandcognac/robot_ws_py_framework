@@ -1,0 +1,81 @@
+{
+ "emoji": "🖍️",
+ "ideation": "This sequence shows the robot carefully holding and using a crayon.  The movement is deliberate and precise, reflecting the focused nature of coloring. The left arm will mostly act as a stable support, providing a counterbalance to the right arm's more active movements. Frame 1: The robot starts with both arms relaxed at its sides. Frame 2: The left arm moves slightly upward and outward, providing a stable base. The right arm moves upward and slightly forward, ready to grasp the crayon. Frame 3: The right arm grasps the crayon, the wrist slightly rotated to mimic holding a crayon. Frame 4: The right arm moves slightly downward, as if starting to color. Frame 5: The right arm returns to the position in frame 3, as if completing a stroke. ",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready to create",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm stabilizes, right arm reaches for the crayon",
+   "arms": {
+    "left": {
+     "joint1": -15.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand grasps the crayon, wrist angled precisely",
+   "arms": {
+    "left": {
+     "joint1": -15.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the crayon begins its careful stroke downwards",
+   "arms": {
+    "left": {
+     "joint1": -15.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the stroke finishes, arm poised for the next",
+   "arms": {
+    "left": {
+     "joint1": -15.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

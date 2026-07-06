@@ -1,0 +1,81 @@
+{
+ "emoji": "🦴",
+ "ideation": "This animation sequence will portray a robot carefully picking up a bone.  The movement will be deliberate and cautious, reflecting the fragility of the object.  The robot will use both arms, one to support and one to gently grasp the bone. The sequence will emphasize the precision of the robot's movements. Frame 1: The robot's arms start in a neutral position, slightly bent at the joints. Frame 2: The right arm moves downward and slightly forward, positioning itself below the bone. Frame 3: The left arm extends toward the bone, preparing to support it. Frame 4: Both arms gently grasp the bone, one supporting from below and the other from the side. Frame 5: The arms lift the bone slightly, maintaining a secure yet gentle hold.",
+ "frames": [
+  {
+   "beat": "arms hang loosely, ready to reach",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers, preparing to cradle",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm extends, reaching for the bone",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms gently grasp the bone",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -10.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift the bone with delicate precision",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 40.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 10.0,
+     "wrist": 45.0
+    }
+   }
+  }
+ ]
+}

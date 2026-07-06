@@ -1,0 +1,46 @@
+{
+ "emoji": "🍹",
+ "ideation": "This animation depicts the robot enjoying a tropical drink. It starts by raising the right arm to its mouth as if taking a sip. The left arm remains down, providing balance. Then, the right arm lowers slightly as the robot savors the drink. Finally, both arms return to a relaxed position at the sides, conveying satisfaction. Throughout the sequence, the right wrist maintains a slight inward rotation, as if holding the drink.",
+ "frames": [
+  {
+   "beat": "right arm lifts a cool drink to the mouth",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "sipping and savoring the tropical refreshment",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms relax, satisfied with the drink",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

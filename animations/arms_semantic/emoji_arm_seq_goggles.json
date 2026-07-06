@@ -1,0 +1,56 @@
+{
+ "emoji": "🥽",
+ "ideation": "This sequence will show the robot adjusting goggles onto its face.  The movement will be slow and deliberate, emphasizing the careful placement of the goggles. Frame 1 shows the robot's arms at rest. Frame 2 shows both arms moving upward. Frame 3 shows the robot positioning the goggles on its face, and frame 4 shows the robot adjusting the goggles on its face. Frame 5 shows the robot's arms returning to a resting position. ",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift slowly, reaching forward",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm moves up to the face, left arm supports",
+   "arms": {
+    "right": {
+     "joint1": 30.0,
+     "joint2": 70.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "hands carefully adjust unseen goggles",
+   "arms": {
+    "right": {
+     "joint1": 25.0,
+     "joint2": 65.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, resting pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

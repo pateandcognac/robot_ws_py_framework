@@ -1,0 +1,46 @@
+{
+ "emoji": "🌃",
+ "ideation": "This animation sequence will depict a robot gazing upward at the night sky, filled with stars. The robot will use both arms to create a gesture that complements this feeling of wonder and contemplation.  The animation will start with the arms at rest, then move to a position of looking upward, and finally end with a contemplative pose.  Given the robot's lack of elbows, I will focus on the shoulder joints to create a natural-looking upward gaze. The transitions will be smooth, but each frame will represent a distinct position.",
+ "frames": [
+  {
+   "beat": "arms hang down, ready for the night",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift slightly, beginning to look up",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise higher, gazing into the starry expanse",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts further, lost in cosmic wonder",
+   "arms": {
+    "right": {
+     "joint1": 40.0,
+     "joint2": 70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

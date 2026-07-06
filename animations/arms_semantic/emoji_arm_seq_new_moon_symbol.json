@@ -1,0 +1,46 @@
+{
+ "emoji": "🌑",
+ "ideation": "This sequence will depict a robot covering its eyes with its arms, expressing sleepiness or a desire for darkness, fitting the 'new moon' emoji.  The movement will be slow and deliberate. Frame 1: Arms start at the sides. Frame 2: Arms rise to cover the eyes. Frame 3: Arms move slightly to adjust the eye cover. Frame 4: Arms slowly return to the sides.",
+ "frames": [
+  {
+   "beat": "arms hang down, ready for rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly rise to cover the eyes",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 85.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "adjusting the darkness, settling in",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 80.0,
+     "wrist": -80.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower, the night has passed",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 70.0,
+     "wrist": -70.0
+    }
+   }
+  }
+ ]
+}

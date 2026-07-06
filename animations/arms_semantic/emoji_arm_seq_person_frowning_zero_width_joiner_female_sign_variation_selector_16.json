@@ -1,0 +1,36 @@
+{
+ "emoji": "🙍‍♀️",
+ "ideation": "This sequence aims to capture the subtle downturn and slight inward focus often associated with a frowning woman. The animation will feature a slow, deliberate movement of the arms, emphasizing the internal emotional state rather than a large, outward gesture. The sequence begins with both arms relaxed at the sides, then moves to a position where the arms are slightly raised and angled inward, mirroring the downward turn of the head implied by the emoji. The final frame shows the arms returning to a slightly more relaxed position, but still conveying a sense of quiet contemplation or displeasure. The slight variations in joint angles and wrist positions add to the animation's realism and expressiveness.",
+ "frames": [
+  {
+   "beat": "arms hang down, a quiet sadness settles",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, drawing inward with the frown",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -60.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax a little, but the mood remains",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

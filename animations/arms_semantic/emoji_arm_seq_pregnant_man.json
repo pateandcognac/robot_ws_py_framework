@@ -1,0 +1,51 @@
+{
+ "emoji": "🫃",
+ "ideation": "This animation sequence aims to convey the gentle, protective posture often associated with pregnancy.  The animation will focus on a slight cradling motion of the hands over the abdomen.  The robot's lack of hands necessitates using the arms to create the implication of gentle support. The sequence will use a slow, deliberate pace to reflect the weight and significance of the gesture. The right arm will remain relatively static, providing a counterpoint to the left arm's movement. Frame 1 will start with both arms at the sides, then move to gently cradling the abdomen, then return to a resting position.  The left arm will do most of the movement. This is a sensitive emoji, so I want the movement to be gentle and unassuming.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm gently cradles the belly, right arm rests",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, resting pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

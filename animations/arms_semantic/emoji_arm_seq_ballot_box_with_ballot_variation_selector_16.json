@@ -1,0 +1,66 @@
+{
+ "emoji": "🗳️",
+ "ideation": "This animation sequence depicts the act of carefully placing a ballot into a ballot box.  The movement should be deliberate and respectful of the democratic process.  The sequence will focus on one arm, the right arm, for simplicity and clarity. The left arm will remain at rest. Frame 1 shows the arm extended forward as if holding a ballot. Frame 2 shows the arm beginning to lower the ballot into the box. Frame 3 shows the ballot being gently placed inside the box. Frame 4 shows the arm retracting slightly after depositing the ballot. The entire sequence emphasizes a slow and careful movement.",
+ "frames": [
+  {
+   "beat": "left arm rests, right arm holds ballot forward",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers the ballot carefully towards the box",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "gently placing the ballot into the box below",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm retracts slightly, mission accomplished",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

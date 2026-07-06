@@ -1,0 +1,66 @@
+{
+ "emoji": "🧖‍♀️",
+ "ideation": "This sequence simulates the act of enjoying a steam room, focusing on the relaxing and self-care aspects. The arms will move slowly and deliberately, emphasizing the peaceful nature of the activity.  The robot's lack of elbows will be addressed by creating flowing movements that suggest the arms' implied flexibility.  The sequence will start with the arms at the sides, then move to a position suggestive of holding a towel, and finally to a relaxed position with the hands near the face.  The left arm will be primarily used for the 'towel' action to avoid symmetry and create a more natural, relaxed feel.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for a steam",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lifts as if holding a soft towel",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently rise, embracing the warm mist",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands drift near the face in peaceful relaxation",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

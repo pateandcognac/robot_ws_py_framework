@@ -1,0 +1,36 @@
+{
+ "emoji": "🌖",
+ "ideation": "This animation sequence will depict a gentle, waning gesture, reflecting the diminishing light of the waning gibbous moon.  The robot will start with arms slightly raised, palms facing each other as if cradling something precious that is slowly fading.  Then, it will lower its arms in a graceful motion, as if releasing the fading light, ending with arms at its sides in a resting pose.  This will use a combination of inward and outward rotation (joint1) and upward and downward pitch (joint2) to create a flowing, expressive movement. The use of the wrists will be minimal to maintain a sense of calm and gentle release.",
+ "frames": [
+  {
+   "beat": "arms cradle fading light, palms inward",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 45.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower gently, releasing the dim glow",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rest, the light has gone",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

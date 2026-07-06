@@ -1,0 +1,66 @@
+{
+ "emoji": "🥱",
+ "ideation": "This sequence aims to capture the gesture of a yawn, combining arm stretches and subtle head movements. The robot will begin with arms down, then stretch them upward in a wide arc, followed by bringing a hand to the mouth as if stifling a yawn.  In the first frame, both arms are fully extended downwards in a relaxed pose, with joint1 neutral and joint2 at -90 degrees, wrists at 0. This represents the initial relaxed state before the yawn begins. As the yawn starts in the second frame, both arms begin to raise outwards, with joint1 rotating outwards and joint2 increasing towards 0 degrees. The wrists remain neutral.  The third frame captures the peak of the stretch, with joint1 rotated further outwards and joint2 now positive, pushing the arms up and back in a wide arc. The wrists rotate slightly outwards. As the stretch completes in the fourth frame, the arms begin to lower, joint2 decreasing, and the left arm starts to move towards the face, with joint1 rotating inwards. The right arm continues to lower more naturally. The left wrist rotates to -90 to position the hand for covering the mouth. In the final frame, the left hand is positioned near the mouth, joint2 positioned appropriately, mimicking the act of stifling a yawn. The right arm returns to a relaxed, lowered position.",
+ "frames": [
+  {
+   "beat": "arms hang down, a sleepy stillness",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to stretch outwards and up",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach high in a wide, satisfying arc",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower, left arm moves to cover mouth",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 60.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left hand stifles a yawn, right arm rests",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 75.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

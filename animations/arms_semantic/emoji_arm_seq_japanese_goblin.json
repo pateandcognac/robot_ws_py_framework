@@ -1,0 +1,66 @@
+{
+ "emoji": "👺",
+ "ideation": "This sequence aims to capture the mischievous and slightly menacing essence of the goblin emoji, using dynamic arm movements to suggest playful yet intimidating gestures.  The animation starts with a neutral pose and transitions into exaggerated arm positions, drawing inspiration from classic goblin depictions. In the first frame, both arms are held slightly away from the body, with a subtle outward rotation at joint1 and a slight downward pitch at joint2. This creates a relaxed yet alert posture, setting the stage for the goblin's upcoming actions. The wrists are kept neutral, maintaining a sense of balance. Moving to the second frame, the right arm extends forward menacingly, with joint1 rotating inward and joint2 pitching the arm forward. The wrist rotates inward to -90 degrees, as if the goblin is preparing to grab something.  The left arm remains slightly raised, adding to the menacing pose. By the third frame, both arms raise to shoulder height in a dramatic flourish. joint1 for both arms rotates outward, and joint2 pitches them upwards. The wrists rotate to 90 degrees, palms facing forward, as if the goblin is displaying its claws or preparing for a playful scare. In the fourth frame, the right arm bends at the 'elbow' (simulated by joint2 pitching downward), while the left arm remains outstretched. This creates a dynamic, asymmetrical pose that adds to the goblin's mischievous nature. Finally, in the fifth frame, both arms return to a slightly more relaxed posture, similar to the first frame but with a greater outward rotation at joint1. This creates a sense of anticipation, as if the goblin is ready for its next mischievous act.",
+ "frames": [
+  {
+   "beat": "arms held slightly out, alert and ready",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lunges forward, left arm held back",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rise to shoulder height, palms out",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm bends, left arm stays out",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -40.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle, ready for the next trick",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

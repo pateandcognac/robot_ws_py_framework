@@ -1,0 +1,56 @@
+{
+ "emoji": "♋",
+ "ideation": "This animation sequence aims to represent the Cancer zodiac sign, often associated with nurturing, emotion, and home.  The animation will portray a gentle cradling motion, symbolizing the protective and caring nature of the sign. The crab's protective shell is subtly reflected in the way the arms move together. The sequence will begin with the arms at the sides, move to a cradling position, and then return to the relaxed state. Frame 1: Both arms start in a neutral, relaxed position. Frame 2: Arms move to a position where they gently cradle something in front of the body. Frame 3: Arms return to a neutral position, maintaining a relaxed posture. Frame 4: Arms move slightly inwards, as if pulling in the cradled object. Frame 5: Arms return to a fully relaxed posture at the sides.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently cradle something in front",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a neutral, resting state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull inward slightly, protective",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back into a relaxed posture",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

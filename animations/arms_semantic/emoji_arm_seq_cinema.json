@@ -1,0 +1,56 @@
+{
+ "emoji": "🎦",
+ "ideation": "This animation sequence simulates the act of looking intently at a movie screen.  The robot will hold its hands up to frame the screen, mimicking the way someone might focus on a movie.  The movement will be deliberate and somewhat formal, reflecting the seriousness of watching a film. In frame one, the arms will be at rest. In frame two, both arms will raise to frame an imaginary screen, with the hands slightly cupped. In frame three, the hands will move closer together to better frame the \"screen.\" In frame four, the robot will slightly lean forward, intensifying the viewing experience. In frame five, the arms will lower back to a neutral position.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready for the show",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rise to frame the screen",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands move closer, focusing the view",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 40.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "leaning in to watch the movie intently",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 40.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower, the film has ended",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

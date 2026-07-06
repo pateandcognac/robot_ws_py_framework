@@ -1,0 +1,61 @@
+{
+ "emoji": "🍒",
+ "ideation": "This animation sequence depicts a robot playfully picking and presenting cherries.  The movement will be light and fluid, suggesting a gentle interaction with the imagined fruit. Frame 1 shows both arms relaxed. Frame 2 has the right arm reaching forward, slightly down, and slightly inward, as if to grasp a cherry. Frame 3 shows the right arm returning with an imaginary cherry to the robot's mouth, slightly up and in. Frame 4 brings the right arm down, showing the empty hand, and the left arm raises slightly in a gesture of satisfaction.  Each movement is distinct and expressive, utilizing the robot's two-joint arm system for natural-looking motion. The left arm acts as a counterpoint, remaining mostly still to emphasize the right arm's actions.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches down to pluck a cherry",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the cherry up to the mouth",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lifts slightly, right arm rests",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": -10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🧜‍♀️",
+ "ideation": "This sequence aims to mimic the graceful, flowing movements of a mermaid's tail, using the robot's arms to suggest the underwater elegance. The arms will move in a fluid, undulating pattern, suggesting the mermaid's fins propelling her through the water.  I'll ensure smooth transitions between frames and use slight wrist variations to enhance the expressiveness. In the first frame, both arms are extended downwards, slightly outward, mimicking the relaxed posture of a mermaid at rest. The wrists are angled slightly inward, palms facing each other. In the second frame, the left arm moves upward and outward, while the right arm moves downward and slightly inward, simulating the alternating motion of a mermaid's tail. The wrists adjust slightly to enhance the fluidity of the movement. In the third frame, the left arm returns to its initial downward position, while the right arm moves upward, mirroring the motion from the previous frame. Again, the wrists adjust to maintain the smooth, wave-like motion. In the fourth frame, both arms return to the relaxed starting position, completing one full cycle of the undulating motion.",
+ "frames": [
+  {
+   "beat": "arms hang down like a resting mermaid's fins",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "the left fin sweeps up, the right sweeps down",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 45.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": -60.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "the right fin rises as the left fin falls",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 45.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "both fins settle, completing the gentle sway",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": -10.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": -10.0
+    }
+   }
+  }
+ ]
+}

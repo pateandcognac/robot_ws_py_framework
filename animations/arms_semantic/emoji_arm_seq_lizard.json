@@ -1,0 +1,36 @@
+{
+ "emoji": "🦎",
+ "ideation": "This sequence will animate the robot into a pose that mimics a lizard, emphasizing its stealth and alertness. The animation will start with the robot's arms at its sides, then transition into a low crouch with arms extended forward, and finally into a pose where one arm is raised slightly, as if the lizard is about to strike or explore.  The use of both arms emphasizes the overall movement and creates more dynamic visual expression. The movement will not be fast, but very deliberate and slow, to reflect the lizard's character. ",
+ "frames": [
+  {
+   "beat": "arms hang low, ready to crouch",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward, low to the ground",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm lifts, ready to strike",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

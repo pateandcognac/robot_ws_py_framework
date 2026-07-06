@@ -1,0 +1,81 @@
+{
+ "emoji": "🖖",
+ "ideation": "This sequence aims to recreate the Vulcan salute, a gesture of peace and long life, with the right hand. Given the robot's limited hand dexterity, the focus will be on achieving the distinctive V-shape between the index and middle fingers, which I will approximate by angling the right wrist outward at -45°. The left arm remains at rest, providing balance and directing attention to the right hand. Throughout, the movements will be precise yet fluid, reflecting the gesture’s serene nature. In the first frame, both arms are relaxed by the sides, establishing a neutral starting position. The right arm is slightly raised, poised for the salute, with the left arm resting comfortably. The right wrist is angled at 0° as the fingers would naturally be together before forming the 'V'.  Moving to the second frame, the right arm begins to rise, with the wrist twisting outward at -45° to form the split between the fingers. joint1 rotates outward to position the arm, and joint2 pitches it upward. The left arm remains still, maintaining balance. By the third frame, the right arm reaches its peak position for the salute. joint1 and joint2 adjust to bring the arm to a comfortable height, holding the Vulcan 'V' clearly. In the fourth frame, the right arm lowers slightly, preparing to return to the resting position. The wrist maintains the -45° angle, keeping the 'V' shape intact as the salute begins to conclude. Finally, in the fifth frame, the right arm returns to its relaxed position by the side, with the wrist rotating back to 0° as the fingers come together. The left arm remains neutral throughout, emphasizing the right arm's movement.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, poised for peace",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm rises, wrist splits fingers for the salute",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the hand holds the vulcan 'v' high and steady",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -25.0,
+     "joint2": 50.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arm lowers slightly, maintaining the peace sign",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest, fingers together",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

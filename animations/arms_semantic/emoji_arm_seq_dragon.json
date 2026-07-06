@@ -1,0 +1,56 @@
+{
+ "emoji": "🐉",
+ "ideation": "This animation sequence depicts a dragon's breath and tail movements.  The arms will mimic the breathing motion, while the wrist movements suggest a tail flick.  Frame 1 starts with both arms slightly raised and extended outward, palms down, ready to 'exhale'.  Frame 2 shows both arms moving forward and downward, simulating the exhaled breath.  The wrists will flick outward slightly in this frame.  Frame 3 reverses this, the arms rise again, as if the dragon is inhaling. The wrists return to a neutral position. Frame 4 is a variation of Frame 1, with the arms slightly higher, suggesting a more powerful inhalation.  The final frame returns to the initial pose.",
+ "frames": [
+  {
+   "beat": "arms extend outward, ready to breathe fire",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms thrust forward and down, exhaling with a wrist flick",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw back, inhaling deeply",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise higher, a mighty breath drawn in",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a resting, powerful stance",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

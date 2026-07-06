@@ -1,0 +1,66 @@
+{
+ "emoji": "🙍‍♂️",
+ "ideation": "This sequence aims to depict the frustration and dejection implied by the \\\"man frowning\\\" emoji.  The animation will focus on a slumped posture and a hand covering part of the face, conveying a sense of disappointment or weariness.  The movement will be slow and deliberate, emphasizing the emotional weight of the gesture. The right arm will remain relatively still, while the left arm will be the primary actor in the sequence. The robot's head will be assumed to be downcast, in keeping with the emoji. Frame 1 shows a neutral start position; frame 2 begins the downward movement of the left arm; frame 3 shows the arm covering the face; and frame 4 returns to a neutral position, but still conveying tiredness. ",
+ "frames": [
+  {
+   "beat": "arms hang down, a weary sigh",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm begins to droop, heavy with thought",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hand covers the face in dejection",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, a lingering sadness",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

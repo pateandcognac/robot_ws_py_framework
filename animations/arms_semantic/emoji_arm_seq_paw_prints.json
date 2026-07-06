@@ -1,0 +1,61 @@
+{
+ "emoji": "🐾",
+ "ideation": "This sequence mimics a playful, curious sniffing motion, using both arms to suggest the robot is investigating something on the ground. The arms will move in a coordinated, slightly exaggerated manner to enhance the expressive nature of the animation. I'll focus on creating distinct positions for each frame, with clear changes in joint angles between frames to facilitate smooth transitions during interpolation. In the first frame, the robot's arms are positioned at its sides, in a relaxed neutral pose. This sets the stage for the sniffing motion. In the second frame, both arms move forward and down in a coordinated manner, as if the robot is lowering its head and sniffing the ground. In the third frame, the right arm extends slightly forward and to the right, while the left arm extends slightly forward and to the left. The wrists are slightly rotated downwards, as if the robot's hands are lightly touching the ground. In the fourth frame, the arms return to a position similar to the second frame. In the fifth frame, the arms return to their neutral position at the sides, completing the curious sniffing animation. The overall effect should be one of playful curiosity and investigation.",
+ "frames": [
+  {
+   "beat": "arms hang down, ready to sniff",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lower, beginning to investigate",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend slightly, paws touch the ground",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -50.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -50.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms retract, pulling back from the scent",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the sniff is complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "emoji": "🃏",
+ "ideation": "The joker is a tricky one. It represents many things: chaos, unpredictability, even a little malice. To capture this, I'll have the robot mimic shuffling cards, then transition into a 'ta-da!' flourish. In the first frame, both arms are held in front, slightly angled inward, as if holding a deck of cards. The left wrist is tilted to suggest supporting the deck, while the right hand hovers above, ready to deal. In the second frame, the right arm moves slightly back and forth, mimicking the motion of shuffling cards over the left hand. The third frame sees the right arm return to its initial position, completing the shuffle. Now for the flourish: In the fourth frame, both arms spread wide, palms up, in a classic 'ta-da!' gesture. The final frame brings the arms back slightly, wrists tilted, as if presenting the newly shuffled deck or a magic trick.",
+ "frames": [
+  {
+   "beat": "arms held forward, ready to shuffle cards",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": -30.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand shuffles cards across the left",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": -30.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "shuffle complete, right hand returns",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": -30.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms spread wide in a ta-da flourish",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms present the trick, palms up",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": -10.0,
+     "wrist": 70.0
+    }
+   }
+  }
+ ]
+}

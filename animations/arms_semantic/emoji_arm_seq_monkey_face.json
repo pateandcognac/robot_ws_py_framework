@@ -1,0 +1,66 @@
+{
+ "emoji": "🐵",
+ "ideation": "This sequence aims to capture the playful and mischievous nature of a monkey.  The animation will involve both arms in a dynamic, yet coordinated movement, mimicking the actions of a monkey reaching out for something or playfully interacting with its environment.  The key is to create a sense of fluid motion and a touch of unpredictability, reflecting the monkey's agile and curious nature. We will use a combination of joint1 (roll) and joint2 (pitch) movements, along with wrist adjustments, to create a natural-looking sequence.  We’ll avoid perfectly symmetrical movements to enhance the playful aspect.",
+ "frames": [
+  {
+   "beat": "arms reach out playfully, a curious monkey",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms swing inward, a quick playful grab",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms recoil and twist, a mischievous peek",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -30.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 30.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle, ready for the next playful move",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

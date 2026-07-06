@@ -1,0 +1,71 @@
+{
+ "emoji": "🧅",
+ "ideation": "This sequence mimics the action of peeling an onion, emphasizing the layers and the potential for tears. It starts with both arms relaxed, then one arm moves to hold the onion while the other peels it. Finally, both arms return to a relaxed state. The sequence focuses on conveying the process of peeling, not necessarily the precise hand movements involved. This is achievable with our two-joint arm system. Frame 1: Both arms are at rest. Frame 2: The right arm holds the onion, slightly raised and angled outward. The left arm is positioned to start peeling. Frame 3: The left arm mimics the peeling action, moving slightly downward and outward. Frame 4: The left arm returns to its starting position, as if finishing a layer. Frame 5: Both arms return to their resting position. ",
+ "frames": [
+  {
+   "beat": "arms rest, ready to peel",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm holds the onion, left arm prepares",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm peels away a layer with a slight dip",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 30.0,
+     "joint2": -50.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the peeling arm returns, another layer done",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rest, the onion is peeled",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

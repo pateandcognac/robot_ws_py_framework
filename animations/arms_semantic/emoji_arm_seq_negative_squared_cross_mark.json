@@ -1,0 +1,61 @@
+{
+ "emoji": "❎",
+ "ideation": "This animation sequence depicts the robot making a definitive \"X\" with its arms, mirroring the cross-mark button.  The movement will be sharp and decisive. The first frame shows both arms extended slightly outward, preparing for the crossing motion. The second frame shows the arms crossing in an 'X' formation, with each arm angled toward the opposite side. The third frame shows the robot emphasizing the \"X\", holding the arms firmly in place, before returning to a neutral position in the final frame.  This animation aims to clearly communicate cancellation or negation.",
+ "frames": [
+  {
+   "beat": "arms extend outwards, ready to cross",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep across, forming a sharp X",
+   "arms": {
+    "left": {
+     "joint1": 80.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -80.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "holding the X firmly, a decisive cancellation",
+   "arms": {
+    "left": {
+     "joint1": 70.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -70.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms drop to sides, the action is complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

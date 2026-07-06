@@ -1,0 +1,66 @@
+{
+ "emoji": "👨‍🦽",
+ "ideation": "This animation sequence depicts a person in a manual wheelchair, focusing on the subtle arm movements involved in propelling the chair.  The animation will emphasize the coordinated, rhythmic motion of the arms, reflecting the effort and control needed for wheelchair propulsion.  The frames will showcase the arms in key positions during a single push cycle.  We'll avoid overly dramatic movements, aiming for a natural and realistic portrayal of the activity. The animation will focus on the coordinated movement of both arms, reflecting the cyclical nature of wheelchair propulsion.",
+ "frames": [
+  {
+   "beat": "arms push forward, propelling the chair",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull back, gathering for the next push",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward again, a steady rhythm",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach back, completing the cycle",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "emoji": "🛐",
+ "ideation": "This sequence depicts a prayer-like pose, common with the place of worship emoji.  The animation starts with arms at the sides, then moves to a pose with palms together in front of the chest, then returns to the starting position.  The movement should feel calm and deliberate.  The robot's lack of elbows means we'll need to focus on the shoulder joints to create the effect of prayerful hands.",
+ "frames": [
+  {
+   "beat": "arms hang down, ready to begin",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands rise together in a gesture of prayer",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a resting, humble position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

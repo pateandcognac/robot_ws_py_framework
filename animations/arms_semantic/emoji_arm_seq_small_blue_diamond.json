@@ -1,0 +1,71 @@
+{
+ "emoji": "🔹",
+ "ideation": "This animation sequence will depict a robot gently cradling a small, precious object, represented by the blue diamond. The movement will be slow and deliberate, emphasizing care and protection.  The robot will use both arms to create a secure, protective space. Frame 1 will show the arms in a neutral position. Frame 2 will show the arms beginning to move toward each other, slightly below shoulder height. Frame 3 will depict the arms meeting, forming a cradle shape to protect the diamond. Frame 4 will show a slight adjustment to ensure secure holding. Frame 5 will show the arms gently returning to a resting position after the diamond is secured.",
+ "frames": [
+  {
+   "beat": "arms hang loosely at sides, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lift and move inward gently",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms meet, forming a protective cradle",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "a slight adjustment to secure the precious object",
+   "arms": {
+    "left": {
+     "joint1": 40.0,
+     "joint2": 5.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 5.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, object safely held",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

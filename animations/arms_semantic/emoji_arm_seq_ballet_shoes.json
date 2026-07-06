@@ -1,0 +1,46 @@
+{
+ "emoji": "🩰",
+ "ideation": "This sequence will depict a graceful, ballet-like pose.  The arms will move in a way that complements the delicate nature of ballet shoes. The movement will be slow and deliberate. In the first frame, both arms will be extended to the sides, palms facing down.  In the second frame, the arms will gracefully raise to shoulder height, palms facing inward. In the third frame, the right arm will move slightly upward in a gentle arc, while the left arm will move slightly downward, creating a gentle asymmetry. In the fourth frame, the arms will return to the initial extended position, palms facing down. This sequence mimics the fluidity and elegance of ballet.",
+ "frames": [
+  {
+   "beat": "arms extend gracefully to the sides, palms down",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep up to shoulder height, palms inward",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a gentle balletic asymmetry forms between the arms",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a graceful, extended pose",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

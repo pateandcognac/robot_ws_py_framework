@@ -1,0 +1,66 @@
+{
+ "emoji": "🧑‍💻",
+ "ideation": "This animation sequence depicts a technologist engrossed in their work.  The overall posture conveys focus and concentration. The sequence will start with the arms resting comfortably, then transition to a pose mimicking typing on a keyboard, followed by a slight adjustment as if thinking, and finally returning to a more relaxed pose.  The left arm will primarily handle the typing motion, while the right arm will provide balance and subtle shifts in posture.  The lack of elbows in the robot arm design will be compensated by wrist adjustments to create a more natural appearance.",
+ "frames": [
+  {
+   "beat": "arms rest, ready for work",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches out, fingers poised to type",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 10.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms shift, a moment of contemplation",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle, deep in concentration",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

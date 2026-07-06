@@ -1,0 +1,66 @@
+{
+ "emoji": "🏌️‍♂️",
+ "ideation": "This sequence depicts a golfer's swing.  The left arm will remain relatively static, providing a stable base, while the right arm executes the swing.  I'll use the two joints to create a natural arc.  The frames will capture the backswing, the downswing, and the follow-through.  The wrist will rotate to reflect the grip and club's movement. The left arm will offer a counterbalance to the swing, ensuring the animation appears realistic. ",
+ "frames": [
+  {
+   "beat": "arms rest, right hand grips the club low",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm swings back, a powerful backswing",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 70.0,
+     "joint2": -40.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the club whips through the strike zone, follow through begins",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the swing finishes, arms return to a relaxed pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

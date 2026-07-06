@@ -1,0 +1,56 @@
+{
+ "emoji": "🫓",
+ "ideation": "This sequence aims to mimic the action of making flatbread by rotating the arms in a circular motion as if kneading dough. The focus is on creating a repetitive, rhythmic movement that reflects the process of flattening and shaping the dough. Both arms will move symmetrically to create a balanced, coordinated motion. I’ll reference examples to ensure the arm rotations are smooth and within the robot’s range of motion. In the first frame, both arms are raised to shoulder height and extended forward, with palms facing down, as if beginning to press down on the dough. joint1 is neutral at 0.0 for both arms, and joint2 pitches them forward to 0.0 degrees. The wrists are kept at 0.0 to maintain the downward palm orientation. In the second frame, both arms rotate slightly outward, as if starting the circular kneading motion. joint1 rotates to 20.0 degrees for both arms, while joint2 remains at 0.0. The wrists also stay neutral. By the third frame, both arms rotate further outward, continuing the circular motion. joint1 increases its rotation to 40.0 degrees for both arms, with joint2 and wrists remaining constant. In the fourth frame, the arms begin to rotate inward, reversing the circular motion. joint1 decreases its rotation to 20.0 degrees, mirroring the second frame. joint2 and wrists remain at 0.0. Finally, in the fifth frame, the arms complete the circular motion, returning to their starting position. joint1 returns to 0.0, and joint2 and wrists remain neutral, ready to begin the next kneading cycle. This creates a smooth, repetitive animation that clearly suggests the act of making flatbread.",
+ "frames": [
+  {
+   "beat": "arms start forward, palms down, ready to knead",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rotate outward, beginning the dough motion",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rotate further out, continuing the circular kneading",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to rotate inward, reversing the motion",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to start, completing the kneading cycle",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🛥️",
+ "ideation": "This sequence mimics the rowing motion of a motorboat, focusing on the rhythmic back-and-forth movement of the arms.  The arms will move in a coordinated manner, simulating the pulling of oars.  I'll use a 4-frame sequence to capture the key phases of the rowing action.  The robot's lack of elbows will be compensated by varying joint angles to create a believable rowing motion. The left and right arms will move in opposition to each other, creating a natural rowing rhythm.",
+ "frames": [
+  {
+   "beat": "arms push forward, ready to row",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull back, rowing with effort",
+   "arms": {
+    "left": {
+     "joint1": -15.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms push forward again, the boat glides",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull back, a steady rhythm established rhythm established rhythm established rhythm established rhythm established rhythm established rhythm",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

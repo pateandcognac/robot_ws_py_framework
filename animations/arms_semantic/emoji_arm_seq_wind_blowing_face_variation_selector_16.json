@@ -1,0 +1,36 @@
+{
+ "emoji": "🌬️",
+ "ideation": "This sequence will show the robot experiencing a light breeze.  The animation will start with arms at the sides, then move to arms slightly raised, and finally return to the rest position, suggesting the feeling of a gentle wind. Frame 1 will be a neutral pose; Frame 2 will have the arms slightly raised and tilted back, as if feeling the wind; Frame 3 will return to a neutral position. This will showcase the gentle nature of the wind without being too dramatic. ",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, a moment of calm",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, feeling a gentle breeze",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the wind passes",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

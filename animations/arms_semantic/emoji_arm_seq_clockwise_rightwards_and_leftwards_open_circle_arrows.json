@@ -1,0 +1,36 @@
+{
+ "emoji": "🔁",
+ "ideation": "This animation sequence will represent the cyclical nature of the repeat button using a combination of both arms.  The arms will move in a circular motion, emphasizing repetition. We'll use a three-frame sequence to highlight the key moments of this circular motion. Frame 1 will show both arms extended outward, Frame 2 will show both arms moving together in a circular motion, and Frame 3 will return the arms to their original position.",
+ "frames": [
+  {
+   "beat": "arms extend outwards, ready to begin the cycle",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep around in a repeating circular motion",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to start, completing the loop",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

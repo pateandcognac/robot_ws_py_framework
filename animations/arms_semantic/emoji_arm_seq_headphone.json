@@ -1,0 +1,36 @@
+{
+ "emoji": "🎧",
+ "ideation": "This animation sequence will show the robot adjusting its headphones.  The robot will lift both hands to its ears, then adjust the headphones, and finally place its hands back down. The left arm will mirror the right arm's movements. Frame 1 shows both arms rising to ear-level, palms facing inward. Frame 2 shows both hands making a small adjustment to the headphones. Frame 3 shows both arms returning to a relaxed state at the sides.",
+ "frames": [
+  {
+   "beat": "both arms rise to cup the ears gently",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands adjust the headphones with a slight twist",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 75.0,
+     "wrist": 15.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the music begins",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

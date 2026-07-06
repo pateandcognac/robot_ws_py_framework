@@ -1,0 +1,56 @@
+{
+ "emoji": "🥔",
+ "ideation": "This animation sequence will depict a robot interacting with a potato, starting with arms at rest, then reaching down, picking up the potato, and returning to a neutral pose.  The sequence will use the robot's two-joint arms to create a natural-looking interaction. The absence of elbows will be compensated by focusing on the shoulder movements and wrist orientation to convey the action smoothly.  Each frame will represent a clear change in the arm's position, allowing for smooth transitions through interpolation.",
+ "frames": [
+  {
+   "beat": "arms hang straight down, ready to grab",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms bend slightly, reaching down for the potato",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms scoop up the potato, hands turned inward",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift the potato, bringing it closer",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, potato held securely",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

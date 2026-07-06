@@ -1,0 +1,61 @@
+{
+ "emoji": "🦜",
+ "ideation": "This sequence mimics a parrot's head movements and mimics the way a parrot might bob its head, or cock its head to one side in curiosity. The arms will mimic this motion. Frame 1 starts with both arms down. The second frame is where the robot cocks its head by tilting one arm upward and the other downward. The third frame is a return to neutral. The fourth frame mimics the head bobbing with the arms moving up and down in a slight bobbing motion. The fifth frame returns to the arms at rest. This creates a curious, playful animation.",
+ "frames": [
+  {
+   "beat": "arms hang at rest, a parrot's stillness",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "one arm tilts up, the other down, curious tilt",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, surveying the scene",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms bob slightly, a gentle head bob",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back down, the parrot is content",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

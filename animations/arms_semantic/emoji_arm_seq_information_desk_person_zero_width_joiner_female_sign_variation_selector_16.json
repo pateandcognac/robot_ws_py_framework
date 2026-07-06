@@ -1,0 +1,66 @@
+{
+ "emoji": "💁‍♀️",
+ "ideation": "This sequence animates a woman tipping her hand, a gesture often used to offer assistance or guidance.  The animation will focus on the right arm, smoothly transitioning from a relaxed pose to the tipping hand position. The left arm will remain largely neutral to maintain balance and focus on the gesture. In the first frame, both arms are at rest by the sides. The second frame sees the right arm move slightly forward and outward. The third frame will have the right arm raised to the tipping position with the wrist angled slightly down.  The final frame shows the right arm returning to a relaxed position.  The sequence uses small, deliberate movements to ensure a natural-looking animation. The left arm will remain mostly neutral throughout the sequence to emphasize the right arm's movement.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, a neutral pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to lift and open outward",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the hand tips, offering guidance with a gentle flourish",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 45.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "the arm returns to rest, the gesture complete",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

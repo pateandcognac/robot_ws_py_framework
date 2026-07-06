@@ -1,0 +1,56 @@
+{
+ "emoji": "😀",
+ "ideation": "This sequence aims to capture the broad, beaming smile of the 😀 emoji, using open arm gestures to convey happiness and excitement. The arms move outwards and upwards in a celebratory fashion, then return to a relaxed position. In the first frame, both arms are held slightly out to the sides and angled downwards, palms facing inwards. This starting position creates a sense of anticipation before the expression of joy. In the second frame, the arms lift outwards and upwards, palms facing forward, as if embracing a happy moment. This movement conveys the broadening smile and the outward expression of joy. joint1 rotates the arms outwards, while joint2 pitches them upwards. In the third frame, the arms move slightly higher, extending the feeling of elation. joint2 continues to pitch the arms upwards, increasing the reach. In the fourth frame, the arms begin to lower, returning towards the sides, palms still facing forward. This transition marks the peak of the expression, preparing for a return to a more relaxed state. Finally, in the fifth frame, the arms return to a position slightly below the starting point, with palms facing inwards again. This relaxed posture suggests a lingering sense of happiness after the initial burst of joy.",
+ "frames": [
+  {
+   "beat": "arms held slightly out and down, anticipating joy",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep up and out, embracing the happy moment",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "reaching higher, the elation expands further",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 40.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lower, the peak of joy subsides",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle down, a lingering smile remains",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

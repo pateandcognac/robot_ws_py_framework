@@ -1,0 +1,56 @@
+{
+ "emoji": "🔠",
+ "ideation": "This animation sequence depicts the robot excitedly showing off its knowledge of the alphabet. The sequence starts with both arms down, then moves to arms raised, palms up, as if presenting something. Next, the arms move slightly forward and down, as if emphasizing the presentation, before returning to the relaxed position.  The final frame shows the robot's arms slightly outwards in a 'show-off' pose, suggesting a sense of accomplishment. This sequence aims to convey enthusiasm and pride in the knowledge of letters and words.",
+ "frames": [
+  {
+   "beat": "arms hang down, ready to present",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms shoot up, palms open in presentation",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, emphasizing the knowledge",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the lesson is complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms spread wide, proudly showing off",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

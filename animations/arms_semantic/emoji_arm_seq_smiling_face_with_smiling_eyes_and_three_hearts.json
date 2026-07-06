@@ -1,0 +1,56 @@
+{
+ "emoji": "🥰",
+ "ideation": "This sequence aims to express the overflowing affection and love symbolized by the 🥰 emoji. The robot will perform a gesture similar to hugging oneself, with smooth, flowing arm movements and gentle wrist rotations.  In the first frame, both arms open wide, as if ready to embrace. joint1 rotates both arms outward to create a welcoming posture, while joint2 pitches them slightly downward to add a gentle curve. The wrists are rotated inward so the palms face slightly forward.  In the second frame, the arms begin to close inward, as if drawing something precious closer. joint1 rotates inward, bringing the arms towards the body, while joint2 maintains the gentle downward pitch. The wrists rotate further inward, turning the palms more towards the body.  In the third frame, the arms continue to close, coming closer to a self-hug. joint1 rotates further inward, and joint2 pitches the arms slightly upward, as if lifting the embraced object. The wrists now face each other. In the fourth frame, the arms close in a gentle self-hug, with the hands coming close to the chest. joint1 brings the arms close together, and joint2 pitches them upward to complete the embrace. The wrists maintain their inward rotation, emphasizing the gentle, loving embrace.  In the final frame, the arms remain in the self-hug position, lingering for a moment to emphasize the feeling of warmth and affection. This pose suggests cherishing a moment of love and affection, perfectly reflecting the 🥰 emoji.",
+ "frames": [
+  {
+   "beat": "arms open wide in a loving gesture",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -45.0,
+     "wrist": -60.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to draw inward, embracing warmth",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms continue to close, holding something precious",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms complete a gentle self-hug, full of affection",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms linger in the embrace, cherishing the love",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "🏣",
+ "ideation": "This animation sequence will depict a robot interacting with a post office, perhaps receiving or sending a package.  The movements should convey careful handling and a sense of responsibility. Frame 1 shows arms at rest. Frame 2 shows the robot extending both arms forward, palms up, as if receiving a package. Frame 3 shows the robot bringing the arms back down to chest level and to the side as if handling the package with care. Frame 4 shows the robot extending both arms forward again, but slightly lower, as if placing the package somewhere. Frame 5 shows the arms returning to a resting position.",
+ "frames": [
+  {
+   "beat": "arms hang at rest, ready for service",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms extend forward, palms up, receiving",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower to chest, handling the package carefully",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward again, placing the package down",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, resting position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

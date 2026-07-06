@@ -1,0 +1,66 @@
+{
+ "emoji": "🐟",
+ "ideation": "This sequence mimics the movement of a fish swimming, focusing on fluid, undulating arm motions.  The arms will move in a wave-like pattern, mimicking the side-to-side movement of a fish's tail.  I will ensure the transitions between frames are smooth and expressive, avoiding any jerky or unnatural movements.  The sequence will emphasize the fluidity and grace of a fish's movement, reflecting the emoji's aquatic nature. Frame 1 starts with both arms extended slightly forward and angled downwards, palms facing inwards. Frame 2 will have the left arm moving backward, slightly upward, and the right arm moving forward, slightly downward. Frame 3 reverses this movement, with the left arm moving forward and the right arm moving backward. Frame 4 returns the arms to a position similar to Frame 1, creating a cyclical motion.  The wrists will remain relatively neutral throughout the sequence, enhancing the fluid nature of the arm movements.",
+ "frames": [
+  {
+   "beat": "arms extend slightly forward, ready to swim",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm pulls back, right arm pushes forward, undulating",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pulls back, left arm pushes forward, reversing flow",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to center, a gentle glide",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

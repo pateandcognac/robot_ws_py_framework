@@ -1,0 +1,81 @@
+{
+ "emoji": "🎳",
+ "ideation": "This sequence simulates the windup and release of a bowling ball. The robot will mimic the bowler's arm motion, focusing on the power and precision of the throw. The left arm will provide a counterbalance.  I'll use the two-joint system to create a smooth, yet powerful swing.  I'll check my examples to ensure the range of motion is realistic and the transitions are fluid. In frame 1, the right arm is drawn back, similar to a bowler's stance. The left arm is positioned for balance. Frame 2 shows the arm swinging forward, building momentum. Frame 3 shows the release of the ball, with the arm extending fully forward. Frame 4 shows the arm following through after the release, and finally, frame 5 shows a return to a relaxed stance.",
+ "frames": [
+  {
+   "beat": "arms rest, ready for the approach",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 70.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm swings back, left arm balances",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm powerfully swings forward and up",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the ball is released, arm follows through",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, ready stance",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

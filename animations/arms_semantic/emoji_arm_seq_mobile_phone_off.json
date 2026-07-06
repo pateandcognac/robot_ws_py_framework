@@ -1,0 +1,81 @@
+{
+ "emoji": "📴",
+ "ideation": "This sequence depicts the act of turning off a phone, starting with the phone held up and ending with it placed down.  The movement will be primarily focused on the right arm, with the left arm remaining largely still for balance.  I will use smooth transitions between frames, ensuring the motion feels natural and aligned with the action of putting down a phone. In the first frame, the right arm is raised, holding the phone (simulated by the hand position). The left arm remains neutral.  In the second frame, the right arm starts to lower the phone, moving it downward. In the third frame, the right arm continues to lower the phone closer to the surface, with a slight pause mid-movement.  In the fourth frame, the phone is almost completely down, resting on the surface.  In the fifth frame, the right arm returns to a relaxed position at the side, and the phone is completely placed down, with the left arm remaining neutral throughout. ",
+ "frames": [
+  {
+   "beat": "right arm raises phone, left arm rests",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the phone begins its descent, held steady",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "lowering the phone slowly, a brief pause",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the phone nears the surface, almost down",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "phone placed down, right arm returns to rest",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

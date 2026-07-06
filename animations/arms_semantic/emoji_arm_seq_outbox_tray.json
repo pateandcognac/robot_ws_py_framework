@@ -1,0 +1,56 @@
+{
+ "emoji": "📤",
+ "ideation": "This animation sequence portrays the action of lifting a tray or outbox, emphasizing the upward motion and the slight outward extension of the arms to support the weight. The robot's arms will move in a coordinated and careful manner, starting from a neutral position and ending with the tray held above the head. In the first frame, both arms are positioned neutrally at the sides.  In the second frame, the arms start to lift the tray; the palms face upwards and the arms begin to extend slightly outwards to provide support. This is done by adjusting joint2 to raise the arms, and joint1 to rotate them outward slightly. In the third frame, the tray is elevated to about chest height; the arms extend outwards more to maintain balance and support the tray's weight. In the fourth frame, the tray is raised above the head; the arms are extended fully outward to maintain balance, with the hands still cupped upward. The arms will be slightly bent at the shoulder joints to accommodate the upward motion and outward extension. Finally, the fifth frame shows the arms holding the tray at its highest point, above the head. This is achieved by further adjusting joint2 and joint1, keeping the arms extended to provide support.  The overall movement should be smooth and deliberate, reflecting the careful handling of an object such as a tray. ",
+ "frames": [
+  {
+   "beat": "arms hang down, ready to lift",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift the tray slightly, palms up",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend further, supporting the tray at chest height",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach high, tray above the head",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold the tray steady overhead",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 60.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

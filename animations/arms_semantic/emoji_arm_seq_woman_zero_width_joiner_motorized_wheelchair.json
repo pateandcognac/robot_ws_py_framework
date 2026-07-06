@@ -1,0 +1,56 @@
+{
+ "emoji": "👩‍🦼",
+ "ideation": "This animation sequence depicts a woman in a motorized wheelchair, focusing on arm movements that suggest control and engagement with the environment. The arms will move in a way that hints at operating the wheelchair's controls, and then settle into a relaxed posture. Frame 1 shows both arms slightly raised, hands near the controls, suggesting active engagement. Frame 2 shows the right arm moving to a more relaxed, downward position, after the user has completed a task. Frame 3 shows the left arm moving to a more relaxed position, as the user shifts their posture. Frame 4 shows both arms resting at the user's sides, suggesting a moment of rest or contemplation.",
+ "frames": [
+  {
+   "beat": "both arms rest at the sides, ready to go",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm lowers, task completed",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm lowers, settling into the chair",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rest, the journey continues",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

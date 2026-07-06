@@ -1,0 +1,46 @@
+{
+ "emoji": "🥣",
+ "ideation": "This animation sequence depicts the robot gently holding a bowl with a spoon, emphasizing a calm and careful interaction.  The sequence will focus on a smooth, controlled movement of bringing the bowl to the mouth, followed by a return to a neutral position. The robot doesn't actually have hands, so the action is simulated.  The robot's 'hands' will represent holding the bowl and spoon. Frame 1 will show the bowl and spoon being lifted to the mouth, with a slight tilt to suggest the robot is about to eat. The arms are held outward and slightly upward, with the wrists slightly angled to mimic holding the bowl and spoon. Frame 2 will show the bowl and spoon closer to the mouth, as if the robot is about to take a bite. Frame 3 will show the robot returning the bowl to the table. Frame 4 will show the bowl and spoon resting on the table, returning to the rest position.",
+ "frames": [
+  {
+   "beat": "arms lift the bowl and spoon gently upward",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the bowl closer, ready for a taste",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "lowering the bowl back down with care",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "bowl and spoon rest, motion complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

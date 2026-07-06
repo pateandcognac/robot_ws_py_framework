@@ -1,0 +1,46 @@
+{
+ "emoji": "✈️",
+ "ideation": "This sequence mimics the motion of an airplane taking off and flying.  The arms will move in a coordinated manner, starting with a low-to-the-ground position, rising to simulate ascent, then leveling out to represent sustained flight.  The final frame will show the arms in a position that suggests the airplane is cruising.  The movement will be smooth but decisive, avoiding jerky motions, as each frame is a key position in the gesture. ",
+ "frames": [
+  {
+   "beat": "arms low to the ground, ready for takeoff",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep upwards and outwards, simulating ascent",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms level off, cruising at altitude",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms maintain steady flight, moving forward",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

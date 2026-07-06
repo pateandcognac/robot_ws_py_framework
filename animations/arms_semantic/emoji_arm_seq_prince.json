@@ -1,0 +1,71 @@
+{
+ "emoji": "🤴",
+ "ideation": "This sequence depicts a regal pose, starting with arms at the sides and culminating in a gesture suggesting holding a scepter or orb. The left arm will remain largely static, acting as a counterpoint to the right arm's more dynamic movement. The animation will focus on slow, deliberate movements to emphasize the royal bearing. Frame 1 begins with both arms at the sides, palms facing inward, suggesting composure. Frame 2 will show the right arm beginning to rise, with a slight outward rotation, implying the lifting of an object. The wrist will be slightly angled downwards, anticipating the weight of a scepter. Frame 3 will show the right arm fully extended, as if holding a royal orb or scepter, in a slightly downward angle, while the left arm remains static. Frame 4 reverses the gesture, showing the right arm returning to its neutral position, maintaining balance with the left arm. Frame 5 mirrors Frame 1 to end the sequence smoothly.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, regal and composed",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins to lift, holding court",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "the scepter is held high, a king's decree",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the royal arm lowers, the decree fulfilled",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to sides, the king at rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

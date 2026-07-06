@@ -1,0 +1,51 @@
+{
+ "emoji": "🕤",
+ "ideation": "This animation sequence will represent the time 9:30 using both arms. The right arm will point to the 9 and the left arm to the 30. Both arms will start in a neutral position and then move to their respective positions. The final frame will show both arms pointing to their respective numbers, representing the time. The left arm will move more dramatically to emphasize the half-hour mark.",
+ "frames": [
+  {
+   "beat": "both arms hang down, ready to tell time",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm points to the nine, left arm stays down",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "left arm sweeps to the thirty, time is 9:30",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

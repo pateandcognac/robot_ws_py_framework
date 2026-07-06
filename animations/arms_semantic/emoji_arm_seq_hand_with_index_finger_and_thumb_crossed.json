@@ -1,0 +1,61 @@
+{
+ "emoji": "🫰",
+ "ideation": "This sequence aims to represent the 🫰 emoji, where the index finger and thumb are crossed, often used to signify a small amount of money or 'just a little bit.' Since the robot lacks fingers, the focus will be on mimicking the hand's general shape and movement using wrist rotations and arm positioning.  The gesture starts with both arms at rest, then brings the right hand up towards the face, with inward wrist rotations to imply the finger-crossing. The left arm remains relaxed throughout, providing balance and directing attention to the right hand's movement.  In the first frame, both arms rest at the sides, joint1 neutral and joint2 pitched downwards at -90°, wrists at 0°. This creates a natural starting position. The second frame sees the right arm begin to rise, joint1 rotating slightly inwards and joint2 pitching upwards to about 45°. The wrist remains neutral. In the third frame, the right arm moves closer to the face, with joint2 now at 75° and the wrist rotating inwards to -45° to suggest the fingers crossing. Finally, the fourth frame emphasizes this gesture, bringing the right hand slightly closer and rotating the wrist further inwards to -90°.  This sequence prioritizes clarity and simplicity, focusing on conveying the essence of the 🫰 emoji given the robot's physical limitations.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to lift, preparing the gesture",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand moves closer, fingers crossing inward",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 75.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the gesture is held, a small offering presented offering",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 35.0,
+     "joint2": 85.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

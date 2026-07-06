@@ -1,0 +1,56 @@
+{
+ "emoji": "🈳",
+ "ideation": "This animation sequence aims to visually represent the emptiness and vacancy signified by the Japanese vacancy button emoji (🈳).  The animation will focus on a gradual opening and closing of the arms, mirroring the idea of something opening up to become empty, then closing again.  We will use the robot's arm mechanics to convey a sense of space and openness. The animation will be slow and deliberate, emphasizing the stillness and emptiness represented by the emoji. Frame 1 shows both arms at the side in a neutral position.  In frame 2, the arms open slightly outward, conveying a sense of space opening. Frame 3 shows the arms fully open in a wide gesture, representing the maximum emptiness. Frame 4 reverses the motion, arms closing halfway. Frame 5 shows the arms returning to their original neutral position.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, empty space",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open slightly, a hint of vacancy",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open wide, a vast emptiness revealed",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to close, the space recedes",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, all is vacant",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

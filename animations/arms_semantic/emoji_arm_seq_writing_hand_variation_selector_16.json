@@ -1,0 +1,81 @@
+{
+ "emoji": "✍️",
+ "ideation": "This sequence simulates the act of writing. The right arm will mimic holding a pen and moving it across a surface, while the left arm will provide support. The sequence will be designed to be smooth and natural, with each frame representing a distinct phase of the writing motion. I'll reference the existing examples to ensure that the movements are within the robot's range of motion and appear fluid. Frame 1 will show the robot's arms in a neutral position. Frame 2 shows the right arm moving to the writing position, while Frame 3 shows the arm moving across the page. Frame 4 will have the right arm moving back to a neutral position, and Frame 5 will show the left hand lifting slightly, as if the writing is complete. ",
+ "frames": [
+  {
+   "beat": "both arms rest, ready to begin",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends, pen poised to write",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the hand sweeps across the page, writing",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the arm moves back, completing the stroke",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm lifts slightly, writing finished",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

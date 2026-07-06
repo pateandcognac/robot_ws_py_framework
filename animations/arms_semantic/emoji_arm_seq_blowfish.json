@@ -1,0 +1,36 @@
+{
+ "emoji": "🐡",
+ "ideation": "This animation sequence will portray a blowfish inflating and deflating.  The robot will mimic this by extending its arms outward to simulate inflation and then retracting them to simulate deflation.  The sequence will emphasize smooth, controlled movements to highlight the contrast between the inflated and deflated states.  The wrists will remain neutral to maintain a simple, clear animation.  The primary focus is on the arm's extension and retraction, mirroring the blowfish's change in size.",
+ "frames": [
+  {
+   "beat": "arms hang down, a deflated blowfish",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend outwards, inflating like a pufferfish",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms retract, deflating back to rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

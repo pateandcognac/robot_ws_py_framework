@@ -1,0 +1,56 @@
+{
+ "emoji": "😹",
+ "ideation": "This sequence aims to capture the joyful, slightly overwhelmed feeling of the cat with tears of joy emoji.  The animation will involve a combination of playful arm movements, incorporating a sense of lightheartedness and perhaps a touch of silliness. The arms will move in a way that suggests both happiness and a slight loss of control, reflecting the overwhelming nature of the emotion. I will use the examples provided to ensure the movements are fluid and expressive within the robot's physical limitations. Frame 1: Both arms start in a slightly raised position, palms facing inward, suggesting a gentle embrace or a feeling of contentment. Frame 2: The arms begin to move outward, with the wrists rotating slightly so the palms face forward. This suggests a release of emotion, a joyful burst. Frame 3: The arms swing outward and slightly upward, palms facing forward. This motion reflects the unrestrained happiness of the cat. Frame 4: The arms move back inward toward the body, as if embracing the joy. This creates a sense of closure and containment of the overwhelming emotion. Frame 5: The arms return to a slightly raised position, as in frame 1, but with a more relaxed posture. This suggests a return to a state of happy contentment after the outburst of joy. The sequence will be designed to emphasize the lightheartedness and somewhat chaotic nature of the emotion, making use of slight perturbations to avoid rigid movements.",
+ "frames": [
+  {
+   "beat": "arms hug inward, a gentle happy start",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open wide, joy begins to spill",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing up and out, pure delight erupts",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": 60.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms embrace the overwhelming happy tears",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle, content and slightly overwhelmed",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

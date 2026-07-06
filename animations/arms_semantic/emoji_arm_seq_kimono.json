@@ -1,0 +1,46 @@
+{
+ "emoji": "👘",
+ "ideation": "This animation sequence will depict the robot gently adjusting its arms as if carefully putting on or adjusting a kimono. The movement will be slow, deliberate, and graceful, reflecting the traditional nature of the garment.  We'll focus on smooth transitions and slight adjustments to avoid jerky movements. The robot's arms will move symmetrically. In the first frame, both arms will start in a neutral position at the sides.  In the second frame, both arms will begin to rise slightly, and the wrists will turn inward, as if the robot is reaching for the front of the kimono. In the third frame, the arms will move slightly outward and upward, as if the robot is carefully pulling the kimono around its body. The wrists will remain turned slightly inward. In the final frame, the arms will settle into a relaxed position at the sides, with the wrists now neutral, as if the kimono is adjusted and comfortably in place. The overall effect should be one of calmness and elegance.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready to dress",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, wrists turn inward to grasp",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms move outward and up, adjusting the garment",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle down, kimono perfectly in place",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

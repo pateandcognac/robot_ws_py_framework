@@ -1,0 +1,66 @@
+{
+ "emoji": "🚬",
+ "ideation": "This sequence simulates the act of smoking a cigarette.  The animation will focus on the right arm, with the left arm remaining relatively still. The right arm will mimic the motions of bringing the cigarette to the mouth, taking a puff, and exhaling.  The left arm will remain in a relaxed position to provide contrast and balance.  Given the limitations of the robot's arm structure (no elbow), the animation will be stylized to convey the essence of smoking rather than a perfectly realistic representation.  This sequence will also pay close attention to the subtleties of the motion, such as the slight pauses between actions.  These pauses are critical for creating a more natural and believable animation. The animation will use a total of 4 frames.",
+ "frames": [
+  {
+   "beat": "left arm rests, right arm brings cigarette to mouth",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "taking a slow, deliberate puff, wrist twists slightly",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 20.0
+    },
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "exhaling smoke, arm lowers gently",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the hand returns to rest, the moment passes",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

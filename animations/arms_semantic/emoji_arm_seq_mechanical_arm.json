@@ -1,0 +1,46 @@
+{
+ "emoji": "🦾",
+ "ideation": "This sequence will depict a robot flexing its mechanical arms, showcasing its strength and power.  The animation will focus on a powerful, deliberate movement, highlighting the metallic nature of the arms.  The lack of elbows means we'll have to focus on shoulder movement to make this convincing.  We'll use small wrist movements to enhance the mechanical feel. The first frame will start with both arms in a neutral position, slightly away from the body to emphasize their bulk. The second frame will have both arms flexing, with a slight upward pitch to show off the muscles.  The third frame will show the arms returning to a neutral position, but with a slight pause to give the impression of controlled, mechanical strength. The fourth frame will emphasize the robot's power by bringing the arms together in front to show off its strength, a final pose.",
+ "frames": [
+  {
+   "beat": "arms hang loosely, ready to show power",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms flex upwards, muscles tensing",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax slightly, a controlled pause",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms come together, a powerful display",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

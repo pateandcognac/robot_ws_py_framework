@@ -1,0 +1,66 @@
+{
+ "emoji": "🚏",
+ "ideation": "This animation sequence shows the robot patiently waiting at a bus stop.  The first frame shows the robot standing with arms at its sides, conveying a calm, waiting posture. In the second frame, the robot's left arm raises slightly, as if checking a watch or phone (though the robot has neither). In the third frame, both arms return to their neutral position. The fourth frame shows the robot's right arm raising slightly, mimicking a look around. The final frame shows both arms returning to a relaxed posture, signifying continued waiting. This sequence uses subtle movements to express the nuances of waiting.",
+ "frames": [
+  {
+   "beat": "robot stands at the bus stop, patiently waiting",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lifts slightly, checking the time",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, still waiting",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts, looking down the road",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle, the wait continues",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

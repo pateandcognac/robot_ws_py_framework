@@ -1,0 +1,46 @@
+{
+ "emoji": "☹️",
+ "ideation": "This sequence aims to depict a frowning face by having the robot bring its arms up to its face and then letting them fall to its sides, expressing sadness or disappointment. Throughout the animation, the robot's wrists will be turned inward to convey a sense of vulnerability or distress. In the first frame, both arms are raised to the face, joint1 rotated slightly outward and joint2 pitched upward, with wrists turned inward. This signifies bringing the arms up as if to cover the face in sadness. The second frame shows the arms slightly lowered, joint2 pitching downward, moving the arms away from the face as if wiping tears. The inward wrists maintain the sense of sadness. In the third frame, the arms continue to lower, joint2 pitching further downward, showing the continuation of the downward movement. The wrists remain inward, emphasizing the emotional state. Finally, in the fourth frame, the arms fall to the sides, joint1 neutral and joint2 pitched fully downward, with wrists neutral. This returns the robot to a resting state, completing the expression of sadness and disappointment.",
+ "frames": [
+  {
+   "beat": "arms rise to the face, wrists turned in distress",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 70.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, a slow, sad descent",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 40.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms continue falling, shoulders slumping down",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms drop to the sides, defeated and still",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

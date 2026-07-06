@@ -1,0 +1,51 @@
+{
+ "emoji": "🤼",
+ "ideation": "This sequence depicts two individuals engaged in a wrestling match.  The animation will focus on the dynamic interplay of arms, suggesting struggle and exertion.  The lack of elbows in the robot arm model will be addressed by exaggerating the shoulder movements to create a sense of pulling, pushing, and grappling. I will aim for a three-frame sequence to highlight key moments in the wrestling interaction.",
+ "frames": [
+  {
+   "beat": "arms grapple and twist, locked in a struggle",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "the struggle reverses, pushing and pulling fiercely",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms strain, then briefly find a tense balance",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

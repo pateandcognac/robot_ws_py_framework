@@ -1,0 +1,51 @@
+{
+ "emoji": "👨‍🦯‍➡️",
+ "ideation": "This animation sequence depicts a person using a white cane, walking towards the right.  The right arm will swing naturally in a walking motion, while the left arm maintains a more stable position to aid in balance.  The cane will be implied by the positioning of the left arm and hand.  I will use subtle changes in joint angles to create a smooth and realistic walking animation. The key is to create a sense of movement and balance, reflecting the careful steps of someone using a cane.",
+ "frames": [
+  {
+   "beat": "left arm steady, right arm swings forward for a step",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm swings back, propelling forward motion",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm steady, right arm swings forward again",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

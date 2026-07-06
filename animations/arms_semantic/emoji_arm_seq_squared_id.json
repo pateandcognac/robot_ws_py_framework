@@ -1,0 +1,66 @@
+{
+ "emoji": "🆔",
+ "ideation": "This animation sequence simulates pressing an ID button.  The robot will extend its right arm forward, as if reaching for a button, then make a pressing motion, before returning the arm to a neutral position. The left arm remains mostly still to provide contrast and balance.  The sequence will focus on the right arm's movement, using the two shoulder joints and the wrist to create a natural-looking pressing motion. In the first frame, the robot's right arm will start in a neutral position at its side. The left arm will also be in a neutral position.  Frame two will show the robot extending its right arm forward, with the wrist slightly angled down.  Frame three shows the right arm pressing the button, the arm moves slightly downward and the wrist angles down more sharply. Frame four will show the robot's right arm returning to a neutral position at its side.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, neutral pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, reaching for the button",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "right arm presses down, wrist angled sharply",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": -60.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest at the side",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

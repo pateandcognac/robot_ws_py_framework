@@ -1,0 +1,46 @@
+{
+ "emoji": "🪼",
+ "ideation": "This sequence mimics the gentle, flowing movement of a jellyfish. The arms will move in a wave-like pattern, suggesting the pulsating motion of the creature. The animation will use both arms, moving them in a synchronized but slightly offset manner to create a sense of fluidity.  The wrists will remain neutral, suggesting a relaxed, non-threatening pose.  The overall feel will be calm and graceful. Frame 1: Arms start slightly raised and angled outward, mimicking the relaxed posture of a jellyfish at rest. Frame 2: Arms move upward and outward, suggesting the upward pulse of the jellyfish. Frame 3: Arms move slightly downward and inward, suggesting a gentle recoil. Frame 4: Arms return to a position similar to frame 1, completing a full cycle of movement.",
+ "frames": [
+  {
+   "beat": "arms drift gently outward and up, like a jellyfish pulsing",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pulse upward, reaching for the water",
+   "arms": {
+    "both": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms recoil inward and down slightly",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back into a gentle, resting drift",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 25.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

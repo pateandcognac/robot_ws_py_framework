@@ -1,0 +1,46 @@
+{
+ "emoji": "🌭",
+ "ideation": "This animation sequence will mimic the act of someone excitedly holding a hot dog, emphasizing the deliciousness of the food. The sequence will start with both arms outstretched, palms up, as if anticipating the hot dog. Then, the hands will come together, as if receiving the hot dog, and finally, one hand will lift to take a bite, while the other supports the bottom. The key is to make the movements fluid and expressive, yet simple enough for our robot. I'll make use of the dual shoulder joints to create smooth transitions. In the first frame, both arms are outstretched, palms up, with a slight upward curve to express anticipation. The wrists will be neutral. Then, the hands will start to come together, transitioning to a 'receiving' posture. In the third frame, one arm will lift as if taking a bite, while the other supports the hot dog from underneath. This movement will be quick and expressive to capture the excitement. Finally, the sequence will end with both arms relaxed at the side, as if the hot dog has been enjoyed, signaling the end of the action. Let's do this!",
+ "frames": [
+  {
+   "beat": "arms outstretched, palms up, anticipating the treat",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands move inward, ready to receive the hot dog",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lifts to take a bite, right arm supports",
+   "arms": {
+    "right": {
+     "joint1": 40.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms relax, the delicious hot dog enjoyed",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

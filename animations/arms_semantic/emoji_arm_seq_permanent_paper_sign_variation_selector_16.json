@@ -1,0 +1,56 @@
+{
+ "emoji": "♾️",
+ "ideation": "This animation sequence represents the continuous loop of infinity using a circular motion of both arms. The arms move in a coordinated manner, creating a visual representation of the symbol's never-ending nature. Each frame will show a distinct phase of the circular motion, from a starting position to the completion of a full circle. The reasoning behind each frame's arm positions will explain how joint1 (shoulder roll) and joint2 (shoulder pitch) work together to achieve the desired circular path, and how the wrist position remains unchanged throughout the movement. This animation will showcase the elegant and flowing nature of infinity, using the robot's arm mechanics effectively.",
+ "frames": [
+  {
+   "beat": "arms start together, ready to loop",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep up and out in a wide arc",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach their peak, forming the top of the loop",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms curve down and inward, completing the motion",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to center, the loop is finished",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

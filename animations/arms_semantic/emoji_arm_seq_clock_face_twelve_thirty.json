@@ -1,0 +1,51 @@
+{
+ "emoji": "🕧",
+ "ideation": "This animation sequence represents the time 12:30, using arm positions to suggest the hands on a clock.  The sequence will focus on the movement of both arms to mimic the positions of the clock hands.  The left arm will represent the hour hand and the right arm will represent the minute hand.  The movement will be smooth and deliberate, emphasizing the transition from one time to the next.  I will leverage existing examples to ensure the arm movements are natural and within the robot's range of motion.",
+ "frames": [
+  {
+   "beat": "arms point straight up, like a clock at noon",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the minute hand sweeps halfway around",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 180.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle at half past",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

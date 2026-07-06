@@ -1,0 +1,81 @@
+{
+ "emoji": "🔼",
+ "ideation": "This sequence aims to represent pressing an upwards button, using the right arm to make a distinct upward pointing motion. The left arm remains at the side for balance and clarity.  The right arm's movement is kept concise and deliberate, focusing on the upward action. In the first frame, both arms are relaxed at the sides.  The right arm is positioned slightly forward, ready to initiate the upward movement.  The left arm remains neutral at the side. In the second frame, the right arm bends at the \"elbow\" (simulated by joint2) and moves upwards, as if preparing to press a button above. The wrist is kept straight to mimic a pointing gesture.  The left arm remains still. In the third frame, the right arm extends fully upwards, as if pressing the upwards button. The wrist remains straight, emphasizing the direct upward action. The left arm remains at the side for balance. In the fourth frame, the right arm begins to lower, retracting from the button press. The left arm remains still. Finally, in the fifth frame, the right arm returns to its initial relaxed position at the side, completing the gesture.  The left arm remains neutral throughout the sequence, ensuring the focus stays on the right arm's action.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, right arm poised",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm bends and rises, ready to press",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends fully, pressing upwards",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to lower, retracting",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to rest at the side",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

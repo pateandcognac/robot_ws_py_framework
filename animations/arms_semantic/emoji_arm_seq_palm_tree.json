@@ -1,0 +1,51 @@
+{
+ "emoji": "🌴",
+ "ideation": "This animation sequence portrays a robot playfully mimicking the swaying motion of a palm tree in a gentle breeze. The arms will move rhythmically, suggesting a relaxed and carefree atmosphere.  The sequence focuses on a gentle side-to-side sway, not a dramatic back and forth.  The left arm will mirror the right, but with slight variations to avoid perfect symmetry.  I'll use the available joints to create a natural, almost organic-feeling movement that evokes the image of a palm tree swaying in the wind. Let's create some natural-looking movement!",
+ "frames": [
+  {
+   "beat": "arms sway gently to the sides, like a palm",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the sway deepens, a gentle breeze rustles leaves",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to center, a calm tropical moment",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

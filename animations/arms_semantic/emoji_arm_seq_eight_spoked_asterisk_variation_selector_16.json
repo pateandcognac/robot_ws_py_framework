@@ -1,0 +1,46 @@
+{
+ "emoji": "✳️",
+ "ideation": "This sequence will animate the robot making a spinning motion with its arms, mimicking the eight spokes of an asterisk.  The arms will move in a circular pattern, alternating between outward and inward positions. The wrists will remain relatively neutral, focusing the visual effect on the arm's rotation.  Each frame will show a significant change in arm position to clearly define the keyframes for the animation system. To start, both arms will be outstretched in a horizontal position, with a slight upward angle.  Then they will move inward, and then back outward, completing a full 360 degree rotation. This creates a dynamic and expressive motion that reflects the asterisk's symmetry and radial design.",
+ "frames": [
+  {
+   "beat": "arms shoot out wide, forming a horizontal asterisk",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep inward, crossing the body tightly",
+   "arms": {
+    "both": {
+     "joint1": -90.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms shoot out wide again, a different angle",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep inward, completing the spin",
+   "arms": {
+    "both": {
+     "joint1": -90.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

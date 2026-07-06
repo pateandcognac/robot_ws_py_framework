@@ -1,0 +1,46 @@
+{
+ "emoji": "🌶️",
+ "ideation": "This animation sequence will depict the robot expressing excitement and perhaps a little bit of playful mischief related to the spiciness of a hot pepper.  The movement will involve a combination of arm gestures and slight body movements to enhance the expressiveness of the robot's reaction to the pepper. The animation will focus on the robot's arms moving in a way that suggests anticipation, then delight, and finally a slight recoiling after tasting the pepper. I will use the two joints at the robot's shoulder to create expressive arm movements, as well as wrist adjustments to enhance expressiveness. Frame 1: The robot anticipates the pepper. Both arms are slightly raised, hands close to the body, palms facing each other. Frame 2: The robot excitedly brings its hands together, as if receiving the pepper. Frame 3: The robot takes a bite of the pepper. Both hands move upward towards the face. Frame 4: The robot recoils slightly from the heat of the pepper. Arms move outward, palms facing away from the robot's face, and hands move outward. Frame 5: The robot recovers and holds its hands up in a slightly defensive way. Arms move outward, palms facing away from the robot's face and hands move downward.",
+ "frames": [
+  {
+   "beat": "arms slightly raised in anticipation",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands clap together, ready for the treat",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 75.0,
+     "wrist": -60.0
+    }
+   }
+  },
+  {
+   "beat": "both hands move up to take a spicy bite",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms recoil, overwhelmed by the heat",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "emoji": "💥",
+ "ideation": "This animation sequence simulates the surprise and impact of an explosion.  The arms start in a relaxed position, then rapidly move outward and upward, mimicking the outward force of a blast. Finally, they return to a more relaxed state, suggesting the aftermath of the explosion. The sequence uses both arms in a mirrored fashion to give a sense of the blast's all-encompassing nature.  I will use slight variations in joint angles and wrist positions to create a sense of dynamic movement and avoid rigidity. ",
+ "frames": [
+  {
+   "beat": "arms explode outwards and upwards with force",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach their peak, a sudden burst",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms recoil and settle after the impact",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest, the shockwave fades",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

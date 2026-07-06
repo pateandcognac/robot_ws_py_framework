@@ -1,0 +1,66 @@
+{
+ "emoji": "🐖",
+ "ideation": "This animation sequence depicts a pig rooting around in the mud, using its snout to search for food.  The movement will be primarily focused on the left arm, simulating the action of rooting, while the right arm remains relatively still for balance. I'll use a combination of joint rotations to create a natural, searching motion. The sequence will start with both arms at the sides, then transition into a rooting motion with the left arm, and finally return to a resting position.  I will leverage the examples to create a smooth and believable animation. The robot has no elbows, so I have to use the two shoulder joints to simulate the action of rooting. The movement will be less about lifting and more about a forward-and-downward thrust of the arm.",
+ "frames": [
+  {
+   "beat": "both arms rest, ready to root",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm pushes down and forward, searching the ground",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the snout digs deeper, exploring the mud",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a resting, muddy state",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

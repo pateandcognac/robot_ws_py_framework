@@ -1,0 +1,81 @@
+{
+ "emoji": "🥌",
+ "ideation": "This sequence simulates the act of throwing a curling stone.  The motion will focus on the right arm, mimicking the sweeping action often associated with the sport. The left arm will remain relatively still, providing a counterbalance.  The sequence will emphasize a smooth, controlled movement, reflecting the precision required in curling. In the first frame, the right arm is positioned as if holding the curling stone; slight outward rotation at joint1 and downward pitch at joint2. The wrist is angled slightly to simulate a firm grip. The left arm is at rest.  The second frame shows the right arm beginning its sweeping motion. joint1 rotates slightly inward, and joint2 begins to move upward, starting the arc of the sweep. The third frame shows the right arm in the middle of the sweep; joint1 is further inward, and joint2 is higher. The wrist is slightly more rotated to emphasize the sweeping motion. The fourth frame shows the right arm completing the sweep; joint1 rotates back slightly outward, and joint2 starts to lower. The wrist returns to a less extreme angle. The fifth frame shows the right arm returning to a relaxed position, the sweep complete. The left arm remains at rest throughout the sequence.",
+ "frames": [
+  {
+   "beat": "right arm holds the stone, left arm rests",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins its sweeping motion forward",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "the sweep continues, gaining momentum and height",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm starts to release, completing the sweep",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm returns to rest, the stone is sent",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

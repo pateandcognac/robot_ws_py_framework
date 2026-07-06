@@ -1,0 +1,46 @@
+{
+ "emoji": "😒",
+ "ideation": "This sequence aims to capture the essence of the 😒 unamused face emoji, conveying a sense of boredom, disapproval, or mild annoyance. The animation starts with a neutral pose and transitions into a subtle arm cross, reflecting a closed-off or unimpressed attitude. The limited movement emphasizes the low energy and lack of enthusiasm associated with the emotion.  In the first frame, both arms are relaxed at the sides in a neutral posture. Joint1 is at 0.0, aligning the arms with the body, and joint2 pitches the arms straight down to -90.0. The wrists are at 0.0, keeping the palms facing inward. This initial pose sets a baseline of calmness before transitioning into the unamused expression. In the second frame, the arms begin to move slightly inward and upward, initiating the arm-crossing gesture. Joint1 rotates inward to 30.0 for both arms, and joint2 adjusts to -70.0, lifting the arms slightly. The wrists rotate to -45.0, angling the palms towards the body. This subtle shift reflects the beginning of the unamused reaction. By the third frame, the arms are fully crossed, completing the gesture. Joint1 rotates further inward to 60.0 for both arms, and joint2 is at -45.0, positioning the arms across the chest. The wrists remain at -45.0, maintaining the inward-facing palm orientation. This crossed-arm pose clearly conveys the sense of disapproval or boredom. In the final frame, the arms relax slightly, but remain crossed, emphasizing the sustained feeling of being unamused. Joint1 rotates slightly outward to 50.0 for both arms, while joint2 remains at -45.0. The wrists also stay at -45.0. This slight relaxation adds a touch of realism to the pose, preventing it from looking too stiff or forced. The subtle shift in arm position between the third and fourth frames suggests a settling into the unamused feeling, rather than a sudden, dramatic shift.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, neutral and calm",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to cross, a subtle shift inward",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -70.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms fully crossed, unimpressed and closed off",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax slightly, still unimpressed",
+   "arms": {
+    "both": {
+     "joint1": 50.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

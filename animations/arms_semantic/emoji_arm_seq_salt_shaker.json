@@ -1,0 +1,71 @@
+{
+ "emoji": "🧂",
+ "ideation": "This animation sequence depicts the act of sprinkling salt, using a two-armed robot with no elbows. The robot's movements will be exaggerated for visual clarity. Frame 1 will show both arms at rest. Frame 2 will show the right arm lifting and tilting to hold an imaginary salt shaker. Frame 3 will show the right arm sprinkling, with a slight wrist movement. Frame 4 will show the right arm returning to its rest position. Frame 5 will show both arms back at rest.",
+ "frames": [
+  {
+   "beat": "both arms hang at the sides, ready",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm lifts, holding an imaginary shaker",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "shaking salt with a flick of the wrist",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "the arm returns to its resting position",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rest, the seasoning is done",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "emoji": "2️⃣",
+ "ideation": "This sequence will represent the number 2 using the robot's arms.  The animation will start with both arms down, then the right arm will move to form the top part of the 2, and finally, the left arm will form the bottom curve.  The movement should be deliberate and expressive, highlighting the shape of the number.  The final pose will hold for a brief moment before returning to the neutral position (though this return is not part of the provided animation frames).",
+ "frames": [
+  {
+   "beat": "both arms hang down, ready to draw",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm sweeps up to form the top curve",
+   "arms": {
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm extends to complete the number two shape",
+   "arms": {
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the number two is held, clear and defined",
+   "arms": {
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

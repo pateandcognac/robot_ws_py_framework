@@ -1,0 +1,76 @@
+{
+ "emoji": "🍂",
+ "ideation": "This sequence depicts a gentle falling leaf, using both arms to mimic the leaf's descent and the feeling of letting go. The movement will be slow and deliberate, with each frame representing a key position in the leaf's journey. The left arm will start higher than the right, creating an off-balance feel. Both arms will move downward in a graceful arc, with the wrists slightly angled to mimic the leaf's rotation.  In the first frame, the left arm is higher than the right, slightly angled outward and downward, with the wrist turned slightly downward to suggest a slight rotation. The right arm hangs lower and more relaxed. In the second frame, both arms move downward in a flowing motion, the left arm descending more quickly than the right, mimicking the unpredictable nature of a falling leaf. The wrists subtly adjust, continuing the rotation. In the third frame, the arms are nearly at the same height, with the left arm slightly ahead. The wrists continue their gentle rotation. The fourth frame shows the arms almost touching the ground, the motion approaching completion. In the final frame, both arms are relaxed at the sides, the movement finished, like the leaf gently resting on the ground. ",
+ "frames": [
+  {
+   "beat": "left arm high, right arm low, a leaf begins to fall",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms drift down, left leading, a gentle spiral starts",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -30.0,
+     "wrist": -30.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -70.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "both arms descend, wrists twist like a turning leaf",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -50.0,
+     "wrist": -40.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms near the ground, the final descent slows",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -70.0,
+     "wrist": -50.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -70.0,
+     "wrist": 30.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rest, the leaf has landed softly landed",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

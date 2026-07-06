@@ -1,0 +1,56 @@
+{
+ "emoji": "😾",
+ "ideation": "This sequence aims to capture the sulky, displeased expression of a pouting cat. The animation will focus on the arms being slightly hunched and drawn inward, reflecting a downturned posture. The movement should be slow and deliberate, emphasizing the cat's displeasure.  In the first frame, both arms will be drawn slightly inward, close to the body. joint1 will rotate inward for both arms, and joint2 will pitch the arms slightly downward. The wrists will be slightly turned inward, giving a sense of the arms being drawn in toward the body. The second frame will accentuate the inward motion, with the arms drawn in even closer and the wrists turned slightly more inward. This will intensify the feeling of displeasure and sulkiness. For the third frame, the arms remain in the same position, holding the pouting pose.  This pause emphasizes the cat's stubbornness. In the fourth frame, the arms begin to slowly return to a neutral position. joint1 and joint2 will move toward a neutral position, while the wrists will straighten out slightly.  The fifth and final frame will see both arms fully return to the resting position. This indicates that the pouting is temporarily over, while still having the potential to return. ",
+ "frames": [
+  {
+   "beat": "arms draw inward, sulking slightly",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -60.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull in tighter, a deeper pout",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -70.0,
+     "wrist": -40.0
+    }
+   }
+  },
+  {
+   "beat": "holding the grumpy pose, stubborn and still",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -70.0,
+     "wrist": -40.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to relax outward, displeasure fading",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -50.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the pout is over",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

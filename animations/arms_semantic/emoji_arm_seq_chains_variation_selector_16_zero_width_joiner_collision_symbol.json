@@ -1,0 +1,46 @@
+{
+ "emoji": "⛓️‍💥",
+ "ideation": "This animation sequence depicts a robot reacting to a broken chain (likely signifying a failure or disruption). The sequence will start with arms raised in anticipation, then show a moment of impact, followed by arms dropping in defeat.  Frame 1 shows arms raised in a 'ready' position. Frame 2 depicts the moment of impact, with arms jolting outward. Frame 3 shows the arms dropping in disappointment. Frame 4 shows the arms hanging down, limp, in defeat. ",
+ "frames": [
+  {
+   "beat": "arms held out, braced for impact",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms shoot wide in a sudden shock",
+   "arms": {
+    "both": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms fall heavily, the chain has broken",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "limp arms hang in defeat and despair",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

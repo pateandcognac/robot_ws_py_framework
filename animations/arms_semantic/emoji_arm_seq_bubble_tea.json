@@ -1,0 +1,36 @@
+{
+ "emoji": "🧋",
+ "ideation": "This animation sequence shows the robot eagerly anticipating and then enjoying a cup of bubble tea.  The movement starts with the arms slightly raised in anticipation, then drops to a relaxed position as the robot holds the drink, and finally raises again in satisfaction. Frame 1: The robot anticipates the bubble tea, arms slightly raised in a gesture of excitement. Frame 2: The robot now holds the bubble tea, arms relaxed at the sides. Frame 3: The robot shows satisfaction, raising both arms slightly.",
+ "frames": [
+  {
+   "beat": "arms lift slightly in eager anticipation",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "robot holds the bubble tea, arms relaxed",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms raise slightly in satisfied enjoyment",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

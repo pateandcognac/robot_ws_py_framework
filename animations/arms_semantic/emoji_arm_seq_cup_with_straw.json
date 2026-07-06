@@ -1,0 +1,76 @@
+{
+ "emoji": "🥤",
+ "ideation": "This animation sequence depicts the robot bringing a straw to its mouth, mimicking the action of drinking from a cup with a straw. The sequence should be smooth and natural, emphasizing the robot's interaction with the implied cup.  I'll focus on creating keyframes that highlight the movement's natural arc. In the first frame, both arms are relaxed at the sides. In the second frame, the right arm extends forward and slightly upward, as if reaching for the cup. The wrist is angled to mimic a natural grasping motion. The left arm remains relaxed. Frame three shows the right arm bringing the straw to the robot's mouth, with the wrist slightly tilted upward. The left arm remains still. In frame four, the right arm is lowered slightly, as if the robot is taking a sip; the left arm remains static. Finally, in frame five, both arms return to their relaxed position at the sides.",
+ "frames": [
+  {
+   "beat": "both arms rest at the sides, ready",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches forward, hand angled to grasp",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the straw up to the mouth",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 40.0,
+     "wrist": 40.0
+    }
+   }
+  },
+  {
+   "beat": "taking a sip, the arm lowers slightly",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

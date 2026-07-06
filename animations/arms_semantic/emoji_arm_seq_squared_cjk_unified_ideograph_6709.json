@@ -1,0 +1,56 @@
+{
+ "emoji": "🈶",
+ "ideation": "This animation sequence depicts the concept of 'not free of charge' using a robot's arm movements.  The gesture will involve a hand motion emphasizing cost or payment. Frame 1 will show both arms resting at the sides. Frame 2 will have the right arm extend forward, palm up, as if presenting something. Frame 3 will show the right arm slightly lower, as if indicating a price or cost. Frame 4 will transition back to a neutral resting pose. This sequence aims for a clear and concise visual representation of the emoji's meaning.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, palm up, presenting",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers slightly, indicating a cost",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a resting state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

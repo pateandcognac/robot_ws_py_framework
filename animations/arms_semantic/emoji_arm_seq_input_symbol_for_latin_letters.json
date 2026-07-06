@@ -1,0 +1,66 @@
+{
+ "emoji": "🔤",
+ "ideation": "This animation sequence mimics the act of writing or typing on a keyboard.  The robot will appear focused and engaged in a task.  The sequence will primarily use the right arm, with the left arm remaining relatively static for balance.  The right arm will move in a controlled, repetitive motion, suggesting the rhythmic act of typing.  I will use small wrist adjustments to add a sense of finesse and precision to the motion.  The frames will showcase the beginning, middle, and end of a single 'typing' stroke, then a return to the resting position.",
+ "frames": [
+  {
+   "beat": "arms rest, ready for the task",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand reaches forward, poised to strike",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "fingers tap down with precision",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hand returns, ready for the next keystroke",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

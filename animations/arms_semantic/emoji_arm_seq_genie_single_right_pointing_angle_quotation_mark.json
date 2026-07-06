@@ -1,0 +1,46 @@
+{
+ "emoji": "🧞›",
+ "ideation": "This sequence depicts a genie emerging from a bottle, starting with arms tucked in and gradually extending outward. The movements are designed to be fluid and expressive, mimicking the magical unfolding of a genie. I will leverage the robot's shoulder joints to create the effect of arms appearing from within a small space, then gracefully expanding to their full range of motion. Frame 1: Arms start tucked closely to the body, almost as if compressed. Frame 2: Arms begin to extend outward, the hands slightly cupped as if holding something. Frame 3: Arms are fully extended to the side, adopting a welcoming gesture. Frame 4: Arms raise slightly, palms facing upward, as if presenting something magical.",
+ "frames": [
+  {
+   "beat": "arms emerge tightly bound, contained within the bottle",
+   "arms": {
+    "both": {
+     "joint1": 70.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to unfurl, hands cupped as if holding magic",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "genie arms extend fully, a welcoming, expansive gesture",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift, presenting the magic with open palms",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "emoji": "🕌",
+ "ideation": "This animation sequence represents prayer or reverence, fitting the context of a mosque. The sequence starts with arms at the side, moves to a prayer position, briefly pauses, and then returns to the neutral position.  The movement should be slow and deliberate. Frame 1 shows the arms at rest. Frame 2 shows both arms raised in a prayer-like gesture. Frame 3 shows a slight pause in the prayer position. Frame 4 returns the arms to rest.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, in quiet repose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms slowly rise to a prayerful gesture",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "a moment of silent reverence held steady",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently return to a resting state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

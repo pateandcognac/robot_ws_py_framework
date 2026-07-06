@@ -1,0 +1,66 @@
+{
+ "emoji": "🧟‍♂️",
+ "ideation": "This sequence aims to capture the signature shambling gait of a zombie, using the arms to enhance the unsettling effect. The movements are slow, jerky, and lack coordination, reflecting the decomposition and loss of motor control.  The arms will swing independently, with unnatural angles and pauses, creating a disturbing contrast to smooth, fluid human movement. I'll use subtle differences in joint angles between frames to achieve a realistic sense of decay and disjointed movement.  I'll ensure that the transitions are abrupt, emphasizing the unnaturalness of the zombie's movements.  The left arm will start somewhat raised, while the right arm hangs loosely, and they will move in opposition to each other, adding to the unsettling effect.  The wrists will be somewhat bent, and the hands will appear loose and lifeless.",
+ "frames": [
+  {
+   "beat": "left arm rises, right arm hangs loosely, shambling starts",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -70.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing in opposition, jerky and uncoordinated",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": 30.0,
+     "wrist": -15.0
+    }
+   }
+  },
+  {
+   "beat": "a sudden twitch, unnatural angles and pauses",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": -30.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": -80.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lurch forward, a slow, dead lurch",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 5.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 40.0,
+     "wrist": -25.0
+    }
+   }
+  }
+ ]
+}

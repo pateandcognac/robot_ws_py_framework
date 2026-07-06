@@ -1,0 +1,56 @@
+{
+ "emoji": "🗂️",
+ "ideation": "This animation sequence simulates the action of carefully organizing files, which is the core concept of the card index dividers emoji. The movement will be slow and deliberate, reflecting the careful nature of the task. The arms will move symmetrically, starting with both arms outstretched, then moving to a position where they are holding and organizing the dividers, before returning to a resting position. The neutral and symmetrical movements of the arms will highlight the organized nature of the dividers. Frame 1: Both arms extend outward, palms facing upward. This represents the starting position, ready to receive the dividers. Frame 2: Both arms move inward, with the palms facing each other and the wrists slightly angled inward to mimic the act of gently holding or organizing the dividers. Frame 3: Both arms move slightly upward, as if meticulously placing the dividers in their correct order. Frame 4: Both arms move inward to place dividers, slightly lower than in Frame 3. Frame 5: Both arms return to the resting position. This completes the action of organizing the dividers.",
+ "frames": [
+  {
+   "beat": "arms open wide, ready to sort",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw inward, holding the dividers",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "hands lift slightly, arranging with care",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 60.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "hands move down, placing the dividers",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the task complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

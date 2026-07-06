@@ -1,0 +1,56 @@
+{
+ "emoji": "🪟",
+ "ideation": "This animation sequence will show the robot interacting with a window, perhaps looking out or cleaning it.  The movement will be deliberate and focused. Frame 1 will show the robot with its arms at its sides, relaxed. Frame 2 will have the robot's right arm extended, reaching toward a point on the window, with the hand slightly angled downward as if tracing the frame. Frame 3 will have the robot's left arm raising, mimicking the action of wiping the window, with the right arm remaining mostly in position. Frame 4 will show both arms returning to the sides, implying completion of the interaction.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to engage",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches out, tracing the window frame",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "left arm wipes the glass while the right arm steadies",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the window is clear",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

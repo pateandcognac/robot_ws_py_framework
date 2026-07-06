@@ -1,0 +1,56 @@
+{
+ "emoji": "👮‍♂‍",
+ "ideation": "This sequence portrays a police officer's authoritative yet controlled stance.  The animation starts with the arms at the sides, then transitions to a hand-on-hip posture on the left side, followed by a hand-on-belt posture on the right side, and then back to a neutral pose. The left hand stays on the hip, emphasizing a calm authority. The right hand moves to the belt, suggesting readiness. This creates a sense of preparedness and control, fitting for a police officer. ",
+ "frames": [
+  {
+   "beat": "officer stands at attention, arms at sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left hand rests authoritatively on hip",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -75.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right hand moves to the belt, ready for action",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -75.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a neutral, controlled stance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🈁",
+ "ideation": "This animation sequence simulates pressing a button.  The robot will use its right arm to point to the button, then press it. The left arm will remain mostly still to balance the motion. Frame 1 will show the robot's right arm pointing towards the button. Frame 2 will show the right arm moving towards the button. Frame 3 will show the right arm pressing the button. Frame 4 will show the right arm returning to a neutral position.",
+ "frames": [
+  {
+   "beat": "right arm points, left arm stays put",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm moves to press the button",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm firmly presses the button",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm retracts, mission accomplished",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

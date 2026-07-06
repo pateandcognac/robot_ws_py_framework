@@ -1,0 +1,36 @@
+{
+ "emoji": "📘",
+ "ideation": "This animation sequence mimics the action of carefully holding a book.  The robot will hold the book gently with both arms, emphasizing the care and attention given to the object.  The movement will be slow and deliberate, reflecting the calm and studious nature often associated with reading. Frame 1 will show the arms moving upward to receive the book, Frame 2 will show the book being placed into the arms, and Frame 3 will show the book being held close to the body. ",
+ "frames": [
+  {
+   "beat": "arms lift to receive the book gently",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms cradle the book, holding it carefully",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 50.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold the book close, a quiet moment",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🐌",
+ "ideation": "This animation sequence will depict a snail's slow and deliberate movement.  The robot will mimic the snail's extending and retracting motion with its arms.  The sequence will focus on the slow, methodical extension and retraction of the arms, emphasizing the snail's cautious pace. The left arm will primarily perform the extending and retracting motions, while the right arm will remain largely still to provide a contrast and anchor the movement. This will highlight the snail's slow, deliberate approach.  The wrist movements will be subtle, mainly to avoid unnatural postures. ",
+ "frames": [
+  {
+   "beat": "both arms hang low, ready to move",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm slowly extends forward, cautiously exploring",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm retracts, pulling back slightly",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm extends in a new direction, slowly inching along",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

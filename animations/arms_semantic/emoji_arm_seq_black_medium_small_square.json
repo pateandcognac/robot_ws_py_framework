@@ -1,0 +1,71 @@
+{
+ "emoji": "◾",
+ "ideation": "This animation sequence will portray a robot reacting to the ◾ emoji as if it were a small, solid object. The robot will first show curiosity and then a sense of slight confusion or contemplation. The animation will feature both arms, starting with a neutral pose before moving to expressions of interest, then contemplation, and finally returning to neutral.  The motion will be slow and deliberate, reflecting the robot's careful consideration of the object. Frame 1: Both arms start in a neutral position at the sides. Frame 2: The robot's left arm extends forward slightly, as if reaching toward the object. Frame 3: The right arm moves slightly upward, and the left arm stays extended, conveying a sense of observation. Frame 4: Both arms return to a more neutral position, but with the left arm slightly more forward than in frame 1, showing lingering interest. Frame 5: Both arms return to a completely neutral position.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, neutral stance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches forward slightly, curious",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts, observing the object",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back, still contemplating",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the object considered",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

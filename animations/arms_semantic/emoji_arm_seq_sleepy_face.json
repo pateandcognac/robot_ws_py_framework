@@ -1,0 +1,46 @@
+{
+ "emoji": "😪",
+ "ideation": "This sequence aims to portray sleepiness or drowsiness through slow, drooping arm movements. Starting with a somewhat upright posture, the arms gradually lower as if losing energy, mimicking the feeling of nodding off. The movements are subtle and relaxed, reflecting the lack of energy associated with sleepiness. In the first frame, both arms rest at the sides, slightly raised, indicating some remaining energy. joint1 is neutral, joint2 pitches the arms slightly downward, and the wrists are neutral. This creates a relaxed but not fully slumped posture. In the second frame, the arms lower a bit further, with joint2 pitching the arms further downward. The wrists rotate slightly inward, as if beginning to lose grip. This subtle shift adds to the sense of drowsiness. By the third frame, the arms droop even lower, with joint2 nearing its maximum downward pitch. The wrists rotate further inward, enhancing the impression of losing strength and succumbing to sleepiness. In the fourth frame, the arms reach their lowest point, hanging limply at the sides. joint2 reaches its maximum downward pitch, and the wrists turn inward, completing the sleepy posture. This final position reflects the complete surrender to drowsiness.",
+ "frames": [
+  {
+   "beat": "arms hang slightly down, a sleepy start",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms droop lower, wrists turn inward slightly",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -75.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms fall further, succumbing to drowsiness",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": -40.0
+    }
+   }
+  },
+  {
+   "beat": "arms hang limply, completely overcome with sleep",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -90.0,
+     "wrist": -60.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "🦍",
+ "ideation": "This sequence aims to capture the powerful yet playful essence of a gorilla.  The animation will focus on chest-thumping and arm-raising, emphasizing strength and dominance.  The robot's lack of elbows will be compensated by exaggerated movements and changes in joint angles.  I'll make sure the transitions between frames are smooth yet distinct, reflecting the gorilla's powerful movements.  Frame 1: Both arms start slightly bent, palms facing inward, simulating a relaxed posture.  Frame 2: The robot brings its arms back to prepare for the chest-thump.  Frame 3:  A powerful chest-thump is executed with one arm, the other arm raised high. Frame 4: The other arm now performs the chest thump, with the first arm raised. Frame 5: The robot returns to the relaxed starting pose, with a slight sway to emphasize the intensity of the previous movements.  The sequence will use large changes in joint angles to emphasize the power of the gorilla, and the slight swaying motion will make the animation even more expressive.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, palms inward",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pulls back, preparing a mighty strike",
+   "arms": {
+    "right": {
+     "joint1": 45.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm slams the chest, left arm raised high",
+   "arms": {
+    "right": {
+     "joint1": 45.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm now thumps the chest, right arm aloft",
+   "arms": {
+    "right": {
+     "joint1": 70.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms drop, settling after the display",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -50.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

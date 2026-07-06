@@ -1,0 +1,36 @@
+{
+ "emoji": "🐂",
+ "ideation": "This sequence will depict a bull's head-butting motion, focusing on the powerful, forward thrust of the head.  The arms will mimic the horns, extending forward in a V-shape before retracting.  I'll use a 3-frame sequence for clarity and impact, emphasizing the sudden power of the charge. The first frame shows the arms at rest. Then, the arms move forward in a V-shape. Finally, the arms retract back to the resting position. The sequence emphasizes the suddenness and power of the bull's charge.  Because the robot does not have elbows, I will use a combination of joint1 and joint2 to create the illusion of a powerful, dynamic head movement.",
+ "frames": [
+  {
+   "beat": "arms are tucked in, ready to charge",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm lunges forward like a bull's horn",
+   "arms": {
+    "right": {
+     "joint1": -45.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms snap back to the resting position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

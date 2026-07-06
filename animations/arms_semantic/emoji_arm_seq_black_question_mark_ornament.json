@@ -1,0 +1,36 @@
+{
+ "emoji": "❓",
+ "ideation": "This animation sequence depicts a robot expressing confusion or questioning using its arms.  The robot will initially have its arms at its sides, then bring its hands up to its head as if in thought, and finally drop its hands back to its sides, expressing uncertainty. The sequence emphasizes the robot's non-verbal communication, which is consistent with the emoji's inherent ambiguity.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, uncertain stillness",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands rise to the head in a gesture of confusion",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 70.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms drop, the question remains unanswered",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

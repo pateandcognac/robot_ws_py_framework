@@ -1,0 +1,66 @@
+{
+ "emoji": "⚖️",
+ "ideation": "This sequence will show the robot carefully holding a balance scale, emphasizing precision and balance.  The animation will highlight the robot's ability to handle delicate objects with care.  We'll use both arms to cradle the scale, with the hands positioned gently to avoid disturbing the balance.  The sequence will start with the arms moving into position and end with a moment of stillness where the robot is attentively observing the scale.  The movements will be deliberate and methodical, reflecting the seriousness of maintaining balance.",
+ "frames": [
+  {
+   "beat": "arms reach out, palms up, ready to receive",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands gently lift and tilt inward, finding the scale",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": -20.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": -25.0,
+     "joint2": -20.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "arms carefully cradle the scale, maintaining perfect balance",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -10.0,
+     "wrist": 15.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": -10.0,
+     "wrist": -15.0
+    }
+   }
+  },
+  {
+   "beat": "the scale is held steady, a moment of quiet equilibrium",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 0.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

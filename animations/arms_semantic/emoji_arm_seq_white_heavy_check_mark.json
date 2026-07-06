@@ -1,0 +1,81 @@
+{
+ "emoji": "✅",
+ "ideation": "This animation sequence simulates the action of confidently checking off a task. The robot will give a decisive nod with a single arm, emphasizing the completion and approval of the task. The animation will start with both arms hanging relaxed at the robot's sides and end with both arms back in the relaxed position. The dominant arm will move in a short, decisive arc, emphasizing the finality of the checkmark. In the first frame, both arms will be in a neutral, relaxed position at the robot's sides. In the second frame, the robot's right arm will move upward and slightly forward in a short, sharp motion. The wrist will be slightly angled to mimic a checkmark shape. In the third frame, the right arm will pause momentarily at the peak of its motion, emphasizing the action. In the fourth frame, the robot's right arm will return to its original relaxed position. In the fifth frame, both arms will be back in their starting position. This sequence uses a total of 5 frames to simulate the action of making a checkmark. The movement is decisive, clear and confident, reflecting the meaning of the checkmark emoji.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed at the sides",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm sweeps up decisively, marking the task",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 45.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "the checkmark pauses, a moment of finality",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 50.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "the arm returns, the task is complete",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle back into relaxed stillness",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

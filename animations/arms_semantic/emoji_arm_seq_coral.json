@@ -1,0 +1,56 @@
+{
+ "emoji": "🪸",
+ "ideation": "This animation sequence will depict the robot gently cradling or protecting a coral, representing care and preservation.  The movement will be slow and deliberate, emphasizing gentleness. The robot will use both arms to create a protective enclosure around the imaginary coral. In the first frame, both arms will start in a neutral position. Then, in the second frame, the arms will begin to move upward and inward, creating a cradle shape. The third frame will show the arms fully enclosing the imaginary coral, with the wrists slightly rotated to create a gentle, protective gesture. The fourth frame will show the robot's hands slightly adjusting to better cup the coral, refining the protective hold. Finally, the fifth frame will show the arms slowly returning to their neutral position.",
+ "frames": [
+  {
+   "beat": "arms hang down, ready to protect",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lift and cradle gently",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wrists turn inward, forming a protective shell",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 15.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "hands adjust to cup the precious coral",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 15.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly lower, the coral is safe",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

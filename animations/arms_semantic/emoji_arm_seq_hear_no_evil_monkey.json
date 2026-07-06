@@ -1,0 +1,56 @@
+{
+ "emoji": "🙉",
+ "ideation": "This sequence aims to capture the hear-no-evil monkey emoji (🙉) by bringing the robot's hands up to cover its 'ears,' similar to the hands-covering-mouth example. I'll use a sequence of five frames to show the arms rising to the sides of the head and then pressing against the 'ears.' Throughout, I'll ensure the movements are distinct and expressive, reflecting the gesture's meaning of refusing to listen to something unpleasant or shocking. In the first frame, both arms are positioned in a neutral, relaxed pose at the sides of the body. joint1 is neutral at 0.0, and joint2 pitches the arms straight down to -90.0. The wrists are at 0.0, palms facing inward. This creates a natural starting position before the movement begins. Moving to the second frame, the arms begin to rise towards the head. joint1 rotates outward to about 30.0 to position the arms slightly away from the body, and joint2 increases to around 45.0, bringing the arms upward. The wrists begin to rotate inward to -45.0, preparing to cover the 'ears.' In the third frame, the arms move closer to the sides of the head. joint1 increases its outward rotation to about 45.0, positioning the arms more to the sides, and joint2 continues to increase to around 75.0 to raise the arms further. The wrists rotate further inward to about -75.0, nearing the 'ears.' By the fourth frame, the hands are almost covering the 'ears.' joint1 reaches its maximum outward rotation, around 60.0, and joint2 is at approximately 90.0, bringing the arms to the sides of the head. The wrists rotate to -90.0, almost fully covering the 'ears.' In the final frame, the hands are firmly pressed against the 'ears.' joint1 and joint2 maintain their positions, ensuring the hands stay in place, while the wrists might adjust slightly to emphasize the pressing action, perhaps to -85.0, to give a sense of finality to the gesture, indicating the robot's refusal to hear.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready to cover",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise up, beginning to cup the head",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "hands move closer, nearing the ears",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 75.0,
+     "wrist": -75.0
+    }
+   }
+  },
+  {
+   "beat": "hands press against the ears, blocking sound",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": 90.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "hands firmly cover ears, refusing to hear",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": 90.0,
+     "wrist": -85.0
+    }
+   }
+  }
+ ]
+}

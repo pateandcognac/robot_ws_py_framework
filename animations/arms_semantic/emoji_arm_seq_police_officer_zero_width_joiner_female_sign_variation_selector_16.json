@@ -1,0 +1,71 @@
+{
+ "emoji": "👮‍♀️",
+ "ideation": "This animation sequence portrays a police officer in a confident and alert posture.  The animation will focus on the arms, conveying attentiveness and readiness to act. Frame 1 shows a neutral stance, with hands resting at the sides, establishing a baseline. Frame 2 will have the left arm slightly raised, hand near the hip, suggesting a relaxed alertness. Frame 3 brings the right arm up slightly, as if gesturing or signaling, emphasizing readiness and authority. Frame 4 will then move the right arm down. Frame 5 returns to the neutral stance.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, neutral stance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm slightly raised, hand near hip, alert",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -75.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm gestures outward, signaling authority",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -75.0,
+     "wrist": 19.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers, ready to act",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to neutral, watchful stillness",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

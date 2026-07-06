@@ -1,0 +1,36 @@
+{
+ "emoji": "➗",
+ "ideation": "This animation sequence will show the robot separating something into two parts, reflecting the division symbol. The movement will focus on the robot's arms moving outward and then returning to a neutral position.  The arms will move outwards in a symmetrical motion, simulating the act of separating or dividing.  The sequence will start with the arms together, move to a wide separation, then back to a neutral position.  This will visually represent the concept of division. The sequence will be concise, focusing on clear, distinct positions rather than intermediate steps.  The final frame will return the robot to a calm, neutral position.",
+ "frames": [
+  {
+   "beat": "arms start close together, ready to divide",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm pushes outward, initiating separation",
+   "arms": {
+    "right": {
+     "joint1": 60.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a neutral, divided state",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

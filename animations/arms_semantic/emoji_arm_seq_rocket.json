@@ -1,0 +1,46 @@
+{
+ "emoji": "🚀",
+ "ideation": "This animation sequence simulates the act of launching a rocket, using dynamic arm movements to convey excitement and upward motion.  The arms will move in a coordinated fashion, starting in a position of anticipation and culminating in a gesture of upward thrust.  I will leverage the robot's two-joint arm structure to create a sense of power and controlled energy. The sequence will consist of four frames. Frame 1: Both arms are positioned at the sides, slightly bent at the elbows (simulated by joint2). The palms face each other as if holding an imaginary rocket.  This sets the stage for the launch. Frame 2: The arms begin to rise, moving outward and upward with the palms now facing forward, as if guiding the rocket's ascent. Frame 3: The arms reach their highest point, with a slight backward curve added to the motion to simulate the upward thrust of the rocket. The palms are angled slightly upward. Frame 4: The arms return to a more relaxed position, mimicking the post-launch moment of celebration or relief. The palms face inward, the arms slightly less extended than in Frame 1.",
+ "frames": [
+  {
+   "beat": "arms embrace an unseen rocket, ready for launch",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep outward and upward, guiding the ascent",
+   "arms": {
+    "both": {
+     "joint1": -30.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms thrust skyward with powerful, upward motion",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 75.0,
+     "wrist": 30.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle down, the rocket has flown",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

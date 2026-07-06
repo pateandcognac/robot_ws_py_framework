@@ -1,0 +1,36 @@
+{
+ "emoji": "🐶",
+ "ideation": "This animation sequence will mimic a dog playfully begging or anticipating a treat.  The animation will focus on the front paws, which we will simulate using the robot's hands. The movement will be a combination of raising and lowering the hands in a slightly exaggerated manner, with a slight tilt of the wrists to simulate the 'puppy dog eyes' expression. The sequence will be short, consisting of three frames to capture the essence of the playful anticipation.",
+ "frames": [
+  {
+   "beat": "arms perk up, eager for a treat",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "both hands lift higher, a hopeful plea",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 30.0,
+     "wrist": 30.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a ready, expectant pose",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 20.0
+    }
+   }
+  }
+ ]
+}

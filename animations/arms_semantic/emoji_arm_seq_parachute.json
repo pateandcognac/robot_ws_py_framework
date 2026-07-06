@@ -1,0 +1,56 @@
+{
+ "emoji": "🪂",
+ "ideation": "This animation sequence depicts the robot preparing to deploy a parachute. The arms will move in a coordinated manner to simulate the action of holding and releasing a parachute. Frame 1 will show the robot holding the parachute above its head. Frame 2 will show the arms moving to a position as if releasing the parachute. Frame 3 will show the arms returning to a relaxed position after the release. Frame 4 will show the arms moving down slightly to compensate for the weight of the parachute. Frame 5 will show the arms returning to a relaxed position.",
+ "frames": [
+  {
+   "beat": "arms lift overhead, ready to deploy",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend outward, releasing the parachute",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing down, the chute now open",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle slightly, adjusting to the pull",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hang relaxed, floating gently down",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

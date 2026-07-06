@@ -1,0 +1,56 @@
+{
+ "emoji": "🥦",
+ "ideation": "This animation sequence portrays a robot playfully inspecting a broccoli floret.  The movement is curious and gentle, reflecting the wholesome nature of the vegetable. The sequence begins with both arms relaxed at the sides. The left arm moves forward to gently hold the broccoli (simulated by a slight upward movement), while the right arm approaches to examine it more closely. The final frame shows both arms returning to a relaxed position.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready to inspect",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lifts to gently cradle the broccoli",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm moves in for a closer look",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, inspection complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

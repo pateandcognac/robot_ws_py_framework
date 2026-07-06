@@ -1,0 +1,51 @@
+{
+ "emoji": "🚶‍♂️‍➡️",
+ "ideation": "This animation sequence depicts a person walking towards the right.  The arms will swing naturally, in opposition to each other, as one would expect during a walking motion.  The animation will focus on a simple, natural walking gait, avoiding overly complex or exaggerated movements. The frames will show the key positions of the arm swing.  The robot's lack of elbows will be addressed by simulating the arm swing through the shoulder joints.",
+ "frames": [
+  {
+   "beat": "arms swing back and forth, starting the walk",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing forward, propelling the stride",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing back, completing the walking cycle",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

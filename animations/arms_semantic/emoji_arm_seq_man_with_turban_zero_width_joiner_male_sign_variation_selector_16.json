@@ -1,0 +1,46 @@
+{
+ "emoji": "👳‍♂️",
+ "ideation": "This animation sequence portrays a respectful and serene figure, befitting the emoji.  The animation will focus on a slight adjustment of the arms, reflecting a calm and composed demeanor. The lack of elbows in the robot's arm design will be addressed by creating fluid, non-jerky movements using the shoulder joints. Frame 1 will start with a neutral pose, arms slightly away from the body.  Frame 2 will show a subtle inward movement of the arms, palms facing inward slightly, suggesting a gentle folding of arms. Frame 3 will have the arms slightly lower and closer to the sides, maintaining the peaceful pose. Frame 4 will return to a neutral pose similar to frame 1, allowing for a loop and natural-looking repetition of the animation. ",
+ "frames": [
+  {
+   "beat": "arms rest at sides, serene and composed",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, palms turning inward gently",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms fold closer, settling into peaceful stillness",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -85.0,
+     "wrist": 5.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, neutral stance",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

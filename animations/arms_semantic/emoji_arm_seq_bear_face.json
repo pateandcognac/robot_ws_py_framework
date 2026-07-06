@@ -1,0 +1,46 @@
+{
+ "emoji": "🐻",
+ "ideation": "This sequence aims to mimic a bear's hug, emphasizing the encompassing nature of the gesture.  The robot will extend both arms outward in a welcoming motion, then bring them inward as if embracing something.  The movements will be relatively slow and deliberate to emphasize the gentle and protective nature of a bear.  I'll use the existing examples as a guide to ensure the robot's movements remain within its physical constraints. Frame 1 will begin with both arms at the sides, neutral position. Then, in frame 2, the arms will extend outward, mimicking a bear spreading its arms. Frame 3 will show the arms starting to come together. Finally, frame 4 will show the arms in a hug-like position. This creates a sequence that is both emotionally expressive and mechanically feasible for the robot.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, a bear's gentle start",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open wide, a welcoming embrace begins",
+   "arms": {
+    "both": {
+     "joint1": 70.0,
+     "joint2": -30.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw inward, getting closer to the hug",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -20.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms meet in a warm, encompassing hug",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

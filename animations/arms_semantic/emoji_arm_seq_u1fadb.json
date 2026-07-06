@@ -1,0 +1,56 @@
+{
+ "emoji": "🫛",
+ "ideation": "This sequence will show the robot delicately holding a pea pod.  The movement will be slow and gentle to reflect the fragility of the pea pod. Frame 1 will show both arms extended outward in a wide embrace, wrists slightly angled upward to prepare for receiving the pod. Frame 2 will show the arms gently bringing the pod closer to the body, wrists rotating inward to cradle the pod. Frame 3 will show the pea pod held securely, arms slightly bent at the 'shoulders' to provide a gentle cradle. Frame 4 will show the arms beginning to move back to a relaxed position, maintaining a gentle hold on the pea pod before release. Frame 5 will show the robot's arms returning to a relaxed position at the sides, the pea pod having been safely released. ",
+ "frames": [
+  {
+   "beat": "arms open wide, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -30.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "gently drawing the pod inward, cradling it close",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -10.0,
+     "wrist": -10.0
+    }
+   }
+  },
+  {
+   "beat": "holding the pea pod with a tender embrace",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "slowly releasing the pod, arms begin to lower",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the pod safely delivered",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

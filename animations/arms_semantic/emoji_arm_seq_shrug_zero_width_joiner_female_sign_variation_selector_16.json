@@ -1,0 +1,56 @@
+{
+ "emoji": "🤷‍♀️",
+ "ideation": "This sequence depicts a woman shrugging, conveying uncertainty or indifference.  The animation will focus on the arms, mirroring the typical shrug gesture. The head and body will not be animated here, only the arms.  The frames will show the arms moving from a neutral position to a raised shrug and back to neutral.  The use of both arms in unison emphasizes the feeling of helplessness or uncertainty.  Slight variations in the wrist positions in each frame will help to avoid a rigid, mechanical look.",
+ "frames": [
+  {
+   "beat": "arms hang down, unsure of what to do",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, a hint of a shrug begins",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise fully into a helpless shrug",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to fall back down, uncertain",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest at the sides, a gesture of indifference",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

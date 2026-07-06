@@ -1,0 +1,76 @@
+{
+ "emoji": "↕️",
+ "ideation": "This sequence aims to represent the up-down arrow ↕️ by having the robot's arms mimic the arrow's vertical motion.  The right arm will move up and down, suggesting the 'up' and 'down' directions indicated by the arrow. The left arm will remain at the side, providing balance and focus on the right arm's movement. In the first frame, both arms are at the sides, establishing a neutral starting position. The right arm is slightly raised, preparing for the upward motion. In the second frame, the right arm extends straight up, representing the 'up' arrow.  The left arm remains at the side. The third frame brings the right arm straight down, now pointing towards the ground to depict the 'down' arrow.  Again, the left arm remains static for balance. The fourth frame returns the right arm to the starting position, completing the up-down cycle. The fifth frame has both arms return to their sides at rest. This simple, repetitive motion clearly conveys the up-down symbolism of the arrow.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, right arm lifts slightly",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm shoots straight up, pointing skyward",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm plunges straight down, pointing earthward",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm returns to resting position",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle back to the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🍚",
+ "ideation": "This sequence depicts a robot carefully presenting a bowl of rice.  The animation focuses on a gentle, offering gesture. We start with arms at the sides, then move to presenting the rice, and end with a slight lowering of the arms to show the food has been presented. The robot doesn't actually hold the rice; rather, it mimics the action of presenting something precious. The left arm will remain largely static to provide a counterpoint to the right arm's more active role. Frame 1: Both arms start in a neutral, relaxed position at the side. Frame 2: The right arm moves forward and slightly upward, as if presenting a bowl of rice. The wrist is tilted slightly forward and inward. The left arm remains mostly relaxed but subtly moves forward to show a sense of balance. Frame 3: The right arm's height remains largely the same, but the arm moves slightly forward, indicating the bowl is presented more directly.  Frame 4: The right arm lowers slightly, suggesting the offering has been made. The left arm remains largely as it was in frame 3. The movement is slow and deliberate, reflecting care and respect for the food.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready to serve",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts to present the precious rice bowl",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "offering the bowl forward with gentle care",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -25.0,
+     "joint2": 15.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower slightly, the offering is complete",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -75.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": 10.0,
+     "wrist": -10.0
+    }
+   }
+  }
+ ]
+}

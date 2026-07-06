@@ -1,0 +1,56 @@
+{
+ "emoji": "🦃",
+ "ideation": "This sequence will animate a turkey's proud strut.  The animation will focus on a slight bobbing of the head and the rhythmic movement of the wings/arms.  The robot arms will be used to represent the wings, and the head bob will be implied through subtle up and down movements of the arms.  The overall effect should be a confident, slightly pompous walk. Frame 1 will show the robot with arms extended slightly downward and outward, suggesting relaxed readiness. Frame 2 will have the arms raised slightly, suggesting the beginning of a wing-flap. Frame 3 will show the arms lowered, mirroring the downward movement of a wing. Frame 4 will show the arms raised again, continuing the rhythmic movement. Frame 5 will show the arms back to the original position, completing the cycle.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready for the strut",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wings lift slightly, preparing for the stride",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -50.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wings lower with a confident downward sweep",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wings lift again, continuing the rhythmic bob",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -50.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the strut is complete",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

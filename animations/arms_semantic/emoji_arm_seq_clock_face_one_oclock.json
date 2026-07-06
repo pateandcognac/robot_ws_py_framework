@@ -1,0 +1,81 @@
+{
+ "emoji": "🕐",
+ "ideation": "This animation sequence will show the robot pointing to the time using its right arm.  The left arm will remain relatively still to provide contrast and to focus attention on the time-telling gesture. The movement will be smooth and deliberate, similar to a person pointing to a clock. In the first frame, the robot's arms will be at its sides in a neutral position.  In the second frame, the right arm will begin to move outward, extending towards where the clock face would be, with the wrist angled slightly to point.  The third frame will show the right arm fully extended, pointing directly at the location of the clock face.  The fourth frame will show the arm beginning to retract, almost as if the robot is confirming the time to itself.  Finally, in the fifth frame, the arm will return to its neutral resting position.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed at the sides",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to extend, pointing outward",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm fully extended, indicating the time",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": 30.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm starts to retract, confirming the gesture",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

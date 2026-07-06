@@ -1,0 +1,76 @@
+{
+ "emoji": "⛸️",
+ "ideation": "This sequence aims to capture the motion of ice skating, focusing on the swinging arm movements that provide momentum and balance.  The robot's arms will alternate back and forth, mimicking the natural flow of skating.  Since the robot has only two shoulder joints, I'll use joint1 to control the forward and backward swing of the arms and joint2 to create the subtle up and down motion, as if pumping for speed. The wrists will also rotate slightly to add realism. In the first frame, the left arm swings forward while the right arm swings back, setting the initial skating posture. Joint1 rotates the left arm forward and the right arm backward, while joint2 pitches both arms slightly upward to create a sense of momentum. The wrists are rotated slightly inward. In the second frame, the arms switch positions, continuing the alternating motion.  The left arm moves back, and the right arm swings forward.  Joint1 and joint2 adjust accordingly, maintaining the rhythmic flow. The wrists rotate slightly outward. In the third frame, the left arm swings forward again, and the right arm swings back, mirroring the first frame.  This creates a continuous, cyclical motion. The wrists rotate slightly inward again.  In the fourth frame, the arms switch positions once more, similar to the second frame, reinforcing the back-and-forth momentum.  The wrists rotate slightly outward. Finally, in the fifth frame, both arms return to a neutral, balanced position, as if the skater is gliding smoothly. Joint1 is set to a neutral position, and joint2 pitches the arms slightly downward, creating a sense of relaxed movement. The wrists also return to a neutral position.",
+ "frames": [
+  {
+   "beat": "arms swing forward and back for skating momentum",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the arms alternate, pushing off the ice",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms swing forward and back, continuing the glide",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the arms switch sides, maintaining the rhythm",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle into a smooth, balanced glide",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

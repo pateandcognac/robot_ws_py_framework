@@ -1,0 +1,81 @@
+{
+ "emoji": "🥐",
+ "ideation": "This sequence mimics the action of gently holding a croissant to one's face, emphasizing the warmth and enjoyment associated with eating a pastry.  The animation will focus on a smooth, deliberate movement of the right arm, while the left arm remains in a neutral, relaxed position.  I'll use the existing examples to guide the range of motion and ensure natural-looking transitions. Frame 1: The right arm is extended slightly forward and downward, as if about to reach for the croissant. The wrist is slightly tilted upward, preparing to cradle the pastry. Frame 2: The right arm moves upward and slightly inward, positioning the hand as if holding the croissant near the mouth. The wrist remains tilted upward. Frame 3: The right arm is positioned so that the hand is gently holding the croissant near the mouth, as if taking a bite. The wrist is slightly tilted upward. Frame 4: The right arm moves slightly backward, as if pulling the croissant away from the mouth after a bite, and the wrist adjusts slightly downward. Frame 5: The right arm returns to a relaxed position at the side, with the wrist neutral. The left arm remains neutral throughout the sequence, creating a sense of balance. The small adjustments in wrist and joint angles between frames will help to make the motion feel fluid and more natural.",
+ "frames": [
+  {
+   "beat": "arms rest, a warm pastry awaits",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "right arm reaches out, gently cradling",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the croissant close to the mouth",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 10.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "a satisfied bite, pulling away slightly",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the treat enjoyed",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

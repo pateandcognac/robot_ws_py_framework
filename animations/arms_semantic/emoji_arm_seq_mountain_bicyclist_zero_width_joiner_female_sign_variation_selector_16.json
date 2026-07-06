@@ -1,0 +1,66 @@
+{
+ "emoji": "🚵‍♀️",
+ "ideation": "This animation sequence depicts a woman mountain biking.  The animation focuses on the arm movements that would be used while riding a mountain bike. The left arm is primarily used for balance and steering, while the right arm is used for shifting gears and braking.  The sequence will show the rhythmic motion of the arms as they adjust to the terrain. The robot does not have hands or an elbow, so these poses will approximate the desired movements.",
+ "frames": [
+  {
+   "beat": "arms hold handlebars, ready to ride",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend slightly, absorbing bumps",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms adjust, maintaining balance on the trail",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms drop, coming to a stop",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

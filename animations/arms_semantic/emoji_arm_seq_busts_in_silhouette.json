@@ -1,0 +1,56 @@
+{
+ "emoji": "👥",
+ "ideation": "This animation sequence will depict two individuals standing side-by-side, represented by the robot's arms.  The focus is on conveying a sense of togetherness and connection. The animation starts with both arms at the sides, then moves to a slight embrace before returning to a relaxed, side-by-side stance.  This avoids any abrupt or unnatural movements. Frame 1 will show a neutral start position. Frame 2 will show the arms moving slightly toward each other, suggesting a connection. Frame 3 will show a gentle embrace, conveying closeness.  Frame 4 will show the arms moving back to the neutral position.  Frame 5 will show a final neutral position, emphasizing the gentle transition. The neutral position will use joint1 at 0.0 and joint2 at -90.0 for both arms, simulating arms hanging naturally.  The slight embrace will involve both arms moving slightly inward with a gentle forward pitch. The transition will be smooth and fluid, emphasizing the sense of connection.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, neutral stance",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to turn inward slightly",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently embrace, showing connection",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to separate, releasing the embrace",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, side-by-side position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

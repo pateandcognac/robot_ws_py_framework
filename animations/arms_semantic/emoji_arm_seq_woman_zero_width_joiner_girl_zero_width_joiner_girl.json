@@ -1,0 +1,51 @@
+{
+ "emoji": "👩‍👧‍👧",
+ "ideation": "This animation sequence depicts a mother and her two daughters. The mother's arms will be gently embracing the girls, while the girls' arms will be positioned in a way that suggests closeness and affection. The sequence will start with the mother's arms outstretched, moving to an embrace, and then settling into a gentle, loving hold. The girls' arms will mirror this movement, starting slightly away and then moving into a close embrace. The animation will utilize the robot's two-joint arm system.  The overall motion will be slow and deliberate, emphasizing the warmth and tenderness of the family interaction.  The arms will not move drastically, but will convey the essence of the family's bond. The animation will showcase the robot's capacity for expressing gentle, caring emotions.",
+ "frames": [
+  {
+   "beat": "mother's arms open wide, welcoming her children",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw closer, a gentle embrace begins",
+   "arms": {
+    "left": {
+     "joint1": 60.0,
+     "joint2": -30.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": -30.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "the family is held close, a warm, loving bond",
+   "arms": {
+    "left": {
+     "joint1": 70.0,
+     "joint2": -15.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 70.0,
+     "joint2": -15.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

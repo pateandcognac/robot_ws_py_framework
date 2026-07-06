@@ -1,0 +1,51 @@
+{
+ "emoji": "☝️",
+ "ideation": "This sequence simulates the act of pointing upward with the index finger.  Since our robot lacks fingers, we'll approximate the gesture by extending a single arm directly upward and slightly tilting the wrist. The other arm will remain at rest to maintain balance and draw focus to the pointing arm. We'll use a 3-frame sequence to keep the animation concise and impactful. Frame 1 will show both arms at rest. Frame 2 will initiate the upward pointing motion with the right arm. Frame 3 will show the right arm fully extended and tilted, completing the pointing gesture.",
+ "frames": [
+  {
+   "beat": "both arms rest at the sides, ready",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins to lift, pointing up",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 45.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm extends fully, a clear upward gesture",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 20.0
+    }
+   }
+  }
+ ]
+}

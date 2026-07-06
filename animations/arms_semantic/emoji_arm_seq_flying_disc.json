@@ -1,0 +1,51 @@
+{
+ "emoji": "🥏",
+ "ideation": "This sequence simulates the act of throwing a flying disc.  It begins with both arms drawn back, then moves through the throwing motion, and finally ends with the arms in a relaxed position. The left arm will primarily act as a counterbalance.  The right arm will execute the throw. The robot's lack of an elbow will be addressed by positioning the arm for an overhand throw.",
+ "frames": [
+  {
+   "beat": "both arms draw back, ready to launch",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm whips forward in a powerful throw",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 60.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, neutral stance",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

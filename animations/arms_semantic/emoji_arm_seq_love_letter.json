@@ -1,0 +1,36 @@
+{
+ "emoji": "💌",
+ "ideation": "This animation sequence depicts a robot carefully holding a love letter close to its chest, conveying tenderness and care.  The movement starts with arms at the sides, then gently brings both arms forward to cradle the letter. The final frame shows a slight adjustment to emphasize the protective posture. The robot's lack of hands necessitates an approximation of holding something precious, using a combination of wrist and joint angles to imply care and closeness.  The sequence will avoid overly dramatic movements, focusing instead on precise, gentle transitions. ",
+ "frames": [
+  {
+   "beat": "arms hang at sides, empty handed",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently lift and cup an unseen letter",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "holding the precious letter close to the chest",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": -60.0
+    }
+   }
+  }
+ ]
+}

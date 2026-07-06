@@ -1,0 +1,66 @@
+{
+ "emoji": "👭",
+ "ideation": "This animation sequence depicts two robots holding hands, emphasizing gentle connection and friendship. It starts with both robots' arms relaxed at their sides, then progresses to a hand-holding position, and finally returns to a relaxed state.  The movement is slow and deliberate, reflecting a calm and friendly interaction.  Each robot will use its right arm to hold the other's hand, mirroring each other's movement.  I'll use variations in joint angles to create a natural flow, avoiding overly robotic movements.  The wrists will angle slightly to make the hand-holding look natural. ",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at sides, ready to greet",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both robots reach out, right hands meeting gently",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    },
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "hands clasped in a friendly embrace",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, resting pose",
+   "arms": {
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

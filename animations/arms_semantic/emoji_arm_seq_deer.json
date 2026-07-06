@@ -1,0 +1,56 @@
+{
+ "emoji": "🦌",
+ "ideation": "This animation sequence portrays a deer's gentle, inquisitive nature.  The deer's head is often lowered as it grazes or sniffs the ground, and its ears are positioned to catch sounds.  We'll reflect this with the robot's arms in a posture of gentle curiosity and investigation. The arms will mimic the movement of a deer's head and ears, slightly lowered and angled, as if sniffing the ground or listening attentively. Frame 1 starts with the arms at rest. Frame 2 will bring the arms slightly forward and downward. Frame 3 will move the arms to a more pronounced sniffing posture.  Frame 4 will have the arms slightly raised, as if the deer has sensed something, and frame 5 will show the arms returning to a neutral position.",
+ "frames": [
+  {
+   "beat": "arms lowered, like a deer sniffing the ground",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move slightly forward and down, curious",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms dip lower, investigating closely",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, sensing something new",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a resting, alert posture",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

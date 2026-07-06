@@ -1,0 +1,51 @@
+{
+ "emoji": "🦽",
+ "ideation": "This animation sequence depicts the act of propelling a manual wheelchair.  The user's arms will be the focus, showing the pushing motion.  The sequence will use a combination of both arms, alternating to simulate the rhythmic movement of wheelchair propulsion.  The sequence will aim for a natural, slightly asymmetrical feel, reflecting the nuances of manual wheelchair use.  The frames are designed to highlight the distinct stages of a single push cycle. The left arm will lead in the first frame, and then the right arm will lead in the next frame, alternating to give the user the feeling of movement.",
+ "frames": [
+  {
+   "beat": "arms push forward, propelling the chair",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend back, pushing the chair further",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reset for the next powerful push",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

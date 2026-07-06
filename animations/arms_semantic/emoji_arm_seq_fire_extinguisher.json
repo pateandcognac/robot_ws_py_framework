@@ -1,0 +1,66 @@
+{
+ "emoji": "🧯",
+ "ideation": "This animation sequence depicts a robot using a fire extinguisher.  The robot's movements should be purposeful and controlled, reflecting the serious nature of the situation. The animation will focus on the robot's left arm, as it's the arm most likely to be used to operate the extinguisher. The right arm will remain relatively still for balance and to avoid distracting from the main action. Frame 1 shows the robot preparing to use the extinguisher. Frame 2 shows the robot aiming the extinguisher, and Frame 3 shows the robot extinguishing the fire. Frame 4 shows the robot setting down the extinguisher.  I will use the examples to guide the joint movements, ensuring a realistic and fluid motion for this action.",
+ "frames": [
+  {
+   "beat": "arms rest, ready for action",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm extends forward, grabbing the extinguisher",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm aims the nozzle, ready to spray",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm returns to rest, the fire is out",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

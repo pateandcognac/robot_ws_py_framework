@@ -1,0 +1,71 @@
+{
+ "emoji": "🅱️",
+ "ideation": "This animation sequence will mimic the shape of the letter B, using both arms.  The movement will be deliberate and slightly exaggerated to emphasize the form. Frame 1 will start with both arms at the sides. In Frame 2, the left arm will form the curved part of the B, while the right arm remains still.  In Frame 3, the right arm will move to create the vertical part of the B. Frame 4 will have both arms briefly hold the shape of the B. Frame 5 will return both arms to their resting position.",
+ "frames": [
+  {
+   "beat": "both arms hang loosely at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm curves out, forming the loop of the b",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends to form the stem of the b",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms hold the b shape with intent",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 90.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, resting pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🍰",
+ "ideation": "This sequence mimics the action of carefully holding and presenting a slice of shortcake.  The movement will be gentle and deliberate, emphasizing the delicate nature of the treat. The left arm will support the shortcake while the right arm gestures to present it.  I will use small, controlled movements to maintain a sense of care and precision. The robot's lack of elbows necessitates a creative approach to presenting the 'shortcake'—it will be held in the space between the robot's arms.  In the first frame, both arms are slightly raised and angled inward, palms facing each other, creating a cradle to hold the shortcake.  In the second frame, the left arm moves slightly lower to provide a stable base, while the right arm begins to move outward, gesturing to offer the cake. In the third frame, the left arm supports the imaginary shortcake, while the right arm moves further out in a presenting gesture. The final frame shows the arms maintaining the presentation, but with a slight relaxation.  ",
+ "frames": [
+  {
+   "beat": "arms cradle an imaginary shortcake, palms facing",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lowers to support, right arm begins to present",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "left arm holds steady, right arm offers the cake",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 10.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms hold the presentation, a gentle offering",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 30.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": 35.0,
+     "joint2": 15.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🐽",
+ "ideation": "This sequence mimics the action of a pig sniffing the ground. It starts with the arms down, then one arm moves forward, then both arms move forward as if sniffing, then they return to the neutral position. The movement is slow and deliberate, highlighting the pig's focus on the ground.  The left arm will be used primarily for the sniffing action, while the right arm will remain mostly neutral to create balance and to avoid a distracting motion. I'll be checking my examples to ensure smooth transitions and a natural-looking sniffing action. In the first frame, both arms are in a relaxed, neutral position, at the robot's sides, with the wrists neutral. The second frame will show the left arm moving slightly forward and downward, the wrist slightly angled to show the hand reaching towards the ground. This simulates the pig's nose reaching down. The right arm stays relaxed at the side. In the third frame, both arms are now extended forward, with the left arm further forward to represent the sniffing gesture, and the wrists angled down. This creates the impression of a thorough sniff. Finally, in the fourth frame, both arms return to their relaxed position, back to the neutral starting posture.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready to sniff",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches down, nose to the ground",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms extend forward, a deep sniff",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -50.0,
+     "wrist": -40.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to neutral, the scent fades",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

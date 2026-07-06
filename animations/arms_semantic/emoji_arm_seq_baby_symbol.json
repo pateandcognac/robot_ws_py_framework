@@ -1,0 +1,36 @@
+{
+ "emoji": "🚼",
+ "ideation": "This sequence aims to depict the gentle, nurturing aspect of a baby. The animation will focus on a slow, rocking motion, suggesting a soothing rhythm. The arms will move in a gentle, almost circular pattern, mimicking the act of cradling a baby. The overall movement will be slow and deliberate, emphasizing the calm and protective nature of caring for an infant.  The animation will use a three-frame sequence for simplicity.  In the first frame, the arms will be slightly raised and angled to the sides, creating a welcoming posture. The wrists will be neutral, palms facing forward.  In the second frame, the robot will slightly lower its arms, bringing them closer to the body, as if gently holding an unseen baby. The wrists will remain neutral, continuing the nurturing pose.  Finally, in the third frame, the robot's arms will return to the slightly raised position from frame one, completing the gentle rocking motion. This repetitive movement, though minimal, effectively conveys the gentle, protective feeling associated with caring for a baby.",
+ "frames": [
+  {
+   "beat": "arms cradle an unseen baby, a gentle sway",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "bringing the baby closer, a soft embrace",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rock back, cradling the precious bundle",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "😭",
+ "ideation": "This sequence aims to capture the feeling of loudly crying, with the hands covering the face.  The arms will move upwards towards the face, the wrists will bend to imply covering the face, and then the arms will lower slightly in a slump, reflecting sadness. In the first frame, both arms are raised with palms facing inwards towards the face. joint1 rotates the arms outward, and joint2 pitches them upward.  The wrists are at -90 degrees, angled to cover the face. This represents the initial reaction of bringing hands to the face in distress.  In the second frame, the arms move slightly closer together and higher, emphasizing the covering of the face.  joint1 rotates inward slightly, and joint2 increases the upward pitch. The wrists remain angled to maintain the covering posture. This shows the intensification of the crying.  In the third frame, the arms lower slightly, slumping downwards in a gesture of sadness. joint2 decreases the upward pitch, allowing the arms to fall slightly. The wrists remain angled but might relax slightly. This signifies the release of emotion and the subsequent sadness. In the fourth frame, the arms relax a little further, drooping down slightly more. joint2 reduces upward pitch, and joint1 allows the arms to rotate slightly outward. The wrists might continue to relax, loosening the grip on the face. This adds to the overall sense of sadness and despair. In the final frame, the arms remain near the face but droop with a heavier sense of sadness. The position of the arms emphasizes the ongoing emotional distress.",
+ "frames": [
+  {
+   "beat": "arms shoot up to cover a distressed face",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 85.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "hands press harder into the face, sobbing intensifies",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 90.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms slump slightly, a wave of sadness washes over",
+   "arms": {
+    "both": {
+     "joint1": 22.0,
+     "joint2": 80.0,
+     "wrist": -85.0
+    }
+   }
+  },
+  {
+   "beat": "the crying continues, arms drooping with despair",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": 75.0,
+     "wrist": -80.0
+    }
+   }
+  },
+  {
+   "beat": "heavy sobs shake the body, arms remain covering",
+   "arms": {
+    "both": {
+     "joint1": 28.0,
+     "joint2": 70.0,
+     "wrist": -75.0
+    }
+   }
+  }
+ ]
+}

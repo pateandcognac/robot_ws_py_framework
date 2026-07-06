@@ -1,0 +1,56 @@
+{
+ "emoji": "🥂",
+ "ideation": "This sequence simulates the action of clinking glasses, focusing on the upward movement of the arms and the slight inward tilt to mimic the clinking action. The arms start in a relaxed position and move upwards in a coordinated motion. The wrists angle slightly to emphasize the clinking.  I will use small variations in joint angles to create a natural, fluid motion, referencing existing examples for guidance. In the first frame, both arms are relaxed at the sides, palms inward, setting a neutral starting point. Then, the arms smoothly raise to bring the 'glasses' (represented by the hands) together. The wrists rotate slightly to enhance the clinking effect. In the third frame, the arms briefly pause at the peak of the clinking motion, before smoothly returning to their initial relaxed position. The wrists maintain their orientation to keep the action fluid.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise together, hands reaching out",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 30.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "glasses meet with a slight inward tilt",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms pause at the peak of the toast",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 10.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed state",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

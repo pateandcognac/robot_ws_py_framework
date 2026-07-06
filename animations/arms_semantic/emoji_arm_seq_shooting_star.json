@@ -1,0 +1,51 @@
+{
+ "emoji": "🌠",
+ "ideation": "This sequence will depict a wish-making gesture, as if the robot is looking up at and making a wish upon a shooting star. It begins with both arms raised slightly, palms up, in anticipation. Then, one arm moves to make a wish, followed by a return to the original position.  The sequence will be short, sweet, and expressive. The other arm will remain largely static to focus attention on the wishing motion. I will use slight variations in joint angles to create the illusion of natural movement, avoiding overly rigid or mechanical motions. I'll use existing examples as a guide for range of motion and fluidity.",
+ "frames": [
+  {
+   "beat": "arms lift, palms up, anticipating a star",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 60.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 60.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm reaches up as if to catch a wish",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 80.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 60.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to the hopeful, waiting pose",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 60.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": 60.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}

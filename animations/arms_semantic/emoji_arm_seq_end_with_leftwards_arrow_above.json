@@ -1,0 +1,56 @@
+{
+ "emoji": "🔚",
+ "ideation": "This animation sequence depicts a definitive end, using a sweeping gesture to emphasize finality. The arms move in a coordinated manner, one arm sweeping across the body, and the other completing a downward motion. The animation aims to visually convey a sense of closure. Frame 1: Both arms are at the sides, starting in a neutral position. Frame 2: The right arm sweeps across the body, while the left arm begins moving downward. Frame 3: The right arm completes its sweep, ending near the left hip, and the left arm finishes its downward motion, pointing towards the ground. Frame 4: Both arms return to their initial neutral position. This sequence utilizes the robot's two-joint arm structure to create a dynamic yet controlled movement.",
+ "frames": [
+  {
+   "beat": "arms hang at the sides, ready for the end",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm sweeps across, left arm begins to fall",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the sweep finishes, left arm points down decisively",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, the end is final",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

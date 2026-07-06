@@ -1,0 +1,76 @@
+{
+ "emoji": "🚔",
+ "ideation": "This sequence aims to represent the flashing lights of a police car using the robot's arms. The arms will move up and down in an alternating pattern, mimicking the flashing lights often seen on top of such vehicles. To enhance the effect, the wrists will rotate to suggest the sweeping motion of light beams. In the first frame, the right arm is raised upward with the wrist rotated outward, as if projecting a light beam to the right. The left arm is lowered, preparing for its upward motion in the next frame. In the second frame, the left arm raises upward, mirroring the right arm's initial position, while the right arm lowers. This alternating pattern continues throughout the sequence. By the third frame, the right arm is up again, and the left arm is down, mimicking the continuous flashing of lights. The fourth frame sees the left arm rising while the right arm lowers, further emphasizing the back-and-forth motion. In the final frame, both arms return to a neutral position, suggesting the lights have stopped flashing, or the police car is at rest.",
+ "frames": [
+  {
+   "beat": "right arm shoots up, wrist flashing light, left arm down",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "left arm flashes light up, right arm lowers",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm flashes light up again, left arm down",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "left arm flashes light up, right arm lowers",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rest, lights off",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

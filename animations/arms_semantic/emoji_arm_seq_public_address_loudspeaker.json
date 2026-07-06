@@ -1,0 +1,46 @@
+{
+ "emoji": "📢",
+ "ideation": "This sequence simulates the action of announcing something loudly using a loudspeaker. The robot will raise both arms to shoulder height with hands cupped, as if holding a loudspeaker, then move them slightly outward to emphasize the announcement. The animation will feature a slight delay before the arms move outwards, creating a sense of anticipation. The final frame will show the robot's arms returning to a neutral, relaxed position. The use of both arms helps to portray the expansive nature of a loud announcement.  The frames are designed to highlight the key moments of the action, rather than providing smooth transitions which are handled by the animation system.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready to speak",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift to shoulder height, cupped for a megaphone",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms push outward, amplifying the loud announcement",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms drop back down, the message delivered",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

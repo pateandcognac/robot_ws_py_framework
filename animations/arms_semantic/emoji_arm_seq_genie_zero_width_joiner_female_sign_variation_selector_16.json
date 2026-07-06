@@ -1,0 +1,56 @@
+{
+ "emoji": "🧞‍♀️",
+ "ideation": "This animation sequence will depict a genie emerging from a lamp, using expressive arm movements.  The animation will focus on a graceful, swirling motion, drawing from the mystical nature of the genie. Frame 1 will show the arms tucked close to the body, Frame 2 will have the arms extending outward, and Frame 3 will have the arms swirling upward, and Frame 4 will show the arms extending upward and outward, then Frame 5 will end with the arms in a wide, welcoming gesture.  I'll use the two-joint system of the robot arms to create fluid, elegant movements.",
+ "frames": [
+  {
+   "beat": "arms tucked close, ready to emerge",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to extend outward from the body",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms swirl upwards with mystical energy",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 60.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach high and wide, a powerful ascent",
+   "arms": {
+    "both": {
+     "joint1": -60.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms open in a grand, welcoming gesture",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

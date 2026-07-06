@@ -1,0 +1,56 @@
+{
+ "emoji": "🌚",
+ "ideation": "This sequence aims to capture the mysterious and slightly ominous vibe of the new moon emoji. The arms will move in a slow, deliberate manner, creating a sense of anticipation or suspense.  The limited visibility suggested by the new moon is reflected in tentative, searching movements. In the first frame, both arms extend forward slightly, palms facing up, as if reaching out to feel the darkness. Joint1 is neutral at 0.0, and joint2 pitches the arms slightly forward at 30.0, with the wrists at 0.0 to keep the palms open and receptive.  In the second frame, the arms lift higher and spread slightly wider, as if searching for something unseen. Joint1 rotates slightly outward to -20.0 for both arms, and joint2 increases to 60.0, expanding the reach. The wrists remain neutral. By the third frame, the arms reach their highest point, palms still open but angled slightly inward, creating a sense of gathering or pulling something in from the darkness. Joint1 returns to neutral at 0.0, and joint2 pitches the arms further up to 90.0. The wrists rotate slightly inward to -30.0, subtly changing the hand orientation.  In the fourth frame, the arms begin to lower, moving closer together as if cradling something unseen. Joint1 rotates inward to 20.0, joint2 decreases to 60.0, bringing the arms closer to the body. The wrists rotate back to neutral. Finally, in the fifth frame, the arms return to the initial extended position, completing the cycle of reaching and gathering. Joint1 and joint2 return to their starting positions, creating a sense of cyclical motion that reflects the phases of the moon.",
+ "frames": [
+  {
+   "beat": "arms reach forward, palms open to the dark",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift and spread, searching the unseen void",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach highest, gathering something unknown",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": -30.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower and close, cradling the mystery",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to the start, a cycle complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

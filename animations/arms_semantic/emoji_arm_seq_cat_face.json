@@ -1,0 +1,56 @@
+{
+ "emoji": "🐱",
+ "ideation": "This sequence aims to mimic a cat's playful behavior, using gentle arm movements. The animation will start with both arms at rest, then transition to a slow, deliberate raising of both arms, pausing briefly before gently lowering them. This conveys a sense of curiosity and playful alertness, fitting for a cat. The final frame returns to the resting position. To ensure smooth transitions, I will use small increments in joint angles and maintain a consistent tempo. I will also check the existing examples to ensure the arm movements stay within the robot's capabilities and look natural.",
+ "frames": [
+  {
+   "beat": "both arms rest, cat-like stillness",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly lift, curious and alert",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise higher, a playful stretch begins",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to lower, playful energy wanes",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest again, the cat settles down for a moment",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "emoji": "🏒",
+ "ideation": "This sequence simulates the motion of a hockey player preparing to shoot the puck. It focuses on the right arm's movement, mimicking the backswing and forward motion of a slapshot. The left arm remains relatively still, providing balance and contrast.  The robot's lack of elbows will be accounted for by emphasizing the shoulder rotations and wrist movements to convey the action.  I'll make use of the existing examples to ensure natural movement and smooth transitions between frames. In the first frame, both arms are in a neutral position at the robot's sides. The right arm is slightly raised and rotated inward to prepare for the backswing. The second frame showcases the backswing. The right arm is pulled back, with joint1 rotated significantly outward and joint2 pitched upward. The wrist is angled slightly downward to add realism. The third frame shows the forward motion. The right arm swings forward with joint1 rotating inward and joint2 pitching downward. The wrist is now almost straight. The fourth frame shows the follow-through. The right arm has almost completed the motion, with joint1 and joint2 returning slightly to a more neutral position.  The wrist remains nearly straight. The final frame shows both arms returning to a neutral position, ready for the next shot.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready for action",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pulls back in a powerful backswing",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 70.0,
+     "joint2": 60.0,
+     "wrist": -20.0
+    }
+   }
+  },
+  {
+   "beat": "the arm whips forward, striking the imaginary puck",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -40.0,
+     "joint2": -30.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "follow through with the swing, completing the motion",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -40.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to neutral, poised for another shot",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

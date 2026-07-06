@@ -1,0 +1,56 @@
+{
+ "emoji": "💂",
+ "ideation": "This animation sequence depicts a guard standing at attention, then looking around, and finally returning to attention. The primary movement involves the arms; the head movement is implied. Frame 1 shows the guard at attention, arms straight down. Frame 2 shows the guard looking to the left, with the right arm slightly raised and angled toward the left. Frame 3 shows the guard looking to the right, with the left arm slightly raised and angled toward the right. Frame 4 returns the guard to attention, arms straight down.  The overall effect simulates alertness and attention to duty.",
+ "frames": [
+  {
+   "beat": "guard stands at attention, arms straight down",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lifts slightly, scanning to the left",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm lifts slightly, scanning to the right",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "guard returns to attention, arms straight down",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

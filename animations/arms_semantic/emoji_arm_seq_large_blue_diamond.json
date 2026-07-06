@@ -1,0 +1,66 @@
+{
+ "emoji": "🔷",
+ "ideation": "This animation sequence will depict a robot gently cradling a large, blue diamond, emphasizing care and precision.  The robot's movements will be slow and deliberate, reflecting the value and fragility of the object. The animation will focus on the robot's interaction with the imagined diamond, emphasizing the gentle motions involved in handling something precious.  The robot will use both arms to cradle the diamond, creating a sense of protection and care. The use of the arms will be coordinated and smooth.  The sequence will start with the arms extended, then bring them together to cradle the diamond, and then slowly lower them. The wrists will be used to ensure the diamond is held securely and safely.  The robot should convey a sense of reverence and respect for the diamond.",
+ "frames": [
+  {
+   "beat": "arms extend outward, ready to receive",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently cup the imagined diamond",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 20.0,
+     "wrist": -30.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 20.0,
+     "wrist": 30.0
+    }
+   }
+  },
+  {
+   "beat": "hands carefully cradle the precious gem",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower the diamond with utmost care",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": -30.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -45.0,
+     "wrist": 30.0
+    }
+   }
+  }
+ ]
+}

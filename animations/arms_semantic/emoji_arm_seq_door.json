@@ -1,0 +1,46 @@
+{
+ "emoji": "🚪",
+ "ideation": "This animation sequence shows a robot interacting with a door.  It starts with the robot's arms at its sides, then extends them to grasp an imaginary doorknob, pulls the door open, and finally lets go.  The motion is designed to be smooth and natural, reflecting typical human-like interaction with a door. The robot's lack of elbows is taken into account by using the shoulder joints to create the necessary movements.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to open",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward to grasp the knob",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "pulling the door open with a slight strain",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to resting position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

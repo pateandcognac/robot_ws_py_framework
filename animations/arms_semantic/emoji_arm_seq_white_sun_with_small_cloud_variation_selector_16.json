@@ -1,0 +1,46 @@
+{
+ "emoji": "🌤️",
+ "ideation": "This animation sequence aims to express the gentle warmth and serenity associated with the sun peeking from behind a small cloud.  The robot will use a slow, upward sweeping motion with both arms, as if gently caressing the sun. This will be achieved using a combination of joint1 and joint2 movements, with subtle wrist adjustments to enhance the expressive quality of the gesture. The overall feeling should be one of calm and peaceful observation. Frame 1 will start with both arms slightly raised and angled outward, palms facing upward, as if anticipating the sun's appearance. Frame 2 will continue the upward movement, with the arms slightly curving and rotating towards the robot's head, like a gentle embrace. Frame 3 will showcase the peak of the gesture, with arms fully raised, palms facing the \"sun\", and a slight inward rotation to add a sense of warmth and protection. Frame 4 slowly lowers the arms back to a relaxed position, mimicking the feeling of the moment passing. ",
+ "frames": [
+  {
+   "beat": "arms gently lift, palms open to the sky",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep upward, embracing the light",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms reach high, basking in the sun's warmth",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 75.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly lower, the moment fades",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

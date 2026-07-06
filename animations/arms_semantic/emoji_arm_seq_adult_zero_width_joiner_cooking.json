@@ -1,0 +1,81 @@
+{
+ "emoji": "🧑‍🍳",
+ "ideation": "This sequence simulates the whisking motion a chef makes while cooking. Frame 1 starts with both arms slightly bent and angled slightly forward, as if holding a bowl and whisk. The left wrist is angled slightly inward, as if holding a bowl steady. Frame 2 brings the right arm inward, mimicking a whisking motion, with the wrist rotating slightly to simulate the circular movement. Frame 3 shows the right arm pulled back slightly, preparing for another whisk. Frame 4 brings the right arm inward again, completing the second whisk, and Frame 5 returns both arms to the starting position.",
+ "frames": [
+  {
+   "beat": "chef holds a bowl, ready to whisk",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins a vigorous whisking motion",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": -20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "the whisk pulls back, preparing for another stroke",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the whisking motion continues with renewed energy",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 25.0,
+     "joint2": -20.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "chef finishes whisking, arms return to rest",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🍃",
+ "ideation": "This sequence mimics the gentle, unpredictable movement of leaves fluttering in the breeze.  The arms will move independently, creating a sense of natural, organic motion rather than a rigid, synchronized movement.  I'll use subtle variations in joint angles and wrist positions to simulate the way leaves catch the wind and shift directions.  The overall effect should be light, airy, and evocative of a gentle breeze.  I will check my examples to make sure the arm movements are within the robot's physical capabilities.",
+ "frames": [
+  {
+   "beat": "arms drift gently, catching the first breeze",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 45.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -20.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "a light flutter, left arm dips, right arm lifts",
+   "arms": {
+    "left": {
+     "joint1": -15.0,
+     "joint2": -10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a gentle spin, arms sway in opposite directions",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": -45.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 20.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "both arms settle, a final, soft dance",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": 15.0,
+     "wrist": 20.0
+    },
+    "right": {
+     "joint1": -5.0,
+     "joint2": -15.0,
+     "wrist": -20.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "emoji": "👨‍🦯",
+ "ideation": "This animation sequence depicts a person using a white cane for guidance.  The left arm will hold the cane and swing naturally with the walking motion, while the right arm will move naturally. The movement should reflect a steady, confident gait. The robot will use its two joints to produce a natural-looking arm swing.  Frame 1 will show the initial position, Frame 2 will show the left arm slightly back, Frame 3 will show the left arm forward, and Frame 4 will show a return to the initial position. The right arm will move in a complementary motion, but less dramatically, to mirror a natural walking motion.  Frame 5 will show a similar position to Frame 1, completing the walking cycle.",
+ "frames": [
+  {
+   "beat": "arms swing gently, a steady walking pace",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm swings back, right arm forward",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm swings forward, right arm back",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a natural walking swing",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the steady gait continues, forward motion",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

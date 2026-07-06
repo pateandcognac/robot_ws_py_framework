@@ -1,0 +1,81 @@
+{
+ "emoji": "🥖",
+ "ideation": "This sequence mimics the action of carefully taking a baguette from a shelf or table.  The animation will focus on a smooth, controlled movement of one arm, emphasizing the gentle handling of the bread. The other arm will remain in a relaxed, neutral position to maintain balance and draw attention to the action of picking up the baguette.  Frame 1 shows both arms at rest. Frame 2 shows the right arm extending, reaching for the baguette. Frame 3 shows the right arm holding the baguette. Frame 4 shows the right arm bringing the baguette closer to the robot's body. Frame 5 shows both arms returning to the rest position. This sequence is designed to evoke a feeling of care and appreciation for the baguette.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to grab",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm extends forward, reaching out gently",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "fingers grasp the baguette, holding it steady",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "the baguette is brought closer, a careful prize",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": 20.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest, baguette secured",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

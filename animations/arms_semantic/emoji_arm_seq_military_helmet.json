@@ -1,0 +1,46 @@
+{
+ "emoji": "🪖",
+ "ideation": "This animation sequence depicts a robot putting on a military helmet.  The movement starts with arms down, then raises to the head, places the helmet, and then returns to a neutral position. The movement is deliberate and somewhat stiff, reflecting the nature of the action and the robot's nature. Frame 1 shows the robot's arms relaxed at its sides. Frame 2 shows both arms raising to the head level, palms up and slightly forward. Frame 3 shows the robot positioning the helmet onto its head. Frame 4 shows the robot's arms lowering back down to its sides, returning to a neutral pose.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise to the head, ready to don the helmet",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "the helmet is carefully placed on the head",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a neutral, ready position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

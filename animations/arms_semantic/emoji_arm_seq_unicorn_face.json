@@ -1,0 +1,56 @@
+{
+ "emoji": "🦄",
+ "ideation": "This sequence aims to capture the whimsical and magical essence of a unicorn. The animation will feature both arms moving in a fluid, almost dancing motion, suggesting a lighthearted and playful energy. The movements will be graceful and elegant, reflecting the ethereal nature of the creature.  In the first frame, both arms will start in a relaxed position at the sides, palms facing inward.  The second frame will see both arms lifting gracefully, as if the robot is reaching out to touch something delicate. The wrists will be slightly angled, adding to the elegance of the gesture. The third frame will show the arms moving in a gentle, curving motion, similar to a slow wave. The wrists will be turned slightly outward to enhance the delicate feel. In the fourth frame, the arms will begin to lower back down to their original position, still maintaining the graceful arc of the movement. The fifth frame will show the robot's arms returning to a relaxed resting position. This sequence of movements should evoke the magical and whimsical nature of the unicorn, creating a visually appealing animation.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, waiting for magic",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift gracefully, reaching out gently",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms sway in a delicate, curving dance",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 15.0,
+     "wrist": 45.0
+    }
+   }
+  },
+  {
+   "beat": "the graceful arc lowers back down softly",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": -15.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, magic complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

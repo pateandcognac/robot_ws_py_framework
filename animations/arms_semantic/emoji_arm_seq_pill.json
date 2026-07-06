@@ -1,0 +1,71 @@
+{
+ "emoji": "💊",
+ "ideation": "This animation sequence depicts a robot carefully handling a pill, emphasizing precision and care.  The movement starts with both arms at rest, then one arm reaches out to receive the pill, holds it gently, and then places it somewhere (perhaps a container). The other arm remains relatively still, providing contrast and balance. The animation is designed to convey a sense of responsibility and cautious handling, fitting with the delicate nature of medication represented by the pill emoji. Frame 1: Both arms are at rest. Frame 2: The right arm extends forward and gently curves downward, as if receiving a pill. Frame 3: The right arm is slightly bent and the wrist turns to show the pill being held carefully. Frame 4: The right arm moves toward a location to place the pill (perhaps a container). Frame 5: Both arms return to their resting positions.",
+ "frames": [
+  {
+   "beat": "both arms rest, calm and still",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm reaches out, ready to catch",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the hand cradles the pill with delicate care",
+   "arms": {
+    "right": {
+     "joint1": -30.0,
+     "joint2": -30.0,
+     "wrist": -45.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm moves to place the pill gently",
+   "arms": {
+    "right": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 45.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a neutral, resting pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

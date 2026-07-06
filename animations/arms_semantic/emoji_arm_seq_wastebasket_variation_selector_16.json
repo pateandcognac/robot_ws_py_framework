@@ -1,0 +1,66 @@
+{
+ "emoji": "🗑️",
+ "ideation": "This animation sequence depicts the action of tossing something into a wastebasket.  It will focus on the right arm, with the left arm remaining relatively still to provide contrast and balance.  The animation will emphasize the arc of the throwing motion.  The lack of elbows means we'll need to rely on shoulder movements to create the illusion of throwing. I will use examples of existing arm movements to ensure a natural feel.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready to discard",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm swings up and back, preparing to throw",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the arm arcs forward, tossing trash into the bin",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a resting state",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "emoji": "🕎",
+ "ideation": "This sequence depicts a robot carefully and reverently holding a Menorah.  The movement is slow and deliberate, emphasizing the solemnity of the object. The robot's arms will cradle the Menorah gently, highlighting its importance.  The lack of elbows in the robot's arm design will be addressed by careful positioning of the joints to simulate a supportive, embracing gesture. Frame 1 shows both arms beginning to extend out, with palms facing up and slightly forward, ready to receive the Menorah. Frame 2 shows the arms adjusting to hold the Menorah, positioning the arms to cradle the object. Frame 3 is the final pose, showing the Menorah held securely and gently, with the arms slightly angled to support the object's weight and shape. The wrists will be rotated to ensure the Menorah is resting comfortably in the robot's 'hands'.",
+ "frames": [
+  {
+   "beat": "arms extend forward, palms up, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms adjust to gently cradle the menorah",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -20.0,
+     "wrist": -15.0
+    }
+   }
+  },
+  {
+   "beat": "menorah held steady, a solemn, reverent pose",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 0.0,
+     "wrist": -30.0
+    }
+   }
+  }
+ ]
+}

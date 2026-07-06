@@ -1,0 +1,46 @@
+{
+ "emoji": "🦉",
+ "ideation": "This sequence will depict the robot mimicking an owl's attentive gaze and wise posture.  The arms will be used to simulate the owl's wings, slightly folded and attentive. Frame 1 will show the arms in a neutral position, Frame 2 will show the arms slightly raised and angled, mimicking wings, and Frame 3 will settle them into a final pose suggesting alertness. Frame 4 will show a slight adjustment to show continuous attentiveness.  This subtle movement will add a sense of realism and life-likeness to the animation.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, neutral owl posture",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift slightly, wings begin to form",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 15.0
+    }
+   }
+  },
+  {
+   "beat": "wings angle forward, attentive and wise",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -30.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "a slight shift, the owl remains watchful",
+   "arms": {
+    "both": {
+     "joint1": 25.0,
+     "joint2": -35.0,
+     "wrist": 15.0
+    }
+   }
+  }
+ ]
+}

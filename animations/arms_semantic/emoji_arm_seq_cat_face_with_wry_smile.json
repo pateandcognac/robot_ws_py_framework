@@ -1,0 +1,71 @@
+{
+ "emoji": "😼",
+ "ideation": "This animation sequence aims to capture the sly, mischievous nature of the cat with wry smile emoji (😼).  The animation will focus on a slow, deliberate head tilt and a subtle shift in arm position to mimic a feline's playful attitude. The movements will be smooth, yet distinct. The robot's arms will move in a way that suggests both confidence and a hint of slyness. Frame 1 starts with the arms hanging down to set the stage. Frame 2 will have the robot tilt its head slightly to the right, while moving the left arm slightly forward and up. Frame 3 will show the head tilted further and the left arm moving slightly more up and forward. Frame 4 will show both arms raised slightly, the left arm more than the right. Frame 5 will show the robot's arms returning to a neutral position, completing the gesture. ",
+ "frames": [
+  {
+   "beat": "arms hang down, a moment of stillness",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm begins to rise, a subtle shift",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm lifts further, a playful curiosity",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms raise slightly, a mischievous glint",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the sly smile fades",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

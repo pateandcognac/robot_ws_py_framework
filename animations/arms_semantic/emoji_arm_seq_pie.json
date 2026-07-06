@@ -1,0 +1,46 @@
+{
+ "emoji": "🥧",
+ "ideation": "This animation sequence will depict a robot interacting with a pie, starting with both arms at rest and ending with one arm reaching out to grab the pie.  The sequence will emphasize a sense of anticipation and gentle movement.  The robot's body will be stationary, only the arms will move. Frame 1 shows both arms at the robot's sides, in a neutral position. Frame 2 shows the right arm moving forward and upward, indicating an approach to the pie. Frame 3 shows the right arm extended toward the pie, as if the robot is about to gently take a slice.  The left arm remains slightly elevated to maintain balance. Frame 4 shows the right hand hovering above the pie, suggesting a moment of contemplation before taking a slice.",
+ "frames": [
+  {
+   "beat": "both arms rest at the sides, ready for pie",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm begins to reach forward, anticipating",
+   "arms": {
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm extends further, aiming for the pie",
+   "arms": {
+    "right": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right hand hovers, ready to take a slice",
+   "arms": {
+    "right": {
+     "joint1": -30.0,
+     "joint2": 50.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

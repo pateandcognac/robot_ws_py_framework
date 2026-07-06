@@ -1,0 +1,56 @@
+{
+ "emoji": "😊",
+ "ideation": "This animation aims to capture the gentle, warm feeling of a 😊 emoji.  It starts with hands coming up to the face, then moving down and out to the sides in a flowing, happy motion. The robot doesn't have fingers to express a smile directly, so the arm movements suggest contentment and joy.  In frame one, both arms bend upwards towards the face. joint1 is rotated slightly inward, and joint2 pitches the arms upward, bringing the hands close to the cheeks as if cradling the face. The wrists are neutral, keeping the palms facing inward. This pose represents a gentle, pleased expression. Frame two expands on this by moving the arms slightly outward to the sides, as if opening up for a hug or expressing warmth. joint1 rotates outward, while joint2 keeps the arms at a similar height, creating a more open and welcoming gesture. The wrists remain neutral.  In frame three, the arms lower and extend further out to the sides, suggesting a spreading of happiness or contentment. joint2 pitches the arms downwards, and joint1 continues rotating outwards, creating a flowing, expansive movement. The wrists rotate slightly outwards to enhance the open feeling. Frame four brings the arms back towards the body in a relaxed manner. joint1 rotates inwards, and joint2 pitches the arms down further, as if the robot is settling into a happy, comfortable state. The wrists return to neutral. The final frame brings both arms to rest at the sides, with joint1 at a neutral position and joint2 pitching the arms downwards.  This return to a relaxed posture signals the end of the expression, leaving the robot in a peaceful, contented state.",
+ "frames": [
+  {
+   "beat": "arms rise gently to cradle the face in contentment",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms open slightly, sharing the inner warmth",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": 70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms spread wider, radiating happiness outward",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": 40.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms lower and relax, settling into joy",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rest at the sides, a peaceful, happy sigh",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

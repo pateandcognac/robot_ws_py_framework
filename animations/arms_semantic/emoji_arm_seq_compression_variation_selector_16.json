@@ -1,0 +1,56 @@
+{
+ "emoji": "🗜️",
+ "ideation": "This sequence will show the robot carefully and deliberately squeezing something using both arms.  The movement will be slow and controlled, emphasizing the precision of the clamping action.  The robot's arms will start in a neutral position, then move to a clamping position, hold for a moment, and then release. The wrists will be slightly angled to ensure the palms face each other, enhancing the sense of controlled pressure.  The action is similar to using a clamp.",
+ "frames": [
+  {
+   "beat": "arms hang straight down, ready to grip",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms move inward, palms facing, preparing to squeeze",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 10.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "holding the squeeze tight, applying firm pressure",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 10.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "releasing the pressure, arms begin to relax",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, neutral position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

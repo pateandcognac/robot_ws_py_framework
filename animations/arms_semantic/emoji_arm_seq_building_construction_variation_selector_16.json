@@ -1,0 +1,66 @@
+{
+ "emoji": "🏗️",
+ "ideation": "This sequence shows the robot carefully lifting and placing building blocks, mimicking construction work.  The robot's movements will be deliberate and controlled to reflect precision and care.  The left arm will primarily support the blocks, while the right arm will assist in placing them.  I will use the examples to guide the joint movements and ensure a natural flow.",
+ "frames": [
+  {
+   "beat": "arms reach out, ready to build",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift a heavy load together",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm carefully places the block down",
+   "arms": {
+    "left": {
+     "joint1": -40.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a resting, ready position",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

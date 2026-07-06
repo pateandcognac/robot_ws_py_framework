@@ -1,0 +1,56 @@
+{
+ "emoji": "🕒",
+ "ideation": "This animation sequence will show the robot making a gesture that resembles the hands on a clock at three o'clock. The robot doesn't have hands, but we can simulate this by positioning its arms to convey the same idea.  The sequence will start with both arms at rest, then move to a position representing the three o'clock position, and then return to rest. This will create a simple, clear animation that is easy to understand.  We will use the robot's two shoulder joints to position the arms accordingly. Frame 1 will show both arms at rest. Then, in frame 2, the right arm will be raised to approximately 90 degrees, representing the hour hand. The left arm will be positioned at approximately 0 degrees, representing the minute hand, and will remain there for the next frame. In frame 3, the right arm will return to the rest position, and the left arm will remain at approximately 0 degrees. Finally, in frame 4, both arms will return to their resting position. This sequence emphasizes the three o'clock position and then returns to rest.",
+ "frames": [
+  {
+   "beat": "both arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm points straight up, left arm points forward",
+   "arms": {
+    "right": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm drops down, left arm stays forward",
+   "arms": {
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

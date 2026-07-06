@@ -1,0 +1,51 @@
+{
+ "emoji": "🚴‍♀️",
+ "ideation": "This sequence simulates the arm movements of someone biking.  The arms are positioned as if holding handlebars, with a slight bend at the 'shoulders' to simulate the forward-leaning posture of a cyclist.  The motion will be cyclical, mimicking the repetitive nature of pedaling. Since our robot doesn't have elbows, we will approximate the arm position with joint1 and joint2. I will focus on alternating arm positions to imply the motion of pedaling. The left arm and right arm will be mirrored almost perfectly in the animation.  The wrists will stay relatively neutral to avoid unnecessary complexity. ",
+ "frames": [
+  {
+   "beat": "arms hold handlebars, ready to ride",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a slight forward lean, pedaling begins",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold handlebars, ready to ride",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

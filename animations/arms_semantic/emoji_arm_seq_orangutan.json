@@ -1,0 +1,56 @@
+{
+ "emoji": "🦧",
+ "ideation": "This sequence will portray an orangutan's contemplative pose, using slow, deliberate arm movements to reflect its thoughtful nature.  The animation will focus on the arms, emphasizing a relaxed yet observant demeanor.  The orangutan's arms are long and powerful, so the animation should reflect this. I will use the robot's limited joints to approximate the orangutan's relaxed yet attentive posture. In the first frame, both arms will hang loosely by the robot’s side, with a slight outward roll at the shoulder (joint1) and a downward pitch (joint2). The wrists will be neutral (0.0). This creates a relaxed starting posture.  The second frame will show a slight inward roll of the arms (joint1), as if the orangutan is bringing its arms closer to its body to think. The pitch (joint2) remains largely unchanged, maintaining a relaxed feel.  In the third frame, one arm will move slightly forward, perhaps suggesting curiosity, with a slight upward pitch. The other arm stays near the body. This movement will be subtle. The fourth frame will mirror the third, but with the opposite arm moving forward. This creates a sense of balance and contemplation. The final frame will return to the posture of the first frame, suggesting the orangutan’s thoughtful observation has concluded, yet it remains relaxed.",
+ "frames": [
+  {
+   "beat": "orangutan arms hang loosely at sides, relaxed",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw slightly inward, a thoughtful pause",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "one arm extends forward, curious and observant",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the other arm extends, a balanced contemplation",
+   "arms": {
+    "right": {
+     "joint1": -10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to relaxed sides, deep in thought",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

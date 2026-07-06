@@ -1,0 +1,36 @@
+{
+ "emoji": "⛅",
+ "ideation": "This animation sequence will depict the robot gently shielding its eyes from the sun, a common reaction to bright sunlight.  The sequence will start with the robot's arms at its sides, then move to a position where both arms are raised to partially cover the eyes.  The final frame shows the robot looking up at the sun. The animation will focus on the upward movement of the arms, with slight variations in joint angles to make the movement feel natural. The robot will not have its eyes covered completely, as this would be difficult to convey with the arm-only animation. Instead, the arms will be positioned to partially shield the eyes, suggesting the action without being overly literal.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready for sun",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms rise to partially shield the eyes",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "looking up, arms still raised against the glare",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

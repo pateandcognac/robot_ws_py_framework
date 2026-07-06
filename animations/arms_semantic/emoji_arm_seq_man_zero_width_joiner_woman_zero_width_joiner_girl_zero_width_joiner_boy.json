@@ -1,0 +1,46 @@
+{
+ "emoji": "👨‍👩‍👧‍👦",
+ "ideation": "This animation sequence depicts a family embracing.  The arms will move in a way that suggests protection and togetherness. The sequence starts with arms outstretched, then moves into a hugging position, and finally settles into a gentle embrace. I will use the dual shoulder joints to achieve the natural flow of the movements.  The arms don't have elbows, so I will focus on the shoulder movement to simulate the embrace. The wrists will be slightly rotated to enhance the feeling of a warm embrace.",
+ "frames": [
+  {
+   "beat": "arms open wide, welcoming embrace",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms begin to draw closer, a gentle pull",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -15.0,
+     "wrist": -60.0
+    }
+   }
+  },
+  {
+   "beat": "the arms meet in the center, a soft connection",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": -75.0
+    }
+   }
+  },
+  {
+   "beat": "a warm family hug, holding each other close",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": 15.0,
+     "wrist": -90.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "emoji": "🪴",
+ "ideation": "This sequence shows the robot gently cradling a potted plant.  The movement is slow and deliberate, emphasizing care and nurturing. The robot's arms will mimic the act of supporting and protecting the plant. In the first frame, both arms are at the sides, relaxed and ready to receive the plant.  In the second frame, the arms gently rise and curve inward, creating a supportive cradle shape. In the third frame, the arms are fully curved into a protective 'hug' around the plant, and the wrists angle slightly to further secure the plant. In the fourth frame, the arms move to maintain the protective hug, but in a slightly more relaxed position, as if the robot is admiring the plant. Finally, in the fifth frame, the robot slowly begins to lower the arms back to their resting position, maintaining the gentle and caring demeanor. This motion emphasizes the delicate nature of the plant and the robot's care for it.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to hold",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms rise and curve inward, forming a cradle",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "arms hug the plant protectively, wrists secure",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -30.0,
+     "wrist": 20.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold gently, admiring the plant",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -40.0,
+     "wrist": 15.0
+    }
+   }
+  },
+  {
+   "beat": "arms slowly lower, maintaining gentle care",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 5.0
+    }
+   }
+  }
+ ]
+}

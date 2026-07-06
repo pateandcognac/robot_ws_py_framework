@@ -1,0 +1,66 @@
+{
+ "emoji": "👣",
+ "ideation": "This animation sequence will depict a robot carefully placing its feet, one after the other, as if walking softly. It will emphasize a gentle, measured progression, rather than a quick stride.  The robot's arms will move in a complementary way, subtly shifting to maintain balance with each step.  The arms will not be the primary focus, but they will enhance the overall impression of measured movement. Frame 1: Both arms are slightly extended forward, palms down, as if maintaining balance while preparing to take a first step. Frame 2: The left arm moves slightly back to maintain balance as the robot's weight shifts to the right leg. The right arm extends forward even more. Frame 3: Both arms return to a slightly forward position, palms down, as the robot's weight centers after the first step. Frame 4: The right arm moves slightly back as the robot shifts weight to the left leg. The left arm extends forward more. Frame 5: Both arms return to their starting position. The entire sequence will show a slow, deliberate, and careful movement.",
+ "frames": [
+  {
+   "beat": "arms extend forward, palms down, ready to step",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm swings back, right arm reaches forward",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms center, weight shifts forward onto the step",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm swings back, left arm reaches forward",
+   "arms": {
+    "left": {
+     "joint1": -10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to starting balance, step completed",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

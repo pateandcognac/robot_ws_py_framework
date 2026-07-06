@@ -1,0 +1,36 @@
+{
+ "emoji": "🧏",
+ "ideation": "This sequence will show the robot bringing both hands up to either side of its face, as if cupping its ears. This will be done in a smooth, deliberate manner to emphasize the action of listening intently.  The robot will start with its arms at its sides, then bring the hands up to the sides of its face, and finally hold that position. This mimics the act of someone cupping their ears to better hear someone.  The subtle movement highlights the focus and intent associated with the emoji. The robot's posture emphasizes attentiveness and focus. The final frame will hold the pose. The robot's arms will not move in a jerky or abrupt manner, but in a smooth, controlled fashion. The movement will be deliberate and expressive, conveying the meaning of the emoji clearly and effectively. ",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at sides, ready to listen",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms sweep up towards the face, cupping ears",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hands cup the ears, focusing intently on sound",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 60.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+{
+ "emoji": "🚰",
+ "ideation": "This animation sequence depicts a robot carefully pouring water, emphasizing precision and care. The robot's arms will move in a coordinated way, simulating the action of pouring liquid from a container. Frame 1 shows the robot with both arms extended, the left arm slightly forward, holding a virtual container. The right arm is positioned slightly behind, ready to receive the water. Frame 2 shows the left arm moving slightly downward, tilting the virtual container to simulate pouring. The right arm moves slightly forward to receive the water. Frame 3 shows the left arm further tilted, with the right arm positioned to catch the water. Frame 4 shows the left arm returning to its initial position, while the right arm remains steady, as if holding the water. Frame 5 shows the robot with both arms at rest, completing the action.",
+ "frames": [
+  {
+   "beat": "arms poised, ready to pour with care",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm tilts, beginning the gentle pour",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the water flows, caught by the waiting right hand",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm straightens, right hand holds steady",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the pouring action is complete, arms rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "💆‍♀️",
+ "ideation": "This sequence simulates a woman receiving a massage.  The animation focuses on the relaxation and comfort associated with the experience. The left arm will be gently raised to support the head, while the right arm will be slightly bent, suggesting a relaxed and receptive posture.  The movement will be slow and deliberate, emphasizing the calming nature of the massage. In the first frame, both arms are at rest. The left arm then begins to gently raise to support the head. The right arm slightly bends, suggesting comfort. Finally, the arms maintain their relaxed positions, embodying the peaceful state of receiving a massage. I will incorporate slight variations in joint angles to ensure the animation appears natural and not robotic.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready for calm",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm gently lifts to cradle the head",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -70.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "right arm relaxes, settling into comfort",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 50.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -65.0,
+     "wrist": 10.0
+    }
+   }
+  },
+  {
+   "beat": "both arms remain in a state of peaceful repose",
+   "arms": {
+    "left": {
+     "joint1": 25.0,
+     "joint2": 50.0,
+     "wrist": -20.0
+    },
+    "right": {
+     "joint1": 15.0,
+     "joint2": -65.0,
+     "wrist": 10.0
+    }
+   }
+  }
+ ]
+}

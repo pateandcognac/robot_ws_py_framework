@@ -1,0 +1,56 @@
+{
+ "emoji": "👼",
+ "ideation": "This sequence will depict a gentle, protective gesture, suitable for a baby angel. The arms will move in a slow, deliberate manner, suggesting care and nurturing. I'll use the examples to guide the transitions between frames, ensuring the movements are smooth and natural, despite the robot's lack of elbows. In the first frame, the robot's arms will be in a neutral position, slightly outward, with the hands cupped upward, ready to cradle something. In the second frame, the arms will move slightly inward, the hands moving closer together, as if gently gathering something delicate. In the third frame, the robot's arms will move to a position where the hands are fully cradling an unseen object, with the hands slightly curved inwards. In the fourth frame, the arms will return to the position of the second frame, the hands gently moving apart. In the fifth frame, the arms will return to the neutral position of the first frame, completing the protective gesture.",
+ "frames": [
+  {
+   "beat": "arms gently cradle the air, hands cupped upward",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms move inward, hands gathering something delicate",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "hands fully cradle an unseen object, curved inwards",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": 0.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "hands gently move apart, releasing the gentle hold",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to neutral, the protective gesture complete",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": -45.0
+    }
+   }
+  }
+ ]
+}

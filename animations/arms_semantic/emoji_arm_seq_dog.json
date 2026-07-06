@@ -1,0 +1,56 @@
+{
+ "emoji": "🐕",
+ "ideation": "This animation sequence simulates a dog playfully begging or excitedly anticipating a treat.  The animation will focus on the front paws, using the robot arms to mimic the posture.  The sequence starts with the arms down, then raises them, and ends with a slight lowering. The overall motion is eager and playful, reflecting the dog's joyful anticipation. Frame 1: The robot's arms hang loosely at its sides, palms facing inward, reflecting a neutral, resting posture. Frame 2: Both arms move slightly forward, bending at the 'shoulders' (joints 1 and 2), simulating a dog lifting its front paws. The palms remain facing inward. Frame 3: The arms move slightly higher and the 'shoulders' are more bent, suggesting excitement. Frame 4:  The arms lower slightly, as if the dog is momentarily pausing before potentially begging again. Frame 5: The arms return to a relaxed posture similar to Frame 1. This creates a cycle suggesting the dog is ready to repeat the begging motion.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, waiting patiently",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms lift slightly, eager paws raised",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the arms rise higher, begging with anticipation",
+   "arms": {
+    "both": {
+     "joint1": 15.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "a slight dip, a moment of hopeful pause",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms settle back, ready for the next plea",
+   "arms": {
+    "both": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

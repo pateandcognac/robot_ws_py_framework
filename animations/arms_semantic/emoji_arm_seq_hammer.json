@@ -1,0 +1,66 @@
+{
+ "emoji": "🔨",
+ "ideation": "This sequence simulates the action of hammering, focusing on the controlled movement of the right arm. The left arm remains relatively static to provide balance. The animation will use the two shoulder-like joints of the robot arm, referencing previous examples to ensure fluid and realistic motion. Frame 1 shows the robot holding the hammer, with the right arm slightly raised and angled. Frame 2 shows the right arm moving downward to strike the hammer against an imaginary surface. Frame 3 shows the hammer retracting after hitting, with the right arm moving back up. Frame 4 shows the right arm in its initial position, ready for another strike.  The left arm remains in a neutral position throughout.",
+ "frames": [
+  {
+   "beat": "right arm holds hammer, left arm steady",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm swings down for a mighty strike",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "hammer retracts with a sharp upward motion",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm resets, ready for the next blow",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

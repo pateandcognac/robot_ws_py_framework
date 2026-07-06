@@ -1,0 +1,61 @@
+{
+ "emoji": "🧭",
+ "ideation": "This animation sequence shows the robot carefully holding and consulting a compass, emphasizing precision and focus.  The movement will be deliberate and controlled, reflecting the careful nature of navigation. Frame 1 will show both arms extended slightly forward, with the hands cupped together as if holding the compass. Frame 2 will shift the left arm slightly backward, while the right arm moves forward, creating a subtle tilting motion. Frame 3 will show both arms returning to a more balanced position, as if the robot is studying the compass. Frame 4 will have the robot's arms move slightly upward, as if reading the compass's needle. Frame 5 will show the robot bringing the compass closer, as if for a final check. ",
+ "frames": [
+  {
+   "beat": "arms held forward, hands ready to grasp",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm pulls back slightly, right arm extends",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms balance, steadying the compass",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms tilt up, reading the needle's direction",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms draw closer, a final careful check",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+{
+ "emoji": "🧱",
+ "ideation": "This sequence shows the robot carefully placing a brick. The movement should be deliberate and precise, reflecting the careful nature of bricklaying. We will use both arms, with one supporting the brick and the other guiding it into place.  The arms will move in a coordinated fashion, with each frame representing a distinct stage in the process. The first frame positions the robot with both arms slightly raised, one holding the brick and the other guiding it into place. The second frame shows the robot lowering the brick, the supporting arm maintaining stability, and the guiding arm adjusting the brick's position. The third frame shows the brick nearly in place, with both arms hovering slightly above. The fourth frame shows the arms lowering slowly to gently place the brick. The fifth frame has the robot standing normally, with the arms at its sides, the brick successfully placed.",
+ "frames": [
+  {
+   "beat": "arms lift slightly, one holding the brick, the other guiding",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "lowering the brick with steady support and careful adjustment",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 25.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 25.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms hover just above the brick, ready to place",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 15.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms descend slowly, gently setting the brick down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": 5.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 5.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to sides, brick is successfully placed",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

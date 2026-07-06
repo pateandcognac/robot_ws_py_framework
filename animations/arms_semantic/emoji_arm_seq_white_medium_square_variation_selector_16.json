@@ -1,0 +1,36 @@
+{
+ "emoji": "◻️",
+ "ideation": "This sequence will depict a robot presenting a blank, neutral canvas, represented by the white medium square. The animation will focus on presenting the square in a clear, open manner, avoiding any gestures that could imply a specific meaning or emotion.  The robot will hold the square out in front of it. The movement will be slow and deliberate, emphasizing the neutral nature of the emoji.  The animation will start with the arms at the sides, move to the arms extending forward to present the square, and then return to a neutral position.",
+ "frames": [
+  {
+   "beat": "arms hang at sides, ready to present",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward, presenting a blank canvas",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, the canvas shown",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

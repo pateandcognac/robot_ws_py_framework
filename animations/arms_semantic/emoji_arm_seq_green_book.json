@@ -1,0 +1,46 @@
+{
+ "emoji": "📗",
+ "ideation": "This sequence mimics the action of carefully opening a book, emphasizing the gentle and thoughtful nature associated with reading. The animation starts with both arms at rest, then transitions to the left arm reaching out as if to retrieve the book, and finally both arms gently holding the book open.  The right arm will only move slightly, in a more relaxed way.  The transition will be smooth, emphasizing the relaxed and studious nature of reading. Frame 1: Both arms relaxed at the sides. Frame 2: Left arm reaches out, slightly upward and forward. Frame 3: Both arms hold the book open, with the left arm supporting it underneath, and the right arm gently on top. ",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, ready to pick up a book",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches out, gently grasping the book",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms carefully hold the open book",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

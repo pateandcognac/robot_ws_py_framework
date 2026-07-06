@@ -1,0 +1,66 @@
+{
+ "emoji": "🗺️",
+ "ideation": "This animation sequence simulates the act of unfolding a map, starting from a closed position and ending with the map fully open.  The robot will use both arms to carefully reveal the map's contents.  The movements will emphasize the careful and deliberate nature of unfolding a delicate item. The left arm will primarily support the map, while the right arm will guide the unfolding process.  I will use the examples to ensure natural arm movements and smooth transitions between frames.",
+ "frames": [
+  {
+   "beat": "arms hold the map closed, ready to unfold",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the left arm steadies as the right begins to open",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 40.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull the map wider, revealing its secrets",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 60.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "map fully open, arms extend to display it",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 70.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

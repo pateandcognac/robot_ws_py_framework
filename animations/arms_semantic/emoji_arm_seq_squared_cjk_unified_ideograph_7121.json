@@ -1,0 +1,36 @@
+{
+ "emoji": "🈚",
+ "ideation": "This animation sequence aims to visually represent the concept of 'free of charge' or 'no charge' conveyed by the 🈚 emoji.  The animation will use a combination of arm gestures to symbolize the offering of something without cost. I'll start with open hands, then transition to a gesture that suggests something is being given, and finally settle into a relaxed posture that indicates the completion of the transaction. The arms will move in sync, creating a balanced and visually appealing animation.  The use of both arms will emphasize the generosity involved in the free offering.",
+ "frames": [
+  {
+   "beat": "arms open wide, offering something for free",
+   "arms": {
+    "both": {
+     "joint1": 60.0,
+     "joint2": -45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep forward, presenting the gift",
+   "arms": {
+    "both": {
+     "joint1": -10.0,
+     "joint2": 45.0,
+     "wrist": -45.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax, the free offering is complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

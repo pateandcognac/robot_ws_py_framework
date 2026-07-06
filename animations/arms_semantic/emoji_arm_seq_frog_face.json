@@ -1,0 +1,46 @@
+{
+ "emoji": "🐸",
+ "ideation": "This sequence will mimic a frog's posture, starting with a crouched position and ending with a jump. The arms will move accordingly to enhance the effect. Frame 1: The robot is in a crouched position, arms bent. Frame 2: The robot is mid-crouch, arms extended forward. Frame 3: The robot is fully extended upwards. Frame 4: The robot returns to a relaxed pose.",
+ "frames": [
+  {
+   "beat": "arms crouch low, ready to spring",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward, gathering power",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms shoot up, launching into the air",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, resting state",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

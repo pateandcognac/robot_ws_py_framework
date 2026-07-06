@@ -1,0 +1,71 @@
+{
+ "emoji": "🦦",
+ "ideation": "This animation sequence for the otter emoji (🦦) will depict a playful, inquisitive otter looking around.  The movement will be primarily focused on the arms, with a combination of reaching and exploring movements.  The otter's inquisitive nature will be emphasized through subtle changes in arm positioning and wrist angles. The left arm will mostly explore, while the right will mostly point or gesture.  We will use the two joints of the robot to achieve this.  This will be a 5-frame animation. Frame 1: Both arms will start in a relaxed position at the sides of the robot. Frame 2: The left arm will reach outward and slightly upward, palm facing forward as if sniffing the air. Frame 3: The right arm will point forward, palm facing outward, as if indicating something of interest. Frame 4: The left arm will return to a more neutral position, while the right arm lowers slightly, continuing the inquisitive exploration. Frame 5: Both arms return to the relaxed starting position.",
+ "frames": [
+  {
+   "beat": "otter rests, arms relaxed at sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm reaches out, sniffing the air curiously",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm points forward, indicating something interesting",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": 15.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "left arm settles, right arm lowers slightly, still exploring",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, resting pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

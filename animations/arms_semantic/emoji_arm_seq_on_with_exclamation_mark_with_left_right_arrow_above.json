@@ -1,0 +1,36 @@
+{
+ "emoji": "🔛",
+ "ideation": "This animation sequence simulates the activation represented by the 'ON arrow' emoji.  The movement starts with both arms at rest, then transitions to a 'power-up' pose where arms lift and extend, suggesting activation. Finally, the arms return to a relaxed state. I have chosen a three-frame sequence for simplicity and impact. Frame 1: Arms are at rest. Frame 2: Arms extend outward and slightly upward. Frame 3: Arms return to rest.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, neutral position",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms lift and extend outward, powering up",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to rest, activation complete",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

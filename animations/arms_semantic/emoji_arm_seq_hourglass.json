@@ -1,0 +1,36 @@
+{
+ "emoji": "⌛",
+ "ideation": "This animation sequence depicts the robot carefully holding an hourglass, emphasizing the delicate nature of time.  The sequence starts with the robot's arms extended slightly forward, palms up, as if ready to receive the hourglass.  Then, the arms gently cradle the hourglass, moving slightly inward and downward. The final frame shows the robot holding the hourglass steadily, conveying a sense of careful observation.  The subtle movements reflect the precious and fleeting nature of time, as represented by the hourglass emoji.",
+ "frames": [
+  {
+   "beat": "arms extend forward, palms up, ready to receive",
+   "arms": {
+    "both": {
+     "joint1": 10.0,
+     "joint2": 10.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms gently cradle the hourglass, moving inward",
+   "arms": {
+    "both": {
+     "joint1": 30.0,
+     "joint2": -20.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "holding the hourglass steady, time passes carefully",
+   "arms": {
+    "both": {
+     "joint1": 40.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

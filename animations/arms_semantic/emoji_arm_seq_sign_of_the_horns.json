@@ -1,0 +1,71 @@
+{
+ "emoji": "🤘",
+ "ideation": "This sequence aims to mimic the 'sign of the horns' gesture, commonly associated with rock music, using the robot's arms and wrists. Since the robot lacks fingers, the gesture will be adapted to fit its physical limitations. I'll focus on creating a distinct pose with each arm, ensuring clear transitions between frames. I'll start by positioning the arms in a neutral pose, then transition to the 'horns' gesture, and finally return to the neutral pose. The left arm will remain stationary, providing balance and contrast to the right arm's movement.  In the first frame, both arms are at the sides in a relaxed position. joint1 is neutral, joint2 pitches the arms downward, and the wrists are at 0. In the second frame, the right arm begins to rise, with joint1 rotating slightly inward and joint2 pitching the arm upward. The wrist also rotates inward to mimic the curled fingers of the 'horns' gesture. The left arm remains stationary.  In the third frame, the right arm is fully raised, with joint1 rotated further inward and joint2 pitching the arm to a higher position. The wrist rotation is increased to emphasize the 'horns.' The left arm remains stationary.  In the fourth frame, the right arm begins to lower, mirroring the second frame's position. The left arm remains stationary. Finally, in the fifth frame, both arms return to the initial relaxed position, completing the gesture.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed at the sides",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm begins to rise, wrist curls inward",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm fully raised in the horns gesture",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 90.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "right arm lowers, wrist still curled",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to relaxed rest",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "emoji": "🚴‍♂",
+ "ideation": "This animation sequence simulates the arm movements of someone riding a bicycle.  The core action is the pumping motion of the arms, coordinated with leg movements (though we only animate arms here). We'll use a 4-frame sequence to capture the essence of this repetitive motion.  The left and right arms will move in opposition to each other. We'll keep the wrist positions largely neutral, focusing on the larger arm movements. Frame 1 will show a starting position, arms extended slightly forward. Frame 2 will show the right arm pushing back, the left arm forward. Frame 3 will reverse the arm positions. Frame 4 will return to the starting position. This cyclical nature creates a realistic biking arm pump. ",
+ "frames": [
+  {
+   "beat": "arms extend forward, ready to pedal",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "right arm pushes back, left arm extends forward",
+   "arms": {
+    "left": {
+     "joint1": -30.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm pushes back, right arm extends forward",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": -30.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to the starting cycling position",
+   "arms": {
+    "left": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 10.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

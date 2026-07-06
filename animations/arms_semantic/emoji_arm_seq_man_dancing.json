@@ -1,0 +1,66 @@
+{
+ "emoji": "🕺",
+ "ideation": "This animation sequence depicts a stylized dance move, emphasizing the joyful and energetic nature of the 🕺 emoji.  The robot will use exaggerated movements to convey a sense of fun and rhythm.  The arms will move independently to create a dynamic and engaging sequence. The robot's lack of elbows will be compensated for by fluid joint movements and wrist rotations.  The sequence begins with a relaxed pose, transitions to an arm-raising pose, then a hip-swinging pose, before returning to a slightly different relaxed pose.",
+ "frames": [
+  {
+   "beat": "arms hang relaxed, ready to groove",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms swing up and out with a flourish",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 80.0,
+     "wrist": 90.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms pump down and in, a hip-swaying beat",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to a relaxed, cool stance",
+   "arms": {
+    "left": {
+     "joint1": 15.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -15.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "emoji": "👿",
+ "ideation": "This sequence aims to capture the aggressive stance of the 👿 emoji by using sharp, dynamic arm movements. The animation starts with both arms raised in a threatening posture, then transitions to a downward strike, followed by a return to the raised position, ending with the arms crossed defensively.  In the first frame, both arms are raised to the sides and slightly forward, with palms facing down, as if preparing to strike. joint1 is rotated outward, and joint2 pitches the arms upward. This pose conveys a sense of readiness and aggression.  The second frame brings both arms down sharply, as if striking downward. joint2 pitches the arms downward while joint1 rotates slightly inward, adding to the forceful nature of the movement.  The third frame returns the arms to the raised position, similar to the first frame, maintaining the threatening posture. joint1 rotates outward again, and joint2 pitches the arms upward. This repetition reinforces the aggressive intent.  In the fourth frame, the arms cross defensively in front of the chest, with palms facing inward. joint1 rotates inward for both arms, and joint2 pitches them slightly upward. This pose suggests a guarded stance, as if protecting oneself from attack.  Finally, the fifth frame returns the arms to the initial raised position, ready for another potential strike or defensive maneuver, completing the cycle of aggression and defense.",
+ "frames": [
+  {
+   "beat": "arms raised, ready to strike with menace",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms slash downwards with sharp force",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms snap back up, a devilish threat",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms cross defensively, a guarded stance",
+   "arms": {
+    "left": {
+     "joint1": 65.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 50.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms return to the ready, a final demonic pose",
+   "arms": {
+    "both": {
+     "joint1": 45.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

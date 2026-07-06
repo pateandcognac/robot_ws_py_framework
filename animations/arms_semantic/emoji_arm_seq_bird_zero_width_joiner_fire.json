@@ -1,0 +1,56 @@
+{
+ "emoji": "🐦‍🔥",
+ "ideation": "This sequence aims to capture the majestic imagery of a phoenix taking flight, using sweeping arm movements to evoke the spread of powerful wings. Given that the robot only has two shoulder-like joints and no elbows, I’ll focus on wide, dramatic arcs to create the illusion of large wings unfurling and flapping. I’ll reference the provided examples to maintain realistic joint ranges and ensure the movements transition smoothly between frames. In the first frame, both arms are angled slightly back and down, like folded wings preparing for flight. joint1 rolls both arms slightly outward, and joint2 pitches them downward. The wrists are neutral to maintain a streamlined shape. As we move into the second frame, the arms sweep forward and upward, mimicking the powerful upswing of a bird’s wings. joint1 rolls the arms inward, and joint2 pitches them upward. The wrists remain neutral to maintain balance. By the third frame, the arms reach the peak of their upward motion, fully extended as if at the top of a wing flap. joint1 maintains the inward roll, while joint2 pitches the arms as high as they can go. In the fourth frame, the arms begin their descent, mimicking the downward flap of powerful wings. joint1 begins rolling the arms outward, and joint2 pitches them downward, reversing the previous motion. In the final frame, the arms return to their starting position, completing the wing-flap cycle. joint1 rolls the arms outward, and joint2 pitches them downward to simulate folded wings. This creates a seamless loop that can be repeated to create a continuous flight animation.",
+ "frames": [
+  {
+   "beat": "wings folded, ready to rise",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms sweep upward and forward, a powerful ascent",
+   "arms": {
+    "both": {
+     "joint1": -40.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wings reach their apex, fully extended and soaring",
+   "arms": {
+    "both": {
+     "joint1": -60.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wings begin the powerful downstroke, descending gracefully",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 30.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "wings fold back, completing the majestic flight cycle",
+   "arms": {
+    "both": {
+     "joint1": 20.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

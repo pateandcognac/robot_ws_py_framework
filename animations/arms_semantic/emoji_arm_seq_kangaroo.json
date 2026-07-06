@@ -1,0 +1,81 @@
+{
+ "emoji": "🦘",
+ "ideation": "This sequence simulates a kangaroo's hop, focusing on the powerful leg movements implied by the emoji.  Since our robot doesn't have legs, we'll represent the hop using exaggerated arm movements.  The animation will start with arms down, then move to a crouched position, followed by a powerful upward leap, and finally a return to a standing position. The animation will focus on conveying the kangaroo's energy and the powerful movement of its legs. The left arm will mimic the forward-reaching motion of the kangaroo's front legs while the right arm shows a slight upward push for the hop. This is achieved by using joint1 to rotate the arms outward and inward and joint2 to pitch the arms upward and downward. The wrists will remain largely neutral, except for a slight rotation in the final frame to suggest the kangaroo landing softly. The animation uses 5 frames to capture the dynamism and flow of the hop. ",
+ "frames": [
+  {
+   "beat": "arms drop low, ready to spring",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms push out and down, crouching low",
+   "arms": {
+    "left": {
+     "joint1": 45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": -45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms powerfully launch upwards, a mighty leap",
+   "arms": {
+    "left": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 45.0,
+     "joint2": 60.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms extend forward, mid-air balance",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -20.0,
+     "joint2": 45.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms land softly, settling back down",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -90.0,
+     "wrist": 10.0
+    },
+    "right": {
+     "joint1": -10.0,
+     "joint2": -90.0,
+     "wrist": -10.0
+    }
+   }
+  }
+ ]
+}

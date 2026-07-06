@@ -1,0 +1,81 @@
+{
+ "emoji": "👓",
+ "ideation": "This sequence simulates the action of adjusting glasses, starting with a neutral position and progressing through the act of pushing glasses up the nose.  It will use the left arm primarily. The right arm will remain relatively still to emphasize the focus on the adjustment. The sequence will be concise, focusing on key positions rather than smooth transitions, as those will be handled by interpolation.  Frame 1: Both arms are at rest. Frame 2: The left arm moves upward and inward. Frame 3: The left arm pushes the glasses upward, and the wrist slightly twists. Frame 4: The left arm returns to a near-rest position. Frame 5: Both arms return to a completely neutral position.",
+ "frames": [
+  {
+   "beat": "arms rest at sides, ready to adjust",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left arm begins to lift towards the face",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 40.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "fingers push glasses up the nose, a slight twist",
+   "arms": {
+    "left": {
+     "joint1": 30.0,
+     "joint2": 60.0,
+     "wrist": 15.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "left hand lowers, glasses now in place",
+   "arms": {
+    "left": {
+     "joint1": 20.0,
+     "joint2": 20.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "both arms return to a relaxed, neutral pose",
+   "arms": {
+    "left": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 5.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

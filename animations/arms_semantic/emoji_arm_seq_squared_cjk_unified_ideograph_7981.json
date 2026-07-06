@@ -1,0 +1,41 @@
+{
+ "emoji": "🈲",
+ "ideation": "This animation sequence will visually represent the prohibition implied by the emoji.  The movement will start with arms crossed defensively, transitioning to a 'stop' gesture with palms out, and finally returning to a neutral pose. This communicates a clear sense of restriction and prohibition.",
+ "frames": [
+  {
+   "beat": "arms cross defensively, a firm barrier",
+   "arms": {
+    "left": {
+     "joint1": 65.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    },
+    "right": {
+     "joint1": 50.0,
+     "joint2": 80.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "palms push outward, a clear stop gesture",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms fall to sides, the prohibition is absolute",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": -90.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}
