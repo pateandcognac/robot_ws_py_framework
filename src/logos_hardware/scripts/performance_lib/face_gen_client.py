@@ -74,6 +74,32 @@ def clamp_semantic_obj(obj: Dict[str, Any]) -> Dict[str, Any]:
     return out
 
 
+def frame_overshoots(frame: Dict[str, Any]) -> List[str]:
+    """
+    Pre-clamp diagnostic: human-readable messages for numeric values outside
+    NUMERIC_RANGES in a raw (unclamped) sparse frame. Schema mode enforces
+    structure but not range (see TINY_FACE_DEPLOYMENT.md), so this is the
+    one residual failure mode worth surfacing when debugging generations.
+    """
+    msgs: List[str] = []
+    for side, patch in (frame.get("eyes") or {}).items():
+        if not isinstance(patch, dict):
+            continue
+        for key, value in patch.items():
+            if key in NUMERIC_RANGES and isinstance(value, (int, float)):
+                lo, hi = NUMERIC_RANGES[key]
+                if not (lo <= value <= hi):
+                    msgs.append("eyes.{}.{}={} outside [{},{}]".format(side, key, value, lo, hi))
+    mouth = frame.get("mouth")
+    if isinstance(mouth, dict):
+        for key, value in mouth.items():
+            if key in NUMERIC_RANGES and isinstance(value, (int, float)):
+                lo, hi = NUMERIC_RANGES[key]
+                if not (lo <= value <= hi):
+                    msgs.append("mouth.{}={} outside [{},{}]".format(key, value, lo, hi))
+    return msgs
+
+
 class FrameExpander:
     """
     Stateful sparse-frame expander: feed semantic frames one at a time (e.g.
@@ -317,9 +343,15 @@ class FaceGenClient:
         temperature: float = 0.0,
         seed: Optional[int] = 42,
         timeout_s: Optional[float] = None,
+        verbose: bool = False,
     ) -> Dict[str, Any]:
-        """Blocking generation. Returns a clamped semantic animation object."""
+        """
+        Blocking generation. Returns a clamped semantic animation object.
+        With verbose=True, prints per-frame range overshoots to stdout
+        (diagnostic only; does not change the returned/clamped values).
+        """
         timeout_s = timeout_s or self.timeout_s
+        t0 = time.time()
         try:
             resp = requests.post(
                 self.url,
@@ -334,6 +366,13 @@ class FaceGenClient:
             raise FaceGenError("face generation failed: {}".format(exc))
         if not isinstance(obj, dict) or not obj.get("frames"):
             raise FaceGenError("face model returned no frames")
+        if verbose:
+            print("[face_gen] {} frames in {:.1f}s".format(len(obj["frames"]), time.time() - t0))
+            for i, frame in enumerate(obj["frames"]):
+                overshoots = frame_overshoots(frame) if isinstance(frame, dict) else []
+                beat = frame.get("beat", "") if isinstance(frame, dict) else ""
+                print("  frame {}: {}{}".format(
+                    i, beat, "  [OVERSHOOT: " + "; ".join(overshoots) + "]" if overshoots else ""))
         return clamp_semantic_obj(obj)
 
     def generate_stream(
@@ -342,16 +381,22 @@ class FaceGenClient:
         temperature: float = 0.0,
         seed: Optional[int] = 42,
         timeout_s: Optional[float] = None,
+        verbose: bool = False,
     ) -> Iterator[Tuple[str, Any]]:
         """
         Streaming generation. Yields ("frame", frame_dict) as each frame's
         closing brace arrives (clamped, sparse), then ("done", full_obj) with
         the complete clamped semantic object. Raises FaceGenError on failure
         or wall-clock timeout (degenerate repetition loop guard).
+
+        With verbose=True, prints each frame's beat text, arrival latency,
+        and any pre-clamp range overshoot to stdout as it streams in.
         """
         timeout_s = timeout_s or self.timeout_s
-        deadline = time.time() + timeout_s
+        t0 = time.time()
+        deadline = t0 + timeout_s
         parser = StreamingFrameParser()
+        frame_i = 0
         try:
             resp = requests.post(
                 self.url,
@@ -368,6 +413,12 @@ class FaceGenClient:
                     continue
                 chunk = json.loads(line)
                 for frame in parser.feed(chunk.get("response", "")):
+                    if verbose:
+                        overshoots = frame_overshoots(frame)
+                        print("[face_gen] +{:.2f}s frame {}: {}{}".format(
+                            time.time() - t0, frame_i, frame.get("beat", ""),
+                            "  [OVERSHOOT: " + "; ".join(overshoots) + "]" if overshoots else ""))
+                        frame_i += 1
                     yield ("frame", clamp_frame(frame))
                 if chunk.get("done"):
                     break
@@ -382,4 +433,7 @@ class FaceGenClient:
             raise FaceGenError("streamed response was not valid JSON: {}".format(exc))
         if not isinstance(obj, dict) or not obj.get("frames"):
             raise FaceGenError("face model returned no frames")
+        if verbose:
+            print("[face_gen] done: {} frames in {:.2f}s total".format(
+                len(obj["frames"]), time.time() - t0))
         yield ("done", clamp_semantic_obj(obj))
