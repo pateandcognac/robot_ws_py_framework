@@ -700,6 +700,37 @@ class PerformanceSequencerNode:
             rospy.loginfo("Cue %s: audio landed after %.2fs staged hold.",
                           cue.cue_id, waited)
 
+    def _wait_for_first_frames(self, cue):
+        """
+        Sync mode (performance.sync): hold the staged pose until each active
+        channel has its first frame (or a terminal lut/failed answer),
+        bounded by the cue's wait timeout -- BEFORE audio starts, so speech
+        and animation begin together. (v2 placed this wait inside the
+        channel loops, after the audio thread was already running, which
+        shifted the whole animation window to after the speech.)
+        """
+        timeout = cue.wait_timeout_s if cue.wait_timeout_s is not None else self.track_wait_s
+        deadline = time.time() + timeout
+
+        def ready(store):
+            track = store.get(cue.cue_id)
+            return bool(track and (track["frames"]
+                                   or track["status"] in ("failed", "lut", "none")))
+
+        t0 = time.time()
+        while not rospy.is_shutdown() and not cue.canceled:
+            if (not cue.face or ready(self.face_tracks)) \
+                    and (not cue.arms or ready(self.arm_tracks)):
+                if time.time() - t0 > 0.25:
+                    rospy.loginfo("Cue %s: first frames ready after %.2fs sync hold.",
+                                  cue.cue_id, time.time() - t0)
+                return
+            if time.time() >= deadline:
+                rospy.logwarn("Cue %s: first frames not ready after %.1fs; "
+                              "starting anyway.", cue.cue_id, timeout)
+                return
+            rospy.sleep(0.05)
+
     def process_cue(self, cue):
         if cue.audio_pending and not cue.audio_event.is_set():
             self._await_audio(cue)
@@ -711,6 +742,12 @@ class PerformanceSequencerNode:
 
         skip_playback = cue.canceled and not len(cue.audio_data)
         has_audio = len(cue.audio_data) > 0
+
+        if not skip_playback and cue.cue_id and cue.expect_track:
+            self._wait_for_first_frames(cue)
+            # The channels must not wait again: their playback windows are
+            # anchored to the audio that starts right now.
+            cue.expect_track = False
 
         if not skip_playback:
             # Playback-time event: this is the moment the cue is actually
