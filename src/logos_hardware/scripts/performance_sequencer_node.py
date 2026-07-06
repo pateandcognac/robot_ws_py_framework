@@ -54,7 +54,7 @@ from logos_msgs.msg import (
 )
 from std_msgs.msg import String, Bool
 
-from performance_lib import luts
+from performance_lib import chunking, luts
 from performance_lib.face_schema import EYE_KEYS, EYE_STATE_BY_KEY, MAX_FRAMES
 from performance_lib.face_gen_client import FrameExpander, expand_frames_lenient
 
@@ -204,11 +204,13 @@ class PerformanceSequencerNode:
         return emoji, text, duration, cue_id
 
     def face_command_cb(self, msg):
-        """Silent face cue. Accepts any text, not just a known emoji."""
+        """Silent face cue. `text` may be emoji, prose, or both in one string."""
         try:
             emoji, text, duration, cue_id = self._parse_command(msg, 1.0)
             if not emoji and not text and not cue_id:
                 return
+            if not emoji:
+                emoji = chunking.find_emoji(text, self.face_lut.keys()) or ""
             expect_track = bool(json.loads(msg.data).get("expect_track", False))
             self.cue_queue.put(Cue(cue_id=cue_id, text=text, emoji=emoji,
                                    duration=duration, arms=False,
@@ -222,6 +224,8 @@ class PerformanceSequencerNode:
         """Arm-only cue; goes straight to the arm channel."""
         try:
             emoji, text, duration, _ = self._parse_command(msg, 2.0)
+            if not emoji or emoji not in self.arm_lut:
+                emoji = chunking.find_emoji(text or emoji, self.arm_lut.keys()) or emoji
             frames = self.arm_lut.get(emoji)
             if not frames:
                 rospy.logwarn("Arm command for '%s%s': no arm preset found.", emoji, text)
@@ -247,7 +251,8 @@ class PerformanceSequencerNode:
         deadline = time.time() + self.track_wait_s
         while time.time() < deadline and not rospy.is_shutdown():
             track = self.face_tracks.get(cue_id)
-            if track and (track["frames"] or track["status"] == "failed"):
+            # status "lut" = animator's explicit "play your own LUT" signal
+            if track and (track["frames"] or track["status"] in ("failed", "lut")):
                 return track
             rospy.sleep(0.1)
         rospy.logwarn("Timed out waiting %.1fs for face track %s; falling back.",

@@ -92,19 +92,45 @@ def test_luts_and_strict_expansion():
 
 def test_gen_store():
     with tempfile.TemporaryDirectory() as tmp:
-        path = os.path.join(tmp, "store.jsonl")
-        store = GenStore(path)
-        assert store.pick("hello there 👋") is None
-        anim = {"emoji": "👋", "frames": [{"beat": "wave"}]}
-        store.save("hello  there 👋", anim, model="m1", temperature=0.5, seed=7)
-        # whitespace-normalized key matches
-        assert store.pick("hello there 👋") == anim
-        assert store.pick("hello there 👋", model="other") is None
+        store = GenStore(tmp, cap_per_emoji=3)
+        assert store.pick("👋") is None
+        assert store.save("", {"frames": [1]}, model="m") is None  # text-only: never saved
+        for i in range(5):
+            store.save("👋", {"emoji": "👋", "frames": [{"beat": "take %d" % i}]},
+                       model="m1", text="hello 👋")
+            time.sleep(0.002)  # distinct ms timestamps in filenames
+        # cap rolled: only the 3 newest takes remain
+        assert len(store) == 3
+        picked = store.pick("👋")
+        assert picked["frames"][0]["beat"] in ("take 2", "take 3", "take 4")
         # reload from disk
-        store2 = GenStore(path)
-        assert len(store2) == 1
-        assert store2.pick("hello there 👋") == anim
-    print("ok: gen store round-trip")
+        store2 = GenStore(tmp, cap_per_emoji=3)
+        assert len(store2) == 3
+        assert store2.pick("👋")["frames"][0]["beat"].startswith("take")
+        assert store2.pick("🌋") is None
+    print("ok: gen store per-emoji cap + rollover")
+
+
+def test_chunking():
+    from performance_lib.chunking import subchunk_pairs, subchunk_text, find_emoji
+
+    # short sentences stay whole, one per chunk
+    assert subchunk_text("Hi there. All good?") == ["Hi there.", "All good?"]
+    # long emoji-less prose gets broken at clause punctuation under the limit
+    long = ("I have been pondering the mysteries of the charging dock, "
+            "which hums quietly in the corner while the household sleeps, "
+            "and I have concluded that it dreams of electric sheep as well.")
+    chunks = subchunk_text(long)
+    assert all(len(c) <= 100 for c in chunks), [len(c) for c in chunks]
+    assert " ".join(chunks).replace(" ", "") == long.replace(" ", "")
+    # emoji stays on the last subchunk of its span
+    pairs = subchunk_pairs([(long, "🐑"), ("Short bit", "")])
+    assert pairs[-2][1] == "🐑" and pairs[-2][0] == chunks[-1]
+    assert all(e == "" for _, e in pairs[:-2])
+    # emoji extraction from merged gesture text
+    assert find_emoji("volcanic fury 🌋 rising", {"🌋", "🌊"}) == "🌋"
+    assert find_emoji("no emoji here", {"🌋"}) is None
+    print("ok: chunking + emoji extraction")
 
 
 def test_live_generation():
@@ -138,6 +164,7 @@ if __name__ == "__main__":
     test_lenient_expansion_and_clamp()
     test_luts_and_strict_expansion()
     test_gen_store()
+    test_chunking()
     if "--live" in sys.argv:
         test_live_generation()
     print("all tests passed")

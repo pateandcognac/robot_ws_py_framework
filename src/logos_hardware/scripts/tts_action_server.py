@@ -14,7 +14,9 @@ import threading
 from collections import deque
 from std_msgs.msg import Bool, String
 from logos_msgs.msg import SpeechData
-from logos_msgs.msg import SpeakAction, SpeakGoal, SpeakResult, SpeakFeedback 
+from logos_msgs.msg import SpeakAction, SpeakGoal, SpeakResult, SpeakFeedback
+
+from performance_lib.chunking import subchunk_pairs
 
 # Global variable for preset emojis
 PRESET_EMOJIS = set()
@@ -345,7 +347,10 @@ class SpeakActionServer:
         except json.JSONDecodeError:
             pass
 
-        chunks = split_text_emoji(utterance_text, PRESET_EMOJIS)
+        # Split at emoji, then subdivide long spans by sentence/clause
+        # (~80 chars soft, ~100 hard) so every cue is a performable beat
+        # even in emoji-less stretches.
+        chunks = subchunk_pairs(split_text_emoji(utterance_text, PRESET_EMOJIS))
 
         self._utterance_counter += 1
         utterance_id = "u{}_{}".format(int(time.time()), self._utterance_counter)

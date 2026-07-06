@@ -12,17 +12,21 @@ cue through a configurable policy cascade, and publishes resolved tracks on
 
 Policy cascade steps (ordered, comma-separated in params or lists in
 per-call overrides):
-- "lut":      if the cue's emoji exists in the master semantic LUT, stop and
-              publish nothing -- the sequencer plays the LUT locally for free.
-- "saved":    if the saved-generation store has an entry for this cue's
-              generation text, publish a random saved take (source="saved").
-- "generate": run the tiny model (source="generated"); optionally save the
-              result to the store.
+- "lut":      pure-emoji cues whose emoji exists in the master semantic LUT
+              stop here (a status="lut" signal releases any sequencer wait;
+              the sequencer plays its own LUT copy). Cues carrying prose
+              fall through so text can shape a generated face.
+- "saved":    publish a random take from the per-emoji rolling GenStore
+              library (source="saved").
+- "generate": run the tiny model (source="generated", streamed); emoji-keyed
+              results are saved to the rolling library, plain-text results
+              stay ephemeral. On failure, fall back to a LUT face (the cue's
+              emoji, a recent emoji, or ~fallback_emoji).
 
 Default policies:
-- TTS cues (~tts_policy, default "saved,generate"): always try for a bespoke
-  text-shaped face; the sequencer's LUT cold-open covers us if we're late,
-  so speech never blocks on generation.
+- TTS cues (~tts_policy, default "generate,saved,lut"): fresh bespoke faces
+  first; the sequencer's LUT cold-open covers us if we're late, so speech
+  never blocks on generation.
 - Command cues (~command_policy, default "lut,saved,generate"): emoji-only
   gestures use the LUT when it exists; anything else falls through to the
   model.
@@ -40,9 +44,12 @@ import rospy
 from std_msgs.msg import String
 
 from performance_lib import luts
+from performance_lib.chunking import find_emoji, strip_emoji
 from performance_lib.face_gen_client import (
     DEFAULT_MODEL,
-    DEFAULT_STORE_PATH,
+    DEFAULT_STORE_DIR,
+    DEFAULT_STORE_CAP,
+    DEFAULT_TIMEOUT_S,
     FaceGenClient,
     FaceGenError,
     GenStore,
@@ -62,7 +69,8 @@ def parse_policy(value, default):
 
 
 class GenJob:
-    def __init__(self, cue_id, gen_text, emoji, policy, temperature, seed, model, save):
+    def __init__(self, cue_id, gen_text, emoji, policy, temperature, seed, model, save,
+                 has_plain_text=False):
         self.cue_id = cue_id
         self.gen_text = gen_text
         self.emoji = emoji
@@ -71,6 +79,10 @@ class GenJob:
         self.seed = seed
         self.model = model
         self.save = save
+        # True when the cue carries prose beyond emoji: the "lut" cascade
+        # step only swallows pure-emoji cues, so text always gets a chance
+        # to shape a generated face.
+        self.has_plain_text = has_plain_text
 
 
 class FaceAnimatorNode:
@@ -78,11 +90,12 @@ class FaceAnimatorNode:
         rospy.init_node('face_animator_node', anonymous=False)
 
         self.default_model = rospy.get_param('~model', DEFAULT_MODEL)
-        self.default_temperature = float(rospy.get_param('~temperature', 0.5))
+        self.default_temperature = float(rospy.get_param('~temperature', 0.3))
         # seed <= 0 means "unseeded": every generation is a fresh take
         self.default_seed = int(rospy.get_param('~seed', 0))
         self.tts_policy = parse_policy(
-            rospy.get_param('~tts_policy', 'saved,generate'), ['saved', 'generate'])
+            rospy.get_param('~tts_policy', 'generate,saved,lut'),
+            ['generate', 'saved', 'lut'])
         self.command_policy = parse_policy(
             rospy.get_param('~command_policy', 'lut,saved,generate'),
             ['lut', 'saved', 'generate'])
@@ -90,13 +103,20 @@ class FaceAnimatorNode:
         # Stream frames to the sequencer as they decode (first face motion in
         # ~1s instead of after the full 4-15s generation).
         self.use_streaming = bool(rospy.get_param('~stream', True))
-        self.gen_timeout_s = float(rospy.get_param('~gen_timeout_s', 45.0))
+        self.gen_timeout_s = float(rospy.get_param('~gen_timeout_s', DEFAULT_TIMEOUT_S))
         self.generate_even_if_late = bool(rospy.get_param('~generate_even_if_late', False))
         self.max_pending_jobs = int(rospy.get_param('~max_pending_jobs', 12))
+        # Cue with no usable emoji whose generation fails: borrow a recently
+        # performed emoji's LUT face, or this default, so the face never
+        # just goes blank.
+        self.fallback_emoji = rospy.get_param('~fallback_emoji', '💬')
 
         self.face_lut = luts.load_semantic_face_lut(
             rospy.get_param('~face_lut_dir', luts.DEFAULT_FACE_SEMANTIC_DIR))
-        self.store = GenStore(rospy.get_param('~store_path', DEFAULT_STORE_PATH))
+        self.store = GenStore(
+            rospy.get_param('~store_path', DEFAULT_STORE_DIR),
+            cap_per_emoji=int(rospy.get_param('~store_cap', DEFAULT_STORE_CAP)))
+        self.recent_emojis = deque(maxlen=8)
         self.clients = {}
         self.clients_lock = threading.Lock()
 
@@ -144,6 +164,7 @@ class FaceAnimatorNode:
                 seed=perf.get("seed", self.default_seed),
                 model=perf.get("model", self.default_model),
                 save=bool(perf.get("save", self.save_generations)),
+                has_plain_text=bool(text),
             ))
 
     def face_command_cb(self, msg):
@@ -159,15 +180,29 @@ class FaceAnimatorNode:
         emoji = (data.get("emoji") or "").strip()
         if not text and not emoji:
             return
+        # Gestures arrive as one merged string: emoji, prose, or both.
+        # Resolve the LUT-relevant emoji ourselves.
+        if not emoji:
+            emoji = find_emoji(text, self.face_lut.keys()) or ""
+        gen_text = text if emoji in text else " ".join(x for x in (text, emoji) if x)
+        has_plain_text = bool(strip_emoji(text, self.face_lut.keys()))
+        policy = parse_policy(data.get("policy"), self.command_policy)
+        # Fast path: a pure-emoji LUT gesture needs no worker time -- release
+        # the sequencer's wait immediately, even if a generation is in flight.
+        if policy and policy[0] == "lut" and emoji and not has_plain_text \
+                and emoji in self.face_lut:
+            self.publish_track(cue_id, None, "lut", "lut")
+            return
         self.enqueue(GenJob(
             cue_id=cue_id,
-            gen_text=" ".join(x for x in (text, emoji) if x),
+            gen_text=gen_text,
             emoji=emoji,
-            policy=parse_policy(data.get("policy"), self.command_policy),
+            policy=policy,
             temperature=float(data.get("temperature", self.default_temperature)),
             seed=data.get("seed", self.default_seed),
             model=data.get("model", self.default_model),
             save=bool(data.get("save", self.save_generations)),
+            has_plain_text=has_plain_text,
         ))
 
     def cue_done_cb(self, msg):
@@ -216,15 +251,20 @@ class FaceAnimatorNode:
             return self.clients[model]
 
     def process_job(self, job):
+        if job.emoji:
+            self.recent_emojis.append(job.emoji)
         for step in job.policy:
             if step == "lut":
-                if job.emoji and job.emoji in self.face_lut:
-                    # Sequencer plays the LUT locally; nothing to publish.
+                # Only pure-emoji cues stop here; prose deserves a chance to
+                # shape a generated face further down the cascade.
+                if job.emoji and not job.has_plain_text and job.emoji in self.face_lut:
+                    # Sequencer plays its LUT locally; just release its wait.
+                    self.publish_track(job.cue_id, None, "lut", "lut")
                     return
             elif step == "saved":
-                animation = self.store.pick(job.gen_text)
+                animation = self.store.pick(job.emoji)
                 if animation:
-                    rospy.loginfo("Cue %s: saved take for '%s'", job.cue_id, job.gen_text)
+                    rospy.loginfo("Cue %s: saved take for %s", job.cue_id, job.emoji)
                     self.publish_track(job.cue_id, animation.get("frames"), "saved", "complete")
                     return
             elif step == "generate":
@@ -233,7 +273,21 @@ class FaceAnimatorNode:
                     return
                 if self.run_generation(job):
                     return
-        # Cascade exhausted without a track: tell the sequencer to stop waiting.
+        self.publish_fallback(job)
+
+    def publish_fallback(self, job):
+        """
+        Cascade exhausted (usually a failed generation for a text-only cue):
+        borrow a LUT face -- the cue's own emoji, a recently performed one,
+        or the configured default -- so the face never goes blank.
+        """
+        for emoji in [job.emoji] + list(reversed(self.recent_emojis)) + [self.fallback_emoji]:
+            if emoji and emoji in self.face_lut:
+                rospy.logwarn("Cue %s: falling back to LUT face %s for '%s'",
+                              job.cue_id, emoji, job.gen_text)
+                self.publish_track(
+                    job.cue_id, self.face_lut[emoji]["frames"], "lut_fallback", "complete")
+                return
         self.publish_track(job.cue_id, None, "none", "failed")
 
     def run_generation(self, job):
@@ -250,9 +304,7 @@ class FaceAnimatorNode:
             rospy.loginfo("Cue %s: generated %d frames in %.1fs for '%s'",
                           job.cue_id, len(frames), time.time() - t0, job.gen_text)
             self.publish_track(job.cue_id, frames, "generated", "complete")
-            if job.save:
-                self.store.save(job.gen_text, obj, model=job.model,
-                                temperature=job.temperature, seed=seed)
+            self.maybe_save(job, obj, seed)
             return True
 
         # Streaming: push each frame to the sequencer the moment it decodes.
@@ -284,10 +336,15 @@ class FaceAnimatorNode:
                       job.cue_id, len(frames), time.time() - t0, job.gen_text)
         # Final authoritative track (replaces the appended partials).
         self.publish_track(job.cue_id, frames, "generated", "complete")
-        if job.save and obj:
-            self.store.save(job.gen_text, obj, model=job.model,
-                            temperature=job.temperature, seed=seed)
+        if obj:
+            self.maybe_save(job, obj, seed)
         return True
+
+    def maybe_save(self, job, obj, seed):
+        """Persist only emoji-keyed takes; plain-text results stay ephemeral."""
+        if job.save and job.emoji:
+            self.store.save(job.emoji, obj, model=job.model, text=job.gen_text,
+                            temperature=job.temperature, seed=seed)
 
     def publish_track(self, cue_id, frames, source, status, append=False):
         payload = {

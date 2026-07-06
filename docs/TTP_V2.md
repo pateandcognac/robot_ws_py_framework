@@ -40,9 +40,12 @@ Replaced (kept on disk for revert): `audio_and_face_playback.py`,
   `tools/annotate_arm_beats.py` (gemini-2.5-flash-lite writes only the beat
   strings; poses convert programmatically). Runtime arm playback still uses
   legacy `animations/arms/` until an arm model lands.
-- **Generated faces** (`animations/face_generated/face_gen_store.jsonl`):
-  append-only scrapbook of tiny-model takes, keyed by generation text.
-  Never mixed into the LUT dirs (those stay the training source of truth).
+- **Generated faces** (`animations/face_generated/face_gen_<emoji-slug>__<ts>.json`):
+  rolling per-emoji library of tiny-model takes, at most `~store_cap` (5)
+  per emoji — oldest rolls out, so the library accumulates and refreshes
+  over time. Only emoji-keyed takes are saved; plain-text-inspired results
+  stay ephemeral. Never mixed into the LUT dirs (those stay the training
+  source of truth).
 
 Canonical schema code: `src/logos_hardware/scripts/performance_lib/`
 (`face_schema.py`, `face_gen_client.py`, `luts.py`);
@@ -64,27 +67,38 @@ Arm equivalent: `tools/arm_animation_schema.py`.
 
 ## Policy cascade & knobs
 
+The director chunks utterances at emoji *and* by sentence/long clause
+(~80 chars soft, 100 hard; breaks at sentence enders, then clause
+punctuation, then whitespace — `performance_lib/chunking.py`), so
+emoji-less prose still gets per-sentence face cues.
+
 Animator resolves each cue through an ordered cascade; each step either
 handles the cue or falls through:
 
-- `lut` — emoji exists in master LUT → publish nothing (sequencer plays it)
-- `saved` — replay a random saved take for this exact generation text
-- `generate` — run the tiny model (streamed frame-by-frame by default)
+- `lut` — pure-emoji cue with a LUT entry → publish a status="lut" signal
+  (sequencer plays its own copy); cues carrying prose fall through
+- `saved` — replay a random take from the per-emoji rolling library
+- `generate` — run the tiny model (streamed frame-by-frame by default);
+  on failure fall back to a LUT face: the cue's emoji, a recently
+  performed emoji, or `~fallback_emoji` (💬)
 
-Defaults: TTS cues `saved,generate` (bespoke text-shaped faces; LUT
+Defaults: TTS cues `generate,saved,lut` (fresh bespoke faces first; LUT
 cold-open covers late generations — speech never blocks). Command cues
 `lut,saved,generate`.
 
-Animator params: `~model`, `~temperature` (0.5), `~seed` (0=fresh takes),
-`~tts_policy`, `~command_policy`, `~save_generations` (true), `~stream`
-(true), `~generate_even_if_late` (false), `~gen_timeout_s` (45).
+Animator params: `~model` (q4_K_M), `~temperature` (0.3), `~seed`
+(0=fresh takes), `~tts_policy`, `~command_policy`, `~save_generations`
+(true), `~store_cap` (5), `~stream` (true), `~generate_even_if_late`
+(false), `~gen_timeout_s` (30 — runaway guard only; streaming means it
+never adds latency), `~fallback_emoji`.
 Sequencer params: `~track_wait_s` (15, silent expect_track gestures),
 `~switch_threshold` (0.6), `~face_lut_dir`, `~arm_lut_dir`.
 
-Per-call: `emote.ttp(text, face="lut"/"saved,generate"/..., face_temperature=,
-face_seed=, face_model=, face_save=)` rides in
-`engine_params["performance"]`; `emote.gesture(emoji, text=..., policy=...,
-temperature=...)` rides in the command payload.
+Logos-facing API (deliberately slim; knobs above stay backend):
+`emote.ttp(text, face="lut"/"generate,saved,lut"/...)` and
+`emote.gesture(text, duration, channel, policy=)` where `text` is one
+string — emoji, prose, or both; the backend extracts the emoji for
+LUT/arm lookups and prompts the face model with the string as given.
 
 The "sane mode" is `face_policy="lut"` everywhere (zero compute, original
 behavior). The "already cool" mode is `saved` — replaying the model's

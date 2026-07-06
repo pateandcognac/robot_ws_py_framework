@@ -13,6 +13,7 @@ import copy
 import json
 import os
 import random
+import re
 import threading
 import time
 from typing import Any, Dict, Iterator, List, Optional, Tuple
@@ -22,7 +23,7 @@ import requests
 from .face_schema import DEFAULT_POSE, NUMERIC_RANGES, CONCRETE_EYE_SIDES
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
-DEFAULT_MODEL = "smollm2-135m-face-lora-34k:q2_K"
+DEFAULT_MODEL = "smollm2-135m-face-lora-34k:q4_K_M"
 
 # Must match training exactly. Do not edit.
 SYSTEM_PROMPT = "Generate only valid JSON for a Logos robot face animation. No markdown. No explanation."
@@ -32,11 +33,13 @@ _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_SCHEMA_PATH = os.path.normpath(
     os.path.join(_THIS_DIR, "..", "..", "schemas", "ollama_response_format.json")
 )
-DEFAULT_STORE_PATH = "/home/robot/robot_ws/animations/face_generated/face_gen_store.jsonl"
+DEFAULT_STORE_DIR = "/home/robot/robot_ws/animations/face_generated"
+DEFAULT_STORE_CAP = 5  # rolling generations kept per emoji
 
 # A generation hanging far past normal latency is a degenerate repetition
-# loop, not slow progress (see TINY_FACE_DEPLOYMENT.md).
-DEFAULT_TIMEOUT_S = 45.0
+# loop, not slow progress (see TINY_FACE_DEPLOYMENT.md). Streaming playback
+# means this never adds latency; it only kills runaways.
+DEFAULT_TIMEOUT_S = 30.0
 
 
 class FaceGenError(RuntimeError):
@@ -175,79 +178,108 @@ class StreamingFrameParser:
         return frames
 
 
+def emoji_slug(emoji: str) -> str:
+    """Deterministic filesystem slug for an emoji (unicode names)."""
+    import unicodedata
+    parts = []
+    for ch in emoji:
+        try:
+            parts.append(unicodedata.name(ch).lower())
+        except ValueError:
+            parts.append("u{:04x}".format(ord(ch)))
+    slug = re.sub(r"[^a-z0-9]+", "_", "_".join(parts)).strip("_")
+    return slug[:80] or "unknown"
+
+
 class GenStore:
     """
-    Append-only JSONL store of tiny-model generations, indexed by input text.
+    Rolling per-emoji library of tiny-model face generations.
 
-    Kept strictly separate from the LUT dirs: those are the Gemini-authored
-    training source of truth, this is the baby model's scrapbook. Multiple
-    saved generations for the same text are all kept; pick() returns a random
-    one so replayed lines still vary.
+    One JSON file per take: face_gen_<emoji-slug>__<ts_ms>.json in the store
+    dir, holding {emoji, text, model, temperature, ts, animation}. At most
+    `cap` takes are kept per emoji; saving beyond the cap deletes the oldest,
+    so a full library accumulates and rolls over with time. pick(emoji)
+    shuffles among that emoji's saved takes.
+
+    Only emoji-keyed takes are stored -- plain-text-inspired generations are
+    ephemeral by design. Kept strictly separate from the LUT dirs (the
+    Gemini-authored training source of truth); this is the baby model's
+    scrapbook.
     """
 
-    def __init__(self, path: str = DEFAULT_STORE_PATH):
-        self.path = path
+    def __init__(self, path: str = DEFAULT_STORE_DIR, cap_per_emoji: int = DEFAULT_STORE_CAP):
+        self.dir = path
+        self.cap = max(1, int(cap_per_emoji))
         self._lock = threading.Lock()
-        self._index: Dict[str, List[Dict[str, Any]]] = {}
+        # slug -> sorted list of filenames (oldest first; ts is in the name)
+        self._index: Dict[str, List[str]] = {}
         self._load()
 
-    @staticmethod
-    def _key(text: str) -> str:
-        return " ".join(text.split())
-
     def _load(self) -> None:
-        if not os.path.exists(self.path):
+        if not os.path.isdir(self.dir):
             return
-        with open(self.path, encoding="utf-8") as f:
-            for line in f:
-                line = line.strip()
-                if not line:
-                    continue
-                try:
-                    rec = json.loads(line)
-                except json.JSONDecodeError:
-                    continue
-                if isinstance(rec, dict) and rec.get("text") is not None and rec.get("animation"):
-                    self._index.setdefault(self._key(rec["text"]), []).append(rec)
+        for name in sorted(os.listdir(self.dir)):
+            if name.startswith("face_gen_") and name.endswith(".json") and "__" in name:
+                slug = name[len("face_gen_"):].rsplit("__", 1)[0]
+                self._index.setdefault(slug, []).append(name)
 
     def __len__(self) -> int:
         return sum(len(v) for v in self._index.values())
 
-    def lookup(self, text: str, model: Optional[str] = None) -> List[Dict[str, Any]]:
-        recs = self._index.get(self._key(text), [])
-        if model:
-            recs = [r for r in recs if r.get("model") == model]
-        return recs
-
-    def pick(self, text: str, model: Optional[str] = None) -> Optional[Dict[str, Any]]:
-        recs = self.lookup(text, model)
-        return random.choice(recs)["animation"] if recs else None
+    def pick(self, emoji: str) -> Optional[Dict[str, Any]]:
+        """Random saved take for this emoji, or None."""
+        if not emoji:
+            return None
+        with self._lock:
+            names = list(self._index.get(emoji_slug(emoji), []))
+        random.shuffle(names)
+        for name in names:
+            try:
+                with open(os.path.join(self.dir, name), encoding="utf-8") as f:
+                    rec = json.load(f)
+                if rec.get("animation"):
+                    return rec["animation"]
+            except Exception:
+                continue
+        return None
 
     def save(
         self,
-        text: str,
+        emoji: str,
         animation: Dict[str, Any],
         model: str,
+        text: str = "",
         temperature: float = 0.0,
         seed: Optional[int] = None,
-        extra: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+    ) -> Optional[str]:
+        """Save a take for an emoji, rolling out the oldest beyond the cap."""
+        if not emoji:
+            return None  # plain-text takes are never persisted
+        slug = emoji_slug(emoji)
+        name = "face_gen_{}__{}.json".format(slug, int(time.time() * 1000))
         rec = {
             "ts": time.time(),
-            "model": model,
+            "emoji": emoji,
             "text": text,
+            "model": model,
             "temperature": temperature,
             "seed": seed,
             "animation": animation,
         }
-        if extra:
-            rec.update(extra)
         with self._lock:
-            os.makedirs(os.path.dirname(self.path), exist_ok=True)
-            with open(self.path, "a", encoding="utf-8") as f:
-                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-            self._index.setdefault(self._key(text), []).append(rec)
-        return rec
+            os.makedirs(self.dir, exist_ok=True)
+            with open(os.path.join(self.dir, name), "w", encoding="utf-8") as f:
+                json.dump(rec, f, ensure_ascii=False, indent=1)
+            names = self._index.setdefault(slug, [])
+            names.append(name)
+            names.sort()
+            while len(names) > self.cap:
+                oldest = names.pop(0)
+                try:
+                    os.remove(os.path.join(self.dir, oldest))
+                except OSError:
+                    pass
+        return name
 
 
 class FaceGenClient:
