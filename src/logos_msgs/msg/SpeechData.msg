@@ -7,3 +7,4 @@ int32 sample_rate         # e.g., 24000 for Kokoro, 22050 for Piper
 float32 duration          # Duration in seconds
 int32 current_chunk_index # using index to track last chunk
 int32 total_chunks
+string cue_id             # TTP v2: correlates this chunk with /performance/cue_announce and face tracks ("" if none)

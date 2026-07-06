@@ -12,7 +12,7 @@ import io
 import scipy.io.wavfile as wavfile
 import threading
 from collections import deque
-from std_msgs.msg import Bool
+from std_msgs.msg import Bool, String
 from logos_msgs.msg import SpeechData
 from logos_msgs.msg import SpeakAction, SpeakGoal, SpeakResult, SpeakFeedback 
 
@@ -206,6 +206,11 @@ class SpeakActionServer:
     def __init__(self, name):
         self._action_name = name
         self._speech_data_pub = rospy.Publisher('/face/tts_chunk', SpeechData, queue_size=10)
+        # TTP v2: announce cues (text+emoji chunks) as soon as the utterance is
+        # split, *before* synthesis, so the animator can generate face tracks
+        # in parallel with TTS. JSON payload, see performance_sequencer_node.py.
+        self._cue_announce_pub = rospy.Publisher('/performance/cue_announce', String, queue_size=10)
+        self._utterance_counter = 0
 
         global g_is_speaking_pub
         g_is_speaking_pub = rospy.Publisher('/tts/is_speaking', Bool, queue_size=1, latch=True)
@@ -327,7 +332,38 @@ class SpeakActionServer:
         if not PRESET_EMOJIS:
             load_preset_emojis_once()
 
+        # TTP v2: pull performance-pipeline options out of engine_params so
+        # they never reach the TTS server. e.g. {"performance": {"face_policy":
+        # ["saved", "generate"], "temperature": 0.7}}
+        performance_params = {}
+        engine_params_json = goal.engine_params
+        try:
+            parsed_params = json.loads(goal.engine_params) if goal.engine_params else {}
+            if isinstance(parsed_params, dict) and "performance" in parsed_params:
+                performance_params = parsed_params.pop("performance") or {}
+                engine_params_json = json.dumps(parsed_params)
+        except json.JSONDecodeError:
+            pass
+
         chunks = split_text_emoji(utterance_text, PRESET_EMOJIS)
+
+        self._utterance_counter += 1
+        utterance_id = "u{}_{}".format(int(time.time()), self._utterance_counter)
+        cue_ids = ["{}:{}".format(utterance_id, i) for i in range(len(chunks))]
+
+        # Announce all cues before any synthesis so face-track generation for
+        # cue N can run while cue 0..N-1 are still in TTS or playback.
+        announce = {
+            "utterance_id": utterance_id,
+            "engine": goal.engine,
+            "performance": performance_params,
+            "cues": [
+                {"cue_id": cue_ids[i], "index": i, "text": t, "emoji": e}
+                for i, (t, e) in enumerate(chunks)
+            ],
+        }
+        self._cue_announce_pub.publish(String(data=json.dumps(announce, ensure_ascii=False)))
+
         feedback.total_chunks = len(chunks)
         total_calculated_duration = 0.0
         chunks_sent = 0
@@ -348,7 +384,7 @@ class SpeakActionServer:
             audio_data_np, sample_rate = synthesize_audio_remote(
                 text_snippet,
                 goal.engine,
-                goal.engine_params
+                engine_params_json
             )
 
             if len(audio_data_np) > 0:
@@ -362,6 +398,7 @@ class SpeakActionServer:
             total_calculated_duration += chunk_duration
 
             msg = SpeechData()
+            msg.cue_id = cue_ids[i]
             msg.text_snippet = text_snippet
             msg.emoji = emoji_snippet if emoji_snippet in PRESET_EMOJIS else ""
             msg.audio_data = audio_data_np.tolist()

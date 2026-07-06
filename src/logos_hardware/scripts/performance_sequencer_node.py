@@ -74,7 +74,7 @@ class Cue:
 
     def __init__(self, cue_id="", text="", emoji="", duration=0.5,
                  audio_data=None, sample_rate=0, chunk_index=0, total_chunks=0,
-                 face=True, arms=True):
+                 face=True, arms=True, expect_track=False):
         self.cue_id = cue_id
         self.text = text
         self.emoji = emoji
@@ -85,6 +85,10 @@ class Cue:
         self.total_chunks = total_chunks  # 0 => not part of a TTS stream
         self.face = face
         self.arms = arms
+        # expect_track: a silent cue that should wait (bounded) for the
+        # animator's face track instead of falling straight through to the
+        # LUT. TTS cues never set this -- speech never blocks on generation.
+        self.expect_track = expect_track
 
 
 class FaceTrackStore:
@@ -92,13 +96,22 @@ class FaceTrackStore:
 
     def __init__(self):
         self._tracks = {}
+        self._done = []  # recently played cue_ids; late tracks are dropped
         self._lock = threading.Lock()
+
+    def mark_done(self, cue_id):
+        with self._lock:
+            self._done.append(cue_id)
+            if len(self._done) > 256:
+                self._done = self._done[-128:]
 
     def update(self, payload):
         cue_id = payload.get("cue_id")
         if not cue_id:
             return
         with self._lock:
+            if cue_id in self._done:
+                return
             track = self._tracks.setdefault(
                 cue_id, {"frames": [], "status": "partial", "source": ""})
             frames = payload.get("frames")
@@ -151,6 +164,8 @@ class PerformanceSequencerNode:
         self.audio_wave_pub = rospy.Publisher('/face/mouth/audio_wave', AudioWave, queue_size=10)
         self.arm_pub = rospy.Publisher('/arm/command', ArmPose, queue_size=10)
         self.is_speaking_pub = rospy.Publisher('/tts/is_speaking', Bool, queue_size=1, latch=True)
+        self.cue_done_pub = rospy.Publisher('/performance/cue_done', String, queue_size=20)
+        self.track_wait_s = float(rospy.get_param('~track_wait_s', 15.0))
 
         rospy.Subscriber('/face/tts_chunk', SpeechData, self.tts_chunk_cb)
         rospy.Subscriber('/face/emoji_command', String, self.face_command_cb)
@@ -191,8 +206,10 @@ class PerformanceSequencerNode:
             emoji, text, duration, cue_id = self._parse_command(msg, 1.0)
             if not emoji and not text and not cue_id:
                 return
+            expect_track = bool(json.loads(msg.data).get("expect_track", False))
             self.cue_queue.put(Cue(cue_id=cue_id, text=text, emoji=emoji,
-                                   duration=duration, arms=False))
+                                   duration=duration, arms=False,
+                                   expect_track=expect_track))
             rospy.loginfo("Queued face cue: %s%s for %.1fs",
                           emoji, (" '" + text + "'") if text else "", duration)
         except (ValueError, json.JSONDecodeError) as e:
@@ -222,6 +239,8 @@ class PerformanceSequencerNode:
         """Return (sparse_semantic_frames, source) for a cue, or (None, '')."""
         if cue.cue_id:
             track = self.face_tracks.get(cue.cue_id)
+            if (track is None or not track["frames"]) and cue.expect_track:
+                track = self._wait_for_track(cue.cue_id)
             if track and track["frames"] and track["status"] != "failed":
                 return track["frames"], (track.get("source") or "animator")
         if cue.emoji and cue.emoji in self.face_lut:
@@ -230,6 +249,18 @@ class PerformanceSequencerNode:
             rospy.logwarn_throttle(
                 5, "No face animation available for '%s%s'.", cue.emoji, cue.text)
         return None, ""
+
+    def _wait_for_track(self, cue_id):
+        """Bounded wait for an animator track (silent expect_track cues only)."""
+        deadline = time.time() + self.track_wait_s
+        while time.time() < deadline and not rospy.is_shutdown():
+            track = self.face_tracks.get(cue_id)
+            if track and (track["frames"] or track["status"] == "failed"):
+                return track
+            rospy.sleep(0.1)
+        rospy.logwarn("Timed out waiting %.1fs for face track %s; falling back.",
+                      self.track_wait_s, cue_id)
+        return self.face_tracks.get(cue_id)
 
     def publish_face_pose(self, pose, step_duration):
         """Publish one expanded full pose to the typed face topics."""
@@ -335,6 +366,8 @@ class PerformanceSequencerNode:
 
         if cue.cue_id:
             self.face_tracks.pop(cue.cue_id)
+            self.face_tracks.mark_done(cue.cue_id)
+            self.cue_done_pub.publish(String(data=json.dumps({"cue_id": cue.cue_id})))
 
         # End of a TTS stream: clear the speaking flag after the last chunk.
         if cue.total_chunks > 0 and cue.chunk_index == cue.total_chunks - 1:

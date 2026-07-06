@@ -36,4 +36,11 @@
   <node name="tts_action_server" pkg="logos_hardware" type="tts_action_server.py" output="screen"/>
   <node name="performance_sequencer" pkg="logos_hardware" type="performance_sequencer_node.py" output="screen"/>
 
+  <!-- Face Animator: tiny on-CPU LLM (via Ollama) that turns cue text/emoji
+       into bespoke face tracks. Sequencer falls back to the LUT without it,
+       so this node is safe to disable. Knobs: ~model, ~temperature,
+       ~tts_policy / ~command_policy ("lut,saved,generate" cascades),
+       ~save_generations. -->
+  <node name="face_animator" pkg="logos_hardware" type="face_animator_node.py" output="screen"/>
+
 </launch>
