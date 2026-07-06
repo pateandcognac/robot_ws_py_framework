@@ -22,15 +22,18 @@
   <!-- 2. EXPRESSIVE NODES (Python 3.8 System) -->
   
   <!-- Arm Logic -->
-  <node name="arm_playback" pkg="logos_hardware" type="arm_playback_node.py" output="screen"/>
   <node name="arm_controller" pkg="logos_hardware" type="arm_controller_node.py" output="screen"/>
-  
 
-  <!-- 3. TTS -->
-  <!-- rosrun logos_hardware tts_action_server.py  -->
-  <!-- rosrun logos_hardware face_playback.py -->
+
+  <!-- 3. TTP (Text-to-Performance) -->
+  <!-- The performance sequencer replaces the old audio_and_face_playback.py
+       + arm_playback_node.py pair (single playback clock for all tracks).
+       To revert, comment the sequencer and restore these two lines:
+  <node name="arm_playback" pkg="logos_hardware" type="arm_playback_node.py" output="screen"/>
+  <node name="tts_face_playback" pkg="logos_hardware" type="audio_and_face_playback.py" output="screen"/>
+  -->
 
   <node name="tts_action_server" pkg="logos_hardware" type="tts_action_server.py" output="screen"/>
-  <node name="tts_face_playback" pkg="logos_hardware" type="audio_and_face_playback.py" output="screen"/>
+  <node name="performance_sequencer" pkg="logos_hardware" type="performance_sequencer_node.py" output="screen"/>
 
 </launch>
