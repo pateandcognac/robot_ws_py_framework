@@ -29,8 +29,8 @@ per-call overrides):
               LUT face -- err, arm pose).
 
 Default cascade for both TTS and command cues: "generate,saved,lut" (fresh
-bespoke arm motion first; the sequencer's LUT cold-open covers us if we're
-late, so speech never blocks on generation). Tweakable globally via ROS
+bespoke arm motion first; the sequencer re-stretches whatever we deliver
+over the remaining cue time, so speech never blocks on generation). Tweakable globally via ROS
 params (~tts_policy, ~command_policy) and per-call via the cue-announce
 "performance" dict's "arm_policy" key or the command payload's "policy" key.
 """

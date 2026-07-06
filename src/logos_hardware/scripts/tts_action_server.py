@@ -407,6 +407,10 @@ class SpeakActionServer:
                     if goal_is_canceled():
                         for f in futures[i:]:
                             f.cancel()
+                        # Release the sequencer's pending cues for this
+                        # utterance -- announced audio is never coming.
+                        self._cue_announce_pub.publish(String(data=json.dumps(
+                            {"utterance_id": utterance_id, "canceled": True})))
                         result.success = False
                         result.final_message = "Canceled during synthesis."
                         result.total_duration = total_calculated_duration

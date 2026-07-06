@@ -25,8 +25,9 @@ per-call overrides):
 
 Default policies:
 - TTS cues (~tts_policy, default "generate,saved,lut"): fresh bespoke faces
-  first; the sequencer's LUT cold-open covers us if we're late, so speech
-  never blocks on generation.
+  first; the sequencer re-stretches whatever we deliver over the remaining
+  cue time (and stages our first frame pre-speech), so speech never blocks
+  on generation.
 - Command cues (~command_policy, default "lut,saved,generate"): emoji-only
   gestures use the LUT when it exists; anything else falls through to the
   model.
