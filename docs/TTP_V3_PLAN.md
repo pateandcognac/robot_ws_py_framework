@@ -23,10 +23,17 @@ timeframe elegantly rather than blocking anything on anything else.
   cascades and stream frames to `/performance/face_track` /
   `/performance/arm_track`. Streaming works; first frame ~0.7–2.5s under
   normal load.
-- Sequencer plays one TTS cue at a time (audio = master clock), LUT
-  cold-open with mid-cue track join before `~switch_threshold` (0.6),
-  arms on a parallel thread. `sync=True` (`performance.sync`) adds a
-  bounded first-frame wait (`~sync_wait_s`, 4s) per cue.
+- Sequencer plays one TTS cue at a time (audio = master clock). v2 has a
+  LUT "cold-open" with mid-cue track join before `~switch_threshold`
+  (0.6); arms on a parallel thread. `sync=True` (`performance.sync`) adds
+  a bounded first-frame wait (`~sync_wait_s`, 4s) per cue.
+  **DECIDED 2026-07-06: v3 drops the sequencer-side cold-open/LUT-switch
+  logic entirely.** Live generation lands in 1–2s; the effort goes into
+  elegantly fudging playback of the live-generated track instead. The LUT
+  survives as the *animator cascade* fallback (generate → saved → lut
+  still produces a track when generation fails), so the robot never
+  depends on a generation succeeding — the sequencer just no longer
+  second-guesses the track source mid-cue.
 - Arm rambling cutoff at `MAX_ACCEPTED_FRAMES=7` (stream closed early,
   truncated takes never saved).
 - Rolling per-emoji GenStores (`animations/face_generated/`,
@@ -61,10 +68,9 @@ and the robot itself is the last-resort q4_K_M).
 
 New JSON file, path via ROS param `~ollama_servers_config` on both
 animator nodes; default `/home/robot/robot_ws/config/ollama_servers.json`
-(create `config/` — it doesn't exist in robot_ws yet; keep a committed
-`ollama_servers.example.json` and gitignore the real one if it ever grows
-machine-specific hostnames Mark doesn't want committed — ASK him, he may
-be fine committing it).
+(create `config/` — it doesn't exist in robot_ws yet). **Mark's call:
+commit the real config with his LAN hostnames** — no example/gitignore
+dance needed.
 
 ```jsonc
 {
@@ -81,19 +87,26 @@ be fine committing it).
 }
 ```
 
-### Probing — at node startup only (Mark's explicit call)
+### Probing — background thread, never on the hot path (Mark's refined call)
 
-At animator startup, walk the list in order; first server that responds to
-`GET /api/tags` within `probe_timeout_s` **and** has the named model in its
-tag list wins. Log the choice loudly. No periodic re-probing, no per-call
-failover shopping. If a chosen remote server dies mid-session:
+Mark's rule: periodic probing is fine **as long as it never adds latency
+to a generation call** — no blocking timeout waits for a Pi that's turned
+off. So:
 
-- A generation failure already falls through the cascade (saved → lut),
-  so the robot degrades gracefully to its library/LUT.
-- Add one cheap resilience step: after N consecutive `ArmGenError`/
-  `FaceGenError` transport failures (N=3?), re-run the startup probe once
-  and switch to the next live server. That keeps "no constant pinging"
-  while avoiding a dead session. Confirm N with Mark or just pick 3.
+- At animator startup: walk the list in order; first server that responds
+  to `GET /api/tags` within `probe_timeout_s` **and** has the named model
+  in its tag list wins. Log the choice loudly.
+- A daemon thread re-runs the same probe on a slow period
+  (`~probe_interval_s`, default ~60s) and atomically swaps the cached
+  `(url, model)` choice. Generation calls only ever read the cache — zero
+  added latency. This gives both directions for free: a dead server gets
+  dropped within a minute, and when the beefy machine comes back up the
+  node upgrades back to it. Log on every switch.
+- Belt-and-suspenders: after 3 consecutive `ArmGenError`/`FaceGenError`
+  transport failures, trigger an immediate out-of-band re-probe instead
+  of waiting for the next tick (still off the request thread).
+- A generation failure still falls through the cascade (saved → lut), so
+  the robot degrades gracefully regardless.
 
 ### Code changes
 
@@ -110,7 +123,7 @@ failover shopping. If a chosen remote server dies mid-session:
   metadata field already records which model produced each take — no
   change needed there.
 
-Future hook (noted, not built): battery level / CPU temp as an input to
+Future hook (brainstormed, noted, not built): battery level / CPU temp as an input to
 policy selection (e.g. hot CPU → prefer `saved,lut` over `generate`).
 Design the pool helper so a "server score" function could slot in later,
 but do not implement sensors now.
@@ -162,7 +175,7 @@ first:
    delivered — streamed track frame 1, saved take frame 1, or LUT frame 1).
    *Only the first frame* — a held pose, like an actor hitting their mark
    before the curtain. **No further animatronic playback until speech
-   audio actually starts playing** (Mark's explicit rule). This makes
+   audio actually starts playing**. This makes
    waiting-for-kokoro look intentional instead of dead.
 3. **Audio lands** (`SpeechData` arrives): real `duration` replaces
    `est_duration`. Audio starts, face/arm timelines start pacing.
@@ -186,8 +199,10 @@ first:
 - Audio remains the master clock **once it exists**; `est_duration` is
   the provisional clock before that.
 - If face/arm first-frames beat audio: hold pose (rule 2).
-- If audio beats first-frames: exactly today's behavior (LUT cold-open,
-  mid-cue join before `switch_threshold`).
+- If audio beats first-frames: play the track from frame 1 whenever it
+  arrives, re-stretched over the remaining cue time (no LUT cold-open —
+  the animator cascade already substitutes LUT frames as the track when
+  generation fails, so there is always *a* track eventually).
 - A cue whose audio is late by more than `~audio_wait_s` (new param,
   suggest ~10s) plays out silently on `est_duration` (face/arm only) and
   logs a warning — don't wedge the queue behind a hung synthesis.
@@ -217,10 +232,20 @@ cue start): `{cue_id, text, emoji, duration, index, total}`.
 - Check `interface_helper_node.py` too — same subscription, likely wants
   the same switch (verify what it uses the text for first).
 - Keep publishing `/face/tts_chunk` unchanged for anything else listening.
-- Bonus: `SpeakTask.current_emoji()` in the Logos workspace's `emote.py`
-  currently keys off action *feedback* (synthesis-time). Consider a
-  follow-up where feedback also carries playback progress, but that
-  changes action semantics — flag to Mark, don't do silently.
+- **`SpeakTask` playhead upgrade (Mark: yes! — verified 2026-07-06).**
+  `SpeakTask` in the Logos workspace's `emote.py` *dead-reckons* playback:
+  `_feedback_cb` anchors `_playback_start_time` to the first chunk's
+  **synthesis completion** (+0.1s) and marches a wall-clock playhead
+  through chunk durations assuming instant, gapless playback. Every
+  sequencer-side delay (sync first-frame waits up to 4s/cue, track waits,
+  and v3's pre-speech staging / silent playout) makes the reckoned
+  playhead drift ahead of actual audio, and drift accumulates across cues.
+  Fix — **no action-semantics change needed**: `emote.py` subscribes to
+  `/performance/cue_playing` and re-anchors the playhead per cue from real
+  playback events (matching on cue index/text), keeping dead reckoning as
+  the fallback when no event arrives (sequencer not running). Pure
+  workspace-side change; `current_emoji()`/`current_text()`/`progress()`
+  all get honest for free.
 
 ---
 
@@ -247,11 +272,9 @@ cue start): `{cue_id, text, emoji, duration, index, total}`.
    a model emitting the frames array before the emoji key, and truncated
    final objects (drop, don't crash). Unit-test with adversarial chunk
    splits (the existing test feeds 1/3/7-char chunks — extend it).
-4. **Face cap too?** Face model has `MAX_FRAMES=12` in schema and no
-   runtime cap. For symmetry, consider `MAX_ACCEPTED_FRAMES` for faces as
-   well (12? 9?) using the same shared mechanism — ASK Mark, or make it a
-   param default-off for faces.
-
+4. **Face cap too — YES, at 9 (Mark's call).** Face model has
+   `MAX_FRAMES=12` in schema and no runtime cap. Apply the same shared
+   cutoff mechanism to face generations with `MAX_ACCEPTED_FRAMES=9`.
 ---
 
 ## Suggested execution order (each step commits + leaves system runnable)
@@ -293,17 +316,20 @@ cue start): `{cue_id, text, emoji, duration, index, total}`.
 - Keep the Logos-facing API (`emote.ttp` / `emote.gesture`) slim; new
   knobs stay backend (ROS params / config files) unless Mark asks.
 - Commit often, one behavior per commit; test before claiming done.
-- Don't commit machine-specific hostnames/credentials without asking
-  (the Ollama server config may qualify).
+- Don't commit machine-specific hostnames/credentials without asking.
+  (Asked: Mark OK'd committing the real Ollama server config.)
 
-## Open questions for Mark (ask before/during, don't block on them)
+## Open questions — ANSWERED by Mark 2026-07-06
 
-1. Ollama config: commit the real `config/ollama_servers.json` with your
-   LAN hostnames, or example-file-only + gitignored real one?
-2. Consecutive-failure threshold before re-probing servers (suggest 3)?
-3. Face-side frame cap for symmetry with arms' 7 (12? off by default?)?
-4. `~audio_wait_s` (silent-playout fallback when synthesis hangs): ~10s ok?
-5. Any interest in a `/performance/cue_playing`-driven upgrade to
-   `SpeakTask.current_emoji()` so Logos's choreography loops key off
-   *playback* progress instead of synthesis progress? (Changes observable
-   timing of existing Logos-workspace scripts — opt-in flag?)
+1. Ollama config: **commit the REAL one** with LAN hostnames.
+2. Re-probe resilience: **background periodic probing OK** as long as it
+   never adds latency to a generation call (see revised Probing section);
+   3-consecutive-failure immediate re-probe also approved.
+3. Face-side frame cap: **yes, 9**, same shared mechanism as arms.
+4. `~audio_wait_s` ≈ 10s silent-playout fallback: **approved**.
+5. `SpeakTask` playback-progress upgrade: **yes** — see the verified
+   design in Workstream D (subscribe-side fix in `emote.py`, no action
+   semantics change, dead-reckoning fallback retained).
+
+6. Cold-open behavior: **drop the sequencer-side LUT cold-open/switch
+   logic entirely** (see the DECIDED note in the v2 summary above).
