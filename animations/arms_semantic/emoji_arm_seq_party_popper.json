@@ -1,0 +1,56 @@
+{
+ "emoji": "🎉",
+ "ideation": "This animation sequence depicts the joyful expression of popping a party popper.  It uses dynamic arm movements to simulate the excitement and energy of the event. The sequence will alternate between dramatic arm positions to create a sense of playful chaos and excitement. Frame 1 starts with the arms extended outward in a wide 'V' shape, palms facing upward as if holding the popper.  Frame 2 shows the arms retracting slightly, creating anticipation before the explosion. Frame 3 depicts the 'explosion' itself, with arms shooting upward and outward, palms facing downward. Frame 4 shows a brief pause, with arms in a celebratory pose. Frame 5 brings the arms back to a relaxed position, signaling the end of the celebration.",
+ "frames": [
+  {
+   "beat": "arms extend wide, holding the popper with anticipation",
+   "arms": {
+    "both": {
+     "joint1": -45.0,
+     "joint2": 45.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms pull back slightly, gathering energy for the pop",
+   "arms": {
+    "both": {
+     "joint1": -20.0,
+     "joint2": 20.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "arms explode upward and outward in celebration",
+   "arms": {
+    "right": {
+     "joint1": 45.0,
+     "joint2": 90.0,
+     "wrist": -90.0
+    }
+   }
+  },
+  {
+   "beat": "arms hold a triumphant, celebratory pose",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 90.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "arms relax down, the party has begun",
+   "arms": {
+    "both": {
+     "joint1": 0.0,
+     "joint2": 0.0,
+     "wrist": 0.0
+    }
+   }
+  }
+ ]
+}

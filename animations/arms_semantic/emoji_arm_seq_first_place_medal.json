@@ -1,0 +1,51 @@
+{
+ "emoji": "🥇",
+ "ideation": "This sequence simulates a celebratory arm raise upon winning first place.  The animation starts with arms at the sides, then raises one arm in a celebratory arc, and finishes with both arms raised. The use of the two shoulder joints allows for a natural-looking arc in the arm's motion. The left arm remains relatively static to provide a contrast and to balance the robot’s motion.  The right arm will be the focus of the celebratory movement.",
+ "frames": [
+  {
+   "beat": "arms rest at the sides, awaiting victory",
+   "arms": {
+    "left": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": 10.0,
+     "joint2": -85.0,
+     "wrist": 0.0
+    }
+   }
+  },
+  {
+   "beat": "the right arm shoots up in a triumphant gesture",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -80.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -30.0,
+     "joint2": 60.0,
+     "wrist": 90.0
+    }
+   }
+  },
+  {
+   "beat": "both arms are raised high in celebration",
+   "arms": {
+    "left": {
+     "joint1": 0.0,
+     "joint2": -70.0,
+     "wrist": 0.0
+    },
+    "right": {
+     "joint1": -45.0,
+     "joint2": 90.0,
+     "wrist": 90.0
+    }
+   }
+  }
+ ]
+}
