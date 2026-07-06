@@ -28,10 +28,14 @@ Usage:
     # (director -> animator -> sequencer, the full running pipeline) so you
     # can watch synced face/arm playback and cue queueing live on the robot,
     # instead of only generating+saving in isolation. Requires ROS and a
-    # running tts_action_server/performance_sequencer/face_animator.
+    # running tts_action_server/performance_sequencer/face_animator(/arm_animator).
+    # --sync defaults on here (see TTP_V2.md) so fast engines actually get to
+    # show off live generation instead of always falling back to the LUT --
+    # this script is exactly the timing/aesthetics evaluation case it's for.
     tools/cycle_gemini_phrases.py --speak --engine kokoro --count 10
     tools/cycle_gemini_phrases.py --speak --engine piper --pause 2.5
     tools/cycle_gemini_phrases.py --speak --engine espeak --face-policy lut
+    tools/cycle_gemini_phrases.py --speak --engine espeak --no-sync  # compare vs. old behavior
 
     # --mutate: add entropy to each training-set phrase (word jostle, 1-2
     # random system-dictionary words, misspelling, casing, emoji position)
@@ -226,6 +230,8 @@ def run_speak_mode(args, items):
         performance["face_policy"] = args.face_policy
     if args.temperature is not None:
         performance["temperature"] = args.temperature
+    if args.sync:
+        performance["sync"] = True
 
     ok, failed = 0, 0
     run_t0 = time.time()
@@ -305,6 +311,14 @@ def main():
                                   "e.g. 'lut' or 'generate,saved,lut' (default: system default)")
     speak_group.add_argument("--wait-timeout", type=float, default=60.0,
                              help="max seconds to wait for each utterance to finish speaking")
+    speak_group.add_argument("--sync", action=argparse.BooleanOptionalAction, default=True,
+                             help="opt cues into the bounded first-frame wait "
+                                  "(performance.sync; see TTP_V2.md) so fast engines "
+                                  "(piper/espeak/festival) actually get to show off live "
+                                  "generation instead of always falling back to the LUT. "
+                                  "Default on -- this script is exactly the "
+                                  "timing/aesthetics evaluation case sync mode is for. "
+                                  "Use --no-sync to compare against the old zero-wait behavior.")
     args = ap.parse_args()
 
     items = load_items(args)
@@ -313,7 +327,7 @@ def main():
     if args.speak:
         print(f"{len(items)} emoji file(s) matched, {total_phrases} phrase(s) queued "
               f"(engine={args.engine}, pause={args.pause}s, "
-              f"face_policy={args.face_policy or 'default'}).")
+              f"face_policy={args.face_policy or 'default'}, sync={args.sync}).")
         if args.dry_run:
             for path, emoji, phrases in items:
                 for phrase in pick_phrases(phrases, args.phrases_per_emoji):
