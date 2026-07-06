@@ -25,7 +25,11 @@ class FaceHudBridgeNode:
         rospy.init_node('face_hud_bridge_node', anonymous=True)
 
         self.event_pub = rospy.Publisher('/face/hud/event', String, queue_size=50)
-        rospy.Subscriber('/face/tts_chunk', SpeechData, self.tts_callback)
+        # TTP v3: captions key off actual playback start, not synthesis
+        # completion -- the concurrent director runs ahead of the mouth, so
+        # /face/tts_chunk-driven captions visibly led the audio. Revert line:
+        # rospy.Subscriber('/face/tts_chunk', SpeechData, self.tts_callback)
+        rospy.Subscriber('/performance/cue_playing', String, self.cue_playing_callback)
         rospy.Subscriber('/cognition/input', CognitionInput, self.cognition_input_callback)
         rospy.Subscriber('/cognition/output', CognitionOutput, self.cognition_output_callback)
 
@@ -59,6 +63,15 @@ class FaceHudBridgeNode:
         self.stop_current_playback()
         self.msg_queue.put(('tts_chunk', msg))
 
+    def cue_playing_callback(self, msg):
+        """A cue's audio (or silent playout) just started at the speaker."""
+        try:
+            cue = json.loads(msg.data)
+        except json.JSONDecodeError:
+            return
+        self.stop_current_playback()
+        self.msg_queue.put(('cue_playing', cue))
+
     def cognition_input_callback(self, msg):
         self.msg_queue.put(('input', msg))
 
@@ -71,6 +84,8 @@ class FaceHudBridgeNode:
                 msg_type, msg = self.msg_queue.get(timeout=1)
                 if msg_type == 'tts_chunk':
                     self.handle_tts_chunk(msg)
+                elif msg_type == 'cue_playing':
+                    self.handle_cue_playing(msg)
                 elif msg_type == 'input':
                     self.handle_cognition_input(msg)
                 elif msg_type == 'output':
@@ -93,6 +108,23 @@ class FaceHudBridgeNode:
             duration=msg.duration,
             current_chunk_index=msg.current_chunk_index,
             total_chunks=msg.total_chunks,
+        )
+
+    def handle_cue_playing(self, cue):
+        """Caption a cue at the moment its audio actually starts."""
+        text = (cue.get("text") or "").strip()
+        if not text:
+            return
+
+        self.publish_event(
+            "status",
+            "caption",
+            text=text,
+            color="bright_magenta",
+            font="thick",
+            duration=float(cue.get("duration", 0.0)),
+            current_chunk_index=int(cue.get("index", 0)),
+            total_chunks=int(cue.get("total", 0)),
         )
 
     def handle_cognition_input(self, msg):

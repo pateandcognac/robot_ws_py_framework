@@ -57,7 +57,11 @@ class InterfaceHelperNode:
         rospy.init_node('interface_helper_node', anonymous=True)
 
         # Subscribers
-        rospy.Subscriber('/face/tts_chunk', SpeechData, self.tts_callback)
+        # TTP v3: captions key off actual playback start, not synthesis
+        # completion -- the concurrent director runs ahead of the mouth, so
+        # /face/tts_chunk-driven captions visibly led the audio. Revert line:
+        # rospy.Subscriber('/face/tts_chunk', SpeechData, self.tts_callback)
+        rospy.Subscriber('/performance/cue_playing', String, self.cue_playing_callback)
         rospy.Subscriber('/cognition/input', CognitionInput, self.cognition_input_callback)
         rospy.Subscriber('/cognition/output', CognitionOutput, self.cognition_output_callback)
 
@@ -122,6 +126,16 @@ class InterfaceHelperNode:
         self.stop_current_playback()
         self.msg_queue.put(('tts_chunk', msg))
 
+    def cue_playing_callback(self, msg):
+        """A cue's audio (or silent playout) just started at the speaker."""
+        try:
+            cue = json.loads(msg.data)
+        except json.JSONDecodeError:
+            return
+        # Stop audio playback on new speech (voice overrides sound effects)
+        self.stop_current_playback()
+        self.msg_queue.put(('cue_playing', cue))
+
     def cognition_input_callback(self, msg: CognitionInput):
         """Handle inputs to the brain."""
         self.msg_queue.put(('input', msg))
@@ -138,6 +152,8 @@ class InterfaceHelperNode:
                 msg_type, msg = self.msg_queue.get(timeout=1)
                 if msg_type == 'tts_chunk':
                     self.handle_tts_chunk(msg)
+                elif msg_type == 'cue_playing':
+                    self.handle_cue_playing(msg)
                 elif msg_type == 'input':
                     self.handle_cognition_input(msg)
                 elif msg_type == 'output':
@@ -272,8 +288,17 @@ class InterfaceHelperNode:
 
     def handle_tts_chunk(self, msg):
         """Process tts_chunk messages (Scrolling Figlet)."""
-        text_snippet = msg.text_snippet + "\n"
-        duration = msg.duration
+        self._render_figlet_caption(msg.text_snippet, msg.duration)
+
+    def handle_cue_playing(self, cue):
+        """Caption a cue at the moment its audio actually starts."""
+        text = (cue.get("text") or "").strip()
+        if text:
+            self._render_figlet_caption(text, float(cue.get("duration", 0.0)))
+
+    def _render_figlet_caption(self, text_snippet, duration):
+        """Scrolling Figlet caption paced over the cue duration."""
+        text_snippet = text_snippet + "\n"
 
         columns, _ = shutil.get_terminal_size(fallback=(80, 20))
         fig = Figlet(font='thick', width=columns) # thick, thin, big, chunky, standard, computer, contessa, cybermedium, doom, fuzzy, nancyj, os2, pebbles, pepper, puffy, roman, rounded, script, slant, slscript, small, smscript, smslant, standard, stop, straight, threepoint  twopoint font for tts caption, 
