@@ -47,7 +47,7 @@
        fine-tuned arm model (see TINY_ARM_DEPLOYMENT.md). Sequencer falls
        back to the semantic arm LUT without it, so this node is safe to
        disable. Default cascade is "generate,saved,lut" (unlike the face
-       animator's LUT-first command_policy) -- tweakable via ~tts_policy /
+       animator's LUT-first command_policy) - tweakable via ~tts_policy /
        ~command_policy, and per-call via the cue-announce "arm_policy" key
        or a command payload's "policy" key. -->
   <node name="arm_animator" pkg="logos_hardware" type="arm_animator_node.py" output="screen"/>

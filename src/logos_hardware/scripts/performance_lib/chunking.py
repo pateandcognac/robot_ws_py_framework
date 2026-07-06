@@ -15,6 +15,14 @@ from typing import Iterable, List, Optional, Set, Tuple
 SOFT_LIMIT = 80
 HARD_LIMIT = 100
 
+# Rough average spoken pace across the TTS engines in use; only meant as a
+# same-ballpark guess published alongside cue_announce (before synthesis
+# finishes) so downstream sync logic has a duration to reason about before
+# the real audio is ready -- not a substitute for the real chunk_duration
+# that ships with each SpeechData message once synthesis completes.
+_WORDS_PER_MINUTE = 155.0
+_MIN_ESTIMATED_DURATION = 0.3
+
 _SENTENCE_SPLIT_RE = re.compile(r'(?<=[.!?…])\s+')
 _CLAUSE_BREAK_CHARS = ',;:—)…'
 
@@ -72,6 +80,24 @@ def subchunk_pairs(
             out.append((sub, ""))
         out.append((subs[-1], emoji))
     return out
+
+
+def estimate_speech_duration(text: str, wpm: float = _WORDS_PER_MINUTE) -> float:
+    """
+    Guess a chunk's spoken duration from its literal text, before synthesis
+    has even started -- lets the director publish a same-ballpark duration
+    at cue_announce time, well before the real (exact) chunk_duration is
+    known. Word-count based at ~155 wpm; falls back to a char-count guess
+    (~5 chars/word) if there's no whitespace to split on.
+    """
+    text = text.strip()
+    if not text:
+        return _MIN_ESTIMATED_DURATION
+    if any(ch.isspace() for ch in text):
+        words = len(text.split())
+    else:
+        words = max(1, len(text) / 5.0)
+    return max(_MIN_ESTIMATED_DURATION, words / wpm * 60.0)
 
 
 def find_emoji(text: str, emoji_keys: Iterable[str]) -> Optional[str]:

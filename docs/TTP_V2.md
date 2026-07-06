@@ -70,7 +70,7 @@ Canonical schema code: `src/logos_hardware/scripts/performance_lib/`
 
 | Topic | Direction | Payload |
 |---|---|---|
-| `/performance/cue_announce` | director → both animators | `{utterance_id, engine, performance{...}, cues:[{cue_id,index,text,emoji}]}` published *before* synthesis |
+| `/performance/cue_announce` | director → both animators + sequencer | `{utterance_id, engine, performance{...}, cues:[{cue_id,index,text,emoji,est_duration}]}` published *before* synthesis; sequencer only reads `performance.sync` |
 | `/face/tts_chunk` | director → sequencer | `SpeechData` (typed; + `cue_id`) |
 | `/performance/face_track` | face animator → sequencer | `{cue_id, source: lut/saved/generated, status: partial/complete/failed, frames:[...], append?}` |
 | `/performance/arm_track` | arm animator → sequencer | same shape, arm frames |
@@ -121,19 +121,60 @@ Animator params (both nodes): `~model`, `~temperature` (0.3), `~seed`
 (true), `~store_cap` (5), `~stream` (true), `~generate_even_if_late`
 (false), `~gen_timeout_s` (30 — runaway guard only; streaming means it
 never adds latency), `~fallback_emoji`.
-Sequencer params: `~track_wait_s` (15, silent expect_track gestures),
-`~switch_threshold` (0.6), `~face_lut_dir`, `~arm_lut_dir`.
+Sequencer params: `~track_wait_s` (15, gestures), `~sync_wait_s` (4,
+sync-mode TTS cues — see below), `~switch_threshold` (0.6),
+`~face_lut_dir`, `~arm_lut_dir`.
+
+### Sync mode (`emote.ttp(sync=True)`)
+
+TTS cues default to `expect_track=False` — they never wait, so a slow
+synthesizer (kokoro) effectively gives generation a free head start (it's
+often already streaming in, or even done, by the time the cue starts
+playing) while a near-instant synthesizer (piper/espeak/festival) gives
+generation no head start at all, and streamed frames almost never arrive
+before `~switch_threshold` of a short cue elapses — every such cue quietly
+falls back to LUT/idle even though the model would gladly have kept up
+given a couple more seconds.
+
+`sync=True` (per call, via `performance.sync` in `engine_params`) opts every
+cue in that utterance into the same bounded first-frame wait gestures
+already use (`_wait_for_track()` — returns the instant *any* frame streams
+in, or a terminal failed/lut status; not full completion), just with a
+tighter bound (`~sync_wait_s`, default 4s) than gestures' patient
+`~track_wait_s` (15s), since speech shouldn't stall as long as a silent
+gesture reasonably can. Face and arm channels wait independently and
+proceed the moment their own track is ready — no reason to hold one
+channel back for the other. Each spoken chunk pays this wait once, not the
+whole utterance.
+
+The director also publishes an `est_duration` per cue in `cue_announce`
+(`chunking.estimate_speech_duration()`, a same-ballpark word-count guess
+from the literal text, available before synthesis even starts) — currently
+informational/for future use (e.g. skip the sync wait outright for cues
+too short for it to matter), not yet consulted by the sync-wait logic
+itself.
+
+This does not (yet) let playback begin before *audio* is rendered — audio
+still only reaches the sequencer once synthesis for that specific chunk
+completes (a sequential per-chunk HTTP call in the director), so a slow
+engine still gates the whole cue on synthesis latency regardless of `sync`.
+Decoupling that would mean restructuring the director into concurrent
+per-chunk synthesis with a provisional (est_duration-based) cue timer that
+gets corrected once real audio lands — a larger lift, not done here.
 
 Logos-facing API (deliberately slim; knobs above stay backend):
-`emote.ttp(text, face="lut"/"generate,saved,lut"/...)` and
-`emote.gesture(text, duration, channel, policy=)` where `text` is one
-string — emoji, prose, or both; the backend extracts the emoji for
-LUT lookups and prompts the tiny model(s) with the string as given.
-`policy` applies to whichever channel(s) `channel=` activates.
+`emote.ttp(text, face="lut"/"generate,saved,lut"/..., sync=False)` and
+`emote.gesture(text, duration, channel, policy=)` (gestures are always
+sync, by design) where `text` is one string — emoji, prose, or both; the
+backend extracts the emoji for LUT lookups and prompts the tiny model(s)
+with the string as given. `policy` applies to whichever channel(s)
+`channel=` activates.
 
 The "sane mode" is `policy="lut"` everywhere (zero compute, original
 behavior). The "already cool" mode is `saved` — replaying a model's
-greatest hits for free.
+greatest hits for free. The "ultimate cool" mode is `sync=True` with a
+`generate`-first cascade on a fast synthesizer — everything live, roughly
+overlapped, with a small bounded latency cost per chunk.
 
 ## Timing (measured on-robot)
 

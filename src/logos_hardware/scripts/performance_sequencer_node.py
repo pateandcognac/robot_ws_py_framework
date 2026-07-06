@@ -88,7 +88,7 @@ class Cue:
 
     def __init__(self, cue_id="", text="", emoji="", duration=0.5,
                  audio_data=None, sample_rate=0, chunk_index=0, total_chunks=0,
-                 face=True, arms=True, expect_track=False):
+                 face=True, arms=True, expect_track=False, wait_timeout_s=None):
         self.cue_id = cue_id
         self.text = text
         self.emoji = emoji
@@ -99,24 +99,31 @@ class Cue:
         self.total_chunks = total_chunks  # 0 => not part of a TTS stream
         self.face = face
         self.arms = arms
-        # expect_track: a silent cue that should wait (bounded) for the
-        # animator's face track instead of falling straight through to the
-        # LUT. TTS cues never set this -- speech never blocks on generation.
+        # expect_track: this cue should wait (bounded) for the animator's
+        # track instead of falling straight through to the LUT. Gestures
+        # always set this; TTS cues only do when opted into "sync" mode
+        # (performance.sync) -- otherwise speech never blocks on generation.
         self.expect_track = expect_track
+        # None => node default (~track_wait_s). Sync-mode TTS cues use the
+        # tighter ~sync_wait_s instead -- speech shouldn't stall as long as
+        # a silent gesture reasonably can.
+        self.wait_timeout_s = wait_timeout_s
 
 
 class ArmCue:
     """One playable arm-channel unit, independent of the face/audio cue timing."""
 
-    def __init__(self, cue_id="", emoji="", text="", duration=2.0, expect_track=False):
+    def __init__(self, cue_id="", emoji="", text="", duration=2.0,
+                 expect_track=False, wait_timeout_s=None):
         self.cue_id = cue_id
         self.emoji = emoji
         self.text = text
         self.duration = duration
-        # Direct arm commands with a cue_id (e.g. gesture()) wait (bounded)
-        # for the animator's track; TTS-driven arm cues never do -- speech
-        # never blocks on generation, the LUT cold-open covers lateness.
+        # Direct arm commands with a cue_id (e.g. gesture()) always wait
+        # (bounded); TTS-driven arm cues only do when their parent Cue is
+        # in "sync" mode -- otherwise speech never blocks on generation.
         self.expect_track = expect_track
+        self.wait_timeout_s = wait_timeout_s
 
 
 class TrackStore:
@@ -176,6 +183,10 @@ class PerformanceSequencerNode:
         self.arm_queue = Queue()
         self.face_tracks = TrackStore()
         self.arm_tracks = TrackStore()
+        # Per-cue "sync" flag from cue_announce's performance dict, consumed
+        # once by tts_chunk_cb when the matching SpeechData chunk arrives.
+        self.cue_sync = {}
+        self.cue_sync_lock = threading.Lock()
 
         self.face_pubs = {
             state: rospy.Publisher('face/' + topic, EYE_MSG_BY_STATE[state], queue_size=10)
@@ -198,12 +209,18 @@ class PerformanceSequencerNode:
         # Streamed generated frames may replace LUT playback mid-cue, but only
         # before this fraction of the cue has elapsed (late switches look bad).
         self.switch_threshold = float(rospy.get_param('~switch_threshold', 0.6))
+        # Sync mode: TTS cues opt in (via performance.sync) to a bounded wait
+        # for the first generated frame -- same _wait_for_track() machinery
+        # gestures already use, just a tighter default bound since speech
+        # shouldn't stall as long as a silent gesture reasonably can.
+        self.sync_wait_s = float(rospy.get_param('~sync_wait_s', 4.0))
 
         rospy.Subscriber('/face/tts_chunk', SpeechData, self.tts_chunk_cb)
         rospy.Subscriber('/face/emoji_command', String, self.face_command_cb)
         rospy.Subscriber('/arm/emoji_command', String, self.arm_command_cb)
         rospy.Subscriber('/performance/face_track', String, self.face_track_cb)
         rospy.Subscriber('/performance/arm_track', String, self.arm_track_cb)
+        rospy.Subscriber('/performance/cue_announce', String, self.cue_announce_cb)
 
         self.arm_thread = threading.Thread(target=self.arm_channel_loop, daemon=True)
         self.arm_thread.start()
@@ -212,9 +229,37 @@ class PerformanceSequencerNode:
 
     # ─── Inputs ──────────────────────────────────────────────────────
 
+    def cue_announce_cb(self, msg):
+        """
+        Capture the per-utterance "sync" flag (performance.sync) before
+        synthesis, keyed by cue_id, for tts_chunk_cb to pick up once that
+        cue's SpeechData chunk arrives. Everything else in this payload
+        (text/emoji/est_duration) is only consumed by the animators.
+        """
+        try:
+            announce = json.loads(msg.data)
+        except json.JSONDecodeError:
+            return
+        sync = bool((announce.get("performance") or {}).get("sync", False))
+        if not sync:
+            return
+        with self.cue_sync_lock:
+            for cue in announce.get("cues", []):
+                cue_id = cue.get("cue_id")
+                if cue_id:
+                    self.cue_sync[cue_id] = True
+                    if len(self.cue_sync) > 256:
+                        # Defensive cap in case cues are announced but never
+                        # consumed (e.g. a canceled goal); drop arbitrarily.
+                        for stale in list(self.cue_sync)[:128]:
+                            self.cue_sync.pop(stale, None)
+
     def tts_chunk_cb(self, msg):
+        cue_id = getattr(msg, 'cue_id', '')
+        with self.cue_sync_lock:
+            sync = self.cue_sync.pop(cue_id, False)
         cue = Cue(
-            cue_id=getattr(msg, 'cue_id', ''),
+            cue_id=cue_id,
             text=msg.text_snippet,
             emoji=msg.emoji,
             duration=msg.duration,
@@ -222,6 +267,8 @@ class PerformanceSequencerNode:
             sample_rate=msg.sample_rate,
             chunk_index=msg.current_chunk_index,
             total_chunks=msg.total_chunks,
+            expect_track=sync,
+            wait_timeout_s=self.sync_wait_s if sync else None,
         )
         self.cue_queue.put(cue)
 
@@ -284,9 +331,16 @@ class PerformanceSequencerNode:
     def _track_usable(track):
         return bool(track and track["frames"] and track["status"] != "failed")
 
-    def _wait_for_track(self, store, cue_id, label="track"):
-        """Bounded wait for an animator track (silent expect_track cues only)."""
-        deadline = time.time() + self.track_wait_s
+    def _wait_for_track(self, store, cue_id, label="track", timeout_s=None):
+        """
+        Bounded wait for an animator track. Returns as soon as the FIRST
+        frame streams in (or a terminal failed/lut status) -- not full
+        completion; that's the "time to first frame" sync point. Used by
+        expect_track gestures (~track_wait_s, patient) and sync-mode TTS
+        cues (~sync_wait_s, tighter -- speech shouldn't stall as long).
+        """
+        timeout_s = self.track_wait_s if timeout_s is None else timeout_s
+        deadline = time.time() + timeout_s
         while time.time() < deadline and not rospy.is_shutdown():
             track = store.get(cue_id)
             # status "lut" = animator's explicit "play your own LUT" signal
@@ -294,7 +348,7 @@ class PerformanceSequencerNode:
                 return track
             rospy.sleep(0.1)
         rospy.logwarn("Timed out waiting %.1fs for %s %s; falling back.",
-                      self.track_wait_s, label, cue_id)
+                      timeout_s, label, cue_id)
         return store.get(cue_id)
 
     # ─── Face resolution & playback ──────────────────────────────────
@@ -335,7 +389,8 @@ class PerformanceSequencerNode:
         """
         track = self.face_tracks.get(cue.cue_id) if cue.cue_id else None
         if cue.expect_track and not self._track_usable(track):
-            track = self._wait_for_track(self.face_tracks, cue.cue_id, label="face track")
+            track = self._wait_for_track(self.face_tracks, cue.cue_id, label="face track",
+                                         timeout_s=cue.wait_timeout_s)
 
         t0 = time.time()
         t_end = t0 + max(0.1, cue.duration)
@@ -430,7 +485,8 @@ class PerformanceSequencerNode:
         """
         track = self.arm_tracks.get(arm_cue.cue_id) if arm_cue.cue_id else None
         if arm_cue.expect_track and not self._track_usable(track):
-            track = self._wait_for_track(self.arm_tracks, arm_cue.cue_id, label="arm track")
+            track = self._wait_for_track(self.arm_tracks, arm_cue.cue_id, label="arm track",
+                                         timeout_s=arm_cue.wait_timeout_s)
 
         t0 = time.time()
         t_end = t0 + max(0.1, arm_cue.duration)
@@ -521,11 +577,13 @@ class PerformanceSequencerNode:
             audio_thread.start()
 
         # Arms start aligned with the cue, on their own channel. TTS-driven
-        # arm cues never wait for a track (expect_track=False) -- speech
-        # never blocks on generation, same rule as the face channel.
+        # arm cues only wait for a track when this cue opted into sync mode
+        # (performance.sync) -- otherwise speech never blocks on generation,
+        # same rule as the face channel.
         if cue.arms:
             self.arm_queue.put(ArmCue(cue_id=cue.cue_id, emoji=cue.emoji, text=cue.text,
-                                      duration=cue.duration, expect_track=False))
+                                      duration=cue.duration, expect_track=cue.expect_track,
+                                      wait_timeout_s=cue.wait_timeout_s))
 
         if cue.face:
             self.play_face_for_cue(cue)

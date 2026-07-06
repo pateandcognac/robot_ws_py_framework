@@ -16,7 +16,7 @@ from std_msgs.msg import Bool, String
 from logos_msgs.msg import SpeechData
 from logos_msgs.msg import SpeakAction, SpeakGoal, SpeakResult, SpeakFeedback
 
-from performance_lib.chunking import subchunk_pairs
+from performance_lib.chunking import estimate_speech_duration, subchunk_pairs
 
 # Global variable for preset emojis
 PRESET_EMOJIS = set()
@@ -356,14 +356,18 @@ class SpeakActionServer:
         utterance_id = "u{}_{}".format(int(time.time()), self._utterance_counter)
         cue_ids = ["{}:{}".format(utterance_id, i) for i in range(len(chunks))]
 
-        # Announce all cues before any synthesis so face-track generation for
+        # Announce all cues before any synthesis so face/arm generation for
         # cue N can run while cue 0..N-1 are still in TTS or playback.
+        # est_duration is a same-ballpark guess from text length alone (see
+        # chunking.estimate_speech_duration) -- available immediately, well
+        # before the real (exact) chunk_duration is known post-synthesis.
         announce = {
             "utterance_id": utterance_id,
             "engine": goal.engine,
             "performance": performance_params,
             "cues": [
-                {"cue_id": cue_ids[i], "index": i, "text": t, "emoji": e}
+                {"cue_id": cue_ids[i], "index": i, "text": t, "emoji": e,
+                 "est_duration": estimate_speech_duration(t)}
                 for i, (t, e) in enumerate(chunks)
             ],
         }

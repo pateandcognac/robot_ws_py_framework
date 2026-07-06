@@ -139,6 +139,18 @@ def test_chunking():
     print("ok: chunking + emoji extraction")
 
 
+def test_estimate_speech_duration():
+    from performance_lib.chunking import estimate_speech_duration
+
+    assert estimate_speech_duration("") == 0.3  # empty floor
+    short = estimate_speech_duration("Hi there")
+    long = estimate_speech_duration("This is a much longer sentence with quite a few more words in it")
+    assert 0.3 <= short < long
+    # no whitespace: char-count fallback still produces a sane positive estimate
+    assert estimate_speech_duration("supercalifragilisticexpialidocious") > 0.3
+    print("ok: estimate_speech_duration heuristic")
+
+
 def test_arm_key_backward_compat():
     """
     The arm model was trained on shoulder_roll/shoulder_pitch, renamed from
@@ -247,6 +259,7 @@ if __name__ == "__main__":
     test_luts_and_strict_expansion()
     test_gen_store()
     test_chunking()
+    test_estimate_speech_duration()
     test_arm_key_backward_compat()
     test_frame_count_hint()
     if "--live" in sys.argv:
