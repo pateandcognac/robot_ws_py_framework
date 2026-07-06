@@ -1,0 +1,59 @@
+{
+  "$comment": "JSON Schema for Ollama's structured-output ('format') param, mirroring schemas/face_animation_schema.json. NOTE: llama.cpp's grammar constraint enforces structure (required keys, types, string patterns, array length) but NOT numeric minimum/maximum -- range violations like gaze_y=-1.05 are not caught by this schema, only by validate_dataset.validate_animation_json() after the fact.",
+  "type": "object",
+  "properties": {
+    "emoji": { "type": "string" },
+    "frames": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 9,
+      "items": { "$ref": "#/$defs/frame" }
+    }
+  },
+  "required": ["emoji", "frames"],
+  "additionalProperties": false,
+  "$defs": {
+    "frame": {
+      "type": "object",
+      "properties": {
+        "beat": { "type": "string" },
+        "eyes": {
+          "type": "object",
+          "properties": {
+            "left": { "$ref": "#/$defs/eye" },
+            "right": { "$ref": "#/$defs/eye" },
+            "both": { "$ref": "#/$defs/eye" }
+          },
+          "additionalProperties": false
+        },
+        "mouth": { "$ref": "#/$defs/mouth" }
+      },
+      "required": ["beat"],
+      "additionalProperties": false
+    },
+    "eye": {
+      "type": "object",
+      "properties": {
+        "gaze_x": { "type": "number" },
+        "gaze_y": { "type": "number" },
+        "scale_x": { "type": "number" },
+        "scale_y": { "type": "number" },
+        "lid_height": { "type": "number" },
+        "lid_angle": { "type": "number" },
+        "color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
+      },
+      "additionalProperties": false
+    },
+    "mouth": {
+      "type": "object",
+      "properties": {
+        "frequency": { "type": "number" },
+        "amplitude": { "type": "number" },
+        "phase": { "type": "number" },
+        "phase_increment": { "type": "number" },
+        "color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

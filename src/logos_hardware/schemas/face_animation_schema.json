@@ -1,0 +1,33 @@
+{
+  "description": "Sparse, semantic LLM-facing schema for Logos face animations. Mirrors the constraints enforced by /home/robot/robot_ws/tools/face_animation_schema.py — kept as plain JSON here so validate_dataset.py has no dependency on the robot workspace.",
+  "top_level": {
+    "required_keys": ["emoji", "frames"],
+    "forbidden_keys": ["ideation", "name"]
+  },
+  "frames": {
+    "min_frames": 4,
+    "max_frames": 9,
+    "required_keys": ["beat"],
+    "allowed_keys": ["beat", "eyes", "mouth"]
+  },
+  "eyes": {
+    "allowed_sides": ["left", "right", "both"],
+    "allowed_keys": ["gaze_x", "gaze_y", "scale_x", "scale_y", "lid_height", "lid_angle", "color"]
+  },
+  "mouth": {
+    "allowed_keys": ["frequency", "amplitude", "phase", "phase_increment", "color"]
+  },
+  "numeric_ranges": {
+    "gaze_x": [-1.0, 1.0],
+    "gaze_y": [-1.0, 1.0],
+    "scale_x": [0.0, 1.0],
+    "scale_y": [0.0, 1.0],
+    "lid_height": [-1.0, 1.0],
+    "lid_angle": [-45.0, 45.0],
+    "frequency": [0.01, 20.0],
+    "amplitude": [0.0, 1.0],
+    "phase": [-3.15, 3.15],
+    "phase_increment": [-3.14, 3.14]
+  },
+  "color_pattern": "^#[0-9A-Fa-f]{6}$"
+}
