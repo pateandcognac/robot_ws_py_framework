@@ -23,6 +23,15 @@ Usage:
     tools/cycle_gemini_phrases.py --shuffle --count 20
     tools/cycle_gemini_phrases.py --dry-run                # list only
     tools/cycle_gemini_phrases.py --phrases-per-emoji 2 --temperature 0.5
+
+    # --speak: actually say each phrase through the real Speak action
+    # (director -> animator -> sequencer, the full running pipeline) so you
+    # can watch synced face/arm playback and cue queueing live on the robot,
+    # instead of only generating+saving in isolation. Requires ROS and a
+    # running tts_action_server/performance_sequencer/face_animator.
+    tools/cycle_gemini_phrases.py --speak --engine kokoro --count 10
+    tools/cycle_gemini_phrases.py --speak --engine piper --pause 2.5
+    tools/cycle_gemini_phrases.py --speak --engine espeak --face-policy lut
 """
 
 from __future__ import annotations
@@ -96,6 +105,77 @@ def pick_phrases(phrases: list, n: int) -> list:
     return random.sample(phrases, n)
 
 
+ENGINES = ("kokoro", "piper", "espeak", "festival")
+
+
+def run_speak_mode(args, items):
+    """
+    Send each phrase through the real 'speak' action -- the full running
+    TTP v2 pipeline (director -> animator -> sequencer) -- instead of
+    calling the face model directly. Lets you watch actual synced
+    speech+face(+arm) playback and cue queueing on the robot. Requires ROS
+    and a live tts_action_server / performance_sequencer / face_animator.
+    """
+    import rospy
+    import actionlib
+    from logos_msgs.msg import SpeakAction, SpeakGoal
+
+    rospy.init_node("cycle_gemini_phrases_speaker", anonymous=True, disable_signals=True)
+    client = actionlib.SimpleActionClient("speak", SpeakAction)
+    print(f"Waiting for 'speak' action server (engine={args.engine})...")
+    if not client.wait_for_server(rospy.Duration(8.0)):
+        sys.exit("No 'speak' action server found -- is tts_action_server running?")
+
+    performance = {}
+    if args.face_policy:
+        performance["face_policy"] = args.face_policy
+    if args.temperature is not None:
+        performance["temperature"] = args.temperature
+
+    ok, failed = 0, 0
+    run_t0 = time.time()
+
+    try:
+        for path, emoji, phrases in items:
+            for phrase in pick_phrases(phrases, args.phrases_per_emoji):
+                # Emoji trails the phrase, same convention as emote.ttp()
+                # docstrings: it marks the clause just spoken, not the next.
+                text = f"{phrase} {emoji}".strip()
+                print(f"\n=== speaking ({args.engine}): \"{text}\"  ({path.name}) ===")
+
+                goal = SpeakGoal()
+                goal.utterance_text = text
+                goal.engine = args.engine
+                goal.engine_params = json.dumps({"performance": performance} if performance else {})
+
+                def _fb(f):
+                    print(f"  chunk {f.current_chunk_index + 1}/{f.total_chunks}: "
+                          f"'{f.text_snippet}' {f.emoji_snippet}  ({f.chunk_duration:.2f}s)")
+
+                client.send_goal(goal, feedback_cb=_fb)
+                finished = client.wait_for_result(rospy.Duration(args.wait_timeout))
+                result = client.get_result()
+
+                if finished and result and result.success:
+                    print(f"  done: {result.total_duration:.1f}s spoken.")
+                    ok += 1
+                else:
+                    print(f"  FAILED or timed out: "
+                          f"{result.final_message if result else 'no result'}")
+                    failed += 1
+
+                # The throttle: a deliberate gap between utterances so cues
+                # (and any queueing) are easy to watch rather than blasted
+                # back-to-back. Set --pause 0 to stress-test queueing instead.
+                if args.pause > 0:
+                    time.sleep(args.pause)
+    except KeyboardInterrupt:
+        print("\nInterrupted; canceling in-flight goal.")
+        client.cancel_goal()
+
+    print(f"\nDone: {ok} spoken, {failed} failed, {time.time() - run_t0:.1f}s total.")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--count", type=int, default=0, help="limit number of emoji files (0 = all)")
@@ -110,10 +190,38 @@ def main():
     ap.add_argument("--store-cap", type=int, default=DEFAULT_STORE_CAP)
     ap.add_argument("--quiet", action="store_true", help="suppress per-frame stdout detail")
     ap.add_argument("--dry-run", action="store_true", help="show what would run, no generation")
+
+    speak_group = ap.add_argument_group("--speak mode (real Speak action, full pipeline)")
+    speak_group.add_argument("--speak", action="store_true",
+                             help="say each phrase via the real Speak action instead of "
+                                  "generating+saving directly; watch synced playback live")
+    speak_group.add_argument("--engine", choices=ENGINES, default="kokoro",
+                             help="TTS engine to speak with (default kokoro)")
+    speak_group.add_argument("--pause", type=float, default=1.5,
+                             help="throttle: seconds to wait after each utterance finishes "
+                                  "before sending the next (default 1.5; 0 = back-to-back)")
+    speak_group.add_argument("--face-policy", default="",
+                             help="override the animator's face policy cascade for this run, "
+                                  "e.g. 'lut' or 'generate,saved,lut' (default: system default)")
+    speak_group.add_argument("--wait-timeout", type=float, default=60.0,
+                             help="max seconds to wait for each utterance to finish speaking")
     args = ap.parse_args()
 
     items = load_items(args)
     total_phrases = sum(min(args.phrases_per_emoji, len(ph)) for _, _, ph in items)
+
+    if args.speak:
+        print(f"{len(items)} emoji file(s) matched, {total_phrases} phrase(s) queued "
+              f"(engine={args.engine}, pause={args.pause}s, "
+              f"face_policy={args.face_policy or 'default'}).")
+        if args.dry_run:
+            for path, emoji, phrases in items:
+                for phrase in pick_phrases(phrases, args.phrases_per_emoji):
+                    print(f"  [{args.engine}] \"{phrase} {emoji}\"  ({path.name})")
+            return
+        run_speak_mode(args, items)
+        return
+
     print(f"{len(items)} emoji file(s) matched, {total_phrases} phrase(s) queued "
           f"(model={args.model}, temp={args.temperature}, "
           f"seed={'fresh' if args.seed <= 0 else args.seed}, "
