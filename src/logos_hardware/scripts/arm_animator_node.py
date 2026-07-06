@@ -43,7 +43,7 @@ from collections import deque
 import rospy
 from std_msgs.msg import String
 
-from performance_lib import luts
+from performance_lib import luts, ollama_pool
 from performance_lib.chunking import find_emoji, strip_emoji
 from performance_lib.arm_gen_client import (
     DEFAULT_MODEL,
@@ -51,6 +51,7 @@ from performance_lib.arm_gen_client import (
     DEFAULT_STORE_CAP,
     DEFAULT_TIMEOUT_S,
     MAX_ACCEPTED_FRAMES,
+    OLLAMA_URL,
     ArmGenClient,
     ArmGenError,
     GenStore,
@@ -92,7 +93,18 @@ class ArmAnimatorNode:
     def __init__(self):
         rospy.init_node('arm_animator_node', anonymous=False)
 
-        self.default_model = rospy.get_param('~model', DEFAULT_MODEL)
+        # Server/model selection: ~model pins the old single-server path
+        # (back-compat override); otherwise the pool config decides, with
+        # background probing across the LAN (see performance_lib/ollama_pool).
+        model_override = rospy.get_param('~model', '')
+        if model_override:
+            self.pool = ollama_pool.pinned(OLLAMA_URL, model_override)
+        else:
+            self.pool = ollama_pool.load_pool(
+                'arms',
+                rospy.get_param('~ollama_servers_config', ollama_pool.DEFAULT_CONFIG_PATH),
+                default_url=OLLAMA_URL, default_model=DEFAULT_MODEL,
+                log=rospy.loginfo)
         self.default_temperature = float(rospy.get_param('~temperature', 0.3))
         # seed <= 0 means "unseeded": every generation is a fresh take
         self.default_seed = int(rospy.get_param('~seed', 0))
@@ -140,10 +152,11 @@ class ArmAnimatorNode:
         self.worker = threading.Thread(target=self.worker_loop, daemon=True)
         self.worker.start()
 
+        pool_url, pool_model = self.pool.current()
         rospy.loginfo(
-            "Arm Animator online. model=%s temp=%.2f tts_policy=%s command_policy=%s "
-            "save=%s store=%d entries, LUT=%d",
-            self.default_model, self.default_temperature, self.tts_policy,
+            "Arm Animator online. server=%s model=%s temp=%.2f tts_policy=%s "
+            "command_policy=%s save=%s store=%d entries, LUT=%d",
+            pool_url, pool_model, self.default_temperature, self.tts_policy,
             self.command_policy, self.save_generations, len(self.store), len(self.arm_lut))
 
     # ─── Inputs ──────────────────────────────────────────────────────
@@ -170,7 +183,7 @@ class ArmAnimatorNode:
                 n_frames=perf.get("arm_n_frames") or frame_count_hint(gen_text),
                 temperature=float(perf.get("temperature", self.default_temperature)),
                 seed=perf.get("seed", self.default_seed),
-                model=perf.get("model", self.default_model),
+                model=perf.get("model") or "",  # "" -> pool's current choice
                 save=bool(perf.get("save", self.save_generations)),
                 has_plain_text=bool(text),
             ))
@@ -213,7 +226,7 @@ class ArmAnimatorNode:
             n_frames=data.get("n_frames") or frame_count_hint(gen_text),
             temperature=float(data.get("temperature", self.default_temperature)),
             seed=data.get("seed", self.default_seed),
-            model=data.get("model", self.default_model),
+            model=data.get("model") or "",  # "" -> pool's current choice
             save=bool(data.get("save", self.save_generations)),
             has_plain_text=has_plain_text,
         ))
@@ -257,13 +270,22 @@ class ArmAnimatorNode:
         with self.done_lock:
             return cue_id in self.done_cues
 
-    def get_client(self, model):
+    def get_client(self, model_override=""):
+        """
+        Client for the pool's current (url, model) -- or the per-job model
+        override on the same server. Cached per (url, model) pair so a pool
+        server switch transparently gets a fresh client.
+        """
+        url, model = self.pool.current()
+        if model_override:
+            model = model_override
+        key = (url, model)
         with self.clients_lock:
-            if model not in self.clients:
-                self.clients[model] = ArmGenClient(
-                    model=model, timeout_s=self.gen_timeout_s,
+            if key not in self.clients:
+                self.clients[key] = ArmGenClient(
+                    model=model, url=url, timeout_s=self.gen_timeout_s,
                     max_frames=self.max_accepted_frames)
-            return self.clients[model]
+            return self.clients[key]
 
     def process_job(self, job):
         if job.emoji:
@@ -314,13 +336,15 @@ class ArmAnimatorNode:
                                       temperature=job.temperature, seed=seed)
             except ArmGenError as e:
                 rospy.logwarn("Cue %s: arm generation failed (%s)", job.cue_id, e)
+                self.pool.report_failure()
                 return False
+            self.pool.report_success()
             frames = obj.get("frames", [])
             rospy.loginfo("Cue %s: generated %d arm frames in %.1fs for '%s'%s",
                           job.cue_id, len(frames), time.time() - t0, job.gen_text,
                           " [truncated]" if obj.get("_truncated") else "")
             self.publish_track(job.cue_id, frames, "generated", "complete")
-            self.maybe_save(job, obj, seed)
+            self.maybe_save(job, obj, seed, client.model)
             return True
 
         # Streaming: push each frame to the sequencer the moment it decodes.
@@ -348,10 +372,12 @@ class ArmAnimatorNode:
         except ArmGenError as e:
             rospy.logwarn("Cue %s: streaming arm generation failed after %d frames (%s)",
                           job.cue_id, frames_sent, e)
+            self.pool.report_failure()
             if frames_sent:
                 self.publish_track(job.cue_id, None, "generated", "complete")
                 return True
             return False
+        self.pool.report_success()
 
         if aborted_late:
             rospy.loginfo("Cue %s: already played; aborted arm generation mid-stream "
@@ -367,10 +393,10 @@ class ArmAnimatorNode:
         # Final authoritative track (replaces the appended partials).
         self.publish_track(job.cue_id, frames, "generated", "complete")
         if obj:
-            self.maybe_save(job, obj, seed)
+            self.maybe_save(job, obj, seed, client.model)
         return True
 
-    def maybe_save(self, job, obj, seed):
+    def maybe_save(self, job, obj, seed, model):
         """
         Persist only emoji-keyed, non-truncated takes. Truncated generations
         (past MAX_ACCEPTED_FRAMES) are presumed to be the model rambling
@@ -381,7 +407,7 @@ class ArmAnimatorNode:
             return
         if job.save and job.emoji:
             animation = {k: v for k, v in obj.items() if not k.startswith("_")}
-            self.store.save(job.emoji, animation, model=job.model, text=job.gen_text,
+            self.store.save(job.emoji, animation, model=model, text=job.gen_text,
                             n_frames_requested=job.n_frames,
                             temperature=job.temperature, seed=seed)
 

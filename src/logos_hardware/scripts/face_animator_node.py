@@ -43,7 +43,7 @@ from collections import deque
 import rospy
 from std_msgs.msg import String
 
-from performance_lib import luts
+from performance_lib import luts, ollama_pool
 from performance_lib.chunking import find_emoji, strip_emoji
 from performance_lib.face_gen_client import (
     DEFAULT_MODEL,
@@ -51,6 +51,7 @@ from performance_lib.face_gen_client import (
     DEFAULT_STORE_CAP,
     DEFAULT_TIMEOUT_S,
     MAX_ACCEPTED_FRAMES,
+    OLLAMA_URL,
     FaceGenClient,
     FaceGenError,
     GenStore,
@@ -90,7 +91,18 @@ class FaceAnimatorNode:
     def __init__(self):
         rospy.init_node('face_animator_node', anonymous=False)
 
-        self.default_model = rospy.get_param('~model', DEFAULT_MODEL)
+        # Server/model selection: ~model pins the old single-server path
+        # (back-compat override); otherwise the pool config decides, with
+        # background probing across the LAN (see performance_lib/ollama_pool).
+        model_override = rospy.get_param('~model', '')
+        if model_override:
+            self.pool = ollama_pool.pinned(OLLAMA_URL, model_override)
+        else:
+            self.pool = ollama_pool.load_pool(
+                'face',
+                rospy.get_param('~ollama_servers_config', ollama_pool.DEFAULT_CONFIG_PATH),
+                default_url=OLLAMA_URL, default_model=DEFAULT_MODEL,
+                log=rospy.loginfo)
         self.default_temperature = float(rospy.get_param('~temperature', 0.3))
         # seed <= 0 means "unseeded": every generation is a fresh take
         self.default_seed = int(rospy.get_param('~seed', 0))
@@ -139,10 +151,11 @@ class FaceAnimatorNode:
         self.worker = threading.Thread(target=self.worker_loop, daemon=True)
         self.worker.start()
 
+        pool_url, pool_model = self.pool.current()
         rospy.loginfo(
-            "Face Animator online. model=%s temp=%.2f tts_policy=%s command_policy=%s "
-            "save=%s store=%d entries, LUT=%d",
-            self.default_model, self.default_temperature, self.tts_policy,
+            "Face Animator online. server=%s model=%s temp=%.2f tts_policy=%s "
+            "command_policy=%s save=%s store=%d entries, LUT=%d",
+            pool_url, pool_model, self.default_temperature, self.tts_policy,
             self.command_policy, self.save_generations, len(self.store), len(self.face_lut))
 
     # ─── Inputs ──────────────────────────────────────────────────────
@@ -167,7 +180,7 @@ class FaceAnimatorNode:
                 policy=policy,
                 temperature=float(perf.get("temperature", self.default_temperature)),
                 seed=perf.get("seed", self.default_seed),
-                model=perf.get("model", self.default_model),
+                model=perf.get("model") or "",  # "" -> pool's current choice
                 save=bool(perf.get("save", self.save_generations)),
                 has_plain_text=bool(text),
             ))
@@ -205,7 +218,7 @@ class FaceAnimatorNode:
             policy=policy,
             temperature=float(data.get("temperature", self.default_temperature)),
             seed=data.get("seed", self.default_seed),
-            model=data.get("model", self.default_model),
+            model=data.get("model") or "",  # "" -> pool's current choice
             save=bool(data.get("save", self.save_generations)),
             has_plain_text=has_plain_text,
         ))
@@ -249,13 +262,22 @@ class FaceAnimatorNode:
         with self.done_lock:
             return cue_id in self.done_cues
 
-    def get_client(self, model):
+    def get_client(self, model_override=""):
+        """
+        Client for the pool's current (url, model) -- or the per-job model
+        override on the same server. Cached per (url, model) pair so a pool
+        server switch transparently gets a fresh client.
+        """
+        url, model = self.pool.current()
+        if model_override:
+            model = model_override
+        key = (url, model)
         with self.clients_lock:
-            if model not in self.clients:
-                self.clients[model] = FaceGenClient(
-                    model=model, timeout_s=self.gen_timeout_s,
+            if key not in self.clients:
+                self.clients[key] = FaceGenClient(
+                    model=model, url=url, timeout_s=self.gen_timeout_s,
                     max_frames=self.max_accepted_frames)
-            return self.clients[model]
+            return self.clients[key]
 
     def process_job(self, job):
         if job.emoji:
@@ -306,12 +328,14 @@ class FaceAnimatorNode:
                 obj = client.generate(job.gen_text, temperature=job.temperature, seed=seed)
             except FaceGenError as e:
                 rospy.logwarn("Cue %s: generation failed (%s)", job.cue_id, e)
+                self.pool.report_failure()
                 return False
+            self.pool.report_success()
             frames = obj.get("frames", [])
             rospy.loginfo("Cue %s: generated %d frames in %.1fs for '%s'",
                           job.cue_id, len(frames), time.time() - t0, job.gen_text)
             self.publish_track(job.cue_id, frames, "generated", "complete")
-            self.maybe_save(job, obj, seed)
+            self.maybe_save(job, obj, seed, client.model)
             return True
 
         # Streaming: push each frame to the sequencer the moment it decodes.
@@ -339,11 +363,13 @@ class FaceAnimatorNode:
         except FaceGenError as e:
             rospy.logwarn("Cue %s: streaming generation failed after %d frames (%s)",
                           job.cue_id, frames_sent, e)
+            self.pool.report_failure()
             if frames_sent:
                 # Close out the partial track so the sequencer stops expecting more.
                 self.publish_track(job.cue_id, None, "generated", "complete")
                 return True
             return False
+        self.pool.report_success()
 
         if aborted_late:
             rospy.loginfo("Cue %s: already played; aborted generation mid-stream "
@@ -359,10 +385,10 @@ class FaceAnimatorNode:
         # Final authoritative track (replaces the appended partials).
         self.publish_track(job.cue_id, frames, "generated", "complete")
         if obj:
-            self.maybe_save(job, obj, seed)
+            self.maybe_save(job, obj, seed, client.model)
         return True
 
-    def maybe_save(self, job, obj, seed):
+    def maybe_save(self, job, obj, seed, model):
         """
         Persist only emoji-keyed, non-truncated takes. Truncated generations
         (past the rambling cutoff or a deadline) are played once and
@@ -372,7 +398,7 @@ class FaceAnimatorNode:
             return
         if job.save and job.emoji:
             animation = {k: v for k, v in obj.items() if not k.startswith("_")}
-            self.store.save(job.emoji, animation, model=job.model, text=job.gen_text,
+            self.store.save(job.emoji, animation, model=model, text=job.gen_text,
                             temperature=job.temperature, seed=seed)
 
     def publish_track(self, cue_id, frames, source, status, append=False):

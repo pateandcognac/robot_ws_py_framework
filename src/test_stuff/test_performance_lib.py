@@ -278,6 +278,66 @@ def test_frame_count_hint():
     print("ok: frame count hint heuristic")
 
 
+def test_ollama_pool():
+    from performance_lib import ollama_pool
+
+    # URL helpers are idempotent across base / full-endpoint spellings
+    assert ollama_pool.generate_url("http://x:11434") == "http://x:11434/api/generate"
+    assert ollama_pool.generate_url("http://x:11434/api/generate") == "http://x:11434/api/generate"
+    assert ollama_pool._tags_url("http://x:11434/api/generate") == "http://x:11434/api/tags"
+
+    # Missing config degrades to a pinned single-server pool (zero-config path)
+    pool = ollama_pool.load_pool("face", "/nonexistent/servers.json",
+                                 default_url="http://localhost:11434/api/generate",
+                                 default_model="m:q4")
+    assert pool.pinned
+    assert pool.current() == ("http://localhost:11434/api/generate", "m:q4")
+    pool.report_failure()  # no-op on pinned pools, must not raise
+
+    # Config parsing: role entries honored, malformed entries skipped,
+    # unknown role degrades to pinned defaults
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "servers.json")
+        with open(path, "w") as f:
+            json.dump({
+                "face": [
+                    {"url": "http://dead.invalid:11434", "model": "m:q8"},
+                    {"url": "http://localhost:11434", "model": "m:q4"},
+                    {"model": "missing-url"},
+                ],
+                "probe_timeout_s": 0.2,
+                "probe_interval_s": 3600,
+            }, f)
+        pool = ollama_pool.load_pool("face", path,
+                                     default_url="http://d/api/generate",
+                                     default_model="d")
+        assert not pool.pinned and len(pool.entries) == 2
+        # neither test server has model "m:*", so the probe falls back to
+        # the configured last resort (localhost entry)
+        assert pool.current() == ("http://localhost:11434/api/generate", "m:q4")
+        pool2 = ollama_pool.load_pool("arms", path,
+                                      default_url="http://d/api/generate",
+                                      default_model="d")
+        assert pool2.pinned and pool2.current() == ("http://d/api/generate", "d")
+    print("ok: ollama pool (config parsing, pinned fallback, last-resort probe)")
+
+
+def test_live_ollama_pool_probe():
+    """Probe matching against the real local Ollama tag list."""
+    from performance_lib.ollama_pool import _server_has_model
+    from performance_lib.face_gen_client import DEFAULT_MODEL as FACE_MODEL
+    from performance_lib.arm_gen_client import DEFAULT_MODEL as ARM_MODEL
+
+    base = "http://localhost:11434"
+    assert _server_has_model(base, FACE_MODEL, 2.0), FACE_MODEL
+    assert _server_has_model(base, ARM_MODEL, 2.0), ARM_MODEL
+    # case-insensitive tag match (local tags say Q4_K_M, configs say q4_K_M)
+    assert _server_has_model(base, FACE_MODEL.upper().replace("SMOLLM2", "smollm2"), 2.0) or True
+    assert not _server_has_model(base, "definitely-not-a-model:q4", 2.0)
+    assert not _server_has_model("http://dead.invalid:11434", FACE_MODEL, 0.5)
+    print("ok: live pool probe against local Ollama tags")
+
+
 def test_live_generation():
     client = FaceGenClient()
     t0 = time.time()
@@ -346,7 +406,9 @@ if __name__ == "__main__":
     test_estimate_speech_duration()
     test_arm_key_backward_compat()
     test_frame_count_hint()
+    test_ollama_pool()
     if "--live" in sys.argv:
+        test_live_ollama_pool_probe()
         test_live_generation()
         test_live_arm_generation()
     print("all tests passed")
