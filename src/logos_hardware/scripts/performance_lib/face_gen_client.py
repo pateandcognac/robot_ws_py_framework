@@ -41,6 +41,31 @@ DEFAULT_STORE_CAP = 5  # rolling generations kept per emoji
 # means this never adds latency; it only kills runaways.
 DEFAULT_TIMEOUT_S = 30.0
 
+# Generations past this many frames are presumed to be the model rambling
+# (repeating/drifting) rather than deliberate choreography -- the face
+# schema tops out at 12 frames but spot checks of long generations look
+# like degenerate continuation. Mark's call (2026-07-06): cap faces at 9,
+# same mechanism as the arms' 7 (see arm_gen_client.MAX_ACCEPTED_FRAMES).
+# Streaming generation cuts the connection the moment the cutoff is hit;
+# blocking generation truncates after the fact. Either way the result is
+# marked truncated=True and the caller should never save it to GenStore.
+MAX_ACCEPTED_FRAMES = 9
+
+
+def truncate_rambling(obj: Dict[str, Any], max_frames: int) -> Dict[str, Any]:
+    """
+    Cap frames at max_frames and stash a "_truncated" flag (private,
+    engineering-only -- strip it before persisting or publishing frames
+    raw). Callers must skip GenStore.save() when this is True.
+    """
+    frames = obj.get("frames", [])
+    truncated = len(frames) > max_frames
+    if truncated:
+        obj = dict(obj)
+        obj["frames"] = frames[:max_frames]
+    obj["_truncated"] = truncated
+    return obj
+
 
 class FaceGenError(RuntimeError):
     """Raised when the face model fails to produce a usable animation."""
@@ -147,14 +172,55 @@ def expand_frames_lenient(frames: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return expanded
 
 
+# Junk some runtimes prepend to a JSON body: BOM, zero-width space, whitespace.
+_LEADING_JUNK = "\ufeff\u200b \t\r\n"
+
+
+def _close_suffix(text: str) -> str:
+    """
+    Minimal string of closers ('"', '}', ']') that makes `text` -- a JSON
+    document cut off at an arbitrary point outside any partial token --
+    syntactically balanced. Scans outside-string bracket nesting only.
+    """
+    stack: List[str] = []
+    in_string = escape = False
+    for ch in text:
+        if in_string:
+            if escape:
+                escape = False
+            elif ch == "\\":
+                escape = True
+            elif ch == '"':
+                in_string = False
+        elif ch == '"':
+            in_string = True
+        elif ch in "{[":
+            stack.append(ch)
+        elif ch in "}]":
+            if stack:
+                stack.pop()
+    out = '"' if in_string else ""
+    for ch in reversed(stack):
+        out += "}" if ch == "{" else "]"
+    return out
+
+
 class StreamingFrameParser:
     """
     Incremental extractor of completed frame objects from a partial JSON
-    response shaped like {"emoji": "...", "frames": [ {...}, {...} ]}.
+    response shaped like {"emoji": "...", "frames": [ {...}, {...} ]}
+    (key order doesn't matter -- frames-before-emoji parses fine).
 
     Feed it text deltas; it returns each frame dict as soon as its closing
     brace arrives. Any '{' encountered inside a '[' starts a frame capture;
-    nested objects (eyes/mouth) are tracked by brace depth.
+    nested objects (eyes/mouth) are tracked by brace depth. Leading BOM /
+    zero-width / whitespace junk is stripped so json.loads(parser.buf)
+    stays viable. A frame whose JSON is malformed is dropped, not raised.
+
+    synthesize_close() turns the buffer into a valid parsed object at any
+    frame boundary, which is what makes mid-stream aborts (rambling cutoff,
+    deadline hit, cue already done) share one code path with clean
+    completion instead of needing regex recovery.
     """
 
     def __init__(self):
@@ -165,8 +231,12 @@ class StreamingFrameParser:
         self._array_depth = 0
         self._capture_start = -1
         self._capture_depth = 0
+        self._array_start = -1      # index of the frames array's '['
+        self._last_frame_end = -1   # index just past the last complete frame's '}'
 
     def feed(self, delta: str) -> List[Dict[str, Any]]:
+        if not self.buf:
+            delta = delta.lstrip(_LEADING_JUNK)
         self.buf += delta
         frames: List[Dict[str, Any]] = []
         while self._pos < len(self.buf):
@@ -182,6 +252,8 @@ class StreamingFrameParser:
                 self._in_string = True
             elif ch == "[":
                 self._array_depth += 1
+                if self._array_depth == 1 and self._array_start < 0:
+                    self._array_start = self._pos
             elif ch == "]":
                 self._array_depth = max(0, self._array_depth - 1)
             elif ch == "{":
@@ -196,12 +268,40 @@ class StreamingFrameParser:
                     if self._capture_depth == 0:
                         raw = self.buf[self._capture_start : self._pos + 1]
                         self._capture_start = -1
+                        self._last_frame_end = self._pos + 1
                         try:
                             frames.append(json.loads(raw))
                         except json.JSONDecodeError:
                             pass
             self._pos += 1
         return frames
+
+    def synthesize_close(self) -> Dict[str, Any]:
+        """
+        Parse the buffer as if the stream had ended cleanly at the last
+        completed frame boundary, wherever it actually stopped.
+
+        Cuts the buffer at the end of the last fully-parsed frame (dropping
+        any partial frame in flight), appends the minimal closing brackets,
+        and runs the result through the same json.loads as the normal
+        completion path. Keys that had fully arrived before the cut (e.g.
+        a leading "emoji") are preserved; missing ones default. Raises
+        ValueError when there's nothing salvageable (frames array never
+        opened).
+        """
+        if self._last_frame_end > 0:
+            candidate = self.buf[: self._last_frame_end]
+        elif self._array_start >= 0:
+            candidate = self.buf[: self._array_start + 1]
+        else:
+            raise ValueError("no frames array in buffer yet")
+        candidate = candidate.rstrip().rstrip(",")
+        obj = json.loads(candidate + _close_suffix(candidate))
+        if not isinstance(obj, dict):
+            raise ValueError("buffer does not contain a JSON object")
+        obj.setdefault("emoji", "")
+        obj.setdefault("frames", [])
+        return obj
 
 
 def emoji_slug(emoji: str) -> str:
@@ -317,10 +417,12 @@ class FaceGenClient:
         url: str = OLLAMA_URL,
         schema_path: str = DEFAULT_SCHEMA_PATH,
         timeout_s: float = DEFAULT_TIMEOUT_S,
+        max_frames: int = MAX_ACCEPTED_FRAMES,
     ):
         self.model = model
         self.url = url
         self.timeout_s = timeout_s
+        self.max_frames = max(1, int(max_frames))
         with open(schema_path, encoding="utf-8") as f:
             self.response_schema = json.load(f)
 
@@ -366,14 +468,19 @@ class FaceGenClient:
             raise FaceGenError("face generation failed: {}".format(exc))
         if not isinstance(obj, dict) or not obj.get("frames"):
             raise FaceGenError("face model returned no frames")
+        raw_count = len(obj["frames"])
         if verbose:
-            print("[face_gen] {} frames in {:.1f}s".format(len(obj["frames"]), time.time() - t0))
+            print("[face_gen] {} frames in {:.1f}s".format(raw_count, time.time() - t0))
             for i, frame in enumerate(obj["frames"]):
                 overshoots = frame_overshoots(frame) if isinstance(frame, dict) else []
                 beat = frame.get("beat", "") if isinstance(frame, dict) else ""
                 print("  frame {}: {}{}".format(
                     i, beat, "  [OVERSHOOT: " + "; ".join(overshoots) + "]" if overshoots else ""))
-        return clamp_semantic_obj(obj)
+        obj = truncate_rambling(clamp_semantic_obj(obj), self.max_frames)
+        if verbose and obj["_truncated"]:
+            print("[face_gen] truncated {} -> {} frames (looks like rambling; will not be saved)".format(
+                raw_count, len(obj["frames"])))
+        return obj
 
     def generate_stream(
         self,
@@ -386,8 +493,13 @@ class FaceGenClient:
         """
         Streaming generation. Yields ("frame", frame_dict) as each frame's
         closing brace arrives (clamped, sparse), then ("done", full_obj) with
-        the complete clamped semantic object. Raises FaceGenError on failure
-        or wall-clock timeout (degenerate repetition loop guard).
+        the complete clamped semantic object. Hitting the max_frames rambling
+        cutoff or the wall-clock deadline mid-stream closes the connection
+        early and still yields ("done", ...) built from the frames that
+        arrived, marked _truncated=True (never save those). Raises
+        FaceGenError only when nothing usable arrived. The consumer may also
+        abandon the generator early (generator .close() / loop break); the
+        HTTP connection is released either way.
 
         With verbose=True, prints each frame's beat text, arrival latency,
         and any pre-clamp range overshoot to stdout as it streams in.
@@ -396,7 +508,9 @@ class FaceGenClient:
         t0 = time.time()
         deadline = t0 + timeout_s
         parser = StreamingFrameParser()
-        frame_i = 0
+        collected: List[Dict[str, Any]] = []
+        cut_reason = None
+        resp = None
         try:
             resp = requests.post(
                 self.url,
@@ -407,25 +521,57 @@ class FaceGenClient:
             resp.raise_for_status()
             for line in resp.iter_lines():
                 if time.time() > deadline:
-                    resp.close()
-                    raise FaceGenError("face generation exceeded {}s deadline".format(timeout_s))
+                    if not collected:
+                        raise FaceGenError(
+                            "face generation exceeded {}s deadline".format(timeout_s))
+                    # Salvage what streamed so far: the deadline guard kills
+                    # degenerate repetition loops, but a runaway's early
+                    # frames are still playable.
+                    cut_reason = "deadline"
+                    break
                 if not line:
                     continue
                 chunk = json.loads(line)
                 for frame in parser.feed(chunk.get("response", "")):
+                    clamped = clamp_frame(frame)
                     if verbose:
                         overshoots = frame_overshoots(frame)
                         print("[face_gen] +{:.2f}s frame {}: {}{}".format(
-                            time.time() - t0, frame_i, frame.get("beat", ""),
+                            time.time() - t0, len(collected), frame.get("beat", ""),
                             "  [OVERSHOOT: " + "; ".join(overshoots) + "]" if overshoots else ""))
-                        frame_i += 1
-                    yield ("frame", clamp_frame(frame))
-                if chunk.get("done"):
+                    collected.append(clamped)
+                    yield ("frame", clamped)
+                    if len(collected) >= self.max_frames:
+                        # Rambling cutoff: stop reading the stream entirely --
+                        # don't wait out the rest of the generation, it isn't
+                        # going to be saved anyway. Saves inference time too.
+                        cut_reason = "rambling cutoff"
+                        break
+                if cut_reason or chunk.get("done"):
                     break
         except FaceGenError:
             raise
         except Exception as exc:
             raise FaceGenError("face generation stream failed: {}".format(exc))
+        finally:
+            # Covers cutoffs, errors, and the consumer closing the generator
+            # early (mid-stream abort); harmless after a full read.
+            if resp is not None:
+                resp.close()
+
+        if cut_reason:
+            try:
+                obj = parser.synthesize_close()
+            except (ValueError, json.JSONDecodeError):
+                obj = {"emoji": "", "frames": collected}
+            obj = clamp_semantic_obj(obj)
+            obj["_truncated"] = True
+            if verbose:
+                print("[face_gen] done ({}): {} frames in {:.2f}s total "
+                      "(will not be saved)".format(cut_reason, len(obj["frames"]),
+                                                   time.time() - t0))
+            yield ("done", obj)
+            return
 
         try:
             obj = json.loads(parser.buf)
@@ -436,4 +582,4 @@ class FaceGenClient:
         if verbose:
             print("[face_gen] done: {} frames in {:.2f}s total".format(
                 len(obj["frames"]), time.time() - t0))
-        yield ("done", clamp_semantic_obj(obj))
+        yield ("done", truncate_rambling(clamp_semantic_obj(obj), self.max_frames))

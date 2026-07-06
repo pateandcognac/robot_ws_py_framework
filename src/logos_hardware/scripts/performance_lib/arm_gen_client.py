@@ -23,7 +23,7 @@ from typing import Any, Dict, Iterator, List, Optional, Tuple
 import requests
 
 from .arm_schema import ARM_KEYS, ARM_RANGE, CONCRETE_ARM_SIDES, DEFAULT_ARMS_POSE
-from .face_gen_client import StreamingFrameParser, emoji_slug
+from .face_gen_client import StreamingFrameParser, emoji_slug, truncate_rambling
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 DEFAULT_MODEL = "smollm2-135m-arm-lora-38k:q4_K_M"
@@ -108,35 +108,6 @@ def clamp_semantic_obj(obj: Dict[str, Any]) -> Dict[str, Any]:
     out = copy.deepcopy(obj)
     out["frames"] = [clamp_frame(f) for f in out.get("frames", [])]
     return out
-
-
-def _truncate_rambling(obj: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Cap frames at MAX_ACCEPTED_FRAMES and stash a "_truncated" flag (private,
-    engineering-only -- pop it before persisting or publishing frames raw).
-    Callers must skip GenStore.save() when this is True.
-    """
-    frames = obj.get("frames", [])
-    truncated = len(frames) > MAX_ACCEPTED_FRAMES
-    if truncated:
-        obj = dict(obj)
-        obj["frames"] = frames[:MAX_ACCEPTED_FRAMES]
-    obj["_truncated"] = truncated
-    return obj
-
-
-_PARTIAL_EMOJI_RE = re.compile(r'"emoji"\s*:\s*"((?:[^"\\]|\\.)*)"')
-
-
-def _partial_emoji(buf: str) -> str:
-    """Best-effort emoji extraction from a truncated (invalid) JSON buffer."""
-    m = _PARTIAL_EMOJI_RE.search(buf)
-    if not m:
-        return ""
-    try:
-        return json.loads('"' + m.group(1) + '"')
-    except json.JSONDecodeError:
-        return ""
 
 
 def frame_overshoots(frame: Dict[str, Any]) -> List[str]:
@@ -302,10 +273,12 @@ class ArmGenClient:
         url: str = OLLAMA_URL,
         schema_path: str = DEFAULT_SCHEMA_PATH,
         timeout_s: float = DEFAULT_TIMEOUT_S,
+        max_frames: int = MAX_ACCEPTED_FRAMES,
     ):
         self.model = model
         self.url = url
         self.timeout_s = timeout_s
+        self.max_frames = max(1, int(max_frames))
         with open(schema_path, encoding="utf-8") as f:
             self.response_schema = json.load(f)
 
@@ -366,7 +339,7 @@ class ArmGenClient:
                 beat = frame.get("beat", "") if isinstance(frame, dict) else ""
                 print("  frame {}: {}{}".format(
                     i, beat, "  [OVERSHOOT: " + "; ".join(overshoots) + "]" if overshoots else ""))
-        obj = _truncate_rambling(clamp_semantic_obj(obj))
+        obj = truncate_rambling(clamp_semantic_obj(obj), self.max_frames)
         if verbose and obj["_truncated"]:
             print("[arm_gen] truncated {} -> {} frames (looks like rambling; will not be saved)".format(
                 raw_count, len(obj["frames"])))
@@ -384,8 +357,13 @@ class ArmGenClient:
         """
         Streaming generation. Yields ("frame", frame_dict) as each frame's
         closing brace arrives (clamped, sparse), then ("done", full_obj) with
-        the complete clamped semantic object. Raises ArmGenError on failure
-        or wall-clock timeout (degenerate repetition loop guard).
+        the complete clamped semantic object. Hitting the max_frames rambling
+        cutoff or the wall-clock deadline mid-stream closes the connection
+        early and still yields ("done", ...) built from the frames that
+        arrived, marked _truncated=True (never save those). Raises
+        ArmGenError only when nothing usable arrived. The consumer may also
+        abandon the generator early (generator .close() / loop break); the
+        HTTP connection is released either way.
         """
         n_frames = n_frames or frame_count_hint(text)
         timeout_s = timeout_s or self.timeout_s
@@ -393,7 +371,7 @@ class ArmGenClient:
         deadline = t0 + timeout_s
         parser = StreamingFrameParser()
         collected: List[Dict[str, Any]] = []
-        cut_short = False
+        cut_reason = None
         resp = None
         try:
             resp = requests.post(
@@ -405,8 +383,14 @@ class ArmGenClient:
             resp.raise_for_status()
             for line in resp.iter_lines():
                 if time.time() > deadline:
-                    resp.close()
-                    raise ArmGenError("arm generation exceeded {}s deadline".format(timeout_s))
+                    if not collected:
+                        raise ArmGenError(
+                            "arm generation exceeded {}s deadline".format(timeout_s))
+                    # Salvage what streamed so far: the deadline guard kills
+                    # degenerate repetition loops, but a runaway's early
+                    # frames are still playable.
+                    cut_reason = "deadline"
+                    break
                 if not line:
                     continue
                 chunk = json.loads(line)
@@ -419,33 +403,35 @@ class ArmGenClient:
                             "  [OVERSHOOT: " + "; ".join(overshoots) + "]" if overshoots else ""))
                     collected.append(clamped)
                     yield ("frame", clamped)
-                    if len(collected) >= MAX_ACCEPTED_FRAMES:
+                    if len(collected) >= self.max_frames:
                         # Rambling cutoff: stop reading the stream entirely --
                         # don't wait out the rest of the generation, it isn't
                         # going to be saved anyway. Saves inference time too.
-                        cut_short = True
-                        if verbose:
-                            print("[arm_gen] hit {}-frame cutoff, closing stream early "
-                                  "(looks like rambling; will not be saved)".format(
-                                      MAX_ACCEPTED_FRAMES))
+                        cut_reason = "rambling cutoff"
                         break
-                if cut_short or chunk.get("done"):
+                if cut_reason or chunk.get("done"):
                     break
         except ArmGenError:
             raise
         except Exception as exc:
             raise ArmGenError("arm generation stream failed: {}".format(exc))
         finally:
-            if cut_short and resp is not None:
+            # Covers cutoffs, errors, and the consumer closing the generator
+            # early (mid-stream abort); harmless after a full read.
+            if resp is not None:
                 resp.close()
 
-        if cut_short:
-            obj = {"emoji": _partial_emoji(parser.buf), "frames": collected}
-            if verbose:
-                print("[arm_gen] done (cut short): {} frames in {:.2f}s total".format(
-                    len(collected), time.time() - t0))
+        if cut_reason:
+            try:
+                obj = parser.synthesize_close()
+            except (ValueError, json.JSONDecodeError):
+                obj = {"emoji": "", "frames": collected}
             obj = clamp_semantic_obj(obj)
             obj["_truncated"] = True
+            if verbose:
+                print("[arm_gen] done ({}): {} frames in {:.2f}s total "
+                      "(will not be saved)".format(cut_reason, len(obj["frames"]),
+                                                   time.time() - t0))
             yield ("done", obj)
             return
 
@@ -458,4 +444,4 @@ class ArmGenClient:
         if verbose:
             print("[arm_gen] done: requested {}, got {} frames in {:.2f}s total".format(
                 n_frames, len(obj["frames"]), time.time() - t0))
-        yield ("done", _truncate_rambling(clamp_semantic_obj(obj)))
+        yield ("done", truncate_rambling(clamp_semantic_obj(obj), self.max_frames))

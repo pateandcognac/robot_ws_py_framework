@@ -50,6 +50,7 @@ from performance_lib.face_gen_client import (
     DEFAULT_STORE_DIR,
     DEFAULT_STORE_CAP,
     DEFAULT_TIMEOUT_S,
+    MAX_ACCEPTED_FRAMES,
     FaceGenClient,
     FaceGenError,
     GenStore,
@@ -104,6 +105,10 @@ class FaceAnimatorNode:
         # ~1s instead of after the full 4-15s generation).
         self.use_streaming = bool(rospy.get_param('~stream', True))
         self.gen_timeout_s = float(rospy.get_param('~gen_timeout_s', DEFAULT_TIMEOUT_S))
+        # Rambling cutoff: generations past this many frames get cut short
+        # mid-stream (or truncated when blocking) and are never saved.
+        self.max_accepted_frames = int(
+            rospy.get_param('~max_accepted_frames', MAX_ACCEPTED_FRAMES))
         self.generate_even_if_late = bool(rospy.get_param('~generate_even_if_late', False))
         self.max_pending_jobs = int(rospy.get_param('~max_pending_jobs', 12))
         # Cue with no usable emoji whose generation fails: borrow a recently
@@ -247,7 +252,9 @@ class FaceAnimatorNode:
     def get_client(self, model):
         with self.clients_lock:
             if model not in self.clients:
-                self.clients[model] = FaceGenClient(model=model, timeout_s=self.gen_timeout_s)
+                self.clients[model] = FaceGenClient(
+                    model=model, timeout_s=self.gen_timeout_s,
+                    max_frames=self.max_accepted_frames)
             return self.clients[model]
 
     def process_job(self, job):
@@ -310,6 +317,7 @@ class FaceAnimatorNode:
         # Streaming: push each frame to the sequencer the moment it decodes.
         frames_sent = 0
         obj = None
+        aborted_late = False
         try:
             for kind, payload in client.generate_stream(
                     job.gen_text, temperature=job.temperature, seed=seed):
@@ -320,6 +328,12 @@ class FaceAnimatorNode:
                     if frames_sent == 1:
                         rospy.loginfo("Cue %s: first streamed frame at %.1fs for '%s'",
                                       job.cue_id, time.time() - t0, job.gen_text)
+                    if job.cue_id and self.cue_is_done(job.cue_id) \
+                            and not self.generate_even_if_late:
+                        # Cue already finished playing: every further frame is
+                        # inference spent on output that will be dropped.
+                        aborted_late = True
+                        break
                 else:
                     obj = payload
         except FaceGenError as e:
@@ -331,9 +345,17 @@ class FaceAnimatorNode:
                 return True
             return False
 
+        if aborted_late:
+            rospy.loginfo("Cue %s: already played; aborted generation mid-stream "
+                          "after %d frames (%.1fs)", job.cue_id, frames_sent,
+                          time.time() - t0)
+            self.publish_track(job.cue_id, None, "generated", "complete")
+            return True
+
         frames = obj.get("frames", []) if obj else []
-        rospy.loginfo("Cue %s: streamed %d frames in %.1fs for '%s'",
-                      job.cue_id, len(frames), time.time() - t0, job.gen_text)
+        rospy.loginfo("Cue %s: streamed %d frames in %.1fs for '%s'%s",
+                      job.cue_id, len(frames), time.time() - t0, job.gen_text,
+                      " [truncated]" if obj and obj.get("_truncated") else "")
         # Final authoritative track (replaces the appended partials).
         self.publish_track(job.cue_id, frames, "generated", "complete")
         if obj:
@@ -341,9 +363,16 @@ class FaceAnimatorNode:
         return True
 
     def maybe_save(self, job, obj, seed):
-        """Persist only emoji-keyed takes; plain-text results stay ephemeral."""
+        """
+        Persist only emoji-keyed, non-truncated takes. Truncated generations
+        (past the rambling cutoff or a deadline) are played once and
+        discarded -- never added to the rolling library.
+        """
+        if obj.get("_truncated"):
+            return
         if job.save and job.emoji:
-            self.store.save(job.emoji, obj, model=job.model, text=job.gen_text,
+            animation = {k: v for k, v in obj.items() if not k.startswith("_")}
+            self.store.save(job.emoji, animation, model=job.model, text=job.gen_text,
                             temperature=job.temperature, seed=seed)
 
     def publish_track(self, cue_id, frames, source, status, append=False):

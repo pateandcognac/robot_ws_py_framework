@@ -50,6 +50,7 @@ from performance_lib.arm_gen_client import (
     DEFAULT_STORE_DIR,
     DEFAULT_STORE_CAP,
     DEFAULT_TIMEOUT_S,
+    MAX_ACCEPTED_FRAMES,
     ArmGenClient,
     ArmGenError,
     GenStore,
@@ -105,6 +106,10 @@ class ArmAnimatorNode:
         # Stream frames to the sequencer as they decode.
         self.use_streaming = bool(rospy.get_param('~stream', True))
         self.gen_timeout_s = float(rospy.get_param('~gen_timeout_s', DEFAULT_TIMEOUT_S))
+        # Rambling cutoff: generations past this many frames get cut short
+        # mid-stream (or truncated when blocking) and are never saved.
+        self.max_accepted_frames = int(
+            rospy.get_param('~max_accepted_frames', MAX_ACCEPTED_FRAMES))
         self.generate_even_if_late = bool(rospy.get_param('~generate_even_if_late', False))
         self.max_pending_jobs = int(rospy.get_param('~max_pending_jobs', 12))
         # Cue with no usable emoji whose generation fails: borrow a recently
@@ -255,7 +260,9 @@ class ArmAnimatorNode:
     def get_client(self, model):
         with self.clients_lock:
             if model not in self.clients:
-                self.clients[model] = ArmGenClient(model=model, timeout_s=self.gen_timeout_s)
+                self.clients[model] = ArmGenClient(
+                    model=model, timeout_s=self.gen_timeout_s,
+                    max_frames=self.max_accepted_frames)
             return self.clients[model]
 
     def process_job(self, job):
@@ -319,6 +326,7 @@ class ArmAnimatorNode:
         # Streaming: push each frame to the sequencer the moment it decodes.
         frames_sent = 0
         obj = None
+        aborted_late = False
         try:
             for kind, payload in client.generate_stream(
                     job.gen_text, n_frames=job.n_frames, temperature=job.temperature, seed=seed):
@@ -329,6 +337,12 @@ class ArmAnimatorNode:
                     if frames_sent == 1:
                         rospy.loginfo("Cue %s: first streamed arm frame at %.1fs for '%s'",
                                       job.cue_id, time.time() - t0, job.gen_text)
+                    if job.cue_id and self.cue_is_done(job.cue_id) \
+                            and not self.generate_even_if_late:
+                        # Cue already finished playing: every further frame is
+                        # inference spent on output that will be dropped.
+                        aborted_late = True
+                        break
                 else:
                     obj = payload
         except ArmGenError as e:
@@ -338,6 +352,13 @@ class ArmAnimatorNode:
                 self.publish_track(job.cue_id, None, "generated", "complete")
                 return True
             return False
+
+        if aborted_late:
+            rospy.loginfo("Cue %s: already played; aborted arm generation mid-stream "
+                          "after %d frames (%.1fs)", job.cue_id, frames_sent,
+                          time.time() - t0)
+            self.publish_track(job.cue_id, None, "generated", "complete")
+            return True
 
         frames = obj.get("frames", []) if obj else []
         rospy.loginfo("Cue %s: streamed %d arm frames in %.1fs for '%s'%s",
@@ -359,7 +380,8 @@ class ArmAnimatorNode:
         if obj.get("_truncated"):
             return
         if job.save and job.emoji:
-            self.store.save(job.emoji, obj, model=job.model, text=job.gen_text,
+            animation = {k: v for k, v in obj.items() if not k.startswith("_")}
+            self.store.save(job.emoji, animation, model=job.model, text=job.gen_text,
                             n_frames_requested=job.n_frames,
                             temperature=job.temperature, seed=seed)
 

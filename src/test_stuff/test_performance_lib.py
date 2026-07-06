@@ -23,6 +23,7 @@ from performance_lib.face_gen_client import (
     StreamingFrameParser,
     clamp_semantic_obj,
     expand_frames_lenient,
+    truncate_rambling,
 )
 from performance_lib.arm_schema import (
     compile_semantic_to_legacy as compile_arm_semantic_to_legacy,
@@ -53,6 +54,86 @@ def test_streaming_parser():
         assert frames[1]["beat"] == 'b {tricky"} string'
         assert json.loads(parser.buf)["emoji"] == "🎉"
     print("ok: streaming parser")
+
+
+def test_parser_robustness():
+    # Leading BOM / zero-width / whitespace junk must not break frame
+    # extraction or the final json.loads(parser.buf).
+    doc = "﻿​ \n" + json.dumps(
+        {"emoji": "🎉", "frames": [{"beat": "a"}, {"beat": "b"}]}, ensure_ascii=False)
+    for chunk_size in (1, 3, 7, len(doc)):
+        parser = StreamingFrameParser()
+        frames = []
+        for i in range(0, len(doc), chunk_size):
+            frames.extend(parser.feed(doc[i:i + chunk_size]))
+        assert [f["beat"] for f in frames] == ["a", "b"], (chunk_size, frames)
+        assert json.loads(parser.buf)["emoji"] == "🎉"
+
+    # Frames array before the emoji key parses identically.
+    doc = '{"frames": [{"beat": "x"}, {"beat": "y"}], "emoji": "🎉"}'
+    for chunk_size in (1, 3, 7, len(doc)):
+        parser = StreamingFrameParser()
+        frames = []
+        for i in range(0, len(doc), chunk_size):
+            frames.extend(parser.feed(doc[i:i + chunk_size]))
+        assert [f["beat"] for f in frames] == ["x", "y"], (chunk_size, frames)
+
+    # A malformed frame object is dropped, not raised, and later frames
+    # still come through.
+    parser = StreamingFrameParser()
+    frames = parser.feed('{"frames": [{"beat": bad}, {"beat": "ok"}]}')
+    assert [f.get("beat") for f in frames] == ["ok"], frames
+    print("ok: parser robustness (BOM, key order, malformed frame)")
+
+
+def test_synthesize_close():
+    doc = json.dumps({
+        "emoji": "🎉",
+        "frames": [{"beat": "a"}, {"beat": "b {curly\"} trap"}, {"beat": "c"}],
+    }, ensure_ascii=False)
+    # Cut the stream at every possible byte position: synthesize_close must
+    # always produce a valid object holding exactly the fully-arrived frames
+    # (and the emoji, which precedes the frames array here).
+    saw_counts = set()
+    for cut in range(1, len(doc) + 1):
+        parser = StreamingFrameParser()
+        completed = parser.feed(doc[:cut])
+        try:
+            obj = parser.synthesize_close()
+        except ValueError:
+            assert not completed, "frames arrived but close failed at cut %d" % cut
+            continue
+        assert obj["frames"] == completed, (cut, obj)
+        if completed:
+            assert obj["emoji"] == "🎉", (cut, obj)
+        saw_counts.add(len(obj["frames"]))
+    assert saw_counts == {0, 1, 2, 3}, saw_counts
+
+    # Frames-first key order: a cut mid-stream loses the trailing emoji key
+    # (it hasn't arrived yet in practice) and defaults to "".
+    parser = StreamingFrameParser()
+    parser.feed('{"frames": [{"beat": "x"}, {"beat": "y"}], "emo')
+    obj = parser.synthesize_close()
+    assert [f["beat"] for f in obj["frames"]] == ["x", "y"]
+    assert obj["emoji"] == ""
+
+    # Chunked feeding reaches the same result as one-shot feeding.
+    partial = doc[: doc.index('"c"')]
+    parser = StreamingFrameParser()
+    for i in range(0, len(partial), 3):
+        parser.feed(partial[i:i + 3])
+    obj = parser.synthesize_close()
+    assert len(obj["frames"]) == 2 and obj["emoji"] == "🎉"
+    print("ok: synthesize_close at every cut point")
+
+
+def test_truncate_rambling():
+    obj = {"emoji": "🌀", "frames": [{"beat": str(i)} for i in range(12)]}
+    out = truncate_rambling(dict(obj), 9)
+    assert len(out["frames"]) == 9 and out["_truncated"] is True
+    out = truncate_rambling(dict(obj), 12)
+    assert len(out["frames"]) == 12 and out["_truncated"] is False
+    print("ok: truncate_rambling cap + flag")
 
 
 def test_lenient_expansion_and_clamp():
@@ -255,6 +336,9 @@ def test_live_arm_generation():
 
 if __name__ == "__main__":
     test_streaming_parser()
+    test_parser_robustness()
+    test_synthesize_close()
+    test_truncate_rambling()
     test_lenient_expansion_and_clamp()
     test_luts_and_strict_expansion()
     test_gen_store()
