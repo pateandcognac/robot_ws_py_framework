@@ -32,6 +32,11 @@ Usage:
     tools/cycle_gemini_phrases.py --speak --engine kokoro --count 10
     tools/cycle_gemini_phrases.py --speak --engine piper --pause 2.5
     tools/cycle_gemini_phrases.py --speak --engine espeak --face-policy lut
+
+    # --mutate: add entropy to each training-set phrase (word jostle, 1-2
+    # random system-dictionary words, misspelling, casing, emoji position)
+    # so runs aren't just verbatim recall of what the model saw in training.
+    tools/cycle_gemini_phrases.py --speak --mutate --count 10
 """
 
 from __future__ import annotations
@@ -107,6 +112,96 @@ def pick_phrases(phrases: list, n: int) -> list:
 
 ENGINES = ("kokoro", "piper", "espeak", "festival")
 
+DICT_PATHS = (
+    "/usr/share/dict/words",
+    "/usr/share/dict/american-english",
+    "/usr/share/dict/british-english",
+)
+_DICT_WORDS_CACHE = None
+
+
+def dict_words() -> list:
+    """Linux system dictionary word list (cached), filtered to plain a-z words."""
+    global _DICT_WORDS_CACHE
+    if _DICT_WORDS_CACHE is None:
+        _DICT_WORDS_CACHE = []
+        for p in DICT_PATHS:
+            path = Path(p)
+            if not path.exists():
+                continue
+            try:
+                _DICT_WORDS_CACHE = [
+                    w for w in (line.strip() for line in path.read_text(
+                        encoding="utf-8", errors="ignore").splitlines())
+                    if w.isalpha() and 2 <= len(w) <= 10
+                ]
+            except Exception:
+                continue
+            if _DICT_WORDS_CACHE:
+                break
+    return _DICT_WORDS_CACHE
+
+
+def _misspell(word: str) -> str:
+    """Swap two adjacent interior letters -- a plausible-looking typo."""
+    if len(word) < 4:
+        return word
+    i = random.randrange(1, len(word) - 1)
+    chars = list(word)
+    chars[i], chars[i + 1] = chars[i + 1], chars[i]
+    return "".join(chars)
+
+
+def _randcase(word: str) -> str:
+    r = random.random()
+    if r < 0.34:
+        return word.upper()
+    if r < 0.67:
+        return word.lower()
+    return word.capitalize()
+
+
+def mutate_phrase(phrase: str, emoji: str) -> str:
+    """
+    Add entropy to a training-set phrase so playback isn't just verbatim
+    recall: jostle word order slightly, sprinkle 1-2 real dictionary words,
+    misspell a word, randomize casing on a couple words, and move the
+    emoji to a random position (start/end/mid) instead of always trailing.
+    """
+    words = phrase.split()
+    if len(words) >= 3 and random.random() < 0.5:
+        i = random.randrange(len(words) - 1)
+        words[i], words[i + 1] = words[i + 1], words[i]
+
+    dw = dict_words()
+    if dw and random.random() < 0.6:
+        for _ in range(random.randint(1, 2)):
+            words.insert(random.randrange(len(words) + 1), random.choice(dw))
+
+    if words and random.random() < 0.5:
+        i = random.randrange(len(words))
+        words[i] = _misspell(words[i])
+
+    for _ in range(random.randint(0, 2)):
+        if words:
+            i = random.randrange(len(words))
+            words[i] = _randcase(words[i])
+
+    text = " ".join(words)
+
+    if emoji:
+        pos = random.choice(("start", "end", "mid"))
+        if pos == "start":
+            text = f"{emoji} {text}"
+        elif pos == "end":
+            text = f"{text} {emoji}"
+        else:
+            ws = text.split()
+            i = random.randrange(len(ws) + 1) if ws else 0
+            ws.insert(i, emoji)
+            text = " ".join(ws)
+    return text
+
 
 def run_speak_mode(args, items):
     """
@@ -140,7 +235,7 @@ def run_speak_mode(args, items):
             for phrase in pick_phrases(phrases, args.phrases_per_emoji):
                 # Emoji trails the phrase, same convention as emote.ttp()
                 # docstrings: it marks the clause just spoken, not the next.
-                text = f"{phrase} {emoji}".strip()
+                text = mutate_phrase(phrase, emoji) if args.mutate else f"{phrase} {emoji}".strip()
                 print(f"\n=== speaking ({args.engine}): \"{text}\"  ({path.name}) ===")
 
                 goal = SpeakGoal()
@@ -190,6 +285,11 @@ def main():
     ap.add_argument("--store-cap", type=int, default=DEFAULT_STORE_CAP)
     ap.add_argument("--quiet", action="store_true", help="suppress per-frame stdout detail")
     ap.add_argument("--dry-run", action="store_true", help="show what would run, no generation")
+    ap.add_argument("--mutate", action="store_true",
+                     help="add entropy to each phrase before use: jostle word order, "
+                          "sprinkle 1-2 random dictionary words, misspell a word, randomize "
+                          "casing, and move the emoji to a random position -- so playback isn't "
+                          "just verbatim training-set recall")
 
     speak_group = ap.add_argument_group("--speak mode (real Speak action, full pipeline)")
     speak_group.add_argument("--speak", action="store_true",
@@ -217,7 +317,8 @@ def main():
         if args.dry_run:
             for path, emoji, phrases in items:
                 for phrase in pick_phrases(phrases, args.phrases_per_emoji):
-                    print(f"  [{args.engine}] \"{phrase} {emoji}\"  ({path.name})")
+                    text = mutate_phrase(phrase, emoji) if args.mutate else f"{phrase} {emoji}".strip()
+                    print(f"  [{args.engine}] \"{text}\"  ({path.name})")
             return
         run_speak_mode(args, items)
         return
@@ -230,6 +331,8 @@ def main():
     if args.dry_run:
         for path, emoji, phrases in items:
             chosen = pick_phrases(phrases, args.phrases_per_emoji)
+            if args.mutate:
+                chosen = [mutate_phrase(p, emoji) for p in chosen]
             print(f"  {emoji}  {path.name}  -> {chosen}")
         return
 
@@ -243,16 +346,17 @@ def main():
     for path, emoji, phrases in items:
         for phrase in pick_phrases(phrases, args.phrases_per_emoji):
             seed = None if args.seed <= 0 else args.seed
-            print(f"\n=== {emoji}  \"{phrase}\"  ({path.name}) ===")
+            prompt_text = mutate_phrase(phrase, emoji) if args.mutate else phrase
+            print(f"\n=== {emoji}  \"{prompt_text}\"  ({path.name}) ===")
             t0 = time.time()
             try:
                 if args.no_stream:
-                    obj = client.generate(phrase, temperature=args.temperature, seed=seed,
+                    obj = client.generate(prompt_text, temperature=args.temperature, seed=seed,
                                           verbose=not args.quiet)
                 else:
                     obj = None
                     for kind, payload in client.generate_stream(
-                            phrase, temperature=args.temperature, seed=seed,
+                            prompt_text, temperature=args.temperature, seed=seed,
                             verbose=not args.quiet):
                         if kind == "done":
                             obj = payload
