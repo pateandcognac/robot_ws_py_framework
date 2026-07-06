@@ -1,0 +1,43 @@
+{
+  "$comment": "JSON Schema for Ollama's structured-output ('format') param, mirroring schemas/arm_animation_schema.json. NOTE: llama.cpp's grammar constraint enforces structure (required keys, types, array length) but NOT numeric minimum/maximum -- range violations like shoulder_pitch=-120 are not caught by this schema, only by validate_arm_dataset.validate_animation_json() after the fact.",
+  "type": "object",
+  "properties": {
+    "emoji": { "type": "string" },
+    "frames": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": { "$ref": "#/$defs/frame" }
+    }
+  },
+  "required": ["emoji", "frames"],
+  "additionalProperties": false,
+  "$defs": {
+    "frame": {
+      "type": "object",
+      "properties": {
+        "beat": { "type": "string" },
+        "arms": {
+          "type": "object",
+          "properties": {
+            "left": { "$ref": "#/$defs/pose" },
+            "right": { "$ref": "#/$defs/pose" },
+            "both": { "$ref": "#/$defs/pose" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["beat"],
+      "additionalProperties": false
+    },
+    "pose": {
+      "type": "object",
+      "properties": {
+        "shoulder_roll": { "type": "number" },
+        "shoulder_pitch": { "type": "number" },
+        "wrist": { "type": "number" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

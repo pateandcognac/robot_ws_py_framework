@@ -24,6 +24,12 @@ from performance_lib.face_gen_client import (
     clamp_semantic_obj,
     expand_frames_lenient,
 )
+from performance_lib.arm_schema import (
+    compile_semantic_to_legacy as compile_arm_semantic_to_legacy,
+    expand_semantic_arm_frames,
+    validate_semantic_arm_sequence,
+)
+from performance_lib.arm_gen_client import ArmGenClient, frame_count_hint
 
 
 def test_streaming_parser():
@@ -133,6 +139,52 @@ def test_chunking():
     print("ok: chunking + emoji extraction")
 
 
+def test_arm_key_backward_compat():
+    """
+    The arm model was trained on shoulder_roll/shoulder_pitch, renamed from
+    joint1/joint2 for legibility -- but the 1488+ existing arms_semantic
+    files and the ROS-level ArmPose message both still use joint1/joint2.
+    arm_schema.py must read either spelling and always emit joint1/joint2
+    when compiling to the legacy runtime format.
+    """
+    old_style = {
+        "emoji": "🧪",
+        "ideation": "",
+        "frames": [
+            {"beat": "rest", "arms": {"both": {"joint1": 5.0, "joint2": -80.0, "wrist": 0.0}}},
+            {"beat": "reach", "arms": {"left": {"joint1": 40.0}, "right": {"joint2": 20.0}}},
+        ],
+    }
+    assert validate_semantic_arm_sequence(old_style) == []
+    expanded = expand_semantic_arm_frames(old_style["frames"])
+    assert expanded[1]["arms"]["left"]["shoulder_roll"] == 40.0
+    assert expanded[1]["arms"]["left"]["shoulder_pitch"] == -80.0  # carried forward
+    assert expanded[1]["arms"]["right"]["shoulder_pitch"] == 20.0
+
+    new_style = {
+        "emoji": "🧪",
+        "ideation": "",
+        "frames": [
+            {"beat": "rest", "arms": {"both": {"shoulder_roll": 5.0, "shoulder_pitch": -80.0, "wrist": 0.0}}},
+            {"beat": "reach", "arms": {"both": {"shoulder_roll": 30.0, "shoulder_pitch": -40.0, "wrist": 10.0}}},
+        ],
+    }
+    assert validate_semantic_arm_sequence(new_style) == []
+    legacy = compile_arm_semantic_to_legacy(new_style)
+    action = legacy[0]["frames"][0][0]["parameters"]
+    assert action["joint1"] == 5.0 and action["joint2"] == -80.0 and "shoulder_roll" not in action
+    print("ok: arm key backward compat (joint1/joint2 <-> shoulder_roll/shoulder_pitch)")
+
+
+def test_frame_count_hint():
+    assert frame_count_hint("hi") == "1 to 2"
+    assert frame_count_hint("wave hello there") == "1 to 2"
+    assert frame_count_hint("wave hello enthusiastically at the crowd") == "2 to 4"
+    assert frame_count_hint("a very long sentence with plenty of words describing a big gesture") == "3 to 6"
+    assert frame_count_hint("nospacessss" * 5) == "3 to 6"  # char-count fallback
+    print("ok: frame count hint heuristic")
+
+
 def test_live_generation():
     client = FaceGenClient()
     t0 = time.time()
@@ -159,12 +211,45 @@ def test_live_generation():
         n, first_frame_t, dt))
 
 
+def test_live_arm_generation():
+    client = ArmGenClient()
+    t0 = time.time()
+    obj = client.generate("wave hello enthusiastically")
+    dt = time.time() - t0
+    assert obj.get("frames"), obj
+    expanded = expand_semantic_arm_frames(obj["frames"])
+    assert expanded
+    for frame in expanded:
+        for side in ("left", "right"):
+            pose = frame["arms"][side]
+            assert set(pose) == {"shoulder_roll", "shoulder_pitch", "wrist"}
+    print("ok: live arm blocking gen ({} frames in {:.1f}s)".format(len(obj["frames"]), dt))
+
+    t0 = time.time()
+    n = 0
+    first_frame_t = None
+    for kind, payload in client.generate_stream("🎉 celebrate wildly"):
+        if kind == "frame":
+            n += 1
+            if first_frame_t is None:
+                first_frame_t = time.time() - t0
+        else:
+            done_obj = payload
+    dt = time.time() - t0
+    assert n == len(done_obj["frames"]), (n, len(done_obj["frames"]))
+    print("ok: live arm streaming gen ({} frames, first at {:.1f}s, done {:.1f}s)".format(
+        n, first_frame_t, dt))
+
+
 if __name__ == "__main__":
     test_streaming_parser()
     test_lenient_expansion_and_clamp()
     test_luts_and_strict_expansion()
     test_gen_store()
     test_chunking()
+    test_arm_key_backward_compat()
+    test_frame_count_hint()
     if "--live" in sys.argv:
         test_live_generation()
+        test_live_arm_generation()
     print("all tests passed")
