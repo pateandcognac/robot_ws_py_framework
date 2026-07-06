@@ -55,8 +55,8 @@ from logos_msgs.msg import (
 from std_msgs.msg import String, Bool
 
 from performance_lib import luts
-from performance_lib.face_schema import EYE_KEYS, EYE_STATE_BY_KEY
-from performance_lib.face_gen_client import expand_frames_lenient
+from performance_lib.face_schema import EYE_KEYS, EYE_STATE_BY_KEY, MAX_FRAMES
+from performance_lib.face_gen_client import FrameExpander, expand_frames_lenient
 
 EYE_MSG_BY_STATE = {
     "EyeGazeX": EyeGazeX,
@@ -166,6 +166,9 @@ class PerformanceSequencerNode:
         self.is_speaking_pub = rospy.Publisher('/tts/is_speaking', Bool, queue_size=1, latch=True)
         self.cue_done_pub = rospy.Publisher('/performance/cue_done', String, queue_size=20)
         self.track_wait_s = float(rospy.get_param('~track_wait_s', 15.0))
+        # Streamed generated frames may replace LUT playback mid-cue, but only
+        # before this fraction of the cue has elapsed (late switches look bad).
+        self.switch_threshold = float(rospy.get_param('~switch_threshold', 0.6))
 
         rospy.Subscriber('/face/tts_chunk', SpeechData, self.tts_chunk_cb)
         rospy.Subscriber('/face/emoji_command', String, self.face_command_cb)
@@ -235,20 +238,9 @@ class PerformanceSequencerNode:
 
     # ─── Face resolution & playback ──────────────────────────────────
 
-    def resolve_face_frames(self, cue):
-        """Return (sparse_semantic_frames, source) for a cue, or (None, '')."""
-        if cue.cue_id:
-            track = self.face_tracks.get(cue.cue_id)
-            if (track is None or not track["frames"]) and cue.expect_track:
-                track = self._wait_for_track(cue.cue_id)
-            if track and track["frames"] and track["status"] != "failed":
-                return track["frames"], (track.get("source") or "animator")
-        if cue.emoji and cue.emoji in self.face_lut:
-            return self.face_lut[cue.emoji]["frames"], "lut"
-        if cue.emoji or cue.text:
-            rospy.logwarn_throttle(
-                5, "No face animation available for '%s%s'.", cue.emoji, cue.text)
-        return None, ""
+    @staticmethod
+    def _track_usable(track):
+        return bool(track and track["frames"] and track["status"] != "failed")
 
     def _wait_for_track(self, cue_id):
         """Bounded wait for an animator track (silent expect_track cues only)."""
@@ -280,14 +272,90 @@ class PerformanceSequencerNode:
         mouth.duration = max(0.05, step_duration)
         self.mouth_pub.publish(mouth)
 
-    def play_face(self, sparse_frames, duration):
-        poses = expand_frames_lenient(sparse_frames)
-        if not poses:
-            return
-        step = max(0.05, duration / len(poses))
-        for pose in poses:
-            self.publish_face_pose(pose, step)
-            rospy.sleep(step)
+    def _sleep_slices(self, seconds):
+        """Sleep in small slices so shutdown stays responsive."""
+        end = time.time() + seconds
+        while not rospy.is_shutdown() and time.time() < end:
+            rospy.sleep(min(0.05, max(0.0, end - time.time())))
+
+    def play_face_for_cue(self, cue):
+        """
+        Dynamic face playback over the cue's duration.
+
+        Starts on the LUT (cold open) when the emoji has one; if an animator
+        track (possibly still streaming in, frame by frame) shows up before
+        ~switch_threshold of the cue has elapsed, playback switches to it and
+        paces the remaining generated frames over the remaining time. Holds
+        the last pose when a stream stalls. Always consumes the cue duration.
+        """
+        track = self.face_tracks.get(cue.cue_id) if cue.cue_id else None
+        if cue.expect_track and not self._track_usable(track):
+            track = self._wait_for_track(cue.cue_id)
+
+        t0 = time.time()
+        t_end = t0 + max(0.1, cue.duration)
+
+        lut_poses = None
+        if cue.emoji and cue.emoji in self.face_lut:
+            lut_poses = expand_frames_lenient(self.face_lut[cue.emoji]["frames"])
+        lut_step = (max(0.1, cue.duration) / len(lut_poses)) if lut_poses else 0.0
+        lut_idx = 0
+
+        mode = None  # None -> undecided/lut, "track" -> animator frames
+        expander = None
+        track_played = 0
+
+        if not lut_poses and not cue.cue_id and (cue.emoji or cue.text):
+            rospy.logwarn_throttle(
+                5, "No face animation available for '%s%s'.", cue.emoji, cue.text)
+
+        while not rospy.is_shutdown():
+            now = time.time()
+            if now >= t_end:
+                break
+
+            if mode != "track" and cue.cue_id:
+                track = self.face_tracks.get(cue.cue_id)
+                if self._track_usable(track):
+                    progress = (now - t0) / (t_end - t0)
+                    if progress < self.switch_threshold or lut_idx == 0:
+                        mode = "track"
+                        expander = FrameExpander()
+                        rospy.loginfo(
+                            "Cue %s: face from %s (join at %d%%)",
+                            cue.cue_id, track.get("source") or "animator",
+                            int(progress * 100))
+
+            if mode == "track":
+                track = self.face_tracks.get(cue.cue_id) or track
+                frames = track["frames"] if track else []
+                if track_played < len(frames):
+                    if track.get("status") == "complete":
+                        est_remaining = len(frames) - track_played
+                    else:
+                        # stream in flight: assume a mid-sized sequence so
+                        # early frames don't hog the whole cue
+                        est_total = min(MAX_FRAMES, max(len(frames) + 2, 6))
+                        est_remaining = est_total - track_played
+                    step = max(0.05, (t_end - now) / max(1, est_remaining))
+                    pose = expander.feed(frames[track_played])
+                    track_played += 1
+                    if pose:
+                        self.publish_face_pose(pose, step)
+                    self._sleep_slices(min(step, t_end - time.time()))
+                else:
+                    # stream stall or all frames shown: hold last pose
+                    rospy.sleep(0.05)
+            elif lut_poses:
+                if lut_idx < len(lut_poses):
+                    self.publish_face_pose(lut_poses[lut_idx], lut_step)
+                    lut_idx += 1
+                    self._sleep_slices(min(lut_step, t_end - time.time()))
+                else:
+                    rospy.sleep(0.05)
+            else:
+                # nothing to show (yet); idle out the duration
+                rospy.sleep(0.05)
 
     # ─── Arm channel ─────────────────────────────────────────────────
 
@@ -350,14 +418,7 @@ class PerformanceSequencerNode:
             self.arm_queue.put((self.arm_lut[cue.emoji], cue.duration))
 
         if cue.face:
-            frames, source = self.resolve_face_frames(cue)
-            if frames:
-                if source != "lut":
-                    rospy.loginfo("Cue %s face from %s (%d frames)",
-                                  cue.cue_id or cue.emoji, source, len(frames))
-                self.play_face(frames, cue.duration)
-            elif cue.duration > 0:
-                rospy.sleep(cue.duration)
+            self.play_face_for_cue(cue)
         elif cue.duration > 0 and not has_audio:
             rospy.sleep(cue.duration)
 

@@ -87,6 +87,9 @@ class FaceAnimatorNode:
             rospy.get_param('~command_policy', 'lut,saved,generate'),
             ['lut', 'saved', 'generate'])
         self.save_generations = bool(rospy.get_param('~save_generations', True))
+        # Stream frames to the sequencer as they decode (first face motion in
+        # ~1s instead of after the full 4-15s generation).
+        self.use_streaming = bool(rospy.get_param('~stream', True))
         self.gen_timeout_s = float(rospy.get_param('~gen_timeout_s', 45.0))
         self.generate_even_if_late = bool(rospy.get_param('~generate_even_if_late', False))
         self.max_pending_jobs = int(rospy.get_param('~max_pending_jobs', 12))
@@ -237,21 +240,56 @@ class FaceAnimatorNode:
         client = self.get_client(job.model)
         seed = None if not job.seed or int(job.seed) <= 0 else int(job.seed)
         t0 = time.time()
+        if not self.use_streaming:
+            try:
+                obj = client.generate(job.gen_text, temperature=job.temperature, seed=seed)
+            except FaceGenError as e:
+                rospy.logwarn("Cue %s: generation failed (%s)", job.cue_id, e)
+                return False
+            frames = obj.get("frames", [])
+            rospy.loginfo("Cue %s: generated %d frames in %.1fs for '%s'",
+                          job.cue_id, len(frames), time.time() - t0, job.gen_text)
+            self.publish_track(job.cue_id, frames, "generated", "complete")
+            if job.save:
+                self.store.save(job.gen_text, obj, model=job.model,
+                                temperature=job.temperature, seed=seed)
+            return True
+
+        # Streaming: push each frame to the sequencer the moment it decodes.
+        frames_sent = 0
+        obj = None
         try:
-            obj = client.generate(job.gen_text, temperature=job.temperature, seed=seed)
+            for kind, payload in client.generate_stream(
+                    job.gen_text, temperature=job.temperature, seed=seed):
+                if kind == "frame":
+                    frames_sent += 1
+                    self.publish_track(job.cue_id, [payload], "generated", "partial",
+                                       append=True)
+                    if frames_sent == 1:
+                        rospy.loginfo("Cue %s: first streamed frame at %.1fs for '%s'",
+                                      job.cue_id, time.time() - t0, job.gen_text)
+                else:
+                    obj = payload
         except FaceGenError as e:
-            rospy.logwarn("Cue %s: generation failed (%s)", job.cue_id, e)
+            rospy.logwarn("Cue %s: streaming generation failed after %d frames (%s)",
+                          job.cue_id, frames_sent, e)
+            if frames_sent:
+                # Close out the partial track so the sequencer stops expecting more.
+                self.publish_track(job.cue_id, None, "generated", "complete")
+                return True
             return False
-        frames = obj.get("frames", [])
-        rospy.loginfo("Cue %s: generated %d frames in %.1fs for '%s'",
+
+        frames = obj.get("frames", []) if obj else []
+        rospy.loginfo("Cue %s: streamed %d frames in %.1fs for '%s'",
                       job.cue_id, len(frames), time.time() - t0, job.gen_text)
+        # Final authoritative track (replaces the appended partials).
         self.publish_track(job.cue_id, frames, "generated", "complete")
-        if job.save:
+        if job.save and obj:
             self.store.save(job.gen_text, obj, model=job.model,
                             temperature=job.temperature, seed=seed)
         return True
 
-    def publish_track(self, cue_id, frames, source, status):
+    def publish_track(self, cue_id, frames, source, status, append=False):
         payload = {
             "cue_id": cue_id,
             "source": source,
@@ -259,6 +297,8 @@ class FaceAnimatorNode:
         }
         if frames is not None:
             payload["frames"] = frames
+        if append:
+            payload["append"] = True
         self.track_pub.publish(String(data=json.dumps(payload, ensure_ascii=False)))
 
 

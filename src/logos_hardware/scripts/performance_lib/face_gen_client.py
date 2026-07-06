@@ -71,6 +71,37 @@ def clamp_semantic_obj(obj: Dict[str, Any]) -> Dict[str, Any]:
     return out
 
 
+class FrameExpander:
+    """
+    Stateful sparse-frame expander: feed semantic frames one at a time (e.g.
+    as they stream out of the model) and get a full clamped left/right pose
+    back for each. Carry-forward starts from DEFAULT_POSE.
+    """
+
+    def __init__(self):
+        self.current = copy.deepcopy(DEFAULT_POSE)
+
+    def feed(self, frame: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        if not isinstance(frame, dict):
+            return None
+        frame = clamp_frame(frame)
+        eyes_patch = frame.get("eyes", {}) or {}
+        if isinstance(eyes_patch.get("both"), dict):
+            for side in CONCRETE_EYE_SIDES:
+                self.current["eyes"][side].update(eyes_patch["both"])
+        for side in CONCRETE_EYE_SIDES:
+            if isinstance(eyes_patch.get(side), dict):
+                self.current["eyes"][side].update(eyes_patch[side])
+        mouth_patch = frame.get("mouth")
+        if isinstance(mouth_patch, dict):
+            self.current["mouth"].update(mouth_patch)
+        return {
+            "beat": frame.get("beat", ""),
+            "eyes": copy.deepcopy(self.current["eyes"]),
+            "mouth": copy.deepcopy(self.current["mouth"]),
+        }
+
+
 def expand_frames_lenient(frames: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
     Expand sparse semantic frames into full left/right poses without strict
@@ -78,29 +109,12 @@ def expand_frames_lenient(frames: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     omitted carries forward from the previous frame (seeded from DEFAULT_POSE),
     and numerics are clamped. Always returns one full pose per input frame.
     """
-    current = copy.deepcopy(DEFAULT_POSE)
+    expander = FrameExpander()
     expanded: List[Dict[str, Any]] = []
     for frame in frames:
-        if not isinstance(frame, dict):
-            continue
-        frame = clamp_frame(frame)
-        eyes_patch = frame.get("eyes", {}) or {}
-        if isinstance(eyes_patch.get("both"), dict):
-            for side in CONCRETE_EYE_SIDES:
-                current["eyes"][side].update(eyes_patch["both"])
-        for side in CONCRETE_EYE_SIDES:
-            if isinstance(eyes_patch.get(side), dict):
-                current["eyes"][side].update(eyes_patch[side])
-        mouth_patch = frame.get("mouth")
-        if isinstance(mouth_patch, dict):
-            current["mouth"].update(mouth_patch)
-        expanded.append(
-            {
-                "beat": frame.get("beat", ""),
-                "eyes": copy.deepcopy(current["eyes"]),
-                "mouth": copy.deepcopy(current["mouth"]),
-            }
-        )
+        pose = expander.feed(frame)
+        if pose is not None:
+            expanded.append(pose)
     return expanded
 
 
