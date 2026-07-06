@@ -23,11 +23,20 @@ Face animation sources, in order of preference at cue play time:
 2. The semantic face LUT (animations/face_semantic/) by emoji.
 3. Nothing (audio still plays; we just wait out the duration).
 
-Face frames are the sparse semantic format; they are expanded leniently
-(carry-forward + clamping) and published to the existing typed face topics,
-spread evenly across the cue duration, exactly like the legacy player did.
-Arms remain legacy-format LUT playback on a parallel channel that starts
-aligned with its cue instead of the old qsize-based wall-clock guess.
+Arms follow the identical pattern (same shape, different topic/LUT/model)
+now that the tiny arm model has landed:
+1. A track delivered on /performance/arm_track (String JSON) by
+   arm_animator_node.py.
+2. The semantic arm LUT (animations/arms_semantic/) by emoji.
+3. Nothing (arms just hold their last pose for the cue's duration).
+
+Both run on their own timing channel -- arms start aligned with their cue
+instead of blocking face/audio -- but share the same dynamic-join logic:
+frames are the sparse semantic format, expanded leniently (carry-forward +
+clamping) and published to the typed runtime topics, spread evenly across
+the cue duration. A streamed track may join mid-cue (before
+~switch_threshold of the duration has elapsed); after that the LUT
+cold-open plays out undisturbed.
 """
 
 import json
@@ -57,6 +66,11 @@ from std_msgs.msg import String, Bool
 from performance_lib import chunking, luts
 from performance_lib.face_schema import EYE_KEYS, EYE_STATE_BY_KEY, MAX_FRAMES
 from performance_lib.face_gen_client import FrameExpander, expand_frames_lenient
+from performance_lib.arm_gen_client import (
+    MAX_ACCEPTED_FRAMES as ARM_MAX_ACCEPTED_FRAMES,
+    ArmFrameExpander,
+    expand_frames_lenient as expand_arm_frames_lenient,
+)
 
 EYE_MSG_BY_STATE = {
     "EyeGazeX": EyeGazeX,
@@ -91,8 +105,22 @@ class Cue:
         self.expect_track = expect_track
 
 
-class FaceTrackStore:
-    """Animator-delivered face tracks, keyed by cue_id."""
+class ArmCue:
+    """One playable arm-channel unit, independent of the face/audio cue timing."""
+
+    def __init__(self, cue_id="", emoji="", text="", duration=2.0, expect_track=False):
+        self.cue_id = cue_id
+        self.emoji = emoji
+        self.text = text
+        self.duration = duration
+        # Direct arm commands with a cue_id (e.g. gesture()) wait (bounded)
+        # for the animator's track; TTS-driven arm cues never do -- speech
+        # never blocks on generation, the LUT cold-open covers lateness.
+        self.expect_track = expect_track
+
+
+class TrackStore:
+    """Animator-delivered tracks (face or arm), keyed by cue_id."""
 
     def __init__(self):
         self._tracks = {}
@@ -139,14 +167,15 @@ class PerformanceSequencerNode:
 
         self.face_lut = luts.load_semantic_face_lut(
             rospy.get_param('~face_lut_dir', luts.DEFAULT_FACE_SEMANTIC_DIR))
-        self.arm_lut = luts.load_arm_lut(
-            rospy.get_param('~arm_lut_dir', luts.DEFAULT_ARM_DIR))
-        rospy.loginfo("Sequencer LUTs: %d face (semantic), %d arm (legacy)",
+        self.arm_lut = luts.load_semantic_arm_lut(
+            rospy.get_param('~arm_lut_dir', luts.DEFAULT_ARM_SEMANTIC_DIR))
+        rospy.loginfo("Sequencer LUTs: %d face (semantic), %d arm (semantic)",
                       len(self.face_lut), len(self.arm_lut))
 
         self.cue_queue = Queue()
         self.arm_queue = Queue()
-        self.face_tracks = FaceTrackStore()
+        self.face_tracks = TrackStore()
+        self.arm_tracks = TrackStore()
 
         self.face_pubs = {
             state: rospy.Publisher('face/' + topic, EYE_MSG_BY_STATE[state], queue_size=10)
@@ -174,6 +203,7 @@ class PerformanceSequencerNode:
         rospy.Subscriber('/face/emoji_command', String, self.face_command_cb)
         rospy.Subscriber('/arm/emoji_command', String, self.arm_command_cb)
         rospy.Subscriber('/performance/face_track', String, self.face_track_cb)
+        rospy.Subscriber('/performance/arm_track', String, self.arm_track_cb)
 
         self.arm_thread = threading.Thread(target=self.arm_channel_loop, daemon=True)
         self.arm_thread.start()
@@ -221,16 +251,18 @@ class PerformanceSequencerNode:
             rospy.logerr("Bad /face/emoji_command payload: %s (%s)", msg.data, e)
 
     def arm_command_cb(self, msg):
-        """Arm-only cue; goes straight to the arm channel."""
+        """Arm cue. `text` may be emoji, prose, or both in one string."""
         try:
-            emoji, text, duration, _ = self._parse_command(msg, 2.0)
-            if not emoji or emoji not in self.arm_lut:
-                emoji = chunking.find_emoji(text or emoji, self.arm_lut.keys()) or emoji
-            frames = self.arm_lut.get(emoji)
-            if not frames:
-                rospy.logwarn("Arm command for '%s%s': no arm preset found.", emoji, text)
+            emoji, text, duration, cue_id = self._parse_command(msg, 2.0)
+            if not emoji and not text and not cue_id:
                 return
-            self.arm_queue.put((frames, duration))
+            if not emoji:
+                emoji = chunking.find_emoji(text, self.arm_lut.keys()) or ""
+            expect_track = bool(json.loads(msg.data).get("expect_track", False))
+            self.arm_queue.put(ArmCue(cue_id=cue_id, emoji=emoji, text=text,
+                                      duration=duration, expect_track=expect_track))
+            rospy.loginfo("Queued arm cue: %s%s for %.1fs",
+                          emoji, (" '" + text + "'") if text else "", duration)
         except (ValueError, json.JSONDecodeError) as e:
             rospy.logerr("Bad /arm/emoji_command payload: %s (%s)", msg.data, e)
 
@@ -240,24 +272,32 @@ class PerformanceSequencerNode:
         except json.JSONDecodeError as e:
             rospy.logerr("Bad /performance/face_track payload: %s", e)
 
-    # ─── Face resolution & playback ──────────────────────────────────
+    def arm_track_cb(self, msg):
+        try:
+            self.arm_tracks.update(json.loads(msg.data))
+        except json.JSONDecodeError as e:
+            rospy.logerr("Bad /performance/arm_track payload: %s", e)
+
+    # ─── Track resolution (shared by face & arm channels) ─────────────
 
     @staticmethod
     def _track_usable(track):
         return bool(track and track["frames"] and track["status"] != "failed")
 
-    def _wait_for_track(self, cue_id):
+    def _wait_for_track(self, store, cue_id, label="track"):
         """Bounded wait for an animator track (silent expect_track cues only)."""
         deadline = time.time() + self.track_wait_s
         while time.time() < deadline and not rospy.is_shutdown():
-            track = self.face_tracks.get(cue_id)
+            track = store.get(cue_id)
             # status "lut" = animator's explicit "play your own LUT" signal
             if track and (track["frames"] or track["status"] in ("failed", "lut")):
                 return track
             rospy.sleep(0.1)
-        rospy.logwarn("Timed out waiting %.1fs for face track %s; falling back.",
-                      self.track_wait_s, cue_id)
-        return self.face_tracks.get(cue_id)
+        rospy.logwarn("Timed out waiting %.1fs for %s %s; falling back.",
+                      self.track_wait_s, label, cue_id)
+        return store.get(cue_id)
+
+    # ─── Face resolution & playback ──────────────────────────────────
 
     def publish_face_pose(self, pose, step_duration):
         """Publish one expanded full pose to the typed face topics."""
@@ -295,7 +335,7 @@ class PerformanceSequencerNode:
         """
         track = self.face_tracks.get(cue.cue_id) if cue.cue_id else None
         if cue.expect_track and not self._track_usable(track):
-            track = self._wait_for_track(cue.cue_id)
+            track = self._wait_for_track(self.face_tracks, cue.cue_id, label="face track")
 
         t0 = time.time()
         t_end = t0 + max(0.1, cue.duration)
@@ -367,25 +407,87 @@ class PerformanceSequencerNode:
     def arm_channel_loop(self):
         while not rospy.is_shutdown():
             try:
-                frames, duration = self.arm_queue.get(timeout=0.25)
+                arm_cue = self.arm_queue.get(timeout=0.25)
             except Empty:
                 continue
-            self.play_arms(frames, duration)
+            self.play_arms_for_cue(arm_cue)
 
-    def play_arms(self, frames, duration):
-        if not frames:
-            return
-        step = duration / len(frames)
-        for keyframe in frames:
-            for action in keyframe:
-                try:
-                    if action['state'] == "ArmPose":
-                        self.arm_pub.publish(ArmPose(**action['parameters']))
+    def publish_arm_pose(self, pose):
+        """Publish one expanded full arm pose to /arm/command (joint1/joint2 wire names)."""
+        left, right = pose["arms"]["left"], pose["arms"]["right"]
+        sides = [("both", left)] if left == right else [("left", left), ("right", right)]
+        for side, p in sides:
+            self.arm_pub.publish(ArmPose(
+                side=side, joint1=p["shoulder_roll"], joint2=p["shoulder_pitch"], wrist=p["wrist"]))
+
+    def play_arms_for_cue(self, arm_cue):
+        """
+        Dynamic arm playback over the cue's duration -- the arm-channel twin
+        of play_face_for_cue(). Starts on the LUT (cold open) when the emoji
+        has one; if an animator track shows up before ~switch_threshold of
+        the cue has elapsed, playback switches to it. Idles out the duration
+        if nothing is available (arms just hold their last pose).
+        """
+        track = self.arm_tracks.get(arm_cue.cue_id) if arm_cue.cue_id else None
+        if arm_cue.expect_track and not self._track_usable(track):
+            track = self._wait_for_track(self.arm_tracks, arm_cue.cue_id, label="arm track")
+
+        t0 = time.time()
+        t_end = t0 + max(0.1, arm_cue.duration)
+
+        lut_poses = None
+        if arm_cue.emoji and arm_cue.emoji in self.arm_lut:
+            lut_poses = expand_arm_frames_lenient(self.arm_lut[arm_cue.emoji]["frames"])
+        lut_step = (max(0.1, arm_cue.duration) / len(lut_poses)) if lut_poses else 0.0
+        lut_idx = 0
+
+        mode = None  # None -> undecided/lut, "track" -> animator frames
+        expander = None
+        track_played = 0
+
+        while not rospy.is_shutdown():
+            now = time.time()
+            if now >= t_end:
+                break
+
+            if mode != "track" and arm_cue.cue_id:
+                track = self.arm_tracks.get(arm_cue.cue_id)
+                if self._track_usable(track):
+                    progress = (now - t0) / (t_end - t0)
+                    if progress < self.switch_threshold or lut_idx == 0:
+                        mode = "track"
+                        expander = ArmFrameExpander()
+                        rospy.loginfo(
+                            "Arm cue %s: from %s (join at %d%%)",
+                            arm_cue.cue_id, track.get("source") or "animator",
+                            int(progress * 100))
+
+            if mode == "track":
+                track = self.arm_tracks.get(arm_cue.cue_id) or track
+                frames = track["frames"] if track else []
+                if track_played < len(frames):
+                    if track.get("status") == "complete":
+                        est_remaining = len(frames) - track_played
                     else:
-                        rospy.logwarn_throttle(5, "Unknown arm action: %s", action['state'])
-                except Exception as e:
-                    rospy.logerr("Error publishing ArmPose: %s", e)
-            rospy.sleep(step)
+                        est_total = min(ARM_MAX_ACCEPTED_FRAMES, max(len(frames) + 2, 4))
+                        est_remaining = est_total - track_played
+                    step = max(0.05, (t_end - now) / max(1, est_remaining))
+                    pose = expander.feed(frames[track_played])
+                    track_played += 1
+                    if pose:
+                        self.publish_arm_pose(pose)
+                    self._sleep_slices(min(step, t_end - time.time()))
+                else:
+                    rospy.sleep(0.05)
+            elif lut_poses:
+                if lut_idx < len(lut_poses):
+                    self.publish_arm_pose(lut_poses[lut_idx])
+                    lut_idx += 1
+                    self._sleep_slices(min(lut_step, t_end - time.time()))
+                else:
+                    rospy.sleep(0.05)
+            else:
+                rospy.sleep(0.05)
 
     # ─── Audio ───────────────────────────────────────────────────────
 
@@ -418,9 +520,12 @@ class PerformanceSequencerNode:
                 target=self.play_audio, args=(cue.audio_data, sr))
             audio_thread.start()
 
-        # Arms start aligned with the cue, on their own channel.
-        if cue.arms and cue.emoji and cue.emoji in self.arm_lut:
-            self.arm_queue.put((self.arm_lut[cue.emoji], cue.duration))
+        # Arms start aligned with the cue, on their own channel. TTS-driven
+        # arm cues never wait for a track (expect_track=False) -- speech
+        # never blocks on generation, same rule as the face channel.
+        if cue.arms:
+            self.arm_queue.put(ArmCue(cue_id=cue.cue_id, emoji=cue.emoji, text=cue.text,
+                                      duration=cue.duration, expect_track=False))
 
         if cue.face:
             self.play_face_for_cue(cue)
@@ -433,6 +538,8 @@ class PerformanceSequencerNode:
         if cue.cue_id:
             self.face_tracks.pop(cue.cue_id)
             self.face_tracks.mark_done(cue.cue_id)
+            self.arm_tracks.pop(cue.cue_id)
+            self.arm_tracks.mark_done(cue.cue_id)
             self.cue_done_pub.publish(String(data=json.dumps({"cue_id": cue.cue_id})))
 
         # End of a TTS stream: clear the speaking flag after the last chunk.
