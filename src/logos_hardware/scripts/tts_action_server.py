@@ -12,6 +12,8 @@ import io
 import scipy.io.wavfile as wavfile
 import threading
 from collections import deque
+from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import TimeoutError as FutureTimeoutError
 from std_msgs.msg import Bool, String
 from logos_msgs.msg import SpeechData
 from logos_msgs.msg import SpeakAction, SpeakGoal, SpeakResult, SpeakFeedback
@@ -213,6 +215,10 @@ class SpeakActionServer:
         # in parallel with TTS. JSON payload, see performance_sequencer_node.py.
         self._cue_announce_pub = rospy.Publisher('/performance/cue_announce', String, queue_size=10)
         self._utterance_counter = 0
+        # TTP v3: chunk syntheses run concurrently (chunk 2 renders while
+        # chunk 1 plays). Kept small -- the Larynx server is one box; more
+        # workers would just stampede it. 1 restores sequential v2 behavior.
+        self._synth_workers = max(1, int(rospy.get_param('~synth_workers', 2)))
 
         global g_is_speaking_pub
         g_is_speaking_pub = rospy.Publisher('/tts/is_speaking', Bool, queue_size=1, latch=True)
@@ -377,50 +383,75 @@ class SpeakActionServer:
         total_calculated_duration = 0.0
         chunks_sent = 0
 
-        for i, (text_snippet, emoji_snippet) in enumerate(chunks):
-            # You said you won't really cancel/preempt, but this is cheap insurance.
+        def goal_is_canceled():
             status = goal_handle.get_goal_status()
-            if status and status.status in [2, 6, 7, 8]:
-                result.success = False
-                result.final_message = "Canceled during synthesis."
-                result.total_duration = total_calculated_duration
-                goal_handle.set_canceled(result, "Canceled during synthesis")
-                self.set_is_speaking_state(False)
-                return
+            return bool(status and status.status in [2, 6, 7, 8])
 
-            feedback.current_chunk_index = i
+        # TTP v3: fire all chunk syntheses concurrently (pool size bounds the
+        # load on the Larynx server), but publish SpeechData strictly in cue
+        # order as results land -- chunk N may finish before N-1 and simply
+        # waits its turn, so the sequencer's queue ordering is untouched.
+        # Feedback publishing likewise stays per-chunk in order.
+        executor = ThreadPoolExecutor(
+            max_workers=self._synth_workers, thread_name_prefix="tts_synth")
+        futures = [
+            executor.submit(synthesize_audio_remote, text, goal.engine, engine_params_json)
+            for text, _ in chunks
+        ]
+        try:
+            for i, (text_snippet, emoji_snippet) in enumerate(chunks):
+                # You said you won't really cancel/preempt, but this is cheap
+                # insurance: poll while waiting so a cancel takes effect even
+                # mid-synthesis of a slow chunk.
+                while True:
+                    if goal_is_canceled():
+                        for f in futures[i:]:
+                            f.cancel()
+                        result.success = False
+                        result.final_message = "Canceled during synthesis."
+                        result.total_duration = total_calculated_duration
+                        goal_handle.set_canceled(result, "Canceled during synthesis")
+                        self.set_is_speaking_state(False)
+                        return
+                    try:
+                        audio_data_np, sample_rate = futures[i].result(timeout=0.25)
+                        break
+                    except FutureTimeoutError:
+                        continue
+                    except Exception as e:
+                        rospy.logerr(f"Chunk {i} synthesis failed: {e}")
+                        audio_data_np, sample_rate = np.array([], dtype=np.int16), 24000
+                        break
 
-            audio_data_np, sample_rate = synthesize_audio_remote(
-                text_snippet,
-                goal.engine,
-                engine_params_json
-            )
+                feedback.current_chunk_index = i
 
-            if len(audio_data_np) > 0:
-                chunk_duration = len(audio_data_np) / float(sample_rate)
-            else:
-                chunk_duration = 0.5
+                if len(audio_data_np) > 0:
+                    chunk_duration = len(audio_data_np) / float(sample_rate)
+                else:
+                    chunk_duration = 0.5
 
-            feedback.chunk_duration = chunk_duration
-            feedback.text_snippet = text_snippet
-            feedback.emoji_snippet = emoji_snippet
-            total_calculated_duration += chunk_duration
+                feedback.chunk_duration = chunk_duration
+                feedback.text_snippet = text_snippet
+                feedback.emoji_snippet = emoji_snippet
+                total_calculated_duration += chunk_duration
 
-            msg = SpeechData()
-            msg.cue_id = cue_ids[i]
-            msg.text_snippet = text_snippet
-            msg.emoji = emoji_snippet if emoji_snippet in PRESET_EMOJIS else ""
-            msg.audio_data = audio_data_np.tolist()
-            msg.sample_rate = sample_rate
-            msg.duration = chunk_duration
-            msg.current_chunk_index = i
-            msg.total_chunks = len(chunks)
+                msg = SpeechData()
+                msg.cue_id = cue_ids[i]
+                msg.text_snippet = text_snippet
+                msg.emoji = emoji_snippet if emoji_snippet in PRESET_EMOJIS else ""
+                msg.audio_data = audio_data_np.tolist()
+                msg.sample_rate = sample_rate
+                msg.duration = chunk_duration
+                msg.current_chunk_index = i
+                msg.total_chunks = len(chunks)
 
-            self._speech_data_pub.publish(msg)
-            goal_handle.publish_feedback(feedback)
+                self._speech_data_pub.publish(msg)
+                goal_handle.publish_feedback(feedback)
 
-            rospy.loginfo(f"  Chunk {i + 1}/{len(chunks)} sent to playback.")
-            chunks_sent += 1
+                rospy.loginfo(f"  Chunk {i + 1}/{len(chunks)} sent to playback.")
+                chunks_sent += 1
+        finally:
+            executor.shutdown(wait=False)
 
         if chunks_sent > 0:
             result.success = True
