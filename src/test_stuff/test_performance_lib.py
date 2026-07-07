@@ -30,7 +30,12 @@ from performance_lib.arm_schema import (
     expand_semantic_arm_frames,
     validate_semantic_arm_sequence,
 )
-from performance_lib.arm_gen_client import ArmGenClient, frame_count_hint
+from performance_lib.arm_gen_client import (
+    ArmGenClient,
+    clamp_frame as clamp_arm_frame,
+    expand_frames_lenient as expand_arm_frames_lenient,
+    frame_count_hint,
+)
 
 
 def test_streaming_parser():
@@ -269,6 +274,42 @@ def test_arm_key_backward_compat():
     print("ok: arm key backward compat (joint1/joint2 <-> shoulder_roll/shoulder_pitch)")
 
 
+def test_arm_playback_key_compat():
+    """
+    Regression for the LUT-playback bug: arm_gen_client.ArmFrameExpander
+    (via expand_frames_lenient) is what the sequencer actually calls for
+    BOTH generated/saved tracks and master-LUT playback -- unlike
+    arm_schema.expand_semantic_arm_frames (covered by
+    test_arm_key_backward_compat), it used to merge frame patches by raw
+    dict key with no joint1/joint2 -> shoulder_roll/shoulder_pitch
+    normalization. A joint1/joint2-keyed LUT patch (all 1500+
+    animations/arms_semantic/ files use this legacy spelling) would then
+    merge as extra unused keys instead of overwriting shoulder_roll/
+    shoulder_pitch, silently freezing those two axes at their
+    DEFAULT_ARMS_POSE value forever -- while wrist (spelled the same both
+    ways) kept working. Symptom Mark observed live: "wrists move, arms
+    don't" when playing back the master LUT.
+    """
+    old_style_frames = [
+        {"beat": "rest", "arms": {"both": {"joint1": 5.0, "joint2": -80.0, "wrist": 0.0}}},
+        {"beat": "reach", "arms": {"both": {"joint1": 40.0, "joint2": 20.0, "wrist": 10.0}}},
+    ]
+    expanded = expand_arm_frames_lenient(old_style_frames)
+    assert expanded[0]["arms"]["left"]["shoulder_roll"] == 5.0
+    assert expanded[0]["arms"]["left"]["shoulder_pitch"] == -80.0
+    assert expanded[1]["arms"]["left"]["shoulder_roll"] == 40.0  # would be stuck at 5.0 pre-fix
+    assert expanded[1]["arms"]["left"]["shoulder_pitch"] == 20.0  # would be stuck at -80.0 pre-fix
+    assert expanded[1]["arms"]["left"]["wrist"] == 10.0  # always worked (same key both spellings)
+
+    # clamp_frame itself: legacy keys normalize AND clamp in one pass, and
+    # unknown/garbage keys are dropped rather than passed through silently.
+    clamped = clamp_arm_frame(
+        {"beat": "x", "arms": {"both": {"joint1": 999.0, "joint2": -999.0, "bogus": 1.0}}})
+    both = clamped["arms"]["both"]
+    assert both == {"shoulder_roll": 90.0, "shoulder_pitch": -90.0}  # clamped, "bogus" dropped
+    print("ok: arm playback key compat (joint1/joint2 normalize through ArmFrameExpander)")
+
+
 def test_frame_count_hint():
     assert frame_count_hint("hi") == "1 to 2"
     assert frame_count_hint("wave hello there") == "1 to 2"
@@ -437,6 +478,7 @@ if __name__ == "__main__":
     test_chunking()
     test_estimate_speech_duration()
     test_arm_key_backward_compat()
+    test_arm_playback_key_compat()
     test_frame_count_hint()
     test_ollama_pool()
     test_ollama_pool_demotion()

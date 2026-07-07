@@ -22,7 +22,7 @@ from typing import Any, Dict, Iterator, List, Optional, Tuple
 
 import requests
 
-from .arm_schema import ARM_KEYS, ARM_RANGE, CONCRETE_ARM_SIDES, DEFAULT_ARMS_POSE
+from .arm_schema import ARM_KEYS, ARM_RANGE, CONCRETE_ARM_SIDES, DEFAULT_ARMS_POSE, normalize_pose
 from .face_gen_client import StreamingFrameParser, emoji_slug, truncate_rambling
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
@@ -92,14 +92,25 @@ def _clamp(key: str, value: Any) -> Any:
 
 
 def clamp_frame(frame: Dict[str, Any]) -> Dict[str, Any]:
-    """Return a copy of a sparse semantic arm frame with numerics clamped in-range."""
+    """
+    Return a copy of a sparse semantic arm frame with side-patch keys
+    normalized to canonical spelling (shoulder_roll/shoulder_pitch/wrist --
+    accepts the legacy joint1/joint2 alias still used by the 1500+
+    animations/arms_semantic/ LUT files) and numerics clamped in-range.
+
+    Normalizing here, before ArmFrameExpander.feed()'s plain dict.update(),
+    matters: without it a joint1/joint2-keyed patch merges as extra unused
+    keys instead of overwriting shoulder_roll/shoulder_pitch, silently
+    freezing those axes at their DEFAULT_ARMS_POSE value forever (wrist,
+    spelled the same both ways, would keep working -- exactly the
+    "wrists move, arms don't" symptom this fixes).
+    """
     out = copy.deepcopy(frame)
     arms = out.get("arms", {})
     if isinstance(arms, dict):
-        for side_patch in arms.values():
+        for side, side_patch in list(arms.items()):
             if isinstance(side_patch, dict):
-                for k in list(side_patch):
-                    side_patch[k] = _clamp(k, side_patch[k])
+                arms[side] = {k: _clamp(k, v) for k, v in normalize_pose(side_patch).items()}
     return out
 
 

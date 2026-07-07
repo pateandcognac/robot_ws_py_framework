@@ -64,7 +64,7 @@ def _canonical_key(key: str) -> str:
     return LEGACY_ARM_KEY_ALIASES.get(key, key)
 
 
-def _normalize_pose(pose: Dict[str, Any]) -> Dict[str, float]:
+def normalize_pose(pose: Dict[str, Any]) -> Dict[str, float]:
     """Map a pose dict's keys (either spelling) to canonical ARM_KEYS, coerced to float."""
     out: Dict[str, float] = {}
     for key, value in pose.items():
@@ -90,7 +90,7 @@ def legacy_to_semantic(entry: Dict[str, Any]) -> Dict[str, Any]:
             side = params.get("side", "both")
             if side not in ARM_SIDES:
                 continue
-            arms[side] = _normalize_pose(params)
+            arms[side] = normalize_pose(params)
         frames_out.append({"beat": "", "arms": arms})
     return {
         "emoji": entry.get("emoji", ""),
@@ -106,12 +106,12 @@ def expand_semantic_arm_frames(frames: List[Dict[str, Any]]) -> List[Dict[str, A
     for frame in frames:
         arms_patch = frame.get("arms", {}) or {}
         if isinstance(arms_patch.get("both"), dict):
-            both_pose = _clamped(_normalize_pose(arms_patch["both"]))
+            both_pose = _clamped(normalize_pose(arms_patch["both"]))
             for side in CONCRETE_ARM_SIDES:
                 current[side].update(both_pose)
         for side in CONCRETE_ARM_SIDES:
             if isinstance(arms_patch.get(side), dict):
-                current[side].update(_clamped(_normalize_pose(arms_patch[side])))
+                current[side].update(_clamped(normalize_pose(arms_patch[side])))
         expanded.append({
             "beat": frame.get("beat", ""),
             "arms": copy.deepcopy(current),
