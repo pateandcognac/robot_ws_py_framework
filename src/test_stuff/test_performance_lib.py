@@ -322,6 +322,38 @@ def test_ollama_pool():
     print("ok: ollama pool (config parsing, pinned fallback, last-resort probe)")
 
 
+def test_ollama_pool_demotion():
+    """A server that probes OK but fails generation gets routed around."""
+    from performance_lib import ollama_pool
+
+    live = {"http://good:11434", "http://bad:11434"}  # both answer /api/tags
+    orig = ollama_pool._server_has_model
+    ollama_pool._server_has_model = lambda base, model, t: base.rstrip("/") in live
+    try:
+        entries = [
+            {"url": "http://bad:11434", "model": "m"},
+            {"url": "http://good:11434", "model": "m"},
+        ]
+        # Build without the startup probe/thread by constructing pinned-off
+        # then driving _probe directly (avoids the daemon thread in tests).
+        pool = ollama_pool.OllamaPool("t", entries, probe_timeout_s=0.1,
+                                      probe_interval_s=9999, pinned=True)
+        pool.pinned = False  # re-enable failure handling for the test
+        assert pool._probe() == entries[0]  # bad is first, probes fine
+        # Three generation failures demote the current (bad) server.
+        pool._current = entries[0]
+        for _ in range(ollama_pool.FAILURES_BEFORE_REPROBE):
+            pool.report_failure()
+        assert ollama_pool._entry_key(entries[0]) in pool._demoted
+        assert pool._probe() == entries[1]  # now routes to good
+        # When the cooldown lapses, bad is eligible again.
+        pool._demoted[ollama_pool._entry_key(entries[0])] = time.time() - 1
+        assert pool._probe() == entries[0]
+    finally:
+        ollama_pool._server_has_model = orig
+    print("ok: ollama pool demotion routes around a probe-OK/generate-broken server")
+
+
 def test_live_ollama_pool_probe():
     """Probe matching against the real local Ollama tag list."""
     from performance_lib.ollama_pool import _server_has_model
@@ -407,6 +439,7 @@ if __name__ == "__main__":
     test_arm_key_backward_compat()
     test_frame_count_hint()
     test_ollama_pool()
+    test_ollama_pool_demotion()
     if "--live" in sys.argv:
         test_live_ollama_pool_probe()
         test_live_generation()

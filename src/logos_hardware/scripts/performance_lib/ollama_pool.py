@@ -34,6 +34,12 @@ DEFAULT_CONFIG_PATH = "/home/robot/robot_ws/config/ollama_servers.json"
 DEFAULT_PROBE_TIMEOUT_S = 2.0
 DEFAULT_PROBE_INTERVAL_S = 60.0
 FAILURES_BEFORE_REPROBE = 3
+# After a server racks up FAILURES_BEFORE_REPROBE generation errors it is
+# demoted (skipped by probing) for this long, then becomes eligible again.
+# Covers the nasty case of a box that answers /api/tags fine but 400s on
+# /api/generate (e.g. an old Ollama with no structured-output support): the
+# probe can't detect that, so we route around it reactively and let it heal.
+DEMOTE_COOLDOWN_S = 120.0
 
 
 def generate_url(base: str) -> str:
@@ -42,6 +48,11 @@ def generate_url(base: str) -> str:
     if base.endswith("/api/generate"):
         return base
     return base + "/api/generate"
+
+
+def _entry_key(entry: Dict[str, str]) -> str:
+    """Stable identity for a server entry (for the demotion blacklist)."""
+    return entry["url"] + "|" + entry["model"]
 
 
 def _tags_url(base: str) -> str:
@@ -95,6 +106,9 @@ class OllamaPool:
         self._lock = threading.Lock()
         self._reprobe_now = threading.Event()
         self._consecutive_failures = 0
+        # entry key -> monotonic-ish expiry time; a demoted entry is skipped
+        # by the probe until it expires (see DEMOTE_COOLDOWN_S).
+        self._demoted: Dict[str, float] = {}
         # Last entry is the configured last resort: used verbatim when no
         # server answers the probe, so a cold Ollama that comes up a moment
         # later still gets traffic (and the cascade covers the meantime).
@@ -122,22 +136,41 @@ class OllamaPool:
 
     def report_failure(self) -> None:
         """
-        Count consecutive generation failures; at the threshold, wake the
-        probe thread immediately instead of waiting for the next tick.
+        Count consecutive generation failures; at the threshold, demote the
+        current server (so the probe routes around it even if it still
+        answers /api/tags) and re-probe immediately for the next live one.
         """
         if self.pinned:
             return
         self._consecutive_failures += 1
         if self._consecutive_failures >= FAILURES_BEFORE_REPROBE:
             self._consecutive_failures = 0
+            with self._lock:
+                bad = self._current
+                self._demoted[_entry_key(bad)] = time.time() + DEMOTE_COOLDOWN_S
+            self._log("{}: demoting {} ({}) for {:.0f}s after repeated "
+                      "generation failures".format(
+                          self.role, bad["url"], bad["model"], DEMOTE_COOLDOWN_S))
             self._reprobe_now.set()
 
     # ── Probing (startup + background thread) ────────────────────────
 
     def _probe(self) -> Optional[Dict[str, str]]:
-        for entry in self.entries:
-            if _server_has_model(entry["url"], entry["model"], self.probe_timeout_s):
-                return entry
+        now = time.time()
+        with self._lock:
+            demoted = {k: exp for k, exp in self._demoted.items() if exp > now}
+            self._demoted = demoted
+        # First pass honors demotions; if that finds nothing, fall back to a
+        # pass that ignores them so a fully-demoted pool still tries servers
+        # rather than freezing on the last-resort entry.
+        for skip_demoted in (True, False):
+            for entry in self.entries:
+                if skip_demoted and _entry_key(entry) in demoted:
+                    continue
+                if _server_has_model(entry["url"], entry["model"], self.probe_timeout_s):
+                    return entry
+            if not demoted:
+                break
         return None
 
     def _probe_loop(self) -> None:
