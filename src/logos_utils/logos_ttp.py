@@ -46,6 +46,16 @@ examples:
   Pass an engine-specific speaker index:
     %(prog)s --engine piper --voice en_US-arctic-medium --speaker 0 "Hello. 👋"
 
+  Force fresh generated face/arm animation and wait for it to fully
+  complete before speaking (perfect sync, more latency):
+    %(prog)s --face generate --arms generate --sync 1.0 "Testing! 🧪"
+
+  Same, but start as soon as the first frame streams in (snappier):
+    %(prog)s --face generate --sync 0.0 "Quick reaction. 😲"
+
+  Zero-latency canned expressions only, no generation:
+    %(prog)s --face lut --arms lut "Classic moves. 🕺"
+
   Add arbitrary engine parameters as JSON:
     %(prog)s --params '{"speaker": 2, "noise_scale": 0.5}' "Custom settings. ⚙️"
 
@@ -118,6 +128,35 @@ examples:
         help="optional engine-specific speaker index",
     )
     parser.add_argument(
+        "--face",
+        metavar="POLICY",
+        help=(
+            "face-animation source cascade for this utterance, e.g. 'lut', "
+            "'saved', 'generate', or a comma-separated cascade like "
+            "'generate,saved,lut' (default: system default cascade)"
+        ),
+    )
+    parser.add_argument(
+        "--arms",
+        metavar="POLICY",
+        help="arm-animation source cascade, same options as --face",
+    )
+    parser.add_argument(
+        "--sync",
+        type=sync_value,
+        default=1.0,
+        metavar="0.0-1.0",
+        help=(
+            "loosey-goosey dial: fraction of generated face/arm frames to "
+            "wait for before speech starts. 1.0 (default) waits for "
+            "generation to fully complete and plays it in perfect sync "
+            "with the audio; 0.0 starts on the first generated frame "
+            "(snappier, herkier); values in between fudge the rest in as "
+            "they stream. Only matters when a policy actually generates -- "
+            "'lut'-only cues are always instant."
+        ),
+    )
+    parser.add_argument(
         "-p",
         "--params",
         type=json_object,
@@ -176,6 +215,13 @@ def nonnegative_float(value):
     return number
 
 
+def sync_value(value):
+    number = float(value)
+    if not 0.0 <= number <= 1.0:
+        raise argparse.ArgumentTypeError("must be between 0.0 and 1.0")
+    return number
+
+
 def json_object(value):
     try:
         parsed = json.loads(value)
@@ -214,6 +260,18 @@ def build_engine_params(args):
         params["voice"] = args.voice
     if args.speaker is not None:
         params["speaker"] = args.speaker
+
+    # TTP performance-pipeline knobs (face/arm source cascade + sync dial),
+    # same shape logos.emote.ttp() sends; the director strips this key
+    # before it reaches the TTS engine itself.
+    performance = dict(params.get("performance") or {})
+    if args.face:
+        performance["face_policy"] = args.face
+    if args.arms:
+        performance["arm_policy"] = args.arms
+    performance["sync"] = args.sync
+    params["performance"] = performance
+
     return params
 
 

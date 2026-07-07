@@ -7,6 +7,7 @@ This folder is the orientation layer for the Logos workspace. Start here if you 
 - [LOGOS_FRAMEWORK.md](LOGOS_FRAMEWORK.md) - the cognition loop, Python worker, and browser/terminal UI internals
 - [LOGOS_ROS_ARCHITECTURE.md](LOGOS_ROS_ARCHITECTURE.md) - the layered ROS architecture and bringup model
 - [LOGOS_STARTUP_AND_BASIC_USAGE.md](LOGOS_STARTUP_AND_BASIC_USAGE.md) - plain-English startup and usage notes
+- [TTP_V3.md](TTP_V3.md) - the Text-to-Performance pipeline (director/animators/sequencer): emoji-punctuated speech synced to live-generated or LUT face/arm animation
 
 ## Suggested Reading Order
 

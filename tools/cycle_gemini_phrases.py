@@ -29,9 +29,11 @@ Usage:
     # can watch synced face/arm playback and cue queueing live on the robot,
     # instead of only generating+saving in isolation. Requires ROS and a
     # running tts_action_server/performance_sequencer/face_animator(/arm_animator).
-    # --sync defaults on here (see TTP_V2.md) so fast engines actually get to
-    # show off live generation instead of always falling back to the LUT --
-    # this script is exactly the timing/aesthetics evaluation case it's for.
+    # --sync defaults on here (see TTP_V3.md's "sync dial" section; this
+    # CLI still passes the legacy bool, which the sequencer maps to the
+    # float dial's 1.0/None) so fast engines actually get to show off live
+    # generation instead of always falling back to the LUT -- this script
+    # is exactly the timing/aesthetics evaluation case it's for.
     tools/cycle_gemini_phrases.py --speak --engine kokoro --count 10
     tools/cycle_gemini_phrases.py --speak --engine piper --pause 2.5
     tools/cycle_gemini_phrases.py --speak --engine espeak --face-policy lut
@@ -312,9 +314,10 @@ def main():
     speak_group.add_argument("--wait-timeout", type=float, default=60.0,
                              help="max seconds to wait for each utterance to finish speaking")
     speak_group.add_argument("--sync", action=argparse.BooleanOptionalAction, default=True,
-                             help="opt cues into the bounded first-frame wait "
-                                  "(performance.sync; see TTP_V2.md) so fast engines "
-                                  "(piper/espeak/festival) actually get to show off live "
+                             help="opt cues into the sync dial's wait-for-generation behavior "
+                                  "(performance.sync; see TTP_V3.md -- this flag sends the "
+                                  "legacy bool, which the sequencer maps to 1.0/None) so fast "
+                                  "engines (piper/espeak/festival) actually get to show off live "
                                   "generation instead of always falling back to the LUT. "
                                   "Default on -- this script is exactly the "
                                   "timing/aesthetics evaluation case sync mode is for. "

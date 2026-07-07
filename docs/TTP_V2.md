@@ -1,3 +1,8 @@
+> **Superseded — see [`TTP_V3.md`](TTP_V3.md).** Kept for history; the
+> architecture below (LUT cold-open + mid-cue switch, bool `sync`,
+> sequential per-chunk synthesis) is no longer how the pipeline works.
+> Do not use this doc for anything live.
+
 # TTP v2 — Text-to-Performance Pipeline
 
 The performance pipeline turns emoji-punctuated text into synchronized
