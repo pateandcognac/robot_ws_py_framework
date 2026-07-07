@@ -20,6 +20,17 @@ nothing else animates until speech actually starts. Audio later than
 queue. /performance/cue_playing fires the moment a cue's audio (or silent
 playout) actually starts -- that's the caption/choreography sync point.
 
+TTP v3.1 sync dial (performance.sync, 0.0-1.0): before starting a cue's
+audio, the sequencer holds the staged pose until generation has produced
+the requested fraction of frames -- 1.0 waits for full completion and
+plays the whole sequence evenly over the audio (perfect sync); 0.0 waits
+for frame 1 (snappy, frames fudged in during playback); None doesn't wait
+at all. The wait is bounded only by ~generation_wait_s, which exists just
+to survive a dead animator. Crucially: when generation was requested,
+slowness NEVER silently swaps in a LUT -- only an explicit animator
+status="lut", a generation *failure* (Ollama down / no start -> "failed"),
+a legacy no-cue_id command, or a truly dead animator resolves to the LUT.
+
 Cues arrive as:
 - /performance/cue_announce (String JSON): TTS cue skeletons, pre-audio.
 - /face/tts_chunk (SpeechData): the audio for an announced cue (also the
@@ -37,9 +48,9 @@ Animation per channel (face and arms share one playback helper):
    pacing re-stretches over the remaining cue time every time new
    information arrives (frames or a terminal status).
 2. The sequencer's own semantic LUT copy, when the animator answers
-   status="lut" (pure-emoji fast path), the cascade failed, the cue has
-   no cue_id (legacy commands), or no track message shows up at all by
-   half the cue (animator down -- the LUT fallback must survive that).
+   status="lut" (pure-emoji fast path), generation terminally failed, the
+   cue has no cue_id (legacy commands), or the animator went dead-silent
+   past the sync ceiling. Never on slowness alone (see the sync-dial note).
 3. Nothing (audio still plays; the last pose holds).
 
 The v2 LUT "cold-open with mid-cue track switch" is gone (Mark's call,
@@ -49,6 +60,7 @@ sources mid-cue.
 """
 
 import json
+import math
 import threading
 import time
 from queue import Queue, Empty
@@ -105,8 +117,7 @@ class Cue:
 
     def __init__(self, cue_id="", text="", emoji="", duration=0.5,
                  audio_data=None, sample_rate=0, chunk_index=0, total_chunks=0,
-                 face=True, arms=True, expect_track=False, wait_timeout_s=None,
-                 audio_pending=False):
+                 face=True, arms=True, sync_frac=None, audio_pending=False):
         self.cue_id = cue_id
         self.text = text
         self.emoji = emoji
@@ -117,15 +128,21 @@ class Cue:
         self.total_chunks = total_chunks  # 0 => not part of a TTS stream
         self.face = face
         self.arms = arms
-        # expect_track: this cue should wait (bounded) for the animator's
-        # track instead of falling straight through to the LUT. Gestures
-        # always set this; TTS cues only do when opted into "sync" mode
-        # (performance.sync) -- otherwise speech never blocks on generation.
-        self.expect_track = expect_track
-        # None => node default (~track_wait_s). Sync-mode TTS cues use the
-        # tighter ~sync_wait_s instead -- speech shouldn't stall as long as
-        # a silent gesture reasonably can.
-        self.wait_timeout_s = wait_timeout_s
+        # sync_frac (TTP v3.1 "loosey-goosey dial", performance.sync):
+        #   None -> don't wait for generation at all (legacy announce-less
+        #           cues; play whatever's present, hold otherwise).
+        #   0.0  -> wait for the first generated frame, then start.
+        #   1.0  -> wait for generation to COMPLETE (+ audio), then play the
+        #           full sequence evenly over the duration: perfect sync.
+        #   between -> wait for ceil(frac * frame_cap) frames, fudge the rest.
+        # The wait is bounded only by ~generation_wait_s (a dead animator),
+        # never by a short bail -- if generation was asked for, we wait for
+        # it; slowness never silently swaps in a LUT (only a gen *failure*
+        # or a dead animator does).
+        self.sync_frac = sync_frac
+        # Set True by process_cue once the combined up-front frame wait has
+        # run, so the channel playback loops don't wait a second time.
+        self._already_waited = False
         # Provisional-timeline state (TTS cues announced before synthesis)
         self.audio_pending = audio_pending
         self.audio_event = threading.Event()
@@ -136,16 +153,15 @@ class ArmCue:
     """One playable arm-channel unit, independent of the face/audio cue timing."""
 
     def __init__(self, cue_id="", emoji="", text="", duration=2.0,
-                 expect_track=False, wait_timeout_s=None, done_event=None):
+                 sync_frac=None, done_event=None):
         self.cue_id = cue_id
         self.emoji = emoji
         self.text = text
         self.duration = duration
-        # Direct arm commands with a cue_id (e.g. gesture()) always wait
-        # (bounded); TTS-driven arm cues only do when their parent Cue is
-        # in "sync" mode -- otherwise speech never blocks on generation.
-        self.expect_track = expect_track
-        self.wait_timeout_s = wait_timeout_s
+        # See Cue.sync_frac. TTS-driven arm cues inherit their parent Cue's
+        # fraction; standalone gestures pass their own.
+        self.sync_frac = sync_frac
+        self._already_waited = False
         # Set by the arm channel when it finishes this cue, so process_cue
         # doesn't pop/mark_done the arm track out from under a still-playing
         # arm channel (the v2 race).
@@ -240,12 +256,16 @@ class PerformanceSequencerNode:
         # playout) actually starts. Caption/choreography consumers key off
         # this instead of synthesis-time /face/tts_chunk.
         self.cue_playing_pub = rospy.Publisher('/performance/cue_playing', String, queue_size=20)
-        self.track_wait_s = float(rospy.get_param('~track_wait_s', 15.0))
-        # Sync mode: TTS cues opt in (via performance.sync) to a bounded wait
-        # for the first generated frame -- same _wait_for_track() machinery
-        # gestures already use, just a tighter default bound since speech
-        # shouldn't stall as long as a silent gesture reasonably can.
-        self.sync_wait_s = float(rospy.get_param('~sync_wait_s', 4.0))
+        # Absolute ceiling on the sync frame-wait: if generation was asked
+        # for, we wait for it (no short bail that silently swaps in a LUT on
+        # slowness). This bound only exists to survive a *dead* animator
+        # (crashed / never answers) -- past it, the sequencer's own LUT
+        # covers with a loud warning. Roughly the generation timeout.
+        self.generation_wait_s = float(rospy.get_param('~generation_wait_s', 20.0))
+        # Default sync fraction for announces that omit performance.sync
+        # (external publishers). The emote.ttp API always sends an explicit
+        # value; 0.0 here just means "wait for frame 1" as a safe floor.
+        self.default_sync_frac = float(rospy.get_param('~default_sync_frac', 0.0))
         # Provisional timeline: how long the front-of-queue cue waits for
         # its audio (holding a staged first pose) before giving up and
         # playing out silently on est_duration -- a hung synthesis must not
@@ -290,6 +310,22 @@ class PerformanceSequencerNode:
 
     # ─── Inputs ──────────────────────────────────────────────────────
 
+    def _parse_sync(self, performance):
+        """
+        Resolve performance.sync into a sync fraction (see Cue.sync_frac).
+        Accepts the float dial (0.0-1.0), legacy bool (True->1.0 perfect
+        sync, False->None don't-wait), or absent (node default). Clamps.
+        """
+        if not performance or "sync" not in performance:
+            return self.default_sync_frac
+        raw = performance["sync"]
+        if isinstance(raw, bool):
+            return 1.0 if raw else None
+        try:
+            return max(0.0, min(1.0, float(raw)))
+        except (TypeError, ValueError):
+            return self.default_sync_frac
+
     def cue_announce_cb(self, msg):
         """
         TTP v3: announced cues enter the playback queue immediately, before
@@ -316,7 +352,7 @@ class PerformanceSequencerNode:
             return
 
         cues = announce.get("cues", [])
-        sync = bool((announce.get("performance") or {}).get("sync", False))
+        sync_frac = self._parse_sync(announce.get("performance"))
         for spec in cues:
             cue_id = spec.get("cue_id", "")
             if not cue_id:
@@ -328,8 +364,7 @@ class PerformanceSequencerNode:
                 duration=float(spec.get("est_duration", 1.0)),
                 chunk_index=int(spec.get("index", 0)),
                 total_chunks=len(cues),
-                expect_track=sync,
-                wait_timeout_s=self.sync_wait_s if sync else None,
+                sync_frac=sync_frac,
                 audio_pending=True,
             )
             with self.pending_lock:
@@ -398,6 +433,16 @@ class PerformanceSequencerNode:
         cue_id = data.get("cue_id", "")
         return emoji, text, duration, cue_id
 
+    def _command_sync_frac(self, data):
+        """
+        Gesture sync fraction. Prefers an explicit `sync` float; otherwise
+        the legacy `expect_track` bool (True -> 0.0 wait-for-frame-1, its
+        historical behavior; absent/False -> None don't-wait).
+        """
+        if "sync" in data:
+            return self._parse_sync({"sync": data["sync"]})
+        return 0.0 if data.get("expect_track") else None
+
     def face_command_cb(self, msg):
         """Silent face cue. `text` may be emoji, prose, or both in one string."""
         try:
@@ -406,10 +451,10 @@ class PerformanceSequencerNode:
                 return
             if not emoji:
                 emoji = chunking.find_emoji(text, self.face_lut.keys()) or ""
-            expect_track = bool(json.loads(msg.data).get("expect_track", False))
+            sync_frac = self._command_sync_frac(json.loads(msg.data))
             self.cue_queue.put(Cue(cue_id=cue_id, text=text, emoji=emoji,
                                    duration=duration, arms=False,
-                                   expect_track=expect_track))
+                                   sync_frac=sync_frac))
             rospy.loginfo("Queued face cue: %s%s for %.1fs",
                           emoji, (" '" + text + "'") if text else "", duration)
         except (ValueError, json.JSONDecodeError) as e:
@@ -423,9 +468,9 @@ class PerformanceSequencerNode:
                 return
             if not emoji:
                 emoji = chunking.find_emoji(text, self.arm_lut.keys()) or ""
-            expect_track = bool(json.loads(msg.data).get("expect_track", False))
+            sync_frac = self._command_sync_frac(json.loads(msg.data))
             self.arm_queue.put(ArmCue(cue_id=cue_id, emoji=emoji, text=text,
-                                      duration=duration, expect_track=expect_track))
+                                      duration=duration, sync_frac=sync_frac))
             rospy.loginfo("Queued arm cue: %s%s for %.1fs",
                           emoji, (" '" + text + "'") if text else "", duration)
         except (ValueError, json.JSONDecodeError) as e:
@@ -448,26 +493,6 @@ class PerformanceSequencerNode:
     @staticmethod
     def _track_usable(track):
         return bool(track and track["frames"] and track["status"] != "failed")
-
-    def _wait_for_track(self, store, cue_id, label="track", timeout_s=None):
-        """
-        Bounded wait for an animator track. Returns as soon as the FIRST
-        frame streams in (or a terminal failed/lut status) -- not full
-        completion; that's the "time to first frame" sync point. Used by
-        expect_track gestures (~track_wait_s, patient) and sync-mode TTS
-        cues (~sync_wait_s, tighter -- speech shouldn't stall as long).
-        """
-        timeout_s = self.track_wait_s if timeout_s is None else timeout_s
-        deadline = time.time() + timeout_s
-        while time.time() < deadline and not rospy.is_shutdown():
-            track = store.get(cue_id)
-            # status "lut" = animator's explicit "play your own LUT" signal
-            if track and (track["frames"] or track["status"] in ("failed", "lut")):
-                return track
-            rospy.sleep(0.1)
-        rospy.logwarn("Timed out waiting %.1fs for %s %s; falling back.",
-                      timeout_s, label, cue_id)
-        return store.get(cue_id)
 
     # ─── Face resolution & playback ──────────────────────────────────
 
@@ -495,19 +520,38 @@ class PerformanceSequencerNode:
         while not rospy.is_shutdown() and time.time() < end:
             rospy.sleep(min(0.05, max(0.0, end - time.time())))
 
+    def _wait_channel(self, ch, cue_id, frac):
+        """Per-channel version of the sync frame wait (standalone gestures,
+        which bypass process_cue's combined up-front wait)."""
+        if frac is None or not cue_id:
+            return
+        deadline = time.time() + self.generation_wait_s
+        while not rospy.is_shutdown():
+            if self._channel_frames_ready(ch, cue_id, frac):
+                return
+            if time.time() >= deadline:
+                rospy.logwarn("Cue %s: %s generation not ready after %.1fs; "
+                              "starting anyway.", cue_id, ch["label"],
+                              self.generation_wait_s)
+                return
+            rospy.sleep(0.05)
+
     def play_channel_for_cue(self, ch, cue_id, emoji, duration,
-                             expect_track=False, wait_timeout_s=None):
+                             sync_frac=None, already_waited=False):
         """
         Unified per-cue frame pacing for one channel (face or arms) -- the
         near-identical twin loop bodies of v2 merged, minus the LUT
         cold-open/switch dance.
 
         Plays whichever single source resolves for the cue:
-        - the animator track (frames may still be streaming in), or
-        - the local LUT copy, when the animator answers status="lut", the
-          cascade failed, the cue is a legacy no-cue_id command, or no
-          track message at all shows up by half the cue (animator down --
-          the LUT must survive that), or
+        - the animator track (frames may still be streaming in at low sync
+          fractions), or
+        - the local LUT copy, ONLY when the animator answers terminally with
+          status="lut"/"failed"/"none" (an explicit LUT signal or a
+          generation *failure* -- Ollama down / no start), when the cue is a
+          legacy no-cue_id command, or when a sync-waited animator stayed
+          dead-silent past the ceiling. Slowness alone never swaps in a LUT:
+          if generation was asked for, we play generation.
         - nothing (hold the last pose; always consume the cue duration).
 
         Live timeline fudging: every iteration re-estimates the remaining
@@ -517,10 +561,8 @@ class PerformanceSequencerNode:
         re-stretches in place as new information lands.
         """
         store = ch["store"]
-        track = store.get(cue_id) if cue_id else None
-        if expect_track and not self._track_usable(track):
-            track = self._wait_for_track(store, cue_id, label=ch["label"] + " track",
-                                         timeout_s=wait_timeout_s)
+        if not already_waited:
+            self._wait_channel(ch, cue_id, sync_frac)
 
         t0 = time.time()
         t_end = t0 + max(0.1, duration)
@@ -546,18 +588,19 @@ class PerformanceSequencerNode:
                         int(100 * (now - t0) / (t_end - t0)))
                 else:
                     status = (track or {}).get("status", "")
-                    # A cue with a cue_id normally gets *some* track from the
-                    # animator cascade. Stop believing that once the animator
-                    # answered terminally (lut/failed) or stayed completely
-                    # silent through half the cue (node down/overloaded).
-                    track_expected = bool(cue_id) and status not in ("lut", "failed", "none")
-                    if track_expected and (now - t0) < 0.5 * (t_end - t0):
-                        rospy.sleep(0.05)  # hold pose; track still coming
+                    terminal = status in ("lut", "failed", "none")
+                    if cue_id and not terminal and sync_frac is None:
+                        # Don't-wait (legacy) path: generation may still be
+                        # streaming; hold the staged pose and keep watching.
+                        # Never swap to LUT on mere slowness.
+                        rospy.sleep(0.05)
                         continue
-                    if track_expected:
+                    if cue_id and not terminal:
+                        # Sync-waited but nothing playable arrived: animator
+                        # is effectively dead (the ceiling already elapsed).
                         rospy.logwarn(
-                            "Cue %s: no %s track by half the cue; falling back to LUT.",
-                            cue_id, ch["label"])
+                            "Cue %s: no %s track after wait; LUT covering "
+                            "(animator down?).", cue_id, ch["label"])
                     if emoji and emoji in ch["lut"]:
                         mode = "lut"
                         frames_list = ch["expand"](ch["lut"][emoji]["frames"])
@@ -603,7 +646,7 @@ class PerformanceSequencerNode:
     def play_face_for_cue(self, cue):
         self.play_channel_for_cue(
             self.face_channel, cue.cue_id, cue.emoji, cue.duration,
-            expect_track=cue.expect_track, wait_timeout_s=cue.wait_timeout_s)
+            sync_frac=cue.sync_frac, already_waited=cue._already_waited)
 
     # ─── Arm channel ─────────────────────────────────────────────────
 
@@ -630,7 +673,8 @@ class PerformanceSequencerNode:
     def play_arms_for_cue(self, arm_cue):
         self.play_channel_for_cue(
             self.arm_channel, arm_cue.cue_id, arm_cue.emoji, arm_cue.duration,
-            expect_track=arm_cue.expect_track, wait_timeout_s=arm_cue.wait_timeout_s)
+            sync_frac=arm_cue.sync_frac,
+            already_waited=arm_cue._already_waited)
 
     # ─── Audio ───────────────────────────────────────────────────────
 
@@ -700,34 +744,54 @@ class PerformanceSequencerNode:
             rospy.loginfo("Cue %s: audio landed after %.2fs staged hold.",
                           cue.cue_id, waited)
 
-    def _wait_for_first_frames(self, cue):
+    def _channel_frames_ready(self, ch, cue_id, frac):
         """
-        Sync mode (performance.sync): hold the staged pose until each active
-        channel has its first frame (or a terminal lut/failed answer),
-        bounded by the cue's wait timeout -- BEFORE audio starts, so speech
-        and animation begin together. (v2 placed this wait inside the
-        channel loops, after the audio thread was already running, which
-        shifted the whole animation window to after the speech.)
+        Has this channel accumulated enough generated frames to start under
+        the sync dial? Ready when the generation is terminal (complete /
+        failed / lut / none) or at least ceil(frac * frame_cap) frames have
+        streamed in. frac=1.0 waits for completion; frac=0.0 for frame 1.
         """
-        timeout = cue.wait_timeout_s if cue.wait_timeout_s is not None else self.track_wait_s
-        deadline = time.time() + timeout
+        track = ch["store"].get(cue_id)
+        if not track:
+            return False
+        if track["status"] in ("complete", "failed", "lut", "none"):
+            return True
+        need = max(1, int(math.ceil(frac * ch["max_frames"])))
+        return len(track["frames"]) >= need
 
-        def ready(store):
-            track = store.get(cue.cue_id)
-            return bool(track and (track["frames"]
-                                   or track["status"] in ("failed", "lut", "none")))
+    def _wait_for_frames(self, cue):
+        """
+        The loosey-goosey dial (Cue.sync_frac): hold the staged pose until
+        each active channel has enough generated frames for the requested
+        fraction -- BEFORE audio starts, so speech and animation begin
+        together. frac None skips the wait entirely (legacy don't-wait path).
 
+        Bounded only by ~generation_wait_s, which exists solely to survive a
+        dead animator: if generation was asked for, we wait for it, and
+        slowness never bails to a LUT here. When the ceiling is hit the cue
+        starts anyway (staged pose held; the channel then LUT-covers for a
+        silent animator, or joins late frames if generation was merely slow).
+        """
+        frac = cue.sync_frac
+        if frac is None:
+            return
+        deadline = time.time() + self.generation_wait_s
         t0 = time.time()
         while not rospy.is_shutdown() and not cue.canceled:
-            if (not cue.face or ready(self.face_tracks)) \
-                    and (not cue.arms or ready(self.arm_tracks)):
-                if time.time() - t0 > 0.25:
-                    rospy.loginfo("Cue %s: first frames ready after %.2fs sync hold.",
-                                  cue.cue_id, time.time() - t0)
+            face_ok = (not cue.face) or self._channel_frames_ready(
+                self.face_channel, cue.cue_id, frac)
+            arms_ok = (not cue.arms) or self._channel_frames_ready(
+                self.arm_channel, cue.cue_id, frac)
+            if face_ok and arms_ok:
+                waited = time.time() - t0
+                if waited > 0.25:
+                    rospy.loginfo("Cue %s: generation ready (sync %.2f) after "
+                                  "%.2fs hold.", cue.cue_id, frac, waited)
                 return
             if time.time() >= deadline:
-                rospy.logwarn("Cue %s: first frames not ready after %.1fs; "
-                              "starting anyway.", cue.cue_id, timeout)
+                rospy.logwarn("Cue %s: generation not ready after %.1fs; starting "
+                              "anyway (animator slow or down).",
+                              cue.cue_id, self.generation_wait_s)
                 return
             rospy.sleep(0.05)
 
@@ -743,12 +807,14 @@ class PerformanceSequencerNode:
         skip_playback = cue.canceled and not len(cue.audio_data)
         has_audio = len(cue.audio_data) > 0
 
-        if not skip_playback and cue.cue_id and cue.expect_track:
-            self._wait_for_first_frames(cue)
-            # The channels must not wait again: their playback windows are
-            # anchored to the audio that starts right now.
-            cue.expect_track = False
-
+        # The sync dial's frame wait happens HERE, before audio starts, so
+        # speech and animation begin together. Channels then just play
+        # (already_waited=True) without re-waiting.
+        already_waited = False
+        if not skip_playback and cue.cue_id and cue.sync_frac is not None:
+            self._wait_for_frames(cue)
+            already_waited = True
+        cue._already_waited = already_waited
         if not skip_playback:
             # Playback-time event: this is the moment the cue is actually
             # starting (audio or silent playout) -- captions and Logos-side
@@ -776,17 +842,17 @@ class PerformanceSequencerNode:
                     target=self.play_audio, args=(cue.audio_data, sr))
                 audio_thread.start()
 
-            # Arms start aligned with the cue, on their own channel. TTS-
-            # driven arm cues only wait for a track when this cue opted into
-            # sync mode (performance.sync) -- otherwise speech never blocks
-            # on generation, same rule as the face channel.
+            # Arms start aligned with the cue, on their own channel. The
+            # sync-dial frame wait already happened up front (above), shared
+            # across both channels, so the arm channel just plays.
             arm_done = None
             if cue.arms:
                 arm_done = threading.Event()
-                self.arm_queue.put(ArmCue(cue_id=cue.cue_id, emoji=cue.emoji, text=cue.text,
-                                          duration=cue.duration, expect_track=cue.expect_track,
-                                          wait_timeout_s=cue.wait_timeout_s,
-                                          done_event=arm_done))
+                arm_cue = ArmCue(cue_id=cue.cue_id, emoji=cue.emoji, text=cue.text,
+                                 duration=cue.duration, sync_frac=cue.sync_frac,
+                                 done_event=arm_done)
+                arm_cue._already_waited = already_waited
+                self.arm_queue.put(arm_cue)
 
             if cue.face:
                 self.play_face_for_cue(cue)
