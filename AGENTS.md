@@ -13,6 +13,8 @@ Common workspace contents include `.system/system_prompt.txt`, `.system/framewor
 
 `logos_framework` is the core bridge: `cognition_node.py` assembles context and streams Gemini output, `python_worker_node.py` executes `<py>` blocks in the selected workspace with the workspace `src/` on `sys.path`, and `web_ui_node.py` exposes the browser UI. Prefer `docs/LOGOS_FRAMEWORK.md` for detailed node behavior before making framework changes.
 
+`logos_hardware`'s Text-to-Performance pipeline (`tts_action_server.py` director, `face_animator_node.py`/`arm_animator_node.py`, `performance_sequencer_node.py`, shared code in `performance_lib/`) turns emoji-punctuated speech into synced face/arm animation via a tiny on-board LLM (Ollama), a saved-takes library, and a hand-authored LUT, with a sync dial trading latency for fidelity. Read `docs/TTP_V3.md` before touching any of it — the sync dial, the arm `joint1`/`joint2` vs `shoulder_roll`/`shoulder_pitch` key-normalization gotcha, and the provisional-cue-timeline ordering are all easy to get wrong without it.
+
 ## Claude or Codex Bridge for Live Testing
 
 This workspace includes a small third party agent-to-Logos testing bridge documented in `docs/LOGOS_CODEX_BRIDGE.md`. Use `/usr/bin/python3 tools/codex_logos_exec.py ...` to send a uniquely tagged `<py>` block through the existing `/cognition/output` -> `python_worker_node.py` -> `/cognition/input` path. The bridge defaults to request type `codex_tool` and suppresses `loop_cognition` unless `--allow-loop` is passed, so it is appropriate for live debugging without intentionally waking the Logos LLM. Results intentionally enter the normal IO buffer.
