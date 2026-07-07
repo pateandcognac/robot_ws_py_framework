@@ -1,11 +1,17 @@
 {
   "_comment": "Per-role ordered server preference for the tiny animation models. First live server (GET /api/tags within probe_timeout_s, model tag present) wins; a daemon thread re-probes every probe_interval_s off the generation path. Add faster LAN machines ABOVE the localhost last resort, e.g. {\"url\": \"http://beefy.local:11434\", \"model\": \"smollm2-135m-face-lora-34k:q8_0\"}.",
   "face": [
+    {"url": "http://minimint.local:11434", "model": "smollm2-135m-face-lora-34k:q4_K_M"},
+    {"url": "http://eve.local:11434", "model": "smollm2-135m-face-lora-34k:q4_K_M"},
+    {"url": "http://192.168.1.76:11434", "model": "smollm2-135m-face-lora-34k:q4_K_M"},
     {"url": "http://localhost:11434", "model": "smollm2-135m-face-lora-34k:q4_K_M"}
   ],
   "arms": [
+    {"url": "http://192.168.1.73:11434", "model": "smollm2-135m-arm-lora-38k:q4_K_M"},
+    {"url": "http://eve.local:11434", "model": "smollm2-135m-arm-lora-38k:q4_K_M"},
+    {"url": "http://192.168.1.27:11434", "model": "smollm2-135m-arm-lora-38k:q4_K_M"},
     {"url": "http://localhost:11434", "model": "smollm2-135m-arm-lora-38k:q4_K_M"}
   ],
-  "probe_timeout_s": 2.0,
+  "probe_timeout_s": 3.0,
   "probe_interval_s": 60.0
 }
