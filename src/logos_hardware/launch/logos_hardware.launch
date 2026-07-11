@@ -39,17 +39,20 @@
   <!-- Face Animator: tiny on-CPU LLM (via Ollama) that turns cue text/emoji
        into bespoke face tracks. Sequencer falls back to the LUT without it,
        so this node is safe to disable. Knobs: ~model, ~temperature,
-       ~tts_policy / ~command_policy ("lut,saved,generate" cascades),
-       ~save_generations. -->
+       ~tts_policy / ~command_policy, ~max_pending_jobs. Defaults: TTS uses
+       "fuzzy,lut,saved,generate"; commands use
+       "generate,saved,fuzzy,lut". "fuzzy" queries the Chroma-backed
+       performance fuzzy LUT index. -->
   <node name="face_animator" pkg="logos_hardware" type="face_animator_node.py" output="screen"/>
 
   <!-- Arm Animator: same pattern as the face animator, for the tiny
        fine-tuned arm model (see TINY_ARM_DEPLOYMENT.md). Sequencer falls
        back to the semantic arm LUT without it, so this node is safe to
-       disable. Default cascade is "generate,saved,lut" (unlike the face
-       animator's LUT-first command_policy) - tweakable via ~tts_policy /
-       ~command_policy, and per-call via the cue-announce "arm_policy" key
-       or a command payload's "policy" key. -->
+       disable. Defaults match the face animator: TTS uses
+       "fuzzy,lut,saved,generate"; commands use
+       "generate,saved,fuzzy,lut". Tweakable via ~tts_policy /
+       ~command_policy / ~max_pending_jobs, per-call "arm_policy", or
+       command payload "policy". -->
   <node name="arm_animator" pkg="logos_hardware" type="arm_animator_node.py" output="screen"/>
 
 </launch>

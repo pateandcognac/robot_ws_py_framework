@@ -69,8 +69,23 @@ class FaceHudBridgeNode:
             cue = json.loads(msg.data)
         except json.JSONDecodeError:
             return
+        if not self._is_caption_cue(cue):
+            return
         self.stop_current_playback()
         self.msg_queue.put(('cue_playing', cue))
+
+    @staticmethod
+    def _is_caption_cue(cue):
+        """
+        Captions are for speech, not silent gesture prompts. Normal speech has
+        audio; TTS cues that fell back to silent playout still carry total>0.
+        """
+        if cue.get("has_audio"):
+            return True
+        try:
+            return int(cue.get("total", 0) or 0) > 0
+        except (TypeError, ValueError):
+            return False
 
     def cognition_input_callback(self, msg):
         self.msg_queue.put(('input', msg))
@@ -112,6 +127,8 @@ class FaceHudBridgeNode:
 
     def handle_cue_playing(self, cue):
         """Caption a cue at the moment its audio actually starts."""
+        if not self._is_caption_cue(cue):
+            return
         text = (cue.get("text") or "").strip()
         if not text:
             return

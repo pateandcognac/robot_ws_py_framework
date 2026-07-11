@@ -235,6 +235,32 @@ class PerformanceSequencerNode:
         self.pending_audio = {}
         self.pending_lock = threading.Lock()
 
+        # ── Face-command lane (TTP v3.2) ────────────────────────────────
+        # Face commands (/face/emoji_command) are second-class and real-time:
+        # a single-slot, latest-wins lane rather than a FIFO queue. A new
+        # command CANCELS whatever face sequence is playing instead of
+        # stacking behind it, so a chatty/noisy environment stays reactive
+        # without piling up animations. The lane defers to first-class work
+        # (TTS utterances own the face; arm commands are unaffected) and only
+        # plays when no TTS is in flight.
+        self.face_cmd = None            # latest pending/active face Cue, or None
+        self.face_cmd_gen = 0           # bumped on every new cmd / TTS preempt
+        self.face_cmd_started_at = 0.0  # wall-clock the active cmd began (0=idle)
+        self.face_cmd_cv = threading.Condition()
+        # In-flight TTS cues (announced but not yet fully played). While > 0
+        # the face lane defers: TTS owns the face for the whole utterance,
+        # including inter-cue gaps and the pre-audio staging/sync waits.
+        self.tts_inflight = 0
+        self.tts_inflight_lock = threading.Lock()
+        # Deferred-command staleness: an ambient reaction that waited out a
+        # long utterance is meaningless by the time speech ends, so drop it
+        # if older than this when it finally reaches the front. <=0 disables.
+        self.face_command_ttl_s = float(rospy.get_param('~face_command_ttl_s', 1.5))
+        # Debounce: once a face command starts, ignore newer ones for this
+        # long so a noisy stream doesn't strobe the face. 0 disables.
+        self.face_command_min_hold_s = float(
+            rospy.get_param('~face_command_min_hold_s', 0.25))
+
         self.face_pubs = {
             state: rospy.Publisher('face/' + topic, EYE_MSG_BY_STATE[state], queue_size=10)
             for state, topic in [
@@ -261,7 +287,7 @@ class PerformanceSequencerNode:
         # slowness). This bound only exists to survive a *dead* animator
         # (crashed / never answers) -- past it, the sequencer's own LUT
         # covers with a loud warning. Roughly the generation timeout.
-        self.generation_wait_s = float(rospy.get_param('~generation_wait_s', 20.0))
+        self.generation_wait_s = float(rospy.get_param('~generation_wait_s', 60.0))
         # Default sync fraction for announces that omit performance.sync
         # (external publishers). The emote.ttp API always sends an explicit
         # value; 0.0 here just means "wait for frame 1" as a safe floor.
@@ -305,8 +331,32 @@ class PerformanceSequencerNode:
 
         self.arm_thread = threading.Thread(target=self.arm_channel_loop, daemon=True)
         self.arm_thread.start()
+        self.face_cmd_thread = threading.Thread(target=self.face_command_loop, daemon=True)
+        self.face_cmd_thread.start()
 
         rospy.loginfo("Performance Sequencer online.")
+
+    # ─── TTS-in-flight bookkeeping (face-lane deferral) ───────────────
+
+    def _tts_inflight_incr(self):
+        with self.tts_inflight_lock:
+            self.tts_inflight += 1
+
+    def _tts_inflight_decr(self):
+        with self.tts_inflight_lock:
+            if self.tts_inflight > 0:
+                self.tts_inflight -= 1
+            drained = self.tts_inflight == 0
+        if drained:
+            # Wake the face lane promptly so a deferred command doesn't wait
+            # out the 0.1s poll after speech ends.
+            with self.face_cmd_cv:
+                self.face_cmd_cv.notify()
+
+    def _tts_owns_face(self):
+        """True while any TTS cue is in flight: the face lane defers to it."""
+        with self.tts_inflight_lock:
+            return self.tts_inflight > 0
 
     # ─── Inputs ──────────────────────────────────────────────────────
 
@@ -373,6 +423,8 @@ class PerformanceSequencerNode:
                     # Defensive cap for cues announced but never resolved.
                     for stale in list(self.pending_audio)[:128]:
                         self.pending_audio.pop(stale, None)
+            # This cue now owns the face until it finishes in process_cue.
+            self._tts_inflight_incr()
             self.cue_queue.put(cue)
 
     def tts_chunk_cb(self, msg):
@@ -414,6 +466,7 @@ class PerformanceSequencerNode:
 
         # Legacy path: SpeechData with no announce (old director, external
         # publishers) becomes a complete cue directly, exactly as in v2.
+        self._tts_inflight_incr()
         self.cue_queue.put(Cue(
             cue_id=cue_id,
             text=msg.text_snippet,
@@ -444,7 +497,13 @@ class PerformanceSequencerNode:
         return 0.0 if data.get("expect_track") else None
 
     def face_command_cb(self, msg):
-        """Silent face cue. `text` may be emoji, prose, or both in one string."""
+        """
+        Silent face cue -- real-time, latest-wins (TTP v3.2). `text` may be
+        emoji, prose, or both. Instead of queueing, this drops the command
+        into the single face-command slot and bumps the generation counter,
+        which preempts whatever the face lane is currently playing. Bursts
+        from a chatty/noisy environment collapse to the most recent command.
+        """
         try:
             emoji, text, duration, cue_id = self._parse_command(msg, 1.0)
             if not emoji and not text and not cue_id:
@@ -452,13 +511,70 @@ class PerformanceSequencerNode:
             if not emoji:
                 emoji = chunking.find_emoji(text, self.face_lut.keys()) or ""
             sync_frac = self._command_sync_frac(json.loads(msg.data))
-            self.cue_queue.put(Cue(cue_id=cue_id, text=text, emoji=emoji,
-                                   duration=duration, arms=False,
-                                   sync_frac=sync_frac))
-            rospy.loginfo("Queued face cue: %s%s for %.1fs",
-                          emoji, (" '" + text + "'") if text else "", duration)
         except (ValueError, json.JSONDecodeError) as e:
             rospy.logerr("Bad /face/emoji_command payload: %s (%s)", msg.data, e)
+            return
+        cue = Cue(cue_id=cue_id, text=text, emoji=emoji, duration=duration,
+                  arms=False, sync_frac=sync_frac)
+        cue._enqueued_at = time.time()
+        with self.face_cmd_cv:
+            # Debounce: while a command is actively playing and hasn't met
+            # its minimum hold, ignore newer ones so the face doesn't strobe.
+            if (self.face_command_min_hold_s > 0.0 and self.face_cmd_started_at > 0.0
+                    and (time.time() - self.face_cmd_started_at)
+                    < self.face_command_min_hold_s):
+                return
+            self.face_cmd = cue        # latest wins
+            self.face_cmd_gen += 1     # preempt whatever's playing
+            self.face_cmd_cv.notify()
+
+    def face_command_loop(self):
+        """
+        The face-command lane: plays the single latest face command, deferring
+        to any in-flight TTS utterance and preempting itself when a newer
+        command arrives. Never stacks -- there is one slot, not a queue.
+        """
+        while not rospy.is_shutdown():
+            with self.face_cmd_cv:
+                while not rospy.is_shutdown() and (
+                        self.face_cmd is None or self._tts_owns_face()):
+                    self.face_cmd_cv.wait(timeout=0.1)
+                if rospy.is_shutdown():
+                    return
+                cue = self.face_cmd
+                self.face_cmd = None
+                gen = self.face_cmd_gen
+                self.face_cmd_started_at = time.time()
+
+            # Staleness: a reaction deferred behind a long utterance is
+            # meaningless once speech ends -- drop it rather than play it late.
+            age = time.time() - getattr(cue, "_enqueued_at", time.time())
+            if self.face_command_ttl_s > 0 and age > self.face_command_ttl_s:
+                rospy.loginfo("Face command '%s' dropped as stale (%.1fs old).",
+                              cue.emoji or cue.text or cue.cue_id, age)
+                with self.face_cmd_cv:
+                    self.face_cmd_started_at = 0.0
+                continue
+
+            # Preempt when a newer command supersedes this one, or when TTS
+            # claims the face mid-playback.
+            cancel = lambda g=gen: g != self.face_cmd_gen or self._tts_owns_face()
+            try:
+                self.play_channel_for_cue(
+                    self.face_channel, cue.cue_id, cue.emoji, cue.duration,
+                    sync_frac=cue.sync_frac, cancel=cancel)
+            finally:
+                with self.face_cmd_cv:
+                    self.face_cmd_started_at = 0.0
+                # Per-lane cleanup: touch ONLY the face channel's state (unlike
+                # process_cue, which owns both channels for a TTS cue). This is
+                # what keeps a face command from clobbering an arm command that
+                # shares its cue_id.
+                if cue.cue_id:
+                    self.face_tracks.pop(cue.cue_id)
+                    self.face_tracks.mark_done(cue.cue_id)
+                    self.cue_done_pub.publish(
+                        String(data=json.dumps({"cue_id": cue.cue_id})))
 
     def arm_command_cb(self, msg):
         """Arm cue. `text` may be emoji, prose, or both in one string."""
@@ -520,13 +636,16 @@ class PerformanceSequencerNode:
         while not rospy.is_shutdown() and time.time() < end:
             rospy.sleep(min(0.05, max(0.0, end - time.time())))
 
-    def _wait_channel(self, ch, cue_id, frac):
+    def _wait_channel(self, ch, cue_id, frac, cancel=None):
         """Per-channel version of the sync frame wait (standalone gestures,
-        which bypass process_cue's combined up-front wait)."""
+        which bypass process_cue's combined up-front wait). `cancel`, when
+        supplied, lets a superseded/preempted cue abandon the wait early."""
         if frac is None or not cue_id:
             return
         deadline = time.time() + self.generation_wait_s
         while not rospy.is_shutdown():
+            if cancel is not None and cancel():
+                return
             if self._channel_frames_ready(ch, cue_id, frac):
                 return
             if time.time() >= deadline:
@@ -537,11 +656,17 @@ class PerformanceSequencerNode:
             rospy.sleep(0.05)
 
     def play_channel_for_cue(self, ch, cue_id, emoji, duration,
-                             sync_frac=None, already_waited=False):
+                             sync_frac=None, already_waited=False, cancel=None):
         """
         Unified per-cue frame pacing for one channel (face or arms) -- the
         near-identical twin loop bodies of v2 merged, minus the LUT
         cold-open/switch dance.
+
+        `cancel`, when supplied, is polled every loop iteration (and during
+        the up-front frame wait): a truthy return abandons playback
+        immediately. The face-command lane uses this so a newer face command
+        -- or a TTS utterance claiming the face -- preempts the sequence
+        currently playing instead of stacking behind it.
 
         Plays whichever single source resolves for the cue:
         - the animator track (frames may still be streaming in at low sync
@@ -562,7 +687,7 @@ class PerformanceSequencerNode:
         """
         store = ch["store"]
         if not already_waited:
-            self._wait_channel(ch, cue_id, sync_frac)
+            self._wait_channel(ch, cue_id, sync_frac, cancel)
 
         t0 = time.time()
         t_end = t0 + max(0.1, duration)
@@ -573,6 +698,8 @@ class PerformanceSequencerNode:
         played = 0
 
         while not rospy.is_shutdown():
+            if cancel is not None and cancel():
+                return
             now = time.time()
             if now >= t_end:
                 break
@@ -660,7 +787,17 @@ class PerformanceSequencerNode:
                 self.play_arms_for_cue(arm_cue)
             finally:
                 if arm_cue.done_event is not None:
+                    # TTS-driven arm cue: process_cue owns cleanup (it holds
+                    # the shared cue_id across both channels). Just confirm.
                     arm_cue.done_event.set()
+                elif arm_cue.cue_id:
+                    # Standalone arm gesture: nothing else cleans up after it,
+                    # so release its track and tell the arm animator it's done
+                    # (lets late generation abort instead of leaking).
+                    self.arm_tracks.pop(arm_cue.cue_id)
+                    self.arm_tracks.mark_done(arm_cue.cue_id)
+                    self.cue_done_pub.publish(
+                        String(data=json.dumps({"cue_id": arm_cue.cue_id})))
 
     def publish_arm_pose(self, pose):
         """Publish one expanded full arm pose to /arm/command (joint1/joint2 wire names)."""
@@ -875,6 +1012,10 @@ class PerformanceSequencerNode:
             self.arm_tracks.pop(cue.cue_id)
             self.arm_tracks.mark_done(cue.cue_id)
             self.cue_done_pub.publish(String(data=json.dumps({"cue_id": cue.cue_id})))
+
+        # This TTS cue is done owning the face; release the face lane's
+        # deferral (drops to 0 -> ambient face commands can play again).
+        self._tts_inflight_decr()
 
         # End of a TTS stream: clear the speaking flag after the last chunk.
         if cue.total_chunks > 0 and cue.chunk_index == cue.total_chunks - 1:

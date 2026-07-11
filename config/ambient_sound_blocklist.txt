@@ -1,0 +1,11 @@
+# Audio-classifier labels the idle face reaction must NEVER react to.
+# One label per line. Case-insensitive; whitespace is normalized before
+# matching (so "Indoors, small room" and "indoors,  small room" both match).
+# Blank lines and lines starting with # are ignored.
+#
+# Add common/persistent/uninteresting ambient labels here so the face
+# doesn't twitch at them. Transcription snippets are never blocked by this.
+
+Silence
+Speech
+Indoors, small room

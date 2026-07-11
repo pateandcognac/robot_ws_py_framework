@@ -11,6 +11,7 @@ import os
 import sys
 import tempfile
 import time
+import urllib.request
 
 sys.path.insert(0, os.path.normpath(os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "..", "logos_hardware", "scripts")))
@@ -36,6 +37,7 @@ from performance_lib.arm_gen_client import (
     expand_frames_lenient as expand_arm_frames_lenient,
     frame_count_hint,
 )
+from performance_lib.fuzzy_lut import FuzzyLutClient
 
 
 def test_streaming_parser():
@@ -395,6 +397,108 @@ def test_ollama_pool_demotion():
     print("ok: ollama pool demotion routes around a probe-OK/generate-broken server")
 
 
+def test_fuzzy_policy_and_client():
+    from face_animator_node import parse_policy as parse_face_policy
+    from arm_animator_node import parse_policy as parse_arm_policy
+
+    assert parse_face_policy("lut,fuzzy,saved,generate", ["generate"]) == [
+        "lut", "fuzzy", "saved", "generate"]
+    assert parse_arm_policy(["fuzzy", "bogus", "lut"], ["generate"]) == ["fuzzy", "lut"]
+    assert parse_face_policy(None, ["fuzzy", "lut", "saved", "generate"]) == [
+        "fuzzy", "lut", "saved", "generate"]
+    assert parse_arm_policy(None, ["generate", "saved", "fuzzy", "lut"]) == [
+        "generate", "saved", "fuzzy", "lut"]
+
+    class FakeResponse:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+        def read(self):
+            return json.dumps({
+                "ids": [["doc1"]],
+                "documents": [["I am not pleased."]],
+                "metadatas": [[{"emoji": "😠", "channel": "face"}]],
+                "distances": [[0.123]],
+            }).encode("utf-8")
+
+    captured = {}
+    original = urllib.request.urlopen
+
+    def fake_urlopen(req, timeout=0):
+        captured["url"] = req.full_url
+        captured["body"] = json.loads(req.data.decode("utf-8"))
+        return FakeResponse()
+
+    urllib.request.urlopen = fake_urlopen
+    try:
+        client = FuzzyLutClient(server_url="http://test", collection="col", n_results=2)
+        match = client.query("This situation is unacceptable.", "face")
+    finally:
+        urllib.request.urlopen = original
+
+    assert match.emoji == "😠"
+    assert match.distance == 0.123
+    assert match.document_id == "doc1"
+    assert captured["url"] == "http://test/collections/col/query"
+    assert captured["body"]["where"] == {"channel": "face"}
+    assert captured["body"]["embedding_provider"] == "model2vec"
+    print("ok: fuzzy policy parsing + mocked Chroma client")
+
+
+def test_fuzzy_index_record_builder():
+    import importlib.util
+
+    tool_path = os.path.normpath(os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "..", "..", "tools", "rebuild_performance_fuzzy_index.py"))
+    spec = importlib.util.spec_from_file_location("rebuild_performance_fuzzy_index", tool_path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    with tempfile.TemporaryDirectory() as tmp:
+        face_dir = os.path.join(tmp, "face")
+        arm_dir = os.path.join(tmp, "arms")
+        phrase_dir = os.path.join(tmp, "phrases")
+        os.makedirs(face_dir)
+        os.makedirs(arm_dir)
+        os.makedirs(phrase_dir)
+
+        face_entry = {
+            "emoji": "😠",
+            "name": "ANGRY FACE",
+            "ideation": "simmering resentment",
+            "frames": [{"beat": "brows drop"}],
+        }
+        arm_entry = {
+            "emoji": "😠",
+            "name": "ANGRY FACE",
+            "ideation": "tense arms",
+            "frames": [{"beat": "arms tense"}],
+        }
+        with open(os.path.join(face_dir, "emoji_face_seq_angry_face_.json"), "w") as f:
+            json.dump(face_entry, f)
+        with open(os.path.join(arm_dir, "emoji_arm_seq_angry_face_.json"), "w") as f:
+            json.dump(arm_entry, f)
+        with open(os.path.join(phrase_dir, "emoji_face_seq_angry_face_.json"), "w") as f:
+            json.dump(["This situation is unacceptable."], f)
+
+        records = mod.build_records(face_dir, arm_dir, phrase_dir)
+
+    kinds = sorted((r["metadata"]["channel"], r["metadata"]["source_kind"]) for r in records)
+    assert kinds == [
+        ("arms", "gemini_phrase"),
+        ("arms", "lut_entry"),
+        ("face", "gemini_phrase"),
+        ("face", "lut_entry"),
+    ]
+    assert all(r["metadata"]["emoji"] == "😠" for r in records)
+    assert any("This situation is unacceptable." in r["document"] for r in records)
+    print("ok: fuzzy index records from LUT entries + phrase examples")
+
+
 def test_live_ollama_pool_probe():
     """Probe matching against the real local Ollama tag list."""
     from performance_lib.ollama_pool import _server_has_model
@@ -482,6 +586,8 @@ if __name__ == "__main__":
     test_frame_count_hint()
     test_ollama_pool()
     test_ollama_pool_demotion()
+    test_fuzzy_policy_and_client()
+    test_fuzzy_index_record_builder()
     if "--live" in sys.argv:
         test_live_ollama_pool_probe()
         test_live_generation()

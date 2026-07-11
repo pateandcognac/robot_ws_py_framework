@@ -119,20 +119,23 @@ cue through a **policy cascade**, and publishes the result to
   generated result.
 - `"saved"` — replay a random take from that emoji's rolling `GenStore`
   library (`source="saved"`).
+- `"fuzzy"` — query the Chroma-backed semantic LUT index and publish the
+  matched master LUT frames as `source="fuzzy"`, `status="complete"`.
+  This uses model2vec through the existing Chroma sidecar.
 - `"generate"` — run the tiny Ollama model, **streamed** by default (first
   frame published the moment it decodes, ~1–3s typically; each further
   frame appended live). On outright failure (Ollama unreachable, bad
   request, etc.) falls through to the next step. On success, emoji-keyed
   non-truncated results are saved to the rolling library.
 
-**Default cascades**: face TTS cues `generate,saved,lut`; face command
-cues `lut,saved,generate` (pure-emoji gestures get the zero-latency LUT
-first; anything with prose reaches the model). **Arms use
-`generate,saved,lut` for both** TTS and command cues (Mark's call: arms
-lead with fresh generation always). All four independently tweakable via
-ROS params (`~tts_policy`, `~command_policy`) and per-call via the
-cue-announce `performance` dict's `face_policy`/`arm_policy` keys or a
-command payload's `policy` key.
+**Default cascades**: face and arm TTS cues use
+`fuzzy,lut,saved,generate` (prefer the Chroma-backed fuzzy master LUT match,
+then exact LUT, saved takes, and fresh generation). Face and arm command
+cues use `generate,saved,fuzzy,lut` (silent gestures lead with bespoke
+motion, then fall back to fuzzy/exact LUT). All four independently
+tweakable via ROS params (`~tts_policy`, `~command_policy`) and per-call
+via the cue-announce `performance` dict's `face_policy`/`arm_policy` keys
+or a command payload's `policy` key.
 
 **Cascade exhaustion / outright failure**: `publish_fallback()` borrows a
 LUT pose for the cue's own emoji, a recently-performed emoji, or
@@ -182,8 +185,10 @@ only has `mdns4_minimal`, which fires solely for `.local` names. Use
 
 ### 3. Sequencer — `performance_sequencer_node.py`
 
-The single playback clock. Owns one `cue_queue` (face+audio) and one
-`arm_queue` (its own thread — arms never block face/audio, and vice versa).
+The single playback clock. Owns one `cue_queue` (TTS: audio + its face/arm
+animation), one `arm_queue` (arm commands, its own thread — arms never block
+face/audio, and vice versa), and — new in **v3.2** — a **face-command lane**
+(its own thread, a single latest-wins slot rather than a queue; see below).
 
 **Provisional cue timeline.** TTS cues enter `cue_queue` at **announce**
 time — before any audio exists — as a `Cue` with `audio_pending=True` and
@@ -245,6 +250,40 @@ Resolves to exactly one source and plays it out over the cue's duration:
    alone, on its own, **never** triggers this — see the sync dial section.
 3. **Idle** — nothing available; hold the last pose for the duration.
 
+**The face-command lane (v3.2 — face is real-time, latest-wins).** TTS
+utterances and arm commands are *first-class*: queued and played in full.
+Face commands (`/face/emoji_command`) are *second-class / real-time*. Instead
+of a FIFO queue, the sequencer keeps a **single face-command slot** and a
+dedicated `face_command_loop` thread. A new face command overwrites the slot
+and bumps a generation counter, which **preempts** whatever face sequence is
+currently playing (the counter is polled as a `cancel` predicate inside
+`play_channel_for_cue`'s pacing loop *and* its up-front sync-wait). So rapid
+commands — from an ambient reactivity source watching STT and audio
+classification in a chatty/noisy room — **collapse to the most recent** rather
+than stacking up, keeping the face live without a backlog.
+
+The lane **defers to TTS**: a `tts_inflight` counter is incremented for every
+announced (or legacy) TTS cue and decremented when that cue finishes in
+`process_cue`. While it's > 0, the whole utterance owns the face — the lane
+both refuses to *start* a face command and *preempts* one already playing
+(the cancel predicate is `newer_gen OR tts_owns_face`). Because
+`cue_announce_cb` enqueues an utterance's cues all at once, the counter stays
+positive across inter-cue gaps and the pre-audio staging/sync waits, so there's
+no mid-utterance flicker. When speech ends and the counter drains to 0, the
+lane wakes (a `notify`, not just the 0.1s poll) and plays the latest slotted
+command — **unless it's stale** (older than `~face_command_ttl_s`, default
+1.5s: an ambient reaction to a sound from several seconds ago is meaningless,
+so it's dropped rather than played late). A **debounce**
+(`~face_command_min_hold_s`, default 0.25s) makes a just-started command ignore
+newer ones briefly so a noisy stream can't strobe the face.
+
+Cleanup is **per-lane**: the face lane touches only `face_tracks` +
+`/performance/cue_done` for its own `cue_id`; the arm channel likewise cleans
+its own standalone gestures; `process_cue` still owns *both* channels for a
+TTS cue (one cue_id, both channels). This is what stops a short face gesture
+from clobbering a longer arm gesture — see the shared-cue_id note under
+Consumers / `gesture()`.
+
 ### 4. Consumers
 
 - `face_hud_bridge_node.py`, `interface_helper_node.py` (captions):
@@ -252,6 +291,8 @@ Resolves to exactly one source and plays it out over the cue's duration:
   subscription line kept as a commented revert). Fixes the v2
   caption-leads-audio desync, which got *worse* once synthesis went
   concurrent (Workstream B made the desync bigger, D is the fix for it).
+  They render only speech/TTS cues, so silent `/face/emoji_command` prompt
+  text can still drive animation without appearing as dialogue.
 - `~/robot_workspaces/*/src/logos/emote.py`'s `SpeakTask`: re-anchors its
   dead-reckoned playhead (`current_text()`/`current_emoji()`/`progress()`)
   to real `/performance/cue_playing` events per cue, instead of trusting
@@ -306,7 +347,9 @@ asymmetry worth closing (adding a `sync=` kwarg to `gesture()` mirroring
   `sync=0.0`-equivalent today (see asymmetry note above).
 - CLI: `src/logos_utils/logos_ttp.py --face POLICY --arms POLICY --sync
   0.0-1.0` — a command-line mirror of `emote.ttp()` for testing without a
-  Logos runtime; ships the same `performance` dict shape.
+  Logos runtime; ships the same `performance` dict shape. Add `--command`
+  plus `--channel face|arms|both` to publish silent `/face/emoji_command`
+  and/or `/arm/emoji_command` gestures instead of speech.
 
 ---
 
@@ -370,7 +413,7 @@ re-export shims for older tooling.
 | `/performance/arm_track` | arm animator → sequencer | same shape, arm frames |
 | `/performance/cue_done` | sequencer → both animators | `{cue_id}` (lets animators abort/skip late generations for a cue that already played) |
 | `/performance/cue_playing` | sequencer → HUD/caption/choreography consumers | `{cue_id, text, emoji, duration, index, total, has_audio}` fired at **actual playback start** (audio or silent) |
-| `/face/emoji_command` | anyone → sequencer + face animator | `{emoji?, text?, duration, cue_id?, sync? (or legacy expect_track?), policy?, temperature?}` — any string works, not just emoji |
+| `/face/emoji_command` | anyone → sequencer + face animator | `{emoji?, text?, duration, cue_id?, sync? (or legacy expect_track?), policy?, temperature?}` — any string works, not just emoji. **v3.2: real-time / latest-wins** — a new command preempts the currently-playing face sequence and defers to in-flight TTS (see the face-command lane) |
 | `/arm/emoji_command` | anyone → sequencer + arm animator | same shape; a payload with no `cue_id` is the legacy fast path (straight LUT lookup, no animator involvement) |
 
 `/tts/is_speaking` and all typed face topics unchanged. `/arm/command`
@@ -389,14 +432,24 @@ pool; set → pin single-server, back-compat), `~ollama_servers_config`
 `~save_generations` (true), `~stream` (true), `~gen_timeout_s` (30 —
 runaway/degenerate-loop guard only; streaming means it doesn't add
 latency to the happy path), `~max_accepted_frames` (face 9 / arms 7),
-`~generate_even_if_late` (false), `~max_pending_jobs` (12),
+`~generate_even_if_late` (false), `~max_pending_jobs` (128; 0/negative =
+unlimited for bench testing),
 `~fallback_emoji` (💬 face / 🧍 arms), `~store_path`, `~store_cap` (5),
 `~face_lut_dir` / `~arm_lut_dir`.
+
+Animator backlog overflow preserves already-queued FIFO work because those
+cues are closest to playback. If the cap is exceeded, the newly-arrived cue
+gets an immediate fallback track instead of being left silent, so the
+sequencer does not wait for a result that will never arrive.
 
 **Sequencer**: `~generation_wait_s` (60 — sync-dial ceiling, survives a
 dead animator only), `~default_sync_frac` (0.0 — only applies when
 `performance.sync` is entirely absent), `~audio_wait_s` (10 — silent
-playout fallback for a hung synthesis), `~face_lut_dir` / `~arm_lut_dir`.
+playout fallback for a hung synthesis), `~face_command_ttl_s` (1.5 —
+drop a deferred face command older than this when it finally reaches the
+front; <=0 disables), `~face_command_min_hold_s` (0.25 — debounce: a
+just-started face command ignores newer ones this long; 0 disables),
+`~face_lut_dir` / `~arm_lut_dir`.
 
 **Ollama pool** (`config/ollama_servers.json`, not a ROS param):
 `probe_timeout_s` (2.0), `probe_interval_s` (60.0), per-role
@@ -463,13 +516,21 @@ playout fallback for a hung synthesis), `~face_lut_dir` / `~arm_lut_dir`.
   utterance (v2: behind only the synthesized-so-far chunks) — a minor
   interleaving change on slow engines with long utterances, not observed
   as a real problem yet.
+- **Fixed in v3.2:** `gesture(channel="both")` used to send one shared
+  `cue_id` to both `/face/emoji_command` and `/arm/emoji_command`. Face and
+  arm are independent cues on separate lanes with different durations, so the
+  shorter face cue's `process_cue` cleanup (`arm_tracks.pop`/`mark_done` +
+  `cue_done`) clobbered the still-in-flight arm cue's track and aborted its
+  generation. Now `emote.gesture()` sends distinct per-channel cue_ids
+  (`…:f` / `…:a`) and each lane cleans up only its own channel. Also fixed:
+  standalone arm gestures never emitted `cue_done`/cleaned `arm_tracks` (a
+  leak + a missed abort-on-late), now handled in `arm_channel_loop`. Old
+  checkpoint workspaces still send shared ids, but the per-lane cleanup makes
+  that harmless on the sequencer side regardless.
 
 ---
 
-## Planned next: fuzzy semantic LUT lookup
-
-**Not yet built — documented here so the interface point is understood
-before implementation starts.**
+## Fuzzy semantic LUT lookup
 
 Today the `"lut"` cascade step is an **exact emoji key match** — a cue
 either carries a preset emoji that's a literal key in the LUT dict, or it
@@ -477,49 +538,30 @@ doesn't, and prose-only cues with no emoji at all always fall through past
 `lut` straight to `saved`/`generate` (or, if those aren't in the policy,
 to nothing/idle).
 
-The planned addition: a small text-embedding model + a semantic (nearest-
-neighbor / vector) index over the LUT's `ideation` fields (the natural-
-language description already stored per LUT entry — see the semantic
-format above), so a cue with **no usable emoji** — plain prose, or an
-emoji that isn't a LUT key — can still resolve to the *closest-vibe*
-master LUT entry almost instantly, without touching Ollama at all. Mark's
-framing: this might become the **preferred default mode**, not just a
-fallback — it's a way to get "the good hand-authored LUT quality" instead
-of "the model's still-experimental take," for the large fraction of cues
-that have no explicit emoji cue today.
+The `"fuzzy"` cascade step semantically matches cue text against a Chroma
+collection of master LUT entries and robot-speech phrase examples. It is
+now part of the default TTS cascade, and remains selectable anywhere a
+policy cascade is accepted, e.g. `"fuzzy,lut,saved,generate"` or
+`"generate,saved,fuzzy,lut"`.
 
-Where this plugs in, based on the current architecture:
+Implementation shape:
 
-- **New cascade step**, tentatively `"fuzzy"` (or `"semantic"`), slotting
-  into `VALID_STEPS` in both `face_animator_node.py` and
-  `arm_animator_node.py` alongside `"lut"`/`"saved"`/`"generate"`. Natural
-  position: after `"lut"` (which still wins on an exact emoji hit — cheap
-  and deterministic) and before `"generate"` (the most expensive step).
-- **Resolution shape stays identical to today's `"lut"` step**: a
-  `status="lut"` signal (or a new status value, e.g. `"fuzzy"`, if
-  distinguishing it downstream turns out to matter) with no frames — the
-  sequencer already has its own full LUT dict loaded
-  (`self.face_lut`/`self.arm_lut`) and plays its own copy, so the fuzzy
-  match only needs to resolve *which emoji key* to hand back, not stream
-  any frames itself. This keeps the sequencer-side `play_channel_for_cue`
-  logic untouched.
-- **Index location**: probably built once at animator startup from the
-  already-loaded `luts.load_semantic_face_lut()` /
-  `load_semantic_arm_lut()` dicts' `ideation` text (no new data files
-  needed — the descriptions already exist per LUT entry). A new
-  `performance_lib/fuzzy_lut.py` (or similar) would own the embedding
-  model handle + index, mirroring how `ollama_pool.py` owns the Ollama
-  server selection — same "small focused module, imported by both
-  animators" pattern already established in this codebase.
-- **Cost model**: this should be *cheaper and faster* than Ollama
-  generation (no streaming HTTP round trip, no token-by-token decode) —
-  likely fast enough that it doesn't need the sync-dial treatment at all,
-  more like the current `"lut"` step's instant resolution. Worth
-  confirming with real embedding-model latency numbers once built, but
-  that's the design target.
-- **Policy surface**: extends naturally — `face_policy`/`arm_policy`
-  strings just gain a new valid token, e.g. `"fuzzy,generate,saved,lut"`
-  or, if Mark's "preferred default" framing holds, `"lut,fuzzy,generate"`
-  or similar as the new *default* cascade. No changes needed to
-  `emote.ttp(face=..., arms=...)`'s API shape — it already passes an
-  opaque cascade string through.
+- `performance_lib/fuzzy_lut.py` calls the existing Logos Chroma sidecar at
+  `http://127.0.0.1:8123` and queries
+  `logos__shared__performance_fuzzy_lut` with `embedding_provider:
+  "model2vec"` and default model `minishlab/potion-base-2M`.
+- The index is rebuilt with
+  `python3 tools/rebuild_performance_fuzzy_index.py --reset`. It embeds
+  each semantic face/arm LUT entry's emoji, name, ideation, and frame
+  beats, then adds matching phrase examples from
+  `/home/robot/src/ft_gemma_face/data/augmented/gemini_phrases/`.
+- When an animator gets a fuzzy match, it publishes the matched local LUT
+  frames as a normal complete track:
+  `{source:"fuzzy", status:"complete", frames:[...], matched_emoji,
+  match_distance, match_id}`. This is intentionally *not* `status="lut"`:
+  `lut` only tells the sequencer to play the cue's original emoji, while
+  fuzzy needs to carry a different matched animation without changing the
+  sequencer.
+- Exact `lut` remains deterministic and pure-emoji only. `fuzzy` is for
+  prose, missing emoji, unknown emoji, or explicit policy choices that
+  prefer nearest-neighbor hand-authored motions over generation.

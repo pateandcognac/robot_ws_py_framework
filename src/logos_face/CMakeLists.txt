@@ -26,6 +26,11 @@ catkin_package(
   CATKIN_DEPENDS roscpp std_msgs logos_msgs
 )
 
+catkin_install_python(PROGRAMS
+  scripts/pico_face_bridge.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
 include_directories(
   ${catkin_INCLUDE_DIRS}
   ${CACA_INCLUDE_DIRS}

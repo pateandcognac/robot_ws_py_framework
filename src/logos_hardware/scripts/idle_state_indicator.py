@@ -6,6 +6,7 @@ import time
 import json 
 import glob 
 import os
+import re
 from threading import Lock
 from dynamic_reconfigure.client import Client
 from std_msgs.msg import String as RosString, Bool
@@ -118,6 +119,35 @@ class FaceAmbienceNode:
         self.ambient_code_cache_files = rospy.get_param('~ambient_code_cache_files', 48)
         self.ambient_code_max_file_bytes = rospy.get_param('~ambient_code_max_file_bytes', 180000)
         self.ambient_code_max_lines_per_file = rospy.get_param('~ambient_code_max_lines_per_file', 360)
+        self.idle_reactions_enabled = rospy.get_param('~idle_reactions_enabled', True)
+        self.idle_reaction_ambient_topic = rospy.get_param(
+            '~idle_reaction_ambient_topic', '/stt/ambient_listener/events')
+        self.idle_reaction_classifier_topic = rospy.get_param(
+            '~idle_reaction_classifier_topic', '/stt/audio_classifier/events')
+        self.idle_reaction_classifier_extra_topic = rospy.get_param(
+            '~idle_reaction_classifier_extra_topic', '/stt/audio_classifier')
+        self.idle_reaction_duration = float(rospy.get_param('~idle_reaction_duration', 4.0))
+        self.idle_reaction_min_interval = float(rospy.get_param('~idle_reaction_min_interval', 1.0))
+        self.idle_reaction_ambient_max_age = float(rospy.get_param('~idle_reaction_ambient_max_age', 8.0))
+        self.idle_reaction_classifier_max_age = float(rospy.get_param('~idle_reaction_classifier_max_age', 120.0))
+        self.idle_reaction_classifier_min_score = float(rospy.get_param(
+            '~idle_reaction_classifier_min_score', 0.3))
+        self.idle_reaction_max_text_chars = int(rospy.get_param('~idle_reaction_max_text_chars', 160))
+        self.idle_reaction_policy = rospy.get_param('~idle_reaction_policy', 'fuzzy,lut')
+        # Debounce: an input must be quiet (no newer fragment/tick) for this
+        # long before it triggers a reaction, so a burst of ASR fragments
+        # settles into one reaction to the latest text instead of firing on
+        # every partial. Transcription always outranks classifier sound.
+        self.idle_reaction_debounce = float(rospy.get_param('~idle_reaction_debounce', 0.4))
+        # Repeat suppression (classifier sounds only): once we react to a
+        # sound label, mute that same label for this long so persistent /
+        # common sounds (fans, typing, hum) don't re-trigger endlessly.
+        self.ambient_sound_repeat_window = float(rospy.get_param(
+            '~ambient_sound_repeat_window', 180.0))
+        # Labels the classifier reaction must never publish (case-insensitive).
+        self.ambient_sound_blocklist_path = rospy.get_param(
+            '~ambient_sound_blocklist_path',
+            '/home/robot/robot_ws/config/ambient_sound_blocklist.txt')
         self.ambient_terminal_burst_chance = min(1.0, max(0.0, float(self.ambient_terminal_burst_chance)))
         self.ambient_terminal_clear_chance = min(1.0, max(0.0, float(self.ambient_terminal_clear_chance)))
         self.ambient_terminal_min_interval = max(0.05, float(self.ambient_terminal_min_interval))
@@ -137,6 +167,17 @@ class FaceAmbienceNode:
         self.ambient_code_cache_files = max(1, int(self.ambient_code_cache_files))
         self.ambient_code_max_file_bytes = max(1024, int(self.ambient_code_max_file_bytes))
         self.ambient_code_max_lines_per_file = max(20, int(self.ambient_code_max_lines_per_file))
+        self.idle_reaction_duration = max(0.1, self.idle_reaction_duration)
+        self.idle_reaction_min_interval = max(0.1, self.idle_reaction_min_interval)
+        self.idle_reaction_ambient_max_age = max(0.0, self.idle_reaction_ambient_max_age)
+        self.idle_reaction_classifier_max_age = max(0.0, self.idle_reaction_classifier_max_age)
+        self.idle_reaction_classifier_min_score = min(
+            1.0, max(0.0, self.idle_reaction_classifier_min_score))
+        self.idle_reaction_max_text_chars = max(16, self.idle_reaction_max_text_chars)
+        self.idle_reaction_debounce = max(0.0, self.idle_reaction_debounce)
+        self.ambient_sound_repeat_window = max(0.0, self.ambient_sound_repeat_window)
+        self.ambient_sound_blocklist = self._load_ambient_sound_blocklist(
+            self.ambient_sound_blocklist_path)
 
         # --- Publishers ---
         self.sine_wave_pub = rospy.Publisher('/face/mouth/sine_wave', MouthSine, queue_size=10)
@@ -149,6 +190,7 @@ class FaceAmbienceNode:
         self.color_pub = rospy.Publisher('face/eye_color', EyeColor, queue_size=10)
         self.state_mon_pub = rospy.Publisher('/face/state_mon', SpeechData, queue_size=10)
         self.output_pub = rospy.Publisher('/cognition/output', CognitionOutput, queue_size=10)
+        self.face_cmd_pub = rospy.Publisher('/face/emoji_command', RosString, queue_size=5)
         self.arm_cmd_pub = rospy.Publisher('/arm/emoji_command', RosString, queue_size=5)
         self.hud_event_pub = rospy.Publisher('/face/hud/event', RosString, queue_size=5)
 
@@ -161,21 +203,47 @@ class FaceAmbienceNode:
         self.ambient_terminal_active = False
         self.next_ambient_terminal_time = 0.0
         self.ambient_code_cache = self._load_ambient_code_cache()
+        self.latest_ambient_words = None
+        self.latest_ambient_words_time = 0.0
+        self.latest_classifier_sound = None
+        self.latest_classifier_score = 0.0
+        self.latest_classifier_time = 0.0
+        self.last_idle_reaction_time = 0.0
+        self.idle_reaction_seq = 0
+        # Guards the latest_* inputs and recent_sound_reactions, which are
+        # touched by subscriber callbacks and the reaction timer thread.
+        self.idle_reaction_lock = Lock()
+        # Normalized sound label -> last publish time (repeat suppression).
+        self.recent_sound_reactions = {}
+        self.dyn_client = None
+        self.dyn_server_name = None
+        self.last_dyn_connect_attempt = 0.0
+        self.current_fps = self.def_fps
 
         # --- Subscribers ---
         # New boolean topic for speech status
         self.is_speaking_sub = rospy.Subscriber('/tts/is_speaking', Bool, self.handle_is_speaking)
         self.cognition_state_sub = rospy.Subscriber('/cognition/state', RosString, self.handle_cognition_state)
         self.python_interrupt_sub = rospy.Subscriber('/python/interrupt', RosString, self.handle_python_interrupt)
+        if self.idle_reactions_enabled:
+            self.ambient_listener_sub = rospy.Subscriber(
+                self.idle_reaction_ambient_topic, RosString, self.handle_ambient_listener_event)
+            self.audio_classifier_subs = [
+                rospy.Subscriber(topic, RosString, self.handle_audio_classifier_event)
+                for topic in self._idle_reaction_classifier_topics()
+            ]
 
         # --- Dynamic Reconfigure Setup ---
-        self.dyn_client = None
-        self.dyn_server_name = None
-        self.last_dyn_connect_attempt = 0.0
-        self.current_fps = self.def_fps
         self._connect_dynamic_reconfigure(timeout=self.dyn_connect_timeout, log_warning=True)
 
         self._clear_status_hud()
+
+        # Idle reactions publish from one fixed-cadence tick (not from the
+        # input callbacks), so debounce + throttle + source-priority + repeat
+        # suppression all live in a single place.
+        if self.idle_reactions_enabled:
+            self.idle_reaction_timer = rospy.Timer(
+                rospy.Duration(0.1), self._tick_idle_reactions)
 
         rospy.loginfo("Face Ambience Node initialized.")
 
@@ -281,10 +349,34 @@ class FaceAmbienceNode:
         if self._is_terminal_chatter_state():
             self.reset_activity_timer()
 
+    def handle_ambient_listener_event(self, msg: RosString):
+        # Record only -- the reaction timer decides when/whether to publish.
+        text = self._clean_idle_reaction_text(msg.data)
+        if not text or text.lower() == "null":
+            return
+        with self.idle_reaction_lock:
+            self.latest_ambient_words = text
+            self.latest_ambient_words_time = time.time()
+
+    def handle_audio_classifier_event(self, msg: RosString):
+        # Record only. Blocklisted labels are already dropped in
+        # _clean_classifier_label, so they never reach here.
+        label, score = self._parse_audio_classifier_event(msg.data)
+        if not label:
+            return
+        with self.idle_reaction_lock:
+            self.latest_classifier_sound = label
+            self.latest_classifier_score = score
+            self.latest_classifier_time = time.time()
+
     # --- Core Logic ---
 
     def _is_terminal_chatter_state(self):
         return self.ambient_terminal_active and self.current_fps <= self.min_fps
+
+    def _is_idle_window(self, now=None):
+        now = time.time() if now is None else now
+        return (not self.is_speaking) and (now - self.last_activity_time >= self.post_activity_duration)
 
     def reset_activity_timer(self):
         """Called whenever the robot speaks or thinks."""
@@ -356,7 +448,7 @@ class FaceAmbienceNode:
         if self.idle_sequence_start_time is None:
             self.idle_sequence_start_time = now
             # Switch rendering style to ASCII/Random immediately
-            self.set_face_config(active_mode=False) 
+            self.set_face_config(active_mode=False)
             return
 
         # 2. Check if it's time to drop FPS
@@ -641,6 +733,228 @@ class FaceAmbienceNode:
             self.arm_cmd_pub.publish(RosString(data=payload))
         except Exception as e:
             rospy.logwarn(f"Failed to publish arm emoji command: {e}")
+
+    def _clean_idle_reaction_text(self, text):
+        text = "" if text is None else str(text)
+        text = re.sub(r"\s+", " ", text).strip()
+        return text[:self.idle_reaction_max_text_chars]
+
+    def _parse_audio_classifier_event(self, raw):
+        try:
+            data = json.loads(raw or "{}")
+        except json.JSONDecodeError:
+            rospy.logdebug(f"Ignoring malformed audio classifier event: {raw}")
+            return None, 0.0
+
+        best_label = None
+        best_score = 0.0
+        recent = data.get("recent") if isinstance(data, dict) else None
+        if isinstance(recent, list):
+            for sample in reversed(recent):
+                if not isinstance(sample, dict):
+                    continue
+                sample_label = None
+                sample_score = 0.0
+                for category in sample.get("categories") or []:
+                    label = self._clean_classifier_label(category.get("name"))
+                    score = self._classifier_score(category)
+                    if label and score > sample_score:
+                        sample_label = label
+                        sample_score = score
+                if sample_label:
+                    best_label = sample_label
+                    best_score = sample_score
+                    break
+
+        if not best_label:
+            categories = data.get("categories") if isinstance(data, dict) else None
+            if isinstance(categories, list):
+                best_label, best_score = self._best_classifier_category(categories)
+
+        if not best_label and isinstance(data, dict):
+            label = self._clean_classifier_label(data.get("name") or data.get("label"))
+            score = self._classifier_score(data)
+            if label:
+                best_label = label
+                best_score = score
+
+        if not best_label:
+            for minute in data.get("per_minute", []) if isinstance(data, dict) else []:
+                if not isinstance(minute, dict):
+                    continue
+                for category in minute.get("categories") or []:
+                    label = self._clean_classifier_label(category.get("name"))
+                    score = self._classifier_score(category, aggregate=True)
+                    if label and score > best_score:
+                        best_label = label
+                        best_score = score
+
+        if best_score < self.idle_reaction_classifier_min_score:
+            return None, best_score
+        return best_label, best_score
+
+    def _best_classifier_category(self, categories):
+        best_label = None
+        best_score = 0.0
+        for category in categories:
+            if not isinstance(category, dict):
+                continue
+            label = self._clean_classifier_label(category.get("name") or category.get("label"))
+            score = self._classifier_score(category)
+            if label and score > best_score:
+                best_label = label
+                best_score = score
+        return best_label, best_score
+
+    def _idle_reaction_classifier_topics(self):
+        topics = []
+        for topic in (
+                self.idle_reaction_classifier_topic,
+                self.idle_reaction_classifier_extra_topic):
+            topic = str(topic).strip()
+            if topic and topic not in topics:
+                topics.append(topic)
+        return topics
+
+    def _clean_classifier_label(self, label):
+        label = self._clean_idle_reaction_text(label)
+        if not label:
+            return None
+        if self._normalize_sound_label(label) in self.ambient_sound_blocklist:
+            return None
+        return label
+
+    @staticmethod
+    def _classifier_score(category, aggregate=False):
+        if not isinstance(category, dict):
+            return 0.0
+        keys = ("score", "boosted_score", "avg_score") if not aggregate else (
+            "boosted_score", "avg_score", "score")
+        for key in keys:
+            try:
+                return float(category[key])
+            except (KeyError, TypeError, ValueError):
+                continue
+        return 0.0
+
+    def _tick_idle_reactions(self, _event=None):
+        """
+        Fixed-cadence reaction gate (10 Hz). Publishes at most one face
+        reaction per throttle window, to a settled (debounced) input, with
+        transcription outranking classifier sound and recently-seen sounds
+        suppressed. Callbacks only stash the latest input; all the timing
+        policy lives here.
+        """
+        if not self.idle_reactions_enabled:
+            return
+        now = time.time()
+        if not self._is_idle_window(now):
+            return
+        if now - self.last_idle_reaction_time < self.idle_reaction_min_interval:
+            return
+
+        with self.idle_reaction_lock:
+            candidate = self._pick_settled_reaction_locked(now)
+            if not candidate:
+                return
+            source, text = candidate
+            # Consume the latch so the same detection can't re-publish.
+            if source == "ambient_words":
+                self.latest_ambient_words = None
+            else:
+                self.latest_classifier_sound = None
+                self._remember_sound_reaction_locked(text, now)
+
+        self._publish_face_reaction(text, source)
+        self.last_idle_reaction_time = now
+
+    def _pick_settled_reaction_locked(self, now):
+        """
+        Choose the input to react to (caller holds idle_reaction_lock).
+        Priority: a settled transcription snippet first; a pending-but-not-yet
+        settled one holds the slot (classifier does NOT jump the queue). Then
+        a settled, non-repeated classifier sound. Stale latches are dropped.
+        """
+        # Priority 1: transcription snippet.
+        if self.latest_ambient_words:
+            age = now - self.latest_ambient_words_time
+            if age > self.idle_reaction_ambient_max_age:
+                self.latest_ambient_words = None  # too old, drop it
+            elif age >= self.idle_reaction_debounce:
+                return "ambient_words", self.latest_ambient_words
+            else:
+                # Fresh transcription still settling -- hold, keep its priority
+                # over sound rather than letting the classifier win the tick.
+                return None
+
+        # Priority 2: classifier sound.
+        if self.latest_classifier_sound:
+            age = now - self.latest_classifier_time
+            if age > self.idle_reaction_classifier_max_age:
+                self.latest_classifier_sound = None
+            elif age >= self.idle_reaction_debounce and \
+                    not self._sound_recently_reacted_locked(
+                        self.latest_classifier_sound, now):
+                return "ambient_sound", self.latest_classifier_sound
+        return None
+
+    @staticmethod
+    def _normalize_sound_label(label):
+        return re.sub(r"\s+", " ", str(label)).strip().lower()
+
+    def _sound_recently_reacted_locked(self, label, now):
+        if self.ambient_sound_repeat_window <= 0.0:
+            return False
+        ts = self.recent_sound_reactions.get(self._normalize_sound_label(label))
+        return ts is not None and (now - ts) < self.ambient_sound_repeat_window
+
+    def _remember_sound_reaction_locked(self, label, now):
+        self.recent_sound_reactions[self._normalize_sound_label(label)] = now
+        if len(self.recent_sound_reactions) > 256:
+            cutoff = now - self.ambient_sound_repeat_window
+            self.recent_sound_reactions = {
+                k: t for k, t in self.recent_sound_reactions.items() if t >= cutoff}
+
+    def _load_ambient_sound_blocklist(self, path):
+        """
+        Read the never-react classifier labels from a plain-text file (one
+        label per line, # comments and blank lines ignored). "silence" and
+        "speech" are always blocked even if the file is missing.
+        """
+        labels = {"silence", "speech"}
+        try:
+            with open(os.path.expanduser(str(path)), "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.split("#", 1)[0]
+                    norm = self._normalize_sound_label(line)
+                    if norm:
+                        labels.add(norm)
+            rospy.loginfo("Ambient sound blocklist: %d labels from %s",
+                          len(labels), path)
+        except FileNotFoundError:
+            rospy.logwarn("Ambient sound blocklist %s not found; using defaults %s.",
+                          path, sorted(labels))
+        except Exception as e:
+            rospy.logwarn("Failed to load ambient sound blocklist %s: %s", path, e)
+        return labels
+
+    def _publish_face_reaction(self, text, source):
+        self.idle_reaction_seq += 1
+        cue_id = "idle_reaction_{}_{}".format(int(time.time() * 1000), self.idle_reaction_seq)
+        payload = {
+            "cue_id": cue_id,
+            "text": text,
+            "duration": self.idle_reaction_duration,
+            "policy": self.idle_reaction_policy,
+            "sync": 0.0,
+            "save": False,
+            "source": source,
+        }
+        try:
+            self.face_cmd_pub.publish(RosString(data=json.dumps(payload, ensure_ascii=False)))
+            rospy.loginfo("Idle face reaction from %s: %s", source, text)
+        except Exception as e:
+            rospy.logwarn(f"Failed to publish idle face reaction: {e}")
 
     def run(self):
         rospy.loginfo("Face Ambience Node running...")

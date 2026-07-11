@@ -27,6 +27,14 @@ DEFAULT_MODEL = "smollm2-135m-face-lora-34k:q4_K_M"
 
 # Must match training exactly. Do not edit.
 SYSTEM_PROMPT = "Generate only valid JSON for a Logos robot face animation. No markdown. No explanation."
+
+SYSTEM_PROMPT = (
+    SYSTEM_PROMPT + " Keys: emoji, frames, beat, eyes (left, right, both; "
+    "gaze_x, gaze_y, scale_x, scale_y, lid_height, lid_angle, color), "
+    "mouth (frequency, amplitude, phase, phase_increment, color)."
+)
+
+
 USER_PROMPT_TEMPLATE = "Generate JSON face animation for text: {text}"
 
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))

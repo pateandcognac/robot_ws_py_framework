@@ -2,8 +2,9 @@
 """
 Arm Animator: resolves arm-animation tracks for performance cues using the
 tiny fine-tuned arm model (via local Ollama), the saved-generation store,
-and the semantic arm LUT. Mirrors face_animator_node.py; see that module's
-docstring for the general shape of this pattern.
+the semantic arm LUT, and optional fuzzy semantic LUT lookup. Mirrors
+face_animator_node.py; see that module's docstring for the general shape of
+this pattern.
 
 Listens to /performance/cue_announce (published by the performance director
 before TTS synthesis) and to /arm/emoji_command (for cues carrying a
@@ -27,10 +28,14 @@ per-call overrides):
               fall through (there's nothing further to fall through to by
               default, so cascade exhaustion here still yields a fallback
               LUT face -- err, arm pose).
+- "fuzzy":    query the Logos Chroma semantic LUT index for the closest
+              master LUT entry, then publish that LUT entry's frames as a
+              complete source="fuzzy" track.
 
-Default cascade for both TTS and command cues: "generate,saved,lut" (fresh
-bespoke arm motion first; the sequencer re-stretches whatever we deliver
-over the remaining cue time, so speech never blocks on generation). Tweakable globally via ROS
+Default TTS cascade: "fuzzy,lut,saved,generate" (prefer the Chroma-backed
+fuzzy master LUT match, then exact LUT, saved takes, and finally fresh
+generation). Default command cascade: "generate,saved,fuzzy,lut" (silent
+gestures lead with fresh/saved bespoke motion). Tweakable globally via ROS
 params (~tts_policy, ~command_policy) and per-call via the cue-announce
 "performance" dict's "arm_policy" key or the command payload's "policy" key.
 """
@@ -43,7 +48,7 @@ from collections import deque
 import rospy
 from std_msgs.msg import String
 
-from performance_lib import luts, ollama_pool
+from performance_lib import fuzzy_lut, luts, ollama_pool
 from performance_lib.chunking import find_emoji, strip_emoji
 from performance_lib.arm_gen_client import (
     DEFAULT_MODEL,
@@ -58,7 +63,7 @@ from performance_lib.arm_gen_client import (
     frame_count_hint,
 )
 
-VALID_STEPS = ("generate", "saved", "lut")
+VALID_STEPS = ("generate", "saved", "lut", "fuzzy")
 
 
 def parse_policy(value, default):
@@ -109,11 +114,11 @@ class ArmAnimatorNode:
         # seed <= 0 means "unseeded": every generation is a fresh take
         self.default_seed = int(rospy.get_param('~seed', 0))
         self.tts_policy = parse_policy(
-            rospy.get_param('~tts_policy', 'generate,saved,lut'),
-            ['generate', 'saved', 'lut'])
+            rospy.get_param('~tts_policy', 'fuzzy,lut,saved,generate'),
+            ['fuzzy', 'lut', 'saved', 'generate'])
         self.command_policy = parse_policy(
-            rospy.get_param('~command_policy', 'generate,saved,lut'),
-            ['generate', 'saved', 'lut'])
+            rospy.get_param('~command_policy', 'generate,saved,fuzzy,lut'),
+            ['generate', 'saved', 'fuzzy', 'lut'])
         self.save_generations = bool(rospy.get_param('~save_generations', True))
         # Stream frames to the sequencer as they decode.
         self.use_streaming = bool(rospy.get_param('~stream', True))
@@ -123,7 +128,10 @@ class ArmAnimatorNode:
         self.max_accepted_frames = int(
             rospy.get_param('~max_accepted_frames', MAX_ACCEPTED_FRAMES))
         self.generate_even_if_late = bool(rospy.get_param('~generate_even_if_late', False))
-        self.max_pending_jobs = int(rospy.get_param('~max_pending_jobs', 12))
+        # A context dump can become many small cues at announce time. Jobs are
+        # lightweight, so keep a generous FIFO backlog; 0/negative means
+        # unlimited for bench testing.
+        self.max_pending_jobs = int(rospy.get_param('~max_pending_jobs', 128))
         # Cue with no usable emoji whose generation fails: borrow a recently
         # performed emoji's LUT pose, or this default, so the arms never
         # just freeze mid-cue.
@@ -131,6 +139,14 @@ class ArmAnimatorNode:
 
         self.arm_lut = luts.load_semantic_arm_lut(
             rospy.get_param('~arm_lut_dir', luts.DEFAULT_ARM_SEMANTIC_DIR))
+        self.fuzzy = fuzzy_lut.FuzzyLutClient(
+            server_url=rospy.get_param('~fuzzy_chroma_url', fuzzy_lut.DEFAULT_SERVER_URL),
+            collection=rospy.get_param('~fuzzy_collection', fuzzy_lut.DEFAULT_COLLECTION),
+            provider=rospy.get_param('~fuzzy_embedding_provider', fuzzy_lut.DEFAULT_PROVIDER),
+            model=rospy.get_param('~fuzzy_embedding_model', fuzzy_lut.DEFAULT_MODEL),
+            timeout_s=float(rospy.get_param('~fuzzy_timeout_s', fuzzy_lut.DEFAULT_TIMEOUT_S)),
+            n_results=int(rospy.get_param('~fuzzy_n_results', 3)),
+        )
         self.store = GenStore(
             rospy.get_param('~store_path', DEFAULT_STORE_DIR),
             cap_per_emoji=int(rospy.get_param('~store_cap', DEFAULT_STORE_CAP)))
@@ -138,7 +154,7 @@ class ArmAnimatorNode:
         self.clients = {}
         self.clients_lock = threading.Lock()
 
-        self.track_pub = rospy.Publisher('/performance/arm_track', String, queue_size=20)
+        self.track_pub = rospy.Publisher('/performance/arm_track', String, queue_size=100)
 
         self.jobs = deque()
         self.jobs_cond = threading.Condition()
@@ -245,12 +261,21 @@ class ArmAnimatorNode:
     # ─── Job handling ────────────────────────────────────────────────
 
     def enqueue(self, job):
+        overflow_job = None
         with self.jobs_cond:
-            while len(self.jobs) >= self.max_pending_jobs:
-                dropped = self.jobs.popleft()
-                rospy.logwarn("Animator backlog full; dropping job for cue %s", dropped.cue_id)
-            self.jobs.append(job)
-            self.jobs_cond.notify()
+            if self.max_pending_jobs > 0 and len(self.jobs) >= self.max_pending_jobs:
+                # Preserve already-queued FIFO work: older cues are nearer to
+                # playback. The rejected cue gets an immediate fallback below
+                # so the sequencer never waits on a result that will not come.
+                overflow_job = job
+            else:
+                self.jobs.append(job)
+                self.jobs_cond.notify()
+        if overflow_job is not None:
+            rospy.logwarn(
+                "Arm animator backlog full (%d jobs); using fallback for cue %s",
+                self.max_pending_jobs, overflow_job.cue_id)
+            self.publish_fallback(overflow_job)
 
     def worker_loop(self):
         while not rospy.is_shutdown():
@@ -309,6 +334,9 @@ class ArmAnimatorNode:
                 if job.emoji and not job.has_plain_text and job.emoji in self.arm_lut:
                     self.publish_track(job.cue_id, None, "lut", "lut")
                     return
+            elif step == "fuzzy":
+                if self.resolve_fuzzy(job):
+                    return
         self.publish_fallback(job)
 
     def publish_fallback(self, job):
@@ -325,6 +353,32 @@ class ArmAnimatorNode:
                     job.cue_id, self.arm_lut[emoji]["frames"], "lut_fallback", "complete")
                 return
         self.publish_track(job.cue_id, None, "none", "failed")
+
+    def resolve_fuzzy(self, job):
+        try:
+            match = self.fuzzy.query(job.gen_text, "arms")
+        except fuzzy_lut.FuzzyLutError as e:
+            rospy.logwarn_throttle(5, "Fuzzy arm LUT lookup unavailable: %s", e)
+            return False
+        if not match:
+            return False
+        entry = self.arm_lut.get(match.emoji)
+        if not entry:
+            rospy.logwarn("Cue %s: fuzzy arm matched %s but it is not in the local LUT",
+                          job.cue_id, match.emoji)
+            return False
+        rospy.loginfo("Cue %s: fuzzy arm matched %s via %s (distance=%s)",
+                      job.cue_id, match.emoji, match.document_id, match.distance)
+        self.publish_track(
+            job.cue_id,
+            entry.get("frames"),
+            "fuzzy",
+            "complete",
+            matched_emoji=match.emoji,
+            match_distance=match.distance,
+            match_id=match.document_id,
+        )
+        return True
 
     def run_generation(self, job):
         client = self.get_client(job.model)
@@ -411,12 +465,13 @@ class ArmAnimatorNode:
                             n_frames_requested=job.n_frames,
                             temperature=job.temperature, seed=seed)
 
-    def publish_track(self, cue_id, frames, source, status, append=False):
+    def publish_track(self, cue_id, frames, source, status, append=False, **extra):
         payload = {
             "cue_id": cue_id,
             "source": source,
             "status": status,
         }
+        payload.update({k: v for k, v in extra.items() if v is not None})
         if frames is not None:
             payload["frames"] = frames
         if append:

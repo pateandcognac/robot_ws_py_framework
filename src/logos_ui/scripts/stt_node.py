@@ -1642,6 +1642,7 @@ ROS Topics Summary:
   Publishers:
     /cognition/input                     (CognitionInput)   - STT transcription results
     /stt/ambient_listener/transcription  (String, latched)  - Ambient transcription history
+    /stt/ambient_listener/events         (String, Nemotron) - Live ambient fragments
     /stt/hotword_listener/detections     (String)           - All hotword detections
     /stt/audio_classifier/events         (String, latched)  - YAMNet audio classification history
     /cognition/prefetch                  (Empty)            - Signal cognition to prefetch prompt context

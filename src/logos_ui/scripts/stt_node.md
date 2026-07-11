@@ -67,6 +67,7 @@ the ordered list with private ROS param `~audio_devices` or the
 |---|---|---|---|
 | `/cognition/input` | `CognitionInput` | No | Transcribed user speech, ready for the LLM |
 | `/stt/ambient_listener/transcription` | `String` (JSON) | Yes | Ambient transcription history |
+| `/stt/ambient_listener/events` | `String` | No | Nemotron live ambient sentence-ish fragments |
 | `/stt/hotword_listener/detections` | `String` | No | Each hotword detection as a plain string |
 | `/stt/audio_classifier/events` | `String` (JSON) | Yes | YAMNet audio classification history |
 | `/cognition/output` | `CognitionOutput` | No | Feedback/status messages for the UI |
@@ -88,8 +89,12 @@ the ordered list with private ROS param `~audio_devices` or the
 With Nemotron, active listening first sends the normal `Listening...` feedback.
 Each streaming ASR chunk is then sent as a green feedback header using the
 `helvi` figlet font. Ambient speech is VAD-gated, continuously recognized, and
-rolled into a publication every 60 seconds. Its feedback uses `Transcribed:`
-as the header and the minute's text as the body.
+rolled into a publication every 60 seconds. While ambient speech streams,
+Nemotron also publishes sentence-ish live fragments to
+`/stt/ambient_listener/events`, splitting at punctuation when available, at
+word boundaries around 50 characters otherwise, and after 2 seconds of VAD
+silence. Its feedback uses `Transcribed:` as the header and the minute's text
+as the body.
 
 ---
 
@@ -137,6 +142,21 @@ def cb(msg):
 
 rospy.Subscriber('/stt/ambient_listener/transcription', String, cb)
 ```
+
+---
+
+### `/stt/ambient_listener/events`
+
+Nemotron-only live ambient fragments as plain strings. Publishes when streamed
+ambient text reaches a comma, period, question mark, exclamation point, colon,
+semicolon, or newline. If punctuation is missing, it publishes a word-boundary
+fragment around 50 characters. If speech stops before either threshold is met,
+it publishes the current fragment after 2 seconds of VAD silence. The topic is
+not latched.
+
+This topic is intended for lightweight downstream consumers such as embedding
+or bag-of-words updates; use `/stt/ambient_listener/transcription` for the
+compiled ambient transcript history.
 
 ---
 

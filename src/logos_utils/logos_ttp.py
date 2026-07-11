@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Send emoji-punctuated text-to-performance jobs to Logos."""
+"""Send emoji-punctuated text-to-performance or silent command jobs to Logos."""
 
 import argparse
 import json
 import sys
+import time
 
 
 DEFAULT_ENGINE = "kokoro"
@@ -56,6 +57,11 @@ examples:
   Zero-latency canned expressions only, no generation:
     %(prog)s --face lut --arms lut "Classic moves. 🕺"
 
+  Silent command mode: animate without speaking:
+    %(prog)s --command --channel both --duration 3 "barely contained fury 🌋"
+    %(prog)s --command --channel face --face fuzzy "I am not pleased."
+    %(prog)s --command --channel arms --arms generate --sync 0.0 "big shrug"
+
   Add arbitrary engine parameters as JSON:
     %(prog)s --params '{"speaker": 2, "noise_scale": 0.5}' "Custom settings. ⚙️"
 
@@ -75,10 +81,11 @@ examples:
     parser = argparse.ArgumentParser(
         description=(
             "Logos emoji-punctuated text-to-performance (TTP): send text to "
-            "the Logos speak action server, where recognized emoji cue facial "
-            "and arm animatronics synchronized with each spoken phrase. Text "
-            "may be supplied as command-line words, through stdin, or by using "
-            "'-' as the text."
+            "the Logos speak action server, or use command mode to animate "
+            "face/arms silently. Recognized emoji cue facial and arm "
+            "animatronics; prose can drive fuzzy LUT lookup or generation. "
+            "Text may be supplied as command-line words, through stdin, or "
+            "by using '-' as the text."
         ),
         epilog=examples,
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -101,7 +108,7 @@ examples:
         "--engine",
         default=DEFAULT_ENGINE,
         choices=("kokoro", "piper", "espeak", "festival"),
-        help="TTS engine (default: %(default)s)",
+        help="TTS engine; ignored in command mode (default: %(default)s)",
     )
     parser.add_argument(
         "-V",
@@ -131,9 +138,9 @@ examples:
         "--face",
         metavar="POLICY",
         help=(
-            "face-animation source cascade for this utterance, e.g. 'lut', "
-            "'saved', 'generate', or a comma-separated cascade like "
-            "'generate,saved,lut' (default: system default cascade)"
+            "face-animation source cascade, e.g. 'lut', 'fuzzy', 'saved', "
+            "'generate', or a comma-separated cascade like "
+            "'generate,saved,fuzzy,lut' (default: system default cascade)"
         ),
     )
     parser.add_argument(
@@ -144,17 +151,44 @@ examples:
     parser.add_argument(
         "--sync",
         type=sync_value,
-        default=1.0,
+        default=None,
         metavar="0.0-1.0",
         help=(
             "loosey-goosey dial: fraction of generated face/arm frames to "
-            "wait for before speech starts. 1.0 (default) waits for "
-            "generation to fully complete and plays it in perfect sync "
-            "with the audio; 0.0 starts on the first generated frame "
-            "(snappier, herkier); values in between fudge the rest in as "
-            "they stream. Only matters when a policy actually generates -- "
-            "'lut'-only cues are always instant."
+            "wait for before playback starts. Speech mode defaults to 1.0, "
+            "which waits for generation to fully complete and plays it in "
+            "perfect sync with the audio; command mode defaults to legacy "
+            "gesture behavior, roughly 0.0. Explicit 0.0 starts on the first "
+            "generated frame (snappier, herkier); values in between fudge "
+            "the rest in as they stream. Only matters when a policy actually "
+            "generates -- 'lut'-only cues are always instant."
         ),
+    )
+    parser.add_argument(
+        "--mode",
+        choices=("speech", "command"),
+        default="speech",
+        help="speech sends a SpeakAction goal; command publishes silent face/arm cues",
+    )
+    parser.add_argument(
+        "--command",
+        action="store_const",
+        const="command",
+        dest="mode",
+        help="shortcut for --mode command; animate silently without TTS",
+    )
+    parser.add_argument(
+        "--channel",
+        choices=("face", "arms", "both"),
+        default="both",
+        help="command-mode target channel (default: %(default)s)",
+    )
+    parser.add_argument(
+        "--duration",
+        type=positive_float,
+        default=3.0,
+        metavar="SECONDS",
+        help="command-mode gesture duration in seconds (default: %(default)s)",
     )
     parser.add_argument(
         "-p",
@@ -269,10 +303,27 @@ def build_engine_params(args):
         performance["face_policy"] = args.face
     if args.arms:
         performance["arm_policy"] = args.arms
-    performance["sync"] = args.sync
+    performance["sync"] = 1.0 if args.sync is None else args.sync
     params["performance"] = performance
 
     return params
+
+
+def build_command_payload(args, text, channel):
+    payload = {
+        "text": text,
+        "duration": args.duration,
+        "cue_id": "cli_{}_{}".format(channel, int(time.time() * 1000)),
+    }
+    if args.sync is None:
+        payload["expect_track"] = True
+    else:
+        payload["sync"] = args.sync
+
+    policy = args.face if channel == "face" else args.arms
+    if policy:
+        payload["policy"] = policy
+    return payload
 
 
 def perform(args, text):
@@ -349,12 +400,73 @@ def perform(args, text):
         )
 
 
+def wait_for_subscribers(rospy, publishers, timeout_s):
+    if timeout_s == 0:
+        deadline = None
+    else:
+        deadline = time.time() + timeout_s
+
+    while not rospy.is_shutdown():
+        if all(pub.get_num_connections() > 0 for pub in publishers):
+            return True
+        if deadline is not None and time.time() >= deadline:
+            return False
+        rospy.sleep(0.05)
+    return False
+
+
+def command(args, text):
+    import rospy
+    from std_msgs.msg import String
+
+    rospy.init_node("logos_ttp_cli_command", anonymous=True, disable_signals=True)
+
+    publishers = []
+    messages = []
+    if args.channel in ("face", "both"):
+        pub = rospy.Publisher("/face/emoji_command", String, queue_size=5)
+        publishers.append(pub)
+        messages.append(("face", pub, build_command_payload(args, text, "face")))
+    if args.channel in ("arms", "both"):
+        pub = rospy.Publisher("/arm/emoji_command", String, queue_size=5)
+        publishers.append(pub)
+        messages.append(("arms", pub, build_command_payload(args, text, "arms")))
+
+    if not publishers:
+        raise CliError("no command channel selected")
+
+    if not args.quiet:
+        channels = ", ".join(label for label, _, _ in messages)
+        print(f"Waiting for command subscribers on {channels}...", file=sys.stderr)
+
+    if not wait_for_subscribers(rospy, publishers, args.server_timeout):
+        raise CliError(
+            f"command subscribers were not available within "
+            f"{args.server_timeout:g} seconds"
+        )
+
+    for _, pub, payload in messages:
+        pub.publish(String(data=json.dumps(payload, ensure_ascii=False)))
+
+    # Give rospy a moment to flush the one-shot publish before the process exits.
+    rospy.sleep(0.2)
+    if not args.quiet:
+        channels = ", ".join(label for label, _, _ in messages)
+        print(
+            f"Silent command queued on {channels}: {len(text)} characters "
+            f"for {args.duration:.2f}s"
+        )
+
+
 def main(argv=None):
     parser = build_parser()
     args = parser.parse_args(argv)
     try:
         text = read_text(args)
-        perform(args, text)
+        if args.mode == "command":
+            command(args, text)
+        else:
+            perform(args, text)
     except CliError as exc:
         parser.exit(1, f"{parser.prog}: error: {exc}\n")
     except KeyboardInterrupt:

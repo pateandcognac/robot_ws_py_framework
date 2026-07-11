@@ -2,7 +2,7 @@
 """
 Face Animator: resolves face-animation tracks for performance cues using the
 tiny fine-tuned face model (via local Ollama), the saved-generation store,
-and knowledge of the semantic LUT.
+knowledge of the semantic LUT, and optional fuzzy semantic LUT lookup.
 
 Listens to /performance/cue_announce (published by the performance director
 the moment an utterance is split, before TTS synthesis) and to
@@ -16,6 +16,9 @@ per-call overrides):
               stop here (a status="lut" signal releases any sequencer wait;
               the sequencer plays its own LUT copy). Cues carrying prose
               fall through so text can shape a generated face.
+- "fuzzy":    query the Logos Chroma semantic LUT index for the closest
+              master LUT entry, then publish that LUT entry's frames as a
+              complete source="fuzzy" track.
 - "saved":    publish a random take from the per-emoji rolling GenStore
               library (source="saved").
 - "generate": run the tiny model (source="generated", streamed); emoji-keyed
@@ -24,13 +27,11 @@ per-call overrides):
               emoji, a recent emoji, or ~fallback_emoji).
 
 Default policies:
-- TTS cues (~tts_policy, default "generate,saved,lut"): fresh bespoke faces
-  first; the sequencer re-stretches whatever we deliver over the remaining
-  cue time (and stages our first frame pre-speech), so speech never blocks
-  on generation.
-- Command cues (~command_policy, default "lut,saved,generate"): emoji-only
-  gestures use the LUT when it exists; anything else falls through to the
-  model.
+- TTS cues (~tts_policy, default "fuzzy,lut,saved,generate"): prefer the
+  Chroma-backed fuzzy master LUT match, then exact LUT, saved takes, and
+  finally fresh generation.
+- Command cues (~command_policy, default "generate,saved,fuzzy,lut"): silent
+  gestures lead with fresh/saved bespoke motion, then fuzzy/exact LUT.
 
 Per-call overrides ride in the cue-announce "performance" dict or directly
 in the command payload: face_policy, temperature, seed, model, save.
@@ -44,7 +45,7 @@ from collections import deque
 import rospy
 from std_msgs.msg import String
 
-from performance_lib import luts, ollama_pool
+from performance_lib import fuzzy_lut, luts, ollama_pool
 from performance_lib.chunking import find_emoji, strip_emoji
 from performance_lib.face_gen_client import (
     DEFAULT_MODEL,
@@ -58,7 +59,7 @@ from performance_lib.face_gen_client import (
     GenStore,
 )
 
-VALID_STEPS = ("lut", "saved", "generate")
+VALID_STEPS = ("lut", "fuzzy", "saved", "generate")
 
 
 def parse_policy(value, default):
@@ -108,11 +109,11 @@ class FaceAnimatorNode:
         # seed <= 0 means "unseeded": every generation is a fresh take
         self.default_seed = int(rospy.get_param('~seed', 0))
         self.tts_policy = parse_policy(
-            rospy.get_param('~tts_policy', 'generate,saved,lut'),
-            ['generate', 'saved', 'lut'])
+            rospy.get_param('~tts_policy', 'fuzzy,lut,saved,generate'),
+            ['fuzzy', 'lut', 'saved', 'generate'])
         self.command_policy = parse_policy(
-            rospy.get_param('~command_policy', 'lut,saved,generate'),
-            ['lut', 'saved', 'generate'])
+            rospy.get_param('~command_policy', 'generate,saved,fuzzy,lut'),
+            ['generate', 'saved', 'fuzzy', 'lut'])
         self.save_generations = bool(rospy.get_param('~save_generations', True))
         # Stream frames to the sequencer as they decode (first face motion in
         # ~1s instead of after the full 4-15s generation).
@@ -123,7 +124,10 @@ class FaceAnimatorNode:
         self.max_accepted_frames = int(
             rospy.get_param('~max_accepted_frames', MAX_ACCEPTED_FRAMES))
         self.generate_even_if_late = bool(rospy.get_param('~generate_even_if_late', False))
-        self.max_pending_jobs = int(rospy.get_param('~max_pending_jobs', 12))
+        # A context dump can become many small cues at announce time. Jobs are
+        # lightweight, so keep a generous FIFO backlog; 0/negative means
+        # unlimited for bench testing.
+        self.max_pending_jobs = int(rospy.get_param('~max_pending_jobs', 128))
         # Cue with no usable emoji whose generation fails: borrow a recently
         # performed emoji's LUT face, or this default, so the face never
         # just goes blank.
@@ -131,6 +135,14 @@ class FaceAnimatorNode:
 
         self.face_lut = luts.load_semantic_face_lut(
             rospy.get_param('~face_lut_dir', luts.DEFAULT_FACE_SEMANTIC_DIR))
+        self.fuzzy = fuzzy_lut.FuzzyLutClient(
+            server_url=rospy.get_param('~fuzzy_chroma_url', fuzzy_lut.DEFAULT_SERVER_URL),
+            collection=rospy.get_param('~fuzzy_collection', fuzzy_lut.DEFAULT_COLLECTION),
+            provider=rospy.get_param('~fuzzy_embedding_provider', fuzzy_lut.DEFAULT_PROVIDER),
+            model=rospy.get_param('~fuzzy_embedding_model', fuzzy_lut.DEFAULT_MODEL),
+            timeout_s=float(rospy.get_param('~fuzzy_timeout_s', fuzzy_lut.DEFAULT_TIMEOUT_S)),
+            n_results=int(rospy.get_param('~fuzzy_n_results', 3)),
+        )
         self.store = GenStore(
             rospy.get_param('~store_path', DEFAULT_STORE_DIR),
             cap_per_emoji=int(rospy.get_param('~store_cap', DEFAULT_STORE_CAP)))
@@ -138,7 +150,7 @@ class FaceAnimatorNode:
         self.clients = {}
         self.clients_lock = threading.Lock()
 
-        self.track_pub = rospy.Publisher('/performance/face_track', String, queue_size=20)
+        self.track_pub = rospy.Publisher('/performance/face_track', String, queue_size=100)
 
         self.jobs = deque()
         self.jobs_cond = threading.Condition()
@@ -238,12 +250,21 @@ class FaceAnimatorNode:
     # ─── Job handling ────────────────────────────────────────────────
 
     def enqueue(self, job):
+        overflow_job = None
         with self.jobs_cond:
-            while len(self.jobs) >= self.max_pending_jobs:
-                dropped = self.jobs.popleft()
-                rospy.logwarn("Animator backlog full; dropping job for cue %s", dropped.cue_id)
-            self.jobs.append(job)
-            self.jobs_cond.notify()
+            if self.max_pending_jobs > 0 and len(self.jobs) >= self.max_pending_jobs:
+                # Preserve already-queued FIFO work: older cues are nearer to
+                # playback. The rejected cue gets an immediate fallback below
+                # so the sequencer never waits on a result that will not come.
+                overflow_job = job
+            else:
+                self.jobs.append(job)
+                self.jobs_cond.notify()
+        if overflow_job is not None:
+            rospy.logwarn(
+                "Face animator backlog full (%d jobs); using fallback for cue %s",
+                self.max_pending_jobs, overflow_job.cue_id)
+            self.publish_fallback(overflow_job)
 
     def worker_loop(self):
         while not rospy.is_shutdown():
@@ -297,6 +318,9 @@ class FaceAnimatorNode:
                     rospy.loginfo("Cue %s: saved take for %s", job.cue_id, job.emoji)
                     self.publish_track(job.cue_id, animation.get("frames"), "saved", "complete")
                     return
+            elif step == "fuzzy":
+                if self.resolve_fuzzy(job):
+                    return
             elif step == "generate":
                 if self.cue_is_done(job.cue_id) and not self.generate_even_if_late:
                     rospy.loginfo("Cue %s already played; skipping generation.", job.cue_id)
@@ -319,6 +343,32 @@ class FaceAnimatorNode:
                     job.cue_id, self.face_lut[emoji]["frames"], "lut_fallback", "complete")
                 return
         self.publish_track(job.cue_id, None, "none", "failed")
+
+    def resolve_fuzzy(self, job):
+        try:
+            match = self.fuzzy.query(job.gen_text, "face")
+        except fuzzy_lut.FuzzyLutError as e:
+            rospy.logwarn_throttle(5, "Fuzzy face LUT lookup unavailable: %s", e)
+            return False
+        if not match:
+            return False
+        entry = self.face_lut.get(match.emoji)
+        if not entry:
+            rospy.logwarn("Cue %s: fuzzy face matched %s but it is not in the local LUT",
+                          job.cue_id, match.emoji)
+            return False
+        rospy.loginfo("Cue %s: fuzzy face matched %s via %s (distance=%s)",
+                      job.cue_id, match.emoji, match.document_id, match.distance)
+        self.publish_track(
+            job.cue_id,
+            entry.get("frames"),
+            "fuzzy",
+            "complete",
+            matched_emoji=match.emoji,
+            match_distance=match.distance,
+            match_id=match.document_id,
+        )
+        return True
 
     def run_generation(self, job):
         client = self.get_client(job.model)
@@ -402,12 +452,13 @@ class FaceAnimatorNode:
             self.store.save(job.emoji, animation, model=model, text=job.gen_text,
                             temperature=job.temperature, seed=seed)
 
-    def publish_track(self, cue_id, frames, source, status, append=False):
+    def publish_track(self, cue_id, frames, source, status, append=False, **extra):
         payload = {
             "cue_id": cue_id,
             "source": source,
             "status": status,
         }
+        payload.update({k: v for k, v in extra.items() if v is not None})
         if frames is not None:
             payload["frames"] = frames
         if append:

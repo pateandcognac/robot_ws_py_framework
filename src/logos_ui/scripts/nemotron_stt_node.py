@@ -4,6 +4,7 @@
 import json
 import os
 import queue
+import re
 import readline
 import time
 from datetime import datetime
@@ -14,6 +15,7 @@ import sounddevice as sd
 import torch
 from colorama import Fore, Style
 from kobuki_msgs.msg import Sound
+from std_msgs.msg import String
 
 from logos_framework.msg import CognitionInput
 from stt_node import (
@@ -47,9 +49,21 @@ DEFAULT_VOCAB_PATH = os.path.expanduser(
 )
 CAPTURE_BLOCK_SAMPLES = 2048
 AMBIENT_PUBLISH_INTERVAL = 60.0
+AMBIENT_EVENT_TOPIC = "/stt/ambient_listener/events"
+AMBIENT_EVENT_MAX_CHARS = 50
+AMBIENT_EVENT_SILENCE_TIMEOUT = 2.0
+AMBIENT_EVENT_PUNCTUATION_RE = re.compile(r"[,\.;:!\?\n]+")
 
 
 class LogosNemotronEarsNode(LogosEarsNode):
+    def _init_ros(self):
+        super()._init_ros()
+        self.pub_ambient_events = rospy.Publisher(
+            AMBIENT_EVENT_TOPIC,
+            String,
+            queue_size=10,
+        )
+
     def _init_models(self):
         print(Fore.CYAN + "Loading OpenWakeWord, VAD, and Nemotron...")
 
@@ -187,6 +201,8 @@ class LogosNemotronEarsNode(LogosEarsNode):
     def _brain_loop(self):
         last_classifier_sample = time.time()
         next_ambient_publish = time.monotonic() + AMBIENT_PUBLISH_INTERVAL
+        last_ambient_speech_time = 0.0
+        ambient_event_timeout_sent = False
 
         while self.running and not rospy.is_shutdown():
             try:
@@ -208,6 +224,8 @@ class LogosNemotronEarsNode(LogosEarsNode):
                 next_ambient_publish = (
                     monotonic_now + AMBIENT_PUBLISH_INTERVAL
                 )
+                last_ambient_speech_time = 0.0
+                ambient_event_timeout_sent = False
 
             if pcm_int16 is None:
                 continue
@@ -320,6 +338,8 @@ class LogosNemotronEarsNode(LogosEarsNode):
                     self._publish_hotword(detected)
 
             if ambient_enabled and is_ambient_speech:
+                last_ambient_speech_time = monotonic_now
+                ambient_event_timeout_sent = False
                 self.job_queue.put(
                     {
                         "type": "asr_audio",
@@ -327,6 +347,15 @@ class LogosNemotronEarsNode(LogosEarsNode):
                         "audio": pcm_float32,
                     }
                 )
+            elif (
+                ambient_enabled
+                and last_ambient_speech_time
+                and not ambient_event_timeout_sent
+                and monotonic_now - last_ambient_speech_time
+                >= AMBIENT_EVENT_SILENCE_TIMEOUT
+            ):
+                self.job_queue.put({"type": "ambient_event_timeout"})
+                ambient_event_timeout_sent = True
 
             with self.state_lock:
                 classifier_enabled = self.classifier_enabled
@@ -377,6 +406,7 @@ class LogosNemotronEarsNode(LogosEarsNode):
         return {
             "recognizer": model.create_stream(),
             "pending": np.empty(0, dtype=np.float32),
+            "event_buffer": "",
         }
 
     def _feed_stream(self, stream_state, audio):
@@ -401,6 +431,81 @@ class LogosNemotronEarsNode(LogosEarsNode):
             emitted = ""
         emitted += stream_state["recognizer"].flush()
         return emitted
+
+    def _drain_stream_pending(self, stream_state):
+        if not len(stream_state["pending"]):
+            return ""
+        emitted = stream_state["recognizer"].process(
+            stream_state["pending"]
+        )
+        stream_state["pending"] = np.empty(0, dtype=np.float32)
+        return emitted
+
+    @staticmethod
+    def _squash_spaces(text):
+        return re.sub(r"\s+", " ", text).strip()
+
+    def _publish_ambient_event_text(self, text):
+        text = normalize_vocabulary(text, self.nemotron_vocabulary)
+        text = self._strip_control_phrases(text)
+        text = self._squash_spaces(text)
+        if not text:
+            return
+        self.pub_ambient_events.publish(String(data=text))
+        print(Fore.CYAN + f"Ambient event: {text[:80]}")
+
+    def _split_ambient_event_buffer(self, text, flush=False):
+        fragments = []
+        buffer = text
+
+        while buffer:
+            punctuation = AMBIENT_EVENT_PUNCTUATION_RE.search(buffer)
+            if punctuation:
+                chunk = buffer[:punctuation.end()]
+                buffer = buffer[punctuation.end():].lstrip()
+                chunk = self._squash_spaces(chunk)
+                if chunk:
+                    fragments.append(chunk)
+                continue
+
+            if len(buffer) <= AMBIENT_EVENT_MAX_CHARS:
+                break
+
+            split_at = buffer.rfind(" ", 0, AMBIENT_EVENT_MAX_CHARS + 1)
+            if split_at <= 0:
+                split_at = buffer.find(" ", AMBIENT_EVENT_MAX_CHARS)
+            if split_at <= 0:
+                break
+
+            chunk = self._squash_spaces(buffer[:split_at])
+            buffer = buffer[split_at:].lstrip()
+            if chunk:
+                fragments.append(chunk)
+
+        if flush:
+            tail = self._squash_spaces(buffer)
+            if tail:
+                fragments.append(tail)
+            buffer = ""
+
+        return fragments, buffer
+
+    def _publish_ambient_event_fragments(
+        self,
+        stream_state,
+        emitted,
+        flush=False,
+    ):
+        if emitted:
+            stream_state["event_buffer"] += emitted
+        fragments, stream_state["event_buffer"] = (
+            self._split_ambient_event_buffer(
+                stream_state["event_buffer"],
+                flush=flush,
+            )
+        )
+        for fragment in fragments:
+            self._publish_ambient_event_text(fragment)
 
     def _publish_ambient_text(
         self,
@@ -451,11 +556,11 @@ class LogosNemotronEarsNode(LogosEarsNode):
         self.pub_ambient.publish(json.dumps(payload))
         self.last_ambient_publish_time = time.time()
         self._send_feedback(
-            header="Transcribed:",
+            header="--- overheard ---",
             body=text,
             header_color="bright_blue",
-            body_color="blue",
-            font="script",
+            body_color="bright_blue",
+            font="term",
         )
         print(Fore.CYAN + f"Ambient published: {text[:80]}")
         return True
@@ -557,9 +662,22 @@ class LogosNemotronEarsNode(LogosEarsNode):
             elif job_type in ("ambient_start", "ambient_reset"):
                 ambient = self._new_stream_state(self.nemotron)
             elif job_type == "asr_audio" and job["mode"] == "ambient":
-                self._feed_stream(ambient, job["audio"])
+                emitted = self._feed_stream(ambient, job["audio"])
+                self._publish_ambient_event_fragments(ambient, emitted)
+            elif job_type == "ambient_event_timeout":
+                emitted = self._drain_stream_pending(ambient)
+                self._publish_ambient_event_fragments(
+                    ambient,
+                    emitted,
+                    flush=True,
+                )
             elif job_type == "ambient_flush":
-                self._finish_stream(ambient)
+                emitted = self._finish_stream(ambient)
+                self._publish_ambient_event_fragments(
+                    ambient,
+                    emitted,
+                    flush=True,
+                )
                 self._publish_ambient_text(
                     ambient["recognizer"].transcript,
                     wake_trigger=job.get("wake_trigger", False),

@@ -6,6 +6,8 @@ workspace_root="$(cd "$script_dir/.." && pwd)"
 ttp_script="$workspace_root/src/logos_utils/logos_ttp.py"
 speakme_file="${LOGOS_SPEAKME_FILE:-$workspace_root/docs/SPEAKME.txt}"
 kokoro_voice="${LOGOS_BOOT_KOKORO_VOICE:-0.5*am_onyx + 0.25*bm_lewis + 0.25*bf_alice}"
+boot_face_policy="${LOGOS_BOOT_FACE_POLICY:-lut}"
+boot_arm_policy="${LOGOS_BOOT_ARM_POLICY:-lut}"
 
 desktop_notify() {
   local title="$1"
@@ -93,6 +95,9 @@ perform_ttp() {
     --quiet
     --server-timeout 4
     --result-timeout 120
+    --face "$boot_face_policy"
+    --arms "$boot_arm_policy"
+    --sync 0.0
     --engine "$engine"
   )
 
