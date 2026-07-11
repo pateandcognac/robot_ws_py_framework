@@ -558,7 +558,7 @@ class LogosNemotronEarsNode(LogosEarsNode):
         self._send_feedback(
             header="--- overheard ---",
             body=text,
-            header_color="bright_blue",
+            header_color="bright_yellow",
             body_color="bright_blue",
             font="term",
         )

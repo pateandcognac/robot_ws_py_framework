@@ -546,6 +546,25 @@ private:
         return lines;
     }
 
+    static std::vector<std::string> wrapLines(const std::string& text, int width) {
+        const std::vector<std::string> source_lines = splitLines(text);
+        std::vector<std::string> wrapped_lines;
+        const size_t columns = static_cast<size_t>(std::max(1, width));
+
+        for (const std::string& line : source_lines) {
+            if (line.empty()) {
+                wrapped_lines.push_back(line);
+                continue;
+            }
+
+            for (size_t offset = 0; offset < line.size(); offset += columns) {
+                wrapped_lines.push_back(line.substr(offset, columns));
+            }
+        }
+
+        return wrapped_lines;
+    }
+
     static double normalizedHudValue(double value, double default_value, double min_value = -1000.0) {
         if (!std::isfinite(value)) {
             return default_value;
@@ -965,6 +984,13 @@ private:
         return std::max(8, width);
     }
 
+    int currentHudTextWidthLocked() const {
+        if (caca_canvas_) {
+            return std::max(1, caca_get_canvas_width(caca_canvas_));
+        }
+        return std::max(1, terminal_cols_);
+    }
+
     std::string prepareHudEventPayload(const std::string& payload) {
         if (payload.empty()) {
             return payload;
@@ -1127,6 +1153,10 @@ private:
                         ? text
                         : renderFigletLocked(text, root.get<std::string>("font", default_figlet_font_), pane))
                     : text;
+                const bool wrap_terminal_text = kind == "text" ||
+                    (kind == "figlet" && isPlainTextFigletFont(
+                        root.get<std::string>("font", default_figlet_font_)
+                    ));
                 const std::string effect = toLower(root.get<std::string>("effect", "terminal"));
                 applyFaceTextEffectLocked(
                     layer,
@@ -1142,7 +1172,8 @@ private:
                     root.get<double>("direction_y", 0.0),
                     root.get<double>("density", 1000.0),
                     getHudBool(root, "tile_x", true),
-                    getHudBool(root, "tile_y", false)
+                    getHudBool(root, "tile_y", false),
+                    wrap_terminal_text
                 );
                 return;
             }
@@ -1156,15 +1187,18 @@ private:
                     ? text
                     : renderFigletLocked(text, font, pane);
                 if (kind == "caption") {
-                    enqueueStatusPrintLocked(rendered, fg, bg, root.get<double>("duration", 0.0), true);
+                    enqueueStatusPrintLocked(
+                        rendered, fg, bg, root.get<double>("duration", 0.0), true,
+                        isPlainTextFigletFont(font)
+                    );
                 } else if (pane == "status") {
-                    enqueueStatusPrintLocked(rendered, fg, bg, 0.0, false);
+                    enqueueStatusPrintLocked(rendered, fg, bg, 0.0, false, isPlainTextFigletFont(font));
                 }
                 return;
             }
 
             if (pane == "status") {
-                enqueueStatusPrintLocked(text, fg, bg, 0.0, false);
+                enqueueStatusPrintLocked(text, fg, bg, 0.0, false, true);
             }
         } catch (const std::exception& e) {
             ROS_WARN_STREAM("Failed to parse HUD event JSON: " << e.what());
@@ -1233,7 +1267,8 @@ private:
         double direction_y,
         double density,
         bool tile_x,
-        bool tile_y
+        bool tile_y,
+        bool wrap_terminal_text
     ) {
         FaceLayerState& state = face_layers_[faceLayerIndex(layer)];
         const ros::Time expires_at = duration > 0.0
@@ -1266,7 +1301,9 @@ private:
             ROS_WARN_STREAM("Unknown face HUD effect '" << effect << "'; using terminal.");
         }
 
-        const std::vector<std::string> lines = splitLines(text);
+        const std::vector<std::string> lines = wrap_terminal_text
+            ? wrapLines(text, currentHudTextWidthLocked())
+            : splitLines(text);
         for (const std::string& line : lines) {
             state.terminal_lines.push_back({line, fg, bg, expires_at});
         }
@@ -1292,9 +1329,12 @@ private:
         uint8_t fg,
         uint8_t bg,
         double duration,
-        bool caption
+        bool caption,
+        bool wrap_text
     ) {
-        const std::vector<std::string> text_lines = splitLines(rendered);
+        const std::vector<std::string> text_lines = wrap_text
+            ? wrapLines(rendered, currentHudTextWidthLocked())
+            : splitLines(rendered);
         std::vector<HudLine> lines;
         lines.reserve(text_lines.size());
 
