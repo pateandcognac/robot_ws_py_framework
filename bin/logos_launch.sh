@@ -223,6 +223,8 @@ esac
 
 command -v tmux >/dev/null 2>&1 || die "tmux was not found"
 
+terminal_opened=0
+
 cog_pane_percent="${LOGOS_COG_PANE_PERCENT:-50}"
 if [ -n "${LOGOS_COG_PANE_WIDTH:-}" ]; then
   is_positive_int "$LOGOS_COG_PANE_WIDTH" || die "LOGOS_COG_PANE_WIDTH must be a positive integer"
@@ -252,6 +254,34 @@ build_cognition_layout_shell_command() {
 
 apply_cognition_layout() {
   bash -lc "$(build_cognition_layout_shell_command)"
+}
+
+open_main_terminal() {
+  [ "$open_terminal" -eq 1 ] || return 0
+  [ "$terminal_opened" -eq 0 ] || return 0
+
+  local geometry
+  local terminal_args
+  local profile_args
+
+  geometry="${LOGOS_MAIN_TERMINAL_GEOMETRY:-200x55+0+0}"
+  terminal_args=(--geometry="$geometry")
+  if [ "${LOGOS_MAIN_TERMINAL_MAXIMIZE:-1}" != "0" ]; then
+    terminal_args+=(--maximize)
+  fi
+
+  profile_args=()
+  if [ -n "${LOGOS_MAIN_TERMINAL_PROFILE:-}" ]; then
+    profile_args=(--profile="$LOGOS_MAIN_TERMINAL_PROFILE")
+  fi
+
+  gnome-terminal \
+    "${terminal_args[@]}" \
+    "${profile_args[@]}" \
+    --title="Logos Launch" \
+    -- bash -lc "tmux attach-session -t $(shell_quote "$session")"
+
+  terminal_opened=1
 }
 
 install_cognition_layout_hooks() {
@@ -343,6 +373,9 @@ else
   # Keep one simple shell alive for the lifetime of the dashboard. This also
   # anchors the tmux server before any ROS workload has a chance to exit.
   new_hold_pane "spare shell"
+  install_cognition_layout_hooks
+  apply_cognition_layout
+  open_main_terminal
 
   boot_voice_stage roscore
   new_pane "roscore" "roscore" "roscore"
@@ -377,9 +410,6 @@ else
   if [ "$show_login_notification" -eq 1 ]; then
     boot_voice_stage keyring
   fi
-  if [ "$open_browser" -eq 1 ]; then
-    boot_voice_stage browser
-  fi
   boot_voice_stage workspace "$workspace_name" "$last_workspace" "$auto_cog"
   boot_voice_stage speakme
 
@@ -393,6 +423,9 @@ else
 
   cog_command=""
   if [ "$open_browser" -eq 1 ]; then
+    if [ "$boot_voice" -eq 1 ]; then
+      cog_command+="'$script_dir/logos_boot_voice.sh' browser || true; "
+    fi
     cog_command+="(sleep 4; xdg-open http://localhost:5000 >/dev/null 2>&1 || true) & "
   fi
 
@@ -430,22 +463,7 @@ if [ "$attach_current" -eq 1 ]; then
 fi
 
 if [ "$open_terminal" -eq 1 ]; then
-  geometry="${LOGOS_MAIN_TERMINAL_GEOMETRY:-200x55+0+0}"
-  terminal_args=(--geometry="$geometry")
-  if [ "${LOGOS_MAIN_TERMINAL_MAXIMIZE:-1}" != "0" ]; then
-    terminal_args+=(--maximize)
-  fi
-
-  profile_args=()
-  if [ -n "${LOGOS_MAIN_TERMINAL_PROFILE:-}" ]; then
-    profile_args=(--profile="$LOGOS_MAIN_TERMINAL_PROFILE")
-  fi
-
-  gnome-terminal \
-    "${terminal_args[@]}" \
-    "${profile_args[@]}" \
-    --title="Logos Launch" \
-    -- bash -lc "tmux attach-session -t '$session'"
+  open_main_terminal
 else
   printf 'Logos tmux session is ready: %s\n' "$session"
   printf 'Attach with: tmux attach -t %s\n' "$session"

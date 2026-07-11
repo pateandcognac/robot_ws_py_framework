@@ -108,13 +108,13 @@ For the full tmux-based bringup dashboard, run:
 logos_launch.sh
 ```
 
-This opens a main-monitor `gnome-terminal`, creates a `tmux` session named
-`logos`, starts the usual stack in separate panes, and leaves the final pane
-waiting for the cognition workspace name. The main terminal opens maximized by
-default, and the cognition pane uses 50% of the tmux window width. Press Enter
-there to use the displayed default, or type an existing/new `Logos_*` workspace
-name. For boot/autostart use, the same helper can be called with explicit
-display and automatic cognition startup:
+This creates a `tmux` session named `logos`, opens a main-monitor
+`gnome-terminal` as soon as the session exists, starts the usual stack in
+separate panes, and leaves the cognition pane waiting for the workspace name.
+The main terminal opens maximized by default, and the cognition pane uses 50%
+of the tmux window width. Press Enter there to use the displayed default, or
+type an existing/new `Logos_*` workspace name. For boot/autostart use, the same
+helper can be called with explicit display and automatic cognition startup:
 
 ```
 /home/robot/robot_ws/bin/logos_launch.sh --display :0 --auto-cog --workspace Logos_001
@@ -182,10 +182,11 @@ bin/logos_ambient.sh 1 1 '[]'
 It then explains the `hey robot` wake phrase, the explicit `end of line`
 terminator, and the spring-shaped capacitive microphone mute switch on the
 right side of Logos's head. Later Kokoro reminders call attention to login
-keyring authentication, browser interface launch, and the LOOK HERE workspace
-prompt in the main terminal. If `docs/SPEAKME.txt` exists and is nonempty, its
-emoji-punctuated contents are performed last using the final Kokoro voice.
-Set `LOGOS_BOOT_VOICE=1` instead of using the command-line flag when preferred.
+keyring authentication and the LOOK HERE workspace prompt in the main terminal.
+The browser interface launch is narrated after the workspace prompt is answered
+or its countdown times out. If `docs/SPEAKME.txt` exists and is nonempty, its
+emoji-punctuated contents are performed last using the final Kokoro voice. Set
+`LOGOS_BOOT_VOICE=1` instead of using the command-line flag when preferred.
 
 The commands below use helper scripts already in the robot workspace. Start
 them in this order.
