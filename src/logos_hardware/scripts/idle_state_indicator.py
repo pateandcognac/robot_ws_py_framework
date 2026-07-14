@@ -481,7 +481,11 @@ class FaceAmbienceNode:
     # --- Animation Generators (Preserved) ---
 
     def random_hex_color(self):
-        return '#{:06x}'.format(random.randint(0x0000CC, 0x0000FF)) # shades of blue
+        # Return a cyan color with equal green and blue components (no red).
+        # Components range from 0xBB to 0xFF.
+        gb = random.randint(0x11, 0xFF)
+        return '#00{0:02x}{0:02x}'.format(gb)
+    
 
     def publish_random_idle_sine_wave(self):
         msg = MouthSine()
