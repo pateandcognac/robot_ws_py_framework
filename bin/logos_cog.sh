@@ -11,6 +11,9 @@ Create or checkpoint ~/robot_workspaces/WORKSPACE_NAME, then launch:
 Environment:
   LOGOS_TEMPLATE_WORKSPACE  Template directory to copy for new workspaces.
                             Default: ~/robot_workspaces/Logos
+  LOGOS_COG_NICE            Niceness for the framework launch process.
+                            Default: -5 (requires scheduler permission).
+                            Set to 0 to use normal priority.
 
 To push back to `Logos/`, run:
 $ git checkout -b <branch>
@@ -31,6 +34,17 @@ if [[ -z "$workspace_name" || "$workspace_name" == "-h" || "$workspace_name" == 
     exit 2
 fi
 shift
+
+cog_nice_level="${LOGOS_COG_NICE:--5}"
+if ! [[ "$cog_nice_level" =~ ^-?[0-9]+$ ]] || (( cog_nice_level < -20 || cog_nice_level > 19 )); then
+    die "LOGOS_COG_NICE must be an integer between -20 and 19 (got $cog_nice_level)"
+fi
+
+# Verify this before checkpointing the workspace. Negative niceness is denied
+# unless the account has a suitable systemd/PAM scheduler-priority grant.
+if (( cog_nice_level < 0 )) && ! nice -n "$cog_nice_level" true 2>/dev/null; then
+    die "cannot apply niceness $cog_nice_level; configure scheduler permission or use LOGOS_COG_NICE=0"
+fi
 
 case "$workspace_name" in
     */*|.*|*..*)
@@ -92,4 +106,5 @@ else
     commit_if_needed
 fi
 
-exec roslaunch logos_framework start_framework.launch "workspace:=${workspace_name}" "$@"
+exec nice -n "$cog_nice_level" \
+    roslaunch logos_framework start_framework.launch "workspace:=${workspace_name}" "$@"

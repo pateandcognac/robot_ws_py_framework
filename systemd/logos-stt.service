@@ -1,0 +1,26 @@
+[Unit]
+Description=Logos speech-to-text ear
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=robot
+Group=robot
+WorkingDirectory=/home/robot/robot_ws
+Environment=HOME=/home/robot
+Environment=ROS_MASTER_URI=http://127.0.0.1:11311
+Environment=ROS_HOME=/home/robot/.ros
+Environment=LOGOS_STT_BACKEND=whisper
+# The service manager applies this before dropping to User=robot, so the ear
+# receives a modest priority boost without giving Python broader privileges.
+Nice=-5
+ExecStart=/bin/bash -c 'source /opt/ros/noetic/setup.bash && source /home/robot/robot_ws/devel/setup.bash && exec /home/robot/robot_ws/bin/logos_stt.sh "$${LOGOS_STT_BACKEND:-whisper}"'
+KillSignal=SIGINT
+TimeoutStopSec=15
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

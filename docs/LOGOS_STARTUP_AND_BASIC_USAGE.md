@@ -212,6 +212,18 @@ Open another terminal on the main monitor and run:
 logos_stt.sh
 # Optional streaming Nemotron backend:
 logos_stt.sh nemotron
+
+# Or install the managed, priority-enabled STT service (nice -5 by default):
+logos_stt_service.sh install
+# Manage it later with start, stop, restart, status, logs, or follow.
+logos_stt_service.sh status
+
+# Optional hands-free completion: after "Hey Robot", publish after a VAD
+# silence interval instead of requiring "end of line" or "cancel that".
+LOGOS_STT_VAD_ONLY=1 LOGOS_STT_VAD_SILENCE_TIMEOUT=1.5 logos_stt.sh
+# For the managed service:
+logos_stt_service.sh set-vad-only 1.5
+logos_stt_service.sh restart
 ```
 
 Leave that terminal open.
@@ -410,6 +422,11 @@ logos_core.sh
 logos_stt.sh
 logos_cog.sh Logos
 ```
+
+`logos_cog.sh` launches the framework at niceness `-5` by default so cognition
+remains responsive when the host is busy. This requires permission to raise
+scheduler priority; use `LOGOS_COG_NICE=0 logos_cog.sh Logos` to run at normal
+priority when that permission has not been configured.
 
 On the face monitor, in the face tmux layout:
 

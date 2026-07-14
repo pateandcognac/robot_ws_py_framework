@@ -193,6 +193,13 @@ class LogosEarsNode:
         
         self.recording_buffer = []       # List of numpy arrays
         self.recording_start_time = 0
+        # Optional hands-free completion mode.  Keep the established explicit
+        # end/cancel controls as the default, but allow a wake phrase followed
+        # by speech and a VAD-observed pause to finish the recording.
+        self.recording_vad_only = bool(rospy.get_param('~recording_vad_only', False))
+        self.recording_vad_silence_timeout = max(
+            0.2, float(rospy.get_param('~recording_vad_silence_timeout', 1.5)))
+        self.recording_last_speech_time = None
         
         #  Background Audio Transcription History Storage
         self.ambient_history = []
@@ -210,6 +217,11 @@ class LogosEarsNode:
 
         # --- Load Models ---
         self._init_models()
+        if self.recording_vad_only:
+            rospy.loginfo(
+                "STT recording uses VAD-only completion after %.2f seconds of silence.",
+                self.recording_vad_silence_timeout,
+            )
         
         # --- ROS Setup ---
         self._init_ros()
@@ -301,6 +313,13 @@ class LogosEarsNode:
         """Return active core wakewords, including optional ROS-param controls."""
         wakewords = dict(CORE_WAKEWORDS)
         thresholds = dict(CORE_WAKEWORD_THRESHOLDS)
+
+        # In hands-free mode these models are neither needed nor consulted:
+        # completion is driven exclusively by the VAD quiet interval.
+        if self.recording_vad_only:
+            for role in ('end', 'cancel'):
+                wakewords.pop(role, None)
+                thresholds.pop(role, None)
 
         for role, config in OPTIONAL_CORE_WAKEWORDS.items():
             enabled = rospy.get_param(
@@ -773,14 +792,19 @@ class LogosEarsNode:
                     self._finish_recording(reason="timeout")
                     continue
 
-                if 'end' in core_detections:
+                if self._recording_vad_timeout_elapsed(is_ambient_speech, now):
+                    print(Fore.GREEN + "VAD silence timeout reached; finishing input.")
+                    self._play_sound(Sound.OFF)
+                    self._finish_recording(reason="normal")
+
+                elif not self.recording_vad_only and 'end' in core_detections:
                     label = self.core_wakeword_models['end']['label']
                     print(Fore.GREEN + f"Stop Word: {label}")
                     self._publish_hotword(label)
                     self._play_sound(Sound.OFF)
                     self._finish_recording(reason="normal")
 
-                elif 'cancel' in core_detections:
+                elif not self.recording_vad_only and 'cancel' in core_detections:
                     label = self.core_wakeword_models['cancel']['label']
                     print(Fore.YELLOW + f"Cancel Word: {label}")
                     self._play_sound(Sound.OFF)
@@ -794,6 +818,7 @@ class LogosEarsNode:
                     )
                     self.recording_buffer = []
                     self.recording_start_time = 0
+                    self._reset_recording_vad_timeout()
                     self._reset_state()
                     self._reset_wakeword_models()
 
@@ -845,6 +870,7 @@ class LogosEarsNode:
                         self._active_wake_context_id = wake_context_id
                     self.recording_buffer = []
                     self.recording_start_time = time.time()
+                    self._reset_recording_vad_timeout()
                     continue
 
                 # Passive hotwords are independent of ambient transcription.
@@ -1021,6 +1047,7 @@ class LogosEarsNode:
 
     def _finish_recording(self, reason="normal"):
         """Package recording buffer and send to Scribe."""
+        self._reset_recording_vad_timeout()
         if not self.recording_buffer:
             self._reset_state()
             return
@@ -1430,8 +1457,8 @@ class LogosEarsNode:
         # Allow phrase forms like "ok computer", "OK-COMPUTER", and
         # "OkComputer" without pinning control phrase text here.
         phrases = [
-            self._wakeword_phrase_pattern(model['label'])
-            for model in self.core_wakeword_models.values()
+            self._wakeword_phrase_pattern(self.core_wakeword_models[role]['label'])
+            for role in self._transcript_control_roles()
         ]
 
         # Remove with optional surrounding punctuation/spaces.
@@ -1450,6 +1477,12 @@ class LogosEarsNode:
 
     def _recording_prompt_text(self):
         """Render recording controls that are active in this process."""
+        if self.recording_vad_only:
+            return (
+                "    Speak naturally, then pause for {:.1f}s to finish."
+                .format(self.recording_vad_silence_timeout)
+            )
+
         prompts = [f"    Say {self._prompt_phrase('end')} to finish."]
         if 'cancel' in self.core_wakeword_models:
             prompts.append(f"    Say {self._prompt_phrase('cancel')} to cancel.")
@@ -1461,7 +1494,29 @@ class LogosEarsNode:
         """Inline all configured core phrases in a Whisper-friendly form."""
         return "\n".join(
             self._prompt_phrase(role)
-            for role in self.core_wakeword_models
+            for role in self._transcript_control_roles()
+        )
+
+    def _transcript_control_roles(self):
+        """Return core phrases that should be removed from ASR text."""
+        if self.recording_vad_only:
+            return [role for role in self.core_wakeword_models if role not in ('end', 'cancel')]
+        return list(self.core_wakeword_models)
+
+    def _reset_recording_vad_timeout(self):
+        self.recording_last_speech_time = None
+
+    def _recording_vad_timeout_elapsed(self, is_speech, now):
+        """Track speech only after wake; finish after the configured quiet gap."""
+        if not self.recording_vad_only:
+            return False
+        if is_speech:
+            self.recording_last_speech_time = now
+            return False
+        return (
+            self.recording_last_speech_time is not None
+            and now - self.recording_last_speech_time
+            >= self.recording_vad_silence_timeout
         )
 
     def _wakeword_phrase_pattern(self, label):

@@ -25,6 +25,23 @@ logos_stt.sh nemotron
 # Equivalent for boot/launcher use:
 LOGOS_STT_BACKEND=nemotron logos_stt.sh
 
+# Preferred managed service: runs as robot at nice -5 without giving the
+# general Python/ROS environment elevated scheduler privileges.
+logos_stt_service.sh install
+logos_stt_service.sh set-backend nemotron
+logos_stt_service.sh set-vad-only 1.5
+logos_stt_service.sh restart
+
+# For a direct, manually launched ear, niceness remains available as an
+# opt-in (negative values require scheduler permission).
+LOGOS_STT_NICE=-5 logos_stt.sh
+
+# Optional hands-free completion for either backend: keep "Hey Robot", then
+# publish after 1.5 seconds of VAD silence instead of saying end-of-line.
+# In this mode, end-of-line and cancel-that are not used as recording controls.
+LOGOS_STT_VAD_ONLY=1 LOGOS_STT_VAD_SILENCE_TIMEOUT=1.5 logos_stt.sh
+LOGOS_STT_VAD_ONLY=1 LOGOS_STT_VAD_SILENCE_TIMEOUT=1.5 logos_stt.sh nemotron
+
 # Enable ambient transcription
 rostopic pub /stt/ambient_listener/enable std_msgs/Bool "data: true"
 
@@ -40,7 +57,7 @@ rostopic echo /stt/ambient_listener/transcription
 rostopic echo /stt/audio_classifier/events
 ```
 
-Wake phrase (`Hey Robot`) is **always on** - it does not need to be enabled. During a wake-recording window, `end of line` finishes and `cancel that` abandons the recording without transcribing or publishing anything. The optional edit stop word is disabled by default and can be enabled with the private ROS param `~enable_edit_wakeword` when an `edit_input` model is available. Drop Logos-trained replacements into matching subdirectories under `wakewords/custom`; that tree is searched first. Shared OpenWakeWord feature models live in `wakewords/openwakeword-feature-models` so startup does not fetch model resources at runtime.
+Wake phrase (`Hey Robot`) is **always on** - it does not need to be enabled. During a normal wake-recording window, `end of line` finishes and `cancel that` abandons the recording without transcribing or publishing anything. Set private ROS params `~recording_vad_only:=true` and `~recording_vad_silence_timeout:=1.5` (or use the launcher environment variables above) for hands-free completion: once speech has begun, the recording ends after the chosen VAD-silence interval. The optional edit stop word is disabled by default and can be enabled with the private ROS param `~enable_edit_wakeword` when an `edit_input` model is available. Drop Logos-trained replacements into matching subdirectories under `wakewords/custom`; that tree is searched first. Shared OpenWakeWord feature models live in `wakewords/openwakeword-feature-models` so startup does not fetch model resources at runtime.
 
 The audio capture device defaults to `logos_mic,pan_tilt_mic`: a dedicated
 Logos mic ALSA alias first, with the old webcam mic alias as fallback. Override

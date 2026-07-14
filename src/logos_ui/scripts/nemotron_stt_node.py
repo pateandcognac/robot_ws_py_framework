@@ -267,12 +267,16 @@ class LogosNemotronEarsNode(LogosEarsNode):
                 if now - self.recording_start_time > RECORDING_TIMEOUT:
                     print(Fore.RED + "Recording timeout reached.")
                     self._finish_recording(reason="timeout")
-                elif "end" in core_detections:
+                elif self._recording_vad_timeout_elapsed(is_ambient_speech, now):
+                    print(Fore.GREEN + "VAD silence timeout reached; finishing input.")
+                    self._play_sound(Sound.OFF)
+                    self._finish_recording(reason="normal")
+                elif not self.recording_vad_only and "end" in core_detections:
                     label = self.core_wakeword_models["end"]["label"]
                     self._publish_hotword(label)
                     self._play_sound(Sound.OFF)
                     self._finish_recording(reason="normal")
-                elif "cancel" in core_detections:
+                elif not self.recording_vad_only and "cancel" in core_detections:
                     label = self.core_wakeword_models["cancel"]["label"]
                     self._publish_hotword(label)
                     self._play_sound(Sound.OFF)
@@ -286,6 +290,7 @@ class LogosNemotronEarsNode(LogosEarsNode):
                         font="doom",
                     )
                     self.recording_start_time = 0
+                    self._reset_recording_vad_timeout()
                     self._reset_state()
                     self._reset_wakeword_models()
                 elif "edit" in core_detections:
@@ -330,6 +335,7 @@ class LogosNemotronEarsNode(LogosEarsNode):
                 with self.ambient_history_lock:
                     self._active_wake_context_id = wake_context_id
                 self.recording_start_time = now
+                self._reset_recording_vad_timeout()
                 continue
 
             for role in passive_detections:
@@ -390,6 +396,7 @@ class LogosNemotronEarsNode(LogosEarsNode):
 
     def _finish_recording(self, reason="normal"):
         print(Fore.GREEN + "Finalizing streaming input...")
+        self._reset_recording_vad_timeout()
         with self.state_lock:
             self.current_state = LedState.TRANSCRIBING
         self.job_queue.put(

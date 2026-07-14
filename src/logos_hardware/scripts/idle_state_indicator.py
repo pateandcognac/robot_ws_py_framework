@@ -115,6 +115,10 @@ class FaceAmbienceNode:
         self.ambient_terminal_idle_sleep_min = rospy.get_param('~ambient_terminal_idle_sleep_min', 0.025)
         self.ambient_terminal_idle_sleep_max = rospy.get_param('~ambient_terminal_idle_sleep_max', 1.0)
         self.ambient_terminal_max_indent = rospy.get_param('~ambient_terminal_max_indent', 34)
+        # Chance of one visual blank line between adjacent terminal lines.
+        # Set to 0.0 for dense output or 1.0 to space every line pair.
+        self.ambient_terminal_blank_line_chance = rospy.get_param(
+            '~ambient_terminal_blank_line_chance', 0.20)
         self.ambient_code_scan_root = rospy.get_param('~ambient_code_scan_root', '/home/robot/robot_ws')
         self.ambient_code_cache_files = rospy.get_param('~ambient_code_cache_files', 48)
         self.ambient_code_max_file_bytes = rospy.get_param('~ambient_code_max_file_bytes', 180000)
@@ -164,6 +168,8 @@ class FaceAmbienceNode:
             float(self.ambient_terminal_idle_sleep_max)
         )
         self.ambient_terminal_max_indent = max(0, int(self.ambient_terminal_max_indent))
+        self.ambient_terminal_blank_line_chance = min(
+            1.0, max(0.0, float(self.ambient_terminal_blank_line_chance)))
         self.ambient_code_cache_files = max(1, int(self.ambient_code_cache_files))
         self.ambient_code_max_file_bytes = max(1024, int(self.ambient_code_max_file_bytes))
         self.ambient_code_max_lines_per_file = max(20, int(self.ambient_code_max_lines_per_file))
@@ -675,12 +681,20 @@ class FaceAmbienceNode:
         if not lines:
             return
 
+        # Keep spacing subtle: at most one empty row and never at either edge
+        # of a terminal payload, so the HUD does not drift or look sparse.
+        spaced_lines = [lines[0]]
+        for line in lines[1:]:
+            if random.random() < self.ambient_terminal_blank_line_chance:
+                spaced_lines.append("")
+            spaced_lines.append(line)
+
         payload = json.dumps({
             "pane": "face",
             "layer": 0,
             "kind": "text",
             "effect": "terminal",
-            "text": "\n".join(lines),
+            "text": "\n".join(spaced_lines),
             "color": color or random.choice(AMBIENT_TERMINAL_COLORS),
             "duration": self.ambient_terminal_line_duration,
         })
