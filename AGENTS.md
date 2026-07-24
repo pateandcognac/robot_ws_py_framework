@@ -46,6 +46,35 @@ There is no centralized test runner yet. For changes that affect ROS messages, l
 
 Recent history uses short imperative or descriptive commits, for example `doc stt_node` and `tts server fix for trailing punctuation after emoji split`. Keep commits focused on one behavior or package. Pull requests should describe the robot-facing behavior changed, list build/test commands run, mention affected launch files or hardware assumptions, and include screenshots or logs for UI, face, speech, or audio changes when relevant.
 
+## Git Stewardship & Autonomy
+
+Treat Git housekeeping as part of owning repository work, not as a separate task
+that always requires prompting. Inspect the branch, status, diffs, untracked
+files, and recent history before changing the index. Codex may organize, stage,
+and commit any coherent repository changes—including user-authored changes—when
+doing so creates a useful recovery point or clean handoff. Use focused commits
+when the work separates naturally; use one well-described snapshot commit when
+the visible worktree is broad but coherent. Choose commit messages that explain
+the behavior captured, and report the resulting commit hashes.
+
+Before committing, check for secrets, credentials, machine-local data, large or
+generated artifacts, and accidental debug output. Run validation proportional
+to the files being committed and state the boundary of that evidence: a syntax
+check or build is not proof of live ROS, GUI, audio, network, or hardware
+behavior. Preserve unrelated and in-progress work. Do not discard, overwrite,
+or silently rewrite user changes to make a commit cleaner; leave questionable
+files unstaged and explain why.
+
+Codex may use normal, non-destructive Git operations as needed: inspect history,
+fetch, create or switch task branches when the worktree permits, stage or
+unstage paths, make commits, and push the current branch to its configured
+remote when publishing or synchronization is part of the task. Never
+force-push, rewrite published history, delete branches or tags, use destructive
+reset/clean/checkout commands, or resolve ambiguous conflicts by dropping one
+side without explicit user approval. Avoid amending a commit the user may
+already be building on. If a hook fails, fix the underlying issue or report it;
+do not bypass hooks merely to obtain a commit.
+
 ## Security & Configuration Tips
 
 Do not commit secrets, API keys, local audio captures, or machine-specific credentials. `GEMINI_API_KEY` and other provider credentials should stay in the runtime environment, not in repo or workspace files. Be careful when editing `.system/` files inside `~/robot_workspaces/<name>/`; they define the behavior and permissions perceived by that Logos instance. Keep hardware calibration, model paths, and wake-word assets documented when they are required for a node to run.
