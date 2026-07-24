@@ -433,6 +433,43 @@ logos_stt.sh
 logos_cog.sh Logos
 ```
 
+### Logos cognition workspaces
+
+`~/robot_workspaces/Logos/` is the canonical API/template repository. A new
+named workspace is an actual local Git clone of its `master` branch:
+
+```bash
+logos_cog.sh Logos_experiment
+```
+
+Launching an existing workspace checkpoints its tracked changes before starting
+cognition. Runtime `state/` and `ipc/` data stays local and ignored by Git.
+
+To bring newer, committed `Logos/` API changes into an existing workspace and
+then launch it:
+
+```bash
+logos_cog.sh --sync-from-logos Logos_experiment
+```
+
+To update it without launching cognition:
+
+```bash
+logos_cog.sh --sync-only Logos_experiment
+```
+
+The sync checkpoints the target workspace, verifies that both repositories
+ignore and do not track `state/` or `ipc/`, fetches canonical `master`, and
+merges it into the workspace's current branch. A merge conflict is aborted
+automatically, leaving the checkpoint intact. The command refuses to sync when
+`Logos/` has uncommitted changes so an apparently successful update cannot
+silently omit work that only exists in its working tree.
+
+Sync is deliberately opt-in. A normal launch never changes a workspace from the
+template behind your back. To offer a useful change in a clone back to
+`Logos/`, commit it on a feature branch and use that clone's
+`tools/push_to_logos.sh` walkthrough.
+
 On the face monitor, in the face tmux layout:
 
 ```

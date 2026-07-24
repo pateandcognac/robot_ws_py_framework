@@ -28,7 +28,7 @@ Claude / Codex can also expose this through the local Logos MCP server. The MCP 
 - `roslaunch logos_bringup logos_core.launch`: start the core Logos stack.
 - `roslaunch logos_framework start_framework.launch`: start the framework nodes.
 - `roslaunch logos_framework start_framework.launch workspace:=Logos`: launch cognition, Python worker, and web UI against `~/robot_workspaces/Logos`.
-- `bin/logos_cog.sh <workspace_name>`: create/checkpoint `~/robot_workspaces/<workspace_name>` from the template workspace if needed, then launch that runtime.
+- `bin/logos_cog.sh <workspace_name>`: create or checkpoint `~/robot_workspaces/<workspace_name>` from canonical `Logos/master`, then launch that runtime. Add `--sync-from-logos` to merge committed canonical changes before launch, or use `--sync-only` to update without launching; both refuse to sync unless `state/` and `ipc/` are ignored and untracked.
 - `python3 tools/validate_animation.py <path>`: validate animation JSON before committing generated sequences.
 - `python3 -m py_compile src/logos_framework/scripts/*.py src/logos_ui/scripts/*.py src/logos_hardware/scripts/*.py`: quick syntax check for Python node edits.
 
