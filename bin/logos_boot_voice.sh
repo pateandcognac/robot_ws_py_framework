@@ -117,6 +117,57 @@ perform_ttp() {
   return 1
 }
 
+cue_uncued_sentences() {
+  # SPEAKME is operator-authored free text.  Preserve any deliberate cues, but
+  # give every otherwise-uncued sentence a conservative, relevant LUT cue.
+  /usr/bin/python3 - "$1" <<'PY'
+import re
+import sys
+
+text = sys.argv[1]
+emoji = re.compile(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]")
+
+
+def cue_for(sentence):
+    words = sentence.casefold()
+    if re.search(r"browser|web|localhost|page|interface", words):
+        return "🕸️"
+    if re.search(r"workspace|terminal|cognition|login|password|keyring|type|enter", words):
+        return "💻"
+    if re.search(r"audio|voice|speak|hear|listen|wake|microphone", words):
+        return "🎙️"
+    if re.search(r"boot|launch|online|system|start|ready", words):
+        return "💡"
+    return "🤖"
+
+
+def add_cue(match):
+    sentence = match.group("sentence")
+    space = match.group("space")
+    existing_cue = match.group("cue")
+    if existing_cue:
+        return f"{sentence}{space}{existing_cue}"
+    return f"{sentence} {cue_for(sentence)}{space}"
+
+
+# A final unterminated line is also a sentence for announcement purposes.
+text = re.sub(
+    r"(?P<sentence>.+?[.!?]+)(?P<space>\s*)"
+    r"(?P<cue>[\U0001F300-\U0001FAFF\u2600-\u27BF](?:[\ufe0f\u200d\U0001F300-\U0001FAFF\u2600-\u27BF])*)?"
+    r"(?=\s+|$)",
+    add_cue,
+    text,
+    flags=re.S,
+)
+if text.strip() and not re.search(r"[.!?]\s*(?:[\U0001F300-\U0001FAFF\u2600-\u27BF])?\s*$", text):
+    tail = text.rstrip()
+    if not emoji.search(tail.splitlines()[-1]):
+        text = f"{tail} {cue_for(tail)}"
+
+print(text)
+PY
+}
+
 enable_ambient() {
   local attempt
 
@@ -178,6 +229,20 @@ case "${1:-}" in
       "Launching the web browser interface at localhost port five thousand. 🕸️" \
       || true
     ;;
+  network-online)
+    perform_ttp \
+      kokoro \
+      "$kokoro_voice" \
+      "Internet connection confirmed. 🌐 Logos cognition can reach its cloud models. ☁️" \
+      || true
+    ;;
+  network-offline)
+    perform_ttp \
+      kokoro \
+      "$kokoro_voice" \
+      "I cannot reach the internet yet. ⚠️ I am opening the Wi-Fi settings and will continue automatically when I am online. 📶" \
+      || true
+    ;;
   workspace)
     workspace_name="${2:-Logos}"
     last_workspace="${3:-0}"
@@ -186,29 +251,29 @@ case "${1:-}" in
       perform_ttp \
         kokoro \
         "$kokoro_voice" \
-        "Launching Logos cognition now with workspace ${workspace_name}." \
+        "Launching Logos cognition now with workspace ${workspace_name}. 💻" \
         || true
     elif [ "$last_workspace" = "1" ]; then
       perform_ttp \
         kokoro \
         "$kokoro_voice" \
-        "Look at my main terminal. It is prompting you for a workspace name. Enter a new or existing workspace name now, or wait one minute to use the most recent workspace by default: ${workspace_name}." \
+        "Look at my main terminal. 👀 It is prompting you for a workspace name. 💻 Enter a new or existing workspace name now. ⌨️ Or wait one minute to use the most recent workspace by default: ${workspace_name}. ⏳" \
         || true
     else
       perform_ttp \
         kokoro \
         "$kokoro_voice" \
-        "My main terminal is prompting for a workspace. Enter a new or existing workspace, or press enter to use the displayed default: ${workspace_name}." \
+        "My main terminal is prompting for a workspace. 💻 Enter a new or existing workspace. ⌨️ Or press enter to use the displayed default: ${workspace_name}. ✅" \
         || true
     fi
     ;;
   speakme)
     if [ -s "$speakme_file" ]; then
-      perform_ttp kokoro "$kokoro_voice" "$(cat "$speakme_file")" || true
+      perform_ttp kokoro "$kokoro_voice" "$(cue_uncued_sentences "$(cat "$speakme_file")")" || true
     fi
     ;;
   *)
-    printf 'Usage: %s {volume|linux|roscore|core|piper|ambient|kokoro|keyring|browser|workspace|speakme}\n' "$0" >&2
+    printf 'Usage: %s {volume|linux|roscore|core|piper|ambient|kokoro|keyring|browser|network-online|network-offline|workspace|speakme}\n' "$0" >&2
     exit 2
     ;;
 esac

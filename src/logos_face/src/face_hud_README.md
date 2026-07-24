@@ -102,6 +102,10 @@ Examples:
 ```
 
 ```json
+{"pane":"status","kind":"text","text":"partial response","append":true}
+```
+
+```json
 {"pane":"status","kind":"clear"}
 ```
 
@@ -114,6 +118,12 @@ the same normalized controls: `location_x`/`location_y` are top-left placement
 in the 0-1000 face coordinate space, `direction_x`/`direction_y` are a motion
 vector in -1000..1000 space, `tile_x`/`tile_y` enable repeated tiling, and
 `density` is 0-1000 tile density.
+
+Status `text` events can set `append:true` to grow one line across multiple
+events. Newlines are retained and long lines wrap at the HUD width. Send an
+otherwise empty event with `append:true, stream_end:true` to finish the stream;
+the next appended text begins on a new line. The face HUD bridge uses this for
+streamed `CognitionOutput(type="chunk")` messages.
 
 ## Face Images
 

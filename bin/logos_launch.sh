@@ -31,6 +31,8 @@ Options:
 Environment:
   LOGOS_LOAD_BASHRC             load ~/.bashrc through interactive Bash, default: 1
   LOGOS_BOOT_VOICE              enable narrated startup, default: 0
+  LOGOS_REQUIRE_INTERNET        gate cognition on internet access, default: 1
+  LOGOS_INTERNET_RETRY_SECONDS  seconds between offline retries, default: 5
   LOGOS_LOGIN_NOTIFICATION      show Ubuntu login reminder, default: 1
   LOGOS_LOGIN_PASSWORD          login reminder password, default: robot
   LOGOS_MAIN_TERMINAL_PROFILE   gnome-terminal profile for the main dashboard
@@ -91,7 +93,7 @@ workspace_name="Logos"
 time_workspace=0
 last_workspace=0
 auto_cog=0
-delay_seconds=3
+delay_seconds=4
 open_terminal=1
 attach_current=0
 reset_session=0
@@ -410,11 +412,14 @@ else
   if [ "$show_login_notification" -eq 1 ]; then
     boot_voice_stage keyring
   fi
-  boot_voice_stage workspace "$workspace_name" "$last_workspace" "$auto_cog"
   boot_voice_stage speakme
 
   cog_ready_channel="logos-cog-ready-$$"
   cog_intro_command="tmux wait-for '$cog_ready_channel'; clear; "
+  cog_intro_command+="LOGOS_NETWORK_VOICE='$boot_voice' '$script_dir/logos_network_gate.sh' || exec bash -i; clear; "
+  if [ "$boot_voice" -eq 1 ]; then
+    cog_intro_command+="'$script_dir/logos_boot_voice.sh' workspace '$workspace_name' '$last_workspace' '$auto_cog' || true; "
+  fi
   cog_intro_command+="if command -v figlet >/dev/null 2>&1; then figlet 'LOOK HERE!'; else printf '\n==== LOOK HERE! ====\n\n'; fi; "
   cog_intro_command+="printf '%s\n' 'This pane launches Logos cognition.' 'Logos/ is the master API directory: ~/robot_workspaces/Logos/' 'Cloned workspaces conventionally use names matching Logos_*.' ''; "
   cog_intro_command+="printf '%s\n' 'Available cloned workspaces (Logos_*):'; "

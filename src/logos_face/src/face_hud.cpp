@@ -355,6 +355,10 @@ private:
     std::array<FaceLayerState, 2> face_layers_;
     std::deque<HudLine> status_lines_;
     std::deque<StatusPrintJob> status_print_jobs_;
+    // A streamed status event grows its last line instead of creating one line
+    // per incoming model chunk. The bridge closes the stream on the final `me`
+    // message so the next response starts on a fresh line.
+    bool status_stream_active_ = false;
     double status_region_ratio_;
     uint8_t face_default_color_;
     uint8_t status_default_color_;
@@ -1114,8 +1118,27 @@ private:
             }
 
             const std::string text = root.get<std::string>("text", "");
+            const bool append = root.get<bool>("append", false);
+            const bool stream_end = root.get<bool>("stream_end", false);
+
+            // A stream-end marker intentionally carries no text. Handle it
+            // before the empty-text early return so the next stream begins on
+            // a new status line.
+            if (pane == "status" && append && stream_end) {
+                status_stream_active_ = false;
+                if (text.empty()) {
+                    return;
+                }
+            }
+
             if (text.empty()) {
                 return;
+            }
+
+            // Any ordinary status event is a boundary between streamed
+            // responses, including captions and figlet status messages.
+            if (pane == "status" && !append) {
+                status_stream_active_ = false;
             }
 
             if (kind == "caption" && pane != "status") {
@@ -1198,6 +1221,11 @@ private:
             }
 
             if (pane == "status") {
+                if (append && kind == "text") {
+                    appendStatusTextLocked(text, fg, bg);
+                    return;
+                }
+
                 enqueueStatusPrintLocked(text, fg, bg, 0.0, false, true);
             }
         } catch (const std::exception& e) {
@@ -1238,10 +1266,12 @@ private:
         if (pane == "status") {
             status_lines_.clear();
             status_print_jobs_.clear();
+            status_stream_active_ = false;
         } else if (pane == "all") {
             clearFaceLayersLocked();
             status_lines_.clear();
             status_print_jobs_.clear();
+            status_stream_active_ = false;
         } else if (layer) {
             if (isFaceLayer(*layer)) {
                 clearFaceLayerLocked(*layer);
@@ -1370,6 +1400,34 @@ private:
         while (static_cast<int>(status_lines_.size()) > status_max_lines_) {
             status_lines_.pop_front();
         }
+    }
+
+    void appendStatusTextLocked(const std::string& text, uint8_t fg, uint8_t bg) {
+        const size_t columns = static_cast<size_t>(currentHudTextWidthLocked());
+
+        if (!status_stream_active_ || status_lines_.empty()) {
+            status_lines_.push_back({"", fg, bg, ros::Time(0)});
+            status_stream_active_ = true;
+        }
+
+        for (const char ch : text) {
+            if (ch == '\r') {
+                continue;
+            }
+
+            if (ch == '\n') {
+                status_lines_.push_back({"", fg, bg, ros::Time(0)});
+                continue;
+            }
+
+            HudLine& line = status_lines_.back();
+            if (line.text.size() >= columns) {
+                status_lines_.push_back({"", fg, bg, ros::Time(0)});
+            }
+            status_lines_.back().text += ch;
+        }
+
+        trimStatusLinesLocked();
     }
 
     void updateStatusPrintJobsLocked(const ros::Time& now) {

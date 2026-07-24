@@ -64,8 +64,9 @@ THINKING_BUDGET_BY_LEVEL = {
 }
 
 MODEL_PRESETS = [
+    {"label": "Gemini 3.6 Flash", "model": "gemini-3.6-flash"},
+    {"label": "Gemini 3.5 Flash Lite", "model": "gemini-3.5-flash-lite"},
     {"label": "Gemini 3.5 Flash", "model": "gemini-3.5-flash"},
-    {"label": "Gemini 3.1 Pro Preview", "model": "gemini-3.1-pro-preview"},
     {"label": "Gemini 3 Flash Preview", "model": "gemini-3-flash-preview"},
     {"label": "Gemini 3.1 Flash-Lite Preview", "model": "gemini-3.1-flash-lite-preview"},
     {"label": "Robotics-ER 1.6 Preview", "model": "gemini-robotics-er-1.6-preview"},

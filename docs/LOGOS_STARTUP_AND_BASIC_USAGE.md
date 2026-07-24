@@ -182,10 +182,20 @@ bin/logos_ambient.sh 1 1 '[]'
 It then explains the `hey robot` wake phrase, the explicit `end of line`
 terminator, and the spring-shaped capacitive microphone mute switch on the
 right side of Logos's head. Later Kokoro reminders call attention to login
-keyring authentication and the LOOK HERE workspace prompt in the main terminal.
+keyring authentication. Before showing the LOOK HERE workspace prompt, the
+cognition pane checks Google's lightweight internet-connectivity endpoint. If
+Logos is offline, it opens Ubuntu Wi-Fi settings and retries every five seconds.
+The pane proceeds automatically when internet access returns; press O to reopen
+Wi-Fi settings or Q to cancel cognition startup. Set `LOGOS_REQUIRE_INTERNET=0`
+to bypass the gate for an intentionally offline setup. The retry interval can
+be overridden with `LOGOS_INTERNET_RETRY_SECONDS`. Once online, Kokoro confirms
+connectivity and calls attention to the LOOK HERE workspace prompt in the main
+terminal.
 The browser interface launch is narrated after the workspace prompt is answered
 or its countdown times out. If `docs/SPEAKME.txt` exists and is nonempty, its
-emoji-punctuated contents are performed last using the final Kokoro voice. Set
+emoji-punctuated contents are performed last using the final Kokoro voice.
+Existing cues are preserved; any uncued sentence receives a conservative cue
+chosen from its wording (for example, web, workspace, or audio language). Set
 `LOGOS_BOOT_VOICE=1` instead of using the command-line flag when preferred.
 
 The commands below use helper scripts already in the robot workspace. Start
@@ -422,11 +432,6 @@ logos_core.sh
 logos_stt.sh
 logos_cog.sh Logos
 ```
-
-`logos_cog.sh` launches the framework at niceness `-5` by default so cognition
-remains responsive when the host is busy. This requires permission to raise
-scheduler priority; use `LOGOS_COG_NICE=0 logos_cog.sh Logos` to run at normal
-priority when that permission has not been configured.
 
 On the face monitor, in the face tmux layout:
 

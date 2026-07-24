@@ -106,7 +106,7 @@ class FaceAmbienceNode:
         self.dyn_server_names = self._get_dyn_server_names()
         self.ambient_terminal_enabled = rospy.get_param('~ambient_terminal_enabled', True)
         self.ambient_terminal_burst_chance = rospy.get_param('~ambient_terminal_burst_chance', 0.60)
-        self.ambient_terminal_clear_chance = rospy.get_param('~ambient_terminal_clear_chance', 0.01)
+        self.ambient_terminal_clear_chance = rospy.get_param('~ambient_terminal_clear_chance', 0.1)
         self.ambient_terminal_min_interval = rospy.get_param('~ambient_terminal_min_interval', 0.05)
         self.ambient_terminal_line_duration = rospy.get_param('~ambient_terminal_line_duration', 0.0)
         self.ambient_terminal_max_output_chars = rospy.get_param('~ambient_terminal_max_output_chars', 320)
@@ -407,8 +407,8 @@ class FaceAmbienceNode:
             )
             params = {
                 "fps": self.def_fps,
-                "dither_charset": "ascii",
-                "dither_algorithm": "random"
+                "dither_charset": "shades",
+                "dither_algorithm": "ordered8"
             }
             self.current_render_mode = "active"
             self.current_fps = self.def_fps

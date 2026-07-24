@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-rosrun logos_hardware idle_state_indicator.py
+echo rosrun logos_hardware idle_state_indicator.py "$@"
+rosrun logos_hardware idle_state_indicator.py "$@"

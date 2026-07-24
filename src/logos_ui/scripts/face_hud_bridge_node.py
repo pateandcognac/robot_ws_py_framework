@@ -165,12 +165,23 @@ class FaceHudBridgeNode:
 
     def handle_cognition_output(self, msg):
         if msg.type == "chunk":
-            content = msg.content.strip()
+            # Preserve leading/trailing whitespace: model chunks are token
+            # fragments, so stripping each one joins words together.
+            content = msg.content
             if content:
-                self.publish_event("status", "text", text=content, color="bright_magenta")
+                self.publish_event(
+                    "status",
+                    "text",
+                    text=content,
+                    color="bright_magenta",
+                    append=True,
+                )
             return
 
         if msg.type == "me":
+            # Close the append stream without repeating the already-rendered
+            # final response. This makes the next answer start on a new line.
+            self.publish_event("status", "text", append=True, stream_end=True)
             return
 
         if msg.type == "feedback":
