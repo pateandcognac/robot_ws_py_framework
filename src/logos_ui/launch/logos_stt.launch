@@ -1,0 +1,30 @@
+<launch>
+  <arg name="backend" default="whisper"
+       doc="Speech recognizer: whisper or nemotron."/>
+  <arg name="finish_mode" default="end_phrases"
+       doc="Wake-recording completion: end_phrases or vad."/>
+  <arg name="vad_silence_timeout" default="1.5"
+       doc="Seconds of VAD silence that finish a recording in vad mode."/>
+
+  <node if="$(eval arg('backend') == 'whisper')"
+        name="logos_ears_node"
+        pkg="logos_ui"
+        type="stt_node.py"
+        output="screen">
+    <param name="recording_vad_only"
+           value="$(eval arg('finish_mode') == 'vad')"/>
+    <param name="recording_vad_silence_timeout"
+           value="$(arg vad_silence_timeout)"/>
+  </node>
+
+  <node if="$(eval arg('backend') == 'nemotron')"
+        name="logos_ears_node"
+        pkg="logos_ui"
+        type="nemotron_stt_node.py"
+        output="screen">
+    <param name="recording_vad_only"
+           value="$(eval arg('finish_mode') == 'vad')"/>
+    <param name="recording_vad_silence_timeout"
+           value="$(arg vad_silence_timeout)"/>
+  </node>
+</launch>

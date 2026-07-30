@@ -223,22 +223,20 @@ logos_stt.sh
 # Optional streaming Nemotron backend:
 logos_stt.sh nemotron
 
-# Or install the managed, priority-enabled STT service (nice -5 by default):
-logos_stt_service.sh install
-# Manage it later with start, stop, restart, status, logs, or follow.
-logos_stt_service.sh status
-
 # Optional hands-free completion: after "Hey Robot", publish after a VAD
 # silence interval instead of requiring "end of line" or "cancel that".
-LOGOS_STT_VAD_ONLY=1 LOGOS_STT_VAD_SILENCE_TIMEOUT=1.5 logos_stt.sh
-# For the managed service:
-logos_stt_service.sh set-vad-only 1.5
-logos_stt_service.sh restart
+logos_stt.sh whisper --vad 1.5
+logos_stt.sh nemotron --vad 1.5
+
+# Explicit end/cancel phrases remain the default and can also be selected:
+logos_stt.sh nemotron --end-phrases
 ```
 
 Leave that terminal open.
 
-This starts Logos's microphone speech-to-text process.
+This starts Logos's microphone speech-to-text process in the foreground. Stop
+it with Ctrl-C. The launcher does not install a service or alter process
+niceness.
 
 ### 3. Start Logos's cognition and web dashboard
 
