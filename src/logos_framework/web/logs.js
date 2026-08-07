@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     panels.forEach((panel) => {
         const copyVisibleButton = panel.querySelector('.copy-visible-button');
+        const copyVisibleHtmlButton = panel.querySelector('.copy-visible-html-button');
         copyVisibleButton.addEventListener('click', () => {
             const entries = visibleEntries(panel)
                 .map((entry) => entry.dataset.copyMarkdown || '')
@@ -18,6 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const panelTitle = panel.querySelector('h2').textContent.trim();
             const text = entries ? `# ${panelTitle}\n\n${entries}` : '';
             copyText(text, copyVisibleButton);
+        });
+        copyVisibleHtmlButton.addEventListener('click', () => {
+            const entries = visibleEntries(panel)
+                .map((entry) => entry.dataset.copyHtml || '')
+                .filter(Boolean)
+                .join('\n<hr>\n');
+            const panelTitle = panel.querySelector('h2').textContent.trim();
+            const html = entries
+                ? `<section>\n<h1>${escapeHtml(panelTitle)}</h1>\n${entries}\n</section>`
+                : '';
+            copyHtml(html, copyVisibleHtmlButton);
         });
     });
 
@@ -93,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.dataset.searchText = copyPayload.toLowerCase();
         card.dataset.copyText = copyPayload;
         card.dataset.copyMarkdown = markdownEntryText(entry);
+        card.dataset.copyHtml = htmlEntryText(entry);
 
         const header = document.createElement('div');
         header.className = 'log-entry-header';
@@ -210,6 +223,70 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function htmlEntryText(entry) {
+        if (entry.parse_error) {
+            return [
+                '<article>',
+                `<h2>Line ${entry.line}: JSON parse error</h2>`,
+                `<p><strong>Error:</strong> ${escapeHtml(entry.parse_error)}</p>`,
+                `<pre><code>${escapeHtml(entry.raw || '')}</code></pre>`,
+                '</article>'
+            ].join('\n');
+        }
+
+        const data = entry.data || {};
+        let content;
+        if (typeof data.content === 'string') {
+            content = htmlContent(data, data.content);
+        } else if (typeof data.summary === 'string') {
+            content = htmlContent(data, data.summary);
+        } else if (typeof data.text === 'string') {
+            content = htmlContent(data, data.text);
+        } else {
+            content = `<pre><code class="language-json">${escapeHtml(JSON.stringify(data, null, 2))}</code></pre>`;
+        }
+
+        return [
+            '<article>',
+            `<h2>${escapeHtml(titleForEntry(entry))}</h2>`,
+            `<p><em>${escapeHtml(metaForEntry(entry))}</em></p>`,
+            content,
+            '</article>'
+        ].join('\n');
+    }
+
+    function htmlContent(data, content) {
+        if (data.type !== 'me') {
+            return `<pre>${escapeHtml(content)}</pre>`;
+        }
+
+        const blocks = [];
+        const pyPattern = /<py(?:\s[^>]*)?>([\s\S]*?)<\/py>/gi;
+        let lastIndex = 0;
+        let match;
+        while ((match = pyPattern.exec(content)) !== null) {
+            if (match.index > lastIndex) {
+                blocks.push(`<pre>${escapeHtml(content.slice(lastIndex, match.index))}</pre>`);
+            }
+            const code = match[1].replace(/^\r?\n/, '').replace(/\r?\n$/, '');
+            blocks.push(`<pre><code class="language-python">${escapeHtml(code)}</code></pre>`);
+            lastIndex = pyPattern.lastIndex;
+        }
+        if (lastIndex < content.length) {
+            blocks.push(`<pre>${escapeHtml(content.slice(lastIndex))}</pre>`);
+        }
+        return blocks.length ? blocks.join('\n') : `<pre>${escapeHtml(content)}</pre>`;
+    }
+
+    function escapeHtml(value) {
+        return String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
     function fencedCode(value, language) {
         const text = String(value);
         const backtickRuns = text.match(/`+/g) || [];
@@ -268,6 +345,23 @@ document.addEventListener('DOMContentLoaded', () => {
             document.execCommand('copy');
             document.body.removeChild(textArea);
             flashButton(button);
+        }
+    }
+
+    async function copyHtml(html, button) {
+        if (!html) return;
+        try {
+            if (!navigator.clipboard.write || typeof ClipboardItem === 'undefined') {
+                throw new Error('Rich clipboard writes are unavailable');
+            }
+            const item = new ClipboardItem({
+                'text/html': new Blob([html], {type: 'text/html'}),
+                'text/plain': new Blob([html], {type: 'text/plain'})
+            });
+            await navigator.clipboard.write([item]);
+            flashButton(button);
+        } catch (error) {
+            await copyText(html, button);
         }
     }
 

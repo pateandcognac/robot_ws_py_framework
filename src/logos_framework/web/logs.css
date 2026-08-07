@@ -54,6 +54,7 @@
 
 .logs-actions button,
 .copy-visible-button,
+.copy-visible-html-button,
 .copy-entry-button {
     border: 1px solid #666;
     border-radius: 4px;
@@ -67,6 +68,8 @@
 .logs-actions button:focus,
 .copy-visible-button:hover,
 .copy-visible-button:focus,
+.copy-visible-html-button:hover,
+.copy-visible-html-button:focus,
 .copy-entry-button:hover,
 .copy-entry-button:focus {
     background: #383838;
@@ -106,6 +109,13 @@
 .log-panel-header h2 {
     margin: 0;
     font-size: 0.98rem;
+}
+
+.copy-visible-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px;
 }
 
 .log-panel-status {
