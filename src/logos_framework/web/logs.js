@@ -23,10 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
         copyVisibleHtmlButton.addEventListener('click', () => {
             const entries = visibleEntries(panel)
                 .map((entry) => entry.dataset.copyHtml || '')
-                .filter(Boolean)
-                .join('\n');
+                .filter(Boolean);
             const panelTitle = panel.querySelector('h2').textContent.trim();
-            const html = entries ? htmlExportDocument(panelTitle, entries) : '';
+            const html = entries.length ? htmlExportDocument(panelTitle, entries) : '';
             copyHtml(html, copyVisibleHtmlButton);
         });
     });
@@ -334,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <button type="button" data-collapse-type="py_async" aria-pressed="false">Collapse async Python</button>
 </nav>
 </header>
-<section class="entries" aria-label="Log entries">${entries}</section>
+<section class="entries" aria-label="Log entries">${entries.join('\n')}</section>
 </main>
 <script>
 (()=>{const root=document.documentElement;const theme=document.getElementById('theme-toggle');theme.addEventListener('click',()=>{const light=root.dataset.theme!=='light';root.dataset.theme=light?'light':'dark';theme.textContent=light?'🌙 Dark mode':'☀️ Light mode'});document.querySelectorAll('[data-collapse-type]').forEach(button=>{button.addEventListener('click',()=>{const collapse=button.getAttribute('aria-pressed')!=='true';button.setAttribute('aria-pressed',String(collapse));document.querySelectorAll('[data-message-type="'+button.dataset.collapseType+'"]').forEach(entry=>entry.open=!collapse);button.textContent=(collapse?'Expand ':'Collapse ')+(button.dataset.collapseType==='py_result'?'Python results':'async Python')})})})();
