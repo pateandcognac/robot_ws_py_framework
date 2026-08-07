@@ -7,6 +7,7 @@ import queue
 import re
 import readline
 import time
+from collections import deque
 from datetime import datetime
 
 import numpy as np
@@ -53,9 +54,20 @@ AMBIENT_EVENT_TOPIC = "/stt/ambient_listener/events"
 AMBIENT_EVENT_MAX_CHARS = 50
 AMBIENT_EVENT_SILENCE_TIMEOUT = 2.1
 AMBIENT_EVENT_PUNCTUATION_RE = re.compile(r"[,\.;:!\?\n]+")
+DEFAULT_WAKE_PREROLL_SECONDS = 0.8
+DEFAULT_AMBIENT_PREROLL_SECONDS = 0.35
+DEFAULT_AMBIENT_VAD_HANGOVER_SECONDS = 0.5
+DEFAULT_RECORDING_VAD_THRESHOLD = 0.35
+AUDIO_BACKLOG_WARNING_FRAMES = int(SAMPLE_RATE / FRAME_LENGTH)
+JOB_BACKLOG_WARNING_COUNT = 64
 
 
 class LogosNemotronEarsNode(LogosEarsNode):
+    @staticmethod
+    def _bounded_float_param(name, default, maximum):
+        value = float(rospy.get_param(name, default))
+        return min(maximum, max(0.0, value))
+
     def _init_ros(self):
         super()._init_ros()
         self.pub_ambient_events = rospy.Publisher(
@@ -66,6 +78,36 @@ class LogosNemotronEarsNode(LogosEarsNode):
 
     def _init_models(self):
         print(Fore.CYAN + "Loading OpenWakeWord, VAD, and Nemotron...")
+
+        self.wake_preroll_seconds = self._bounded_float_param(
+            "~wake_preroll_seconds",
+            DEFAULT_WAKE_PREROLL_SECONDS,
+            3.0,
+        )
+        self.ambient_preroll_seconds = self._bounded_float_param(
+            "~ambient_preroll_seconds",
+            DEFAULT_AMBIENT_PREROLL_SECONDS,
+            2.0,
+        )
+        self.ambient_vad_hangover_seconds = self._bounded_float_param(
+            "~ambient_vad_hangover_seconds",
+            DEFAULT_AMBIENT_VAD_HANGOVER_SECONDS,
+            3.0,
+        )
+        self.recording_vad_threshold = self._bounded_float_param(
+            "~recording_vad_threshold",
+            DEFAULT_RECORDING_VAD_THRESHOLD,
+            1.0,
+        )
+        self.wake_preroll_frames = int(
+            round(self.wake_preroll_seconds * SAMPLE_RATE / FRAME_LENGTH)
+        )
+        self.ambient_preroll_frames = int(
+            round(self.ambient_preroll_seconds * SAMPLE_RATE / FRAME_LENGTH)
+        )
+        self.audio_overflow_count = 0
+        self.audio_queue_high_watermark = 0
+        self.job_queue_high_watermark = 0
 
         core_wakewords, core_thresholds = self._configured_core_wakewords()
         self.core_wakeword_models = self._discover_role_models(
@@ -130,6 +172,14 @@ class LogosNemotronEarsNode(LogosEarsNode):
             + f"Nemotron loaded from {model_path} with {threads} ONNX thread(s) "
             f"and {self.nemotron_chunk_samples}-sample chunks."
         )
+        rospy.loginfo(
+            "Nemotron audio padding: wake pre-roll %.2fs, ambient pre-roll "
+            "%.2fs, ambient hangover %.2fs; recording VAD threshold %.2f.",
+            self.wake_preroll_seconds,
+            self.ambient_preroll_seconds,
+            self.ambient_vad_hangover_seconds,
+            self.recording_vad_threshold,
+        )
 
     def _audio_capture_loop(self):
         """Use stable 128 ms PortAudio reads, then restore 32 ms analysis frames."""
@@ -156,7 +206,15 @@ class LogosNemotronEarsNode(LogosEarsNode):
                         while self.running and not rospy.is_shutdown():
                             pcm, overflow = stream.read(CAPTURE_BLOCK_SAMPLES)
                             if overflow:
-                                rospy.logwarn("Nemotron STT audio overflow")
+                                self.audio_overflow_count += 1
+                                rospy.logwarn_throttle(
+                                    5.0,
+                                    "Nemotron STT audio overflow; total=%d, "
+                                    "audio_queue=%d, job_queue=%d",
+                                    self.audio_overflow_count,
+                                    self.audio_queue.qsize(),
+                                    self.job_queue.qsize(),
+                                )
                             pcm_int16 = pcm[:, 0].copy()
                             self.current_volume = np.sqrt(
                                 np.mean(pcm_int16.astype(float) ** 2)
@@ -172,6 +230,20 @@ class LogosNemotronEarsNode(LogosEarsNode):
                                 frame = pcm_int16[start:start + FRAME_LENGTH]
                                 if len(frame) == FRAME_LENGTH:
                                     self.audio_queue.put(frame)
+                            audio_depth = self.audio_queue.qsize()
+                            self.audio_queue_high_watermark = max(
+                                self.audio_queue_high_watermark,
+                                audio_depth,
+                            )
+                            if audio_depth >= AUDIO_BACKLOG_WARNING_FRAMES:
+                                rospy.logwarn_throttle(
+                                    5.0,
+                                    "Nemotron audio analysis backlog: %.2fs "
+                                    "(%d frames; high-water=%d)",
+                                    audio_depth * FRAME_LENGTH / SAMPLE_RATE,
+                                    audio_depth,
+                                    self.audio_queue_high_watermark,
+                                )
                 except Exception as exc:
                     if opened_stream:
                         rospy.logerr(
@@ -203,6 +275,9 @@ class LogosNemotronEarsNode(LogosEarsNode):
         next_ambient_publish = time.monotonic() + AMBIENT_PUBLISH_INTERVAL
         last_ambient_speech_time = 0.0
         ambient_event_timeout_sent = False
+        wake_preroll = deque(maxlen=self.wake_preroll_frames)
+        ambient_preroll = deque(maxlen=self.ambient_preroll_frames)
+        ambient_vad_active = False
 
         while self.running and not rospy.is_shutdown():
             try:
@@ -212,6 +287,18 @@ class LogosNemotronEarsNode(LogosEarsNode):
 
             now = time.time()
             monotonic_now = time.monotonic()
+            job_depth = self.job_queue.qsize()
+            self.job_queue_high_watermark = max(
+                self.job_queue_high_watermark,
+                job_depth,
+            )
+            if job_depth >= JOB_BACKLOG_WARNING_COUNT:
+                rospy.logwarn_throttle(
+                    5.0,
+                    "Nemotron scribe backlog: %d jobs (high-water=%d)",
+                    job_depth,
+                    self.job_queue_high_watermark,
+                )
             with self.state_lock:
                 ambient_enabled = self.ambient_enabled
 
@@ -226,6 +313,8 @@ class LogosNemotronEarsNode(LogosEarsNode):
                 )
                 last_ambient_speech_time = 0.0
                 ambient_event_timeout_sent = False
+                ambient_preroll.clear()
+                ambient_vad_active = False
 
             if pcm_int16 is None:
                 continue
@@ -235,6 +324,9 @@ class LogosNemotronEarsNode(LogosEarsNode):
                 self.reset_wakewords_pending = False
             if reset_wakewords_pending:
                 self._reset_wakeword_models()
+                wake_preroll.clear()
+                ambient_preroll.clear()
+                ambient_vad_active = False
 
             pcm_float32 = pcm_int16.astype(np.float32) / 32768.0
             vad_prob = self.vad_model(
@@ -242,6 +334,7 @@ class LogosNemotronEarsNode(LogosEarsNode):
             ).item()
             self.wakeword_vad_history.append(vad_prob)
             is_ambient_speech = vad_prob > AMBIENT_VAD_THRESHOLD
+            is_recording_speech = vad_prob > self.recording_vad_threshold
             is_wakeword_speech = (
                 max(self.wakeword_vad_history, default=0.0)
                 > WAKEWORD_VAD_THRESHOLD
@@ -256,6 +349,11 @@ class LogosNemotronEarsNode(LogosEarsNode):
                 state = self.current_state
                 ambient_enabled = self.ambient_enabled
 
+            # Keep enough raw idle audio to bridge OpenWakeWord's detection
+            # latency. The final transcript cleanup removes the wake phrase.
+            if state != LedState.RECORDING:
+                wake_preroll.append(pcm_float32)
+
             if state == LedState.RECORDING:
                 self.job_queue.put(
                     {
@@ -267,7 +365,10 @@ class LogosNemotronEarsNode(LogosEarsNode):
                 if now - self.recording_start_time > RECORDING_TIMEOUT:
                     print(Fore.RED + "Recording timeout reached.")
                     self._finish_recording(reason="timeout")
-                elif self._recording_vad_timeout_elapsed(is_ambient_speech, now):
+                elif self._recording_vad_timeout_elapsed(
+                    is_recording_speech,
+                    now,
+                ):
                     print(Fore.GREEN + "VAD silence timeout reached; finishing input.")
                     self._play_sound(Sound.OFF)
                     self._finish_recording(reason="normal")
@@ -321,7 +422,19 @@ class LogosNemotronEarsNode(LogosEarsNode):
                 else:
                     self._publish_cognition_prefetch()
 
-                self.job_queue.put({"type": "human_start"})
+                if wake_preroll:
+                    initial_audio = np.concatenate(tuple(wake_preroll))
+                else:
+                    initial_audio = np.empty(0, dtype=np.float32)
+                self.job_queue.put(
+                    {
+                        "type": "human_start",
+                        "audio": initial_audio,
+                    }
+                )
+                wake_preroll.clear()
+                ambient_preroll.clear()
+                ambient_vad_active = False
                 with self.state_lock:
                     self.current_state = LedState.RECORDING
                     self.classifier_sample_buffer = []
@@ -343,20 +456,48 @@ class LogosNemotronEarsNode(LogosEarsNode):
                 if detected:
                     self._publish_hotword(detected)
 
-            if ambient_enabled and is_ambient_speech:
-                last_ambient_speech_time = monotonic_now
-                ambient_event_timeout_sent = False
-                self.job_queue.put(
-                    {
-                        "type": "asr_audio",
-                        "mode": "ambient",
-                        "audio": pcm_float32,
-                    }
-                )
-            elif (
+            if ambient_enabled:
+                if not ambient_vad_active:
+                    # Preserve word onsets instead of starting the recognizer
+                    # at the first frame that happens to cross the threshold.
+                    ambient_preroll.append(pcm_float32)
+                    if is_ambient_speech:
+                        ambient_vad_active = True
+                        last_ambient_speech_time = monotonic_now
+                        ambient_event_timeout_sent = False
+                        self.job_queue.put(
+                            {
+                                "type": "asr_audio",
+                                "mode": "ambient",
+                                "audio": np.concatenate(tuple(ambient_preroll)),
+                            }
+                        )
+                        ambient_preroll.clear()
+                else:
+                    # Once opened, keep the region contiguous through a short
+                    # quiet hangover so word tails are not cut into 32 ms bits.
+                    self.job_queue.put(
+                        {
+                            "type": "asr_audio",
+                            "mode": "ambient",
+                            "audio": pcm_float32,
+                        }
+                    )
+                    if is_ambient_speech:
+                        last_ambient_speech_time = monotonic_now
+                        ambient_event_timeout_sent = False
+                    elif (
+                        monotonic_now - last_ambient_speech_time
+                        >= self.ambient_vad_hangover_seconds
+                    ):
+                        ambient_vad_active = False
+                        ambient_preroll.clear()
+
+            if (
                 ambient_enabled
                 and last_ambient_speech_time
                 and not ambient_event_timeout_sent
+                and not ambient_vad_active
                 and monotonic_now - last_ambient_speech_time
                 >= AMBIENT_EVENT_SILENCE_TIMEOUT
             ):
@@ -695,6 +836,9 @@ class LogosNemotronEarsNode(LogosEarsNode):
                     self._publish_cognition_prefetch()
             elif job_type == "human_start":
                 human = self._new_stream_state(self.nemotron)
+                initial_audio = job.get("audio")
+                if initial_audio is not None and len(initial_audio):
+                    self._feed_stream(human, initial_audio)
             elif job_type == "asr_audio" and job["mode"] == "human_stt":
                 if human is None:
                     human = self._new_stream_state(self.nemotron)

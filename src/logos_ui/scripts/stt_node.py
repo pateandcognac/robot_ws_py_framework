@@ -1538,9 +1538,19 @@ class LogosEarsNode:
         """
         led_msg = Int32MultiArray()
         idx = 0
+        display_volume = 0.0
+        display_speech = 0.0
         
         while self.running and not rospy.is_shutdown():
             state = self.current_state # atomic read usually fine
+            volume_target = float(getattr(self, 'current_volume', 0.0))
+            volume_alpha = 0.55 if volume_target > display_volume else 0.22
+            display_volume += volume_alpha * (volume_target - display_volume)
+            speech_target = (
+                1.0 if getattr(self, 'is_speech_detected', False) else 0.0
+            )
+            speech_alpha = 0.4 if speech_target > display_speech else 0.14
+            display_speech += speech_alpha * (speech_target - display_speech)
             
             data_list = [0] * FACE_LED_COUNT
             
@@ -1588,7 +1598,7 @@ class LogosEarsNode:
                     base_b = int(color_phase * brightness * 32)
                 
                 # 3. Check VAD (Reactive Shimmer)
-                is_hearing_speech = getattr(self, 'is_speech_detected', False)
+                speech_level = display_speech
                 
                 # 4. Check Transcription Blip (Happens for 3 seconds after publish)
                 time_since_publish = now - self.last_ambient_publish_time
@@ -1599,8 +1609,8 @@ class LogosEarsNode:
                     r, g, b = base_r, base_g, base_b
                     
                     # If hearing speech: Add a "Shimmer" effect
-                    if is_hearing_speech:
-                        shimmer = np.random.randint(-30, 15)
+                    if speech_level > 0.02:
+                        shimmer = int(np.random.randint(-30, 15) * speech_level)
                         b = max(5, min(80, b + shimmer))
                         g = max(0, min(80, g + shimmer // 2))
                     
@@ -1628,7 +1638,7 @@ class LogosEarsNode:
             elif state == LedState.RECORDING:
                 # VU Meter logic using self.current_volume
                 # Normalize volume (heuristic max 2000)
-                vol = getattr(self, 'current_volume', 0)
+                vol = display_volume
                 level = min(int((vol / 2000.0) * (FACE_LED_COUNT // 2)), FACE_LED_COUNT // 2)
                 
                 # Center outward

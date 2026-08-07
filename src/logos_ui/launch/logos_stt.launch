@@ -5,6 +5,14 @@
        doc="Wake-recording completion: end_phrases or vad."/>
   <arg name="vad_silence_timeout" default="1.5"
        doc="Seconds of VAD silence that finish a recording in vad mode."/>
+  <arg name="nemotron_recording_vad_threshold" default="0.35"
+       doc="Nemotron Silero threshold used only for VAD recording completion."/>
+  <arg name="nemotron_wake_preroll_seconds" default="0.8"
+       doc="Audio retained before a Nemotron wake detection and seeded into command ASR."/>
+  <arg name="nemotron_ambient_preroll_seconds" default="0.35"
+       doc="Audio prepended when Nemotron ambient VAD enters speech."/>
+  <arg name="nemotron_ambient_vad_hangover_seconds" default="0.5"
+       doc="Audio retained after Nemotron ambient VAD leaves speech."/>
 
   <node if="$(eval arg('backend') == 'whisper')"
         name="logos_ears_node"
@@ -26,5 +34,13 @@
            value="$(eval arg('finish_mode') == 'vad')"/>
     <param name="recording_vad_silence_timeout"
            value="$(arg vad_silence_timeout)"/>
+    <param name="recording_vad_threshold"
+           value="$(arg nemotron_recording_vad_threshold)"/>
+    <param name="wake_preroll_seconds"
+           value="$(arg nemotron_wake_preroll_seconds)"/>
+    <param name="ambient_preroll_seconds"
+           value="$(arg nemotron_ambient_preroll_seconds)"/>
+    <param name="ambient_vad_hangover_seconds"
+           value="$(arg nemotron_ambient_vad_hangover_seconds)"/>
   </node>
 </launch>

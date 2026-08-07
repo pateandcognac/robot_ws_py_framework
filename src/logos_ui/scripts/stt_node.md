@@ -357,6 +357,10 @@ Key shared and backend-specific values:
 | `OPENWAKEWORD_FEATURE_PATH` | asset path | Shared melspectrogram and embedding models for ONNX and TFLite inference |
 | `AMBIENT_VAD_THRESHOLD` | 0.5 | Silero threshold for ambient ASR gating |
 | `WAKEWORD_VAD_THRESHOLD` | 0.15 | Loose Silero threshold for OpenWakeWord activation filtering |
+| `~recording_vad_threshold` | 0.35 | Nemotron-only Silero threshold for deciding when speech last occurred in `--vad` completion mode; it does not gate command audio |
+| `~wake_preroll_seconds` | 0.8s | Nemotron audio retained before wake detection and seeded into the human ASR stream |
+| `~ambient_preroll_seconds` | 0.35s | Nemotron audio prepended when ambient VAD enters speech |
+| `~ambient_vad_hangover_seconds` | 0.5s | Nemotron audio retained after ambient VAD falls below threshold |
 | `RECORDING_TIMEOUT` | 120s | Hard stop if user doesn't say `end of line` |
 | `AMBIENT_PUBLISH_INTERVAL` | 60s | Nemotron ambient transcript publication interval |
 | `CAPTURE_BLOCK_SAMPLES` | 2048 | Nemotron PortAudio read size (128 ms), split into 32 ms analysis frames |
@@ -367,6 +371,17 @@ Key shared and backend-specific values:
 | `CLASSIFIER_BOOST_FACTOR` | 0.5 | Strength of temporal confidence boost |
 | `CLASSIFIER_TOP_K` | 10 | Max labels per sample |
 | `HOTWORD_DEBOUNCE_SEC` | 1.0 | Min seconds between repeated hotword publishes |
+
+Nemotron's model-internal VAD remains disabled. Once a wake word is detected,
+all captured command audio is sent to the streaming recognizer; the separate
+recording threshold above is used only to determine the end of an utterance in
+`--vad` mode. Ambient transcription remains VAD-selected, with the pre-roll and
+hangover preserving word boundaries around each selected speech region.
+
+Nemotron reports PortAudio overflow totals and audio/scribe queue high-water
+marks when capture or processing falls behind. An overflow means microphone
+input was lost before it reached the analysis queue; queue warnings instead
+indicate retained audio that is accumulating latency.
 
 Each configured wakeword points at a subdirectory, not a filename. The node
 prefers ONNX when a directory has both ONNX and TFLite files. That is the
