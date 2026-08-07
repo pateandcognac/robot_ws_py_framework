@@ -11,10 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
     panels.forEach((panel) => {
         const copyVisibleButton = panel.querySelector('.copy-visible-button');
         copyVisibleButton.addEventListener('click', () => {
-            const text = visibleEntries(panel)
-                .map((entry) => entry.dataset.copyText || '')
+            const entries = visibleEntries(panel)
+                .map((entry) => entry.dataset.copyMarkdown || '')
                 .filter(Boolean)
-                .join('\n\n');
+                .join('\n\n---\n\n');
+            const panelTitle = panel.querySelector('h2').textContent.trim();
+            const text = entries ? `# ${escapeMarkdownInline(panelTitle)}\n\n${entries}` : '';
             copyText(text, copyVisibleButton);
         });
     });
@@ -90,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'log-entry';
         card.dataset.searchText = copyPayload.toLowerCase();
         card.dataset.copyText = copyPayload;
+        card.dataset.copyMarkdown = markdownEntryText(entry);
 
         const header = document.createElement('div');
         header.className = 'log-entry-header';
@@ -165,6 +168,50 @@ document.addEventListener('DOMContentLoaded', () => {
             '',
             contentForEntry(entry.data || {})
         ].join('\n');
+    }
+
+    function markdownEntryText(entry) {
+        if (entry.parse_error) {
+            return [
+                `## Line ${entry.line}: JSON parse error`,
+                '',
+                `**Error:** ${escapeMarkdownInline(entry.parse_error)}`,
+                '',
+                fencedCode(entry.raw || '', 'text')
+            ].join('\n');
+        }
+
+        const data = entry.data || {};
+        let content;
+        if (typeof data.content === 'string') {
+            content = data.content;
+        } else if (typeof data.summary === 'string') {
+            content = data.summary;
+        } else if (typeof data.text === 'string') {
+            content = data.text;
+        } else {
+            content = fencedCode(JSON.stringify(data, null, 2), 'json');
+        }
+
+        return [
+            `## ${escapeMarkdownInline(titleForEntry(entry))}`,
+            '',
+            `*${escapeMarkdownInline(metaForEntry(entry))}*`,
+            '',
+            content
+        ].join('\n');
+    }
+
+    function escapeMarkdownInline(value) {
+        return String(value).replace(/([\\`*_{}[\]()<>#+.!|\-])/g, '\\$1');
+    }
+
+    function fencedCode(value, language) {
+        const text = String(value);
+        const backtickRuns = text.match(/`+/g) || [];
+        const longestRun = backtickRuns.reduce((longest, run) => Math.max(longest, run.length), 0);
+        const fence = '`'.repeat(Math.max(3, longestRun + 1));
+        return `${fence}${language}\n${text}\n${fence}`;
     }
 
     function formatTimestamp(value) {
