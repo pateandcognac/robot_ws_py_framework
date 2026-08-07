@@ -134,11 +134,21 @@
 }
 
 .log-entry {
+    --entry-accent: #77869a;
     border: 1px solid #4a4a4a;
+    border-left: 3px solid var(--entry-accent);
     border-radius: 5px;
     margin-bottom: 10px;
     background: #303030;
 }
+
+.log-entry[data-message-type="me"] { --entry-accent: #61dafb; }
+.log-entry[data-message-type="human"] { --entry-accent: #8bd17c; }
+.log-entry[data-message-type="human_stt"] { --entry-accent: #d7a7ff; }
+.log-entry[data-message-type="py_result"] { --entry-accent: #ffd43b; }
+.log-entry[data-message-type="py_async"] { --entry-accent: #ff9f6e; }
+.log-entry[data-message-type="system"] { --entry-accent: #99a8ba; }
+.log-entry[data-message-type="synopsis"] { --entry-accent: #f28db2; }
 
 .log-entry-header {
     display: flex;
