@@ -74,6 +74,11 @@ the ordered list with private ROS param `~audio_devices` or the
 `LOGOS_STT_AUDIO_DEVICES` environment variable. See
 `docs/LOGOS_MICROPHONE_SETUP.md` for host setup.
 
+For repeatable model and microphone comparisons, use the paired real-hardware
+recording and Faster-Whisper replay workflow in
+`docs/WHISPER_HARDWARE_BENCHMARK.md`. It reports WER, empty-result rate,
+latency, and realtime factor by model, microphone, position, and scenario.
+
 ---
 
 ## Topics
