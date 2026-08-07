@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .filter(Boolean)
                 .join('\n\n---\n\n');
             const panelTitle = panel.querySelector('h2').textContent.trim();
-            const text = entries ? `# ${escapeMarkdownInline(panelTitle)}\n\n${entries}` : '';
+            const text = entries ? `# ${panelTitle}\n\n${entries}` : '';
             copyText(text, copyVisibleButton);
         });
     });
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return [
                 `## Line ${entry.line}: JSON parse error`,
                 '',
-                `**Error:** ${escapeMarkdownInline(entry.parse_error)}`,
+                `**Error:** ${entry.parse_error}`,
                 '',
                 fencedCode(entry.raw || '', 'text')
             ].join('\n');
@@ -184,26 +184,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = entry.data || {};
         let content;
         if (typeof data.content === 'string') {
-            content = data.content;
+            content = markdownContent(data, data.content);
         } else if (typeof data.summary === 'string') {
-            content = data.summary;
+            content = markdownContent(data, data.summary);
         } else if (typeof data.text === 'string') {
-            content = data.text;
+            content = markdownContent(data, data.text);
         } else {
             content = fencedCode(JSON.stringify(data, null, 2), 'json');
         }
 
         return [
-            `## ${escapeMarkdownInline(titleForEntry(entry))}`,
+            `## ${titleForEntry(entry)}`,
             '',
-            `*${escapeMarkdownInline(metaForEntry(entry))}*`,
+            `*${metaForEntry(entry)}*`,
             '',
             content
         ].join('\n');
     }
 
-    function escapeMarkdownInline(value) {
-        return String(value).replace(/([\\`*_{}[\]()<>#+.!|\-])/g, '\\$1');
+    function markdownContent(data, content) {
+        if (data.type !== 'me') return content;
+        return content.replace(/<py(?:\s[^>]*)?>([\s\S]*?)<\/py>/gi, (match, code) => {
+            const unwrappedCode = code.replace(/^\r?\n/, '').replace(/\r?\n$/, '');
+            return fencedCode(unwrappedCode, 'py');
+        });
     }
 
     function fencedCode(value, language) {
