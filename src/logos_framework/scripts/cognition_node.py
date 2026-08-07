@@ -70,6 +70,7 @@ MODEL_PRESETS = [
     {"label": "Gemini 3 Flash Preview", "model": "gemini-3-flash-preview"},
     {"label": "Gemini 3.1 Flash-Lite Preview", "model": "gemini-3.1-flash-lite-preview"},
     {"label": "Robotics-ER 1.6 Preview", "model": "gemini-robotics-er-1.6-preview"},
+    {"label": "Robotics-ER 2 Preview", "model": "gemini-robotics-er-2-preview"},
     {"label": "Gemma 4 31B", "model": "gemma-4-31b-it"},
     {"label": "Gemma 4 26B MoE", "model": "gemma-4-26b-a4b-it"},
     {"label": "Gemini 2.5 Flash", "model": "gemini-2.5-flash"},
