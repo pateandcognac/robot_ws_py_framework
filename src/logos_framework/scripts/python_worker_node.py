@@ -256,7 +256,7 @@ class PythonWorkerNode:
         # Execute in a separate thread to handle timeouts
         execution_thread = threading.Thread(
             target=self._execute_code,
-            args=(code_to_run, do_reset, msg.type, msg.filename)
+            args=(code_to_run, do_reset, msg.type, msg.filename, msg.context_id)
         )
         execution_thread.start()
         execution_thread.join(timeout=timeout_sec)
@@ -284,12 +284,18 @@ class PythonWorkerNode:
             # The worker thread, upon its next call to check_for_interrupt(), will
             # raise an exception and terminate without sending a second result.
             result_content = f"# stderr\nExecution timed out after {timeout_sec} seconds. A cooperative interrupt has been requested."
-            self._publish_result(msg_type=msg.type, content=result_content, loop_cognition=True, filename=msg.filename)
+            self._publish_result(
+                msg_type=msg.type,
+                content=result_content,
+                loop_cognition=True,
+                filename=msg.filename,
+                context_id=msg.context_id,
+            )
             # We add a special attribute to the thread to signal it should not publish a result when it finally dies.
             execution_thread.was_terminated_by_timeout = True 
 
 
-    def _execute_code(self, code_str: str, do_reset: bool, request_type: str, filename: str):
+    def _execute_code(self, code_str: str, do_reset: bool, request_type: str, filename: str, context_id: str):
             """The core execution logic with state management, buffer capture, and interrupt handling."""
             start_time = time.time()
             
@@ -436,9 +442,22 @@ class PythonWorkerNode:
                 result_parts.append(f"\n# Execution finished in {duration:.2f}s.")
 
             result_content = "\n".join(result_parts).strip()
-            self._publish_result(msg_type=request_type, content=result_content, loop_cognition=final_loop_cognition, filename=filename)
+            self._publish_result(
+                msg_type=request_type,
+                content=result_content,
+                loop_cognition=final_loop_cognition,
+                filename=filename,
+                context_id=context_id,
+            )
 
-    def _publish_result(self, msg_type: str, content: str, loop_cognition: bool, filename: str):
+    def _publish_result(
+        self,
+        msg_type: str,
+        content: str,
+        loop_cognition: bool,
+        filename: str,
+        context_id: str = '',
+    ):
         """Constructs and publishes the result message to the CognitionNode."""
         response_msg = CognitionInput()
         
@@ -451,6 +470,7 @@ class PythonWorkerNode:
         response_msg.content = content
         response_msg.loop_cognition = loop_cognition
         response_msg.filename = filename
+        response_msg.context_id = context_id
         
         response_msg.system_hint = ""
 

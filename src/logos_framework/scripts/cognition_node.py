@@ -13,6 +13,7 @@ import concurrent.futures
 import base64
 import io
 import mimetypes
+import uuid
 from pathlib import Path
 from collections import deque
 from enum import Enum
@@ -161,6 +162,9 @@ class CognitionNode:
         self.context_results = {}
         self.context_requests_pending = 0
         self.context_gathering_complete = threading.Event()
+        self._context_lock = threading.Lock()
+        self._context_batch_id = None
+        self._context_pending_hooks = set()
         self.api_delay_budget = 0.0
         self.last_api_call_time = time.time()
         
@@ -173,6 +177,8 @@ class CognitionNode:
         self._prefetch_context_results = {}
         self._prefetch_context_pending = 0
         self._prefetch_context_event = threading.Event()
+        self._prefetch_context_id = None
+        self._prefetch_pending_hooks = set()
         self._prefetch_results = None        # dict hook_name->content once complete, or None
         self._prefetch_timestamp = 0.0
         PREFETCH_VALID_SECS = 60.0
@@ -671,24 +677,41 @@ class CognitionNode:
         return True
 
     def _input_callback(self, msg: CognitionInput):
-        if msg.type == 'context' and self.state in [CognitionState.GATHERING_CONTEXT, CognitionState.AWAITING_RESPONSE]:
+        if msg.type == 'context':
             hook_name = msg.filename
-            if hook_name:
-                self.context_results[hook_name] = msg.content
-                self.context_requests_pending -= 1
-                if self.context_requests_pending <= 0:
-                    self.context_gathering_complete.set()
-            else:
-                rospy.logwarn(f"Received context message without a filename. Cannot process.")
-            return
+            context_id = getattr(msg, 'context_id', '')
 
-        if msg.type == 'context' and self._prefetch_in_progress:
-            hook_name = msg.filename
-            if hook_name:
-                self._prefetch_context_results[hook_name] = msg.content
-                self._prefetch_context_pending -= 1
-                if self._prefetch_context_pending <= 0:
-                    self._prefetch_context_event.set()
+            with self._context_lock:
+                if (
+                    context_id
+                    and context_id == self._context_batch_id
+                    and hook_name in self._context_pending_hooks
+                ):
+                    self.context_results[hook_name] = msg.content
+                    self._context_pending_hooks.remove(hook_name)
+                    self.context_requests_pending = len(self._context_pending_hooks)
+                    if not self._context_pending_hooks:
+                        self.context_gathering_complete.set()
+                    return
+
+            with self._prefetch_lock:
+                if (
+                    context_id
+                    and context_id == self._prefetch_context_id
+                    and hook_name in self._prefetch_pending_hooks
+                ):
+                    self._prefetch_context_results[hook_name] = msg.content
+                    self._prefetch_pending_hooks.remove(hook_name)
+                    self._prefetch_context_pending = len(self._prefetch_pending_hooks)
+                    if not self._prefetch_pending_hooks:
+                        self._prefetch_context_event.set()
+                    return
+
+            rospy.logwarn(
+                "Dropping stale or unrecognized context result "
+                f"for hook '{hook_name or 'unnamed_hook'}' "
+                f"(context_id='{context_id or 'missing'}')."
+            )
             return
         
         # Feedback: Got Input (ignore context inputs)
@@ -1062,13 +1085,17 @@ class CognitionNode:
             self._prefetch_in_progress = True
             self._prefetch_context_results.clear()
             self._prefetch_context_event.clear()
+            self._prefetch_context_id = uuid.uuid4().hex
+            prefetch_context_id = self._prefetch_context_id
 
         prefetch_t0 = time.time()
         rospy.loginfo("[Prefetch] Starting hook prefetch...")
         try:
             header_to_run, footer_to_run = self.context.get_hooks_to_execute()
             hooks_to_run = header_to_run + footer_to_run
-            self._prefetch_context_pending = len(hooks_to_run)
+            with self._prefetch_lock:
+                self._prefetch_pending_hooks = {hook['name'] for hook in hooks_to_run}
+                self._prefetch_context_pending = len(self._prefetch_pending_hooks)
 
             if not hooks_to_run:
                 rospy.loginfo("[Prefetch] No hooks configured; nothing to prefetch.")
@@ -1078,7 +1105,8 @@ class CognitionNode:
                 out_msg = CognitionOutput(
                     type='context',
                     content=f"<py>{hook['code']}</py>",
-                    filename=hook['name']
+                    filename=hook['name'],
+                    context_id=prefetch_context_id,
                 )
                 self.output_pub.publish(out_msg)
 
@@ -1086,7 +1114,11 @@ class CognitionNode:
             if not completed:
                 rospy.logwarn("[Prefetch] Timed out waiting for hook results; storing partial results.")
 
-            hook_results = dict(self._prefetch_context_results)
+            with self._prefetch_lock:
+                hook_results = dict(self._prefetch_context_results)
+                self._prefetch_context_id = None
+                self._prefetch_pending_hooks.clear()
+                self._prefetch_context_pending = 0
             rospy.loginfo(f"[Prefetch] Hooks done in {time.time() - prefetch_t0:.3f}s ({len(hook_results)}/{len(hooks_to_run)} results).")
 
             # Build hook data structures to pre-upload referenced images via Files API.
@@ -1109,6 +1141,9 @@ class CognitionNode:
         finally:
             with self._prefetch_lock:
                 self._prefetch_in_progress = False
+                self._prefetch_context_id = None
+                self._prefetch_pending_hooks.clear()
+                self._prefetch_context_pending = 0
 
     def _initiate_cognition_cycle(self, debug_only=False, run_hooks=True):
             try:
@@ -1122,15 +1157,18 @@ class CognitionNode:
                 rospy.loginfo(f"--- Starting {cycle_kind} ---")
                 # Reset flags
                 self.has_thought_started = False
-                self.context_results.clear()
-                self.context_gathering_complete.clear()
+                with self._context_lock:
+                    self.context_results.clear()
+                    self.context_gathering_complete.clear()
+                    self._context_batch_id = None
+                    self._context_pending_hooks.clear()
+                    self.context_requests_pending = 0
 
                 if run_hooks:
                     header_to_run, footer_to_run = self.context.get_hooks_to_execute()
                 else:
                     header_to_run, footer_to_run = [], []
                 hooks_to_run = header_to_run + footer_to_run
-                self.context_requests_pending = len(hooks_to_run)
 
                 # --- Check for valid prompt-context prefetch ---
                 hook_phase_used_prefetch = False
@@ -1149,7 +1187,12 @@ class CognitionNode:
 
                 # Feedback: Calling Hooks
                 hook_phase_t0 = time.time()
-                if self.context_requests_pending > 0 and not hook_phase_used_prefetch:
+                if hooks_to_run and not hook_phase_used_prefetch:
+                    context_batch_id = uuid.uuid4().hex
+                    with self._context_lock:
+                        self._context_batch_id = context_batch_id
+                        self._context_pending_hooks = {hook['name'] for hook in hooks_to_run}
+                        self.context_requests_pending = len(self._context_pending_hooks)
                     hook_names = ", ".join([h['name'] for h in hooks_to_run])
                     rospy.loginfo(f"Requesting {self.context_requests_pending} Cognitive Hooks...")
                     self._send_feedback("Calling hooks", hook_names, "calling_hooks", "bright_yellow", "digital")
@@ -1158,7 +1201,8 @@ class CognitionNode:
                         out_msg = CognitionOutput(
                             type='context',
                             content=f"<py>{hook['code']}</py>",
-                            filename=hook['name']
+                            filename=hook['name'],
+                            context_id=context_batch_id,
                         )
                         self.output_pub.publish(out_msg)
 
@@ -1172,6 +1216,11 @@ class CognitionNode:
                             "bright_yellow",
                             "mini"
                         )
+
+                    with self._context_lock:
+                        self._context_batch_id = None
+                        self._context_pending_hooks.clear()
+                        self.context_requests_pending = 0
 
                 hook_phase_dur = time.time() - hook_phase_t0
                 if hooks_to_run:
@@ -1344,6 +1393,10 @@ class CognitionNode:
                 self.output_pub.publish(final_output)
             
             finally:
+                with self._context_lock:
+                    self._context_batch_id = None
+                    self._context_pending_hooks.clear()
+                    self.context_requests_pending = 0
                 with self.state_lock:
                     self.state = CognitionState.IDLE
                 rospy.loginfo(f"--- Cognition Cycle Finished. Total: {time.time() - cycle_start_t:.3f}s. State reset to IDLE. ---")

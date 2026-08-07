@@ -27,6 +27,7 @@ Published on `/cognition/input` by humans, tools, or the Python worker. Fields:
 | `string system_hint` | Optional inline instruction appended to the next LLM call. |
 | `bool loop_cognition` | Request a new cognition cycle when `true`. |
 | `string filename` | Metadata hook (e.g., hook name, file path). |
+| `string context_id` | Correlates a context-hook result with the requesting batch. |
 
 ### `CognitionOutput.msg`
 Published on `/cognition/output` by the cognition node. Fields:
@@ -36,6 +37,7 @@ Published on `/cognition/output` by the cognition node. Fields:
 | `string type` | Output classification (`ai`, `chunk`, `context`, etc.). |
 | `string content` | LLM text or `<py>` code blocks. |
 | `string filename` | Metadata hook matching `filename` in the input. |
+| `string context_id` | Correlates a context-hook request with its eventual result. |
 
 ## Node Overview (`scripts/`)
 
@@ -59,7 +61,7 @@ Successful cognition cycles:
 3. Wait for `context` replies (cached when TTL < 0), assemble the full Gemini prompt, respect throttling, and call the API with retry logic.
 4. Stream `chunk` updates, then publish the final `me` response and return to `IDLE`.
 
-Incoming non-context messages, including `debug` and `codex_tool`, are persisted to `io_history.jsonl` and `io_buffer.jsonl`. `debug` and `codex_tool` inputs never call Gemini; with `loop_cognition=False` they are only recorded, and with `loop_cognition=True` they run a hook/UI refresh cycle. The web UI also has a "Run Hooks" control that publishes a one-off `hook_refresh` input to run hooks, refresh `/cognition/ui_state`, and skip Gemini.
+Incoming non-context messages, including `debug` and `codex_tool`, are persisted to `io_history.jsonl` and `io_buffer.jsonl`. Context-hook replies are accepted only by the cognition or prefetch batch whose `context_id` matches; late, duplicate, missing-ID, and otherwise stale replies are dropped instead of entering persistent IO. `debug` and `codex_tool` inputs never call Gemini; with `loop_cognition=False` they are only recorded, and with `loop_cognition=True` they run a hook/UI refresh cycle. The web UI also has a "Run Hooks" control that publishes a one-off `hook_refresh` input to run hooks, refresh `/cognition/ui_state`, and skip Gemini.
 
 ### `python_worker_node.py`
 Executes `<py>` blocks emitted by the cognition node.
