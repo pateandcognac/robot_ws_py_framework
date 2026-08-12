@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function typePresentation(value) {
         const type = canonicalType(value);
         const presentations = {
-            me: {icon: '🤖', label: 'Robot'},
+            me: {icon: '🤖', label: 'Logos'},
             human: {icon: '👤', label: 'Human'},
             human_stt: {icon: '🎙️', label: 'Human · speech'},
             py_result: {icon: '🐍', label: 'Python result'},

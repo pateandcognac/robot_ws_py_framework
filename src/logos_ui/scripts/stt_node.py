@@ -292,8 +292,8 @@ class LogosEarsNode:
         # Faster Whisper (Int8 for speed on CPU)
         # Using a small or distilled model is usually sufficient for commands
         # options: tiny.en, tiny, base.en, base, small.en, small, medium.en, medium, large-v1, large-v2, large-v3, large, distil-large-v2, distil-medium.en, distil-small.en, distil-large-v3, distil-large-v3.5, large-v3-turbo, turbo
-        # self.whisper_model_name = "small.en"
-        self.whisper_model_name = "distil-medium.en"
+        self.whisper_model_name = "small.en"
+        # self.whisper_model_name = "medium.en"
         try:
             from faster_whisper import WhisperModel
         except ImportError as exc:
@@ -1307,6 +1307,7 @@ class LogosEarsNode:
                 count += 1
             
             full_text = " ".join(text_segments).strip()
+            print(f"=== Full Text: ===\n {full_text}")
             
             # --- Text Cleanup ---
             full_text = self._strip_control_phrases(full_text)
