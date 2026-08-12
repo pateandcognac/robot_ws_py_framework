@@ -287,8 +287,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function canonicalType(value) {
         const type = String(value || 'entry').trim().toLowerCase();
-        if (type === 'async_py') return 'py_async';
-        if (type === 'synospsis') return 'synopsis';
         return type.replace(/[^a-z0-9_-]/g, '-') || 'entry';
     }
 
